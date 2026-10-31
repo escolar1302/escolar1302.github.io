@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lengua 1°</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            /* =========================================================== */
+            /* >>> CAMBIA EL COLOR AQUÍ PARA OTROS CICLOS <<< */
+            /* Verde Segundo Ciclo: #27ae60 */
+            /* Naranja Primer Ciclo: #e67e22 */
+            /* =========================================================== */
+            
+            --primary-color: #e67e22; 
+
+            /* El resto de colores se calculan solos o son neutros */
+            --header-bg: #f4f6f7;
+            --selected-bg: #e8f8f5; 
+            --selected-border: var(--primary-color);
+            --text-color: #333;
+        }
+
+        /* Bloqueo de estilos intrusos de Word */
+        body {
+            font-family: 'Roboto', sans-serif !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            padding-bottom: 100px !important;
+            background-color: #f9f9f9 !important;
+            color: var(--text-color) !important;
+            width: 100% !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN FIJA --- */
+        header {
+            background-color: #2c3e50 !important;
+            padding: 10px 0 !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1000 !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+            width: 100% !important;
+            display: block !important;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        h1 { text-align: center; color: #2c3e50; margin: 30px 0; }
+
+        /* --- ACORDEÓN --- */
+        .accordion {
+            background-color: var(--header-bg);
+            color: #2c3e50;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.4s;
+            margin-bottom: 5px;
+            border-left: 6px solid var(--primary-color);
+            display: flex; justify-content: space-between; align-items: center;
+            box-sizing: border-box;
+        }
+        .active, .accordion:hover { background-color: #e2e6ea; } /* Gris suave al pasar mouse */
+        
+        /* Icono (+) que cambia a (-) */
+        .accordion:after { content: '\002B'; color: var(--primary-color); font-weight: bold; font-size: 1.5rem; }
+        .active:after { content: "\2212"; }
+
+        /* --- PANEL DE CONTENIDO --- */
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Grilla 50% / 50% */
+        .grid-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px 0;
+        }
+
+        .col-header {
+            font-weight: bold; text-align: center; color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; 
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+        }
+
+        .content-cell {
+            padding: 15px; background-color: #fff; border: 1px solid #ddd;
+            border-radius: 5px; cursor: pointer; font-size: 0.95rem;
+        }
+        .content-cell:hover { border-color: var(--primary-color); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* Estado Seleccionado */
+        .content-cell.selected {
+            background-color: var(--selected-bg); 
+            border: 2px solid var(--selected-border); 
+            position: relative;
+        }
+        .content-cell.selected::after {
+            content: "✔"; position: absolute; top: 5px; right: 5px; 
+            color: var(--selected-border); font-weight: bold;
+        }
+
+        /* Limpieza de estilos basura */
+        .content-cell p { margin-bottom: 8px; }
+        .content-cell ul { padding-left: 20px; margin: 0; }
+        .content-cell span { background-color: transparent !important; color: inherit !important; font-family: inherit !important; font-size: inherit !important; }
+
+        #raw-import { display: none; }
+
+        .fab {
+            position: fixed; bottom: 30px; right: 30px;
+            background-color: var(--primary-color); color: white;
+            width: 70px; height: 70px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;
+            font-size: 30px; border: none; z-index: 2000; transition: transform 0.2s;
+        }
+        .fab:hover { transform: scale(1.1); }
+
+        #toast {
+            visibility: hidden; min-width: 250px; margin-left: -125px;
+            background-color: #333; color: #fff; text-align: center;
+            border-radius: 50px; padding: 16px; position: fixed;
+            z-index: 3000; left: 50%; bottom: 30px;
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        @media print {
+            header, .fab { display: none !important; }
+            .accordion { border: none; padding: 0; border-bottom: 2px solid #000; }
+            .panel { max-height: none !important; display: block !important; margin-bottom: 30px; }
+            body { max-width: 100% !important; margin: 0 !important; }
+            .grid-container { page-break-inside: avoid; }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <h1>Contenidos Lengua 1°</h1>
+
+    <div id="accordion-container"></div>
+
+    <div id="raw-import">
+        <html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">ol{margin:0;padding:0}table td,table th{padding:0}.c0{border-right-style:solid;padding-top:0pt;border-top-width:0pt;border-right-width:0pt;padding-left:0pt;padding-bottom:0pt;line-height:1.15;border-left-width:0pt;border-top-style:solid;border-left-style:solid;border-bottom-width:0pt;border-bottom-style:solid;orphans:2;widows:2;text-align:left;padding-right:0pt}.c12{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:177pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c19{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:275.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c20{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:452.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c17{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:184.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c16{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:267.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c18{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:270pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c24{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:274.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c28{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:270pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c5{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:177.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c30{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:184.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c31{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:267.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c27{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:182.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c22{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:275.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c25{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:274.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c29{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:177pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c8{color:#1f1f1f;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:14pt;font-family:"Arial";font-style:normal}.c11{padding-top:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:left;height:11pt}.c1{color:#1f1f1f;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c4{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c2{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c13{text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c10{border-spacing:0;border-collapse:collapse;margin-right:auto}.c6{color:#000000;font-size:13pt;font-weight:700}.c14{background-color:#ffffff;max-width:538.6pt;padding:28.3pt 28.3pt 28.3pt 28.3pt}.c9{color:#1f1f1f;font-weight:700}.c23{height:993pt}.c32{height:537.8pt}.c15{height:11pt}.c21{height:1185.8pt}.c26{background-color:#efefef}.c7{height:41.2pt}.c3{height:868.5pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style></head><body class="c14 doc-content"><p class="c2 c15"><span class="c4"></span></p><table class="c10"><tr class="c7"><td class="c20" colspan="2" rowspan="1"><h3 class="c2" id="h.jcdzc6899wsx"><span class="c6">Eje: Sistema de escritura</span></h3></td></tr><tr class="c7"><td class="c12" colspan="1" rowspan="1"><p class="c2"><span class="c9">Indicadores de logro</span></p></td><td class="c19" colspan="1" rowspan="1"><p class="c2"><span class="c9">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c3"><td class="c29" colspan="1" rowspan="1"><p class="c0"><span class="c1">Identifica todos los sonidos que componen las palabras.</span></p><p class="c0"><span class="c1">Respeta el sentido y la direccionalidad de la escritura cuando lee y escribe.</span></p><p class="c0"><span class="c1">Reconoce que las palabras son unidades de significado separadas por espacios en los textos escritos.</span></p><p class="c0"><span class="c1">Lee y escribe palabras con precisi&oacute;n, aunque en ocasiones se autocorrija.</span></p><p class="c0"><span class="c1">Lee oraciones con precisi&oacute;n, aunque en ocasiones se autocorrija.</span></p><p class="c0"><span class="c1">Avanza en la escritura de oraciones incorporando el uso de may&uacute;sculas y del punto final.</span></p></td><td class="c22" colspan="1" rowspan="1"><p class="c0"><span class="c1">Reconocimiento y separaci&oacute;n de las palabras de la oraci&oacute;n en la oralidad.</span></p><p class="c0"><span class="c1">Reconocimiento, separaci&oacute;n y combinaci&oacute;n de fonemas y s&iacute;labas en la oralidad (conciencia fonol&oacute;gica).</span></p><p class="c0"><span class="c1">Relaci&oacute;n entre los sonidos que componen las palabras (conciencia fonol&oacute;gica) y las letras que los representan.</span></p><p class="c0"><span class="c1">Conocimiento y diferenciaci&oacute;n entre el sonido de cada consonante y su nombre.</span></p><p class="c0"><span class="c1">Identificaci&oacute;n de los distintos tipos de letras.</span></p><p class="c0"><span class="c1">Trazado de las letras en imprenta may&uacute;scula y en min&uacute;scula.</span></p><p class="c0"><span class="c1">Lectura y escritura de palabras que incluyen distinto nivel de complejidad fonol&oacute;gica (por ejemplo, palabras que incluyen grupos conson&aacute;nticos).</span></p><p class="c0"><span class="c1">Identificaci&oacute;n y uso de may&uacute;scula inicial (en nombres y al inicio de una oraci&oacute;n) y punto final (al finalizar la oraci&oacute;n).</span></p><p class="c0"><span class="c1">Reconocimiento de que ciertas palabras llevan tilde.</span></p><p class="c0"><span class="c1">Reconocimiento de que los d&iacute;grafos representan un &uacute;nico sonido (ll, ch, qu, gu, rr) y de que las letras pueden tener el mismo sonido (b/v, y/ll, g/j, c/s/z).</span></p><p class="c0"><span class="c1">Lectura y escritura de palabras que contengan r-rr, que/qui-ce/ci.</span></p><p class="c0"><span class="c1">Reconocimiento de que la letra h no tiene un sonido asociado.</span></p><p class="c0"><span class="c1">Lectura y escritura de palabras de uso frecuente que la contienen.</span></p><p class="c0"><span class="c1">Trazado de los distintos tipos de letras.</span></p><p class="c0"><span class="c1">Pr&aacute;ctica de la letra cursiva o ligada considerando la direccionalidad y la orientaci&oacute;n.</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c2 c15"><span class="c4"></span></p><p class="c2 c15"><span class="c4"></span></p><table class="c10"><tr class="c7"><td class="c20" colspan="2" rowspan="1"><h3 class="c2" id="h.g89n57iwcxgn"><span class="c6">Eje: Lectura</span></h3></td></tr><tr class="c7"><td class="c17" colspan="1" rowspan="1"><p class="c2"><span class="c9">Indicadores de logro</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c2"><span class="c9">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c21"><td class="c30" colspan="1" rowspan="1"><p class="c0"><span class="c1">Atiende de manera activa y participa de la lectura que hace el docente de textos literarios y no literarios (expositivos e instructivos).</span></p><p class="c0"><span class="c1">Establece relaciones entre los conocimientos previos y la obra le&iacute;da por el docente y recupera informaci&oacute;n literal e inferencial.</span></p><p class="c0"><span class="c1">Pregunta, comenta y expone los conocimientos aprendidos a partir de la lectura de un texto.</span></p><p class="c0"><span class="c1">Responde oralmente, o por escrito, preguntas abiertas simples sobre los textos le&iacute;dos (qu&eacute;, qui&eacute;n, d&oacute;nde, cu&aacute;ndo, por qu&eacute;).</span></p><p class="c0"><span class="c1">Relaciona la nueva informaci&oacute;n de los textos con sus conocimientos previos, con sus experiencias cotidianas y con otros textos que conoce.</span></p><p class="c0"><span class="c1">Incorpora el vocabulario presentado por el docente durante el trabajo con los textos y lo utiliza en nuevos contextos.</span></p><p class="c0"><span class="c1">Distingue formas de apertura, de cierre y otros recursos propios del lenguaje literario.</span></p><p class="c0"><span class="c1">Avanza en la lectura en voz alta de textos de alrededor de cincuenta palabras, aunque cometa errores en la posici&oacute;n de las pausas, prolongue algunas palabras, se autocorrija o relea.</span></p></td><td class="c31" colspan="1" rowspan="1"><p class="c0"><span class="c1">Comprensi&oacute;n de la lectura que hace el docente de obras literarias de diferentes g&eacute;neros literarios en distintos soportes, dispositivos y formatos:</span></p><p class="c0"><span class="c1">Textos versificados (canciones, coplas, adivinanzas, limericks, poemas, retah&iacute;las, tantanes, chistes, colmos y otros).</span></p><p class="c0"><span class="c1">Textos narrativos breves (cuentos, f&aacute;bulas y leyendas).</span></p><p class="c0"><span class="c1">Libros &aacute;lbum (especificidades del g&eacute;nero, interdependencia entre texto e ilustraciones).</span></p><p class="c0"><span class="c1">(En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p><p class="c2 c15"><span class="c1"></span></p><p class="c0"><span class="c1">Comprensi&oacute;n guiada por el docente de cuentos tradicionales, f&aacute;bulas y relatos de autor:</span></p><p class="c0"><span class="c1">Caracter&iacute;sticas de los personajes y lugares, las motivaciones y las acciones de los personajes.</span></p><p class="c0"><span class="c1">Identificaci&oacute;n de eventos centrales de las tramas narrativas.</span></p><p class="c0"><span class="c1">Establecimiento de relaciones temporales entre los eventos del relato (por ejemplo, &quot;Primero sucedi&oacute;...&quot;, &quot;Luego...&quot;, &quot;Finalmente...&quot;).</span></p><p class="c0"><span class="c1">Utilizaci&oacute;n de pistas textuales para relacionar causas y consecuencias (inferencias).</span></p><p class="c0"><span class="c1">Identificaci&oacute;n de expresiones que designan a un mismo personaje (correferencia).</span></p><p class="c0"><span class="c1">Descripci&oacute;n de las ilustraciones de los libros en relaci&oacute;n con la historia.</span></p><p class="c0"><span class="c1">Lectura en voz alta de oraciones y de textos breves (de dos a cuatro oraciones) para avanzar en el desarrollo de la fluidez lectora.</span></p><p class="c0"><span class="c1">Comprensi&oacute;n de textos expositivos y descriptivos breves referidos a un objeto, lugar, persona, personaje u otro tema.</span></p><p class="c0"><span class="c1">Ampliaci&oacute;n y profundizaci&oacute;n del vocabulario a partir del trabajo con los textos: explicaci&oacute;n de significados, relaci&oacute;n con sin&oacute;nimos y ant&oacute;nimos, explicaci&oacute;n de los t&eacute;rminos nuevos con las propias palabras.</span></p><p class="c0"><span class="c1">B&uacute;squeda colaborativa de informaci&oacute;n en distintos soportes, dispositivos y formatos siguiendo la lectura que hace el docente.</span></p><p class="c0"><span class="c1">Notas de enciclopedia, fasc&iacute;culos informativos, noticias, cartas, reglas de juego, reglamentos, recetas, normas de convivencia, normas y pautas de uso para el cuidado de los dispositivos tecnol&oacute;gicos escolares, etc.</span></p><p class="c0"><span class="c1">(En articulaci&oacute;n con Educaci&oacute;n Alimentaria - Educaci&oacute;n Digital - Movilidad Sustentable y Segura - Educaci&oacute;n Ambiental).</span></p><p class="c0"><span class="c1">Lectura independiente de las oraciones de un texto breve con marcaci&oacute;n de las pausas y de la entonaci&oacute;n en funci&oacute;n de las may&uacute;sculas iniciales y de los puntos.</span></p><p class="c0"><span class="c1">Reconocimiento de personajes arquet&iacute;picos, tema, autor, estructura o caracter&iacute;sticas distintivas de cada g&eacute;nero.</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c2 c15"><span class="c4"></span></p><p class="c2 c15"><span class="c4"></span></p><table class="c10"><tr class="c7"><td class="c20" colspan="2" rowspan="1"><h3 class="c2" id="h.iffkkahkyz0t"><span class="c6">Eje: Producci&oacute;n escrita</span></h3></td></tr><tr class="c7"><td class="c5 c26" colspan="1" rowspan="1"><p class="c2"><span class="c9">Indicadores de logro</span></p></td><td class="c24" colspan="1" rowspan="1"><p class="c2"><span class="c9">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c23"><td class="c5" colspan="1" rowspan="1"><p class="c0"><span class="c1">Participa en la planificaci&oacute;n grupal de la escritura de distintos tipos de textos breves (narrativos, instructivos y expositivos b&aacute;sicos).</span></p><p class="c0"><span class="c1">Dicta al docente, de manera coherente y ordenada, ideas para colaborar en la escritura de textos que transmitan nuevos conocimientos adquiridos.</span></p><p class="c0"><span class="c1">Atiende, con ayuda del docente, a las caracter&iacute;sticas de los textos narrativos, expositivos e instructivos para incorporarlas en las producciones.</span></p><p class="c0"><span class="c1">Participa, con el grupo total o en peque&ntilde;os grupos, en la producci&oacute;n de textos, recupera la informaci&oacute;n planificada y sigue la redacci&oacute;n que modela el docente.</span></p><p class="c0"><span class="c1">Participa en la revisi&oacute;n colaborativa de diversos aspectos de los textos (contenido, organizaci&oacute;n de la informaci&oacute;n, algunos recursos cohesivos o f&oacute;rmulas y vocabulario).</span></p><p class="c0"><span class="c1">Avanza en la escritura de oraciones con letra legible y separando las palabras entre s&iacute;.</span></p><p class="c0"><span class="c1">Escribe de manera aut&oacute;noma textos descriptivos breves y reescribe eventos de un cuento le&iacute;do para formar un texto breve de alrededor de treinta palabras o m&aacute;s.</span></p></td><td class="c25" colspan="1" rowspan="1"><p class="c0"><span class="c1">Escritura colaborativa de canciones, poemas, rimas, adivinanzas o fragmentos de estos y de otros textos junto a compa&ntilde;eros o a trav&eacute;s del dictado al docente, respetando la diversidad de ideas.</span></p><p class="c0"><span class="c1">(En articulaci&oacute;n con Educaci&oacute;n Sexual Integral - Educaci&oacute;n Digital).</span></p><p class="c0"><span class="c1">Escritura de oraciones y de textos breves para describir personajes o eventos de las obras literarias le&iacute;das o personajes creados, de manera individual o en colaboraci&oacute;n con otro compa&ntilde;ero.</span></p><p class="c0"><span class="c1">Reescritura colaborativa de episodios de un relato le&iacute;do con el docente.</span></p><p class="c0"><span class="c1">Escritura colaborativa de textos para describir un tema o un personaje a trav&eacute;s del dictado al docente. (En articulaci&oacute;n con Educaci&oacute;n Sexual Integral).</span></p><p class="c0"><span class="c1">Escritura por s&iacute; mismos de respuestas a preguntas abiertas (qu&eacute;, qui&eacute;n, cu&aacute;ndo, d&oacute;nde) sobre los textos le&iacute;dos.</span></p><p class="c0"><span class="c1">Registro de palabras, frases, datos y vocabulario de las fuentes exploradas a partir de la exposici&oacute;n del docente o de la proyecci&oacute;n de videos que aporten a la escritura de nuevos textos.</span></p><p class="c0"><span class="c1">Planificaci&oacute;n colaborativa de textos para construir acuerdos, reglamentos y normas de convivencia que respeten la diversidad y la igualdad de g&eacute;nero y den lugar a la inclusi&oacute;n. (En articulaci&oacute;n con Educaci&oacute;n Sexual Integral).</span></p><p class="c0"><span class="c1">Escritura o reescritura por s&iacute; mismos de textos narrativos (alrededor de cincuenta palabras), atendiendo al estilo del lenguaje escrito.</span></p><p class="c0"><span class="c1">Reflexi&oacute;n acerca de los procesos de producci&oacute;n textual: plan de escritura, textualizaci&oacute;n y revisi&oacute;n a partir de la escritura junto al docente, recuperando caracter&iacute;sticas textuales observadas en lecturas previas.</span></p><p class="c0"><span class="c1">Identificaci&oacute;n de recursos digitales por su iconograf&iacute;a y funci&oacute;n para elaborar producciones escritas (documento de texto, mural digital, etc.).</span></p><p class="c0"><span class="c1">(En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p><p class="c0"><span class="c1">Identificaci&oacute;n y uso de los recursos de cohesi&oacute;n: conectores copulativos (y, e, ni), disyuntivos (o, u) y temporales (antes, luego, despu&eacute;s, al d&iacute;a siguiente).</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c2 c15"><span class="c4"></span></p><p class="c2 c15"><span class="c4"></span></p><table class="c10"><tr class="c7"><td class="c20" colspan="2" rowspan="1"><h3 class="c2" id="h.8hp46g93lt0e"><span class="c6">Eje: Oralidad</span></h3></td></tr><tr class="c7"><td class="c26 c27" colspan="1" rowspan="1"><p class="c2"><span class="c9">Indicadores de logro</span></p></td><td class="c18" colspan="1" rowspan="1"><p class="c2"><span class="c9">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c3"><td class="c27" colspan="1" rowspan="1"><p class="c0"><span class="c1">Renarra textos le&iacute;dos por el docente siguiendo la estructura del relato.</span></p><p class="c0"><span class="c1">Narra eventos del mundo que lo rodea de manera organizada.</span></p><p class="c0"><span class="c1">Expresa con claridad sus ideas en diferentes situaciones comunicativas.</span></p><p class="c0"><span class="c1">Genera secuencias ordenadas de instrucciones.</span></p><p class="c0"><span class="c1">Reconoce turnos en los intercambios dial&oacute;gicos y sostiene el t&oacute;pico de las conversaciones formulando preguntas y escuchando las respuestas de sus pares y del docente.</span></p></td><td class="c28" colspan="1" rowspan="1"><p class="c0"><span class="c1">Comprensi&oacute;n y producci&oacute;n oral en situaciones de lectura dial&oacute;gica.</span></p><p class="c0"><span class="c1">Intercambio de opiniones y preferencias sobre las obras solicitadas en pr&eacute;stamo de biblioteca o le&iacute;das por el docente.</span></p><p class="c0"><span class="c1">Expresi&oacute;n de las propias ideas para generar acuerdos de convivencia y normas de cuidado del aula.</span></p><p class="c0"><span class="c1">Formulaci&oacute;n y seguimiento de instrucciones de pocos pasos en la realizaci&oacute;n de una tarea (por ejemplo, indicar c&oacute;mo preparar una chocolatada o seguir los pasos para armar un barco de papel).</span></p><p class="c0"><span class="c1">(En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p><p class="c0"><span class="c1">Explicaci&oacute;n, a partir de las propias palabras, de reglas de juego, reglamentos escolares, normas de convivencia, reglas de biblioteca, normas y pautas de uso para el cuidado de dispositivos tecnol&oacute;gicos escolares.</span></p><p class="c0"><span class="c1">(En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p><p class="c0"><span class="c1">Formulaci&oacute;n de preguntas abiertas (qu&eacute;, qui&eacute;n, cu&aacute;ndo, d&oacute;nde) y cerradas (si/no) y elaboraci&oacute;n de respuestas con diferentes estructuras (afirmativas, negativas, interrogativas, etc.), para obtener y dar determinada informaci&oacute;n.</span></p><p class="c0"><span class="c1">Narraci&oacute;n de una secuencia de hechos en forma coherente y comenzando a incorporar algunos recursos de cohesi&oacute;n.</span></p><p class="c0"><span class="c1">Expresi&oacute;n de comentarios y opiniones sobre aspectos de las obras literarias (por ejemplo, sobre los personajes, los conflictos, los g&eacute;neros) y relaciones con otras lecturas y con experiencias art&iacute;sticas.</span></p><p class="c0"><span class="c1">Exposiciones orales a otros compa&ntilde;eros sobre un tema trabajado o investigado previamente.</span></p><p class="c0"><span class="c1">Creaci&oacute;n de contenidos digitales a partir de un tema le&iacute;do utilizando las aplicaciones disponibles en los dispositivos tecnol&oacute;gicos o en l&iacute;nea para procesar el habla.</span></p><p class="c0"><span class="c1">(En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c2 c15"><span class="c4"></span></p><p class="c2 c15"><span class="c4"></span></p><table class="c10"><tr class="c7"><td class="c20" colspan="2" rowspan="1"><h3 class="c2" id="h.72tkxlicwqwk"><span class="c6">Eje: Conocimiento de la lengua</span></h3></td></tr><tr class="c7"><td class="c27 c26" colspan="1" rowspan="1"><p class="c2"><span class="c9">Indicadores de logro</span></p></td><td class="c18" colspan="1" rowspan="1"><p class="c2"><span class="c9">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c32"><td class="c27" colspan="1" rowspan="1"><p class="c0"><span class="c1">Comprende y produce oraciones de variada complejidad gramatical, seg&uacute;n el significado que quiere expresar.</span></p><p class="c0"><span class="c1">Reflexiona sobre el significado de las palabras y su uso en otros contextos.</span></p><p class="c0"><span class="c1">Reflexiona y valora la diversidad ling&uuml;&iacute;stica de su entorno.</span></p><p class="c0"><span class="c1">Adecua el g&eacute;nero y el n&uacute;mero de las palabras al componer oraciones, seg&uacute;n los requerimientos de la situaci&oacute;n de enunciaci&oacute;n.</span></p></td><td class="c28" colspan="1" rowspan="1"><p class="c0"><span class="c1">Reconocimiento de la oraci&oacute;n como unidad.</span></p><p class="c0"><span class="c1">Uso de conectores copulativos (y, e, ni), disyuntivos (o, u) y temporales (antes, luego, despu&eacute;s, al d&iacute;a siguiente) para unir oraciones en el discurso oral.</span></p><p class="c0"><span class="c1">Clasificaci&oacute;n y uso de palabras de diferentes categor&iacute;as y subcategor&iacute;as sem&aacute;nticas (objetos de la casa, alimentos, &uacute;tiles escolares, sentimientos, acciones, etc.).</span></p><p class="c0"><span class="c1">Reconocimiento de variedades ling&uuml;&iacute;sticas en la comunidad escolar como diversas formas de expresi&oacute;n v&aacute;lidas.</span></p><p class="c0"><span class="c1">Reconocimiento de las diferencias entre palabras que refieren personas, objetos y lugares, palabras que refieren acciones, y palabras que describen.</span></p><p class="c0"><span class="c1">Reconocimiento de la morfolog&iacute;a de las palabras (singular/plural, femenino/masculino/neutro) y concordancia entre art&iacute;culos y sustantivos en frases.</span></p><p class="c0"><span class="c1">Agrupaci&oacute;n de palabras de acuerdo con su significado (palabras que significan lo mismo y palabras que significan lo opuesto).</span></p><p class="c0"><span class="c1">Reconocimiento de que algunas oraciones afirman y otras niegan, preguntan o exclaman.</span></p></td></tr></table><p class="c2 c15"><span class="c4"></span></p></body></html>
+        </div>
+    <button class="fab" onclick="copySelectedText()" title="Copiar seleccionados">📋</button>
+    <div id="toast">Texto copiado al portapapeles</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            procesarTablasImportadas();
+        });
+
+        function procesarTablasImportadas() {
+            const rawContainer = document.getElementById('raw-import');
+            if (!rawContainer) return;
+            
+            const tables = rawContainer.getElementsByTagName('table');
+            const outputContainer = document.getElementById('accordion-container');
+            outputContainer.innerHTML = ''; 
+
+            for (let table of tables) {
+                let rows = Array.from(table.rows);
+                if (rows.length < 2) continue;
+
+                // 1. Título
+                let rawTitle = rows[0].innerHTML.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                if (!rawTitle) continue;
+
+                let acumuladoIzq = "";
+                let acumuladoDer = "";
+                let hayContenidoReal = false;
+
+                // 2. Recorremos filas buscando contenido
+                for (let i = 1; i < rows.length; i++) {
+                    let row = rows[i];
+                    let cells = row.cells;
+                    
+                    if (cells.length >= 2) {
+                        // Limpieza para detectar encabezados
+                        let textoIzq = cells[0].innerText.toLowerCase().trim();
+                        let textoDer = cells[1].innerText.toLowerCase().trim();
+
+                        // FILTRO CORREGIDO: 
+                        // Solo saltamos si es explícitamente un encabezado conocido.
+                        // Quitamos el check suelto de "contenidos" en la izquierda para evitar falsos positivos.
+                        if (textoIzq === "indicadores de logro" || 
+                            textoIzq === "modos de conocer" || 
+                            textoDer.includes("contenidos nodales")) {
+                            continue;
+                        }
+
+                        // Limpieza y Extracción
+                        let htmlIzq = limpiarAtributos(cells[0].innerHTML);
+                        let htmlDer = limpiarAtributos(cells[1].innerHTML);
+
+                        let checkIzq = htmlIzq.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+                        let checkDer = htmlDer.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+                        let tieneImg = cells[0].querySelector('img') || cells[1].querySelector('img');
+
+                        if (checkIzq.length > 0 || checkDer.length > 0 || tieneImg) {
+                            acumuladoIzq += htmlIzq + "<br>";
+                            acumuladoDer += htmlDer + "<br>";
+                            hayContenidoReal = true;
+                        }
+                    }
+                }
+
+                if (hayContenidoReal) {
+                    let htmlBloque = `
+                        <button class="accordion">${rawTitle}</button>
+                        <div class="panel">
+                            <div class="grid-container">
+                                <div class="col-header">Indicadores de logro</div>
+                                <div class="col-header">Contenidos nodales y de ampliación/profundización</div>
+                                
+                                <div class="content-cell" onclick="toggleSelect(this)">
+                                    ${acumuladoIzq}
+                                </div>
+                                <div class="content-cell" onclick="toggleSelect(this)">
+                                    ${acumuladoDer}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    outputContainer.innerHTML += htmlBloque;
+                }
+            }
+            activarAcordeones();
+        }
+
+        function limpiarAtributos(html) {
+            return html
+                .replace(/ class="[^"]*"/g, '') 
+                .replace(/ style="[^"]*"/g, '') 
+                .replace(/ width="[^"]*"/g, '') 
+                .replace(/&nbsp;/g, ' ');
+        }
+
+        function activarAcordeones() {
+            var acc = document.getElementsByClassName("accordion");
+            for (var i = 0; i < acc.length; i++) {
+                var newAcc = acc[i].cloneNode(true);
+                acc[i].parentNode.replaceChild(newAcc, acc[i]);
+                newAcc.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = "5000px"; 
+                    }
+                });
+            }
+        }
+
+        function toggleSelect(element) {
+            element.classList.toggle("selected");
+        }
+
+        function copySelectedText() {
+            var selectedElements = document.getElementsByClassName("selected");
+            if (selectedElements.length === 0) { showToast("No seleccionaste nada."); return; }
+            var textToCopy = "";
+            for (var i = 0; i < selectedElements.length; i++) {
+                var cell = selectedElements[i];
+                var contentText = cell.innerText.trim();
+                var panel = cell.closest('.panel');
+                var titulo = panel && panel.previousElementSibling ? panel.previousElementSibling.innerText : "Sección";
+                var pageTitle = document.querySelector('h1') ? document.querySelector('h1').innerText : "Documento";
+                textToCopy += pageTitle + " > " + titulo + "\n" + contentText + "\n\n-------------------\n\n";
+            }
+            navigator.clipboard.writeText(textToCopy).then(() => showToast("¡Copiado!"), (err) => showToast("Error: " + err));
+        }
+
+        function showToast(msg) {
+            var x = document.getElementById("toast");
+            if (!x) return;
+            x.innerText = msg; x.className = "show";
+            setTimeout(() => { x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

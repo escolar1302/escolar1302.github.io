@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Problemas Matemáticos</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<style>
+    /* Elimina los márgenes blancos para que el menú toque los bordes */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+
+
+<div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="images/01.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: #d35400;">Banco de problemas</h1></div></div>
+        </div>
+<div class="app-container">
+
+    <header>
+        
+        <p>Selecciona, filtra y copia tus actividades</p>
+    </header>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h3>Filtrar por:</h3>
+                
+                <div class="filter-group">
+                    <label for="filterNivel">Nivel de Dificultad</label>
+                    <select id="filterNivel">
+                        <option value="todos">Todos los niveles</option>
+                        <option value="Nivel 1">Nivel 1 (Hasta 3 cifras)</option>
+                        <option value="Nivel 2">Nivel 2 (Hasta 5 cifras)</option>
+                        <option value="Nivel 3">Nivel 3 (Hasta 6 cifras)</option>
+                        <option value="Nivel 4">Nivel 4 (Hasta 4 cifras, complejo)</option>
+                        <option value="Nivel 5">Nivel 5 (Contextos complejos)</option>
+                        <option value="Nivel 6">Nivel 6 (Logística y grandes cifras)</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterCampo">Campo / Operación</label>
+                    <select id="filterCampo">
+                        <option value="todos">Todos los campos</option>
+                        <option value="Aditivo (Suma/Resta)">Aditivo (Suma/Resta)</option>
+                        <option value="Multiplicativo (Mult/Div)">Multiplicativo (Mult/Div)</option>
+                        <option value="Combinado (Varias operaciones)">Combinado (Varias operaciones)</option>
+                    </select>
+                </div>
+
+                <button id="btnLimpiarFiltros" class="btn-outline">Limpiar Filtros</button>
+            </div>
+
+            <div class="stats-box">
+                <p>Problemas mostrados: <strong id="countMostrados">0</strong></p>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div class="actions-bar">
+                <span class="selection-info">Seleccionados: <strong id="countSeleccionados">0</strong></span>
+                <button id="btnCopiar" class="btn-primary" disabled>
+                    <span class="icon">📋</span> Copiar Seleccionados
+                </button>
+            </div>
+
+            <div id="problemsGrid" class="problems-grid">
+                </div>
+        </main>
+    </div>
+</div>
+
+<script src="data_problemas.js"></script>
+<script src="script.js"></script>
+
+<script src="/volver.js" defer></script>
+</body>
+</html>

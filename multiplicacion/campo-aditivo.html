@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>  
+        window.dataLayer = window.dataLayer || [];  
+        function gtag(){dataLayer.push(arguments);}  
+        gtag('js', new Date());  
+        gtag('config', 'G-VL13MMLPRV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ruta Aditiva - Recursos para Docentes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-principal: #036fb0;
+            --color-fondo: #f4f6f7;
+            --color-texto: #333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .introduccion {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--color-principal);
+        }
+
+        .seccion-titulo {
+            color: var(--color-principal);
+            border-bottom: 2px solid var(--color-principal);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .menu-documentos {
+            background-color: #eaf4fb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid var(--color-principal);
+        }
+
+        .menu-documentos h3 {
+            margin-top: 0;
+            color: var(--color-principal);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: var(--color-principal);
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid var(--color-principal);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin: 5px;
+            transition: 0.2s;
+            background-color: white;
+        }
+
+        .btn-link:hover {
+            background-color: var(--color-principal);
+            color: white;
+        }
+        
+        .btn-link-small {
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            background-color: #eaf4fb;
+        }
+
+        .accordion {
+            background-color: var(--color-principal);
+            color: white;
+            cursor: pointer;
+            padding: 18px 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: 0.3s;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .active, .accordion:hover {
+            background-color: #025a8f;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            font-size: 1.5rem;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            padding: 0 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--color-principal);
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid var(--color-principal);
+            width: 35%;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .detalle-actividad {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .resaltado {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 4px;
+        }
+        
+        .salto-titulo {
+            font-weight: bold;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <div class="container">
+        
+        <div class="introduccion">
+            <h2 style="margin-top:0; color:var(--color-principal)">Recursos de Campo Aditivo</h2>
+            <p>Esta página ofrece un doble mapeo para la planificación docente. Por un lado, la progresión estructural por grados de <strong>"Yo amo aprender"</strong> (1° a 7° Grado). Por otro, secuencias de nivelación organizadas por ejes de complejidad utilizando los materiales de <strong>"Trayectorias"</strong> y <strong>"Quitar, retroceder, comparar, completar..."</strong>, ideales para intervenir de manera específica según las necesidades del grupo.</p>
+            <p>Está pensado humanamente pero <strong>gestionado con IA</strong>, es probable que <strong>haya errores involuntarios</strong>. Si se encuentran inconsistencias didácticas o fallas conceptuales, por favor avisar por el <strong>formulario</strong> que está en la portada del sitio. Gracias.</p>
+        </div>
+
+        <h2 class="seccion-titulo">PARTE I: Planificación por Grados ("Yo amo aprender")</h2>
+
+        <button class="accordion">1° GRADO: Sentidos de la suma y resta hasta el 100</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas (Desglose Exhaustivo)</th>
+                </tr>
+                <tr>
+                    <td>Resolución de problemas de juntar, agregar, quitar, avanzar y retroceder. Construcción de repertorios y cálculo mental con apoyo del cuadro de números.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%201er%20grado%20Matematica.pdf" target="_blank" class="btn-link btn-link-small">Ver Libro: Yo amo aprender 1</a>
+                        
+                        <span class="salto-titulo">Salto 1: Sumas y restas hasta el 10 (Capítulo 2)</span>
+                        <span class="detalle-actividad">• Pág. 21: Juntar elementos I</span>
+                        <span class="detalle-actividad">• Pág. 22: Resolver problemas I</span>
+                        <span class="detalle-actividad">• Pág. 23: Sumar 10</span>
+                        <span class="detalle-actividad">• Pág. 24: Sumar números iguales</span>
+                        <span class="detalle-actividad">• Pág. 25: Resolver cálculos de suma</span>
+                        <span class="detalle-actividad">• Pág. 26: Quitar elementos</span>
+                        <span class="detalle-actividad">• Pág. 27: Resolver problemas II</span>
+                        <span class="detalle-actividad">• Pág. 28: Restar elementos</span>
+                        <span class="detalle-actividad">• Pág. 29: Restarle al 10</span>
+                        <span class="detalle-actividad">• Pág. 30: Seguimos practicando la resta</span>
+
+                        <span class="salto-titulo">Salto 2: Sumas y restas hasta el 30 (Capítulo 5)</span>
+                        <span class="detalle-actividad">• Pág. 55: Juntar elementos II</span>
+                        <span class="detalle-actividad">• Pág. 56: Organizar el cálculo I</span>
+                        <span class="detalle-actividad">• Pág. 58: Resolver problemas III</span>
+                        <span class="detalle-actividad">• Pág. 60: Recordar algunas sumas</span>
+                        <span class="detalle-actividad">• Pág. 62: Organizar el cálculo II</span>
+                        <span class="detalle-actividad">• Pág. 64: Resolver problemas IV</span>
+                        <span class="detalle-actividad">• Pág. 66: Recordar algunas restas</span>
+                        <span class="detalle-actividad">• Pág. 67: Sumar y restar</span>
+                        <span class="detalle-actividad">• Pág. 68: Pensar los problemas</span>
+
+                        <span class="salto-titulo">Salto 3: Estrategias avanzadas (Capítulos 7 y 8)</span>
+                        <span class="detalle-actividad">• Pág. 89: Sumar y restar 1 y 10</span>
+                        <span class="detalle-actividad">• Pág. 99: Resolver a partir de cálculos conocidos</span>
+                        <span class="detalle-actividad">• Pág. 100: Sumar y restar números redondos</span>
+                        <span class="detalle-actividad">• Pág. 101: Sumas y restas de números redondos</span>
+                        <span class="detalle-actividad">• Pág. 102: Relaciones entre la suma y la resta</span>
+                        <span class="detalle-actividad">• Pág. 104: Resolver con diversas estrategias</span>
+                        <span class="detalle-actividad">• Pág. 105: Resolver problemas V</span>
+                        <span class="detalle-actividad">• Pág. 106: Calcular en el cuadro de números</span>
+                        <span class="detalle-actividad">• Pág. 108: Calcular descomponiendo en unos y en dieces</span>
+                        <span class="detalle-actividad">• Pág. 109: Resolver problemas VI</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">2° GRADO: Algoritmos y Estrategias hasta el 1.000</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas (Desglose Exhaustivo)</th>
+                </tr>
+                <tr>
+                    <td>Cálculo mental de sumas y restas de números redondos. Estimación de resultados. Resolución mediante algoritmos verticales y descomposiciones.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%202do%20grado%20Matematica.pdf" target="_blank" class="btn-link btn-link-small">Ver Libro: Yo amo aprender 2</a>
+                        
+                        <span class="salto-titulo">Salto 1: Sumas y restas hasta el 100 (Capítulo 2)</span>
+                        <span class="detalle-actividad">• Pág. 13: Construir repertorios de sumas y restas</span>
+                        <span class="detalle-actividad">• Pág. 15: Resolver problemas I</span>
+                        <span class="detalle-actividad">• Pág. 17: Resolver problemas II</span>
+                        <span class="detalle-actividad">• Pág. 18: Estimar resultados</span>
+                        <span class="detalle-actividad">• Pág. 20: Resolver problemas III</span>
+
+                        <span class="salto-titulo">Salto 2: Sumas y restas hasta el 1.000 (Capítulo 5)</span>
+                        <span class="detalle-actividad">• Págs. 49-50: Resolver problemas IV y V</span>
+                        <span class="detalle-actividad">• Págs. 51-52: Resolver cálculos mentales I y II</span>
+                        <span class="detalle-actividad">• Pág. 53: Construir repertorios de cálculos I</span>
+                        <span class="detalle-actividad">• Págs. 54-56: Resolver problemas VI y VII</span>
+                        <span class="detalle-actividad">• Pág. 57: Construir repertorios de cálculos II</span>
+                        <span class="detalle-actividad">• Pág. 60: Calcular con estrategia</span>
+
+                        <span class="salto-titulo">Salto 3: Estrategias de cálculo y cuentas (Capítulo 8)</span>
+                        <span class="detalle-actividad">• Pág. 89: Resolver exactamente</span>
+                        <span class="detalle-actividad">• Pág. 90: Resolver estimando</span>
+                        <span class="detalle-actividad">• Pág. 91: Resolver problemas VIII</span>
+                        <span class="detalle-actividad">• Pág. 92: Resolver con diferentes estrategias de cálculo</span>
+                        <span class="detalle-actividad">• Pág. 94: Resolver con cálculo exacto y estimaciones</span>
+                        <span class="detalle-actividad">• Pág. 95: Resolver sumas en forma vertical</span>
+                        <span class="detalle-actividad">• Pág. 96: Resolver restas en forma vertical</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">3° GRADO: Repertorios avanzados hasta el 10.000</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas (Desglose Exhaustivo)</th>
+                </tr>
+                <tr>
+                    <td>Ampliación del campo numérico. Sumas que dan 1.000 y 10.000. Consolidación del algoritmo vertical y resolución de problemas de comparación y diferencia.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%203er%20grado%20Matematica.pdf" target="_blank" class="btn-link btn-link-small">Ver Libro: Yo amo aprender 3</a>
+                        
+                        <span class="salto-titulo">Capítulo 2: Sumas y restas hasta el 1.000</span>
+                        <span class="detalle-actividad">• Pág. 15: Construir repertorios de sumas</span>
+                        <span class="detalle-actividad">• Pág. 16: Sumar y restar mentalmente</span>
+                        <span class="detalle-actividad">• Pág. 17: Estimar resultados de sumas y restas</span>
+                        <span class="detalle-actividad">• Pág. 18: Resolver con sumas o restas</span>
+                        <span class="detalle-actividad">• Pág. 20: Resolver sumas con distintas estrategias</span>
+                        <span class="detalle-actividad">• Pág. 21: Resolver restas con distintas estrategias</span>
+
+                        <span class="salto-titulo">Capítulo 8: Operaciones y problemas</span>
+                        <span class="detalle-actividad">• Pág. 91: Encontrar sumas que dan 1.000 y 10.000</span>
+                        <span class="detalle-actividad">• Pág. 92: Sumar y restar 1, 10, 100 y 1.000 a un número</span>
+                        <span class="detalle-actividad">• Pág. 93: Estimar y calcular números redondos</span>
+                        <span class="detalle-actividad">• Pág. 94: Resolver sumas y restas en columnas</span>
+                        <span class="detalle-actividad">• Pág. 96: Sumar y restar miles</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">4° GRADO: Problemas complejos y Racionales simples</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas (Desglose Exhaustivo)</th>
+                </tr>
+                <tr>
+                    <td>Problemas de varios pasos que combinan operaciones. Transformación de números usando la calculadora. Introducción a la suma y resta de fracciones y decimales (precios).</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%204to%20grado_0.pdf" target="_blank" class="btn-link btn-link-small">Ver Libro: Yo amo aprender 4</a>
+                        
+                        <span class="salto-titulo">Capítulo 4: Sumas y restas con Naturales</span>
+                        <span class="detalle-actividad">• Pág. 161: Sumar y restar para resolver problemas</span>
+                        <span class="detalle-actividad">• Pág. 162: Sumar y restar con diferentes estrategias</span>
+                        <span class="detalle-actividad">• Pág. 163: Calcular de manera aproximada</span>
+                        <span class="detalle-actividad">• Pág. 164: Calcular en columnas</span>
+                        <span class="detalle-actividad">• Pág. 165: Elegir el cálculo para resolver un problema</span>
+                        <span class="detalle-actividad">• Pág. 166: Usar varios cálculos para resolver un problema</span>
+                        <span class="detalle-actividad">• Pág. 167: Inventar y resolver problemas</span>
+                        <span class="detalle-actividad">• Pág. 168: Usar la calculadora para transformar números</span>
+
+                        <span class="salto-titulo">Capítulo 8: Fracciones y Decimales</span>
+                        <span class="detalle-actividad">• Pág. 216: Sumar con fracciones I</span>
+                        <span class="detalle-actividad">• Pág. 217: Sumar con fracciones II</span>
+                        <span class="detalle-actividad">• Pág. 218: Restar fracciones</span>
+                        <span class="detalle-actividad">• Págs. 221-222: Calcular con decimales I y II (sumas y restas)</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">5° GRADO: Estrategias y operaciones</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas (Desglose Exhaustivo)</th>
+                </tr>
+                <tr>
+                    <td>Operaciones combinadas con números naturales, suma y resta mental (ej: sumar 10.000 y restar 1), cálculo exacto y organización de información.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%205to%20grado.pdf" target="_blank" class="btn-link btn-link-small">Ver Libro: Yo amo aprender 5</a>
+                        
+                        <span class="salto-titulo">Capítulo 2: Operaciones</span>
+                        <span class="detalle-actividad">• Pág. 120: Sumar y restar mentalmente (sumar 10.000, restar 1)</span>
+                        <span class="detalle-actividad">• Pág. 121: Resolver problemas con diferentes operaciones</span>
+                        <span class="detalle-actividad">• Pág. 131: Organizar información y resolver situaciones</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">6° GRADO: Propiedades y Racionales</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas (Desglose Exhaustivo)</th>
+                </tr>
+                <tr>
+                    <td>Uso de las propiedades conmutativa y asociativa de la suma. Jerarquía de operaciones combinadas. Suma y resta de fracciones y decimales.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_6to.pdf" target="_blank" class="btn-link btn-link-small">Ver Libro: Yo amo aprender 6</a>
+                        
+                        <span class="salto-titulo">Capítulo 2: Naturales y Propiedades</span>
+                        <span class="detalle-actividad">• Pág. 119: Resolver sumas y restas con números mayores a un millón</span>
+                        <span class="detalle-actividad">• Págs. 126-127: Resolver problemas con varios cálculos I y II</span>
+                        <span class="detalle-actividad">• Pág. 130: Usar cálculos que combinan distintas operaciones</span>
+                        <span class="detalle-actividad">• Pág. 131: Usar la propiedad conmutativa y asociativa en la suma</span>
+
+                        <span class="salto-titulo">Capítulos 7 y 8: Racionales</span>
+                        <span class="detalle-actividad">• Págs. 187-188: Sumar y restar fracciones I y II</span>
+                        <span class="detalle-actividad">• Págs. 198-199: Sumar y restar con números decimales</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">7° GRADO: Jerarquía y Expresiones Decimales</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas (Desglose Exhaustivo)</th>
+                </tr>
+                <tr>
+                    <td>Resolución respetando jerarquía de operaciones (uso de paréntesis). Operaciones combinadas con fracciones de distinto denominador y expresiones decimales.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_7mo.pdf" target="_blank" class="btn-link btn-link-small">Ver Libro: Yo amo aprender 7</a>
+                        
+                        <span class="salto-titulo">Capítulo 2: Operaciones complejas</span>
+                        <span class="detalle-actividad">• Pág. 118: Aplicar la jerarquía de las operaciones (uso de paréntesis)</span>
+                        <span class="detalle-actividad">• Pág. 119: Elegir cómo resolver</span>
+                        <span class="detalle-actividad">• Pág. 120: Resolver problemas con varios cálculos combinados</span>
+
+                        <span class="salto-titulo">Capítulo 7: Operaciones con racionales</span>
+                        <span class="detalle-actividad">• Pág. 187: Sumar y restar fracciones</span>
+                        <span class="detalle-actividad">• Pág. 191: Sumar y restar expresiones decimales</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <hr style="margin: 50px 0; border: 0; border-top: 2px dashed #ccc;">
+
+        <h2 class="seccion-titulo">PARTE II: Secuencias de Nivelación por Ejes</h2>
+        
+        <div class="menu-documentos">
+            <h3>Enlaces Directos a los Materiales de Consulta</h3>
+            <a href="https://bde-ueicee.bue.edu.ar/documentos/618-trayectorias-1-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 1</a>
+            <a href="https://bde-ueicee.bue.edu.ar/documentos/584-trayectorias-2-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 2</a>
+            <a href="https://biblioteca-digital.bue.edu.ar/catalogo/aceleracion-nivelacion-1/8720/detalle/7611" target="_blank" class="btn-link">Trayectorias 3</a>
+            <a href="https://biblioteca-digital.bue.edu.ar/catalogo/aceleracion-nivelacion-1/8720/detalle/7572" target="_blank" class="btn-link">Quitar, retroceder, comparar, completar...</a>
+        </div>
+
+        <button class="accordion">Eje 1: Sentidos y Resolución de Problemas</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Paso 1: Sentidos básicos (Transformaciones)</th>
+                    <td>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 1 (Fichas 1 a 5): Problemas de quitar, retroceder y tableros.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 2: Análisis de datos y relación Parte-Todo</th>
+                    <td>
+                        <span class="resaltado">Trayectorias 1</span>
+                        <span class="detalle-actividad">• Cap. 4 (Fichas 1 a 4): Informaciones, preguntas y datos de los problemas.</span>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 4 (Fichas 1 a 4): Problemas de partes.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 3: Problemas de Relación (Comparación)</th>
+                    <td>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 7 (Fichas 1 a 5): Problemas para empatar, comparar y diferencia (¿Cuánto más?).</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 4: Contextos complejos y Estado Inicial desconocido</th>
+                    <td>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 9 (Fichas 1 a 4): Problemas de comprar y vender (vueltos).</span>
+                        <span class="detalle-actividad">• Cap. 11 (Fichas 1 a 3): ¿Cuánto había antes?</span>
+                        <span class="detalle-actividad">• Cap. 12 (Fichas 1 a 3): Cuando los años son un problema.</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">Eje 2: Construcción de Repertorios y Cálculo Mental</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Paso 1: Automatización y Memoria</th>
+                    <td>
+                        <span class="resaltado">Trayectorias 1</span>
+                        <span class="detalle-actividad">• Cap. 3 (Ficha 1): La tabla de sumas.</span>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 2 (Fichas 1 a 6): Juegos y cuadros para repasar y memorizar.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 2: Sumas incompletas y el número 1</th>
+                    <td>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 3 (Fichas 1 a 4): Restas fáciles y el 1 en las cuentas de restar.</span>
+                        <span class="detalle-actividad">• Cap. 5 (Fichas 1 a 3): Adivinanzas para completar sumas.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 3: Saltos de a 10, 100 y 1.000</th>
+                    <td>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 6 (Fichas 1 a 8): Nuevos trucos (restar de a 10, de a 100 y usando los miles).</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 4: Propiedades y relaciones numéricas</th>
+                    <td>
+                        <span class="resaltado">Trayectorias 1</span>
+                        <span class="detalle-actividad">• Cap. 3 (Fichas 2 a 5): Usar cálculos conocidos para resolver otros.</span>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 8 (Fichas 1 a 3): Ideas para restar un número a los números redondos.</span>
+                        <span class="detalle-actividad">• Cap. 10 (Fichas 1 y 2): Relaciones entre cálculos de resta y calculadora.</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">Eje 3: Estrategias de Cálculo Escrito y Algoritmos</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Paso 1: Procedimientos de desarmado</th>
+                    <td>
+                        <span class="resaltado">Trayectorias 1</span>
+                        <span class="detalle-actividad">• Cap. 3 (Fichas 9 y 10): Distintas formas de resolver sumas.</span>
+                        <span class="detalle-actividad">• Cap. 3 (Fichas 13 y 14): Resolver restas usando sumas.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 2: La cuenta convencional (Algoritmo)</th>
+                    <td>
+                        <span class="resaltado">Quitar, retroceder, comparar, completar...</span>
+                        <span class="detalle-actividad">• Cap. 13 (Fichas 4, 5 y 6): La cuenta de restar I, II y III.</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">Eje 4: El Campo Aditivo en Números Racionales</button>
+        <div class="panel">
+            <table>
+                <tr>
+                    <th>Paso 1: Suma y Resta de Fracciones</th>
+                    <td>
+                        <span class="resaltado">Trayectorias 2</span>
+                        <span class="detalle-actividad">• Cap. 9 (Fichas 18 a 20): ¿Qué parte es?, Problemas y Cálculos con fracciones.</span>
+                        <span class="resaltado">Trayectorias 3</span>
+                        <span class="detalle-actividad">• Cap. 8 (Fichas 2 y 3): Sumas y restas de fracciones. Parte I y II.</span>
+                        <span class="detalle-actividad">• Cap. 8 (Ficha 8): Problemas y cálculos con fracciones.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Paso 2: Suma y Resta de Decimales</th>
+                    <td>
+                        <span class="resaltado">Trayectorias 3</span>
+                        <span class="detalle-actividad">• Cap. 10 (Ficha 4): Sumar y restar números decimales. Parte I.</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+
+<script src="/volver.js" defer></script>
+</body>
+</html>

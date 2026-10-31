@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Herramientas para docentes de escolar.com.ar: armadores de fichas de Matemática y generador de actividades de comprensión lectora.">
+  <title>Herramientas para docentes | escolar.com.ar</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VL13MMLPRV');
+  </script>
+
+  <style>
+    :root{
+      --site-nav:#2c3e50;
+      --tools:#036FB0;
+      --tools-dark:#01579B;
+      --tools-soft:#E3F2FD;
+      --math:#E67E22;
+      --math-dark:#E65100;
+      --math-soft:#FFF3E0;
+      --lang:#27AE60;
+      --lang-dark:#1B5E20;
+      --lang-soft:#E8F5E9;
+      --text:#263238;
+      --muted:#60717a;
+      --bg:#f4f6f7;
+      --surface:#ffffff;
+      --line:#dfe6eb;
+      --shadow:0 5px 18px rgba(28,47,58,.10);
+      --shadow-hover:0 12px 28px rgba(28,47,58,.16);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:'Nunito',Arial,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    /* Barra principal de escolar.com.ar */
+    .site-header{
+      background:var(--site-nav);
+      padding:10px 0;
+      width:100%;
+      box-shadow:0 4px 10px rgba(0,0,0,.28);
+      font-family:'Roboto',Arial,sans-serif;
+      position:relative;
+      z-index:20;
+    }
+    .site-nav{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+    }
+    .site-logo{display:flex;align-items:center;text-decoration:none;flex:none}
+    .site-logo img{height:60px;width:auto;display:block;transition:transform .2s ease}
+    .site-logo:hover img{transform:scale(1.03)}
+    .site-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .site-links a{color:#fff;text-decoration:none;font-size:.9rem;font-weight:400}
+    .site-links a:hover,.site-links a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+    .site-links .site-back{
+      color:#f1c40f;
+      font-weight:700;
+      border-left:1px solid #7f8c8d;
+      padding-left:20px;
+      white-space:nowrap;
+    }
+    .site-links .site-back:hover,.site-links .site-back:focus-visible{color:#ffe36b}
+
+    /* Encabezado del micrositio */
+    .hero{
+      background:linear-gradient(135deg,var(--tools-dark),var(--tools));
+      color:#fff;
+      padding:46px 20px 48px;
+    }
+    .hero-inner{max-width:1100px;margin:0 auto;text-align:center}
+    .hero-kicker{
+      display:inline-block;
+      margin:0 0 9px;
+      padding:5px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.24);
+      font-size:.78rem;
+      font-weight:900;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+    .hero h1{
+      margin:0;
+      font-size:clamp(2rem,4.2vw,3.2rem);
+      line-height:1.05;
+      font-weight:900;
+    }
+    .hero p{
+      max-width:740px;
+      margin:13px auto 0;
+      font-size:clamp(1rem,2vw,1.16rem);
+      line-height:1.5;
+      opacity:.96;
+    }
+
+    main{max-width:1100px;margin:0 auto;padding:34px 20px 64px}
+    .intro{text-align:center;max-width:760px;margin:0 auto 28px}
+    .intro h2{margin:0 0 8px;font-size:1.35rem;color:#37474f}
+    .intro p{margin:0;color:var(--muted);line-height:1.55}
+
+    .video-guide{
+      margin:0 auto 28px;
+      display:grid;
+      grid-template-columns:minmax(300px,540px) 1fr;
+      gap:22px;
+      align-items:center;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+    .video-embed{
+      border-radius:12px;
+      overflow:hidden;
+      background:#dfe8ee;
+      aspect-ratio:16/9;
+      min-height:220px;
+    }
+    .video-embed iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+    .video-copy h2{margin:0 0 7px;color:var(--tools-dark);font-size:1.28rem}
+    .video-copy p{margin:0;color:var(--muted);line-height:1.55}
+    .video-actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+    .video-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:42px;padding:9px 18px;border-radius:999px;
+      background:var(--tools);color:#fff;text-decoration:none;font-weight:900;
+      box-shadow:0 3px 10px rgba(0,0,0,.10);
+      transition:transform .16s ease,filter .16s ease;
+    }
+    .video-btn:hover,.video-btn:focus-visible{transform:translateY(-1px);filter:brightness(.98)}
+    .video-link{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:42px;padding:9px 18px;border-radius:999px;
+      background:#fff;color:var(--tools-dark);text-decoration:none;font-weight:800;
+      border:1px solid #cfe0ea;
+      transition:transform .16s ease,background .16s ease;
+    }
+    .video-link:hover,.video-link:focus-visible{transform:translateY(-1px);background:#f6fbff}
+
+
+    .tools-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .tool-card{
+      --card-color:var(--tools);
+      --card-dark:var(--tools-dark);
+      --card-soft:var(--tools-soft);
+      background:var(--surface);
+      border:1px solid var(--line);
+      border-top:6px solid var(--card-color);
+      border-radius:16px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      min-height:300px;
+      transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+    }
+    .tool-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+    .tool-card.math{--card-color:var(--math);--card-dark:var(--math-dark);--card-soft:var(--math-soft)}
+    .tool-card.lang{--card-color:var(--lang);--card-dark:var(--lang-dark);--card-soft:var(--lang-soft)}
+
+    .card-top{display:flex;gap:15px;align-items:flex-start;margin-bottom:13px}
+    .icon-wrap{
+      width:58px;height:58px;flex:0 0 58px;
+      display:grid;place-items:center;
+      border-radius:15px;
+      background:var(--card-soft);
+      color:var(--card-dark);
+    }
+    .icon-wrap svg{width:31px;height:31px;stroke:currentColor}
+    .card-heading{min-width:0}
+    .area-label{
+      display:inline-block;
+      margin-bottom:6px;
+      font-size:.74rem;
+      font-weight:900;
+      color:var(--card-dark);
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+    .tool-card h3{
+      margin:0;
+      color:var(--card-dark);
+      font-size:1.35rem;
+      line-height:1.16;
+      font-weight:900;
+    }
+    .tool-card p{
+      margin:0;
+      color:#50616a;
+      line-height:1.55;
+      font-size:.98rem;
+    }
+    .card-actions{margin-top:auto;padding-top:22px}
+    .enter-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:132px;
+      min-height:44px;
+      padding:10px 20px;
+      border-radius:999px;
+      background:var(--card-color);
+      color:#fff;
+      text-decoration:none;
+      font-weight:900;
+      box-shadow:0 3px 10px rgba(0,0,0,.10);
+      transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;
+    }
+    .enter-btn:hover,.enter-btn:focus-visible{
+      transform:translateY(-1px);
+      filter:brightness(.98);
+      box-shadow:0 6px 15px rgba(0,0,0,.15);
+    }
+    .enter-btn:focus-visible{outline:3px solid rgba(3,111,176,.20);outline-offset:3px}
+
+    .note{
+      margin:30px auto 0;
+      max-width:850px;
+      padding:13px 16px;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid #dde5ea;
+      color:#61727a;
+      font-size:.88rem;
+      line-height:1.5;
+      text-align:center;
+    }
+
+    #contenedor-pie{position:relative;z-index:1;background:#fff}
+    .site-footer-fallback{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px 20px 30px;
+      border-top:1px solid #d5dce1;
+      color:#54636b;
+      text-align:center;
+      font-size:.88rem;
+      line-height:1.55;
+    }
+
+    
+    @media(max-width:760px){
+      .video-guide{grid-template-columns:1fr}
+      .tools-grid{grid-template-columns:1fr}
+      .hero{padding:36px 18px 38px}
+      main{padding:28px 16px 48px}
+    }
+
+    @media(max-width:640px){
+      .site-nav{padding:0 14px;gap:10px}
+      .site-logo img{height:48px}
+      .site-links{gap:12px}
+      .site-links a{font-size:.82rem}
+    }
+    @media(max-width:460px){
+      .site-nav{align-items:flex-start;flex-direction:column}
+      .site-links{width:100%;justify-content:flex-start;gap:10px 14px;padding-bottom:3px}
+      .site-links .site-back{border-left:0;padding-left:0;width:100%;padding-top:4px}
+      .tool-card{padding:18px;min-height:0}
+      .card-top{gap:12px}
+      .icon-wrap{width:50px;height:50px;flex-basis:50px;border-radius:13px}
+      .icon-wrap svg{width:27px;height:27px}
+    }
+  </style>
+</head>
+<body>
+  
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker">escolar.com.ar</div>
+      <h1>Herramientas para docentes</h1>
+      <p>Armá y adaptá actividades para el aula con recursos digitales pensados para docentes.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="intro">
+      <h2>Elegí una herramienta</h2>
+      <p>Cada opción permite configurar la propuesta y obtener materiales listos para usar o adaptar.</p>
+    </div>
+
+    
+    <section class="video-guide" aria-labelledby="videoGuideTitle">
+      <div class="video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/vCht7UPbFd8"
+          title="Video explicativo sobre el uso de las herramientas"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-copy">
+        <h2 id="videoGuideTitle">¿Cómo se usan estas herramientas?</h2>
+        <p>Mirá un recorrido general por las cuatro propuestas y sus principales opciones para crear, adaptar y descargar actividades. El video se reproduce directamente en esta página.</p>
+        <div class="video-actions">
+          <a class="video-btn" href="https://youtu.be/vCht7UPbFd8" target="_blank" rel="noopener">Ver en YouTube</a>
+          <a class="video-link" href="#herramientas-disponibles">Ir a las herramientas</a>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="herramientas-disponibles" class="tools-grid" aria-label="Herramientas disponibles">
+      <article class="tool-card math">
+        <div class="card-top">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 5.5h16v13H4z"/>
+              <path d="M8 9h8M8 12h5M8 15h7"/>
+            </svg>
+          </div>
+          <div class="card-heading">
+            <span class="area-label">Matemática</span>
+            <h3>Fichas con problemas</h3>
+          </div>
+        </div>
+        <p>Creá fichas con problemas según el sentido, la dificultad y el rango numérico. También podés sumar actividades de numeración y operaciones.</p>
+        <div class="card-actions">
+          <a class="enter-btn" href="armador/?origen=herramientas">Ingresar</a>
+        </div>
+      </article>
+
+      <article class="tool-card math">
+        <div class="card-top">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 7h14M5 12h14M5 17h14"/>
+              <circle cx="8" cy="7" r="1.3" fill="currentColor" stroke="none"/>
+              <circle cx="15" cy="12" r="1.3" fill="currentColor" stroke="none"/>
+              <circle cx="11" cy="17" r="1.3" fill="currentColor" stroke="none"/>
+            </svg>
+          </div>
+          <div class="card-heading">
+            <span class="area-label">Matemática</span>
+            <h3>Fichas de numeración</h3>
+          </div>
+        </div>
+        <p>Armá fichas con distintas actividades de numeración: ordenamiento, anterior y posterior, descomposición aditiva y multiplicativa, cálculo mental y otras propuestas.</p>
+        <div class="card-actions">
+          <a class="enter-btn" href="numeracion.html?origen=herramientas">Ingresar</a>
+        </div>
+      </article>
+
+      <article class="tool-card math">
+        <div class="card-top">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 4v6M4 7h6M14 7h6"/>
+              <path d="M4.5 16.5l5-5M9.5 16.5l-5-5"/>
+              <path d="M15 13h4M15 17h4"/>
+            </svg>
+          </div>
+          <div class="card-heading">
+            <span class="area-label">Matemática</span>
+            <h3>Fichas de operaciones</h3>
+          </div>
+        </div>
+        <p>Generá fichas de suma, resta, multiplicación y división. Incluye búsqueda de complementos, estimaciones, cálculo horizontal y otras actividades vinculadas con las operaciones.</p>
+        <div class="card-actions">
+          <a class="enter-btn" href="operaciones.html?origen=herramientas">Ingresar</a>
+        </div>
+      </article>
+
+      <article class="tool-card lang">
+        <div class="card-top">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 4.5h10a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3z"/>
+              <path d="M8 8h7M8 11h7M8 14h4"/>
+              <path d="M18 8.5l2-2 1.5 1.5-2 2"/>
+            </svg>
+          </div>
+          <div class="card-heading">
+            <span class="area-label">Lengua</span>
+            <h3>Generador de actividades de comprensión lectora</h3>
+          </div>
+        </div>
+        <p>Seleccioná criterios de trabajo y generá un prompt para usar en una IA junto con un texto o archivo. Permite producir actividades graduadas de comprensión lectora.</p>
+        <div class="card-actions">
+          <a class="enter-btn" href="comprension.html?origen=herramientas">Ingresar</a>
+        </div>
+      </article>
+    </section>
+
+    <div class="note">Las herramientas están pensadas para facilitar la preparación de materiales. Revisá siempre la propuesta antes de usarla con tus estudiantes.</div>
+  </main>
+
+  <div id="contenedor-pie">
+    <div class="site-footer-fallback">
+      <strong>Material elaborado por escolar.com.ar</strong><br>
+      Los contenidos de este portal educativo están bajo una Licencia CC Atribución-NoComercial-CompartirIgual 4.0 Internacional.
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const params = new URLSearchParams(window.location.search);
+      const origen = params.get('origen');
+      const back = document.getElementById('backLink');
+      const destinos = {
+        matematica: { texto: '← Volver a Matemática', url: 'https://escolar.com.ar/matematica.html' },
+        lengua: { texto: '← Volver a Lengua', url: 'https://escolar.com.ar/lengua.html' },
+        recursos: { texto: '← Volver a Recursos', url: 'https://escolar.com.ar/recursos.html' }
+      };
+      const destino = destinos[origen] || { texto: '← Volver a Escolar', url: 'https://escolar.com.ar/' };
+      if (back) { back.textContent = destino.texto; back.href = destino.url; }
+    })();
+
+    fetch('https://escolar.com.ar/pie.html')
+      .then(response => {
+        if (!response.ok) throw new Error('No se pudo cargar el pie de página');
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('contenedor-pie').innerHTML = data;
+      })
+      .catch(error => {
+        console.info('Se usa el pie local de respaldo.', error);
+      });
+  </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

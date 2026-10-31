@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zona de Juegos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ESTILOS GENERALES */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0; padding: 0;
+            background-color: #fff3e0;
+            display: flex; flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* BARRA DE NAVEGACIÓN (OPCIÓN B - CARPETAS) */
+        header { background-color: #2c3e50; padding: 15px 0; }
+        nav {
+            max-width: 1100px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+        }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+
+        /* CONTENIDO PRINCIPAL */
+        .main-container {
+            max-width: 900px; margin: 0 auto; padding: 40px 20px;
+            text-align: center; flex: 1;
+        }
+
+        h1 { color: #e67e22; margin-bottom: 40px; font-size: 2.5rem; }
+
+        /* GRILLA DE BOTONES GRANDES */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-bottom: 5px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-bottom-color: #e67e22;
+        }
+
+        .icon { font-size: 3rem; margin-bottom: 15px; }
+        .title { font-size: 1.5rem; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
+        .desc { color: #777; font-size: 0.9rem; }
+
+        /* COLORES DE BORDE */
+        .c-1 { border-bottom-color: #e67e22; } /* naranja */
+        .c-2 { border-bottom-color: #e67e22; } /* naranja */
+        .c-3 { border-bottom-color: #e67e22; } /* naranja */
+
+        .menu-card:hover .title { color: #e67e22; }
+
+    </style>
+</head>
+<body>
+
+    
+	
+<div class="main-container">
+    <div class="page-header">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="images/01.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: #e67e22;">Zona de juegos</h1></div></div>
+        </div>
+    <div class="main-container">
+       
+        
+        <div class="menu-grid">
+            
+            <a href="grupo1.html" class="menu-card c-1">
+                <div class="icon">🔢</div>
+                <div class="title">Numeración</div>
+                <div class="desc">Contar, ordenar y series</div>
+            </a>
+
+            <a href="grupo2.html" class="menu-card c-2">
+                <div class="icon">➕</div>
+                <div class="title">Operaciones</div>
+                <div class="desc">Sumas y Restas</div>
+            </a>
+
+            <a href="grupo3.html" class="menu-card c-3">
+                <div class="icon">📝🖊️</div>
+                <div class="title">Más con operaciones</div>
+                <div class="desc">Un poco más difícil</div>
+            </a>
+
+        </div>
+    </div>
+
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Armador de pedidos</title>
+<style>
+:root{--ink:#1f2d2b;--muted:#5b6a6e;--acc:#2e6f5e;--soft:#e8f2ee;--line:#d5dfdb;--bg:#f4f7f6}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 Inter,system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+header{padding:18px 20px;background:#fff;border-bottom:1px solid var(--line)}header h1{margin:0;font-size:1.25rem}header p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.app{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;padding:18px 20px;max-width:1280px;margin:auto}
+@media(max-width:900px){.app{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+h2{font-size:1.05rem;margin:0 0 10px}label.f{display:block;font-size:.85rem;color:var(--muted);margin:8px 0 3px}
+input[type=text],select,textarea{width:100%;font:inherit;padding:8px 10px;border:1px solid #c9d5d1;border-radius:8px;background:#fff}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:560px){.dos{grid-template-columns:1fr}}
+details.area{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;background:#fff}
+details.area>summary{cursor:pointer;padding:11px 14px;font-weight:600;list-style:none;display:flex;justify-content:space-between}
+details.area>summary .n{font-weight:400;color:var(--muted);font-size:.88rem}
+.cont{padding:10px 14px;border-top:1px solid var(--line)}.cont b{display:block;margin-bottom:4px}
+.anio{display:flex;gap:8px;align-items:flex-start;padding:3px 0;font-size:.92rem}.anio input{margin-top:4px}.anio.no{color:#9aa7a4}
+.anio .a{font-weight:600;min-width:2.2rem}.on-row{background:var(--soft);border-radius:6px}
+.chips label{display:inline-flex;gap:6px;align-items:center;margin:0 14px 6px 0}
+.sticky{position:sticky;top:14px}
+pre{white-space:pre-wrap;background:#fbfdfc;border:1px solid var(--line);border-radius:8px;padding:12px;font:inherit;font-size:.92rem;max-height:60vh;overflow:auto;margin:0}
+button{font:inherit;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;background:var(--acc);color:#fff;font-weight:600}button.s{background:#dfe6e3;color:var(--ink)}
+.bt{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.cuenta{color:var(--muted);font-size:.88rem;margin-bottom:8px}
+.nota{font-size:.85rem;color:var(--muted);margin-top:8px}
+</style></head><body>
+<header><h1>Armador de pedidos</h1><p>Elegí el texto y los contenidos que querés trabajar. La página escribe el pedido; vos lo pegás en el proyecto. Los tipos de actividad y los formatos los elige el proyecto.</p></header>
+<div class="app">
+<div>
+  <div class="card"><h2>1. El texto</h2>
+    <div class="dos"><div><label class="f" for="tit">Título</label><input type="text" id="tit" placeholder="Ej.: El almohadón de plumas"></div>
+    <div><label class="f" for="aut">Autor</label><input type="text" id="aut" placeholder="Ej.: Horacio Quiroga"></div></div>
+    <label class="f" for="tipo">Tipo de texto</label>
+    <select id="tipo"><option>cuento</option><option>poema</option><option>obra de teatro o texto con diálogos</option><option>texto informativo</option><option>varios textos</option></select>
+    <p class="nota">El texto en sí lo pegás en el proyecto, junto con el pedido.</p>
+  </div>
+  <div class="card"><h2>2. Contenidos que querés trabajar</h2>
+    <p class="cuenta" id="cuenta"></p><div id="areas"></div>
+    <p class="nota">Marcá el año del que es cada contenido. Podés mezclar años. Si el texto no ofrece un contenido, el proyecto te lo va a avisar.</p>
+  </div>
+  <div class="card"><h2>3. Qué querés recibir</h2>
+    <div class="chips"><label><input type="radio" name="rec" value="todo" checked>Todo: secuencia, fichas de tres niveles y las dos guías</label><label><input type="radio" name="rec" value="secuencia">Solo la secuencia y su guía</label><label><input type="radio" name="rec" value="fichas">Solo las fichas de tres niveles y su guía</label></div>
+    <div class="chips"><label><input type="checkbox" id="info">Incluir un texto informativo en algún encuentro</label></div>
+    <label class="f" for="infot">Sobre qué (si lo marcaste)</label><input type="text" id="infot" placeholder="Ej.: biografía del autor / un animal / un lugar">
+    <label class="f" for="gr">Cómo es el grupo, o cualquier aclaración (opcional)</label><textarea id="gr" rows="3" placeholder="Ej.: les cuesta ubicar información en el texto; me alcanzan 5 encuentros"></textarea>
+  </div>
+</div>
+<div><div class="card sticky"><h2>Tu pedido</h2><pre id="sal"></pre>
+  <div class="bt"><button id="cop">Copiar pedido</button><button class="s" id="lim">Borrar todo</button></div>
+  <p class="nota" id="ok"></p></div></div>
+</div>
+<script>
+const AREAS=[{"area": "Comprensión lectora", "items": [{"n": "Inferencias", "y": ["Inferir información implícita combinando conocimientos previos y datos del texto", "Integrar información de distintas partes del texto", "Explicitar la inferencia: qué información falta y cómo recuperarla", "Además, reconocer incongruencias y datos faltantes"]}, {"n": "Causa, consecuencia y planes de los personajes", "y": ["Reconocer causas, consecuencias y planes", "Relacionar acciones con objetivos", "Motivaciones y acciones", "Cómo evolucionan los personajes y qué eventos motivan sus cambios"]}, {"n": "Personajes y vínculos", "y": ["Rasgos, vínculos y motivaciones", "Transformaciones y vínculos a lo largo de la obra", "Caracterización y personajes prototípicos", "Protagonista y antagonista; comparar prototípicos de distintas obras"]}, {"n": "Voz narrativa y punto de vista", "y": ["—", "Distinguir la voz del narrador de acciones y diálogos", "Perspectiva del narrador; enunciador en el discurso indirecto", "Tipos de narrador y sus cambios; tiempo narrativo"]}, {"n": "Lenguaje figurado", "y": ["Interpretar lenguaje figurado en poemas", "Metáforas, comparaciones, personificaciones, elipsis", "Imágenes y figuras retóricas; humor, polisemia", "Metáfora, sinécdoque; aporte al tono y la atmósfera"]}, {"n": "Género y subgénero", "y": ["Comparar características de géneros", "Rasgos de cada género y subgénero", "Fantástico, terror, policial, ciencia ficción", "Además comedia, utopía y distopía"]}, {"n": "Intertextualidad y comparación de obras", "y": ["Relacionar lo leído con otros textos", "Comparar textos por características, personajes y temas", "Integrar información de varios textos", "Conexiones entre literarios y no literarios"]}, {"n": "Autor y biografía", "y": ["Fichas de lectura; datos del autor", "Vincular aspectos biográficos con los temas de la obra", "Biografías como texto narrativo", "Entrevistas y conversaciones con escritores"]}, {"n": "Teatro y diálogo", "y": ["Parlamentos y acotaciones", "Conflicto dramático; lectura en voz alta", "Teatro leído", "Comedia: humor, sátira, ironía"]}, {"n": "Vocabulario y monitoreo de la comprensión", "y": ["Inferir el significado por morfología; usar la palabra", "Detectar dificultades y buscar estrategias", "Resolver dificultades de forma autónoma", "Sistematizar vocabulario en la carpeta"]}, {"n": "Discurso directo e indirecto", "y": ["—", "Distinguir dichos y hechos de los personajes", "Identificar al enunciador", "Discurso directo e indirecto en distintos géneros"]}]}, {"area": "Conocimiento de la lengua", "items": [{"n": "Clases de palabras", "y": ["Sustantivos propios y comunes; adjetivos calificativos y gentilicios; determinantes (artículos, demostrativos, numerales) y cuantificadores", "Clasificar sustantivos, adjetivos, verbos, adverbios, preposiciones, conjunciones; concretos y abstractos; verbos de acción, estado y psicológicos; adverbios por tipo", "Tipos de pronombres; verbos transitivos e intransitivos (AP)", "Sustantivos individuales/colectivos y contables/incontables; adjetivos relacionales; adverbios de afirmación, negación y duda"]}, {"n": "Concordancia", "y": ["Artículo con género y número del sustantivo", "Transformar sintagmas simples en compuestos manteniendo la concordancia", "—", "Problemas frecuentes (concordancia de ordinales)"]}, {"n": "Grados del adjetivo", "y": ["Comparativo y superlativo (ampliación)", "Comparativo y superlativo", "—", "—"]}, {"n": "Oración", "y": ["Sujeto y predicado en oraciones simples; oración y párrafo", "Núcleos y complementos; objeto directo e indirecto; adjuntos", "Sintagmas nominales y verbales; núcleos, modificadores, complementos", "Sujeto tácito, impersonales, copulativos, coordinadas; ambigüedad sintáctica; subordinadas (AP)"]}, {"n": "Tiempos y modos verbales", "y": ["Presente, pretérito perfecto simple, imperfecto; futuro y condicional (AP)", "Alternancia en el indicativo; perífrasis de futuro; infinitivos, persona y número", "Indicativo; subjuntivo e imperativo (AP)", "Paradigma verbal completo según la situación de enunciación"]}, {"n": "Cohesión y referencia", "y": ["Sinónimos, hiperónimos, elipsis del sujeto, pronombres de referencia; conectores (copulativos, disyuntivos, temporales, continuativos, adversativos)", "Correferencia; eliminar repeticiones con sinónimos o pronombres", "Cohesión léxica y gramatical", "Elegir el recurso según lo que se quiere transmitir; uso anafórico de «el mismo / la misma»"]}, {"n": "Léxico y morfología", "y": ["Campo semántico; sinónimos, antónimos y parafraseo; prefijos y sufijos frecuentes", "Polisemia; prefijos y sufijos menos frecuentes", "Familias morfológicas", "Derivar para cambiar la categoría; sustantivos y adjetivos deverbales"]}, {"n": "Variedades lingüísticas", "y": ["—", "Las variedades de la comunidad escolar como formas válidas", "Reconocer la propia variedad", "—"]}]}, {"area": "Ortografía", "items": [{"n": "Regularidades del sistema", "y": ["hue-, bue-/bur-/bus-, -cito/-cita, -aje, -bilidad; uso de z; diéresis; h en diptongos iniciales; -ívoro/-ívora; plurales y diminutivos de palabras con z; cc, xc, x, sc", "Consolidación de lo anterior; b/v en prefijos y sufijos", "—", "Aplicar a palabras nuevas y revisar textos"]}, {"n": "Acentuación", "y": ["Sílaba tónica; agudas, graves, esdrújulas; monosílabos e interrogativos y exclamativos (ampliación)", "Monosílabos, interrogativos y exclamativos, hiatos, diptongos, adverbios en -mente", "Monosílabos, interrogativos y exclamativos, palabras compuestas, -mente", "—"]}, {"n": "Homófonos heterógrafos", "y": ["ola/hola", "Consolidación (ay/hay, casar/cazar)", "—", "—"]}, {"n": "Puntuación", "y": ["Coma, punto y coma, dos puntos", "Dos puntos antes del discurso directo", "Paréntesis, puntos suspensivos, comillas", "Detectar y corregir errores frecuentes"]}]}, {"area": "Producción escrita", "items": [{"n": "Planificar, redactar y revisar", "y": ["Planificar según propósito y destinatario; mejorar a partir de señalamientos del docente o de pares", "Elaborar criterios de revisión con ayuda docente; revisar por separado contenido, organización, vocabulario y cohesión", "Planificar con cuadros o mapas; revisar estructura, cohesión, ortografía y tiempos verbales", "Autoedición; reescribir con control del registro"]}, {"n": "Escritura creativa narrativa", "y": ["Retratos de personajes; renarración de episodios; nuevas viñetas; diálogos con raya", "Reescribir episodios; nuevos episodios desde la perspectiva de un personaje; descripciones", "Reescribir cambiando la perspectiva; verbos según el narrador", "Reescritura desde un narrador-protagonista, como diario (AP); monólogos"]}, {"n": "Cohesión al escribir", "y": ["Conectores y pronombres; evitar repeticiones", "Eliminar repeticiones con sinónimos o pronombres", "Correferencia sin ambigüedad", "Elegir cohesión según el efecto"]}, {"n": "Textos no literarios", "y": ["Fichas, cuadros comparativos, instructivos, resúmenes", "Biografías de autores, cartas, textos expositivos", "Artículos, noticias, fichas y esquemas", "Argumentativos, infografías, crónicas"]}]}, {"area": "Oralidad", "items": [{"n": "Conversación literaria", "y": ["Intercambio posterior a la lectura", "Contrastar interpretaciones", "Intercambios antes, durante y después de la lectura", "Conversatorios literarios"]}, {"n": "Lenguaje figurado oral", "y": ["Metáforas, analogías, frases hechas", "Ironía y sarcasmo", "Ironía, sarcasmo, metáforas", "Humor y juegos de palabras"]}, {"n": "Lectura expresiva y dramatización", "y": ["Recitado, audiolibros, radioteatro", "Teatro y radio en proyectos grupales", "Recitado, narración oral, representaciones", "Teatro leído"]}, {"n": "Exposición y debate", "y": ["Exposición organizada; debate guiado", "Debates con ideas contrapuestas; exposición con notas", "Argumentar con datos y fuentes", "Foros y mesas de debate"]}]}];
+const $=id=>document.getElementById(id);
+const sel=new Set();
+const cont=$('areas');
+AREAS.forEach((a,i)=>{
+  const d=document.createElement('details');d.className='area';d.open=i===0;
+  d.innerHTML=`<summary><span>${a.area}</span><span class="n" id="n${i}"></span></summary>`+a.items.map((it,j)=>`<div class="cont"><b>${it.n}</b>`+it.y.map((t,k)=>{
+    const no=t==='—'||t==='';const id=`c${i}_${j}_${k}`;
+    return `<label class="anio${no?' no':''}" id="r${id}"><input type="checkbox" id="${id}" ${no?'disabled':''}><span class="a">${k+4}.°</span><span>${no?'sin contenido en este año':t}</span></label>`}).join('')+'</div>').join('');
+  cont.appendChild(d);
+});
+cont.addEventListener('change',e=>{if(e.target.type==='checkbox'){e.target.checked?sel.add(e.target.id):sel.delete(e.target.id);$('r'+e.target.id).classList.toggle('on-row',e.target.checked);}armar();});
+['tit','aut','tipo','info','infot','gr'].forEach(i=>$(i).addEventListener('input',armar));
+document.querySelectorAll('[name=rec]').forEach(r=>r.addEventListener('change',armar));
+function armar(){
+  const rec=document.querySelector('[name=rec]:checked').value;
+  const que={todo:'todo el material: una secuencia de encuentros, fichas del día en tres niveles y las dos guías docentes (la de la secuencia y la de las fichas)',secuencia:'una secuencia de encuentros y su guía docente',fichas:'fichas del día en tres niveles y su guía docente'}[rec];
+  const tit=$('tit').value.trim(),aut=$('aut').value.trim(),tipo=$('tipo').value;
+  let t=`Necesito ${que} para ${tit?'«'+tit+'»':'el texto que te adjunto'}${aut?', de '+aut:''} (${tipo}).\n\n`;
+  const porArea=[];
+  AREAS.forEach((a,i)=>{const l=[];a.items.forEach((it,j)=>it.y.forEach((y,k)=>{if(sel.has(`c${i}_${j}_${k}`))l.push(`- ${it.n} (${k+4}.°): ${y}`)}));
+    $('n'+i).textContent=l.length?l.length+' elegido'+(l.length>1?'s':''):'';
+    if(l.length)porArea.push(`${a.area}:\n`+l.join('\n'));});
+  const n=porArea.reduce((s,x)=>s+x.split('\n').length-1,0);
+  $('cuenta').textContent=n?`${n} contenido${n>1?'s':''} elegido${n>1?'s':''}.`:'Todavía no elegiste ninguno.';
+  t+=n?'Contenidos a trabajar:\n\n'+porArea.join('\n\n')+'\n\n':'Contenidos a trabajar: elegilos vos según lo que ofrezca el texto.\n\n';
+  if($('info').checked)t+=`Incluí en algún encuentro un texto informativo${$('infot').value.trim()?' sobre '+$('infot').value.trim():''}.\n\n`;
+  if($('gr').value.trim())t+=`Aclaraciones: ${$('gr').value.trim()}\n\n`;
+  t+='Elegí vos los tipos de actividad y los formatos que mejor correspondan. Primero decime qué ofrece el texto para cada contenido (alto, medio o bajo) y proponé un recorrido breve; espero mi aprobación antes de generar.';
+  $('sal').textContent=t;try{localStorage.setItem('armador',JSON.stringify({s:[...sel],tit:$('tit').value,aut:$('aut').value,gr:$('gr').value}))}catch(e){}
+}
+$('cop').onclick=async()=>{try{await navigator.clipboard.writeText($('sal').textContent);$('ok').textContent='Copiado. Pegalo en el proyecto.'}catch(e){const r=document.createRange();r.selectNodeContents($('sal'));getSelection().removeAllRanges();getSelection().addRange(r);$('ok').textContent='Seleccioné el texto: copialo con Ctrl+C.'}};
+$('lim').onclick=()=>{if(!confirm('¿Borrar todo?'))return;sel.clear();document.querySelectorAll('#areas input').forEach(c=>{c.checked=false});document.querySelectorAll('.on-row').forEach(r=>r.classList.remove('on-row'));['tit','aut','infot','gr'].forEach(i=>$(i).value='');$('info').checked=false;armar()};
+try{const g=JSON.parse(localStorage.getItem('armador')||'null');if(g){g.s.forEach(id=>{const c=$(id);if(c){c.checked=true;sel.add(id);$('r'+id).classList.add('on-row')}});$('tit').value=g.tit||'';$('aut').value=g.aut||'';$('gr').value=g.gr||''}}catch(e){}
+armar();
+</script><script src="/volver.js" defer></script>
+</body></html>

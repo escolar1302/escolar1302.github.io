@@ -1,0 +1,291 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Campo multiplicativo- Zona 4 - A</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-VL13MMLPRV");</script><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"><style>
+        :root {
+            --bg-color: #f4f6f7;
+            --panel-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #dddddd;
+            --accent-math: #d31718;    /* Rojo */
+            --accent-alt: #036fb0;     /* Azul Oceánico */
+            --accent-action: #e67e22;  /* Naranja */
+            --accent-success: #27ae60; /* Verde */
+        }
+
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; transition: background 0.3s; }
+        .container { width: 100%; max-width: 1000px; margin-top: 20px; }
+        
+        header.docente-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--accent-math); padding-bottom: 10px; }
+        header.docente-header h1 { color: var(--accent-math); margin: 0; }
+        .subtitulo { color: #666; font-size: 0.9rem; }
+
+        .zona-pegado, .zona-vistas { background-color: #ffffff; padding: 20px; border-radius: 8px; border: 2px dashed #aaaaaa; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .zona-vistas { display: none; border-style: solid; border-color: var(--accent-alt); text-align: center;}
+        
+        textarea { width: 100%; height: 120px; background-color: #fafafa; color: #333; border: 1px solid var(--border-color); border-radius: 5px; padding: 10px; font-family: monospace; box-sizing: border-box; margin-bottom: 15px; }
+        
+        .botones-accion, .botones-vistas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;}
+        .btn-generar, .btn-vista { color: white; border: none; padding: 10px; font-size: 0.95rem; font-weight: bold; border-radius: 5px; cursor: pointer; text-transform: uppercase; transition: 0.2s; flex: 1; min-width: 120px; opacity: 0.85;}
+        
+        /* Colores de la botonera */
+        #btn-v-int { background-color: var(--accent-alt); }
+        #btn-v-ren { background-color: var(--accent-action); }
+        #btn-v-tex { background-color: var(--accent-success); }
+        .btn-limpiar, .btn-reiniciar { background-color: var(--accent-math); opacity: 1; }
+        
+        .btn-generar { background-color: var(--accent-alt); opacity: 1;}
+        .btn-vista.activa { opacity: 1; box-shadow: 0 4px 0px rgba(0,0,0,0.2); transform: translateY(-2px);}
+        .btn-vista:hover, .btn-generar:hover { opacity: 1; filter: brightness(1.1); }
+        
+        .btn-imprimir { background-color: #2c3e50; opacity: 1; }
+        .btn-exportar { background-color: var(--accent-action); opacity: 1; }
+        
+        .input-titulo { padding: 10px; border-radius: 5px; border: 2px solid #ccc; font-weight: bold; font-size: 1rem; width: 100%; max-width: 250px; text-align: center; }
+
+        #bateria-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
+        
+        @media (max-width: 768px) { 
+            #bateria-container { grid-template-columns: 1fr; } 
+            .botones-vistas { flex-direction: row; }
+            .btn-vista { font-size: 0.8rem; padding: 8px;}
+        }
+
+        .problema-card { background-color: var(--panel-color); border-top: 5px solid var(--accent-math); border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: flex; flex-direction: column; position: relative;}
+        
+        /* Checkbox para Imprimir */
+        .print-selector { position: absolute; top: 10px; right: 10px; display: flex; align-items: center; gap: 5px; font-size: 0.8rem; color: #666; background: #f4f6f7; padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer;}
+        .print-selector input { cursor: pointer; }
+
+        .titulo-problema { color: var(--accent-math); font-size: 1.3rem; margin: 0 0 15px 0; padding-right: 80px;} 
+        .enunciado { line-height: 1.5; font-size: 1.1rem; margin-bottom: 20px; flex-grow: 1; }
+
+        .opciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .opcion-btn { background: #f9f9f9; border: 2px solid var(--border-color); color: var(--text-color); padding: 10px; border-radius: 5px; cursor: pointer; text-align: center; font-weight: bold; transition: 0.2s;}
+        .opcion-btn:hover { border-color: var(--accent-alt); }
+        .opcion-btn.selected { background: var(--accent-alt); color: white; border-color: var(--accent-alt); }
+        .respuesta-input { width: 100%; padding: 12px; background: #ffffff; border: 2px solid var(--border-color); color: #333; font-size: 1rem; margin-bottom: 15px; box-sizing: border-box; border-radius: 5px; }
+        .feedback-msg { text-align: center; font-weight: bold; margin-bottom: 10px; min-height: 20px; }
+        .btn-comprobar { background-color: var(--accent-action); color: white; border: none; padding: 12px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; margin-top: auto; transition: background 0.3s;}
+        
+        .renglones-print { display: none; width: 100%; height: 60px; background: repeating-linear-gradient(transparent, transparent 29px, #ccc 30px); margin-top: auto; margin-bottom: 10px;}
+
+        /* Filtros de Vistas */
+        .vista-renglones .opciones-grid, .vista-renglones .respuesta-input, .vista-renglones .feedback-msg, .vista-renglones .btn-comprobar { display: none !important; }
+        .vista-renglones .renglones-print { display: block !important; }
+        .vista-texto .opciones-grid, .vista-texto .respuesta-input, .vista-texto .feedback-msg, .vista-texto .btn-comprobar, .vista-texto .renglones-print { display: none !important; }
+        
+        @media print {
+            header.docente-header, .zona-pegado, .zona-vistas, .print-selector, #header-navegacion { display: none !important; }
+            body { background-color: white; padding: 0; }
+            #bateria-container { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+            .problema-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; box-shadow: none; border-top: 3px solid var(--accent-math);}
+        }
+    </style></head><body class="vista-interactiva" onload="cargarProgresoAlumno()"><div class="container"><div class="zona-vistas" style="display:block"><h3>Campo multiplicativo- Zona 4 - A</h3><div class="botones-vistas"><button class="btn-vista activa" id="btn-v-int" onclick="cambiarVista('vista-interactiva')">💻 Digital</button><button class="btn-vista" id="btn-v-ren" onclick="cambiarVista('vista-renglones')">📝 Fotocopia</button><button class="btn-vista" id="btn-v-tex" onclick="cambiarVista('vista-texto')">📖 Carpeta</button><button class="btn-vista btn-copiar" style="background-color: #34495e; opacity: 1;" onclick="abrirModalCopiado()">📄 Copiar / Editar</button><button class="btn-vista btn-limpiar" onclick="limpiarMisPruebas()">🧹 Limpiar</button><button class="btn-vista btn-imprimir" onclick="imprimirSeleccionadas()">🖨️ Imprimir</button></div></div><div id="bateria-container"><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Los alfajores del kiosco</h2><p class="enunciado">Fuiste al kiosco en el recreo y viste que los alfajores triples cuestan $500 cada uno. Si te comprás 4 alfajores para compartir, ¿cuánta plata gastás en total?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">$2.000</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$504</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$200</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$4.500</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="$2.000" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">La sala principal del cine</h2><p class="enunciado">En el cine del barrio abrieron una sala nueva que tiene las butacas acomodadas en 20 filas. Si en cada fila entran 15 personas sentadas, ¿cuántos espectadores entran en total en la sala completa?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="300" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">La velocidad del tren</h2><p class="enunciado">Un tren de carga tiene que hacer un trayecto largo de 1.500 kilómetros. Si el viaje dura exactamente 12 horas y el tren viaja siempre a la misma velocidad sin frenar, ¿cuántos kilómetros recorre por cada hora de viaje?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">125</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">12</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">1.500</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">150</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="125" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Producción de empanadas</h2><p class="enunciado">En la rotisería prepararon 350 empanadas de carne y las van a vender en docenas (cajas de 12 unidades). ¿Cuántas cajas completas de una docena van a lograr armar? ¿Quedan empanadas sueltas sin envasar? ¿Cuántas empanadas más tendrían que hornear para poder llenar una caja entera más?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="Arman 29 cajas. Quedan 2 empanadas sueltas. Tienen que hornear 10 empanadas más para otra caja." data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Las sillas para el acto</h2><p class="enunciado">Para el acto del 25 de Mayo, los chicos de cuarto acomodaron las sillas en el patio formando 8 filas. Si en cada fila pusieron 9 sillas, ¿cuántos asientos prepararon en total?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">72</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">17</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">89</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">64</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="72" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Botellas en el depósito</h2><p class="enunciado">El dueño del supermercado recibió un pedido del mayorista con 40 packs cerrados de agua mineral. Si cada pack trae 12 botellas, ¿cuántas botellas de agua ingresaron al depósito?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="480" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Alimento para tucanes</h2><p class="enunciado">En la reserva ecológica tienen acopiados 1.450 kilos de alimento especial para los tucanes. Se sabe que las aves consumen exactamente 120 kilos por mes. ¿Para cuántos meses enteros les alcanza la comida acopiada? ¿Cuántos kilos van a sobrar y quedarán guardados? ¿Cuántos kilos les faltarían comprar para cubrir un mes más completo?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">Alcanza para 12 meses, sobran 10 kilos y faltan 110 kilos</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">Alcanza para 12 meses, sobran 100 kilos y faltan 20 kilos</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">Alcanza para 13 meses justos</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">Alcanza para 10 meses, sobran 250 kilos y faltan 50 kilos</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="Alcanza para 12 meses, sobran 10 kilos y faltan 110 kilos" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Partida de Chin Chón</h2><p class="enunciado">Agarraste el mazo de 40 cartas españolas para jugar al Chin Chón y las querés repartir en partes exactamente iguales entre tus 5 amigos. ¿Cuántas cartas le tenés que dar a cada uno para empezar a jugar?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="8" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Departamentos nuevos</h2><p class="enunciado">En la avenida construyeron un edificio gigante que tiene 15 pisos iguales. Si en cada piso entraron 10 departamentos, ¿cuántos departamentos tiene el edificio en total?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">150</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">25</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">1.500</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">105</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="150" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Viaje de egresados a Córdoba</h2><p class="enunciado">Un contingente de 45 chicos de sexto grado saca sus pasajes en micro para irse a Córdoba. Si cada pasaje de larga distancia cuesta $12.000, ¿cuánta plata gastan en total entre todos para pagar el viaje?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="$540.000" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Horneada de medialunas</h2><p class="enunciado">A la madrugada, el panadero sacó del horno 820 medialunas de manteca y las empezó a acomodar en bandejas de 24 unidades cada una para dejarlas listas en el mostrador. ¿Cuántas bandejas logra llenar completamente? ¿Le quedan medialunas sueltas? Si quisiera cerrar una bandeja más, ¿cuántas tendría que amasar extra?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="Llena 34 bandejas. Le quedan 4 sueltas. Tendría que amasar 20 más." data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">La rifa de la escuela</h2><p class="enunciado">La cooperadora está vendiendo números de rifa a $200 cada uno para pintar el patio. Si decidís colaborar y comprás 7 números, ¿cuánto dinero gastás?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">$1.400</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$207</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$140</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$1.200</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="$1.400" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Refugio de perros</h2><p class="enunciado">Un refugio de animales recibió una donación de 600 latas de comida premium. Las voluntarias quieren repartirlas de manera que usen la misma cantidad de latas cada uno de los 30 días del mes. ¿Cuántas latas van a abrir por día?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="20" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Estacionamiento del shopping</h2><p class="enunciado">En el subsuelo de un shopping nuevo abrieron un sector de estacionamiento que tiene los espacios marcados formando 25 filas. Si en cada fila entran exactamente 145 autos, ¿qué capacidad total de vehículos tiene ese sector?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">3.625</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">170</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">362</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">2.500</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="3.625" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Traslado de los hinchas</h2><p class="enunciado">Hay 500 hinchas del club esperando para viajar a otra ciudad a ver la final. Consiguieron alquilar colectivos donde entran 45 pasajeros sentados. ¿Cuántos colectivos van a salir con sus asientos totalmente llenos? Para que nadie se quede a pie, ¿tienen que contratar un colectivo más? ¿Cuántos asientos vacíos van a viajar en ese último colectivo que se alquile para los que sobraban?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="Salen 11 colectivos llenos. Tienen que contratar uno más. Viajarán 40 asientos vacíos en el último." data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">La fábrica de pastas</h2><p class="enunciado">En una fábrica de pastas arman planchitas chicas de ravioles que tienen 4 filas. Si en cada fila entran 6 ravioles, ¿cuántos ravioles vienen en una planchita entera?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">24</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">10</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">46</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">20</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="24" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Paquetes de figuritas</h2><p class="enunciado">Los chicos de cuarto grado se juntaron para comprar figuritas por mayor. Si cada paquete cerrado trae 5 figuritas y compraron una caja que tiene 100 paquetes, ¿cuántas figuritas en total tienen para abrir en el recreo?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="500" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Fondos para la escuela</h2><p class="enunciado">Con el festival del Día de la Primavera, la escuela logró juntar de ganancia $6.450 limpios. La directora decidió repartir toda esa plata en partes iguales entre los 15 grados del colegio para que compren tizas de colores. ¿Cuánta plata recibe cada aula?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">$430</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$43</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$645</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$4.300</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="$430" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Acomodando la góndola</h2><p class="enunciado">El repositor del súper sacó del depósito 1.250 paquetes de fideos para acomodar. En cada estante de la góndola entran a presión exactamente 35 paquetes. ¿Cuántos estantes logra llenar a tope? Con los paquetes que le quedan sueltos, ¿le alcanza para llenar el estante de abajo? ¿Cuántos paquetes le tendrían que pasar del depósito para poder llenar un estante más completo?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="Llena 35 estantes. No le alcanza (le quedan 25). Le tendrían que pasar 10 paquetes más." data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Sillas para la clase abierta</h2><p class="enunciado">Para la clase abierta de música, las profesoras tienen 140 sillas y quieren acomodarlas haciendo filas de a 12 sillas cada una. ¿Cuántas filas perfectas van a poder armar y cuántas sillas les van a sobrar para poner al fondo?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">11 filas y sobran 8 sillas</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">12 filas justas</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">10 filas y sobran 20 sillas</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">11 filas y no sobra nada</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="11 filas y sobran 8 sillas" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Turno en la envasadora</h2><p class="enunciado">Una máquina de la fábrica de alfajores empaqueta y sella 250 cajas por hora. Si las dejan funcionando de corrido durante 16 horas seguidas, ¿cuántas cajas van a producir al finalizar el turno?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="4.000" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Pelotas para el torneo</h2><p class="enunciado">Para el torneo provincial de tenis de mesa, los organizadores compraron 1.583 pelotitas sueltas. Las quieren guardar sí o sí en tubos plásticos de 4 pelotitas cada uno. ¿Cuántos tubos completos logran cerrar con la tapa? ¿Cuántas pelotitas se quedan sueltas? ¿Qué cantidad exacta tienen que ir a comprar para poder armar un tubo más y que no quede ninguna sola?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">395 tubos, sobran 3, falta 1</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">396 tubos justos</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">395 tubos, sobra 1, faltan 3</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">390 tubos y sobran 23</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="395 tubos, sobran 3, falta 1" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Promoción en la heladería</h2><p class="enunciado">En la heladería del barrio podés pedir tu helado en vasito o en cucurucho (son 2 opciones de envase). Además, tienen 15 sabores distintos en la cartelera. Si para una promo sólo podés elegir un envase y un único sabor, ¿cuántas combinaciones diferentes te podés pedir?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="30" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">El sorteo de la kermés</h2><p class="enunciado">Para el premio principal de la kermés, armaron combos de ropa deportiva. Tienen disponibles 12 modelos de remeras, 10 tipos de pantalones y 3 modelos de gorras. Si cada combo ganador tiene que llevar obligatoriamente una prenda de cada tipo, ¿cuántos combos distintos se pueden armar en total?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">360</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">25</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">120</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">3.600</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="360" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Paquetes a Bariloche</h2><p class="enunciado">Una empresa de turismo arma viajes a Bariloche y te deja armar tu propio paquete. Te ofrecen 4 empresas de micros distintas para viajar, 15 hoteles diferentes para dormir y 6 tipos de excursiones. Si tenés que elegir sí o sí un micro, un hotel y una excursión, ¿cuántas opciones totalmente diferentes de paquetes turísticos tenés para elegir?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="360" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div></div></div><script id="motor-js">
+
+        function guardarProgresoAlumno() {
+            try {
+                const cards = document.querySelectorAll('.problema-card');
+                let data = [];
+                cards.forEach((card, index) => {
+                    const input = card.querySelector('.respuesta-input');
+                    const selectedBtn = card.querySelector('.opcion-btn.selected');
+                    const feedbackMsg = card.querySelector('.feedback-msg');
+                    const btnComp = card.querySelector('.btn-comprobar');
+                    data.push({
+                        text: input ? input.value : null,
+                        choice: selectedBtn ? selectedBtn.innerText : null,
+                        feedback: feedbackMsg ? feedbackMsg.innerHTML : '',
+                        feedbackColor: feedbackMsg ? feedbackMsg.style.color : '',
+                        btnText: btnComp ? btnComp.innerText : 'COMPROBAR',
+                        btnBg: btnComp ? btnComp.style.backgroundColor : ''
+                    });
+                });
+                localStorage.setItem('mat_progreso_alumno', JSON.stringify(data));
+            } catch(e) {}
+        }
+        function cargarProgresoAlumno() {
+            try {
+                const saved = localStorage.getItem('mat_progreso_alumno');
+                if (!saved) return;
+                const data = JSON.parse(saved);
+                const cards = document.querySelectorAll('.problema-card');
+                data.forEach((item, index) => {
+                    const card = cards[index];
+                    if (!card) return;
+                    if (item.text !== null) {
+                        const input = card.querySelector('.respuesta-input');
+                        if (input) input.value = item.text;
+                    }
+                    if (item.choice !== null) {
+                        const btns = card.querySelectorAll('.opcion-btn');
+                        btns.forEach(b => { if (b.innerText === item.choice) b.classList.add('selected'); });
+                    }
+                    const fmsg = card.querySelector('.feedback-msg');
+                    if (fmsg) { fmsg.innerHTML = item.feedback; fmsg.style.color = item.feedbackColor; }
+                    const btn = card.querySelector('.btn-comprobar');
+                    if (btn && item.btnText) { btn.innerText = item.btnText; btn.style.backgroundColor = item.btnBg; }
+                });
+            } catch(e) {}
+        }
+        function reiniciarFichas() {
+            document.querySelectorAll('.opcion-btn').forEach(btn => btn.classList.remove('selected'));
+            document.querySelectorAll('.respuesta-input').forEach(input => input.value = '');
+            document.querySelectorAll('.feedback-msg').forEach(msg => { msg.innerHTML = ''; msg.style.color = ''; });
+            document.querySelectorAll('.btn-comprobar').forEach(btn => { btn.style.backgroundColor = '#e67e22'; btn.innerText = 'COMPROBAR'; });
+        }
+        function limpiarMisPruebas() {
+            if(confirm("¿Limpiar tus pruebas? Las fichas quedarán vacías.")) {
+                reiniciarFichas();
+                localStorage.removeItem('mat_progreso_alumno'); 
+            }
+        }
+        function seleccionarOpcion(btn) {
+            let contenedor = btn.parentElement;
+            Array.from(contenedor.getElementsByClassName('opcion-btn')).forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            guardarProgresoAlumno();
+        }
+        function verificarRespuesta(btn) {
+            try {
+                let tarjeta = btn.closest('.problema-card');
+                let feedback = tarjeta.querySelector('.feedback-msg');
+                let tipo = btn.getAttribute('data-tipo');
+                let numCor = btn.getAttribute('data-correcta').replace(/[^0-9]/g, '');
+                let esCorrecto = false;
+                if (tipo.indexOf('CHOICE') !== -1) {
+                    let sel = tarjeta.querySelector('.opcion-btn.selected');
+                    if (!sel) { feedback.innerHTML = "⚠️ Elegí una opción."; return; }
+                    if (sel.innerText.replace(/[^0-9]/g, '') === numCor) esCorrecto = true;
+                } else {
+                    let input = tarjeta.querySelector('.respuesta-input');
+                    if (!input || !input.value.trim()) { feedback.innerHTML = "⚠️ Escribí algo."; return; }
+                    if (input.value.replace(/[^0-9]/g, '') === numCor) esCorrecto = true;
+                }
+                if (esCorrecto) {
+                    feedback.innerHTML = "✅ ¡Correcto!"; feedback.style.color = "#27ae60";
+                    btn.style.backgroundColor = "#27ae60"; btn.innerText = "¡RESUELTO!";
+                } else {
+                    feedback.innerHTML = "❌ Revisalo e intentá de nuevo"; feedback.style.color = "#d31718";
+                }
+                guardarProgresoAlumno();
+            } catch(e) {}
+        }
+        function cambiarVista(claseVista) {
+            document.body.className = claseVista;
+            document.querySelectorAll('.btn-vista').forEach(b => b.classList.remove('activa'));
+            const btnId = claseVista === 'vista-interactiva' ? 'btn-v-int' : claseVista === 'vista-renglones' ? 'btn-v-ren' : 'btn-v-tex';
+            const btn = document.getElementById(btnId);
+            if(btn) btn.classList.add('activa');
+            localStorage.setItem('mat_vista_pref', claseVista);
+        }
+        function imprimirSeleccionadas() {
+            const cards = document.querySelectorAll('.problema-card');
+            cards.forEach(card => {
+                const chk = card.querySelector('.chk-print');
+                card.style.display = (chk && chk.checked) ? 'flex' : 'none';
+            });
+            window.print();
+            setTimeout(() => { cards.forEach(c => c.style.display = 'flex'); }, 1000);
+        }
+
+        function abrirModalCopiado() {
+            let htmlAcumulado = "";
+            let inputTitulo = document.getElementById('titulo-export');
+            let tituloGral = inputTitulo ? inputTitulo.value : (document.querySelector('.zona-vistas h3') ? document.querySelector('.zona-vistas h3').innerText : "Actividad de Matemática");
+            
+            let contador = 1;
+
+            document.querySelectorAll('.problema-card').forEach(card => {
+                const chk = card.querySelector('.chk-print');
+                if (chk && chk.checked) {
+                    const titulo = card.querySelector('.titulo-problema').innerText;
+                    const enunciado = card.querySelector('.enunciado').innerText;
+                    
+                    htmlAcumulado += '<div style="margin-bottom: 18px;">';
+                    htmlAcumulado += '<h2 style="font-family: Arial, sans-serif; font-size: 14pt; color: #d31718; margin: 0 0 4px 0;">' + contador + '. ' + titulo + '</h2>';
+                    htmlAcumulado += '<p style="font-family: Arial, sans-serif; font-size: 12pt; margin: 0;">' + enunciado + '</p>';
+                    htmlAcumulado += '</div>';
+                    
+                    contador++;
+                }
+            });
+
+            if (!htmlAcumulado) { alert("⚠️ No tildaste ninguna ficha."); return; }
+
+            const modal = document.createElement('div');
+            modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; display:flex; align-items:center; justify-content:center; padding:15px; box-sizing:border-box;";
+            
+            const box = document.createElement('div');
+            box.style = "background:white; width:100%; max-width:650px; max-height:90vh; border-radius:12px; display:flex; flex-direction:column; box-shadow:0 15px 40px rgba(0,0,0,0.5); overflow:hidden;";
+            
+            box.innerHTML = '<div style="padding:15px; background:#036fb0; color:white; font-weight:bold; display:flex; justify-content:space-between; align-items:center;"><span>Vista Previa y Edición</span><button onclick="this.closest(\'div\').parentElement.parentElement.remove()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer;">✕</button></div>';
+            
+            const area = document.createElement('div');
+            area.id = "area-preview-word";
+            area.contentEditable = "true";
+            area.style = "padding:25px; overflow-y:auto; flex-grow:1; background:#fff; outline:none; color:#333;";
+            area.innerHTML = htmlAcumulado;
+            
+            const footer = document.createElement('div');
+            footer.style = "padding:15px; border-top:1px solid #eee; display:flex; gap:10px; justify-content:center; background:#f8f9fa; flex-wrap:wrap;";
+            
+            const btnCopy = document.createElement('button');
+            btnCopy.innerHTML = "📋 COPIAR";
+            btnCopy.style = "background:#27ae60; color:white; border:none; padding:12px 20px; border-radius:5px; font-weight:bold; cursor:pointer;";
+            btnCopy.onclick = function() {
+                const range = document.createRange();
+                range.selectNodeContents(area);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                document.execCommand('copy');
+                btnCopy.innerHTML = "✅ ¡COPIADO!";
+                setTimeout(() => { btnCopy.innerHTML = "📋 COPIAR"; }, 2000);
+            };
+
+            const btnEditor = document.createElement('button');
+            btnEditor.innerHTML = "🚀 ENVIAR AL EDITOR";
+            btnEditor.style = "background:#036fb0; color:white; border:none; padding:12px 20px; border-radius:5px; font-weight:bold; cursor:pointer;";
+            btnEditor.onclick = function() {
+                let packageHTML = "<h3>" + tituloGral + "</h3>" + area.innerHTML;
+                localStorage.setItem('import_content', packageHTML);
+                window.open('https://escolar.com.ar/editor.html', 'Editor de Textos');
+            };
+
+            const btnPrint = document.createElement('button');
+            btnPrint.innerHTML = "🖨️ IMPRIMIR";
+            btnPrint.style = "background:#34495e; color:white; border:none; padding:12px 20px; border-radius:5px; font-weight:bold; cursor:pointer;";
+            btnPrint.onclick = () => {
+                const win = window.open('', 'PRINT');
+                win.document.write('<html><head><title>Imprimir</title></head><body>' + area.innerHTML + '</body></html>');
+                win.document.close();
+                win.print();
+                win.close();
+            };
+
+            footer.appendChild(btnCopy);
+            footer.appendChild(btnEditor);
+            footer.appendChild(btnPrint);
+            box.appendChild(area);
+            box.appendChild(footer);
+            modal.appendChild(box);
+            document.body.appendChild(modal);
+        }
+
+        window.onload = function() {
+            cargarProgresoAlumno();
+        }
+                
+</script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script><script src="/volver.js" defer></script>
+</body></html>

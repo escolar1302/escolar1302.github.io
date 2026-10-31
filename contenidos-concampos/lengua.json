@@ -1,0 +1,5096 @@
+[
+{
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Reconocimiento y separación de las palabras de la oración en la oralidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Reconocimiento, separación y combinación de fonemas y sílabas en la oralidad (conciencia fonológica).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Relación entre los sonidos que componen las palabras (conciencia fonológica) y las letras que los representan.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Conocimiento y diferenciación entre el sonido de cada consonante y su nombre.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Identificación de los distintos tipos de letras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Trazado de las letras en imprenta mayúscula y en minúscula.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Lectura y escritura de palabras que incluyen distinto nivel de complejidad fonológica (por ejemplo, palabras que incluyen grupos consonánticos).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Identificación y uso de mayúscula inicial (en nombres y al inicio de una oración) y punto final (al finalizar la oración).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Reconocimiento de que ciertas palabras llevan tilde.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Reconocimiento de que los dígrafos representan un único sonido (ll, ch, qu, gu, rr) y de que las letras pueden tener el mismo sonido (b/v, y/ll, g/j, c/s/z).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Lectura y escritura de palabras que contengan r-rr, que/qui-ce/ci.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Reconocimiento de que la letra h no tiene un sonido asociado. Lectura y escritura de palabras de uso frecuente que la contienen.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Trazado de los distintos tipos de letras. Práctica de la letra cursiva o ligada considerando la direccionalidad y la orientación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Comprensión de la lectura que hace el docente de obras literarias de diferentes géneros: textos versificados, narrativos breves y libros álbum (especificidades del género, interdependencia texto-ilustración).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Comprensión guiada de cuentos tradicionales, fábulas y relatos de autor: características, motivaciones y acciones de personajes; eventos centrales; relaciones temporales y causales (inferencias); correferencia y descripción de ilustraciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Reconocimiento de personajes arquetípicos, tema, autor, estructura o características distintivas de cada género.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Lectura en voz alta de oraciones y de textos breves (de dos a cuatro oraciones) para avanzar en el desarrollo de la fluidez lectora.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Ampliación y profundización del vocabulario a partir del trabajo con los textos: explicación de significados, relación con sinónimos y antónimos, explicación de los términos nuevos con las propias palabras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Lectura independiente de las oraciones de un texto breve con marcación de las pausas y de la entonación en función de las mayúsculas iniciales y de los puntos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Comprensión de textos expositivos y descriptivos breves referidos a un objeto, lugar, persona, personaje u otro tema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Búsqueda colaborativa de información en distintos soportes, dispositivos y formatos siguiendo la lectura que hace el docente: notas de enciclopedia, noticias, reglas de juego, normas de convivencia, recetas, etc.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura colaborativa de canciones, poemas, rimas, adivinanzas o fragmentos respetando la diversidad de ideas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de oraciones y de textos breves para describir personajes o eventos de las obras literarias leídas o personajes creados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Reescritura colaborativa de episodios de un relato leído con el docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura o reescritura por sí mismos de textos narrativos (alrededor de cincuenta palabras), atendiendo al estilo del lenguaje escrito.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Escritura colaborativa de textos para describir un tema o un personaje a través del dictado al docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Escritura por sí mismos de respuestas a preguntas abiertas (qué, quién, cuándo, dónde) sobre los textos leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Registro de palabras, frases, datos y vocabulario de las fuentes exploradas a partir de la exposición del docente o proyecciones para la escritura de nuevos textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Reflexión acerca de los procesos de producción textual: plan de escritura, textualización y revisión a partir de la escritura junto al docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Identificación de recursos digitales por su iconografía y función para elaborar producciones escritas (documento de texto, mural digital, etc.).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Identificación y uso de los recursos de cohesión: conectores copulativos (y, e, ni), disyuntivos (o, u) y temporales (antes, luego, después, al día siguiente).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Producción escrita",
+    "tema": "Textos no literarios",
+    "contenido": "Planificación colaborativa de textos para construir acuerdos, reglamentos y normas de convivencia que respeten la diversidad, la igualdad de género y den lugar a la inclusión.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Comprensión y producción oral en situaciones de lectura dialógica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Intercambio de opiniones y preferencias sobre las obras solicitadas en préstamo de biblioteca o leídas por el docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Expresión de las propias ideas para generar acuerdos de convivencia y normas de cuidado del aula.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Formulación y seguimiento de instrucciones de pocos pasos en la realización de una tarea.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Explicación, a partir de las propias palabras, de reglas de juego, reglamentos escolares, normas de convivencia y pautas de cuidado de dispositivos tecnológicos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Formulación de preguntas abiertas y cerradas y elaboración de respuestas con diferentes estructuras para obtener y dar determinada información.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Narración de una secuencia de hechos en forma coherente y comenzando a incorporar algunos recursos de cohesión.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Expresión de comentarios y opiniones sobre aspectos de las obras literarias y relaciones con otras lecturas y con experiencias artísticas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposiciones orales a otros compañeros sobre un tema trabajado o investigado previamente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Creación de contenidos digitales a partir de un tema leído utilizando las aplicaciones disponibles en los dispositivos tecnológicos o en línea para procesar el habla.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de la oración como unidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Uso de conectores copulativos (y, e, ni), disyuntivos (o, u) y temporales (antes, luego, después, al día siguiente) para unir oraciones en el discurso oral.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Clasificación y uso de palabras de diferentes categorías y subcategorías semánticas (objetos de la casa, alimentos, útiles escolares, sentimientos, acciones, etc.).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de variedades lingüísticas en la comunidad escolar como diversas formas de expresión válidas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de las diferencias entre palabras que refieren personas, objetos y lugares, palabras que refieren acciones, y palabras que describen.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de la morfología de las palabras (singular/plural, femenino/masculino/neutro) y concordancia entre artículos y sustantivos en frases.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Agrupación de palabras de acuerdo con su significado (palabras que significan lo mismo y palabras que significan lo opuesto).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de que algunas oraciones afirman y otras niegan, preguntan o exclaman.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Lectura y escritura de palabras con digrafos que representan un único sonido (ll, ch, qu, gu, rr).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Escritura de palabras con opacidades, letras que suenan igual (b/v, s/c/z, y/ll, g/j).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Lectura y escritura de palabras que contengan r-rr, que/qui-ce/ci, gue/gui, -mb-, -nv-.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Palabras que se escriben con h.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Trazado de la letra cursiva o ligada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Acentuación de palabras de uso frecuente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Separación entre palabras y uso de mayúscula inicial y punto final.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Reconocimiento de signos de interrogación y exclamación y de la coma.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Uso de signos de interrogación y exclamación, coma para separar enumeraciones y punto seguido.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Uso de la diéresis en güe/güi para romper el dígrafo gu- cuando la letra u tiene sonido.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Escritura de palabras que terminan con z, en sus variantes plurales y con diminutivo (-ces, -cito/a); y de verbos en pretérito imperfecto con terminación -aba.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Lectura en voz alta de fragmentos o textos breves de manera repetida, avanzando en la fluidez, pronunciando las palabras cada vez con mayor precisión.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Lectura en voz alta, marcando pausas y entonación según los signos de puntuación de las oraciones (coma, punto seguido, punto aparte, signos de exclamación y de interrogación).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Lectura guiada por el docente, y de forma independiente, de poemas de autor, historietas y cuentos vinculados a algún itinerario lector (por trama, estructura, subgénero o personaje arquetípico, y por autor).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Comprensión de textos literarios (como cuentos, fábulas, leyendas), en distintos soportes, dispositivos y formatos: Recuperación de información explícita e implícita. Reconstrucción de la secuencia de acciones en la historia. Identificación del personaje principal, del conflicto, del plan del protagonista para resolverlo, y descripción de las características, motivaciones, acciones y emociones de los personajes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Vinculación de los temas de los textos literarios leídos con experiencias cotidianas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Análisis de semejanzas y diferencias entre los diversos textos literarios leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Comprensión de textos no literarios (expositivos, narrativos e instructivos), recuperando y ampliando las tipologías textuales trabajadas en primer grado: Recuperación de ideas centrales del texto estableciendo conexiones entre la información y los conocimientos previos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Identificación de las características textuales propias de un texto expositivo (descriptivo), como vocabulario específico y formas en que se organiza la información.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Búsqueda de información sobre un tema en diversas fuentes para iniciar una investigación guiada por el docente. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Ampliación y profundización del vocabulario específico (científico y literario) a partir del trabajo con los diversos tipos de textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Clasificación de diferentes textos de acuerdo con el tipo textual al que pertenecen (publicidades, etiquetas, instrucciones, señalética, etc.). (En articulación con Educación Ambiental - Movilidad Sustentable y Segura).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Identificación de información relevante de acuerdo con el tipo de texto (por ejemplo, dirección y horario en una invitación a un cumpleaños, o precios, sellos y leyendas de advertencia en los envases de alimentos). (En articulación con Educación Alimentaria).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Identificación de las características textuales propias de un texto narrativo, como las relaciones temporales y causales dentro de una secuencia narrativa.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Establecimiento del orden lógico de las acciones en un texto instructivo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Reconocimiento de componentes propios de los textos literarios narrativos, como la voz del narrador.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura independiente en distintos soportes, dispositivos y formatos para profundizar el conocimiento sobre un tema.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Reconocimiento del vocabulario nuevo en los textos leídos y definición de los conceptos a través de explicaciones simples o sinónimos y con ejemplos de uso de la palabra en contextos diversos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Planificación y textualización, con guía docente, de textos narrativos, expositivos e instructivos breves (como cuentos, noticias periodísticas breves, notas de divulgación, recetas, instrucciones para fabricar objetos, normas de convivencia), teniendo en cuenta el propósito y el destinatario o lector.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Narración de una secuencia de hechos en forma coherente. Escritura creativa de narraciones (relatos de experiencias personales, cuentos) que contengan una situación inicial, un conflicto, acciones para resolverlo, y un desenlace.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura autónoma de textos expositivos breves (descriptivos) en distintos soportes, dispositivos y formatos analógicos y digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Incorporación del vocabulario aprendido en la producción.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Escritura autónoma de textos breves con diversos propósitos que responden a tipologías textuales previamente abordadas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Reflexión acerca de los pasos implicados en la escritura de un texto: planificar la escritura, textualizar y revisar el texto junto al docente recuperando características textuales observadas en lecturas previas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Recursos de cohesión en la escritura de oraciones y textos: conectores copulativos (y, e, ni), disyuntivos (o, u) y temporales (antes, luego, después, al día siguiente).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Identificación de recursos digitales por su iconografía y función, para elaborar producciones escritas (documentos de texto, mural digital, etc.). (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Reconocimiento de gráficos que permitan planificar la estructura de un texto.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Revisión de la producción escrita, atendiendo a aspectos de la ortografía estudiados, la coherencia y la cohesión (uso de recursos como pronombres y conectores), con ayuda docente.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Escritura de textos breves que sinteticen un tema trabajado previamente.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura autónoma de textos instructivos breves como recetas, instrucciones para fabricar un objeto, normas de convivencia.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Uso adecuado de los tiempos verbales (presente, pasado, futuro) para dar coherencia y cohesión a los escritos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Expresión de opiniones sobre un tópico o problemática.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del lenguaje oral con diferentes propósitos: Realizar pedidos utilizando fórmulas de cortesía. Expresar sentimientos y emociones. Dar y seguir instrucciones de más de tres pasos. Plantear opiniones y responder a las opiniones de los pares. Dar y solicitar información sobre el mundo que los rodea. Lograr acuerdos verbales y plantear reglas de juego.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Expresión de una misma idea de diferentes maneras y reformulación del discurso si fuera necesario.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Narración de eventos atendiendo progresivamente a sus elementos fundamentales (coherencia, cohesión, conectores temporales y causales).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Expresión de comentarios y opiniones sobre aspectos de las obras literarias (por ejemplo, sobre personajes, conflictos y géneros) y relaciones con otras lecturas o con experiencias artísticas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Creación de contenidos digitales a partir de un tema leído, utilizando las aplicaciones disponibles en los dispositivos tecnológicos o en línea para procesar el habla. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Distinción del significado de frases hechas y otros elementos del lenguaje figurativo (palabras usadas en sentido metafórico, por ejemplo, \"dejar plantado a alguien\").",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposiciones orales a otros compañeros sobre un tema trabajado o investigado previamente.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Explicación a los compañeros de los aspectos centrales sobre un tema estudiado, incluyendo la creación de presentaciones digitales (por ejemplo, grabar para que otros puedan escuchar). (En articulación con Educación Digital).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de las diferencias entre palabras que nombran, describen, indican acciones, etc.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación y agrupación de palabras (sinónimos, antónimos, familias morfológicas de palabras y campo semántico).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de lo que sucede ahora, antes y después a partir de los tiempos verbales (presente, pasado y futuro).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de la oración como unidad y distinción entre oraciones que afirman, niegan, preguntan, exclaman.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Separación en sílabas e identificación de la sílaba tónica de las palabras cuando la marca el docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Valoración de las variedades lingüísticas en la comunidad escolar como diversas formas de expresión válidas y no como desvíos de una norma.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación de sustantivos propios y comunes.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Asociación de sufijos y prefijos frecuentes para comprender la estructura de las palabras y ampliar su vocabulario (re-, \"releer\", \"reutilizar\"; -ito/-ita, \"gatito\", \"casita\"; -ón/-ona, \"cucharón\", \"casona\"; adverbios terminados en -mente).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento progresivo de palabras que se acentúan en la última, penúltima o antepenúltima sílaba.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Uso de signos de interrogación y exclamación, coma y punto seguido.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Escritura de terminaciones morfológicas que mantienen la ortografía, como el pretérito imperfecto terminado en -aba y el uso de c en plural y en el diminutivo de palabras que terminan con z (-cito, -cita).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Escritura de palabras que impliquen reglas tales como mb/nv.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Adopción progresiva de reglas de acentuación: clasificación y acentuación de palabras agudas, graves y esdrújulas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Aplicación progresiva de la tildación de las formas verbales del pretérito perfecto simple.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Escritura de palabras en letra cursiva o ligada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Uso de la diéresis en güe/güi para romper el dígrafo gu- cuando la u tiene sonido.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Utilización de la raya o guion de diálogo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Reconocimiento del orden alfabético.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Separación de palabras en sílabas al bajar renglón.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Uso de los dos puntos para introducir enumeraciones, parlamento dentro de diálogos y encabezados de cartas o correos electrónicos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Sistema de escritura",
+    "tema": "Alfabetización inicial",
+    "contenido": "Ortografía: reflexión sobre las regularidades del sistema ortográfico del español (bur-bu-bus; ción; sión; aje; je-ji; ge-gi).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Lectura independiente y en voz alta de textos o fragmentos, marcando correctamente las pausas y la entonación, y pronunciando cada palabra con precisión.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Comprensión de textos literarios (narrativos, líricos y dramáticos). Además de las tipologías abordadas en primer y segundo grado, se priorizan las novelas, las obras teatrales y de títeres, los romances y las canciones, vinculadas con algún recorrido de lectura por autor, subgénero o temática.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Lectura de textos narrativos: Identificación de características textuales (relaciones temporales y causales); reconocimiento de componentes (personajes principales y secundarios, voz del narrador); reconstrucción y renarración recuperando relaciones causales, conflicto, emociones y planes de resolución.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Lectura de obras de teatro breves. Identificación de las partes en las que se divide una obra teatral (actos, escenas, cuadros) y de sus componentes: parlamentos (diálogos) de los personajes y didascalias (o acotaciones).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Lectura de poemas y reconocimiento de su estructura (estrofas y versos).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Lectura de historietas. Identificación de las relaciones temporales entre sucesos narrados y la estructura de viñetas; modos de decir de los personajes según el tipo de globo; uso de onomatopeyas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Conocimiento de la estructura de un diálogo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Comprensión de textos no literarios (narrativos, expositivos e instructivos) priorizando biografías, instructivos, notas de opinión y publicidades: Identificación de información implícita y explícita; reconocimiento de estructura y vocabulario en textos expositivos; organización en cuadros o gráficos; recuperación de ideas centrales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Ampliación, profundización y uso del vocabulario específico (científico y literario) a partir del trabajo con los diversos tipos de textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "General",
+    "contenido": "Reconocimiento del vocabulario nuevo en los textos leídos y definición de los conceptos (a través de explicaciones simples o de sinónimos) y con ejemplos de uso de la palabra en contextos diversos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Búsqueda de información sobre un tema en diversas fuentes (como libros, internet, revistas, enciclopedias, atlas, etc.) y visita a la biblioteca. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Sistematización de la información relevada a partir de la lectura individual, para recuperarla en otros contextos de lectura y de escritura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura independiente en distintos soportes, dispositivos y formatos profundizando en el conocimiento para responder un interrogante o para resolver dudas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Atención a los elementos paratextuales y uso de anotaciones para destacar la información buscada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Práctica de la lectura en voz alta de obras teatrales o fragmentos de ellas, en relación con la construcción del personaje, atendiendo al auditorio y coordinando la lectura con otros. (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Presentación de fragmentos de la obra teatral leída ante un auditorio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Literatura",
+    "contenido": "Lectura en voz alta y fluida de cuentos y otras narraciones literarias, para compartir con otros en distintos formatos y soportes.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura en voz alta y fluida de textos expositivos, narrativos e instructivos (como glosas, noticias, folletos informativos, reglamentos, etc.) en situaciones de vinculación con la comunidad (como actos patrios, ferias de ciencias, simulación de programas radiales, competencias deportivas, etc.).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Lectura",
+    "tema": "Textos no literarios",
+    "contenido": "Organización de la información de textos no literarios en cuadros o en gráficos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Escritura de textos en letra cursiva o ligada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Planificación de los textos considerando el propósito y el destinatario: Generación de ideas a partir de conversaciones o investigaciones; organización en estructura discursiva; incorporación de vocabulario extraído de textos escuchados o leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura autónoma de textos expositivos (comparativos y de secuencia) e instructivos breves: Uso de signos de puntuación e interrogación/exclamación; organización en párrafos; incorporación de conectores y vocabulario específico. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura autónoma de narraciones en forma coherente: Organización en inicio, desarrollo y cierre; uso de mecanismos de cohesión (conectores copulativos, disyuntivos, temporales, continuativos y adversativos); incorporación de pronombres.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura creativa de textos, como relatos de experiencias personales, cuentos breves, diario de vida, descripciones, cartas, mails y poemas, expresando sus ideas y sus emociones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Revisión de la producción escrita a partir de rúbricas o intervenciones del docente: Organización de ideas, uso de conectores y pronombres, corrección ortográfica, variedad de vocabulario e incorporación de sugerencias de pares y docentes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Uso adecuado de los tiempos (presente, pasado, futuro) y modos (indicativo, subjuntivo) verbales para dar coherencia y cohesión a los escritos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura autónoma de diálogos a partir de los personajes de los textos leídos o recreando situaciones cotidianas de interés de los estudiantes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "Textos no literarios",
+    "contenido": "Producción de textos argumentativos que aborden ideas contrapuestas sobre un tema de manera independiente o guiada por el docente.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de resúmenes a partir de un texto leído.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura autónoma de textos argumentativos breves con opiniones fundamentadas sobre las normas de convivencia escolares y sobre temas de interés a partir de noticias.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Producción escrita",
+    "tema": "General",
+    "contenido": "Reflexión sobre las características de un género literario y relación o comparación con otros géneros.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en intercambios orales: Planificación de tareas, planteamiento de hipótesis, foco en el tema, respeto por turnos de habla, formulación de preguntas, expresión de ideas y colaboración con pares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Desarrollo de narrativas secuenciando y organizando los eventos en introducción, desarrollo del problema y resolución.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Temporalidad en las narrativas: conexiones temporales y mantenimiento del tiempo pasado.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Intercambios orales con diferentes propósitos comunicativos, como explicar, dar instrucciones, reportar noticias, relatar, contar anécdotas, etc., estableciendo conexiones con las propias experiencias y con otros textos o información de otras fuentes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Expresión coherente y organizada de temas de interés en diferentes situaciones del aula: descripción de fenómenos, uso de ejemplos o ilustraciones sobre sus ideas, empleo de vocabulario variado y de pronombres para reemplazar un referente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Presentación a los compañeros de aspectos centrales de un tema estudiado, incluyendo la creación de presentaciones digitales (por ejemplo: grabar para que otros puedan escuchar). (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Reconocimiento y uso del lenguaje no literal: metáforas, analogías, frases idiomáticas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Formulación de argumentaciones orales organizadas en forma de debates o conversaciones sobre: Situaciones que se dan en la escuela y temáticas vinculadas con los textos leídos o con problemáticas de actualidad. Vínculos que se establecen en el ámbito escolar y familiar.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Incorporación de vocabulario específico sobre los temas que se abordan, uso de gestos y posturas teniendo en cuenta el auditorio y la situación retórica que definen el ambiente de una presentación.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del lenguaje de manera expresiva y creativa en diferentes proyectos, como recitado de poesías, audiolibros, radioteatro, etc.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Incorporación de material de apoyo en sus exposiciones orales sobre un tema (diagramas, presentaciones digitales, objetos o imágenes).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Segmentación de palabras que contienen hiatos y diptongos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Empleo de sufijos derivativos (por ejemplo, pan/ panera/panadero/panadería).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación de terminaciones morfológicas como el pretérito imperfecto terminado en -aba y el diminutivo terminado en -cito/-cita.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Partes de la oración.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Uso del singular y del plural en las oraciones (concordancia).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de verbos en diferentes tiempos verbales: presente, pretérito imperfecto terminado en -aba, perífrasis de futuro.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Tiempos verbales. Uso del condicional en oraciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Asociación de sufijos y prefijos frecuentes para comprender la estructura de las palabras y ampliar su vocabulario (re-, \"releer\", \"reutilizar\"; -ito/-ita, \"gatito\", \"casita\", -ón/-ona, \"casona\", adverbios terminados en -mente).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Relación entre hiperónimos e hipónimos (pájaro-colibrí, flor-lirio).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Oraciones simples y compuestas: reconocimiento de más de una acción o más de una persona (sujeto) que la realiza.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Lectura en voz alta de textos de los medios de comunicación u obras literarias atendiendo al auditorio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Identificación de elementos paratextuales, como gráficos y mapas, y su relación con el contenido de los textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Aplicación de estrategias de comprensión lectora: activación de conocimientos previos, realización de inferencias, identificación de información relevante.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Identificación de recursos de cohesión: identificación de relaciones de la correferencia.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Reconocimiento del texto y elementos paratextuales para activar conocimientos previos sobre vocabulario y tema del texto, características del tipo textual, relación entre el paratexto y el contenido del texto.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Estrategias de monitoreo de la comprensión: identificación de dificultades durante la lectura (vocabulario poco frecuente, incongruencias, correferencias ambiguas o distantes en el texto), búsqueda de estrategias para resolverlas, y para formular y responder preguntas sobre el texto y así recuperar las ideas centrales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de poesías, historietas, cuentos, obras de teatro, novelas y otras narraciones seleccionadas para el nivel.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Cuentos (fantástico, humorístico, entre otros) y novelas cortas en el marco de los recorridos de lectura por autor, subgénero o temática: identificación de la forma en que está contada la historia; descripciones; formas de decir; motivaciones y transformaciones de personajes; voz narrativa; rasgos de autor o subgénero; punto de vista del narrador.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Obras de teatro (humorísticas o dramáticas): identificación de los parlamentos de los personajes y de las acotaciones o didascalias; identificación del conflicto dramático y su relación con las motivaciones de los personajes; adecuación de la modalidad de lectura en voz alta en relación con la construcción del personaje, atendiendo al auditorio y coordinando la lectura con otros.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Poesía popular y de autor: análisis del lenguaje poético que emplea el autor y su impacto en la creación de imágenes en el lector; identificación de personificaciones, comparaciones y metáforas en un poema; reconocimiento del tipo de rima (asonante y consonante) y elementos formales de la poesía (verso y estrofa).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Vinculación de lo leído con otros textos literarios (intertextualidad), considerando temas, personajes, eventos y características del género.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Análisis de la diversidad de vínculos interpersonales que aparecen en las historias leídas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Consultas para seleccionar obras literarias en bibliotecas físicas y virtuales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Elección de obras: consideración de las recomendaciones y de los conocimientos sobre los autores leídos y los subgéneros trabajados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de letras de tango (vinculación con la transformación de la Ciudad de Buenos Aires); poesías disparatadas, obras dramáticas y diálogos literarios.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de caligramas y de videopoemas en el marco de los recorridos de lectura por autor o temática, considerando la forma en que se utiliza el lenguaje poético, algunos recursos propios del género (comparaciones, imágenes sensoriales, campos semánticos), y la distribución espacial en relación con el sentido del poema.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de fragmentos de la obra teatral ante un auditorio conocido: puesta en voz, entrada y salida de personajes en cada escena.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Planificación y puesta en escena de obras (teatro, comedia musical).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los siguientes contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Noticias y producciones de medios de comunicación (por ejemplo, entrevistas), como una actividad habitual a partir de recorridos temáticos basados en intereses comunitarios o en temas de estudio: confrontación de interpretaciones, versiones de los hechos o dichos de las noticias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Biografías/autobiografías breves de autores leídos o de personalidades significativas en sitios web: localización de información pertinente y jerarquización de la información según el propósito de lectura; recuperación de conocimientos sobre los textos y vinculación con nuevos datos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Textos expositivos con distinta estructura (descriptiva, comparativa y causa-consecuencia) en relación con temas de otras áreas y organización de la información en cuadros.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Textos argumentativos, como notas de opinión y publicidades: identificación de ideas contrapuestas y su argumentación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Recomendaciones literarias en sitios web.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Notas de color sobre temáticas conocidas: distribución de la información, elementos característicos (fecha de publicación, titulares, bajadas, epígrafes) e inclusión de imágenes (colores, tamaño, etc.).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Definición de conceptos clave para buscar información en internet.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Reconocimiento de la forma en que se organiza un sitio web: mapa del sitio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Búsqueda de información en bibliotecas físicas y virtuales, con intervenciones para ampliar la información sobre un tema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura guiada por el docente de textos para explorar diversidad de fuentes (sitios web, recursos digitales, buscadores y aplicaciones con inteligencia artificial, etc.) sobre un tema de estudio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Utilización de marcas en los textos de estudio que se leen, para recuperar ideas clave o identificar dificultades durante la lectura, con la guía del docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos narrativos como diario de viaje y personal, noticias, biografías, autobiografías, relatos históricos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos expositivos, como notas de divulgación científica, artículos de enciclopedia y entradas de enciclopedia virtual, con diferentes propósitos pautados por el docente.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos argumentativos de los medios de comunicación, como columnas de opinión, reseñas críticas de series de televisión, películas u obras literarias. Identificación de ideas y su argumentación.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Escritura de borradores de textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Producción de textos expositivos y narrativos con autonomía: plan de escritura, composición y revisión, atendiendo a las particularidades del género (distribución de la información, reconocimiento de la estructura global y selección léxica para nombrar y caracterizar participantes y sucesos).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Revisión de diversos aspectos de las narraciones: adecuación, coherencia, cohesión (uso de conectores), estructura y organización de la información, voz narrativa, perspectiva del narrador, algunos recursos literarios y las convenciones ortográficas abordadas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Construcción colaborativa de rúbricas para la revisión de la producción escrita.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Publicación de los textos escritos a través de dispositivos y formatos variados (mural colaborativo digital, instalaciones artísticas, libro digital, audiolibro, booktrailer, folleto).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Colaboración en el proceso de edición de los textos producidos y su publicación en función de las particularidades del género y en soportes analógicos y digitales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Participación en las diversas instancias del proceso de producción colectiva de textos argumentativos (planificación, composición y revisión de diversos aspectos del texto vinculados a la coherencia, la cohesión y la ortografía) para abordar la estructura u organización de los géneros y el uso de conectores.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Reescritura de episodios de novelas o cuentos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de nuevos episodios desde la perspectiva de un personaje conocido.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Descripciones de personajes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Producción de cuentos o escenas teatrales breves atendiendo a las particularidades de cada género.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Producción, en pequeños grupos o en forma colaborativa, de audiocuentos o videos de escenas teatrales a partir de textos escritos previamente o de autores leídos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los siguientes contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de textos expositivos (como entradas de enciclopedias físicas o virtuales, manuales escolares, folletos) sobre temas estudiados para destinatarios conocidos, por ejemplo: distinción, caracterización y clasificación de las partes del elemento descripto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Composición de cartas físicas y digitales (correo electrónico): estructura (fecha y lugar; saludo; cuerpo; despedida), atendiendo al propósito y al destinatario.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de biografías de autores participando en todo el proceso de escritura y en el marco de proyectos de producción, atendiendo a las particularidades del género.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Elaboración de fichas sobre biografías de autor; cuadros para comparar las obras leídas; listas de recursos literarios (imágenes, comparaciones, adjetivación).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Toma de notas, en la primera lectura o en la relectura, y uso de las notas para completar fichas, cuadros, para registrar conclusiones y para conceptualizar temas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Edición del texto en función del soporte en el que será publicado, decidiendo sobre el uso de títulos y subtítulos, inclusión de imágenes, epígrafes, diagramación del texto, tipografía, color, uso de sangrías, etcétera.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Uso adecuado de los tiempos verbales del presente, del pasado y del futuro para dar coherencia y cohesión a los escritos: uso de verbos de acción en pasado; uso del presente en los textos expositivos, descriptivos e informativos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de textos argumentativos, guiada por el docente, que aborden ideas contrapuestas sobre un tema por ejemplo: reseñas literarias breves o argumentaciones sobre temas de interés a partir de noticias.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de noticias, biografías, carta personal, carta formal, entrevista, descripción de personaje (un detective, por ejemplo), entradas de diario personal.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Puesta en texto de las entrevistas a autores realizadas, leídas, escuchadas o vistas en formato de reportaje o para una nota que se va a publicar en la comunidad educativa: diferencias entre oralidad y escritura, revisión de las preguntas y respuestas, uso de la puntuación adecuada.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de reseñas literarias breves.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Realización de intercambios posteriores a la lectura de obras para poner en común y contrastar interpretaciones sobre los contenidos y su relación con otras lecturas previas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del lenguaje de manera expresiva para cumplir funciones comunicativas específicas en proyectos creativos grupales, como obras de teatro o programas de radio, para presentar a la comunidad educativa y a las familias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Análisis de lenguaje figurado extraído de obras literarias y su adecuación a intercambios en la oralidad: ironía, sarcasmo, metáforas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Elaboración de definiciones de palabras cuyos significados ya conoce, incorporando una estructura: decir qué es, aportar características o funciones, brindar ejemplos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Empleo del discurso argumentativo en debates orales sobre temas de interés o estudio: identificación de ideas contrapuestas y uso de recursos para presentarlas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en conversaciones y discusiones en el aula formulando preguntas y comentarios pertinentes con distintos propósitos: dirimir conflictos, llegar a acuerdos, planificar acciones conjuntas, compartir conocimientos sobre un tema u obras leídas, etc.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Recomendaciones orales breves de las obras solicitadas en préstamo a la biblioteca.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposición oral de información elaborada en el marco de un proyecto o secuencia de estudio en grupos pequeños.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Elaboración de notas personales que acompañen la exposición oral como ayuda memoria y uso de diagramas, presentaciones digitales, objetos o imágenes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Ensayo de lo que se va a exponer ante los pares para realizar los ajustes convenientes (tiempo, voz, soportes, etc.).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Incorporación de vocabulario específico sobre los temas que se abordan, uso de recursos pragmáticos teniendo en cuenta el auditorio y la situación retórica que definen el ambiente de una presentación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Creación de presentaciones digitales sobre los temas que se exponen, por ejemplo, grabaciones para que otros puedan escuchar.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Identificación y explicación del tema central de lo expuesto por el docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Identificación crítica de la información presente en los discursos: quién es el emisor, a quién dirige el mensaje; propósito del texto y tipo de información o datos que presenta.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del lenguaje de manera expresiva para captar y mantener la atención de la audiencia.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del diálogo para compartir, desarrollar ideas y buscar acuerdos manteniendo el foco en un tema, aceptando sugerencias, haciendo comentarios en los momentos adecuados, mostrando acuerdo o desacuerdo con respeto, fundamentando su postura.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "En la planificación institucional del ciclo se optará por alguna de estas propuestas: Producción de entrevistas sobre temas de interés del grupo y la comunidad, utilizando herramientas digitales para realizar encuentros virtuales, grabar y editar; elaboración de preguntas en grupos y guiada por el docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposición oral sobre temas de interés para compartir con las familias y la comunidad: planificación guiada del docente del tema a exponer, principales ideas, ejemplos, cierre.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en un proyecto de producción de una radio escolar, periódico, revista o portal de noticias comunitarias: elaboración de los guiones, en grupos y guiados por el docente, presentación de las noticias, intercambios de puntos de vista.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Categorización y subcategorización de palabras según diferentes campos semánticos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Ampliación y profundización de vocabulario: polisemia, sustitución por sinonimia o parafraseo en función del contexto comunicativo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Definiciones de diccionario: determinación de la definición adecuada para la explicación que se busca y reformulación con las propias palabras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Clasificación de palabras según su categoría gramatical: sustantivos, adjetivos, verbos, determinantes, cuantificadores, conectores o conjunciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Distinción semántica de verbos: de acción, de estado y psicológicos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Distinción semántica de sustantivos concretos y abstractos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento del grado comparativo y del grado superlativo en los adjetivos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación de funciones de las preposiciones en la oración.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Distinción de los adverbios según tipos y función en la oración (tiempo, lugar, modo y cantidad).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Asignación correcta de complementos del predicado verbal con verbos de acción: objeto directo e indirecto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de adjuntos del predicado verbal.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Asociación de sufijos y prefijos menos frecuentes para comprender la estructura de las palabras y ampliar su vocabulario (in- en \"increíble\", des- en \"descoser\", micro- en \"microscopio\", sub- en \"subterráneo\", anti- en \"antivirus\", entre otros).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Transformación de sintagmas simples a compuestos, y viceversa, manteniendo la concordancia en la oración.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación de los infinitivos y de las distintas categorías, como persona y número, necesarias para conjugar verbos en los diferentes tiempos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación y alternancia en el uso de los tiempos verbales del modo indicativo: presente, pretérito perfecto simple, pretérito imperfecto, futuro y condicional.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de las variedades lingüísticas en la comunidad escolar como diversas formas de expresión válidas y no como desvíos de una norma.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Distinción de verbos transitivos e intransitivos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de la forma propia de expresarse como una variedad lingüística entre otras.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación y uso adecuado de pronombres personales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Conjugación verbal del tiempo presente en las diferentes personas gramaticales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de oraciones con sintagmas nominales simples y compuestos en sujeto y predicado.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Consolidación de la escritura de homófonos heterógrafos (ay/hay, casar/cazar, vaya/valla/baya).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Consolidación de reglas ortográficas aprendidas en grados anteriores (uso de diéresis, h en palabras que comienzan con diptongos, prefijos y sufijos que llevan siempre b- o v-).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Acentuación de monosílabos, pronombres interrogativos y exclamativos, hiatos y diptongos y adverbios terminados en -mente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Consolidación del uso de signos de puntuación: punto, coma, punto y coma, dos puntos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Lectura de textos de diversos géneros en voz alta y en silencio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Identificación de los elementos paratextuales, cuadros y organizadores gráficos, y relación con el contenido del texto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Recuperación de ideas y conceptos relacionados con el tema del texto a partir de la lectura del título, los elementos paratextuales y la formulación de preguntas o rutinas de indagación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Identificación y profundización del vocabulario nuevo, literario y científico-disciplinar, en el contexto de los textos leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Resolución de dificultades (como búsqueda de definiciones de palabras desconocidas) y realización de inferencias durante la lectura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Identificación de ideas centrales para organizarlas en cuadros y responder preguntas sobre el texto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Selección de textos y obras literarias, en bibliotecas físicas o virtuales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Estrategias para buscar información en internet a partir de una temática dada: Selección de palabras clave ensayando opciones de pertinencia; identificación de extensiones web (.edu, .org, .gob, .com, .net) para evaluar confiabilidad; reconocimiento de la estructura (mapa) del sitio web.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Diseño de preguntas posibles y consignas (prompts) para buscar nueva información sobre un tema ya conocido, usando programas de inteligencia artificial generativa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Análisis del uso del lenguaje figurado: humor, polisemia, metáforas, etc., en obras literarias y en textos no literarios de circulación social (noticias, crónicas periodísticas, biografías, etc.).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de poesías, historietas, obras de teatro, cuentos, novelas cortas y otras narraciones seleccionadas para el nivel.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Cuentos y novelas cortas: descripciones de personajes y espacios; motivaciones, emociones y evolución de los personajes a lo largo de la trama; rasgos de autor o subgénero; perspectiva del narrador.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Relatos de ciencia ficción: reconocimiento de las características del género y temáticas (límites de la ciencia, robótica, inteligencia artificial, extraterrestres, viajes en el tiempo). Distinción de personajes prototípicos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Relato policial o de misterio: elementos característicos del género (enigma, detective, ayudante, pistas, hipótesis). Diversas figuras del detective.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Obras de teatro: uso del lenguaje para crear situaciones de polisemia, malentendidos y disparates. El humor, la locura y la incomunicación. Diálogos literarios.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Análisis de letras de canciones de tango (vinculación con el amor y la Ciudad de Buenos Aires).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de poemas disparatados, poemas de temas históricos y folklóricos, románticos, cotidianos y existenciales: análisis del lenguaje poético y la estructura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de caligramas y videopoemas: reconocimiento de recursos propios del género (comparaciones, imágenes sensoriales, campos semánticos) y distribución espacial en relación con el sentido del poema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Vinculación de lo leído con otros textos literarios (intertextualidad), considerando temas, personajes, eventos y características del género.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Reconocimiento del discurso directo e indirecto en las narraciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de fragmentos de una obra teatral ante un auditorio conocido (teatro leído): puesta en voz, entrada y salida de personajes en cada escena.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Reconocimiento del \"yo poético\" en la lectura de poemas y comparación con la voz del narrador en los textos narrativos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de poemas en el marco de actos, representaciones y diversas situaciones de vínculo con la comunidad educativa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de cuentos fantásticos y de terror.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Análisis de temas de los relatos de ciencia ficción: identificación de los posibles inventos o descubrimientos y la concepción del futuro utópico o distópico.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Relación entre los relatos de ciencia ficción y otros géneros como la historieta, el cine y las series de televisión.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "La figura del periodista/detective en la construcción de la ficción policial.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los siguientes contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos seleccionados por el docente para encontrar o profundizar información sobre un tema, con diversos propósitos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos narrativos (diario de viaje/personal, biografías, autobiografías, relatos históricos): recuperación de la información principal y concepto del narrador-protagonista (primera persona, subjetividad y parcialidad).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos narrativos periodísticos e identificación de sus partes: titular, volanta, copete o bajada, epígrafe, imagen, cuerpo de la noticia.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de entrevistas en distintos formatos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos expositivos con temas de otras áreas como: nota de divulgación científica, artículo de enciclopedia, entrada de enciclopedia virtual.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Sistematización de las ideas principales y de sus conexiones mediante diversos organizadores gráficos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos argumentativos de los medios de comunicación y en sitios web (columna de opinión, reseña crítica, publicidades): identificación de posturas y argumentos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Exploración de diversidad de fuentes en bibliotecas, sitios web, recursos digitales, buscadores y aplicaciones con inteligencia artificial sobre un tema de estudio y evaluación de la confiabilidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura y análisis de crónicas periodísticas. Identificación de sus partes: entrada, cuerpo, conclusión.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Conexión entre noticias, crónicas y relatos de género policial.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Identificación de recursos y estrategias de persuasión utilizados en las publicidades.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de la información que ofrece la inteligencia artificial generativa, a partir de preguntas realizadas (prompts) evaluando la pertinencia y especificidad de la información producida.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Confrontación entre información verbal y visual.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Escritura de borradores, textos de distintos géneros y resúmenes de textos leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Planificación y composición de textos: organización de los conceptos e ideas que se van a desarrollar en párrafos, uso de conectores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Revisión de diversos aspectos de los textos: estructura, recursos de cohesión, tiempos y modos verbales, relaciones sintácticas, lenguaje figurado, voces narrativas y ortografía.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Participación en la publicación de un libro o texto colaborativo utilizando formatos tanto analógicos como digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Escritura de notas para registrar y explicar vocabulario nuevo, señalar indicios o pistas y recuperar ideas claves en los textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Edición del texto en función del soporte en el que será publicado, decidiendo el título, la inclusión de imágenes y epígrafes, la diagramación del texto (tipografía, color, uso de sangrías, etc.).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Publicación de los textos escritos a través de dispositivos y formatos variados (mural colaborativo digital, instalaciones artísticas, libro digital, audiolibro, booktrailer, folleto).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de nuevos episodios desde la perspectiva de un personaje conocido.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Descripciones de personajes prototípicos de los textos leídos como, por ejemplo, el detective, el ayudante, el inventor, el robot.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de entradas de un diario de viajes o diario personal.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Producción de cuentos a partir de una estructura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de diálogos literarios y escenas teatrales breves.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Producción de entrevistas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Producción en pequeños grupos o en forma colaborativa de audiocuentos o videos de escenas teatrales a partir de textos escritos previamente o de autores leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de poemas (a partir de temas y estructuras conocidas): inclusión de recursos como la rima, la metáfora y la comparación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Reescritura de una biografía como una autobiografía: cambio en la perspectiva del narrador.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Reescritura de episodios de novelas o cuentos cambiando la voz narrativa (por ejemplo, pasar de un narrador omnisciente a un narrador-protagonista).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de una crónica policial a partir de un cuento policial leído.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los siguientes contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Redacción de artículos sobre un tema de estudio o de interés: buscar datos en diversas fuentes, presentar el tema, desarrollar una idea central por párrafo, incorporar imágenes y ordenadores gráficos e incluir referencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de noticias periodísticas, considerando sus partes, basándose en la investigación de temas de actualidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de resúmenes sobre temas estudiados para sistematizar la información e incorporarla en textos más complejos como artículos o notas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de instrucciones para realizar un procedimiento o un experimento vinculado a las ciencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Redacción de cartas formales (físicas y digitales) como solicitudes, presentaciones y recomendaciones, teniendo en cuenta la estructura y la selección léxica, el propósito y el destinatario.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Elaboración de fichas, cuadros sinópticos o de doble entrada y esquemas conceptuales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Creación de infografías para presentar un tema.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Redacción de guiones para programas radiales o formatos multimediales (por ejemplo, podcast) sobre temas de interés de la comunidad.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de crónicas policiales basadas en una noticia.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Uso de normas de citación de las fuentes consultadas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Producción de textos argumentativos que aborden ideas contrapuestas sobre un tema de actualidad, a partir de noticias o notas de divulgación científica.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de reseñas literarias de obras leídas o reseñas cinematográficas, incorporando las características y estructura propias del género.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Puesta en texto de las entrevistas a autores en formato de reportaje o para nota comunitaria: diferencias oralidad/escritura, revisión de preguntas y uso de puntuación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Producción de biografías de autores de textos leídos o de personajes relevantes en la historia de la humanidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Elaboración de preguntas para entrevistas a familiares y vecinos sobre temáticas transversales a otras áreas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de prólogos, guiada por el docente.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Intercambios previos a la lectura de textos para recuperar conocimientos sobre el tema, el vocabulario, el tipo de texto, y para establecer un objetivo de lectura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Formulación de preguntas y comentarios durante la lectura de los textos para recuperar la información esencial, realizar inferencias e identificar dificultades.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en diálogos luego de la lectura: formulación de preguntas y respuestas para consolidar el contenido y relacionarlo con otras lecturas y experiencias previas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Planificación de exposiciones orales, ajustando el tema a la situación comunicativa: selección del vocabulario específico, organización de la información y uso de recursos gráficos que acompañan la presentación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposición oral elaborada en el marco de un proyecto o secuencia didáctica en grupos pequeños, retomando notas previamente formuladas como ayuda memoria.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso de vocabulario específico y técnico en las exposiciones orales y en los debates sobre los temas de estudio y de interés.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Empleo del lenguaje de manera expresiva en proyectos creativos grupales, como obras de teatro o programas de radio, para presentar a la comunidad educativa y a las familias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en conversaciones y discusiones con diversos propósitos: resolver conflictos, alcanzar acuerdos, planificar acciones conjuntas, o compartir conocimientos sobre un tema o lecturas realizadas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Análisis de los discursos: emisor, propósito, mensaje; y tipo de datos que presenta.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Comprensión y uso del lenguaje figurado en los intercambios: ironía, sarcasmo, polisemia, metáforas, analogías verbales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Análisis de programas de radio y podcasts sobre temas de interés.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "En la planificación se optará por: Producción de entrevistas sobre temas de interés del grupo y la comunidad, utilizando herramientas digitales para realizar encuentros virtuales, grabar y editar.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposición oral sobre temas de interés para compartir con la comunidad: planificación guiada del tema a exponer, incorporación de ejemplos o presentaciones interactivas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en un proyecto de producción de una radio escolar, periódico, revista o portal de noticias comunitarias en grupos: elaboración de guiones, presentación de noticias e intercambios de puntos de vista.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Componentes del sintagma nominal simple y compuesto: especificadores, núcleo y modificadores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Componentes del sintagma verbal simple y compuesto con verbos de acción: núcleo, complementos y adjuntos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Distinción de verbos transitivos e intransitivos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de que los constituyentes de las oraciones varían de acuerdo al tipo de verbo principal.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Tipos de pronombres: personales, posesivos, demostrativos, indefinidos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Conjugación verbal en el modo Indicativo: presente, pretérito imperfecto y perfecto simple, en las diferentes personas gramaticales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Distinción entre verbos conjugados y no conjugados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Recursos de cohesión gramatical: referencia por pronombres, elipsis, conectores (temporales, locativos, de secuencia, causales-consecutivos, de síntesis, copulativos y disyuntivos).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Recursos de cohesión léxica: reiteración (repetición, sinonimia, hiperónimos e hipónimos), sustitución léxica, campo semántico.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de la propia variedad lingüística como una entre otras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Clasificación de adverbios: afirmación, negación, duda.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento y clasificación de oraciones coordinadas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de verbos en modos subjuntivo e imperativo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Oraciones con verbos copulativos: predicativo subjetivo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Familias morfológicas de palabras: reconocimiento de palabras derivadas, como los sustantivos y adjetivos deverbales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Consolidación de acentuación de palabras que no dependen de las reglas aprendidas: monosílabos, pronombres interrogativos y exclamativos, palabras compuestas, adverbios terminados en -mente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Revisión de las reglas de uso de los diferentes signos de puntuación (como paréntesis, puntos suspensivos, comillas).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Lectura en voz alta y en silencio de textos con atención a un objetivo (por ejemplo, aprender sobre un tema, identificar opiniones, etc.).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Uso de estrategias de comprensión y monitoreo durante el proceso de lectura cuando se presentan textos más complejos (por ejemplo, textos que desarrollan temas abstractos o poco conocidos).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Reconocimiento de los recursos de cohesión léxica y gramatical propios de cada uno de los géneros que se abordan.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Abordaje sistemático, en carpetas o en cuadernos, del vocabulario nuevo (literario y científico-disciplinar), en el contexto de los textos leídos, mostrando relaciones entre los conceptos para poder utilizarlos en otros contextos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Identificación de elementos paratextuales, cuadros y gráficos en distintos géneros; relación con el contenido y pertinencia en relación con el tema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Selección de las ideas centrales de los textos para organizarlas en cuadros y en infografías.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Reconocimiento del discurso directo e indirecto en los diferentes géneros.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Selección de textos y obras literarias, en bibliotecas físicas o virtuales, tomando como referencia las recomendaciones, las lecturas previas y el contenido de estudio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Diseño de preguntas posibles y de consignas (prompts) para buscar nuevos datos sobre un tema ya conocido usando programas de inteligencia artificial generativa (chat de inteligencia artificial).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Empleo de estrategias para búsquedas en internet a partir de una temática dada: selección de palabras clave ensayando opciones; identificación de extensiones web (.edu, .org, .gob, .com, .net); reconocimiento de la estructura del sitio y sistematización de datos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de poesías, historietas, obras de teatro, cuentos, novelas cortas y otras narraciones seleccionadas para el nivel.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Cuentos y novelas en el marco de los recorridos de lectura por autor, subgénero o temática.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Perspectiva de quien narra e identificación de los tipos de narrador. Identificación de diversas voces narrativas que se alternan. Abordaje de temas como \"el camino del héroe\".",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Cuentos fantásticos. La irrupción de lo imposible dentro del orden de lo real y cotidiano. Diferencia entre lo fantástico y lo maravilloso.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Cuentos de terror. Aparición de elementos (personajes o ambientes) sobrenaturales y macabros. Creación de la atmósfera.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Relato policial o de misterio. La figura del periodista/detective en la construcción de la ficción policial, su deducción a partir de pistas y el proceso para resolver los casos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Obras de teatro. La comedia como subgénero dramático; uso del humor para exagerar, ridiculizar, convertir en grotesco. Perspectiva crítica (sátira e ironía) de diversas situaciones sociales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Poesía popular y de autor. Análisis del lenguaje poético que emplea el autor y la creación de imágenes sensoriales; metáfora y sinécdoque. Reconocimiento del yo y del tú intratextuales al poema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Relatos de ciencia ficción. Identificación de temas propios del género (inventos, futuros utópicos o distópicos, cyberpunk, steampunk). Relación con otros géneros como la historieta, el cine y las series.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de fragmentos de una obra teatral ante un auditorio conocido (teatro leído): puesta en voz, entrada y salida de personajes en cada escena.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de poemas en el marco de actos, representaciones y diversas situaciones de vínculo con la comunidad educativa.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de guiones de cine o televisión.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Búsqueda y análisis de símbolos o elementos recurrentes en las obras literarias que puedan tener significados más profundos o representativos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los siguientes contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos para encontrar o profundizar sobre un tema de estudio o de interés, con diversos propósitos pautados por el docente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de relatos históricos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos expositivos que expliquen, comparen y clasifiquen diferentes aspectos sobre un tema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura y análisis de crónicas periodísticas. Identificación de sus partes: entrada, cuerpo, conclusión.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Vinculación entre las noticias y las crónicas policiales y deportivas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Publicidades. Identificación de recursos y estrategias de persuasión.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos argumentativos de los medios de comunicación y en sitios web (columna de opinión, reseña crítica, publicidades). Identificación de ideas contrapuestas, argumentación y discriminación entre opinión y argumentación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de los resultados que ofrece la inteligencia artificial generativa a partir de preguntas realizadas (prompts) y de la evaluación de la pertinencia y especificidad de la información producida.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Confrontación entre el contenido verbal y el visual.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de guiones para tutoriales y presentaciones para promover ideas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de prólogos para identificar recursos y organización.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de monografías para aprender sobre un tema específico. Análisis de sus partes: introducción (planteo del problema), desarrollo temático, conclusión.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Planificación de textos de diversos géneros. Redacción de textos narrativos, expositivos, instructivos y argumentativos, atendiendo a las particularidades del género, superestructura textual, párrafos y selección léxica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Revisión de los textos atendiendo a la gramática, la coherencia, la cohesión y al uso de la correferencia durante la redacción: sustitución léxica, sinonimia e hiperonimia.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Edición del texto en función del soporte en el que será publicado, decidiendo el título, la inclusión de imágenes y epígrafes, la diagramación (tipografía, color, uso de sangrías, etc.).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Publicación de los textos escritos a través de dispositivos y formatos variados (mural colaborativo digital, instalaciones artísticas, libro digital, audiolibro, booktrailer, folleto).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Escritura de retratos de personajes relacionando aspectos psicológicos con sus acciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de historietas: caracterización de personajes, marco espacio-temporal, destinatario, temáticas vinculadas a subgéneros. Redacción de guiones y articulación entre dibujo y diálogos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Producción de un cuento de ciencia ficción a partir de una noticia periodística sobre un avance científico.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de una crónica a partir de un cuento policial leído.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de guiones de cine o escenas teatrales breves que incluyan diálogos y descripciones y que reflejen posibles situaciones dentro de una comedia (malentendidos, exageración, conflictos humorísticos).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de poemas: inclusión de recursos como la metáfora, las imágenes sensoriales y la sinécdoque.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de monólogos teatrales cómicos que recuperen aspectos humorísticos abordados en las comedias leídas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Descripciones de ambientes o escenarios propios de los cuentos fantásticos o de terror (atmósfera o duda entre lo real y lo imaginario).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Reescritura de un cuento o capítulo de novela de ciencia ficción o policial desde la perspectiva de un narrador-protagonista (como el diario personal de un detective o inventor).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los siguientes contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Planificación y diseño de infografías para organizar, sistematizar y dar a conocer un tema estudiado o de interés.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Producción de textos que expliquen procesos históricos o fenómenos naturales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Producción de textos argumentativos que aborden ideas contrapuestas sobre un tema de actualidad, a partir de noticias o notas de divulgación científica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de textos expositivos donde se explique, compare y clasifique diferente información sobre un tema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Elaboración de resúmenes personales sobre lo leído para ser reutilizados en exposiciones orales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de crónicas policiales considerando sus partes (introducción, cuerpo del texto y conclusión) a partir de una noticia.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Redacción de guiones para programas radiales o formatos multimediales (por ejemplo, podcast) sobre temas de interés de la comunidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Elaboración de fichas, cuadros sinópticos, mapas o esquemas conceptuales para sistematizar la información.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Incorporación del uso de las normas de citación de las fuentes consultadas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Composición de publicidades: articulación de imagen y texto en función de estrategias de persuasión.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de textos argumentativos para desarrollar posturas contrapuestas con datos o referencias a otros autores para justificar las ideas (cita de autoridad) e incorporación de recursos del género.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de guiones para videos tutoriales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de textos breves con el propósito de persuadir (cartas, editoriales, críticas literarias, etc.): uso de la afirmación, selección de evidencia y coherencia.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Producción de presentaciones expositivo-argumentativas en conversatorios y en videos, con recursos analógicos y digitales (charlas de divulgación y booktrailers).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Formulación de enunciados para transmitir ideas, pensamientos y opiniones, con coherencia y claridad en distintas situaciones comunicativas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Organización de debates sobre noticias periodísticas o columnas de opinión leídas para defender posturas y plantear argumentos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en conversaciones y discusiones en el aula, siguiendo el tema central, formulando preguntas y comentarios pertinentes con distintos propósitos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Recitado de poemas de diversas temáticas y estructuras, y narración oral de cuentos breves, anécdotas o leyendas, variando la entonación para captar la atención de la audiencia.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en representaciones teatrales en el aula, en el contexto de actos patrios o de presentaciones a la comunidad educativa.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del lenguaje figurado para generar humor, juegos con palabras, ironía, sarcasmo, metáforas, malentendidos (en juegos u obras de teatro).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Análisis de programas de radio y podcasts sobre temas de interés.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Planificación de entrevistas: adecuar las preguntas según la persona entrevistada y el tema de interés.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Intercambio y discusión sobre el lenguaje y los recursos comunicativos para diseñar material destinado a público infantil: videos sobre videojuegos, juguetes, desafíos, tutoriales, ficciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Planificación de las diferentes instancias de producción de un podcast de noticias y de temas de interés: definición de secciones, elaboración de guiones de manera autónoma y puesta en funcionamiento.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Producción de entrevistas sobre temas de interés del grupo y de la comunidad, utilizando herramientas digitales para realizar encuentros virtuales, grabar y editar.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposición oral sobre temas de interés para compartir con la comunidad: planificación guiada del docente del tema a exponer, incorporación de ejemplos o presentaciones interactivas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Participación en un proyecto de producción de una radio escolar de noticias en grupos: elaboración de los guiones, presentación de las noticias, intercambios de puntos de vista.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Planificación y participación en mesas o foros de debate sobre temas de interés.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Organización de conversaciones literarias y entrevistas a escritores.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del estilo de lenguaje académico en las exposiciones: cita de autor, fórmulas de inicio y cierre del discurso, explicación y ejemplificación para el auditorio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Revisión de tipos de sustantivos: propios y comunes, individuales y colectivos, abstractos y concretos, contables e incontables.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Revisión de tipos de adjetivos: calificativos, gentilicios, relacionales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Revisión de determinantes y cuantificadores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Revisión de adverbios de tiempo, lugar, cantidad y modo, y clasificación de adverbios de afirmación, negación, duda.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Conjugación del paradigma verbal completo en función de las diversas situaciones de enunciación de los discursos producidos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación de núcleos, especificadores, modificadores, complementos y adjuntos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Análisis de oraciones: con sintagma nominal simple y compuesto en el sujeto; con sintagma verbal simple y compuesto en el predicado.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Análisis de oraciones con verbos copulativos: predicativo subjetivo obligatorio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Análisis de oraciones con sujeto tácito.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Análisis de oraciones impersonales con los verbos haber y hacer.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento y análisis de oraciones coordinadas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Construcción de familias morfológicas de palabras: reconocimiento de palabras derivadas, como los sustantivos y adjetivos deverbales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Análisis y resolución de problemas usuales del uso de la lengua: empleo de la misma y el mismo con valor anafórico, concordancia de género para adjetivos ordinales, etcétera.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de las características sintácticas de los verbos no conjugados: infinitivo con función nominal, participio con función adjetival, gerundio con función adverbial.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Clasificación de oraciones subordinadas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación de oraciones con ambigüedad sintáctica (por ejemplo, \"es una cantante de música conocida\").",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Lectura en voz alta de textos variados y con distintas finalidades, por ejemplo: practicar para consolidar los procesos, compartir con otros en actos, ferias o en proyectos escolares (programas radiales, competencias, entre otros).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Reconocimiento de elementos paratextuales y su relación con el contenido de los textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "General",
+    "contenido": "Identificación de vocabulario nuevo en el contexto de los textos leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Lectura de poesías, historietas, cuentos, obras de teatro, novelas y otras narraciones literarias como leyendas o mitos seleccionadas para el nivel.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Narraciones: identificación de la forma en que está contada la historia; el conflicto; la relación de causa-consecuencia entre eventos y planes de los personajes; descripciones, motivaciones y transformaciones de los personajes; personajes en la narración, voz narrativa, rasgos de autor o subgénero.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Obras de teatro: identificación de los parlamentos de los personajes y de las acotaciones o didascalias; prosodia; lectura colaborativa atendiendo al texto y coordinando la lectura con otros; presentación de obras antes un auditorio o un teatro leído.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Poemas y reconocimiento de su estructura: estrofas y versos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Historietas: uso de onomatopeyas y aspectos gráficos que inciden en la historia o en la caracterización de los personajes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Mitos y leyendas: estructura narrativa, características de los personajes, similitudes y diferencias entre ambos géneros.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Características de un género literario y comparación con otros.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Vinculación de lo leído con otros textos literarios (intertextualidad), considerando temas, personajes, eventos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Elección personal de obras a partir de la sinopsis, las recomendaciones y los conocimientos sobre autores leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Literatura",
+    "contenido": "Consultas en bibliotecas físicas y virtuales, con intervención docente y del bibliotecario para ampliar la información sobre la vida de los autores que se leen y para buscar otras obras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Noticias, producciones de medios de comunicación y relatos históricos a partir de recorridos temáticos basados en intereses comunitarios o en temas de estudio para comparar y comentar versiones de los hechos o dichos; formulación de opiniones y escucha.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de textos: Textos expositivos con organización descriptiva, comparativa y causa-consecuencia en relación con temas de otras áreas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Biografías y autobiografías breves.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Organización de la información de textos expositivos en cuadros o gráficos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Identificación de información explícita e implícita, identificación de causas y consecuencias, comparación de información entre textos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Reconocimiento de índice, glosario, títulos y subtítulos, relación entre gráficos, cuadros e imágenes y la información del texto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura guiada por el docente de distintos textos y sobre un tema para decidir dónde se puede encontrar la información en sitios web con el uso de motores de búsqueda.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Búsqueda de definiciones de palabras en diccionarios (físicos o virtuales) utilizando el criterio de orden alfabético para su localización.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Selección guiada por el docente de palabras clave para una búsqueda en sitios web, a partir de criterios de pertinencia y confiabilidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Recomendaciones literarias en sitios web.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura de textos argumentativos: identificación de ideas contrapuestas y diferenciación entre opinión y argumentación.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Definición de conceptos clave para buscar información en internet.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Reconocimiento guiado por el docente de la forma en que se organiza un sitio web: mapa del sitio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Búsqueda de información en bibliotecas físicas y virtuales, con intervención docente para ampliar la información sobre un tema.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura guiada por el docente de textos para explorar diversidad de fuentes (sitios web, recursos digitales, buscadores y aplicaciones con inteligencia artificial, etc.) sobre un tema de estudio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Comprensión lectora",
+    "tema": "Textos no literarios",
+    "contenido": "Lectura autónoma de notas de color sobre temáticas conocidas: distribución de la información, elementos característicos (fecha de publicación, titulares, bajadas, epígrafes) e inclusión de imágenes (colores, tamaños, etc.).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Escritura de textos en letra cursiva.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Planificación de los textos a partir del propósito y del destinatario.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Generación de ideas a partir de conversaciones, investigaciones, lluvia de ideas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Organización de la información sobre el tema en una estructura discursiva.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Incorporación de vocabulario extraído de textos escuchados o leídos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Composición de las primeras versiones atendiendo a las particularidades del género y a la consigna.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Uso de mecanismos de cohesión, como conectores y pronombres.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Revisión del texto de forma colaborativa o en parejas: coherencia, cohesión, vocabulario, voz narrativa, recursos literarios, uso de conectores y pronombres, y convenciones ortográficas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Construcción colaborativa de rúbricas para la revisión de la producción escrita.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "General",
+    "contenido": "Publicación de los textos escritos a través de dispositivos y formatos variados (mural colaborativo digital, instalaciones artísticas, libro digital, audiolibro, booktrailer, folleto).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Retratos de personajes y presentación de escenarios.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Renarración de episodios.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Producción de nuevas viñetas en una historieta leída.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de diálogos encabezados por un breve marco narrativo atendiendo a la alternancia de habla entre interlocutores; la coherencia entre las emisiones; el uso de la raya de diálogo como marca para indicar la intervención de cada uno de los interlocutores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Narraciones ficcionales (cuentos) y no ficcionales (relatos de experiencias personales, fragmentos de diarios personales), atendiendo al orden temporal y causal de las acciones, y a la organización (situación inicial, conflicto y resolución).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Escritura creativa",
+    "contenido": "Escritura de nuevos episodios desde la perspectiva de un personaje conocido.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "En la planificación institucional del ciclo se optará por abordar alguno de los contenidos en propuestas de articulación curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formación Ética y Ciudadana - Educación Ambiental - Educación Alimentaria - Movilidad Sustentable y Segura.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Fichas sobre biografías de autor; cuadros para comparar las obras leídas; listas de recursos literarios (imágenes, comparaciones, adjetivación).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Descripciones de procesos y de fenómenos: uso del vocabulario adecuado para designar procesos, partes, forma, color y tamaño.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura autónoma de textos expositivos: redacción de textos atendiendo a la estructura (descriptivos, comparativos, de secuencia, de causa-efecto y de problema-solución). Uso de signos de puntuación, de interrogación y de exclamación. Organización de ideas en párrafos separados por punto aparte. Incorporación de conectores propios de cada tipo textual. Uso de vocabulario específico sobre el tema.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Escritura de resúmenes a partir de un texto leído.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Textos instructivos breves: uso de infinitivo o de verbos en modo imperativo para indicar los pasos a seguir.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Toma de notas, guiada por el docente, en la primera lectura o en la relectura; uso de las notas para completar fichas o cuadros, registrar conclusiones y conceptualizar temas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Edición del texto en función del soporte en el que será publicado, decidiendo sobre titulado, inclusión de imágenes, epígrafes, diagramación del texto, tipografía, color, uso de sangrías, etc.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Uso adecuado de los tiempos del presente, del pasado y del futuro, y modos (indicativo, subjuntivo) verbales para dar coherencia y cohesión a los escritos: Verbos de acción en pasado. Uso del presente en los textos expositivos, descriptivos e informativos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Producción de textos",
+    "tema": "Textos no literarios",
+    "contenido": "Cartas físicas y digitales (correo electrónico): estructura (fecha y lugar; saludo; cuerpo; despedida).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Intercambios posteriores a la lectura para reflexionar sobre el contenido, la estructura, el género y los recursos literarios empleados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Reconocimiento y uso de lenguaje no literal: metáforas, analogías, frases idiomáticas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso del lenguaje de manera expresiva y creativa en diferentes proyectos, como recitado de poesías, audiolibros, radioteatro, etcétera.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Expresión coherente y organizada de temas de interés en diferentes situaciones del aula: descripción de fenómenos, uso de ejemplos y de ilustraciones sobre sus ideas, vocabulario variado y pronombres para reemplazar un referente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Exposición, dirigida a los compañeros, sobre los aspectos centrales de un tema estudiado.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Uso de vocabulario específico y técnico sobre los temas de estudio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Elaboración y reformulación de definiciones de palabras conocidas o a partir de búsquedas en diccionarios.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Incorporación de material de apoyo en sus exposiciones orales sobre un tema (diagramas, presentaciones digitales, objetos o imágenes).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Formulación de argumentaciones orales organizadas en forma de debates, guiados por el docente, sobre situaciones que se dan en la escuela; temáticas vinculadas a los textos leídos; problemáticas de actualidad; vínculos que se establecen en el ámbito escolar y familiar.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Recomendaciones orales breves de las obras solicitadas en préstamo a la biblioteca.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Oralidad",
+    "tema": "General",
+    "contenido": "Creación de presentaciones digitales sobre los temas que se exponen, por ejemplo, grabaciones para que otros puedan escuchar.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Revisión de clases de palabras (sustantivos propios y comunes).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Adjetivos calificativos y gentilicios.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Determinantes y cuantificadores: artículos definidos e indefinidos, demostrativos y numerales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Explicación de significados recurriendo a sinónimos y antónimos, y al parafraseo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Asociación de sufijos y prefijos frecuentes para comprender la estructura de las palabras y ampliar su vocabulario: re, \"releer\", \"reutilizar\"; -ito/-ita, \"casita\", \"gatito\"; -ón/-ona, \"casona\"; adverbios terminados en -mente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Recursos de cohesión léxicos y gramaticales: hiperónimos e hipónimos (pájaro-colibrí, flor-lirio); sustitución por sinonimia; elipsis del sujeto; pronombres referenciales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Uso de mecanismos de cohesión como conectores copulativos (y/e, ni), disyuntivos (o/u) y temporales (antes, luego, después, al día siguiente); conectores continuativos (entonces, por ejemplo) y adversativos (pero, sino, sin embargo, aunque).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Identificación de conjunciones simples dentro de sintagmas: y, o, pero.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Sujeto y predicado en oraciones simples.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Alternancia en el uso de los tiempos verbales del modo indicativo: presente, pretérito perfecto simple, pretérito imperfecto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Concepto de oración y párrafo y su relación en el texto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Adjetivos: grado comparativo y grado superlativo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Discriminación entre eventos expresados en futuro y en condicional del modo indicativo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento y utilización de regularidades del sistema ortográfico del español (hue; bue-bur-bus; -cito, -cita, -aje, -bilidad, etc.).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento y utilización de reglas del sistema de escritura (por ejemplo, no se emplea z delante de e-i; regla de uso de la diéresis; comienzo de palabras con los diptongos ia, ie, ue, ui, se escriben con h; el sufijo -ívoro, -ívora se escribe con v).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reglas de escritura de plurales y diminutivos de palabras terminadas en z (por ejemplo, luz/luces/lucecita).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reglas de acentuación de palabras agudas, graves y esdrújulas: separación de la palabra en sílabas, identification de la sílaba tónica y clasificación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de homófonos heterógrafos (ola-hola).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Ortografía de palabras con cc-xc-x-sc.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Reconocimiento de los diferentes usos de signos de puntuación: coma, punto y coma, dos puntos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Acentuación de monosílabos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Lengua",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Conocimiento de la lengua",
+    "tema": "Gramática y ortografía",
+    "contenido": "Acentuación de pronombres interrogativos y exclamativos.",
+    "es_ampliacion": true
+  }
+]

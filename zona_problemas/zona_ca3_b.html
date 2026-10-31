@@ -1,0 +1,291 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Campo aditivo - Zona 3 - B</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-VL13MMLPRV");</script><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"><style>
+        :root {
+            --bg-color: #f4f6f7;
+            --panel-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #dddddd;
+            --accent-math: #d31718;    /* Rojo */
+            --accent-alt: #036fb0;     /* Azul Oceánico */
+            --accent-action: #e67e22;  /* Naranja */
+            --accent-success: #27ae60; /* Verde */
+        }
+
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; transition: background 0.3s; }
+        .container { width: 100%; max-width: 1000px; margin-top: 20px; }
+        
+        header.docente-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid var(--accent-math); padding-bottom: 10px; }
+        header.docente-header h1 { color: var(--accent-math); margin: 0; }
+        .subtitulo { color: #666; font-size: 0.9rem; }
+
+        .zona-pegado, .zona-vistas { background-color: #ffffff; padding: 20px; border-radius: 8px; border: 2px dashed #aaaaaa; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .zona-vistas { display: none; border-style: solid; border-color: var(--accent-alt); text-align: center;}
+        
+        textarea { width: 100%; height: 120px; background-color: #fafafa; color: #333; border: 1px solid var(--border-color); border-radius: 5px; padding: 10px; font-family: monospace; box-sizing: border-box; margin-bottom: 15px; }
+        
+        .botones-accion, .botones-vistas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;}
+        .btn-generar, .btn-vista { color: white; border: none; padding: 10px; font-size: 0.95rem; font-weight: bold; border-radius: 5px; cursor: pointer; text-transform: uppercase; transition: 0.2s; flex: 1; min-width: 120px; opacity: 0.85;}
+        
+        /* Colores de la botonera */
+        #btn-v-int { background-color: var(--accent-alt); }
+        #btn-v-ren { background-color: var(--accent-action); }
+        #btn-v-tex { background-color: var(--accent-success); }
+        .btn-limpiar, .btn-reiniciar { background-color: var(--accent-math); opacity: 1; }
+        
+        .btn-generar { background-color: var(--accent-alt); opacity: 1;}
+        .btn-vista.activa { opacity: 1; box-shadow: 0 4px 0px rgba(0,0,0,0.2); transform: translateY(-2px);}
+        .btn-vista:hover, .btn-generar:hover { opacity: 1; filter: brightness(1.1); }
+        
+        .btn-imprimir { background-color: #2c3e50; opacity: 1; }
+        .btn-exportar { background-color: var(--accent-action); opacity: 1; }
+        
+        .input-titulo { padding: 10px; border-radius: 5px; border: 2px solid #ccc; font-weight: bold; font-size: 1rem; width: 100%; max-width: 250px; text-align: center; }
+
+        #bateria-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; width: 100%; }
+        
+        @media (max-width: 768px) { 
+            #bateria-container { grid-template-columns: 1fr; } 
+            .botones-vistas { flex-direction: row; }
+            .btn-vista { font-size: 0.8rem; padding: 8px;}
+        }
+
+        .problema-card { background-color: var(--panel-color); border-top: 5px solid var(--accent-math); border-radius: 8px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: flex; flex-direction: column; position: relative;}
+        
+        /* Checkbox para Imprimir */
+        .print-selector { position: absolute; top: 10px; right: 10px; display: flex; align-items: center; gap: 5px; font-size: 0.8rem; color: #666; background: #f4f6f7; padding: 4px 8px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer;}
+        .print-selector input { cursor: pointer; }
+
+        .titulo-problema { color: var(--accent-math); font-size: 1.3rem; margin: 0 0 15px 0; padding-right: 80px;} 
+        .enunciado { line-height: 1.5; font-size: 1.1rem; margin-bottom: 20px; flex-grow: 1; }
+
+        .opciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .opcion-btn { background: #f9f9f9; border: 2px solid var(--border-color); color: var(--text-color); padding: 10px; border-radius: 5px; cursor: pointer; text-align: center; font-weight: bold; transition: 0.2s;}
+        .opcion-btn:hover { border-color: var(--accent-alt); }
+        .opcion-btn.selected { background: var(--accent-alt); color: white; border-color: var(--accent-alt); }
+        .respuesta-input { width: 100%; padding: 12px; background: #ffffff; border: 2px solid var(--border-color); color: #333; font-size: 1rem; margin-bottom: 15px; box-sizing: border-box; border-radius: 5px; }
+        .feedback-msg { text-align: center; font-weight: bold; margin-bottom: 10px; min-height: 20px; }
+        .btn-comprobar { background-color: var(--accent-action); color: white; border: none; padding: 12px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; margin-top: auto; transition: background 0.3s;}
+        
+        .renglones-print { display: none; width: 100%; height: 60px; background: repeating-linear-gradient(transparent, transparent 29px, #ccc 30px); margin-top: auto; margin-bottom: 10px;}
+
+        /* Filtros de Vistas */
+        .vista-renglones .opciones-grid, .vista-renglones .respuesta-input, .vista-renglones .feedback-msg, .vista-renglones .btn-comprobar { display: none !important; }
+        .vista-renglones .renglones-print { display: block !important; }
+        .vista-texto .opciones-grid, .vista-texto .respuesta-input, .vista-texto .feedback-msg, .vista-texto .btn-comprobar, .vista-texto .renglones-print { display: none !important; }
+        
+        @media print {
+            header.docente-header, .zona-pegado, .zona-vistas, .print-selector, #header-navegacion { display: none !important; }
+            body { background-color: white; padding: 0; }
+            #bateria-container { display: grid !important; grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+            .problema-card { break-inside: avoid; page-break-inside: avoid; border: 1px solid #ccc; box-shadow: none; border-top: 3px solid var(--accent-math);}
+        }
+    </style></head><body class="vista-interactiva" onload="cargarProgresoAlumno()"><div class="container"><div class="zona-vistas" style="display:block"><h3>Campo aditivo - Zona 3 - B</h3><div class="botones-vistas"><button class="btn-vista activa" id="btn-v-int" onclick="cambiarVista('vista-interactiva')">💻 Digital</button><button class="btn-vista" id="btn-v-ren" onclick="cambiarVista('vista-renglones')">📝 Fotocopia</button><button class="btn-vista" id="btn-v-tex" onclick="cambiarVista('vista-texto')">📖 Carpeta</button><button class="btn-vista btn-copiar" style="background-color: #34495e; opacity: 1;" onclick="abrirModalCopiado()">📄 Copiar / Editar</button><button class="btn-vista btn-limpiar" onclick="limpiarMisPruebas()">🧹 Limpiar</button><button class="btn-vista btn-imprimir" onclick="imprimirSeleccionadas()">🖨️ Imprimir</button></div></div><div id="bateria-container"><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">El kiosco de la vereda</h2><p class="enunciado">Un kiosquero vendió hoy 457 alfajores de chocolate y 326 de fruta. ¿Cuántos alfajores vendió en total?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">783</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">773</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">883</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">131</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="783" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Producción en la fábrica</h2><p class="enunciado">Una fábrica que tiene 48 operarios produjo este mes 15.482 pares de zapatos. Si 12.311 pares son para adultos y el resto para niños, ¿cuántos pares para niños fabricaron?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="3.171 pares" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Las rifas del festival</h2><p class="enunciado">En el festival escolar, 4to grado vendió 673 rifas y 5to grado vendió 489. ¿Cuántas rifas más vendió 4to que 5to?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">184</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">194</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">216</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">1.162</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="184" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Pasajeros en el tren</h2><p class="enunciado">Un tren de la línea Roca salió con 24.315 pasajeros. En la primera estación bajaron 1.204 personas y subieron 856. ¿Cuántos pasajeros siguen en el tren?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="23.967 pasajeros" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">La temperatura en la fábrica</h2><p class="enunciado">En una fábrica de pastas, el horno trabaja a 180 grados. Hoy se prepararon 534 cajas de sorrentinos y 367 cajas de agnolottis. ¿Cuántas cajas se prepararon en total?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">901</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">891</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">911</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">167</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="901" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">El stock de alfajores</h2><p class="enunciado">El dueño de una cadena de kioscos, que tiene 15 años en el barrio, recibió 45.892 alfajores. Si 34.567 son de dulce de leche, ¿cuántos son de otros sabores?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="11.325 alfajores" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Sillas para el acto</h2><p class="enunciado">Para el acto de fin de año se pusieron 500 sillas en el salón. Si se sabe que hay 200 sillas más que el año pasado, ¿cuántas sillas hubo el año pasado?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">300</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">700</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">200</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">400</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="300" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">El viaje del micro</h2><p class="enunciado">Un micro escolar hizo un viaje de 31.223 kilómetros en total. Hizo 4 paradas para descansar. Si en el primer tramo recorrió 12.456 km y en el segundo 8.321 km, ¿cuántos kilómetros recorrió en el último tramo?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">10.446</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">11.446</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">20.777</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">9.446</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="10.446" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Entrega de ravioles</h2><p class="enunciado">Una fábrica de pastas entregó un pedido de 219 cajas. Si ahora le quedan 432 cajas en la heladera, ¿cuántas cajas tenía antes de la entrega?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="651 cajas" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Recaudación del súper</h2><p class="enunciado">Un supermercado recaudó $56.789 por la mañana y $32.412 por la tarde. ¿Cuál fue la recaudación total del día?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">$89.201</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$88.101</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$89.101</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$24.377</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="$89.201" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">La velocidad del micro</h2><p class="enunciado">Un micro que viaja a 80 km por hora debe recorrer un camino. El micro A ya recorrió 843 km y el micro B recorrió 654 km. ¿Cuántos kilómetros más recorrió el micro A?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="189 km" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Gastos de cooperadora</h2><p class="enunciado">La cooperadora tenía $87.543. Gastó $12.456 en pintura y $8.742 en arreglar una puerta. ¿Cuánto dinero le queda?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">$66.345</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$75.087</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$65.345</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">$21.198</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="$66.345" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Producción de tornillos</h2><p class="enunciado">Una fábrica produjo 400 tornillos grandes y 300 tornillos chicos. ¿Cuántos tornillos fabricó en total?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="700 tornillos" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Las estanterías de la ferretería</h2><p class="enunciado">En una ferretería que tiene 25 estantes, había 12.567 tuercas. Después de una venta, ahora quedan 8.432. ¿Cuántas tuercas se vendieron?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">4.135</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">4.125</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">20.999</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">3.135</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="4.135" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">La cooperadora y los volantes</h2><p class="enunciado">Se imprimieron 956 volantes para la rifa. El lunes se repartieron 456 y el martes 213. ¿Cuántos volantes quedan para repartir?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="287 volantes" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Trenes de carga</h2><p class="enunciado">Un tren de carga transporta 45.000 kilos de trigo. Otro tren transporta 32.000 kilos. ¿Cuántos kilos más lleva el primero que el segundo?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">13.000</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">77.000</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">12.000</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">23.000</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="13.000" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Golosinas en el kiosco</h2><p class="enunciado">Un kiosquero compró una caja con 850 golosinas. Hay 342 caramelos, 217 chupetines y el resto son chicles. El kiosquero atiende 8 horas por día. ¿Cuántos son chicles?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">291</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">559</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">301</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">281</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="291" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Envíos de fábrica</h2><p class="enunciado">Una fábrica tenía 34.256 cajas en stock. Luego de recibir la producción del día, el stock subió a 42.879 cajas. ¿Cuántas cajas se fabricaron hoy?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="8.623 cajas" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Ventas de la rifa</h2><p class="enunciado">El turno mañana vendió 800 rifas y el turno tarde vendió 500. ¿Cuántas rifas más vendió el turno mañana?</p><div class="opciones-grid"><div class="opcion-btn" onclick="seleccionarOpcion(this)">300</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">1.300</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">200</div><div class="opcion-btn" onclick="seleccionarOpcion(this)">400</div></div><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="300" data-tipo="CHOICE" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div><div class="problema-card"><label class="print-selector"><input type="checkbox" class="chk-print" checked=""> Imprimir</label><h2 class="titulo-problema">Reposición en el súper</h2><p class="enunciado">Un supermercado recibió 23.411 latas de tomate y 14.562 latas de arvejas. El camión que las trajo mide 12 metros. Si ya acomodaron 18.234 latas en las góndolas, ¿cuántas latas faltan acomodar?</p><input type="text" class="respuesta-input" oninput="guardarProgresoAlumno()" placeholder="Escribí el número aquí..."><div class="renglones-print"></div><div class="feedback-msg"></div><button class="btn-comprobar" data-correcta="19.739 latas" data-tipo="TEXTO" onclick="verificarRespuesta(this)" style="background-color: rgb(230, 126, 34);">COMPROBAR</button></div></div></div><script id="motor-js">
+
+        function guardarProgresoAlumno() {
+            try {
+                const cards = document.querySelectorAll('.problema-card');
+                let data = [];
+                cards.forEach((card, index) => {
+                    const input = card.querySelector('.respuesta-input');
+                    const selectedBtn = card.querySelector('.opcion-btn.selected');
+                    const feedbackMsg = card.querySelector('.feedback-msg');
+                    const btnComp = card.querySelector('.btn-comprobar');
+                    data.push({
+                        text: input ? input.value : null,
+                        choice: selectedBtn ? selectedBtn.innerText : null,
+                        feedback: feedbackMsg ? feedbackMsg.innerHTML : '',
+                        feedbackColor: feedbackMsg ? feedbackMsg.style.color : '',
+                        btnText: btnComp ? btnComp.innerText : 'COMPROBAR',
+                        btnBg: btnComp ? btnComp.style.backgroundColor : ''
+                    });
+                });
+                localStorage.setItem('mat_progreso_alumno', JSON.stringify(data));
+            } catch(e) {}
+        }
+        function cargarProgresoAlumno() {
+            try {
+                const saved = localStorage.getItem('mat_progreso_alumno');
+                if (!saved) return;
+                const data = JSON.parse(saved);
+                const cards = document.querySelectorAll('.problema-card');
+                data.forEach((item, index) => {
+                    const card = cards[index];
+                    if (!card) return;
+                    if (item.text !== null) {
+                        const input = card.querySelector('.respuesta-input');
+                        if (input) input.value = item.text;
+                    }
+                    if (item.choice !== null) {
+                        const btns = card.querySelectorAll('.opcion-btn');
+                        btns.forEach(b => { if (b.innerText === item.choice) b.classList.add('selected'); });
+                    }
+                    const fmsg = card.querySelector('.feedback-msg');
+                    if (fmsg) { fmsg.innerHTML = item.feedback; fmsg.style.color = item.feedbackColor; }
+                    const btn = card.querySelector('.btn-comprobar');
+                    if (btn && item.btnText) { btn.innerText = item.btnText; btn.style.backgroundColor = item.btnBg; }
+                });
+            } catch(e) {}
+        }
+        function reiniciarFichas() {
+            document.querySelectorAll('.opcion-btn').forEach(btn => btn.classList.remove('selected'));
+            document.querySelectorAll('.respuesta-input').forEach(input => input.value = '');
+            document.querySelectorAll('.feedback-msg').forEach(msg => { msg.innerHTML = ''; msg.style.color = ''; });
+            document.querySelectorAll('.btn-comprobar').forEach(btn => { btn.style.backgroundColor = '#e67e22'; btn.innerText = 'COMPROBAR'; });
+        }
+        function limpiarMisPruebas() {
+            if(confirm("¿Limpiar tus pruebas? Las fichas quedarán vacías.")) {
+                reiniciarFichas();
+                localStorage.removeItem('mat_progreso_alumno'); 
+            }
+        }
+        function seleccionarOpcion(btn) {
+            let contenedor = btn.parentElement;
+            Array.from(contenedor.getElementsByClassName('opcion-btn')).forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            guardarProgresoAlumno();
+        }
+        function verificarRespuesta(btn) {
+            try {
+                let tarjeta = btn.closest('.problema-card');
+                let feedback = tarjeta.querySelector('.feedback-msg');
+                let tipo = btn.getAttribute('data-tipo');
+                let numCor = btn.getAttribute('data-correcta').replace(/[^0-9]/g, '');
+                let esCorrecto = false;
+                if (tipo.indexOf('CHOICE') !== -1) {
+                    let sel = tarjeta.querySelector('.opcion-btn.selected');
+                    if (!sel) { feedback.innerHTML = "⚠️ Elegí una opción."; return; }
+                    if (sel.innerText.replace(/[^0-9]/g, '') === numCor) esCorrecto = true;
+                } else {
+                    let input = tarjeta.querySelector('.respuesta-input');
+                    if (!input || !input.value.trim()) { feedback.innerHTML = "⚠️ Escribí algo."; return; }
+                    if (input.value.replace(/[^0-9]/g, '') === numCor) esCorrecto = true;
+                }
+                if (esCorrecto) {
+                    feedback.innerHTML = "✅ ¡Correcto!"; feedback.style.color = "#27ae60";
+                    btn.style.backgroundColor = "#27ae60"; btn.innerText = "¡RESUELTO!";
+                } else {
+                    feedback.innerHTML = "❌ Revisalo e intentá de nuevo"; feedback.style.color = "#d31718";
+                }
+                guardarProgresoAlumno();
+            } catch(e) {}
+        }
+        function cambiarVista(claseVista) {
+            document.body.className = claseVista;
+            document.querySelectorAll('.btn-vista').forEach(b => b.classList.remove('activa'));
+            const btnId = claseVista === 'vista-interactiva' ? 'btn-v-int' : claseVista === 'vista-renglones' ? 'btn-v-ren' : 'btn-v-tex';
+            const btn = document.getElementById(btnId);
+            if(btn) btn.classList.add('activa');
+            localStorage.setItem('mat_vista_pref', claseVista);
+        }
+        function imprimirSeleccionadas() {
+            const cards = document.querySelectorAll('.problema-card');
+            cards.forEach(card => {
+                const chk = card.querySelector('.chk-print');
+                card.style.display = (chk && chk.checked) ? 'flex' : 'none';
+            });
+            window.print();
+            setTimeout(() => { cards.forEach(c => c.style.display = 'flex'); }, 1000);
+        }
+
+        function abrirModalCopiado() {
+            let htmlAcumulado = "";
+            let inputTitulo = document.getElementById('titulo-export');
+            let tituloGral = inputTitulo ? inputTitulo.value : (document.querySelector('.zona-vistas h3') ? document.querySelector('.zona-vistas h3').innerText : "Actividad de Matemática");
+            
+            let contador = 1;
+
+            document.querySelectorAll('.problema-card').forEach(card => {
+                const chk = card.querySelector('.chk-print');
+                if (chk && chk.checked) {
+                    const titulo = card.querySelector('.titulo-problema').innerText;
+                    const enunciado = card.querySelector('.enunciado').innerText;
+                    
+                    htmlAcumulado += '<div style="margin-bottom: 18px;">';
+                    htmlAcumulado += '<h2 style="font-family: Arial, sans-serif; font-size: 14pt; color: #d31718; margin: 0 0 4px 0;">' + contador + '. ' + titulo + '</h2>';
+                    htmlAcumulado += '<p style="font-family: Arial, sans-serif; font-size: 12pt; margin: 0;">' + enunciado + '</p>';
+                    htmlAcumulado += '</div>';
+                    
+                    contador++;
+                }
+            });
+
+            if (!htmlAcumulado) { alert("⚠️ No tildaste ninguna ficha."); return; }
+
+            const modal = document.createElement('div');
+            modal.style = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:10000; display:flex; align-items:center; justify-content:center; padding:15px; box-sizing:border-box;";
+            
+            const box = document.createElement('div');
+            box.style = "background:white; width:100%; max-width:650px; max-height:90vh; border-radius:12px; display:flex; flex-direction:column; box-shadow:0 15px 40px rgba(0,0,0,0.5); overflow:hidden;";
+            
+            box.innerHTML = '<div style="padding:15px; background:#036fb0; color:white; font-weight:bold; display:flex; justify-content:space-between; align-items:center;"><span>Vista Previa y Edición</span><button onclick="this.closest(\'div\').parentElement.parentElement.remove()" style="background:none; border:none; color:white; font-size:24px; cursor:pointer;">✕</button></div>';
+            
+            const area = document.createElement('div');
+            area.id = "area-preview-word";
+            area.contentEditable = "true";
+            area.style = "padding:25px; overflow-y:auto; flex-grow:1; background:#fff; outline:none; color:#333;";
+            area.innerHTML = htmlAcumulado;
+            
+            const footer = document.createElement('div');
+            footer.style = "padding:15px; border-top:1px solid #eee; display:flex; gap:10px; justify-content:center; background:#f8f9fa; flex-wrap:wrap;";
+            
+            const btnCopy = document.createElement('button');
+            btnCopy.innerHTML = "📋 COPIAR";
+            btnCopy.style = "background:#27ae60; color:white; border:none; padding:12px 20px; border-radius:5px; font-weight:bold; cursor:pointer;";
+            btnCopy.onclick = function() {
+                const range = document.createRange();
+                range.selectNodeContents(area);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                document.execCommand('copy');
+                btnCopy.innerHTML = "✅ ¡COPIADO!";
+                setTimeout(() => { btnCopy.innerHTML = "📋 COPIAR"; }, 2000);
+            };
+
+            const btnEditor = document.createElement('button');
+            btnEditor.innerHTML = "🚀 ENVIAR AL EDITOR";
+            btnEditor.style = "background:#036fb0; color:white; border:none; padding:12px 20px; border-radius:5px; font-weight:bold; cursor:pointer;";
+            btnEditor.onclick = function() {
+                let packageHTML = "<h3>" + tituloGral + "</h3>" + area.innerHTML;
+                localStorage.setItem('import_content', packageHTML);
+                window.open('https://escolar.com.ar/editor.html', 'Editor de Textos');
+            };
+
+            const btnPrint = document.createElement('button');
+            btnPrint.innerHTML = "🖨️ IMPRIMIR";
+            btnPrint.style = "background:#34495e; color:white; border:none; padding:12px 20px; border-radius:5px; font-weight:bold; cursor:pointer;";
+            btnPrint.onclick = () => {
+                const win = window.open('', 'PRINT');
+                win.document.write('<html><head><title>Imprimir</title></head><body>' + area.innerHTML + '</body></html>');
+                win.document.close();
+                win.print();
+                win.close();
+            };
+
+            footer.appendChild(btnCopy);
+            footer.appendChild(btnEditor);
+            footer.appendChild(btnPrint);
+            box.appendChild(area);
+            box.appendChild(footer);
+            modal.appendChild(box);
+            document.body.appendChild(modal);
+        }
+
+        window.onload = function() {
+            cargarProgresoAlumno();
+        }
+                
+</script><script src="/volver.js" defer></script>
+</body>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script></html>

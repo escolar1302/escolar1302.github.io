@@ -1,0 +1,5042 @@
+[
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Uso social de los números en diferentes contextos y portadores numéricos cotidianos en distintos soportes y formatos, tanto analógicos como digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades de la serie numérica oral y escrita.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Conteo de colecciones de objetos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Funciones del número como memoria de la cantidad y para calcular.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Relaciones entre números en el intervalo numérico de dominio: uno más que, uno menos que, estar entre, diez más que, etc.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Lectura, escritura y orden convencional de la serie numérica escrita (hasta 100, aproximadamente), identificando las regularidades del sistema de numeración.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades en la serie numérica oral y escrita de números de igual o diferente cantidad de cifras que superen el intervalo de dominio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Composición y descomposición aditiva de números de dos cifras en diferentes contextos (por ejemplo, juegos de puntaje, dinero o calculadora).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio de resultados numéricos relativos a la suma y la resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la suma: Sumas que dan 10. Sumas de números iguales (hasta 10). Sumas de números de un dígito. Un número más 1. Un número más 10. Un redondo más un dígito. Sumas de números redondos que dan 100 (a partir de las sumas que dan 10).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la resta: Un número menos 1. Un número menos 10. Restas de 10 menos un dígito.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio de resultados numéricos relativos a la suma y la resta: Sumas de números redondos (hasta dos cifras). Restas de números redondos de dos cifras.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Uso de los elementos de una suma para determinar las restas asociadas a ella.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Uso de cálculos conocidos y de las propiedades del sistema de numeración para resolver nuevos cálculos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Cálculos de dos cifras a partir de repertorios de sumas y restas de una cifra.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Cálculos aproximados de sumas y restas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Uso de la calculadora para anticipar y verificar resultados, para explorar y para buscar regularidades.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Representación simbólica de la suma y de la resta: signos + y -.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Intercambio de ideas durante el desarrollo de estrategias de cálculo en el marco del debate entre pares y con personas adultas, teniendo en cuenta la igualdad entre los géneros y la diversidad de formas de comunicarse, incluyendo la lengua de señas, el braille y la comunicación aumentativa alternativa (considerando el enfoque de educación inclusiva). (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Resolución de problemas de suma y resta referidos a distintos significados: agregar, ganar, avanzar, juntar, quitar, perder, retroceder y separar a través de diversos procedimientos (conteo, dibujos, sobreconteo y cálculo): Transformación positiva de una cantidad con incógnita en el estado final. Composición de dos cantidades (unión de dos colecciones). Transformación negativa de una cantidad con incógnita en el estado final. Composición de dos cantidades con incógnita en una de las cantidades.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Resolución de problemas presentados en soportes diversos (imágenes, cuadros, tablas, listas), en los que resulta necesario identificar datos, incógnitas, preguntas y cantidad de soluciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Resolución de problemas que involucren determinar la cantidad de elementos de una colección formada por grupos de igual cantidad de elementos y repartos equitativos y no equitativos mediante diversas estrategias (dibujos, conteo, sumas o restas reiteradas).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Posiciones relativas y desplazamientos de personas y objetos en el espacio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Referencias espaciales con respecto al propio cuerpo, el de otros y/o con respecto a otros objetos. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Representación de un objeto desde distintos puntos de vista.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Comunicación de posiciones y desplazamientos: vocabulario y expresiones específicas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Interpretación de planos y/o dibujos para comunicar posiciones o trayectos en soportes analógicos y digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Figuras geométricas: triángulo, cuadrado y rectángulo. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Elementos y características de las figuras geométricas: vértices y lados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Reproducción de figuras, de hoja cuadriculada a hoja cuadriculada, a partir de la identificación de sus características.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Relaciones entre figuras geométricas: composición de un cuadrado o rectángulo considerando diferentes triángulos, por plegado o cubrimiento de las figuras.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Cuerpos geométricos: cubo, prisma, esfera, cilindro, pirámide y cono. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Elementos y características de los cuerpos geométricos: vértices, caras y aristas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Relaciones entre distintas figuras y las caras de los cuerpos geométricos: cuadrado y cubo; triángulos y cuadrado, y pirámide; rectángulo y cuadrado, y prisma.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Estimación, comparación y medición de longitudes usando unidades de medida no convencionales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Utilización de instrumentos de uso social para la medición de longitudes con unidades convencionales (regla, cinta métrica).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medición y comparación de objetos según su peso, usando unidades de medida no convencionales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Unidades de medida de tiempo: día, semana, mes, año.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "1°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Utilización de calendarios como unidad convencional del tiempo para registrar los cambios durante el crecimiento (cambios en la altura, caída de los dientes de leche, etc.) y reflexión sobre los sentimientos y emociones que acompañan dichos cambios. (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Lectura, escritura y orden convencional de la serie numérica escrita (hasta 1.000, aproximadamente), identificando las regularidades del sistema de numeración en soportes analógicos y digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Funciones del número: memoria de la cantidad, cálculo y memoria de posición.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Estrategias de conteo y comparación numérica de grandes colecciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades en la serie numérica oral y escrita de números de igual o diferente cantidad de cifras en el intervalo numérico de dominio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Relaciones numéricas dentro del intervalo numérico de dominio: uno más que, uno menos que, estar entre, diez más que, diez menos que, cien más que, cien menos que, el doble de, la mitad de.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Descomposiciones aditivas de números, como suma de múltiplos de 10 o de 100 y/o dígitos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Lectura de números de varias cifras a partir de otro conocido.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades en la serie numérica oral y escrita de números de igual o diferente cantidad de cifras que superen el intervalo de dominio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Composición y descomposición aditiva de números del intervalo numérico de hasta tres cifras en contextos de juegos de puntaje, dinero o calculadora.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio de resultados numéricos relativos a la suma y la resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la suma: Sumas que dan 100 y 1.000 (a partir de las sumas que dan 10). Un número más 1, más 10, más 100. Sumas de números redondos (hasta tres cifras). Sumas de números redondos más un dígito (hasta tres cifras).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la resta: Un número menos 1, menos 10, menos 100. Resta de números redondos (hasta tres cifras). Restas de 10 y de 100 menos un número.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Cálculo mental exacto y aproximado a través de repertorios y propiedades del sistema de numeración y de las operaciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Estrategias de cálculo adecuadas a las diversas situaciones de suma y resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Intercambio de ideas durante el desarrollo de estrategias de cálculo en el marco del debate entre pares y con personas adultas, teniendo en cuenta la igualdad entre los géneros y la diversidad de formas de comunicarse. (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Algoritmos intermedios de suma y resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Algoritmos convencionales de suma y resta sin reagrupamientos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "La calculadora como recurso para el cálculo y la verificación: procedimientos de uso.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Algoritmos convencionales de suma y resta.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Uso de cálculos de suma y resta para la anticipación, estimación y resolución de problemas de pensamiento computacional. (En articulación con Educación Digital).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Problemas aditivos de nuevos significados de las operaciones: Comparación de cantidades. Transformación positiva de una cantidad con incógnita en la transformación. Transformación negativa de una cantidad con incógnita en la transformación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Problemas aditivos de nuevos significados de las operaciones. Transformación positiva de una cantidad con incógnita en el estado inicial. Transformación negativa de una cantidad con incógnita en el estado inicial.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Tratamiento de la información involucrada en problemas aditivos y presentada en formatos y soportes diversos (imágenes, enunciados, cuadros de doble entrada, listas): reconocimiento de datos necesarios o innecesarios para responder a una pregunta, análisis de situaciones que admitan una, ninguna o muchas soluciones, identificación de las relaciones entre la pregunta de un problema y los cálculos que pueden realizarse para responder.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Tratamiento de la información en problemas aditivos: Identificación de preguntas que puedan responderse a partir de la información que brinda el enunciado.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas que involucran sumas y multiplicaciones: semejanzas y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de multiplicación en el contexto de la proporcionalidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de multiplicación en el contexto de las organizaciones rectangulares.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de reparto equitativo y no equitativo y partición: estrategias de representación y resolución.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorio de cálculos de dobles y mitades de números sencillos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Sumas reiteradas y cálculo multiplicativo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "La escritura multiplicativa: uso del signo x.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Relaciones multiplicativas: estrategias para completar tablas o resolver cálculos multiplicativos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Uso de la calculadora y recursos digitales para resolver cálculos y problemas multiplicativos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Las orientaciones y las posiciones relativas del objeto (analógicos, en entornos digitales y/o con dispositivos programables) respecto del sujeto o de otro objeto. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Comunicación e interpretación de posiciones y desplazamientos: vocabulario y expresiones específicas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Interpretación y elaboración de planos y dibujos para comunicar posiciones o trayectos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Representaciones de objetos desde diferentes puntos de vista.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Construcción de planos en soportes digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Orientación en una cuadrícula estableciendo relaciones entre sus casilleros o nudos como referencias.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Figuras geométricas: triángulo, cuadrado, círculo y rectángulo. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Elementos y características de las figuras geométricas: cantidad de vértices y lados, igualdad o no de los lados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Criterios de comparación de figuras y sus relaciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Reproducción de figuras en diferentes tipos de soportes: en papel y en entornos digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Relaciones entre figuras geométricas: composición de un cuadrado o rectángulo considerando diferentes triángulos, por plegado o cubrimiento de las figuras.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Vocabulario geométrico: descripción de figuras geométricas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Cuerpos geométricos: cubo, prisma, esfera, cilindro, pirámide y cono. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Elementos y características de los cuerpos geométricos: vértices, caras y aristas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Relaciones entre distintas figuras y las caras de los cuerpos geométricos: cuadrado y cubo; triángulos y cuadrado, y pirámide; rectángulo y cuadrado, y prisma; círculo, y cono o cilindro.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Criterios de comparación de cuerpos geométricos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de longitud: unidades convencionales. Instrumentos de medición de uso social (cinta métrica y regla graduada).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de peso: unidades convencionales. Instrumentos de medición de uso social (distintos tipos de balanzas). (En articulación con Educación Alimentaria).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de longitud y peso: estimación de medidas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medición del tiempo: día, semana, mes y año.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "El calendario analógico y digital como unidad de medida del tiempo para la organización temporal de acontecimientos y el cálculo de duraciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de capacidad: unidades convencionales (litro) y unidades no convencionales (vaso medidor).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de capacidad: estimación de medidas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "2°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Actitudes de respeto y valoración de la diversidad corporal en la medición de alturas y otras características físicas. (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Lectura, escritura y orden convencional de la serie numérica (hasta 10.000, aproximadamente).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades en la serie numérica oral y escrita de números de igual o diferente cantidad de cifras en el intervalo numérico de dominio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Problemas que involucren las relaciones entre los números del intervalo de dominio: uno más que, uno menos que, entre, diez más que, diez menos que, cien más que, cien menos que, el doble de, mitad de.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Relaciones numéricas dentro del intervalo numérico de dominio: estar entre, diez más que, diez menos que, cien más que, cien menos que, mil más que, mil menos que, el doble de, el triple de, la mitad de.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Ubicación de números naturales en la recta numérica.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades en la serie numérica oral y escrita de números de igual o diferente cantidad de cifras que superen el intervalo de dominio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Valor posicional de las cifras: unos, dieces, cienes, miles.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Composición aditiva de números de hasta cuatro cifras en contextos de juegos de puntaje, dinero o calculadora.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Composición aditiva y multiplicativa de números de hasta cuatro cifras en contextos de juegos de puntaje, dinero o calculadora.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio de resultados numéricos relativos a la suma y la resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la suma: Sumas que dan 1.000 y 10.000 (a partir de las sumas que dan 10 y 100). Sumas de números redondos (hasta cuatro cifras). Un número más 1, más 10, más 100, más 1.000. Sumas de miles más cienes, más dieces y más dígitos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la resta: Un número menos 1, menos 10, menos 100 y menos 1.000. Resta de números redondos (hasta cuatro cifras). Restas de 10, de 100 y de 1.000 menos un número.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Estrategias de cálculo adecuadas a las diversas situaciones de suma y resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Cálculo mental exacto y aproximado a través de repertorios y propiedades del sistema de numeración y de las operaciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "La calculadora analógica y/o digital como recurso para el cálculo, resolver problemas y verificar resultados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Algoritmos convencionales de suma y resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Uso de cálculos de suma y resta para la anticipación, estimación y resolución de problemas de pensamiento computacional. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Problemas aditivos de nuevos significados: Transformación positiva o negativa de una cantidad con incógnita en el estado inicial. Comparación de cantidades con incógnita en una de las cantidades.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Tratamiento de la información en problemas aditivos y presentada en formatos y soportes diversos (imágenes, enunciados, cuadros de doble entrada, listas): reconocimiento de datos necesarios o innecesarios para responder a una pregunta, elaboración de preguntas que puedan responderse a partir de la información que brinda el enunciado, análisis de situaciones que admitan una, ninguna o muchas soluciones, establecer relaciones entre la pregunta de un problema y los cálculos que pueden realizarse para responder.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Tratamiento de la información en problemas aditivos y presentada en formatos y soportes diversos (imágenes, enunciados, cuadros de doble entrada, listas): elaboración del enunciado de un problema a partir de una serie de datos o cálculos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Resolución de problemas de suma y resta que involucran varios cálculos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas que involucran sumas y multiplicaciones: semejanzas y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de multiplicación en diferentes contextos: proporcionalidad y organizaciones rectangulares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de reparto equitativo y no equitativo y partición, series proporcionales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de división en el contexto de las organizaciones rectangulares.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de multiplicación y división: estrategias diversas de representación y determinación de resultados apoyándose en la tabla pitagórica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Intercambio de ideas durante la resolución de problemas, considerando opiniones de pares y personas adultas, teniendo en cuenta la igualdad entre los géneros y la diversidad de formas de comunicarse, incluyendo la lengua de señas, el braille y la comunicación aumentativa alternativa (considerando el enfoque de educación inclusiva). (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Tablas proporcionales y relaciones multiplicativas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Relaciones multiplicativas: construcción de la tabla pitagórica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Cálculo mental: uso de estrategias para resolver multiplicaciones y divisiones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorio multiplicativo: multiplicación por 10, 100 y 1.000.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorio multiplicativo a partir de las relaciones entre productos de la tabla pitagórica.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorios de cálculos multiplicativos del intervalo numérico de uso y extendido.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "División y multiplicación: relaciones en la tabla pitagórica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmos intermedios de la multiplicación por una cifra.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmo de la multiplicación por una cifra.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmo de la multiplicación por dos cifras o más: análisis, utilización y comparación con otras estrategias de cálculo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Estrategias de cálculo para resolver divisiones: sumas o restas sucesivas, aproximaciones mediante productos y uso de resultados multiplicativos en combinación con restas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Multiplicación: cálculo exacto y aproximado.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Calculadora y recursos digitales para la resolución de problemas y verificación de resultados. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Las orientaciones y las posiciones relativas del objeto respecto del sujeto o de otro objeto: las relaciones de los objetos y personas entre sí, de los objetos y personas con el entorno y de los objetos y personas con el propio punto de vista.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Desplazamientos y trayectos considerando los objetos del entorno como puntos de referencia a partir de la programación de dispositivos y/o en simulaciones disponibles en entornos digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Construcción de planos en soportes digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Orientación en una cuadrícula estableciendo relaciones entre sus casilleros o nudos como referencias y el uso de vocabulario específico.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Planos de espacios conocidos y no conocidos: referencias y representaciones desde diferentes puntos de vista.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Figuras geométricas: triángulo, cuadrado, rectángulo, círculo, rombo y paralelogramo. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Elementos y características de las figuras: cantidad de vértices y lados, diagonales, igualdad o no de lados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Elementos y características de las figuras: paralelismo y perpendicularidad de los lados.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Semejanzas o diferencias entre figuras: análisis de sus elementos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Vocabulario geométrico: descripción de figuras geométricas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Copia de figuras: de hoja cuadriculada a hoja cuadriculada, de hoja lisa a hoja cuadriculada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Copia de figuras: de hoja cuadriculada a hoja lisa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Relaciones entre figuras geométricas: composición de un cuadrado o rectángulo mediante la utilización de diferentes triángulos, ya sea por plegado o cubrimiento de las figuras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Relaciones entre figuras geométricas: composición a partir de cubrir una figura con otra una cantidad entera de veces.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Construcción de figuras utilizando soportes analógicos y digitales e instrumentos de geometría. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Cuerpos geométricos: cubo, prisma, esfera, cilindro, pirámide y cono. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Elementos y características de los cuerpos geométricos: forma de las caras, cantidad de caras, aristas, vértices, caras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Relaciones entre distintas figuras y las caras de los cuerpos geométricos: cuadrado y cubo; triángulos y cuadrado, y pirámide; rectángulo y cuadrado, y prisma; círculo, y cono o cilindro.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Criterios de comparación de cuerpos geométricos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Reproducción de cuerpos (cubos y prismas) a partir de la identificación de sus características.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Construcción de cuerpos utilizando soportes analógicos y digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Unidades de medida de longitud, capacidad y peso: metro, centímetro y milímetro, litro, gramo y kilogramo. Estimación de medidas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Equivalencias sencillas entre unidades y sus fracciones en el contexto de medidas convencionales de longitud, capacidad y peso (1/2 + 1/2 = 1; 1/4 + 1/4 = 1/2: etc.).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de capacidad: unidades convencionales (litro) y unidades no convencionales (vaso medidor). (En articulación con Educación Alimentaria).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de tiempo: día, semana, mes y año.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "El reloj y el tiempo en el calendario en formato analógico y digital. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "El reloj digital. Formato de 12 horas (a .m./p.m.) y de 24 horas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Organización de situaciones cotidianas vinculadas con la autonomía progresiva, utilizando el calendario y leyendo la hora: horarios de estudio, juego y descanso, actividades programadas. (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Equivalencias entre diferentes expresiones para una misma medida de longitud: entre metros y centímetros, entre centímetros y milímetros, entre kilómetros y metros.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de peso: equivalencias entre diferentes expresiones para una misma medida de peso: entre gramos y kilos, entre kilos y toneladas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Resolución de problemas que exijan el uso de unidades convencionales de tiempo, algunas fracciones de esas unidades y ciertas equivalencias entre ellas (1 hora = 60 minutos, 1/2 hora = 30 minutos, 3/4 hora = 45 minutos, 1 minuto = 60 segundos, 1/4 hora = 15 minutos).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Lectura, escritura y orden convencional de la serie numérica (hasta 10.000, aproximadamente).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades en la serie numérica oral y escrita de números de igual o diferente cantidad de cifras en el intervalo numérico de dominio.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Problemas que involucren las relaciones entre los números del intervalo de dominio: uno más que, uno menos que, entre, diez más que, diez menos que, cien más que, cien menos que, el doble de, mitad de.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Relaciones numéricas dentro del intervalo numérico de dominio: estar entre, diez más que, diez menos que, cien más que, cien menos que, mil más que, mil menos que, el doble de, el triple de, la mitad de.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Ubicación de números naturales en la recta numérica.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Números en contextos diversos. Regularidades de la serie numérica",
+    "contenido": "Regularidades en la serie numérica oral y escrita de números de igual o diferente cantidad de cifras que superen el intervalo de dominio.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Valor posicional de las cifras: unos, dieces, cienes, miles.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Composición aditiva de números de hasta cuatro cifras en contextos de juegos de puntaje, dinero o calculadora.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional en la numeración escrita",
+    "contenido": "Composición aditiva y multiplicativa de números de hasta cuatro cifras en contextos de juegos de puntaje, dinero o calculadora.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio de resultados numéricos relativos a la suma y la resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la suma: Sumas que dan 1.000 y 10.000 (a partir de las sumas que dan 10 y 100). Sumas de números redondos (hasta cuatro cifras). Un número más 1, más 10, más 100, más 1.000. Sumas de miles más cienes, más dieces y más dígitos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Repertorio para la resta: Un número menos 1, menos 10, menos 100 y menos 1.000. Resta de números redondos (hasta cuatro cifras). Restas de 10, de 100 y de 1.000 menos un número.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Estrategias de cálculo adecuadas a las diversas situaciones de suma y resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Cálculo mental exacto y aproximado a través de repertorios y propiedades del sistema de numeración y de las operaciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "La calculadora analógica y/o digital como recurso para el cálculo, resolver problemas y verificar resultados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Algoritmos convencionales de suma y resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Uso de cálculos de suma y resta para la anticipación, estimación y resolución de problemas de pensamiento computacional. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Problemas aditivos de nuevos significados: Transformación positiva o negativa de una cantidad con incógnita en el estado inicial. Comparación de cantidades con incógnita en una de las cantidades.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Tratamiento de la información en problemas aditivos y presentada en formatos y soportes diversos (imágenes, enunciados, cuadros de doble entrada, listas): reconocimiento de datos necesarios o innecesarios para responder a una pregunta, elaboración de preguntas que puedan responderse a partir de la información que brinda el enunciado, análisis de situaciones que admitan una, ninguna o muchas soluciones, establecer relaciones entre la pregunta de un problema y los cálculos que pueden realizarse para responder.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Tratamiento de la información en problemas aditivos y presentada en formatos y soportes diversos (imágenes, enunciados, cuadros de doble entrada, listas): elaboración del enunciado de un problema a partir de una serie de datos o cálculos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Resolución de problemas de suma y resta que involucran varios cálculos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas que involucran sumas y multiplicaciones: semejanzas y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de multiplicación en diferentes contextos: proporcionalidad y organizaciones rectangulares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de reparto equitativo y no equitativo y partición, series proporcionales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de división en el contexto de las organizaciones rectangulares.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de multiplicación y división: estrategias diversas de representación y determinación de resultados apoyándose en la tabla pitagórica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Intercambio de ideas durante la resolución de problemas, considerando opiniones de pares y personas adultas, teniendo en cuenta la igualdad entre los géneros y la diversidad de formas de comunicarse, incluyendo la lengua de señas, el braille y la comunicación aumentativa alternativa (considerando el enfoque de educación inclusiva). (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Tablas proporcionales y relaciones multiplicativas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Relaciones multiplicativas: construcción de la tabla pitagórica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Cálculo mental: uso de estrategias para resolver multiplicaciones y divisiones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorio multiplicativo: multiplicación por 10, 100 y 1.000.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorio multiplicativo a partir de las relaciones entre productos de la tabla pitagórica.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorios de cálculos multiplicativos del intervalo numérico de uso y extendido.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "División y multiplicación: relaciones en la tabla pitagórica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmos intermedios de la multiplicación por una cifra.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmo de la multiplicación por una cifra.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmo de la multiplicación por dos cifras o más: análisis, utilización y comparación con otras estrategias de cálculo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Estrategias de cálculo para resolver divisiones: sumas o restas sucesivas, aproximaciones mediante productos y uso de resultados multiplicativos en combinación con restas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Multiplicación: cálculo exacto y aproximado.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Calculadora y recursos digitales para la resolución de problemas y verificación de resultados. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Las orientaciones y las posiciones relativas del objeto respecto del sujeto o de otro objeto: las relaciones de los objetos y personas entre sí, de los objetos y personas con el entorno y de los objetos y personas con el propio punto de vista.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Desplazamientos y trayectos considerando los objetos del entorno como puntos de referencia a partir de la programación de dispositivos y/o en simulaciones disponibles en entornos digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Construcción de planos en soportes digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Orientación en una cuadrícula estableciendo relaciones entre sus casilleros o nudos como referencias y el uso de vocabulario específico.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Espacio",
+    "tema": "Orientación y localización en el espacio",
+    "contenido": "Planos de espacios conocidos y no conocidos: referencias y representaciones desde diferentes puntos de vista.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Figuras geométricas: triángulo, cuadrado, rectángulo, círculo, rombo y paralelogramo. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Elementos y características de las figuras: cantidad de vértices y lados, diagonales, igualdad o no de lados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Elementos y características de las figuras: paralelismo y perpendicularidad de los lados.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Semejanzas o diferencias entre figuras: análisis de sus elementos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Vocabulario geométrico: descripción de figuras geométricas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Copia de figuras: de hoja cuadriculada a hoja cuadriculada, de hoja lisa a hoja cuadriculada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Copia de figuras: de hoja cuadriculada a hoja lisa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Relaciones entre figuras geométricas: composición de un cuadrado o rectángulo mediante la utilización de diferentes triángulos, ya sea por plegado o cubrimiento de las figuras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Relaciones entre figuras geométricas: composición a partir de cubrir una figura con otra una cantidad entera de veces.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Figuras geométricas",
+    "contenido": "Construcción de figuras utilizando soportes analógicos y digitales e instrumentos de geometría. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Cuerpos geométricos: cubo, prisma, esfera, cilindro, pirámide y cono. Similitudes y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Elementos y características de los cuerpos geométricos: forma de las caras, cantidad de caras, aristas, vértices, caras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Relaciones entre distintas figuras y las caras de los cuerpos geométricos: cuadrado y cubo; triángulos y cuadrado, y pirámide; rectángulo y cuadrado, y prisma; círculo, y cono o cilindro.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Criterios de comparación de cuerpos geométricos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Reproducción de cuerpos (cubos y prismas) a partir de la identificación de sus características.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Figuras y cuerpos geométricos",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Construcción de cuerpos utilizando soportes analógicos y digitales. (En articulación con Educación Digital).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Unidades de medida de longitud, capacidad y peso: metro, centímetro y milímetro, litro, gramo y kilogramo. Estimación de medidas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Equivalencias sencillas entre unidades y sus fracciones en el contexto de medidas convencionales de longitud, capacidad y peso (1/2 + 1/2 = 1; 1/4 + 1/4 = 1/2: etc.).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de capacidad: unidades convencionales (litro) y unidades no convencionales (vaso medidor). (En articulación con Educación Alimentaria).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de tiempo: día, semana, mes y año.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "El reloj y el tiempo en el calendario en formato analógico y digital. (En articulación con Educación Digital).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "El reloj digital. Formato de 12 horas (a .m./p.m.) y de 24 horas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Organización de situaciones cotidianas vinculadas con la autonomía progresiva, utilizando el calendario y leyendo la hora: horarios de estudio, juego y descanso, actividades programadas. (En articulación con Educación Sexual Integral).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Equivalencias entre diferentes expresiones para una misma medida de longitud: entre metros y centímetros, entre centímetros y milímetros, entre kilómetros y metros.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Medidas de peso: equivalencias entre diferentes expresiones para una misma medida de peso: entre gramos y kilos, entre kilos y toneladas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Primer Ciclo",
+    "grado": "3°",
+    "eje": "Medida",
+    "tema": "Estudio de la medida",
+    "contenido": "Resolución de problemas que exijan el uso de unidades convencionales de tiempo, algunas fracciones de esas unidades y ciertas equivalencias entre ellas (1 hora = 60 minutos, 1/2 hora = 30 minutos, 3/4 hora = 45 minutos, 1 minuto = 60 segundos, 1/4 hora = 15 minutos).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Lectura, escritura y orden de números naturales en los rangos de 10.000 o 100.000, en distintos contextos analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Lectura, escritura y orden de números naturales en el rango de millón, en distintos contextos analógicos y digitales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Comparación de números naturales de la misma o distinta cantidad de cifras.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Ubicación de números naturales en la recta numérica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Valor posicional y su relación con la numeración escrita en distintos contextos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Composición y descomposición aditiva o aditiva y multiplicativa de números.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistemas de numeración romano: semejanzas y diferencias respecto de las características de posicionalidad y la inclusión del 0.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Problemas aditivos de números naturales (suma y resta): transformación de una transformación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Problemas aditivos de más de un cálculo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la suma y la resta",
+    "contenido": "Problemas aditivos representados en distintos formatos: enunciados, tablas, gráficos y cuadros de doble entrada en soportes analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Cálculos mentales exactos y aproximados de suma y resta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Algoritmos convencionales para la suma y la resta. Análisis, utilización y comparación con otras estrategias de cálculo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la suma y la resta",
+    "contenido": "Calculadora y entornos digitales como recurso para el cálculo, la resolución de problemas y la verificación de resultados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas multiplicativos en los contextos de proporcionalidad directa y de organizaciones rectangulares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de división en situaciones de reparto y partición.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de varios pasos con las operaciones suma, resta y multiplicación de números naturales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de división: situaciones que implican el análisis del resto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Tratamiento de la información en problemas multiplicativos: identificar datos, incógnitas, preguntas y cantidad de soluciones en grados crecientes de autonomía y confianza.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de varios pasos con las cuatro operaciones con números naturales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas de multiplicación: combinar elementos de dos conjuntos diferentes.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas que involucran la multiplicación y la división",
+    "contenido": "Problemas que implican la iteración de un proceso de adición o sustracción.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Cálculo mental exacto y aproximado de multiplicaciones y divisiones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorio multiplicativo, a partir de las relaciones entre productos de la tabla pitagórica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Repertorio multiplicativo: multiplicación y división por 10, 100 y 1.000, etcétera.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Cálculo estimativo y aproximado para la multiplicación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Cálculo estimativo y aproximado para la división - anticipación de la cantidad de cifras de un cociente.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmo de la multiplicación por dos cifras o más: Análisis, utilización y comparación con otras estrategias de cálculo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Algoritmo intermedio de la división a través de aproximaciones basadas en el conocimiento de las multiplicaciones por potencias de 10.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos para la multiplicación y la división",
+    "contenido": "Cálculo con calculadora: uso de las propiedades de la multiplicación.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto del reparto y de la medida",
+    "contenido": "Fracciones: reparto en partes iguales en situaciones en las que tiene sentido repartir el resto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto del reparto y de la medida",
+    "contenido": "Fracciones: situaciones de medición en las que la unidad de medida no entra una cantidad entera de veces en el objeto a medir.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto del reparto y de la medida",
+    "contenido": "Fracciones de uso frecuente: 1/2, 1/4, 3/4, 1/8, 1 1/2 vinculadas a litros y kilogramos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto del reparto y de la medida",
+    "contenido": "Fracciones: escrituras equivalentes en contextos de reparto y medida.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto del reparto y de la medida",
+    "contenido": "Reconstrucción de la unidad, a partir de una fracción de dicha unidad.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones / Reconstrucción de la unidad y de la mitad",
+    "contenido": "Reconstrucción de la unidad y de la mitad a partir de las relaciones con la unidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones / Reconstrucción de la unidad y de la mitad",
+    "contenido": "Fracciones: mitad y cuarta parte de diferentes fracciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones / Reconstrucción de la unidad y de la mitad",
+    "contenido": "Fracciones: doble, triple y cuádruple, de medios, cuartos, octavos y quintos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones / Reconstrucción de la unidad y de la mitad",
+    "contenido": "Determinación de la fracción de una cantidad discreta.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Comparación y orden de números racionales",
+    "contenido": "Comparación de fracciones de igual denominador y distinto numerador. Una de ellas mayor a un entero y la otra menor que un entero.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Comparación y orden de números racionales",
+    "contenido": "Equivalencia de fracciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Comparación y orden de números racionales",
+    "contenido": "Ubicación en la recta numérica de las fracciones de uso común.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Números con coma en contexto de uso social",
+    "contenido": "Uso social de expresiones decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Números con coma en contexto de uso social",
+    "contenido": "Comparación de expresiones decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Números con coma en contexto de uso social",
+    "contenido": "Relaciones entre décimos, centésimos y milésimos y la escritura como expresiones decimales, en el contexto del dinero y las medidas de longitud, peso y capacidad.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Cálculos con fracciones y expresiones decimales",
+    "contenido": "Cálculo mental: componer una cantidad a partir de diferentes fracciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Cálculos con fracciones y expresiones decimales",
+    "contenido": "Suma y resta de expresiones decimales considerando hasta dos cifras decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Cálculos con fracciones y expresiones decimales",
+    "contenido": "Suma y resta de fracciones a partir de diversas estrategias de cálculo no algorítmicas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Cálculos con fracciones y expresiones decimales",
+    "contenido": "Multiplicación de un decimal por un número natural.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales",
+    "contenido": "Problemas de proporcionalidad directa (registro verbal y tabular): uso, análisis y explicitación de las propiedades.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales",
+    "contenido": "Problemas de proporcionalidad directa: análisis y resolución de situaciones en las que se da el valor correspondiente a la unidad u otros pares de valores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Circunferencia y círculo",
+    "contenido": "Reproducción de figuras que contengan circunferencias o arcos de circunferencia con regla, escuadra y compás.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Circunferencia y círculo",
+    "contenido": "Noción de circunferencia y círculo. Vía de entrada al trabajo geométrico. Diferenciación de las características del círculo y la circunferencia.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Circunferencia y círculo",
+    "contenido": "La circunferencia para la comparación y traslación de medidas de segmentos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Circunferencia y círculo",
+    "contenido": "Construcción de figuras que contengan circunferencias o arcos de circunferencia con graficadores digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Construcción de triángulos según sus lados",
+    "contenido": "Identificación de puntos que cumplen dos condiciones simultáneamente: estar a una distancia de un punto y al mismo tiempo a una distancia de otro punto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Construcción de triángulos según sus lados",
+    "contenido": "Construcción de triángulos a partir de la medida de sus lados, utilizando los instrumentos de geometría o recursos digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Definición y clasificación de triángulos según la medida de sus lados",
+    "contenido": "Definición y clasificación de triángulos según la medida de sus lados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Definición y clasificación de triángulos según la medida de sus lados",
+    "contenido": "Propiedad triangular: desigualdad triangular. Condiciones necesarias para construir un triángulo según la medida de sus lados.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Ángulos",
+    "contenido": "Reproducción con modelo a la vista de poligonales abiertas y cerradas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Ángulos",
+    "contenido": "Ángulos. Comparación, medición y clasificación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Características y elementos de los cuerpos geométricos: cubos y prismas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Relación entre figuras geométricas y caras de los cuerpos geométricos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Reproducción de cuerpos geométricos - cubos y prismas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Desarrollo plano de cuerpos geométricos cubos y prismas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Construcción de cuerpos utilizando soportes analógicos y digitales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Medidas de longitud. Equivalencias entre metro, kilómetro, centímetro y milímetro.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Medidas de peso. Equivalencias entre kilogramo y gramo, entre kilogramo y tonelada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Medición de ángulos. Uso del ángulo recto como unidad de medida. Uso del transportador para medir y comparar ángulos. Uso del grado como unidad de medida.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Medidas de capacidad. Litros, centilitros, mililitros. Equivalencias.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Identificación de los cambios producidos en el cuerpo de niños y niñas en los últimos años a partir de la estimación y comparación de alturas y pesos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "4°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Identificación de las unidades de medida a partir de la interacción con dispositivos programables o simuladores.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Lectura, escritura y orden de números naturales en el rango del millón en distintos contextos analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Ubicación de números naturales en la recta numérica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "El sistema de numeración decimal: expresión de un número en términos de unidades, decenas, centenas, unidad, decena y centena de mil/millón.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Relaciones aditivas y multiplicativas que subyacen a un número natural.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistemas de numeración romano: semejanzas y diferencias respecto de las características de posicionalidad y la inclusión del 0.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistemas de numeración egipcio y chino-japonés: semejanzas y diferencias respecto de las características de posicionalidad y la inclusión del 0.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Respeto por la diversidad a partir de la comparación sobre sistemas de numeración en otras culturas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Problemas aditivos representados en distintos formatos: enunciados, tablas, gráficos y cuadros de doble entrada en soportes analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Situaciones multiplicativas en el contexto de la proporcionalidad y de las organizaciones rectangulares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Situaciones multiplicativas en el contexto de la combinatoria.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Diversos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Problemas de división en situaciones de reparto y partición.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "Problemas de varios pasos con las cuatro operaciones con números naturales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "Problemas de división en situaciones que implican el análisis del resto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "Exploración de la relación matemática en la que el cociente por el divisor más el resto es igual al dividendo, siempre que el resto sea menor que el divisor.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "Tratamiento de la información en problemas aditivos y multiplicativos: identificar datos, incógnitas, preguntas y cantidad de soluciones en grados crecientes de autonomía y confianza.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "Problemas aditivos y multiplicativos que impliquen el uso de las estrategias del pensamiento computacional, como por ejemplo la descomposición en partes, el análisis de datos, múltiples soluciones a problemas similares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "División: reconstrucción del resto de una división a partir del conocimiento del cociente y del divisor.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "Cálculos con calculadora para la reconstrucción del resto de una división.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas, relaciones numéricas y divisibilidad",
+    "contenido": "Problemas que implican la iteración de un proceso de adición o sustracción.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Múltiplos y divisores de un número: exploración de las relaciones numéricas en el contexto de la multiplicación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Problemas que impliquen el uso de múltiplos y divisores de un número en diversos contextos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Descomposición multiplicativa de un número: exploración de diferentes combinaciones de factores que, al multiplicarse, resulten en ese número.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Problemas que involucran la búsqueda de múltiplos comunes y divisores comunes entre varios números.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estrategias de cálculo",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Cálculo mental exacto o aproximado de multiplicaciones y divisiones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estrategias de cálculo",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Cálculos con calculadora y entornos digitales para el uso de las propiedades de la multiplicación (conmutativa, asociativa y distributiva).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estrategias de cálculo",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Cálculo estimativo y aproximado de multiplicaciones y divisiones: anticipación de la cantidad de cifras del cociente, determinación del cociente aproximado y redondeo de factores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estrategias de cálculo",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Algoritmos intermedios de la división. Análisis, utilización y comparación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estrategias de cálculo",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Cálculos con calculadora y entornos digitales para el uso de las propiedades de la división.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estrategias de cálculo",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Algoritmo convencional de la división.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estrategias de cálculo",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "La calculadora como medio para validar anticipaciones sobre cálculos y relaciones numéricas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto del reparto",
+    "contenido": "Fracciones: comparación de repartos equivalentes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida",
+    "contenido": "Reconstrucción de la unidad, a partir de una fracción de dicha unidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida",
+    "contenido": "Fracción de una cantidad discreta.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida",
+    "contenido": "Fracciones: escrituras equivalentes en contexto de medida.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones",
+    "contenido": "Reconstrucción de la unidad utilizando diferentes fracciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones",
+    "contenido": "Fracciones: mitad y cuarta parte de 1/2, 1/4 a partir de las relaciones con la unidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones",
+    "contenido": "Fracciones: doble, triple y cuádruple, de medios, cuartos, octavos y quintos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones",
+    "contenido": "Fracción de un número natural.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Comparación y orden de números racionales",
+    "contenido": "Comparación de fracciones: relación de mayor, menor o igual en fracciones de igual o distinto numerador o denominador, fracción mayor o menor que un entero, fracción mayor o menor que la mitad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Comparación y orden de números racionales",
+    "contenido": "Fracciones equivalentes: representación de la misma cantidad con una fracción diferente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Comparación y orden de números racionales",
+    "contenido": "Fracciones en la recta numérica: ubicación y representación entre diferentes fracciones y entre números naturales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Comparación y orden de números racionales",
+    "contenido": "Densidad: búsqueda de fracciones entre dos fracciones dadas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal a partir de fracciones decimales y Valor Posicional",
+    "contenido": "Expresiones decimales: relaciones con las fracciones decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal a partir de fracciones decimales y Valor Posicional",
+    "contenido": "Expresiones decimales en el contexto de la medida.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal a partir de fracciones decimales y Valor Posicional",
+    "contenido": "Notación decimal: estructura decimal.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal a partir de fracciones decimales y Valor Posicional",
+    "contenido": "Cálculos en calculadora y entornos digitales: exploración del significado del resultado expresado en números decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal a partir de fracciones decimales y Valor Posicional",
+    "contenido": "Composición y descomposición de números decimales: suma de fracciones y expresiones decimales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal a partir de fracciones decimales y Valor Posicional",
+    "contenido": "Multiplicación y división de expresiones decimales por potencia de diez.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones y expresiones decimales",
+    "contenido": "Cálculo con fracciones: utilización de repertorios de sumas y restas de medios, cuartos y octavos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones y expresiones decimales",
+    "contenido": "Fracción como operador.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones y expresiones decimales",
+    "contenido": "Multiplicación de una fracción por un número natural.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones y expresiones decimales",
+    "contenido": "División de una fracción por un número natural y división de un número natural por una fracción.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones y expresiones decimales",
+    "contenido": "Suma y resta de expresiones decimales: cálculo mental y algorítmico, exacto y aproximado, con calculadora, planilla de cálculos y otros recursos digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones y expresiones decimales",
+    "contenido": "Multiplicación de un número natural por una expresión decimal.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones y expresiones decimales",
+    "contenido": "Expresiones decimales para expresar el resultado de una división de números naturales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y fraccionarios",
+    "contenido": "Problemas de proporcionalidad directa con y sin conocimiento del valor de la unidad: identificación y uso de la relación entre cantidades involucradas para encontrar la solución.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y fraccionarios",
+    "contenido": "Problemas de proporcionalidad directa y problemas no proporcionales: análisis y comparación.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y fraccionarios",
+    "contenido": "Problemas de proporcionalidad directa con números fraccionarios.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Rectas paralelas y perpendiculares",
+    "contenido": "Rectas paralelas y perpendiculares: Trazado de rectas paralelas y perpendiculares con graficadores digitales y con instrumentos geométricos: regla, escuadra y transportador.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Rectas paralelas y perpendiculares",
+    "contenido": "Mediatriz de un segmento: ubicación del punto medio de un segmento y trazado de su perpendicular.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de triángulos según sus lados y ángulos",
+    "contenido": "Propiedad triangular: análisis de la desigualdad triangular como condición necesaria para construir un triángulo según la medida de sus lados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de triángulos según sus lados y ángulos",
+    "contenido": "Construcción de triángulos según sus lados y sus ángulos con graficadores digitales y con instrumentos geométricos: dado un lado y sus ángulos contiguos, dados dos lados y el ángulo comprendido y dados los tres lados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de triángulos según sus lados y ángulos",
+    "contenido": "Clasificación de triángulos según sus ángulos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de triángulos según sus lados y ángulos",
+    "contenido": "Propiedad triangular: suma de los ángulos interiores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de cuadriláteros",
+    "contenido": "Construcción de cuadrados y rectángulos con graficadores digitales y con instrumentos geométricos: regla, escuadra o transportador.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de cuadriláteros",
+    "contenido": "Características y propiedades de cuadrados y rectángulos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de cuadriláteros",
+    "contenido": "Suma de las medidas de los ángulos interiores de los cuadriláteros.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Construcción de cuadriláteros",
+    "contenido": "Construcción de cuadrados y rectángulos con regla y compás.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Características y elementos de los cuerpos geométricos: prismas, cubos y pirámides.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Desarrollo plano de los cuerpos geométricos: prismas, cubos y pirámides.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Construcción de cuerpos utilizando soportes analógicos y digitales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Reproducción de cuerpos (cubos, prismas y pirámides) a partir de la identificación de sus características.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Medidas de capacidad. Litros, centilitros, mililitros. Equivalencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Expresiones de equivalencia: unidades de longitud, capacidad, peso y tiempo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Entornos de simulación para la comprensión de las relaciones de equivalencia entre las unidades de medida.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Cálculo aproximado y exacto de medidas de longitud, capacidad, peso y tiempo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Medida",
+    "tema": "Perímetro y área",
+    "contenido": "Perímetro de figuras poligonales (regulares e irregulares): estimación y cálculo exacto.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Medida",
+    "tema": "Perímetro y área",
+    "contenido": "Superficie y área: unidades de medida no convencionales (cuadrículas, superposición, cubrimiento con baldosas, etcétera).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Medida",
+    "tema": "Perímetro y área",
+    "contenido": "Relación entre el perímetro y el área de figuras poligonales (regulares e irregulares).",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "La información, su organización y representación",
+    "contenido": "Análisis de datos en tablas de frecuencias y gráficos estadísticos en soporte papel, en planilla de cálculos y en recursos digitales (incluso aquellos que usan IA).",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "La información, su organización y representación",
+    "contenido": "Organización e interpretación de datos en tablas de frecuencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "La información, su organización y representación",
+    "contenido": "Organización e interpretación de datos en pictogramas y diagramas de barras.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Estimación cualitativa de medidas de probabilidad.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "5°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Sucesos imposibles y seguros.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Lectura, escritura y orden de números naturales sin restricciones en el rango numérico, en distintos contextos analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Ubicación de números naturales en la recta numérica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Representación a escala de cantidades grandes.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistema de numeración decimal: descomposición basada en la organización del sistema decimal y de sumas y multiplicaciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistema de numeración decimal: descomposición polinómica de un número natural.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistema sexagesimal y decimal: características y diferencias.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Resolución de problemas de varios pasos que involucran las cuatro operaciones con números naturales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Resolución de problemas de multiplicación que involucran combinación de elementos: de dos conjuntos diferentes; permutaciones sin repetición.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Resolución de problemas que implican la iteración de un proceso de adición o sustracción.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Utilización de la relación en la que el cociente por el divisor más el resto es igual al dividendo, siempre que el resto sea menor que el divisor.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "División: reconstrucción del resto de una división a partir del conocimiento del cociente y del divisor.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Tratamiento de la información en problemas aditivos y multiplicativos: identificar datos, incógnitas, preguntas y cantidad de soluciones en grados crecientes de autonomía y confianza.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de problemas del campo aditivo y multiplicativo",
+    "contenido": "Potenciación: problemas de tipo recursivo.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Problemas que impliquen el uso de múltiplos y divisores de un número.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Identificación de números primos y compuestos. Descomposición multiplicativa de un número: exploración de diferentes combinaciones de factores que, al multiplicarse, resulten en ese número.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Problemas que involucran la búsqueda de múltiplos comunes y divisores comunes entre varios números.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Análisis, fundamentación y uso de los criterios de divisibilidad por 2, por 5 y por 10.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Análisis, fundamentación y uso de los criterios de divisibilidad por 3, por 4, por 6 y por 8.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Cálculos que combinan distintas operaciones. Jerarquía de las operaciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Cálculos estimativos de multiplicación y división. Algoritmo convencional de la división.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Análisis de las propiedades de las operaciones (conmutativa, asociativa y distributiva) en el marco de su uso.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "La calculadora para validar anticipaciones sobre cálculos y relaciones numéricas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Fracciones en el contexto de la medida: relaciones entre el entero y las partes y entre las partes entre sí.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Fracciones en el contexto de la proporcionalidad directa para representar proporciones. Relación entre fracciones y porcentajes y relaciones de proporcionalidad para resolver problemas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Relaciones entre fracciones",
+    "contenido": "Problemas que implican hallar la fracción de un número natural.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal",
+    "contenido": "Equivalencias entre fracciones decimales y expresiones decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal",
+    "contenido": "Aproximación de expresiones decimales al entero más cercano.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Comparación de fracciones: fracciones de igual o distinto numerador o denominador, fracción mayor o menor que un entero, fracción mayor o menor que la mitad, fracciones equivalentes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Comparación de fracciones y expresiones decimales en la recta numérica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Densidad: determinación de fracciones entre dos fracciones dadas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Densidad: determinación de expresiones decimales entre expresiones decimales dadas.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Comparación y orden de expresiones decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Expresiones decimales: multiplicación y división por la unidad seguida de ceros.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Composición y descomposición de números decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Problemas que involucran el valor posicional en la notación decimal.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Resolución de operaciones de suma y resta de fracciones que involucran cálculo mental y algorítmico.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Resolución de operaciones de multiplicación y división de una fracción por un número natural y división de un número natural por una fracción.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Multiplicación de fracciones en el contexto del cálculo de un área.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Multiplicación de fracciones en el contexto de la proporcionalidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "División de fracciones en el contexto de la medida.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Estrategias de multiplicación de expresiones decimales que involucran cálculo mental y algorítmico, exacto y aproximado, con calculadora.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Multiplicación de expresiones decimales en el contexto de la proporcionalidad directa.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Análisis de la relación entre la multiplicación de expresiones decimales y la multiplicación de fracciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Expresiones decimales para expresar el resultado de una división de números naturales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Repertorio de cálculos mentales para la multiplicación con expresiones decimales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "División entre expresiones decimales en el contexto de la proporcionalidad.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Problemas de proporcionalidad directa: uso de propiedades y de la constante de proporcionalidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Problemas de proporcionalidad directa con números racionales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Relación entre porcentaje y número racional.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Representación cartesiana de una situación de proporcionalidad directa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Comparación entre diferentes situaciones de proporcionalidad a través de la comparación de las constantes y de los gráficos cartesianos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad inversa",
+    "contenido": "Problemas de proporcionalidad inversa: exploración de situaciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Rectas paralelas y perpendiculares",
+    "contenido": "Mediatriz de un segmento: ubicación del punto medio de un segmento y trazado de su perpendicular.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Rectas paralelas y perpendiculares",
+    "contenido": "Figuras con pares de lados paralelos y perpendiculares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Propiedades de los paralelogramos",
+    "contenido": "Construcción de paralelogramos utilizando diferentes instrumentos geométricos y graficadores digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Propiedades de los paralelogramos",
+    "contenido": "Análisis de las propiedades de los paralelogramos: paralelismo de lados, congruencia de ángulos, igualdad de longitudes de lados opuestos y diagonales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Propiedades de los paralelogramos",
+    "contenido": "Propiedad de los cuadriláteros: suma de ángulos interiores.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Propiedades de los paralelogramos",
+    "contenido": "Propiedades de los trapecios y romboides.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Propiedades de los paralelogramos",
+    "contenido": "Construcción de trapecios y romboides.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Características y elementos de los cuerpos geométricos, particularmente en prismas, pirámides, cilindros, conos y esferas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Construcción de cuerpos utilizando soportes analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Desarrollo plano de los cuerpos geométricos: cilindros y conos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Reproducción de cuerpos (cilindros y conos) a partir de la identificación de sus características.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Cálculo aproximado y exacto de medidas de longitud, capacidad, peso y tiempo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Equivalencias entre unidades de medida: múltiplos y submúltiplos de metro, gramo y litro.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Unidades de almacenamiento de datos digitales: byte, megabyte, etc.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "En la planificación institucional del ciclo, para todos los contenidos de estadística se optará por alguna propuesta de articulación con el resto de las áreas y temáticas curriculares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Recolección de datos: encuestas de preguntas cerradas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Gráficos de barras. Pictogramas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Gráfico circular.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Tablas de frecuencias absolutas y relativas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Recolección, organización y representación de datos estadísticos utilizando diversas tecnologías digitales, incluso aquellas en las que interviene la IA.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Recolección y registro de datos acerca de situaciones, temáticas y problemas de interés social.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Medidas de centralización",
+    "contenido": "Moda.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Medidas de centralización",
+    "contenido": "Media aritmética.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Medidas de centralización",
+    "contenido": "La calculadora: modo estadístico.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Estimación cualitativa de medidas de probabilidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Sucesos posibles, imposibles y seguros.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Estimación y conjeturación probabilística con base en la observación de fenómenos y la exploración de datos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Probabilidad de un suceso.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "6°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Sucesos equiprobables.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Lectura, escritura y order de números naturales sin restricciones en el rango numérico, en distintos contextos analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Ubicación de los números naturales en la recta numérica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Uso de los números",
+    "contenido": "Representación a escala de cantidades grandes.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Profundización del análisis del valor posicional: diferentes expresiones para un mismo número natural.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistema de numeración decimal: descomposición polinómica de un número natural.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números naturales y sistema de numeración",
+    "tema": "Valor posicional",
+    "contenido": "Sistema sexagesimal y decimal: características y diferencias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas con las cuatro operaciones básicas y la potenciación",
+    "contenido": "Problemas de varios pasos con las cuatro operaciones con números naturales. Elaboración de estrategias para organizar la información y la resolución.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas con las cuatro operaciones básicas y la potenciación",
+    "contenido": "Identificación de la información, formulación y resolución de problemas para construir modelizaciones, prototipos y simulaciones.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas con las cuatro operaciones básicas y la potenciación",
+    "contenido": "Resolución de problemas de multiplicación que involucran combinación de elementos: variaciones; permutaciones con o sin repetición.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas con las cuatro operaciones básicas y la potenciación",
+    "contenido": "Potenciación: problemas de tipo recursivo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas con las cuatro operaciones básicas y la potenciación",
+    "contenido": "Resolución de problemas que implican la iteración de un proceso de adición o sustracción.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Problemas con las cuatro operaciones básicas y la potenciación",
+    "contenido": "Expresiones matemáticas con o sin letras en el marco de las operaciones con números naturales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Tratamiento de la información",
+    "contenido": "Tratamiento de la información en problemas aditivos y multiplicativos: identificar datos, incógnitas, preguntas y cantidad de soluciones en grados crecientes de autonomía y confianza.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Tratamiento de la información",
+    "contenido": "Identificación de situaciones problemáticas, anticipación y formulación de conjeturas en su resolución.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Potenciación y raíz cuadrada.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Cálculos que combinan distintas operaciones. Uso de la jerarquía de las operaciones al momento de resolverlas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Análisis de las propiedades de las operaciones (conmutativa, asociativa y distributiva) en el marco de su uso.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "La calculadora para validar anticipaciones sobre cálculos y relaciones numéricas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Distintos tipos de cálculos",
+    "contenido": "Estimación y anticipación de productos y cocientes como estrategia de control de los procedimientos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Descomposición multiplicativa de un número: exploración de diferentes combinaciones de factores que, al multiplicarse, resulten en ese número.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Análisis, fundamentación y uso de los criterios de divisibilidad por 3, por 4, por 6, por 8 y por 9.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Análisis, fundamentación y uso del criterio de divisibilidad por 7.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Búsqueda de múltiplos y divisores comunes entre dos o más números dados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Definición de múltiplo común menor y divisor común mayor.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números naturales",
+    "tema": "Relaciones numéricas de la divisibilidad",
+    "contenido": "Expresiones matemáticas con o sin letras en el marco de la divisibilidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Fracciones en el contexto de la medida: relaciones entre el entero y las partes y entre las partes entre sí.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Uso de números racionales para expresar diferentes medidas de longitud, capacidad y peso.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Fracción como índice comparativo: noción de razón.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Fracciones en el contexto de la proporcionalidad directa.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Los números racionales para expresar y calcular porcentajes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Fracciones en el contexto de la medida y la proporcionalidad",
+    "contenido": "Relación racional entre dos segmentos a y b, si se sabe que un múltiplo de a es igual a un múltiplo de b.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Escritura decimal",
+    "contenido": "Exploración de escrituras decimales periódicas a partir de escrituras fraccionarias.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Comparación y orden de fracciones y expresiones decimales: diferencias con los números naturales. Elaboración y uso de criterios.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Densidad: búsqueda y ubicación de fracciones entre dos fracciones dadas y de expresiones decimales entre dos expresiones decimales dadas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Números racionales y sistema de numeración",
+    "tema": "Orden y densidad en el conjunto de los números racionales",
+    "contenido": "Ubicación de fracciones y expresiones decimales en la recta numérica.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Multiplicación de fracciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "División de fracciones.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Exploración de las rupturas y continuidades que presenta la operatoria entre racionales respecto de los naturales.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Cálculo mental exacto y aproximado con fracciones. Estimación de resultados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con fracciones",
+    "contenido": "Multiplicación de fracciones en el contexto de la proporcionalidad inversa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Multiplicación y división de expresiones decimales que involucran cálculo mental y algorítmico, exacto, aproximado, y con calculadora. Estimación de resultados.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Multiplicación y división de expresiones decimales en el contexto de la proporcionalidad directa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Operaciones con números racionales",
+    "tema": "Operaciones con expresiones decimales",
+    "contenido": "Multiplicación de decimales en el contexto de la proporcionalidad inversa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Proporcionalidad directa: identificación de la constante y valores de las magnitudes expresados en números racionales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Problemas de proporcionalidad directa: uso de propiedades y de la constante de proporcionalidad.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Relaciones entre porcentaje, número racional y razón.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Representación cartesiana de una situación de proporcionalidad directa.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Comparación entre diferentes situaciones de proporcionalidad a través de la comparación de las constantes.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad directa con números naturales y racionales",
+    "contenido": "Comparación entre diferentes situaciones de proporcionalidad a través de la comparación de los gráficos cartesianos.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad inversa",
+    "contenido": "Problemas de proporcionalidad inversa: propiedades.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Proporcionalidad",
+    "tema": "Relaciones de proporcionalidad inversa",
+    "contenido": "Comparación con funciones decrecientes que no son de proporcionalidad inversa.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Polígonos regulares y no regulares",
+    "contenido": "Polígonos regulares e irregulares: semejanzas y diferencias en lo referido a cantidad e igualdad de lados, amplitud de los ángulos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Polígonos regulares y no regulares",
+    "contenido": "Suma de ángulos interiores de un polígono.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Polígonos regulares y no regulares",
+    "contenido": "El valor de los ángulos interiores y exteriores de polígonos regulares.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Polígonos regulares y no regulares",
+    "contenido": "Trazado de polígonos y análisis de sus características.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Polígonos regulares y no regulares",
+    "contenido": "Suma de los ángulos exteriores de un polígono.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Polígonos regulares y no regulares",
+    "contenido": "Construcción de polígonos no regulares.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Características y elementos de los cuerpos geométricos: prismas y pirámides con diferentes bases, cilindros, conos y esferas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Desarrollo plano de los cuerpos geométricos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Construcción de cuerpos utilizando soportes analógicos y digitales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Geometría",
+    "tema": "Cuerpos geométricos",
+    "contenido": "Reproducción de cuerpos a partir de la identificación de sus características.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Unidades de medida del SIMELA: múltiplos y submúltiplos del metro, del gramo y del litro.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Unidades de medida",
+    "contenido": "Sistema sexagesimal: grados, minutos y segundos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Fórmulas para el cálculo de área de figuras: paralelogramos, trapecios y romboides.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Fórmulas para el cálculo de área de figuras: polígonos regulares.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Perímetro y área del círculo.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Unidades convencionales y sus equivalencias (cm², m², km² y ha) para medir áreas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Relación entre el perímetro y el área de figuras poligonales.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Estimación de la medida de diferentes superficies seleccionando la unidad de medida más conveniente.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Perímetro y área de figuras circulares.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Aproximación al concepto de volumen.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Medida",
+    "tema": "Perímetro, área y volumen",
+    "contenido": "Volumen de prismas rectangulares. Volumen del cilindro.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "En la planificación institucional del ciclo, para todos los contenidos de estadística, se optará por alguna propuesta de articulación con el resto de las áreas y temáticas curriculares.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Recolección de datos: encuestas de preguntas cerradas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Gráficos de barras. Pictogramas. Gráfico circular. Ventajas y desventajas en función de la información que se quiere comunicar.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Tablas de frecuencias absolutas y relativas.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Recursos digitales para organizar y representar datos estadísticos.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Reconocimiento de la información como una de las herramientas importantes para tomar decisiones, contemplando los apoyos necesarios, incluso aquellos en los que interviene la IA.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Gráficos estadísticos y tablas de frecuencias",
+    "contenido": "Interpretación de tablas y gráficos relacionados con temas de interés social.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Medidas de centralización",
+    "contenido": "Moda, mediana y media aritmética.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Medidas de centralización",
+    "contenido": "La calculadora: modo estadístico.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Medidas de centralización",
+    "contenido": "Relaciones entre los valores de las medidas. Ventajas y desventajas del uso de medidas de centralización.",
+    "es_ampliacion": true
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Estimación y conjeturación probabilística con base en la observación de fenómenos y la exploración de datos, advirtiendo cuándo los sucesos son equiprobables y cuándo no.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Probabilidad de un suceso.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Sucesos equiprobables.",
+    "es_ampliacion": false
+  },
+  {
+    "materia": "Matemática",
+    "ciclo": "Segundo Ciclo",
+    "grado": "7°",
+    "eje": "Estudio de datos y probabilidad",
+    "tema": "Probabilidad",
+    "contenido": "Gestión de grandes volúmenes de datos (big data), inteligencia artificial.",
+    "es_ampliacion": true
+  }
+]

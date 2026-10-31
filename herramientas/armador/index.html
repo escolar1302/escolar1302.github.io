@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fichas con problemas | Herramientas | escolar.com.ar</title>
+<link rel="stylesheet" href="estilos.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Carcasa del micrositio Herramientas. No modifica el motor ni las fichas. */
+  :root{--ui-accent:#E67E22}
+  .tool-strip{
+    background:linear-gradient(135deg,#E65100,#E67E22);
+    color:#fff;
+    font-family:'Nunito',Arial,sans-serif;
+    padding:18px 20px 19px;
+    box-shadow:0 2px 8px rgba(0,0,0,.10);
+  }
+  .tool-strip-inner{max-width:1100px;margin:0 auto}
+  .tool-strip .eyebrow{
+    display:block;font-size:.73rem;font-weight:900;letter-spacing:.07em;
+    text-transform:uppercase;opacity:.9;margin-bottom:3px;
+  }
+  .tool-strip h2{margin:0;font-size:1.6rem;line-height:1.1;font-weight:900}
+  .tool-strip p{margin:5px 0 0;font-size:.94rem;line-height:1.4;opacity:.96}
+  .app>h1{color:#E65100}
+  @media(max-width:640px){
+    .tool-strip{padding:15px 16px 16px}
+    .tool-strip h2{font-size:1.35rem}
+  }
+  @media print{.tool-strip{display:none!important}}
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+</head>
+<body>
+
+
+<section class="tool-strip">
+  <div class="tool-strip-inner">
+    <span class="eyebrow">Herramientas para docentes · Matemática</span>
+    <h2>Fichas con problemas</h2>
+    <p>Configurá problemas según el sentido, la dificultad y el rango numérico. Si querés, agregá actividades de operaciones y numeración.</p>
+  </div>
+</section>
+<div class="app">
+  <h1>Fichas con problemas</h1>
+  <p class="lead">Armá una ficha combinando problemas y, si lo necesitás, actividades de numeración y operaciones.</p>
+
+  <section class="panel" id="configPanel">
+    <div class="grid">
+      <label class="control">Campo
+        <select id="campo"><option value="CA">Aditivo</option><option value="CM">Multiplicativo</option><option value="MIX">Mixto</option></select>
+      </label>
+      <label class="control">Rango / nivel numérico<select id="rango"></select></label>
+      <label class="control">Complejidad del problema
+        <select id="complejidad"><option value="baja">Baja</option><option value="media" selected>Media</option><option value="alta">Alta</option><option value="todas">Mezclada</option></select>
+      </label>
+      <label class="control">Cantidad
+        <select id="cantidad"><option>4</option><option selected>6</option><option>8</option><option>10</option><option>12</option></select>
+      </label>
+    </div>
+
+    <div class="presentation">
+      <div class="presentation-grid">
+        <label class="control">Título opcional
+          <input id="tituloHoja" type="text" value="Resolvé los problemas." maxlength="80">
+        </label>
+        <div>
+          <div style="font-weight:700;font-size:.92rem;margin-bottom:7px">Presentación</div>
+          <div class="segmented">
+            <label><input type="radio" name="estilo" value="clean"> Texto</label>
+            <label><input type="radio" name="estilo" value="box" checked> Recuadros</label>
+            <label><input type="radio" name="estilo" value="box-space"> Recuadro + respuesta</label>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:.92rem;margin-bottom:7px">Color de identificación</div>
+          <div class="color-swatches">
+            <label><input type="radio" name="colorFicha" value="red" checked><span class="swatch sw-red"></span></label>
+            <label><input type="radio" name="colorFicha" value="blue"><span class="swatch sw-blue"></span></label>
+            <label><input type="radio" name="colorFicha" value="green"><span class="swatch sw-green"></span></label>
+            <label><input type="radio" name="colorFicha" value="violet"><span class="swatch sw-violet"></span></label>
+            <label><input type="radio" name="colorFicha" value="gray"><span class="swatch sw-gray"></span></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="supplement-zone">
+      <div class="supplement-heading">Ejercitación complementaria</div>
+      <div class="supplement-toggles">
+        <label class="module-toggle" id="opsToggleLabel"><input type="checkbox" id="addOps"> Agregar operaciones</label>
+        <label class="module-toggle" id="numToggleLabel"><input type="checkbox" id="addNum"> Agregar numeración</label>
+      </div>
+
+      <div id="opsPanel" class="supp-panel">
+        <div class="supp-title">Operaciones</div>
+        <div class="supp-types">
+          <label><input type="checkbox" class="op-type" value="sum" checked> Suma</label>
+          <label><input type="checkbox" class="op-type" value="sub" checked> Resta</label>
+          <label><input type="checkbox" class="op-type" value="mul"> Multiplicación</label>
+          <label><input type="checkbox" class="op-type" value="div"> División</label>
+        </div>
+        <div class="compact-controls">
+          <label class="control">Complejidad
+            <select id="opLevel"><option value="baja">Baja</option><option value="media" selected>Media</option><option value="alta">Alta</option></select>
+          </label>
+          <label class="control">Cantidad
+            <select id="opCount"><option>4</option><option selected>6</option><option>8</option><option>10</option></select>
+          </label>
+          <label class="control">Reagrupamiento
+            <select id="opRegroup"><option value="auto">Según complejidad</option><option value="sin">Sin reagrupamiento</option><option value="con">Con reagrupamiento</option><option value="mixto">Mixto</option></select>
+          </label>
+          <label class="control">Presentación
+            <select id="opPresentation"><option value="vertical" selected>Cuenta vertical</option><option value="horizontal">Cálculo horizontal</option></select>
+          </label>
+        </div>
+      </div>
+
+      <div id="numPanel" class="supp-panel">
+        <div class="supp-title">Numeración</div>
+        <div class="supp-types">
+          <label><input type="checkbox" class="num-type" value="recta" checked> Recta numérica</label>
+          <label><input type="checkbox" class="num-type" value="tabla" checked> Tabla ±10 / ±100</label>
+          <label><input type="checkbox" class="num-type" value="anterior"> Anterior y posterior</label>
+          <label><input type="checkbox" class="num-type" value="orden"> Ordenamiento</label>
+          <label><input type="checkbox" class="num-type" value="descomp"> Descomposición</label>
+        </div>
+        <div class="compact-controls">
+          <label class="control">Rango
+            <select id="numRange"><option value="100">Hasta 100</option><option value="1000" selected>Hasta 1.000</option><option value="10000">Hasta 10.000</option><option value="100000">Hasta 100.000</option></select>
+          </label>
+          <label class="control">Complejidad
+            <select id="numLevel"><option value="baja">Baja</option><option value="media" selected>Media</option><option value="alta">Alta</option></select>
+          </label>
+        </div>
+        <div class="compact-note note">Cada tipo marcado aparece una sola vez. Descomposición incluye un ejemplo y cuatro ejercicios.</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="generar">Generar propuesta</button>
+      <button class="ghost" id="toggleAdvanced">Opciones avanzadas de problemas</button>
+    </div>
+    <div id="advanced">
+      <strong>Opciones avanzadas</strong>
+      <div class="note">Si no marcás nada, el sistema distribuye los tipos dentro de la complejidad elegida.</div>
+      <div id="advancedContent"></div>
+    </div>
+    <div id="warning" class="warning"></div>
+  </section>
+
+  <section class="preview-wrap" id="previewWrap">
+    <div class="teacher-summary" id="teacherSummary"></div>
+    <div class="toolbar">
+      <button class="primary" id="otra">Otra propuesta</button>
+      <button class="ghost" id="editar">Editar ficha</button>
+      <button class="ghost" id="cambiarDiseno">Cambiar diseño</button>
+      <button class="secondary" id="imprimir">Imprimir / guardar PDF</button>
+      <button class="ghost" id="copiar">Copiar problemas</button>
+      <button class="ghost" id="volver">Cambiar selección</button>
+      <button class="danger-lite" id="resetHist">Reiniciar historial</button>
+    </div>
+
+    <div id="designPanel" class="panel">
+      <strong>Diseño de la hoja</strong>
+      <div class="presentation-grid" style="margin-top:12px">
+        <label class="control">Título<input id="tituloHojaPreview" type="text" maxlength="80"></label>
+        <div>
+          <div style="font-weight:700;font-size:.92rem;margin-bottom:7px">Presentación</div>
+          <div class="segmented">
+            <label><input type="radio" name="estiloPreview" value="clean"> Texto</label>
+            <label><input type="radio" name="estiloPreview" value="box"> Recuadros</label>
+            <label><input type="radio" name="estiloPreview" value="box-space"> Recuadro + respuesta</label>
+          </div>
+        </div>
+        <div>
+          <div style="font-weight:700;font-size:.92rem;margin-bottom:7px">Color</div>
+          <div class="color-swatches">
+            <label><input type="radio" name="colorPreview" value="red"><span class="swatch sw-red"></span></label>
+            <label><input type="radio" name="colorPreview" value="blue"><span class="swatch sw-blue"></span></label>
+            <label><input type="radio" name="colorPreview" value="green"><span class="swatch sw-green"></span></label>
+            <label><input type="radio" name="colorPreview" value="violet"><span class="swatch sw-violet"></span></label>
+            <label><input type="radio" name="colorPreview" value="gray"><span class="swatch sw-gray"></span></label>
+          </div>
+        </div>
+      </div>
+      <div class="actions"><button class="primary" id="aplicarDiseno">Aplicar diseño</button><button class="ghost" id="cerrarDiseno">Cerrar</button></div>
+    </div>
+
+    <div class="edit-hint">Modo edición activo: podés cambiar problemas y actividades de numeración. Los controles no se imprimen.</div>
+    <div class="status" id="status"></div>
+    <div class="pages-stage" id="pagesStage"></div>
+    <div class="measure-zone" id="measureZone"><div class="measure-inner" id="measureInner"></div></div>
+  </section>
+</div>
+<script src="armador.js"></script>
+
+<div id="contenedor-pie">
+  <div class="site-footer-fallback">
+    <strong>Material elaborado por escolar.com.ar</strong><br>
+    Los contenidos de este portal educativo están bajo una Licencia CC Atribución-NoComercial-CompartirIgual 4.0 Internacional.
+  </div>
+</div>
+<script>
+(() => {
+  const params = new URLSearchParams(window.location.search);
+  const origen = params.get('origen');
+  const back = document.getElementById('backLink');
+  const destinos = {
+    matematica: { texto: '← Volver a Matemática', url: 'https://escolar.com.ar/matematica.html' },
+    lengua: { texto: '← Volver a Lengua', url: 'https://escolar.com.ar/lengua.html' },
+    recursos: { texto: '← Volver a Recursos', url: 'https://escolar.com.ar/recursos.html' },
+    herramientas: { texto: '← Volver a Herramientas', url: '../' }
+  };
+  const destino = destinos[origen] || destinos.herramientas;
+  if (back) { back.textContent = destino.texto; back.href = destino.url; }
+})();
+
+fetch('https://escolar.com.ar/pie.html')
+  .then(response => {
+    if (!response.ok) throw new Error('No se pudo cargar el pie de página');
+    return response.text();
+  })
+  .then(data => {
+    document.getElementById('contenedor-pie').innerHTML = data;
+  })
+  .catch(error => console.info('Se usa el pie local de respaldo.', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

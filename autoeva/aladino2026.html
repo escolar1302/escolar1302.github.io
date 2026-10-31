@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aladino y la lámpara maravillosa · recorrido interactivo</title>
+<style>
+:root{
+  --ink:#25323a;
+  --muted:#65727a;
+  --cream:#fffaf0;
+  --paper:#fffdf8;
+  --nav:#2c3e50;
+  --orange:#d97b2b;
+  --teal:#248a7d;
+  --violet:#6a58a8;
+  --gold:#d3a33a;
+  --red:#b44946;
+  --green:#2d8a67;
+  --line:#e5dfd3;
+  --shadow:0 18px 48px rgba(44,55,62,.14);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:ui-rounded,"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 8% 12%,rgba(217,123,43,.18) 0 78px,transparent 79px),
+    radial-gradient(circle at 92% 17%,rgba(106,88,168,.14) 0 105px,transparent 106px),
+    radial-gradient(circle at 83% 88%,rgba(36,138,125,.13) 0 120px,transparent 121px),
+    linear-gradient(135deg,#fff4dc 0%,#edf8f5 48%,#f1edfb 100%);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.20;
+  background-image:radial-gradient(circle at 1px 1px,rgba(37,50,58,.25) 1px,transparent 1.2px);
+  background-size:24px 24px;
+  mask-image:linear-gradient(to bottom,#000,transparent 92%);
+}
+button{font:inherit}
+.hidden{display:none!important}
+
+/* Barra del sitio */
+.site-header{background:var(--nav);padding:10px 0;width:100%;position:sticky;top:0;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,.28)}
+.site-nav{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.site-logo{display:flex;align-items:center;text-decoration:none}
+.site-logo img{height:60px;width:auto;display:block}
+.site-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.site-links a{color:#fff;text-decoration:none;font-size:.9rem;white-space:nowrap}
+.site-links a:hover{text-decoration:underline;text-underline-offset:4px}
+.site-links .site-back{color:#f1c40f;font-weight:800;border-left:1px solid #7f8c8d;padding-left:20px}
+
+.app{width:min(1160px,calc(100% - 28px));margin:0 auto;padding:26px 0 58px;position:relative;z-index:1}
+.hero{position:relative;overflow:hidden;background:rgba(255,253,248,.94);border:1px solid rgba(90,70,40,.08);border-radius:34px;padding:34px 38px;box-shadow:var(--shadow)}
+.hero::after{content:"";position:absolute;width:270px;height:270px;border-radius:50%;right:-95px;top:-125px;border:34px solid rgba(217,123,43,.08)}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+.hero-copy{max-width:800px}
+.eyebrow{display:flex;align-items:center;gap:10px;color:#9b5c24;font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+.lamp-icon{width:28px;height:28px;display:inline-grid;place-items:center;border-radius:50%;background:#fff0d8;border:1px solid #efcf9d}
+.lamp-icon svg{width:19px;height:19px;stroke:var(--orange);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+h1{font-size:clamp(2rem,5vw,4.3rem);line-height:.98;letter-spacing:-.045em;margin:13px 0 14px;max-width:850px}
+.hero p{color:var(--muted);font-size:1.05rem;line-height:1.58;margin:0;max-width:780px}
+.hero-badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.badge{padding:8px 12px;border-radius:999px;background:#fff4e1;border:1px solid #f0d6aa;color:#86521e;font-weight:850;font-size:.84rem}
+.hero-orb{width:138px;height:138px;border-radius:38px;display:grid;place-items:center;background:linear-gradient(145deg,#fff0cd,#f8e0a5);border:1px solid #ead099;box-shadow:inset 0 0 0 10px rgba(255,255,255,.48),0 14px 32px rgba(135,96,45,.14);transform:rotate(3deg);flex:none}
+.hero-orb svg{width:82px;height:82px;stroke:#a66621;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+.dashboard{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin:20px 0}
+.panel{background:rgba(255,253,248,.94);border:1px solid rgba(37,50,58,.07);border-radius:24px;padding:20px;box-shadow:0 12px 30px rgba(37,50,58,.09)}
+.panel-title{display:flex;justify-content:space-between;gap:16px;align-items:end;margin-bottom:12px}
+.panel-title strong{font-size:1.02rem}.panel-title span{font-size:.9rem;color:var(--muted)}
+.bar{height:15px;border-radius:999px;overflow:hidden;background:#ebe8df;box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--gold),var(--teal),var(--violet));border-radius:inherit;transition:width .4s ease}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat{background:#f8f6ef;border:1px solid #ece7db;border-radius:16px;padding:12px 13px}.stat b{display:block;font-size:1.2rem}.stat small{color:var(--muted)}
+.save-note{display:flex;gap:11px;align-items:flex-start;color:var(--muted);font-size:.92rem;line-height:1.45}.save-dot{width:12px;height:12px;background:var(--teal);border-radius:50%;box-shadow:0 0 0 6px rgba(36,138,125,.12);margin-top:4px;flex:none}
+.text-btn{border:0;background:transparent;color:var(--red);font-weight:850;text-decoration:underline;text-underline-offset:3px;padding:8px 0 0;cursor:pointer}
+
+.route{background:rgba(255,253,248,.94);border:1px solid rgba(37,50,58,.07);border-radius:26px;padding:21px 22px;margin:20px 0;box-shadow:0 12px 30px rgba(37,50,58,.08)}
+.route h2{font-size:1.12rem;margin:0 0 5px}.route p{margin:0 0 18px;color:var(--muted);font-size:.93rem}
+.route-track{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:start;position:relative}
+.route-track::before{content:"";position:absolute;left:5%;right:5%;top:18px;height:3px;background:linear-gradient(90deg,#efc78d,#d6b564,#70b9ad,#917bc7);border-radius:999px;z-index:0}
+.route-stop{position:relative;text-align:center;z-index:1}
+.route-dot{width:38px;height:38px;border-radius:50%;margin:0 auto 8px;background:#fff;border:3px solid #d8c8aa;display:grid;place-items:center;font-size:.72rem;font-weight:900;color:#806d50;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.route-stop span{display:block;font-size:.76rem;font-weight:800;line-height:1.2;color:#56646b}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:30px 2px 15px}.section-head h2{margin:0;font-size:clamp(1.35rem,3vw,2rem)}.section-head p{margin:5px 0 0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.module-card{position:relative;min-height:288px;overflow:hidden;border:1px solid rgba(37,50,58,.08);background:rgba(255,253,248,.97);border-radius:26px;padding:24px;text-align:left;color:var(--ink);box-shadow:0 13px 34px rgba(37,50,58,.1);cursor:pointer;transition:.18s ease}
+.module-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(37,50,58,.14)}
+.module-card::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:var(--accent)}
+.module-card::after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-52px;bottom:-64px;background:var(--wash)}
+.module-card.locked{cursor:not-allowed;filter:saturate(.68)}.module-card.locked:hover{transform:none}
+.card-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:20px}.module-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;font-weight:950;color:var(--accent)}
+.status{font-size:.76rem;font-weight:900;padding:7px 9px;border-radius:999px;background:#f0f1ec;color:#66716c}.status.done{background:#e3f4ed;color:#247152}.status.progress{background:#fff0dd;color:#9b5a20}.status.lock{background:#ece9f3;color:#6c637d}
+.module-symbol{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;background:var(--wash);border:1px solid rgba(0,0,0,.05);margin-bottom:17px}.module-symbol svg{width:36px;height:36px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.module-card h3{font-size:1.35rem;margin:0 0 9px;letter-spacing:-.02em}.module-card p{margin:0;color:var(--muted);line-height:1.46;max-width:92%}.card-foot{position:absolute;left:24px;right:24px;bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:.82rem;font-weight:800}.mini-bar{width:88px;height:7px;background:#e8e8e2;border-radius:999px;overflow:hidden}.mini-bar i{display:block;height:100%;background:var(--accent);border-radius:inherit}
+
+
+.report-block{margin-top:22px;padding:20px;background:#f8fafb;border:1px solid #d9e3e7;border-radius:20px}
+.report-block h3{margin:0 0 6px;color:#29445a}
+.report-block>p{margin:0 0 14px;color:var(--muted);line-height:1.45}
+.report-name{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0}
+.report-name label{font-weight:900}
+.report-name input{width:min(100%,360px);padding:11px 13px;border:1px solid #cbd6da;border-radius:12px;background:#fff;color:var(--ink);font:inherit}
+.report-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.report-actions button{border:0;border-radius:14px;padding:11px 15px;font-weight:900;cursor:pointer}
+.report-download{background:#d77b2f;color:#fff}
+.report-print{background:#3d708d;color:#fff}
+.report-detail-btn{background:#eceff0;color:#43535b}
+.report-detail{display:none;margin-top:18px;text-align:left}
+.report-detail.show{display:block}
+.report-stage{margin:18px 0 8px;padding:9px 12px;border-radius:12px;background:#eaf1f4;color:#29445a;font-weight:950}
+.report-item{border:1px solid #dfe5e7;border-left:6px solid #75838a;border-radius:12px;background:#fff;padding:12px 14px;margin:9px 0}
+.report-item.correct{border-left-color:#347e62}
+.report-item.incorrect{border-left-color:#a94d49}
+.report-item p{margin:4px 0;line-height:1.4}
+.report-item .state-ok{color:#287054;font-weight:900}
+.report-item .state-no{color:#9a413d;font-weight:900}
+.report-note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f4f1fa;border:1px solid #ddd6ec;color:#5e547c;line-height:1.45}
+
+.final-summary{margin-top:20px;background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(247,243,255,.96));border:1px solid #ddd4f2;border-radius:28px;padding:25px;box-shadow:var(--shadow)}
+.final-summary h2{margin:0 0 6px}.final-summary>p{margin:0 0 18px;color:var(--muted)}
+.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.summary-item{background:#fff;border:1px solid #e8e1f3;border-radius:18px;padding:15px}.summary-item small{display:block;color:var(--muted);margin-bottom:4px}.summary-item b{font-size:1.25rem}
+
+/* Quiz */
+.quiz{display:none;min-height:650px}.quiz.active{display:block}.quiz-shell{max-width:900px;margin:0 auto}.quiz-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}.ghost{border:1px solid #d7d9d3;background:rgba(255,253,248,.9);padding:10px 14px;border-radius:14px;font-weight:850;color:#526069;cursor:pointer}.counter{color:var(--muted);font-weight:850;font-size:.9rem}
+.quiz-card{background:rgba(255,253,248,.98);border:1px solid rgba(37,50,58,.08);border-radius:30px;overflow:hidden;box-shadow:var(--shadow)}
+.quiz-banner{padding:22px 25px;background:linear-gradient(135deg,var(--wash),rgba(255,255,255,.78));border-bottom:1px solid rgba(37,50,58,.07)}
+.quiz-banner-line{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}.quiz-banner h2{margin:4px 0 0;font-size:1.45rem}.quiz-score{font-weight:900;background:#fff;border:1px solid rgba(37,50,58,.08);border-radius:14px;padding:9px 12px;white-space:nowrap}
+.dual-bars{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:17px}.bar-caption{display:flex;justify-content:space-between;color:#607078;font-size:.78rem;font-weight:850;margin-bottom:5px}.smallbar{height:9px;background:#e6e5df;border-radius:999px;overflow:hidden}.smallbar i{display:block;height:100%;background:var(--accent);border-radius:inherit;transition:width .35s}.smallbar.general i{background:linear-gradient(90deg,var(--orange),var(--teal),var(--violet))}
+.question-area{padding:28px 28px 25px}.question-kicker{color:var(--accent);font-size:.77rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase;margin-bottom:9px}.question{font-size:clamp(1.25rem,2.7vw,1.72rem);font-weight:900;line-height:1.24;letter-spacing:-.015em;margin-bottom:22px}
+.options{display:grid;gap:11px}.option{width:100%;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;text-align:left;border:1px solid #dfe2dc;background:#fff;padding:13px 15px;border-radius:17px;cursor:pointer;color:var(--ink);transition:.16s}.option:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px);box-shadow:0 6px 15px rgba(37,50,58,.06)}.option:disabled{cursor:default}.letter{width:34px;height:34px;border-radius:11px;background:#f1f2ed;display:grid;place-items:center;font-weight:950;color:#59666d}.option.correct{border-color:#7bc9a8;background:#eefaf4}.option.correct .letter{background:#d8f2e6;color:#237653}.option.wrong{border-color:#e3a39f;background:#fff1ef}.option.wrong .letter{background:#f8d9d6;color:#a5403d}
+.feedback{display:none;margin-top:17px;padding:14px 16px;border-radius:17px;line-height:1.45}.feedback.show{display:block}.feedback.ok{background:#ebf8f2;border:1px solid #c8ead9;color:#2a634c}.feedback.no{background:#fff2ef;border:1px solid #efd0ca;color:#82413a}.feedback strong{display:block;margin-bottom:4px}.next-row{display:flex;justify-content:flex-end;margin-top:18px}.primary,.secondary{border:0;border-radius:15px;padding:11px 16px;font-weight:900;cursor:pointer}.primary{background:var(--accent);color:#fff;box-shadow:0 7px 18px rgba(0,0,0,.12)}.secondary{background:#eff0eb;color:#4e5d65}.primary:hover,.secondary:hover,.ghost:hover{filter:brightness(.98)}
+
+.result{text-align:center;padding:38px 28px 34px}.result-mark{width:72px;height:72px;border-radius:24px;background:var(--wash);display:grid;place-items:center;margin:0 auto 18px}.result-mark svg{width:44px;height:44px;stroke:var(--accent);fill:none;stroke-width:2.2}.result h2{font-size:2rem;margin:8px 0}.result p{max-width:650px;margin:0 auto;color:var(--muted);line-height:1.5}.result-score{font-size:3.7rem;font-weight:950;line-height:1;margin-top:22px;color:var(--accent)}.result-sub{color:var(--muted);font-weight:800;margin-top:6px}.result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:23px}.unlock-note{max-width:680px;margin:22px auto 0;background:#f5f0ff;border:1px solid #e3d9fb;color:#5d4d83;border-radius:16px;padding:13px 15px;font-weight:800}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#2f3f46;color:#fff;padding:11px 16px;border-radius:999px;font-weight:850;z-index:1500;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+#contenedor-pie{position:relative;z-index:1}
+
+@media(max-width:900px){.dashboard{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.module-card{min-height:250px}.hero-orb{display:none}.route-track{grid-template-columns:repeat(4,1fr);row-gap:18px}.route-track::before{display:none}.summary-grid{grid-template-columns:1fr}.dual-bars{grid-template-columns:1fr}.hero-top{display:block}}
+@media(max-width:640px){.site-nav{padding:0 14px;gap:10px}.site-logo img{height:48px}.site-links{gap:12px}.site-links a{font-size:.82rem}.hero{padding:27px 23px}.question-area{padding:23px 18px}.quiz-banner{padding:20px 18px}.quiz-banner-line{display:block}.quiz-score{display:inline-block;margin-top:10px}.route-track{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}}
+@media(max-width:460px){.site-nav{align-items:flex-start;flex-direction:column}.site-links{width:100%;justify-content:flex-start;gap:10px 14px;padding-bottom:3px}.site-links .site-back{border-left:0;padding-left:0;width:100%;padding-top:4px}.app{width:min(100% - 18px,1160px)}.option{grid-template-columns:36px 1fr;padding:12px 11px}.letter{width:30px;height:30px}.result-actions{display:grid}.result-actions button{width:100%}}
+</style>
+</head>
+<body>
+
+<script>
+(() => {
+  const btn = document.getElementById("btn-volver-origen");
+  if (!btn) return;
+  const fallbackHref = btn.dataset.fallbackHref || btn.getAttribute("href") || "/autoeva/index.html";
+  const fallbackLabel = btn.dataset.fallbackLabel || "Autoevaluaciones";
+  function usarFallback(){btn.href=fallbackHref;btn.textContent="⬅ Volver a "+fallbackLabel;}
+  function limpiarTitulo(titulo){titulo=String(titulo||"").replace(/\s+/g," ").trim();return titulo||fallbackLabel;}
+  const anterior=document.referrer;
+  if(!anterior){usarFallback();return;}
+  let urlAnterior,urlActual;
+  try{urlAnterior=new URL(anterior);urlActual=new URL(window.location.href);}catch(e){usarFallback();return;}
+  if(urlAnterior.origin!==urlActual.origin||urlAnterior.href===urlActual.href){usarFallback();return;}
+  btn.href=urlAnterior.pathname+urlAnterior.search+urlAnterior.hash;
+  fetch(urlAnterior.href,{credentials:"same-origin"})
+    .then(r=>{if(!r.ok)throw new Error();return r.text();})
+    .then(html=>{const doc=new DOMParser().parseFromString(html,"text/html");const t=doc.querySelector("title");btn.textContent="⬅ Volver a "+limpiarTitulo(t?t.textContent:"");})
+    .catch(()=>{btn.textContent="⬅ Volver a "+fallbackLabel;});
+})();
+</script>
+
+<div class="app">
+  <main id="home">
+    <section class="hero">
+      <div class="hero-top">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="lamp-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 15h10c3 0 5-2 5-5h-5c-1 0-2-.4-2.7-1.1L9.4 7H6.6L5 10H3"></path><path d="M5 15c0 2 1.6 3 3.5 3h4"></path><path d="M18 6c1-1 2-1.5 3-1"></path></svg></span> Lectura interactiva · Lengua</div>
+          <h1>Aladino y la lámpara maravillosa</h1>
+          <p>Un recorrido en tres partes para comprender la historia, relacionar palabras y personajes, y descubrir cómo está construido el cuento.</p>
+          <div class="hero-badges"><span class="badge">24 preguntas</span><span class="badge">Autocorrección inmediata</span><span class="badge">Progreso guardado</span></div>
+        </div>
+        <div class="hero-orb" aria-hidden="true"><svg viewBox="0 0 90 90"><path d="M18 52h34c12 0 19-7 19-18H55c-4 0-7-1-10-4l-7-7H27l-6 11H11"></path><path d="M21 52c0 8 6 13 15 13h15"></path><path d="M67 24c4-5 9-7 14-7"></path><path d="M55 65c5 0 9 4 9 9"></path><path d="M30 23c-2-5 1-10 6-13"></path></svg></div>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <div class="panel">
+        <div class="panel-title"><strong>Progreso del recorrido</strong><span id="overallPct">0 %</span></div>
+        <div class="bar"><i id="overallBar"></i></div>
+        <div class="stats">
+          <div class="stat"><b id="completedCount">0/3</b><small>partes completadas</small></div>
+          <div class="stat"><b id="answeredCount">0/24</b><small>preguntas recorridas</small></div>
+          <div class="stat"><b id="totalScore">0/24</b><small>puntaje acumulado</small></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="save-note"><span class="save-dot"></span><div><strong>Tu avance se guarda en este navegador.</strong><br>Podés cerrar la página y continuar después.</div></div>
+        <button class="text-btn" id="resetAll" type="button">Reiniciar toda la actividad</button>
+      </div>
+    </section>
+
+    <section class="route" aria-label="Ruta del cuento">
+      <h2>Ruta del cuento</h2>
+      <p>Una guía visual de los grandes momentos de la historia.</p>
+      <div class="route-track">
+        <div class="route-stop"><div class="route-dot">1</div><span>Aladino al comienzo</span></div>
+        <div class="route-stop"><div class="route-dot">2</div><span>El engaño</span></div>
+        <div class="route-stop"><div class="route-dot">3</div><span>La cueva</span></div>
+        <div class="route-stop"><div class="route-dot">4</div><span>La lámpara</span></div>
+        <div class="route-stop"><div class="route-dot">5</div><span>Badrulbudur</span></div>
+        <div class="route-stop"><div class="route-dot">6</div><span>El regreso</span></div>
+        <div class="route-stop"><div class="route-dot">7</div><span>Desenlace</span></div>
+      </div>
+    </section>
+
+    <div class="section-head"><div><h2>Elegí una parte</h2><p>Las dos primeras están disponibles desde el comienzo. La tercera se desbloquea al completar ambas.</p></div></div>
+    <section class="cards" id="moduleCards"></section>
+
+    <section class="final-summary hidden" id="finalSummary">
+      <h2>Recorrido completo</h2>
+      <p>Terminaste las tres partes. Estos son tus resultados finales y podés preparar un informe para enviar al docente.</p>
+      <div class="summary-grid" id="summaryGrid"></div>
+      <div class="report-block">
+        <h3>Informe para enviar al docente</h3>
+        <p>Escribí tu nombre. Después podés descargar una copia HTML o abrir la versión preparada para imprimir y guardar como PDF.</p>
+        <div class="report-name"><label for="studentName">Nombre y apellido:</label><input id="studentName" type="text" autocomplete="name" placeholder="Escribí tu nombre y apellido"></div>
+        <div class="report-actions">
+          <button class="report-download" id="downloadReport" type="button">Descargar corrección</button>
+          <button class="report-print" id="printReport" type="button">PDF / Imprimir</button>
+          <button class="report-detail-btn" id="toggleReportDetail" type="button">Ver detalle</button>
+        </div>
+        <div class="report-detail" id="reportDetail"></div>
+      </div>
+    </section>
+  </main>
+
+  <section id="quiz" class="quiz" aria-live="polite">
+    <div class="quiz-shell">
+      <div class="quiz-toolbar"><button class="ghost" id="homeBtn" type="button">← Volver al inicio</button><span class="counter" id="quizCounterTop"></span></div>
+      <div class="quiz-card" id="quizCard"></div>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="contenedor-pie"></div>
+<script>
+  fetch('/pie.html')
+    .then(response => { if(response.ok) return response.text(); throw new Error('No se pudo cargar el pie de página'); })
+    .then(data => { document.getElementById('contenedor-pie').innerHTML = data; })
+    .catch(error => console.error('Error:', error));
+</script>
+
+<script>
+const MODULES = [{"id": "historia", "label": "Parte 1", "title": "Comprender la historia", "description": "Hechos, causas, consecuencias, motivaciones e inferencias.", "accent": "#d97b2b", "symbol": "book", "questions": [{"tag": "Personajes · información explícita", "q": "¿Cómo se presenta a Aladino al comienzo del cuento?", "o": ["Como un joven estudioso que quería continuar el oficio de su padre.", "Como un muchacho inquieto y testarudo que prefería callejear antes que aprender a coser.", "Como un comerciante que trabajaba con su madre en el zoco.", "Como un aprendiz de hechicero interesado en los objetos mágicos."], "a": 1, "exp": "Al comienzo, el relato lo caracteriza como inquieto y testarudo: evita aprender el oficio de sastre y prefiere vagar por la ciudad."}, {"tag": "Causa y consecuencia · inferencia", "q": "¿Por qué Aladino finalmente acepta entrar en la cueva aunque desconfía del extranjero?", "o": ["Porque quiere demostrar que es más valiente que sus amigos.", "Porque cree que allí encontrará a un pariente de su padre.", "Porque el anillo le garantiza que nada malo puede ocurrirle.", "Porque piensa en las monedas prometidas y en la comida que su madre podría comprar con ellas."], "a": 3, "exp": "Aladino piensa en huir, pero cambia de idea al recordar las monedas de plata y la necesidad de su madre."}, {"tag": "Cambio de comprensión · inferencia", "q": "¿En qué momento Aladino comprende con claridad que el extranjero no es su tío ni su amigo?", "o": ["Cuando el hombre exige recibir la lámpara antes de ayudarlo a salir de la cueva.", "Cuando ve por primera vez las piedras preciosas del jardín.", "Cuando escucha al genio decir que sirve a la lámpara.", "Cuando su madre le explica qué es un efrit."], "a": 0, "exp": "La exigencia de entregar primero la lámpara revela que el extranjero prioriza el objeto y no la seguridad de Aladino."}, {"tag": "Secuencia narrativa · localización", "q": "¿Cómo logra Aladino salir de la cueva sellada?", "o": ["Encuentra una segunda salida detrás del jardín de piedras preciosas.", "El hechicero regresa arrepentido y abre la entrada.", "Frota la lámpara sin querer y el efrit lo lleva de regreso a su casa.", "Usa el anillo para romper la piedra que tapa la entrada."], "a": 2, "exp": "Mientras llora, Aladino frota la lámpara sin darse cuenta. Aparece el efrit y su primer pedido es regresar a casa con su madre."}, {"tag": "Relación entre episodios · correferencia temática", "q": "¿De dónde salen las piedras preciosas que la madre de Aladino lleva después como regalo al sultán?", "o": ["De un cofre que el genio deja en la casa de Aladino.", "De los frutos brillantes que Aladino había tomado en la cueva y que al principio no reconoció como gemas.", "De una recompensa entregada por los mercaderes del zoco.", "De una herencia escondida por Mustafá antes de morir."], "a": 1, "exp": "Los supuestos “frutos” recogidos en la cueva resultan ser piedras preciosas y luego funcionan como un regalo digno del sultán."}, {"tag": "Motivación de un personaje · inferencia", "q": "¿Por qué el sultán impone condiciones tan extraordinarias antes de aceptar el casamiento con Badrulbudur?", "o": ["Porque no quiere entregar a su hija al primer desconocido que se presenta y, aconsejado por el visir, exige una prueba de riqueza y poder.", "Porque sabe que Aladino posee una lámpara mágica y quiere quedarse con ella.", "Porque la princesa le pide tiempo para conocer mejor a Aladino.", "Porque desea obligar a Aladino a abandonar la ciudad."], "a": 0, "exp": "El sultán queda impresionado por el regalo, pero no quiere aceptar de inmediato a un desconocido; el visir influye en las exigencias que formula."}, {"tag": "Información explícita · síntesis", "q": "¿Qué pide Aladino al genio cuando decide cumplir la gran exigencia del sultán?", "o": ["Solo los cuarenta cofres de piedras preciosas.", "Un ejército para conquistar el reino por la fuerza.", "Que convierta al visir en su aliado.", "Todo lo exigido por el sultán y, además, un palacio extraordinario frente al castillo real."], "a": 3, "exp": "Aladino pide los servidores, caballos y cofres solicitados, y suma un palacio colosal como prueba de su amor por Badrulbudur."}, {"tag": "Desenlace · integración de información", "q": "¿Qué combinación de acciones permite resolver el conflicto final con el hechicero?", "o": ["El sultán envía soldados y recupera el palacio por la fuerza.", "El genio del anillo derrota al hechicero y destruye la lámpara.", "Badrulbudur participa en un plan para engañar al hechicero; Aladino recupera la lámpara y ordena al genio devolver el palacio a China.", "La sirvienta descubre el engaño y cambia nuevamente la lámpara por otra vieja."], "a": 2, "exp": "La resolución es conjunta: Badrulbudur ayuda a neutralizar al hechicero y Aladino recupera la lámpara para ordenar el regreso del palacio."}]}, {"id": "relaciones", "label": "Parte 2", "title": "Personajes, palabras y relaciones", "description": "Voces, conectores, referencias, vocabulario y transformación de los personajes.", "accent": "#248a7d", "symbol": "links", "questions": [{"tag": "Lenguaje figurado · inferencia", "q": "Cuando el narrador dice que el extranjero hablaba con una ternura que no nacía del corazón, ¿qué da a entender?", "o": ["Que el extranjero estaba emocionado porque realmente era hermano de Mustafá.", "Que tenía miedo de contarle a Aladino un secreto familiar.", "Que fingía afecto para ganarse la confianza de Aladino.", "Que no sabía cómo expresar cariño porque llevaba muchos años viajando."], "a": 2, "exp": "La expresión contrapone las palabras afectuosas con la verdadera intención del hechicero: la ternura es fingida."}, {"tag": "Conectores · relación adversativa", "q": "En la secuencia “pensó en huir, pero cambió de idea…”, ¿qué relación establece la palabra “pero”?", "o": ["Contrapone una primera intención con la decisión que finalmente toma Aladino.", "Indica que una acción ocurre después de otra.", "Explica la causa de que aparezca la cueva.", "Introduce una consecuencia inevitable de la magia."], "a": 0, "exp": "“Pero” es un conector adversativo: marca contraste entre la idea inicial de huir y la decisión posterior de quedarse."}, {"tag": "Correferencia · pronombres demostrativos", "q": "Cuando el hechicero coloca el anillo en el dedo de Aladino y dice “Esto te protegerá”, ¿a qué se refiere “esto”?", "o": ["A la lámpara que Aladino todavía no encontró.", "A las monedas de plata que le acaba de entregar.", "A la fórmula mágica que abrió la tierra.", "Al anillo oscuro y pesado que acaba de ponerle."], "a": 3, "exp": "El demostrativo “esto” retoma el objeto mencionado inmediatamente antes: el anillo."}, {"tag": "Objeto y función · relación entre partes", "q": "¿Por qué el anillo resulta importante aunque al principio parezca un detalle secundario?", "o": ["Porque permite reconocer las piedras preciosas de la cueva.", "Porque años después su poder lleva a Aladino hasta el palacio robado y le permite reencontrarse con Badrulbudur.", "Porque reemplaza definitivamente a la lámpara cuando esta se rompe.", "Porque demuestra que el hechicero sí quería proteger a Aladino."], "a": 1, "exp": "El anillo reaparece en el conflicto final: Aladino activa por accidente al genio del anillo y consigue llegar hasta su esposa."}, {"tag": "Voces del relato · discurso directo", "q": "¿Qué recurso usa el cuento para incorporar directamente las palabras de los personajes?", "o": ["Un narrador en primera persona que cuenta todo lo que oye.", "Notas al pie que explican cada conversación.", "Raya de diálogo y reproducción directa de lo que dicen los personajes.", "Paréntesis que resumen los pensamientos de Aladino."], "a": 2, "exp": "Las intervenciones de Aladino, el hechicero, el efrit y otros personajes aparecen en discurso directo, introducidas mediante rayas de diálogo."}, {"tag": "Personajes · acciones y rasgos", "q": "¿Qué acción muestra con mayor claridad que Badrulbudur participa activamente en la resolución del conflicto final?", "o": ["Acepta casarse con Aladino después de verlo llegar a la corte.", "Permanece escondida hasta que el genio resuelve todo.", "Le pide al sultán que castigue a la sirvienta.", "Hace entrar a Aladino en secreto y colabora en el plan que termina con el hechicero neutralizado."], "a": 3, "exp": "En el desenlace, Badrulbudur no es solo alguien a quien rescatar: ayuda a organizar el engaño que permite recuperar la lámpara."}, {"tag": "Vocabulario en contexto", "q": "Según el glosario del texto, ¿qué función cumple un visir?", "o": ["Es el encargado de custodiar las lámparas mágicas del palacio.", "Es un funcionario importante de la corte que aconseja al sultán.", "Es un mercader autorizado a recorrer distintas ciudades.", "Es el jefe de los pregoneros que anuncian las órdenes reales."], "a": 1, "exp": "El glosario define al visir como una persona de alto cargo en la corte que aconseja al sultán en sus decisiones."}, {"tag": "Transformación del protagonista · inferencia global", "q": "¿Qué cambio general puede reconocerse en Aladino entre el comienzo y el final del cuento?", "o": ["Pasa de ser un joven despreocupado que evita responsabilidades a alguien capaz de tomar decisiones, sostener objetivos y actuar frente a conflictos difíciles.", "Pasa de ser un joven valiente a alguien que evita todo peligro y depende por completo de su madre.", "Pasa de desconfiar de la magia a convertirse en hechicero profesional.", "Pasa de vivir en la pobreza a rechazar cualquier forma de riqueza o poder."], "a": 0, "exp": "El cuento muestra un recorrido: el Aladino inicial vive sin preocuparse demasiado por el futuro; más adelante toma decisiones y actúa para alcanzar y recuperar aquello que valora."}]}, {"id": "estructura", "label": "Parte 3", "title": "Cómo está construido el cuento", "description": "Estructura narrativa, funciones de los personajes, anticipaciones y organización del relato.", "accent": "#6a58a8", "symbol": "structure", "locked": true, "questions": [{"tag": "Relato enmarcado · literatura", "q": "¿Qué significa que “Aladino y la lámpara maravillosa” forme parte de un relato enmarcado en Las mil y una noches?", "o": ["Que la historia de Aladino aparece dentro de una historia mayor, en la que Sherezade cuenta relatos noche tras noche.", "Que el cuento está dividido en capítulos rodeados por un marco decorativo.", "Que todos los personajes saben que están dentro de otra historia.", "Que la historia de Aladino se cuenta únicamente mediante cartas."], "a": 0, "exp": "La presentación explica que Las mil y una noches posee una historia marco: dentro de ella, Sherezade narra otros relatos, entre los cuales se encuentra Aladino."}, {"tag": "Situación inicial · estructura narrativa", "q": "¿Cuál de estas opciones resume mejor la situación inicial antes de que aparezca el hechicero?", "o": ["Aladino ya vive en un palacio y desea conocer a la princesa.", "El hechicero perdió la lámpara y busca recuperarla con ayuda del sultán.", "Aladino vive humildemente con su familia, evita aprender el oficio de su padre y, tras la muerte de Mustafá, la economía de la casa empeora.", "Badrulbudur ha sido secuestrada y Aladino intenta encontrarla."], "a": 2, "exp": "La situación inicial presenta al protagonista, su forma de vida y la dificultad económica familiar antes del acontecimiento que pone en marcha la aventura."}, {"tag": "Conflicto · acontecimiento desencadenante", "q": "¿Qué episodio funciona como el gran desencadenante de la aventura?", "o": ["La boda de Aladino con Badrulbudur.", "La aparición del hechicero que se hace pasar por pariente y conduce a Aladino hacia la cueva.", "La decisión del sultán de nombrar heredero a Aladino.", "El intercambio de una lámpara vieja por una nueva."], "a": 1, "exp": "La llegada del falso tío rompe la situación inicial y pone en movimiento la cadena de hechos que conduce a la cueva y a la lámpara."}, {"tag": "Anticipación · relación principio/final", "q": "¿Qué elemento introducido temprano funciona como una anticipación porque recién muestra toda su importancia mucho después?", "o": ["Los puestos del zoco.", "El oficio de sastre de Mustafá.", "La comida que prepara el genio.", "El anillo que el hechicero coloca en el dedo de Aladino antes de entrar en la cueva."], "a": 3, "exp": "El anillo parece protector pero secundario. Reaparece mucho después, cuando su poder permite a Aladino llegar hasta el palacio robado."}, {"tag": "Funciones narrativas · personajes", "q": "¿Qué relación de funciones describe mejor a Aladino y al hechicero dentro de la historia?", "o": ["Aladino funciona como protagonista y el hechicero como antagonista que provoca y renueva los conflictos.", "Los dos son ayudantes del sultán y persiguen el mismo objetivo.", "El hechicero es el narrador y Aladino es únicamente un personaje secundario.", "Aladino es antagonista porque impide que el hechicero recupere su lámpara."], "a": 0, "exp": "La historia sigue principalmente las acciones y objetivos de Aladino, mientras que el hechicero se opone a él y genera los conflictos centrales."}, {"tag": "Objetos mágicos · función en la trama", "q": "¿Qué función cumplen principalmente la lámpara y el anillo dentro de la construcción del cuento?", "o": ["Solo decoran el ambiente fantástico y podrían eliminarse sin cambiar los acontecimientos.", "Sirven para describir la riqueza de la antigua China.", "Impulsan la acción: permiten resolver situaciones, crean nuevas posibilidades y vuelven a ser decisivos cuando aparecen nuevos conflictos.", "Explican por qué Aladino aprende finalmente el oficio de sastre."], "a": 2, "exp": "Los objetos mágicos no son adornos: cambian lo que los personajes pueden hacer y conectan distintos momentos de la trama."}, {"tag": "Organización global · secuencias", "q": "Si tuvieras que dividir el cuento en tres grandes momentos, ¿cuál organización representa mejor su desarrollo?", "o": ["Presentación del sultán → historia del visir → descripción de la ciudad.", "Infancia de Badrulbudur → viaje del sultán → aparición del genio.", "Encuentro con la princesa → muerte de Mustafá → llegada del hechicero.", "Origen humilde y aventura de la cueva → ascenso de Aladino y casamiento → regreso del hechicero y resolución definitiva."], "a": 3, "exp": "Esa división reúne los principales cambios de la trama: origen y descubrimiento de la magia, transformación social y amorosa, y conflicto final con el regreso del antagonista."}, {"tag": "Motivo literario · interpretación", "q": "En la presentación se dice que el cuento gira en torno al “motivo literario de los tres deseos”. ¿Qué significa aquí “motivo literario”?", "o": ["Una regla que obliga a todos los cuentos a tener exactamente tres personajes.", "Una situación o idea recurrente de la tradición literaria que organiza parte de la historia y aparece en distintas obras.", "El motivo personal por el que el autor decidió escribir el cuento.", "Una explicación histórica sobre el origen real de las lámparas de aceite."], "a": 1, "exp": "Un motivo literario es una situación, imagen o idea que reaparece en distintas narraciones y puede organizar sus conflictos y expectativas."}]}];
+const STORAGE_KEY='aladino_recorrido_interactivo_v1';
+const letters=['A','B','C','D'];
+const icons={
+  book:'<svg viewBox="0 0 48 48"><path d="M7 10c7-2 12 0 17 4v25c-5-4-10-6-17-4z"></path><path d="M41 10c-7-2-12 0-17 4v25c5-4 10-6 17-4z"></path></svg>',
+  links:'<svg viewBox="0 0 48 48"><path d="M19 16l-5-5a7 7 0 0 0-10 10l8 8a7 7 0 0 0 10 0l4-4"></path><path d="M29 32l5 5a7 7 0 0 0 10-10l-8-8a7 7 0 0 0-10 0l-4 4"></path><path d="M17 31l14-14"></path></svg>',
+  structure:'<svg viewBox="0 0 48 48"><rect x="18" y="5" width="12" height="9" rx="2"></rect><rect x="4" y="34" width="12" height="9" rx="2"></rect><rect x="32" y="34" width="12" height="9" rx="2"></rect><path d="M24 14v8M10 34v-7h28v7"></path></svg>'
+};
+function wash(accent){if(accent==='#d97b2b')return '#fff0df';if(accent==='#248a7d')return '#e6f6f3';return '#f0ecfb';}
+function defaultState(){return {modules:Object.fromEntries(MODULES.map(m=>[m.id,{completed:false,score:0,progress:0,selected:{}}])),studentName:''};}
+function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return defaultState();const s=JSON.parse(raw);const d=defaultState();MODULES.forEach(m=>{if(s.modules&&s.modules[m.id])d.modules[m.id]={...d.modules[m.id],...s.modules[m.id]};});d.studentName=s.studentName||'';return d;}catch(e){return defaultState();}}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+let state=loadState(),activeModule=null,attempt=null;
+function structureUnlocked(){return state.modules.historia.completed&&state.modules.relaciones.completed;}
+function completedCount(){return MODULES.filter(m=>state.modules[m.id].completed).length;}
+function overallAnswered(){return MODULES.reduce((sum,m)=>{const s=state.modules[m.id];return sum+(s.completed?8:Math.min(8,s.progress||0));},0);}
+function accumulatedScore(){return MODULES.reduce((sum,m)=>sum+(state.modules[m.id].completed?state.modules[m.id].score:0),0);}
+function overallPct(){return Math.round(overallAnswered()/24*1000)/10;}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
+function isLocked(m){return m.id==='estructura'&&!structureUnlocked();}
+function statusFor(m){const s=state.modules[m.id];if(isLocked(m))return{cls:'lock',txt:'Bloqueada'};if(s.completed)return{cls:'done',txt:`Completada · ${s.score}/8`};if(s.progress>0)return{cls:'progress',txt:`En curso · ${s.progress}/8`};return{cls:'',txt:'Sin comenzar'};}
+function renderHome(){
+  document.getElementById('home').classList.remove('hidden');document.getElementById('quiz').classList.remove('active');
+  const pct=overallPct();document.getElementById('overallPct').textContent=`${pct.toLocaleString('es-AR')} %`;document.getElementById('overallBar').style.width=pct+'%';
+  document.getElementById('completedCount').textContent=`${completedCount()}/3`;document.getElementById('answeredCount').textContent=`${overallAnswered()}/24`;document.getElementById('totalScore').textContent=`${accumulatedScore()}/24`;
+  const cards=document.getElementById('moduleCards');cards.innerHTML='';
+  MODULES.forEach(m=>{const s=state.modules[m.id],locked=isLocked(m),st=statusFor(m),prog=s.completed?100:(s.progress/8*100);const btn=document.createElement('button');btn.type='button';btn.className='module-card'+(locked?' locked':'');btn.style.setProperty('--accent',m.accent);btn.style.setProperty('--wash',wash(m.accent));btn.setAttribute('aria-disabled',locked?'true':'false');btn.innerHTML=`<div class="card-top"><span class="module-label">${m.label}</span><span class="status ${st.cls}">${st.txt}</span></div><div class="module-symbol">${icons[m.symbol]}</div><h3>${m.title}</h3><p>${m.description}</p><div class="card-foot"><span>${locked?'Completá las Partes 1 y 2':'8 preguntas'}</span><span class="mini-bar"><i style="width:${prog}%"></i></span></div>`;btn.addEventListener('click',()=>{if(locked){toast('La Parte 3 se desbloquea al completar las Partes 1 y 2.');return;}startModule(m.id,false);});cards.appendChild(btn);});
+  const summary=document.getElementById('finalSummary');
+  if(completedCount()===3){
+    summary.classList.remove('hidden');
+    const grid=document.getElementById('summaryGrid');
+    grid.innerHTML=MODULES.map(m=>`<div class="summary-item"><small>${m.label} · ${m.title}</small><b>${state.modules[m.id].score}/8</b></div>`).join('')+`<div class="summary-item" style="grid-column:1/-1"><small>Puntaje total</small><b>${accumulatedScore()}/24 · ${Math.round(accumulatedScore()/24*100)} %</b></div>`;
+    const nameInput=document.getElementById('studentName');
+    if(nameInput){nameInput.value=state.studentName||'';nameInput.oninput=()=>{state.studentName=nameInput.value;saveState();};}
+    const detail=document.getElementById('reportDetail');if(detail)detail.innerHTML=reportDetailHTML();
+    const d=document.getElementById('downloadReport'),p=document.getElementById('printReport'),t=document.getElementById('toggleReportDetail');
+    if(d)d.onclick=downloadCorrection;if(p)p.onclick=printCorrection;if(t)t.onclick=toggleReportDetail;
+  }else summary.classList.add('hidden');
+}
+function startModule(id,retry=false){activeModule=MODULES.find(m=>m.id===id);const saved=state.modules[id];if(retry||saved.completed){attempt={index:0,score:0,selected:{}};}else{attempt={index:saved.progress||0,score:0,selected:{...(saved.selected||{})}};attempt.score=Object.entries(attempt.selected).reduce((sum,[i,ch])=>sum+(activeModule.questions[+i].a===ch?1:0),0);}document.getElementById('home').classList.add('hidden');document.getElementById('quiz').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});renderQuestion();}
+function generalPctDuringAttempt(){let count=0;MODULES.forEach(m=>{const s=state.modules[m.id];if(m.id===activeModule.id){count+=s.completed?8:Math.max(s.progress||0,attempt.index);}else count+=s.completed?8:Math.min(8,s.progress||0);});return Math.round(count/24*1000)/10;}
+function renderQuestion(){const q=activeModule.questions[attempt.index];if(!q){finishModule();return;}const partPct=attempt.index/8*100,gpct=generalPctDuringAttempt();document.getElementById('quizCounterTop').textContent=`Pregunta ${attempt.index+1} de 8`;const card=document.getElementById('quizCard');card.style.setProperty('--accent',activeModule.accent);card.style.setProperty('--wash',wash(activeModule.accent));card.innerHTML=`<div class="quiz-banner"><div class="quiz-banner-line"><div><span class="module-label">${activeModule.label}</span><h2>${activeModule.title}</h2></div><div class="quiz-score">Puntaje: ${attempt.score}/8</div></div><div class="dual-bars"><div><div class="bar-caption"><span>Esta parte</span><span>${attempt.index}/8</span></div><div class="smallbar"><i style="width:${partPct}%"></i></div></div><div><div class="bar-caption"><span>Recorrido total</span><span>${gpct.toLocaleString('es-AR')} %</span></div><div class="smallbar general"><i style="width:${gpct}%"></i></div></div></div></div><div class="question-area"><div class="question-kicker">${q.tag}</div><div class="question">${q.q}</div><div class="options" id="options"></div><div class="feedback" id="feedback"></div><div class="next-row"><button class="primary" id="nextBtn" type="button" hidden>${attempt.index===7?'Ver resultado':'Siguiente pregunta'} →</button></div></div>`;
+  const opts=card.querySelector('#options');q.o.forEach((txt,idx)=>{const b=document.createElement('button');b.type='button';b.className='option';b.innerHTML=`<span class="letter">${letters[idx]}</span><span>${txt}</span>`;b.addEventListener('click',()=>answer(idx));opts.appendChild(b);});card.querySelector('#nextBtn').addEventListener('click',()=>{attempt.index++;renderQuestion();});}
+function answer(choice){const q=activeModule.questions[attempt.index];if(attempt.selected[attempt.index]!==undefined)return;attempt.selected[attempt.index]=choice;const correct=choice===q.a;if(correct)attempt.score++;const buttons=[...document.querySelectorAll('.option')];buttons.forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===choice&&!correct)b.classList.add('wrong');});const f=document.getElementById('feedback');f.className='feedback show '+(correct?'ok':'no');f.innerHTML=`<strong>${correct?'Respuesta correcta.':'No es la opción correcta.'}</strong>${q.exp}`;document.getElementById('nextBtn').hidden=false;const s=state.modules[activeModule.id];if(!s.completed){s.progress=Math.max(s.progress||0,attempt.index+1);s.selected={...attempt.selected};saveState();}}
+function nextRecommended(){if(activeModule.id==='historia'&&!state.modules.relaciones.completed)return'relaciones';if(activeModule.id==='relaciones'&&!state.modules.historia.completed)return'historia';if(activeModule.id!=='estructura'&&structureUnlocked()&&!state.modules.estructura.completed)return'estructura';return null;}
+function finishModule(){const s=state.modules[activeModule.id];s.completed=true;s.score=attempt.score;s.progress=8;s.selected={...attempt.selected};saveState();const pct=Math.round(attempt.score/8*100),next=nextRecommended(),allDone=completedCount()===3;document.getElementById('quizCounterTop').textContent='Parte finalizada';const card=document.getElementById('quizCard');card.style.setProperty('--accent',activeModule.accent);card.style.setProperty('--wash',wash(activeModule.accent));let note='';if(activeModule.id!=='estructura'&&structureUnlocked()&&!state.modules.estructura.completed)note='<div class="unlock-note">La Parte 3 ya está desbloqueada: ahora podés analizar cómo está construido el cuento.</div>';if(allDone)note=`<div class="unlock-note">Recorrido completo: ${accumulatedScore()}/24 puntos y 100 % de la actividad realizada.</div>`;const nextText=allDone?'Ver resumen':(next?'Continuar con la siguiente':'Elegir otra parte');card.innerHTML=`<div class="result"><div class="result-mark"><svg viewBox="0 0 64 64"><path d="M17 33l10 10 21-24"></path><circle cx="32" cy="32" r="25"></circle></svg></div><div class="module-label">${activeModule.label}</div><h2>Parte completada</h2><p>Terminaste las ocho preguntas de <strong>${activeModule.title}</strong>. El puntaje muestra las respuestas correctas y la barra indica el recorrido realizado.</p><div class="result-score">${attempt.score}/8</div><div class="result-sub">${pct} % de respuestas correctas · Progreso general: ${overallPct().toLocaleString('es-AR')} %</div><div class="result-actions"><button class="primary" id="continueBtn" type="button">${nextText}</button><button class="secondary" id="retry" type="button">Reintentar esta parte</button><button class="secondary" id="resultHome" type="button">Volver al inicio</button></div>${note}</div>`;
+  card.querySelector('#continueBtn').addEventListener('click',()=>{if(allDone){renderHome();setTimeout(()=>document.getElementById('finalSummary').scrollIntoView({behavior:'smooth'}),60);}else if(next){startModule(next,false);}else{renderHome();setTimeout(()=>document.querySelector('.section-head').scrollIntoView({behavior:'smooth'}),60);}});card.querySelector('#retry').addEventListener('click',()=>startModule(activeModule.id,true));card.querySelector('#resultHome').addEventListener('click',renderHome);}
+
+function escapeHTML(value){
+ return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+}
+function getStudentName(){
+ const input=document.getElementById('studentName');
+ const name=(input?input.value:state.studentName||'').trim();
+ if(!name){
+   alert('Escribí tu nombre y apellido antes de generar el informe.');
+   if(input) input.focus();
+   return '';
+ }
+ state.studentName=name;saveState();return name;
+}
+function slugify(value){
+ return String(value||'informe').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
+   .replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+}
+function reportDetailHTML(){
+ let out='';
+ MODULES.forEach(item=>{
+   const selected=state.modules[item.id].selected||{};
+   out+=`<div class="report-stage">${escapeHTML(item.label)} · ${escapeHTML(item.title)}</div>`;
+   item.questions.forEach((q,idx)=>{
+     const choice=selected[idx];
+     const answered=choice!==undefined && choice!==null;
+     const ok=answered && Number(choice)===q.a;
+     const student=answered ? `${letters[Number(choice)]}. ${q.o[Number(choice)]}` : 'Sin respuesta';
+     const correct=`${letters[q.a]}. ${q.o[q.a]}`;
+     out+=`<div class="report-item ${ok?'correct':'incorrect'}">
+       <p><strong>${idx+1}. ${escapeHTML(q.q)}</strong></p>
+       <p><strong>Tu respuesta:</strong> ${escapeHTML(student)}</p>
+       <p><strong>Respuesta correcta:</strong> ${escapeHTML(correct)}</p>
+       <p><strong>Estado:</strong> <span class="${ok?'state-ok':'state-no'}">${ok?'Correcta':'Incorrecta'}</span></p>
+     </div>`;
+   });
+ });
+ return out;
+}
+function toggleReportDetail(){
+ const detail=document.getElementById('reportDetail');
+ const btn=document.getElementById('toggleReportDetail');
+ if(!detail)return;
+ const show=!detail.classList.contains('show');
+ detail.classList.toggle('show',show);
+ if(btn) btn.textContent=show?'Ocultar detalle':'Ver detalle';
+}
+function buildCorrectionHTML(student){
+ const score=accumulatedScore();
+ const total=24;
+ const pct=Math.round(score/total*100);
+ const date=new Date().toLocaleString('es-AR');
+ const detail=reportDetailHTML()
+   .replaceAll('report-stage','stage')
+   .replaceAll('report-item','item')
+   .replaceAll('report-note','note');
+ const summary=MODULES.map(item=>`<div class="datum"><strong>${state.modules[item.id].score}/8</strong>${escapeHTML(item.label)}</div>`).join('');
+ return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <title>Corrección - Aladino y la lámpara maravillosa</title>
+ <style>
+ *{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#f2f5f6;color:#263238;margin:0;padding:24px}
+ main{max-width:940px;margin:0 auto;background:white;border-radius:16px;padding:26px;box-shadow:0 5px 18px rgba(0,0,0,.08)}
+ h1{text-align:center;color:#29445a;margin:0 0 8px}.sub{text-align:center;color:#66747c;margin:5px 0}
+ .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin:22px 0}
+ .datum{background:#edf4f6;border:1px solid #bfcfd6;border-radius:12px;padding:13px;text-align:center}.datum strong{display:block;font-size:1.55rem;color:#29445a}
+ .stage{margin:22px 0 9px;padding:10px 13px;border-radius:10px;background:#eaf1f4;color:#29445a;font-weight:bold}
+ .item{border:1px solid #d7dde2;border-left:7px solid #667085;border-radius:9px;padding:13px;margin:10px 0;background:#fff}
+ .item.correct{border-left-color:#347e62}.item.incorrect{border-left-color:#a94d49}.item p{margin:5px 0;line-height:1.4}
+ .state-ok{color:#287054;font-weight:bold}.state-no{color:#9a413d;font-weight:bold}
+ .actions{text-align:center;margin:0 0 18px}.actions button{background:#3d708d;color:white;border:0;border-radius:22px;padding:11px 17px;font-weight:bold;cursor:pointer}
+ @media print{body{background:white;padding:0}main{box-shadow:none;border-radius:0}.actions{display:none}}
+ </style></head><body><main>
+ <div class="actions"><button onclick="window.print()">PDF / Imprimir</button></div>
+ <h1>Corrección de actividad</h1>
+ <p class="sub"><strong>Actividad:</strong> Aladino y la lámpara maravillosa</p>
+ <p class="sub"><strong>Alumno/a:</strong> ${escapeHTML(student)}</p>
+ <p class="sub"><strong>Fecha:</strong> ${escapeHTML(date)}</p>
+ <div class="summary">${summary}
+   <div class="datum"><strong>${score}/${total}</strong>Puntaje total</div>
+   <div class="datum"><strong>${pct}%</strong>Porcentaje</div>
+ </div>
+ <h2>Detalle de respuestas</h2>${detail}
+ </main></body></html>`;
+}
+function downloadCorrection(){
+ const student=getStudentName();if(!student)return;
+ const report=buildCorrectionHTML(student);
+ const blob=new Blob([report],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ a.download=`${correccion_aladino}_${slugify(student)}.html`;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function printCorrection(){
+ const student=getStudentName();if(!student)return;
+ const report=buildCorrectionHTML(student);
+ const win=window.open('','_blank');
+ if(!win){alert('No se pudo abrir la ventana de impresión. Revisá si el navegador bloqueó ventanas emergentes.');return;}
+ win.document.open();win.document.write(report);win.document.close();win.focus();
+ setTimeout(()=>win.print(),350);
+}
+
+document.getElementById('homeBtn').addEventListener('click',renderHome);document.getElementById('resetAll').addEventListener('click',()=>{if(confirm('¿Querés borrar todo el progreso y los puntajes guardados?')){state=defaultState();saveState();renderHome();toast('Actividad reiniciada.');}});renderHome();
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

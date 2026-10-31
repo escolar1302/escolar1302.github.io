@@ -1,0 +1,247 @@
+{
+"id": "medias-flamencos-5grado",
+"titulo": "Las medias de los flamencos",
+"area": "Lengua",
+"grado": "5°",
+"descripcion": "Rosco sobre personajes, hechos, objetos y vocabulario del cuento Las medias de los flamencos.",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "A",
+"modo": "empieza",
+"pregunta": "Lugar del pueblo al que fueron los flamencos para pedir medias.",
+"respuestas": [
+"almacén",
+"almacen"
+],
+"ayuda": "Empieza con A."
+},
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Fruta que los yacarés usaron como collar para adornarse.",
+"respuestas": [
+"bananas",
+"banana"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Tipo de víboras que tenían gasas rojas, blancas y negras.",
+"respuestas": [
+"coral"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Molestia muy fuerte que sintieron los flamencos en las patas después de las mordeduras.",
+"respuestas": [
+"dolor"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Objeto con el que un almacenero echó a los flamencos.",
+"respuestas": [
+"escoba"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "F",
+"modo": "empieza",
+"pregunta": "Aves protagonistas que querían usar medias coloradas, blancas y negras.",
+"respuestas": [
+"flamencos",
+"flamenco"
+],
+"ayuda": "Empieza con F."
+},
+{
+"letra": "G",
+"modo": "empieza",
+"pregunta": "Telas largas que usaban las víboras de coral en el baile.",
+"respuestas": [
+"gasas",
+"gasa"
+],
+"ayuda": "Empieza con G."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Palabra que describe cómo estaban vestidas las víboras de coral, según el cuento.",
+"respuestas": [
+"hermosísimas",
+"hermosisimas"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "I",
+"modo": "contiene",
+"pregunta": "Sentimiento que tenían los flamencos al mirar los trajes de los demás.",
+"respuestas": [
+"envidia"
+],
+"ayuda": "Contiene la letra I."
+},
+{
+"letra": "J",
+"modo": "contiene",
+"pregunta": "Vestimente que envidiaban los flamencos a los demás animales.",
+"respuestas": [
+"traje",
+"trajes"
+],
+"ayuda": "Contiene la letra J en una forma relacionada: burlarse no contiene J, pensá en la acción de reírse de alguien."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Ave nocturna que entregó a los flamencos los supuestos pares de medias.",
+"respuestas": [
+"lechuza"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Prenda que los flamencos buscaban para parecerse a las víboras de coral.",
+"respuestas": [
+"medias",
+"media"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Parte del cuerpo de los flamencos que el narrador describe como gruesa y torcida.",
+"respuestas": [
+"nariz"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "Ñ",
+"modo": "contiene",
+"pregunta": "Pariente mencionada por el tatú.",
+"respuestas": [
+"cuñada"
+],
+"ayuda": "Contiene la letra Ñ."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Lugar junto al río donde se realizó el baile.",
+"respuestas": [
+"orilla"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Animales que no pudieron bailar porque no caminan.",
+"respuestas": [
+"pescados",
+"peces",
+"pez",
+"pescado"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "Q",
+"modo": "empieza",
+"pregunta": "Apellido del autor del cuento.",
+"respuestas": [
+"quiroga"
+],
+"ayuda": "Empieza con Q."
+},
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Animales invitados al baile que se habían perfumado y caminaban en dos pies.",
+"respuestas": [
+"ranas",
+"rana"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Animales que se pegaron escamas de pescado en todo el cuerpo.",
+"respuestas": [
+"sapos",
+"sapo"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Animal que se burló de los flamencos y les habló de la lechuza.",
+"respuestas": [
+"tatú",
+"tatu"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "U",
+"modo": "contiene",
+"pregunta": "Pequeño insecto luminoso que llevaban las ranas como farolito.",
+"respuestas": [
+"luciérnaga",
+"luciernaga"
+],
+"ayuda": "Contiene la letra U."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Reptiles que organizaron el gran baile.",
+"respuestas": [
+"víboras",
+"viboras",
+"víbora",
+"vibora"
+],
+"ayuda": "Empieza con V."
+},
+{
+"letra": "Y",
+"modo": "empieza",
+"pregunta": "Reptiles que usaban collares de bananas y fumaban cigarros paraguayos.",
+"respuestas": [
+"yacarés",
+"yacares",
+"yacaré",
+"yacare"
+],
+"ayuda": "Empieza con Y."
+},
+{
+"letra": "Z",
+"modo": "contiene",
+"pregunta": "Polvo gris que se menciona para describir el color de las yararás.",
+"respuestas": [
+"ceniza"
+],
+"ayuda": "Contiene la letra Z."
+}
+]
+}

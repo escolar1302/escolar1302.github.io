@@ -1,0 +1,80 @@
+{
+  "id": "multiplicacion-5grado",
+  "titulo": "Rosco de multiplicación",
+  "area": "Matemática",
+  "grado": "5°",
+  "descripcion": "Rosco para repasar vocabulario y cálculos vinculados con la multiplicación.",
+  "instrucciones": "Leé cada consigna y escribí la palabra o el número correcto.",
+  "consignas": [
+    {
+      "letra": "A",
+      "modo": "empieza",
+      "pregunta": "Propiedad que permite agrupar los factores de distinta manera sin cambiar el resultado.",
+      "respuestas": ["asociativa"],
+      "ayuda": "Empieza con A."
+    },
+    {
+      "letra": "C",
+      "modo": "contiene",
+      "pregunta": "Propiedad que permite cambiar el orden de los factores sin cambiar el resultado.",
+      "respuestas": ["conmutativa"],
+      "ayuda": "Contiene C."
+    },
+    {
+      "letra": "D",
+      "modo": "empieza",
+      "pregunta": "Propiedad que permite repartir una multiplicación sobre una suma o una resta.",
+      "respuestas": ["distributiva"],
+      "ayuda": "Empieza con D."
+    },
+    {
+      "letra": "F",
+      "modo": "empieza",
+      "pregunta": "Cada uno de los números que se multiplican en una multiplicación.",
+      "respuestas": ["factor", "factores"],
+      "ayuda": "Empieza con F."
+    },
+    {
+      "letra": "M",
+      "modo": "empieza",
+      "pregunta": "Operación que puede pensarse como una suma reiterada.",
+      "respuestas": ["multiplicación", "multiplicacion"],
+      "ayuda": "Empieza con M."
+    },
+    {
+      "letra": "P",
+      "modo": "empieza",
+      "pregunta": "Resultado de una multiplicación.",
+      "respuestas": ["producto"],
+      "ayuda": "Empieza con P."
+    },
+    {
+      "letra": "Q",
+      "modo": "contiene",
+      "pregunta": "Resultado de 3 x 5.",
+      "respuestas": ["quince", "15"],
+      "ayuda": "Puede escribirse con letras o números."
+    },
+    {
+      "letra": "R",
+      "modo": "contiene",
+      "pregunta": "Manera de pensar 6 x 4 como 6 + 6 + 6 + 6.",
+      "respuestas": ["suma reiterada", "suma repetida"],
+      "ayuda": "Contiene R."
+    },
+    {
+      "letra": "T",
+      "modo": "contiene",
+      "pregunta": "Resultado de 8 x 3.",
+      "respuestas": ["veinticuatro", "24"],
+      "ayuda": "Puede escribirse con letras o números."
+    },
+    {
+      "letra": "U",
+      "modo": "contiene",
+      "pregunta": "Resultado de multiplicar cualquier número por 1.",
+      "respuestas": ["el mismo número", "mismo número", "el mismo numero", "mismo numero"],
+      "ayuda": "Contiene U."
+    }
+  ]
+}

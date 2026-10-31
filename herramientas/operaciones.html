@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<title>Fichas de operaciones | Herramientas | escolar.com.ar</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#168985;--accent2:#0f6e6a;--soft:#e9f5f4;--line:#b7d9d6;
+  --text:#26383b;--muted:#6f7c7e;--paper:#fff;--bg:#edf2f2;--panel:#fff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg)}
+.app{display:grid;grid-template-columns:minmax(360px,455px) 1fr;min-height:100vh}
+.controls{background:#fff;border-right:1px solid #d8e3e2;padding:16px;overflow:auto;height:100vh;position:sticky;top:0}
+h1{margin:0 0 5px;color:var(--accent2);font-size:22px}
+.lead{margin:0 0 12px;color:var(--muted);font-size:12.5px;line-height:1.4}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0 13px}
+button{border:0;border-radius:8px;padding:10px 9px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff}
+button.secondary{background:#52676a}
+button.light{background:var(--soft);color:var(--accent2);border:1px solid var(--line)}
+button:disabled{opacity:.55;cursor:wait}
+details{border:1px solid #d8e3e2;border-radius:10px;background:#fff;margin-bottom:9px;overflow:hidden}
+summary{padding:10px 11px;background:#f8fbfb;color:var(--accent2);font-weight:700;cursor:pointer}
+.section{padding:11px}
+label{font-size:12px;font-weight:700;display:block;margin:0 0 4px}
+input[type=text],input[type=number],textarea,select{
+  width:100%;border:1px solid #bdcccb;border-radius:7px;padding:8px;font:inherit;font-size:13px;background:#fff
+}
+textarea{min-height:64px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:8px}
+.field{margin-bottom:8px}
+.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:5px 0}
+.inline label{font-weight:400;margin:0}
+.inline input{width:auto}
+.small{font-size:11px;color:var(--muted);line-height:1.35}
+.notice{display:none;border:1px solid #d6b36b;background:#fff7e7;color:#6e531d;padding:8px;border-radius:7px;font-size:11px;line-height:1.35;margin-top:8px}
+.notice.show{display:block}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.choice-grid label{border:1px solid #cbd7d6;border-radius:7px;padding:8px;font-size:12px;display:flex;align-items:center;gap:7px;cursor:pointer}
+.choice-grid label:has(input:checked){background:var(--soft);border-color:var(--accent);color:var(--accent2)}
+.editor{display:none;border:1px solid var(--line);background:#f8fbfb;border-radius:9px;padding:10px;margin-top:10px}
+.editor.open{display:block}
+.editor h3{margin:0 0 8px;color:var(--accent2);font-size:15px}
+.preview-wrap{padding:18px;overflow:auto}
+.preview-note{max-width:210mm;margin:0 auto 8px;font-size:12px;color:#4e6063}
+.version-tabs{max-width:210mm;margin:0 auto 10px;display:flex;gap:6px;flex-wrap:wrap}
+.version-tabs button{padding:7px 10px;background:#6a7b7e}
+.version-tabs button.active{background:var(--accent)}
+#printArea{display:flex;flex-direction:column;align-items:center;gap:16px}
+#printArea.exporting{gap:0}
+
+.sheet{
+  width:210mm;height:297mm;min-height:297mm;max-height:297mm;background:#fff;
+  box-shadow:0 2px 13px rgba(0,0,0,.14);padding:10mm 13mm 13mm;position:relative;
+  overflow:hidden;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid
+}
+.page-body{width:100%;transform-origin:top center}
+.sheet-header{background:var(--soft);border-radius:7mm;padding:6mm 8mm 5.5mm;margin-bottom:4.5mm}
+.sheet-header h2{margin:0;color:var(--accent2);font-size:18pt;line-height:1.1}
+.sheet-header p{margin:2mm 0 0;color:var(--muted);font-size:8.5pt}
+.name-row{display:grid;grid-template-columns:1.15fr .75fr .55fr;gap:7mm;font-size:8.5pt;margin:0 2mm 5mm}
+.write-line{display:inline-block;min-width:38mm;border-bottom:1px solid #718083;height:3.5mm;vertical-align:bottom}
+.activity{margin:0 0 4.5mm;page-break-inside:avoid;break-inside:avoid}
+.act-title{display:flex;gap:2.5mm;align-items:flex-start;margin-bottom:2.8mm}
+.badge{width:9mm;height:9mm;border-radius:3mm;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10pt;flex:0 0 9mm}
+.act-title h3{margin:1mm 0 0;font-size:12.5pt;line-height:1.15}
+.ops-grid{display:grid;gap:3mm;border:1px solid var(--line);border-radius:3mm;padding:3.5mm 3mm;background:#fff}
+.op-card{text-align:center;min-width:0}
+.op-label{height:4mm;font-size:7pt;font-weight:700;color:var(--muted);text-align:left}
+.calc-card{min-width:0;padding:2.7mm 3mm;border-bottom:1px dotted var(--line);text-align:left}
+.calc-label{height:3.5mm;font-size:7pt;font-weight:700;color:var(--muted)}
+.calc-line{font-family:"Courier New",monospace;font-weight:700;font-size:11.5pt;line-height:1.35;white-space:nowrap}
+.calc-blank{display:inline-block;min-width:20mm;height:5.5mm;border-bottom:1.2px solid var(--text);vertical-align:bottom}
+.ops-grid.horizontal{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1.5mm 7mm;padding:3mm 5mm}
+.palette-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.palette-note{font-size:10.5px;color:var(--muted);line-height:1.35;margin-top:-2px;margin-bottom:8px}
+.alg{display:inline-block;font-family:"Courier New",monospace;font-weight:700;font-size:12.5pt;line-height:1.22;text-align:right;min-width:27mm}
+.alg .carry{height:4mm;font-size:6.8pt;color:var(--accent2);white-space:pre}
+.alg .bar{border-top:1.5px solid var(--text);height:1.4mm;margin-top:1mm}
+.alg .answer{height:6mm}
+.alg .partial{font-size:10.5pt;min-height:5.5mm}
+.missing-box{display:inline-flex;align-items:center;justify-content:center;min-width:20mm;height:6.8mm;border:1.2px dashed #6f7c7e;border-radius:1.5mm;vertical-align:middle;background:#fff}
+.missing-box.filled{border-style:solid;font-family:Arial,Helvetica,sans-serif;font-size:8.5pt}
+.division-card{border:1px solid var(--line);border-radius:3mm;padding:3mm;min-height:55mm}
+.division-title{font-size:8pt;font-weight:700;color:var(--muted);margin-bottom:2mm}
+.galera{display:flex;justify-content:center;align-items:flex-start;font-family:"Courier New",monospace;font-weight:700;font-size:12pt;line-height:1.2}
+.g-left{padding-right:2mm;min-width:36mm;text-align:right}
+.g-right{min-width:24mm;border-left:1.5px solid var(--text);align-self:stretch}
+.g-divisor{height:7mm;padding-left:3mm;text-align:left}
+.g-quotient{border-top:1.5px solid var(--text);padding:2mm 0 0 3mm;min-height:37mm;text-align:left}
+.remainder-note{font-family:Arial,Helvetica,sans-serif;font-size:7.5pt;font-weight:700;color:var(--muted);margin-top:2mm;white-space:nowrap}
+.work-space{height:34mm}
+.aux-box{margin-top:2mm;border-top:1px solid var(--line);padding-top:2mm;display:grid;grid-template-columns:1fr 1fr;gap:1mm 3mm;font-size:8pt;text-align:left}
+.partial-division{display:grid;grid-template-columns:1fr 24mm;gap:0;font-family:"Courier New",monospace;font-size:9.5pt;font-weight:700;max-width:70mm;margin:0 auto}
+.pd-left{padding-right:2mm;text-align:right}
+.pd-right{border-left:1.4px solid var(--text);padding-left:2mm}
+.pd-row{height:6mm;white-space:pre}
+.pd-sub{height:6mm;border-bottom:1px solid var(--text);white-space:pre}
+.pd-total{border-top:1px solid var(--text);margin-top:1mm;padding-top:1mm}
+.complement-grid{display:grid;grid-template-columns:1fr 1fr;gap:5mm;align-items:start}
+.mini-panel{border:1px solid var(--line);border-radius:3mm;padding:3mm;background:#fff;min-height:46mm}
+.mini-title{font-size:8.8pt;font-weight:700;color:var(--accent2);margin:0 0 2.5mm}
+table{width:100%;border-collapse:collapse;font-size:8.2pt}
+th,td{border:1px solid var(--accent);padding:2mm 1.3mm;text-align:center;height:7.5mm}
+th{background:var(--soft);color:var(--accent2)}
+td.known{font-weight:700}
+.unknown-head{display:inline-block;border:1px dashed #777;border-radius:1.5mm;width:16mm;height:5.5mm;vertical-align:middle;background:#fff}
+.triangle{position:relative;height:41mm}
+.tri-cell{position:absolute;width:14mm;height:7.5mm;border:1.2px solid var(--text);border-radius:1.5mm;display:flex;align-items:center;justify-content:center;font-size:8.5pt;font-weight:700;background:#f3f3f3}
+.tri-cell.blank{border-style:dashed;background:#fff;color:transparent}
+.t-top{left:50%;top:0;transform:translateX(-50%)}
+.t-ml{left:34%;top:12mm;transform:translateX(-50%)}
+.t-mr{left:66%;top:12mm;transform:translateX(-50%)}
+.t-bl{left:18%;top:25mm;transform:translateX(-50%)}
+.t-bm{left:50%;top:25mm;transform:translateX(-50%)}
+.t-br{left:82%;top:25mm;transform:translateX(-50%)}
+.partial-product{font-family:"Courier New",monospace;font-weight:700;font-size:10.5pt;line-height:1.3;text-align:right;max-width:48mm;margin:0 auto}
+.pp-line{border-top:1.3px solid var(--text);height:1.5mm}
+.estimate-list{font-size:8.5pt;line-height:1.45}
+.estimate-row{display:flex;gap:3mm;align-items:center;margin:1.5mm 0}
+.square{display:inline-block;width:5mm;height:5mm;border:1px solid #777;border-radius:1mm}
+.answer-sheet .answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm;font-size:8.3pt}
+.answer-box{border:1px solid #c9d8d7;border-radius:3mm;padding:3mm}
+.answer-box h4{margin:0 0 2mm;color:var(--accent2);font-size:9.5pt}
+.footer{
+  position:absolute;left:13mm;right:13mm;bottom:5.5mm;border-top:1px solid var(--line);padding-top:1.5mm;
+  display:grid;grid-template-columns:1fr auto auto;gap:5mm;align-items:center;font-size:7.2pt;color:var(--muted)
+}
+.footer .brand b{color:var(--text)}
+.footer .license{display:flex;align-items:center;gap:2mm;white-space:nowrap}
+.footer .cc-logo{height:6mm;width:auto;display:block}
+body[data-printmode="gray"] .cc-logo{filter:grayscale(1) contrast(1.2)}
+.site-license{
+  text-align:center;padding:20px;font-family:sans-serif;border-top:1px solid #ddd;margin:40px auto 0;background:#fff;
+  max-width:1200px
+}
+.site-license p{margin:0 0 10px 0;font-size:16px;font-weight:bold;color:#333}
+@page{size:A4 portrait;margin:0}
+@media(max-width:1100px){.app{grid-template-columns:1fr}.controls{height:auto;position:relative;border-right:0;border-bottom:1px solid #d8e3e2}}
+@media print{
+  html,body{margin:0!important;padding:0!important;background:#fff}
+  .controls,.preview-note,.version-tabs,.site-license{display:none!important}
+  .app{display:block}.preview-wrap{padding:0!important;margin:0!important}
+  #printArea{display:block!important;gap:0!important;margin:0!important;padding:0!important}
+  .sheet{width:210mm!important;height:297mm!important;min-height:297mm!important;max-height:297mm!important;box-shadow:none!important;margin:0!important;padding:10mm 13mm 13mm!important;page-break-after:always!important;break-after:page!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .sheet:last-child{page-break-after:auto!important;break-after:auto!important}
+}
+
+/* ===== Carcasa del micrositio Herramientas ===== */
+.site-header{
+  background:#2c3e50;
+  padding:10px 0;
+  width:100%;
+  box-shadow:0 4px 10px rgba(0,0,0,.28);
+  font-family:'Roboto',Arial,sans-serif;
+  position:relative;
+  z-index:200;
+}
+.site-nav{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+}
+.site-logo{display:flex;align-items:center;text-decoration:none;flex:none}
+.site-logo img{height:60px;width:auto;display:block;transition:transform .2s ease}
+.site-logo:hover img{transform:scale(1.03)}
+.site-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.site-links a{color:#fff;text-decoration:none;font-size:.9rem;font-weight:400}
+.site-links a:hover,.site-links a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+.site-links .site-back{
+  color:#f1c40f;
+  font-weight:700;
+  border-left:1px solid #7f8c8d;
+  padding-left:20px;
+  white-space:nowrap;
+}
+.site-links .site-back:hover,.site-links .site-back:focus-visible{color:#ffe36b}
+.tool-strip{
+  background:linear-gradient(135deg,#E65100,#E67E22);
+  color:#fff;
+  font-family:'Nunito',Arial,sans-serif;
+  padding:18px 20px 19px;
+  box-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+.tool-strip-inner{max-width:1100px;margin:0 auto}
+.tool-strip .eyebrow{
+  display:block;
+  font-size:.73rem;
+  font-weight:900;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  opacity:.9;
+  margin-bottom:3px;
+}
+.tool-strip h2{margin:0;font-size:1.6rem;line-height:1.1;font-weight:900}
+.tool-strip p{margin:5px 0 0;font-size:.94rem;line-height:1.4;opacity:.96}
+
+/* Identidad Matemática en el panel web. No altera las fichas A4. */
+.controls h1{color:#E65100}
+.controls summary{color:#E65100}
+.controls button:not(.secondary):not(.light){background:#E67E22}
+.controls button.light{background:#FFF3E0;color:#E65100;border-color:#f0c49c}
+.controls .choice-grid label:has(input:checked){background:#FFF3E0;border-color:#E67E22;color:#E65100}
+.controls .editor{border-color:#f0c49c;background:#fffaf6}
+.controls .editor h3{color:#E65100}
+
+#contenedor-pie{position:relative;z-index:1;background:#fff}
+.site-footer-fallback{
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px 20px 30px;
+  border-top:1px solid #d5dce1;
+  color:#54636b;
+  text-align:center;
+  font-family:'Nunito',Arial,sans-serif;
+  font-size:.88rem;
+  line-height:1.55;
+}
+
+@media(max-width:640px){
+  .site-nav{padding:0 14px;gap:10px}
+  .site-logo img{height:48px}
+  .site-links{gap:12px}
+  .site-links a{font-size:.82rem}
+  .tool-strip{padding:15px 16px 16px}
+  .tool-strip h2{font-size:1.35rem}
+}
+@media(max-width:460px){
+  .site-nav{align-items:flex-start;flex-direction:column}
+  .site-links{width:100%;justify-content:flex-start;gap:10px 14px;padding-bottom:3px}
+  .site-links .site-back{border-left:0;padding-left:0;width:100%;padding-top:4px}
+}
+@media print{
+  .site-header,.tool-strip,#contenedor-pie{display:none!important}
+}
+
+</style>
+</head>
+<body>
+
+
+<section class="tool-strip">
+  <div class="tool-strip-inner">
+    <span class="eyebrow">Herramientas para docentes · Matemática</span>
+    <h2>Fichas de operaciones</h2>
+    <p>Configurá operaciones y actividades complementarias para generar fichas listas para imprimir.</p>
+  </div>
+</section>
+
+<div class="app">
+<aside class="controls">
+  <h1>Fichas de operaciones <span style="font-size:11px;color:#6f7c7e">v1.4.1</span></h1>
+  <p class="lead">Genera fichas de suma, resta, multiplicación y división con control matemático de los algoritmos.</p>
+
+  <div class="actions">
+    <button id="generate">Generar ficha</button>
+    <button id="regenerate" class="secondary">Generar otra versión</button>
+    <button id="download">Descargar PDF</button>
+    <button id="print" class="secondary">Imprimir / PDF</button>
+    <button id="toggleEditor" class="light">Editar cuentas</button>
+  </div>
+
+  <details open>
+    <summary>1. Operaciones</summary>
+    <div class="section">
+      <div class="choice-grid">
+        <label><input id="opAdd" type="checkbox" checked> Sumas</label>
+        <label><input id="opSub" type="checkbox" checked> Restas</label>
+        <label><input id="opMul" type="checkbox" checked> Multiplicaciones</label>
+        <label><input id="opDiv" type="checkbox" checked> Divisiones</label>
+      </div>
+      <div class="small" style="margin-top:7px">Podés combinar cualquier cantidad de operaciones. Si elegís varias, la fábrica reparte los ejercicios de manera equilibrada.</div>
+      <div class="notice" id="logicNotice"></div>
+    </div>
+  </details>
+
+  <details open>
+    <summary>2. Sumas y restas</summary>
+    <div class="section">
+      <div class="row">
+        <div><label>Cantidad de cifras</label><select id="addSubDigits"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></div>
+        <div><label>Reagrupamiento</label><select id="addSubRegroup"><option value="none">Sin</option><option value="one">Una vez</option><option value="multi" selected>Varias veces</option><option value="mixed">Mixto</option></select></div>
+      </div>
+      <div class="inline"><input id="addSubZeros" type="checkbox" checked><label for="addSubZeros">Incluir algunos números con ceros</label></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>3. Multiplicaciones</summary>
+    <div class="section">
+      <div class="row">
+        <div><label>Cifras del multiplicando</label><select id="mulADigits"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></div>
+        <div><label>Cifras del multiplicador</label><select id="mulBDigits"><option value="1" selected>1</option><option value="2">2</option></select></div>
+      </div>
+      <div class="field"><label>Llevadas</label><select id="mulCarry"><option value="none">Sin llevadas</option><option value="one">Una llevada</option><option value="multi" selected>Varias llevadas</option><option value="mixed">Mixto</option></select></div>
+      <div class="inline"><input id="mulZeros" type="checkbox" checked><label for="mulZeros">Incluir algunos ceros</label></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>4. Divisiones</summary>
+    <div class="section">
+      <div class="row">
+        <div><label>Cifras del dividendo</label><select id="divDividendDigits"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></div>
+        <div><label>Cifras del divisor</label><select id="divDivisorDigits"><option value="1" selected>1</option><option value="2">2</option></select></div>
+      </div>
+      <div class="row">
+        <div><label>Resultado</label><select id="divType"><option value="exact">Exacta</option><option value="remainder">Con resto</option><option value="mixed" selected>Mixta</option></select></div>
+        <div><label>Presentación</label><select id="divPresentation">
+          <option value="space" selected>Cuenta + espacio</option>
+          <option value="copy">Cuentas para copiar</option>
+          <option value="aux">Con cálculos auxiliares</option>
+          <option value="started">Algoritmo comenzado por partes</option>
+        </select></div>
+      </div>
+      <div class="small">En “Cuenta + espacio” no se impone una estrategia. En “Cálculos auxiliares” se ofrecen múltiplos del divisor; en “Algoritmo comenzado” se usa división por partes.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>5. Cantidad y actividades</summary>
+    <div class="section">
+      <div class="row">
+        <div><label>Cuentas para resolver</label><input id="countOps" type="number" min="1" max="40" value="8"></div>
+        <div><label>Buscar el que falta</label><input id="countMissing" type="number" min="0" max="20" value="4"></div>
+      </div>
+      <div class="field"><label>Presentación de las operaciones</label><select id="opPresentation"><option value="vertical" selected>Cuenta vertical</option><option value="horizontal">Cálculo horizontal para resolver en carpeta</option></select></div>
+      <div class="inline"><input id="showExample" type="checkbox" checked><label for="showExample">Mostrar un ejemplo resuelto</label></div>
+      <div class="small">Las cantidades son totales visibles. Si se muestra ejemplo, cuenta dentro del total. Con 0 en “Buscar el que falta”, ese bloque no aparece. En cálculo horizontal las operaciones se presentan para copiar y resolver en una hoja de carpeta.</div>
+      <div class="field" style="margin-top:8px"><label>Actividades complementarias</label></div>
+      <div class="choice-grid">
+        <label><input id="compTriangle" type="checkbox" checked> Triángulo de suma</label>
+        <label><input id="compSubTable" type="checkbox" checked> Tabla de restas</label>
+        <label><input id="compPartialProduct" type="checkbox" checked> Producto parcial</label>
+        <label><input id="compDivEstimate" type="checkbox" checked> Ayuda / estimación de división</label>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>6. Versiones y salida</summary>
+    <div class="section">
+      <div class="row">
+        <div><label>Cantidad de versiones</label><input id="versions" type="number" min="1" max="5" value="1"></div>
+        <div><label>N.º de ficha (opcional)</label><input id="sheetNo" type="text"></div>
+      </div>
+      <div class="row">
+        <div><label>Estilo de impresión</label><select id="colorMode"><option value="color">Color por versión</option><option value="gray" selected>Escala de grises</option></select></div>
+        <div><label>Vista</label><select id="previewMode"><option value="same" selected>Igual a la impresión</option><option value="alwaysColor">Vista siempre en color</option></select></div>
+      </div>
+      <div class="field"><label>Color de la versión actual</label><select id="versionColor"><option value="teal">Turquesa</option><option value="blue">Azul</option><option value="violet">Violeta</option><option value="terracotta">Terracota</option></select></div>
+      <div class="palette-note">Cada versión puede tener su propio color. Si elegís escala de grises para imprimir, todos los colores se convierten a gris sin perder la organización.</div>
+      <div class="inline"><input id="answers" type="checkbox"><label for="answers">Agregar hoja de respuestas</label></div>
+      <div class="field"><label>Título</label><input id="title" type="text" value="Práctica de operaciones"></div>
+      <div class="field"><label>Subtítulo</label><input id="subtitle" type="text" value="Sumas, restas, multiplicaciones y divisiones"></div>
+    </div>
+  </details>
+
+  <div id="editor" class="editor">
+    <h3>Editar versión actual</h3>
+    <div class="field"><label>Versión</label><select id="editVersion"></select></div>
+    <div class="field"><label>Cuentas para resolver, una por línea</label><textarea id="edOps" placeholder="347+285&#10;632-275&#10;468*7&#10;936/6"></textarea></div>
+    <div class="field"><label>Cuentas con número faltante, una por línea</label><textarea id="edMissing"></textarea></div>
+    <button id="applyEdit">Aplicar cambios</button>
+    <div class="small" style="margin-top:7px">Se aceptan +, -, * o ×, / o :. Las cuentas inválidas se descartan.</div>
+  </div>
+</aside>
+
+<main class="preview-wrap">
+  <div class="preview-note">Vista previa A4. La cantidad de páginas se adapta a la cantidad y al tipo de operaciones. Las pestañas cambian la versión visible; al exportar se incluyen todas.</div>
+  <div id="tabs" class="version-tabs"></div>
+  <div id="printArea"></div>
+</main>
+</div>
+
+<div id="contenedor-pie">
+  <div class="site-footer-fallback">
+    <strong>Material elaborado por escolar.com.ar</strong><br>
+    Los contenidos de este portal educativo están bajo una Licencia CC Atribución-NoComercial-CompartirIgual 4.0 Internacional.
+  </div>
+</div>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+let generated=[],activeVersion=0;
+const fmt=n=>Math.trunc(n).toLocaleString('es-AR');
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const choice=a=>a[rand(0,a.length-1)];
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rand(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const unique=a=>[...new Set(a)];
+
+function enabledOps(){
+  const a=[];
+  if($('opAdd').checked)a.push('add');
+  if($('opSub').checked)a.push('sub');
+  if($('opMul').checked)a.push('mul');
+  if($('opDiv').checked)a.push('div');
+  return a;
+}
+const PALETTES={
+  teal:{name:'Turquesa',accent:'#168985',accent2:'#0f6e6a',soft:'#e9f5f4',line:'#b7d9d6',text:'#26383b',muted:'#6f7c7e'},
+  blue:{name:'Azul',accent:'#3f6f9f',accent2:'#294f76',soft:'#edf3f9',line:'#b9cde0',text:'#26343f',muted:'#697985'},
+  violet:{name:'Violeta',accent:'#7b62a3',accent2:'#574477',soft:'#f2eef7',line:'#d2c5e1',text:'#393242',muted:'#766f7e'},
+  terracotta:{name:'Terracota',accent:'#b66a45',accent2:'#84472d',soft:'#f9efe9',line:'#e1c4b4',text:'#44352f',muted:'#7d6e67'},
+  gray:{name:'Escala de grises',accent:'#5b5b5b',accent2:'#202020',soft:'#eeeeee',line:'#8f8f8f',text:'#111111',muted:'#555555'}
+};
+const COLOR_KEYS=['teal','blue','violet','terracotta'];
+function themePalette(mode){return PALETTES[mode]||PALETTES.teal}
+function effectivePaletteKey(v,forExport=false){
+  const pm=$('colorMode').value,pv=$('previewMode').value;
+  if(pm==='gray'&&(forExport||pv!=='alwaysColor'))return'gray';
+  return(v&&v.color)||'teal';
+}
+function paletteStyle(v,forExport=false){
+  const p=themePalette(effectivePaletteKey(v,forExport));
+  return`--accent:${p.accent};--accent2:${p.accent2};--soft:${p.soft};--line:${p.line};--text:${p.text};--muted:${p.muted}`;
+}
+function applyTheme(forExport=false){
+  const v=generated[activeVersion]||{color:'teal'},p=themePalette(effectivePaletteKey(v,forExport)),r=document.documentElement;
+  r.style.setProperty('--accent',p.accent);r.style.setProperty('--accent2',p.accent2);
+  r.style.setProperty('--soft',p.soft);r.style.setProperty('--line',p.line);
+  r.style.setProperty('--text',p.text);r.style.setProperty('--muted',p.muted);
+  document.body.dataset.printmode=effectivePaletteKey(v,forExport)==='gray'?'gray':'color';
+}
+function readNumber(id,fallback,min,max){
+  const raw=$(id).value.trim(),n=raw===''?fallback:Number(raw);
+  return clamp(Number.isFinite(n)?n:fallback,min,max);
+}
+function digitRange(d){return{min:d===1?1:10**(d-1),max:10**d-1}}
+function digitsOf(n,w){return String(Math.abs(n)).padStart(w,'0').split('').map(Number)}
+
+function addCarryInfo(a,b){
+  const w=Math.max(String(a).length,String(b).length),A=digitsOf(a,w),B=digitsOf(b,w);
+  let carry=0,count=0,marks=Array(w).fill(' ');
+  for(let i=w-1;i>=0;i--){
+    const s=A[i]+B[i]+carry,next=s>=10?1:0;
+    if(next){count++;if(i>0)marks[i-1]='1'}
+    carry=next;
+  }
+  return{count,marks};
+}
+function subBorrowInfo(a,b){
+  const w=Math.max(String(a).length,String(b).length),A=digitsOf(a,w),B=digitsOf(b,w);
+  let borrow=0,count=0,marks=Array(w).fill(' ');
+  for(let i=w-1;i>=0;i--){
+    let top=A[i]-borrow;
+    if(top<B[i]){count++;marks[i]='•';borrow=1}else borrow=0;
+  }
+  return{count,marks};
+}
+function regroupMatch(type,a,b,mode){
+  if(mode==='mixed')return true;
+  const c=type==='add'?addCarryInfo(a,b).count:subBorrowInfo(a,b).count;
+  if(mode==='none')return c===0;
+  if(mode==='one')return c===1;
+  if(mode==='multi')return c>=2;
+  return true;
+}
+function randomAddSub(type,index=0){
+  const d=Number($('addSubDigits').value),{min,max}=digitRange(d),mode=$('addSubRegroup').value;
+  const target=mode==='mixed'?['none','one','multi'][index%3]:mode;
+  for(let t=0;t<9000;t++){
+    let a=rand(min,max),b=rand(min,max);
+    if(type==='sub'&&a<=b)[a,b]=[Math.max(a,b),Math.min(a,b)];
+    if(type==='sub'&&a===b)continue;
+    if(!regroupMatch(type,a,b,target))continue;
+    if($('addSubZeros').checked&&index%4===3&&!(String(a).includes('0')||String(b).includes('0')))continue;
+    return{type,a,b,result:type==='add'?a+b:a-b};
+  }
+  throw new Error('No pude generar una suma/resta con esas condiciones. Probá cambiar el reagrupamiento o la cantidad de cifras.');
+}
+
+function multiplyDigitCarryCount(a,digit){
+  const ds=String(a).split('').map(Number);let carry=0,count=0;
+  for(let i=ds.length-1;i>=0;i--){const p=ds[i]*digit+carry;if(p>=10)count++;carry=Math.floor(p/10)}
+  return count;
+}
+function mulCarryCount(a,b){
+  return String(b).split('').reduce((s,ch)=>s+multiplyDigitCarryCount(a,Number(ch)),0);
+}
+function randomMul(index=0){
+  const da=Number($('mulADigits').value),db=Number($('mulBDigits').value);
+  const A=digitRange(da),B=digitRange(db),mode=$('mulCarry').value,target=mode==='mixed'?['none','one','multi'][index%3]:mode;
+  for(let t=0;t<10000;t++){
+    const a=rand(A.min,A.max),b=rand(B.min,B.max),c=mulCarryCount(a,b);
+    if(target==='none'&&c!==0)continue;
+    if(target==='one'&&c!==1)continue;
+    if(target==='multi'&&c<2)continue;
+    if($('mulZeros').checked&&index%4===3&&!(String(a).includes('0')||String(b).includes('0')))continue;
+    return{type:'mul',a,b,result:a*b,partials:String(b).split('').reverse().map((ch,i)=>a*Number(ch)*10**i)};
+  }
+  throw new Error('No pude generar una multiplicación con esas condiciones. Probá cambiar las cifras o las llevadas.');
+}
+function randomDiv(index=0){
+  const dd=Number($('divDividendDigits').value),dv=Number($('divDivisorDigits').value);
+  const D=digitRange(dd),V=digitRange(dv),mode=$('divType').value;
+  const target=mode==='mixed'?(index%2===0?'exact':'remainder'):mode;
+  for(let t=0;t<12000;t++){
+    const divisor=rand(V.min,V.max);
+    const qMin=Math.max(1,Math.ceil(D.min/divisor));
+    const qMax=Math.floor(D.max/divisor);
+    if(qMax<qMin)continue;
+    const q=rand(qMin,qMax);
+    let r=0;
+    if(target==='remainder'){
+      if(divisor<=1)continue;
+      r=rand(1,divisor-1);
+    }
+    const dividend=divisor*q+r;
+    if(dividend<D.min||dividend>D.max)continue;
+    return{type:'div',a:dividend,b:divisor,result:q,remainder:r};
+  }
+  throw new Error('No pude generar una división con esas cifras y ese tipo de resto. Probá otra configuración.');
+}
+function generateOp(type,index){if(type==='add'||type==='sub')return randomAddSub(type,index);if(type==='mul')return randomMul(index);return randomDiv(index)}
+function distributeTypes(total){
+  const types=enabledOps();if(!types.length)throw new Error('Elegí al menos una operación.');
+  return Array.from({length:total},(_,i)=>types[i%types.length]);
+}
+function makeMissing(op,i){
+  if(op.type==='add')return{...op,missing:i%2===0?'a':'b'};
+  if(op.type==='sub')return{...op,missing:i%2===0?'a':'b'};
+  if(op.type==='mul')return{...op,missing:i%2===0?'a':'b'};
+  return{...op,missing:['a','b','result'][i%3]};
+}
+function generateVisibleBlock(total,missing=false){
+  const hasExample=$('showExample').checked,totalVisible=Math.max(0,total);
+  if(totalVisible===0)return{example:null,items:[]};
+  const types=distributeTypes(totalVisible);
+  let example=null,start=0;
+  if(hasExample){example=missing?makeMissing(generateOp(types[0],0),0):generateOp(types[0],0);start=1}
+  const items=[];
+  for(let i=start;i<types.length;i++){
+    const op=generateOp(types[i],i);
+    items.push(missing?makeMissing(op,i):op);
+  }
+  return{example,items};
+}
+
+function makeSubTable(){
+  const d=Number($('addSubDigits').value),R=digitRange(d),cols=[],rows=[];
+  while(cols.length<3){const c=rand(R.min,Math.max(R.min,Math.floor(R.max*.45)));if(!cols.includes(c))cols.push(c)}
+  while(rows.length<3){const low=Math.max(...cols)+1,r=rand(Math.max(low,Math.floor(R.max*.6)),R.max);if(!rows.includes(r))rows.push(r)}
+  const grid=rows.map(r=>cols.map(c=>r-c)),hiddenHeaders=[1,2],revealed=[{ri:0,ci:1,value:grid[0][1]},{ri:1,ci:2,value:grid[1][2]}];
+  return{cols,rows,grid,hiddenHeaders,revealed};
+}
+function makeTriangle(){
+  const d=Number($('addSubDigits').value),max=digitRange(d).max;
+  let a,b,c,D,E,F;
+  for(let t=0;t<3000;t++){a=rand(10,Math.max(15,Math.floor(max/5)));b=rand(10,Math.max(15,Math.floor(max/5)));c=rand(10,Math.max(15,Math.floor(max/5)));D=a+b;E=b+c;F=D+E;if(F<=max)break}
+  return{a,b,c,d:D,e:E,f:F,known:['a','c','d']};
+}
+function makePartialProduct(){
+  const original=$('mulBDigits').value;
+  let op;
+  if(original==='2')op=randomMul(2);
+  else{
+    const A=digitRange(Number($('mulADigits').value));
+    let a=rand(A.min,A.max),b=rand(12,49);
+    op={type:'mul',a,b,result:a*b,partials:String(b).split('').reverse().map((ch,i)=>a*Number(ch)*10**i)};
+  }
+  return op;
+}
+function quotientBand(q){if(q<10)return'Menor que 10';if(q<100)return'Entre 10 y 100';if(q<1000)return'Entre 100 y 1.000';return'Mayor o igual que 1.000'}
+function makeDivEstimate(){return randomDiv(1)}
+
+function partialDivisionSteps(op){
+  let rem=op.a;const d=op.b,steps=[],cands=[1000,500,400,300,200,100,90,80,70,60,50,40,30,20,10,9,8,7,6,5,4,3,2,1];
+  while(rem>=d){
+    let k=cands.find(x=>d*x<=rem);
+    if(!k)k=1;
+    const prod=d*k,after=rem-prod;
+    steps.push({before:rem,k,prod,after});rem=after;
+    if(steps.length>12)break;
+  }
+  return steps;
+}
+function makeVersion(index=0,color=null){
+  const basic=generateVisibleBlock(readNumber('countOps',8,1,40),false);
+  const missing=generateVisibleBlock(readNumber('countMissing',4,0,20),true);
+  return{
+    color:color||COLOR_KEYS[index%COLOR_KEYS.length],basic,missing,
+    triangle:$('compTriangle').checked&&$('opAdd').checked?makeTriangle():null,
+    subTable:$('compSubTable').checked&&$('opSub').checked?makeSubTable():null,
+    partialProduct:$('compPartialProduct').checked&&$('opMul').checked?makePartialProduct():null,
+    divEstimate:$('compDivEstimate').checked&&$('opDiv').checked?makeDivEstimate():null
+  };
+}
+function generate(all=true){
+  const previous=generated,current=activeVersion;
+  try{
+    const n=readNumber('versions',1,1,5);
+    if(all||!generated.length){generated=Array.from({length:n},(_,i)=>makeVersion(i));activeVersion=0}
+    else{const keepColor=generated[current]?.color||COLOR_KEYS[current%COLOR_KEYS.length];generated[current]=makeVersion(current,keepColor);activeVersion=current}
+    populateEditor();loadEditor();syncVersionColorControl();clearNotice();render();
+  }catch(err){
+    generated=previous;activeVersion=Math.min(current,Math.max(0,generated.length-1));showNotice(err.message);if(generated.length)render();
+  }
+}
+function showNotice(msg){$('logicNotice').textContent=msg;$('logicNotice').classList.add('show')}
+function clearNotice(){$('logicNotice').classList.remove('show')}
+
+function opSymbol(t){return t==='add'?'+':t==='sub'?'−':t==='mul'?'×':'÷'}
+function carryText(op){
+  if(op.type==='add')return addCarryInfo(op.a,op.b).marks.join(' ');
+  if(op.type==='sub')return subBorrowInfo(op.a,op.b).marks.join(' ');
+  if(op.type==='mul'){
+    if(String(op.b).length===1){
+      const ds=String(op.a).split('').map(Number),marks=Array(ds.length).fill(' ');let carry=0;
+      for(let i=ds.length-1;i>=0;i--){const p=ds[i]*op.b+carry;carry=Math.floor(p/10);if(carry&&i>0)marks[i-1]=String(carry)}
+      return marks.join(' ');
+    }
+    return ' ';
+  }
+  return ' ';
+}
+function verticalAlg(op,solved=false,missing=null){
+  const fill=n=>`<span class="missing-box filled">${fmt(n)}</span>`,blank='<span class="missing-box"></span>';
+  const A=missing==='a'?(solved?fill(op.a):blank):fmt(op.a),B=missing==='b'?(solved?fill(op.b):blank):fmt(op.b);
+  const result=solved?fmt(op.result):(missing==='result'?blank:(missing?fmt(op.result):''));
+  if(op.type==='mul'&&String(op.b).length===2){
+    const p0=op.partials[0],p1=op.partials[1];
+    return `<div class="alg"><div class="carry">${solved?esc(carryText(op)):'&nbsp;'}</div><div>${A}</div><div>× ${B}</div><div class="bar"></div>
+      <div class="partial">${solved?fmt(p0):'&nbsp;'}</div><div class="partial">${solved?fmt(p1):'&nbsp;'}</div><div class="bar"></div><div class="answer">${result}</div></div>`;
+  }
+  return `<div class="alg"><div class="carry">${solved?esc(carryText(op)):'&nbsp;'}</div><div>${A}</div><div>${opSymbol(op.type)} ${B}</div><div class="bar"></div><div class="answer">${result}</div></div>`;
+}
+function usefulMultiples(d,q){
+  const ks=[2,3,4,5,10,20,30,50,100,1000].filter(k=>k<=Math.max(10,q*2));
+  return unique(ks).slice(0,6).map(k=>({k,value:d*k}));
+}
+function renderDivision(op,presentation,solved=false,missing=null){
+  const fill=n=>`<span class="missing-box filled">${fmt(n)}</span>`,blank='<span class="missing-box"></span>';
+  const dividend=missing==='a'?(solved?fill(op.a):blank):fmt(op.a);
+  const divisor=missing==='b'?(solved?fill(op.b):blank):fmt(op.b);
+  const remainderHtml=op.remainder?`<div class="remainder-note">Resto: ${fmt(op.remainder)}</div>`:'';
+  const knownQuotient=`${fmt(op.result)}${remainderHtml}`;
+  const quotient=solved
+    ? knownQuotient
+    : (missing==='result'
+        ? `${blank}${remainderHtml}`
+        : (missing ? knownQuotient : ''));
+  if(presentation==='started'&&solved){
+    const steps=partialDivisionSteps(op);
+    return `<div class="partial-division"><div class="pd-left">${steps.map((s,i)=>`${i===0?`<div class="pd-row">${fmt(s.before)}</div>`:''}<div class="pd-sub">−${fmt(s.prod)}</div><div class="pd-row">${fmt(s.after)}</div>`).join('')}</div>
+      <div class="pd-right"><div class="pd-row">${fmt(op.b)}</div>${steps.map(s=>`<div class="pd-row">${fmt(s.k)}</div>`).join('')}<div class="pd-total">${fmt(op.result)}${op.remainder?` r ${fmt(op.remainder)}`:''}</div></div></div>`;
+  }
+  if(presentation==='started'&&!solved){
+    const steps=partialDivisionSteps(op),show=steps.slice(0,Math.min(2,steps.length));
+    return `<div class="partial-division"><div class="pd-left">${show.map((s,i)=>`${i===0?`<div class="pd-row">${fmt(s.before)}</div>`:''}<div class="pd-sub">−${fmt(s.prod)}</div><div class="pd-row">${fmt(s.after)}</div>`).join('')}<div class="pd-row">&nbsp;</div><div class="pd-row">&nbsp;</div></div>
+      <div class="pd-right"><div class="pd-row">${fmt(op.b)}</div>${show.map(s=>`<div class="pd-row">${fmt(s.k)}</div>`).join('')}<div class="pd-row">&nbsp;</div><div class="pd-total">&nbsp;</div></div></div>`;
+  }
+  const aux=presentation==='aux'?`<div class="aux-box">${usefulMultiples(op.b,op.result).map(x=>`<div>${fmt(op.b)} × ${fmt(x.k)} = ${solved?fmt(x.value):'________'}</div>`).join('')}</div>`:'';
+  const work=presentation==='copy'?'':`<div class="work-space"></div>`;
+  return `<div class="galera"><div class="g-left"><div>${dividend}</div>${work}</div><div class="g-right"><div class="g-divisor">${divisor}</div><div class="g-quotient">${quotient}</div></div></div>${aux}`;
+}
+function horizontalAlg(op,solved=false,missing=null){
+  const blank='<span class="calc-blank"></span>';
+  const A=missing==='a'?(solved?fmt(op.a):blank):fmt(op.a);
+  const B=missing==='b'?(solved?fmt(op.b):blank):fmt(op.b);
+  let result='';
+  if(solved)result=fmt(op.result)+(op.type==='div'&&op.remainder?` r ${fmt(op.remainder)}`:'');
+  else if(missing==='result')result=blank;
+  else if(missing)result=fmt(op.result)+(op.type==='div'&&op.remainder?` r ${fmt(op.remainder)}`:'');
+  return `<div class="calc-line">${A} ${opSymbol(op.type)} ${B} = ${result}</div>`;
+}
+function renderOpCard(op,solved=false,missing=null,label=''){
+  if($('opPresentation').value==='horizontal')return `<div class="calc-card"><div class="calc-label">${label}</div>${horizontalAlg(op,solved,missing)}</div>`;
+  if(op.type==='div'){
+    const presentation=missing ? 'space' : $('divPresentation').value;
+    return `<div class="division-card"><div class="division-title">${label}</div>${renderDivision(op,presentation,solved,missing)}</div>`;
+  }
+  return `<div class="op-card"><div class="op-label">${label}</div>${verticalAlg(op,solved,missing)}</div>`;
+}
+function actTitle(n,t){return `<div class="act-title"><div class="badge">${n}</div><h3>${esc(t)}</h3></div>`}
+
+function basicEntries(v){
+  const out=[];if(v.basic.example)out.push({op:v.basic.example,solved:true,label:'EJEMPLO'});
+  v.basic.items.forEach(o=>out.push({op:o,solved:false,label:''}));return out;
+}
+function missingEntries(v){
+  const out=[];if(v.missing.example)out.push({op:v.missing.example,solved:true,missing:v.missing.example.missing,label:'EJEMPLO'});
+  v.missing.items.forEach(o=>out.push({op:o,solved:false,missing:o.missing,label:''}));return out;
+}
+function cardsGrid(entries){
+  const cards=entries.map(e=>renderOpCard(e.op,e.solved,e.missing||null,e.label||''));
+  const horizontal=$('opPresentation').value==='horizontal';
+  const divOnly=!horizontal&&cards.some(x=>x.includes('division-card'));
+  const cols=horizontal?2:(divOnly?Math.min(4,cards.length):Math.min(5,cards.length));
+  return `<div class="ops-grid${horizontal?' horizontal':''}" style="grid-template-columns:repeat(${Math.max(1,cols)},1fr)">${cards.join('')}</div>`;
+}
+function basicBlockEntries(entries,continued=false){
+  if(!entries.length)return'';
+  const horizontal=$('opPresentation').value==='horizontal';
+  const copyMode=horizontal||($('divPresentation').value==='copy'&&enabledOps().every(x=>x==='div'));
+  const title=continued?'Continuá con las operaciones.':(copyMode?'Copiá y resolvé en tu carpeta.':'Resolvé las cuentas.');
+  return `<section class="activity">${actTitle(1,title)}${cardsGrid(entries)}</section>`;
+}
+function missingBlockEntries(entries){
+  if(!entries.length)return'';
+  return `<section class="activity">${actTitle(2,'Completá el número que falta.')}${cardsGrid(entries)}</section>`;
+}
+function basicBlock(v){return basicBlockEntries(basicEntries(v),false)}
+function missingBlock(v){return missingBlockEntries(missingEntries(v))}
+function triangleHtml(t){
+  const cell=(cls,key)=>`<div class="tri-cell ${cls} ${t.known.includes(key)?'':'blank'}">${t.known.includes(key)?fmt(t[key]):'0'}</div>`;
+  return `<div class="mini-panel"><div class="mini-title">Triángulo de sumas</div><div class="triangle">${cell('t-top','f')}${cell('t-ml','d')}${cell('t-mr','e')}${cell('t-bl','a')}${cell('t-bm','b')}${cell('t-br','c')}</div></div>`;
+}
+function subTableHtml(t){
+  const rm=new Map(t.revealed.map(x=>[`${x.ri}-${x.ci}`,x.value]));
+  return `<div class="mini-panel"><div class="mini-title">Tabla de restas</div><table><thead><tr><th>−</th>${t.cols.map((c,i)=>`<th>${t.hiddenHeaders.includes(i)?'<span class="unknown-head"></span>':fmt(c)}</th>`).join('')}</tr></thead>
+  <tbody>${t.rows.map((r,ri)=>`<tr><th>${fmt(r)}</th>${t.cols.map((c,ci)=>`<td class="${rm.has(`${ri}-${ci}`)?'known':''}">${rm.has(`${ri}-${ci}`)?fmt(rm.get(`${ri}-${ci}`)):''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+}
+function partialProductHtml(op){
+  const p0=op.partials[0]||0,p1=op.partials[1]||0;
+  return `<div class="mini-panel"><div class="mini-title">Completá los productos parciales</div><div class="partial-product">
+    <div>${fmt(op.a)}</div><div>× ${fmt(op.b)}</div><div class="pp-line"></div><div>${fmt(p0)}</div><div>________</div><div class="pp-line"></div><div>________</div></div></div>`;
+}
+function divEstimateHtml(op){
+  const q=op.result,band=quotientBand(q);
+  const rows=['Menor que 10','Entre 10 y 100','Entre 100 y 1.000','Mayor o igual que 1.000'];
+  return `<div class="mini-panel"><div class="mini-title">Antes de dividir, estimá el cociente</div><div class="estimate-list"><b>${fmt(op.a)} ÷ ${fmt(op.b)}</b>${rows.map(r=>`<div class="estimate-row"><span class="square"></span><span>${r}</span></div>`).join('')}
+  <div style="margin-top:2mm;color:var(--muted)">Podés ayudarte con ${fmt(op.b)}×10, ${fmt(op.b)}×100 y otros múltiplos.</div></div></div>`;
+}
+function complementsBlock(v){
+  const items=[];if(v.triangle)items.push(triangleHtml(v.triangle));if(v.subTable)items.push(subTableHtml(v.subTable));if(v.partialProduct)items.push(partialProductHtml(v.partialProduct));if(v.divEstimate)items.push(divEstimateHtml(v.divEstimate));
+  if(!items.length)return'';
+  return `<section class="activity">${actTitle(3,'Completá las actividades.')}<div class="complement-grid">${items.join('')}</div></section>`;
+}
+function licenseFooter(page,vi){
+  const no=$('sheetNo').value.trim();
+  return `<div class="footer"><div class="brand"><b>Material generado en escolar.com.ar</b>${no?` · Ficha ${esc(no)}`:''}${generated.length>1?` · Versión ${vi+1}`:''}</div>
+    <div class="license"><img class="cc-logo" alt="CC BY-NC-SA 4.0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"><span>CC BY-NC-SA 4.0</span></div><div>Pág. ${page}</div></div>`;
+}
+function headerHtml(){
+  return `<div class="sheet-header"><h2>${esc($('title').value.trim()||'Práctica de operaciones')}</h2><p>${esc($('subtitle').value.trim())}</p></div>
+  <div class="name-row"><div>Nombre: <span class="write-line"></span></div><div>Fecha: <span class="write-line"></span></div><div>Curso: <span class="write-line" style="min-width:23mm"></span></div></div>`;
+}
+function pageCapacity(entries=[]){
+  if($('opPresentation').value==='horizontal')return 24;
+  const ops=entries.map(e=>e&&e.op).filter(Boolean);
+  const divCount=ops.filter(o=>o.type==='div').length;
+  const twoDigitMul=ops.filter(o=>o.type==='mul'&&String(o.b).length===2).length;
+
+  // Sumas, restas y multiplicaciones breves aprovechan una A4 completa:
+  // 5 columnas × 4 filas = hasta 20 cuentas verticales.
+  if(divCount===0 && twoDigitMul===0)return 20;
+
+  // Las multiplicaciones por dos cifras necesitan más altura por los productos parciales.
+  if(divCount===0)return 15;
+
+  // Las divisiones usan tarjetas considerablemente más altas.
+  if(divCount===ops.length)return 8;
+  return divCount<=3?12:10;
+}
+function chunk(arr,size){const out=[];for(let i=0;i<arr.length;i+=size)out.push(arr.slice(i,i+size));return out}
+function renderVersion(v,vi,forExport=false){
+  const style=paletteStyle(v,forExport),basic=basicEntries(v),missing=missingEntries(v),cap=pageCapacity([...basic,...missing]),pages=[];
+  let bChunks=chunk(basic,cap);if(!bChunks.length)bChunks=[[]];
+  const last=bChunks[bChunks.length-1];
+  if(missing.length&&last.length+missing.length<=cap){
+    bChunks.forEach((part,i)=>pages.push({basic:part,missing:i===bChunks.length-1?missing:[]}));
+  }else{
+    bChunks.forEach(part=>pages.push({basic:part,missing:[]}));
+    chunk(missing,cap).forEach(part=>pages.push({basic:[],missing:part}));
+  }
+  let pageNo=0,html='';
+  pages.forEach((pg,i)=>{pageNo++;html+=`<section class="sheet" style="${style}"><div class="page-body">${headerHtml()}${basicBlockEntries(pg.basic,i>0)}${missingBlockEntries(pg.missing)}</div>${licenseFooter(pageNo,vi)}</section>`});
+  const complements=complementsBlock(v);
+  if(complements){pageNo++;html+=`<section class="sheet" style="${style}"><div class="page-body">${complements}</div>${licenseFooter(pageNo,vi)}</section>`}
+  if($('answers').checked)html+=answerSheet(v,vi,style);
+  return html;
+}
+function answerLine(o){
+  if(o.type==='div')return`${fmt(o.a)} ÷ ${fmt(o.b)} = ${fmt(o.result)}${o.remainder?` resto ${fmt(o.remainder)}`:''}`;
+  return`${fmt(o.a)} ${opSymbol(o.type)} ${fmt(o.b)} = ${fmt(o.result)}`;
+}
+function answerSheet(v,vi,style=''){
+  const basic=[v.basic.example,...v.basic.items].filter(Boolean).map(answerLine).join('<br>');
+  const miss=[v.missing.example,...v.missing.items].filter(Boolean).map(o=>`${answerLine(o)} → faltaba ${fmt(o[o.missing])}`).join('<br>');
+  const extras=[];
+  if(v.triangle)extras.push(`Triángulo: base ${fmt(v.triangle.a)}, ${fmt(v.triangle.b)}, ${fmt(v.triangle.c)}; medio ${fmt(v.triangle.d)}, ${fmt(v.triangle.e)}; cima ${fmt(v.triangle.f)}.`);
+  if(v.subTable)extras.push(`Tabla: columnas ${v.subTable.cols.map(fmt).join(', ')}; filas ${v.subTable.rows.map(fmt).join(', ')}.`);
+  if(v.partialProduct)extras.push(`Multiplicación: ${fmt(v.partialProduct.a)} × ${fmt(v.partialProduct.b)} = ${fmt(v.partialProduct.result)}.`);
+  if(v.divEstimate)extras.push(`Estimación ${fmt(v.divEstimate.a)} ÷ ${fmt(v.divEstimate.b)}: ${quotientBand(v.divEstimate.result)}. Cociente ${fmt(v.divEstimate.result)}${v.divEstimate.remainder?` resto ${fmt(v.divEstimate.remainder)}`:''}.`);
+  return `<section class="sheet answer-sheet" style="${style}"><div class="page-body">${headerHtml()}<div class="answer-grid"><div class="answer-box"><h4>Cuentas</h4>${basic}</div><div class="answer-box"><h4>Números faltantes</h4>${miss||'—'}</div><div class="answer-box"><h4>Complementarias</h4>${extras.join('<br><br>')||'—'}</div></div></div>${licenseFooter('R',vi)}</section>`;
+}
+
+function nextFrame(){return new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))}
+function fitSheets(root=$('printArea')){
+  root.querySelectorAll('.sheet').forEach(sheet=>{
+    const body=sheet.querySelector('.page-body');if(!body)return;body.style.transform='none';
+    const cs=getComputedStyle(sheet),pt=parseFloat(cs.paddingTop)||0,pb=parseFloat(cs.paddingBottom)||0,footer=sheet.querySelector('.footer');
+    const reserve=(footer?footer.getBoundingClientRect().height:0)+16,available=sheet.clientHeight-pt-pb-reserve,needed=body.scrollHeight;
+    let scale=needed>available?available/needed:1;scale=Math.max(.76,Math.min(1,scale));body.style.transform=`scale(${scale})`;
+  });
+}
+function syncVersionColorControl(){
+  if(!$('versionColor')||!generated.length)return;$('versionColor').value=generated[activeVersion]?.color||'teal';
+}
+function render(){
+  if(!generated.length)generated=[makeVersion()];
+  if(activeVersion>=generated.length)activeVersion=0;
+  applyTheme(false);syncVersionColorControl();
+  $('tabs').innerHTML=generated.map((v,i)=>{const p=themePalette(v.color||'teal');return`<button data-i="${i}" class="${i===activeVersion?'active':''}" style="background:${i===activeVersion?p.accent:'#6a7b7e'}">Versión ${i+1}</button>`}).join('');
+  $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{activeVersion=Number(b.dataset.i);loadEditor();syncVersionColorControl();render();document.querySelector('.preview-wrap').scrollTop=0});
+  $('printArea').innerHTML=renderVersion(generated[activeVersion],activeVersion,false);
+  nextFrame().then(()=>fitSheets($('printArea')));
+}
+function renderAllVersions(forExport=true){return generated.map((v,i)=>renderVersion(v,i,forExport)).join('')}
+function populateEditor(){$('editVersion').innerHTML=generated.map((_,i)=>`<option value="${i}">Versión ${i+1}</option>`).join('');$('editVersion').value=activeVersion}
+function opToText(o){return`${o.a}${o.type==='add'?'+':o.type==='sub'?'-':o.type==='mul'?'*':'/'}${o.b}`}
+function loadEditor(){
+  if(!generated.length)return;const v=generated[activeVersion],basic=[v.basic.example,...v.basic.items].filter(Boolean),miss=[v.missing.example,...v.missing.items].filter(Boolean);
+  $('editVersion').value=activeVersion;$('edOps').value=basic.map(opToText).join('\n');$('edMissing').value=miss.map(opToText).join('\n');
+}
+function parseManual(s){
+  const m=String(s).trim().match(/^(\d+)\s*([+\-*×/:])\s*(\d+)$/);if(!m)return null;
+  const a=Number(m[1]),b=Number(m[3]),sym=m[2];let type=sym==='+'?'add':sym==='-'?'sub':(sym==='*'||sym==='×')?'mul':'div';
+  if(type==='sub'&&a<b)return null;if(type==='div'&&b===0)return null;
+  if(type==='add')return{type,a,b,result:a+b};if(type==='sub')return{type,a,b,result:a-b};
+  if(type==='mul')return{type,a,b,result:a*b,partials:String(b).split('').reverse().map((ch,i)=>a*Number(ch)*10**i)};
+  return{type,a,b,result:Math.floor(a/b),remainder:a%b};
+}
+function applyEdit(){
+  const i=Number($('editVersion').value)||0,v=generated[i],ops=$('edOps').value.split(/\n+/).map(parseManual).filter(Boolean),miss=$('edMissing').value.split(/\n+/).map(parseManual).filter(Boolean);
+  if(ops.length){v.basic.example=$('showExample').checked?ops[0]:null;v.basic.items=$('showExample').checked?ops.slice(1):ops}
+  if(miss.length){const mm=miss.map((o,j)=>makeMissing(o,j));v.missing.example=$('showExample').checked?mm[0]:null;v.missing.items=$('showExample').checked?mm.slice(1):mm}
+  activeVersion=i;render();
+}
+function restorePreview(){applyTheme(false);render()}
+
+$('generate').onclick=()=>generate(true);
+$('regenerate').onclick=()=>generate(false);
+$('toggleEditor').onclick=()=>{
+  const editor=$('editor');
+  const button=$('toggleEditor');
+  const opening=!editor.classList.contains('open');
+
+  editor.classList.toggle('open');
+  button.textContent=opening?'Cerrar editor':'Editar cuentas';
+
+  if(opening){
+    populateEditor();
+    loadEditor();
+    setTimeout(()=>{
+      editor.scrollIntoView({behavior:'smooth',block:'start'});
+    },50);
+  }
+};
+$('editVersion').onchange=()=>{activeVersion=Number($('editVersion').value);loadEditor();syncVersionColorControl();render()};
+$('applyEdit').onclick=applyEdit;
+['colorMode','previewMode','opPresentation'].forEach(id=>$(id).addEventListener('change',()=>render()));
+$('versionColor').addEventListener('change',()=>{if(generated[activeVersion])generated[activeVersion].color=$('versionColor').value;render()});
+
+$('print').onclick=async()=>{
+  const a=$('printArea'),selected=activeVersion;applyTheme(true);a.innerHTML=renderAllVersions(true);await nextFrame();fitSheets(a);await nextFrame();
+  const restore=()=>{window.removeEventListener('afterprint',restore);activeVersion=selected;restorePreview()};
+  window.addEventListener('afterprint',restore);window.print();setTimeout(()=>restore(),1800);
+};
+$('download').onclick=async()=>{
+  const a=$('printArea');if(typeof html2canvas==='undefined'||!window.jspdf||!window.jspdf.jsPDF){alert('No se pudo cargar el generador de PDF. Usá “Imprimir / PDF”.');return}
+  const btn=$('download'),old=btn.textContent,selected=activeVersion;btn.disabled=true;btn.textContent='Generando PDF...';
+  applyTheme(true);a.innerHTML=renderAllVersions(true);a.classList.add('exporting');await nextFrame();fitSheets(a);await nextFrame();
+  try{
+    const sheets=[...a.querySelectorAll('.sheet')],{jsPDF}=window.jspdf,pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
+    for(let i=0;i<sheets.length;i++){
+      if(i>0)pdf.addPage('a4','portrait');
+      const canvas=await html2canvas(sheets[i],{scale:2,useCORS:true,backgroundColor:'#fff',logging:false,scrollX:0,scrollY:0,windowWidth:Math.max(document.documentElement.clientWidth,1200)});
+      const img=canvas.toDataURL('image/jpeg',.96);pdf.addImage(img,'JPEG',0,0,210,297,undefined,'FAST');canvas.width=1;canvas.height=1;
+    }
+    pdf.save(`fabrica_operaciones_${$('colorMode').value==='gray'?'grises':'color'}.pdf`);
+  }catch(err){console.error(err);alert('Hubo un problema al generar el PDF. Probá con “Imprimir / PDF”.')}
+  finally{a.classList.remove('exporting');activeVersion=selected;restorePreview();btn.disabled=false;btn.textContent=old}
+};
+
+applyTheme(false);generate(true);
+})();
+</script>
+
+<script>
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const origen = params.get('origen');
+  const back = document.getElementById('backLink');
+  const destinos = {
+    matematica: { texto: '← Volver a Matemática', url: 'https://escolar.com.ar/matematica.html' },
+    lengua: { texto: '← Volver a Lengua', url: 'https://escolar.com.ar/lengua.html' },
+    recursos: { texto: '← Volver a Recursos', url: 'https://escolar.com.ar/recursos.html' },
+    herramientas: { texto: '← Volver a Herramientas', url: './' }
+  };
+  const destino = destinos[origen] || destinos.herramientas;
+  if (back) { back.textContent = destino.texto; back.href = destino.url; }
+})();
+
+fetch('https://escolar.com.ar/pie.html')
+  .then(response => {
+    if (!response.ok) throw new Error('No se pudo cargar el pie de página');
+    return response.text();
+  })
+  .then(data => {
+    document.getElementById('contenedor-pie').innerHTML = data;
+  })
+  .catch(error => {
+    console.info('Se usa el pie local de respaldo.', error);
+  });
+</script>
+
+<script src="/volver.js" defer></script>
+</body>
+</html>

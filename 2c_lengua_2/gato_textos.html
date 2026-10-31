@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El gato con botas</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #E8F5E9; --header-color: #27AE60; --title-color: #1B5E20; --accent-color: #FF7043; --copy-color: #9C27B0; --card-bg: #FFFFFF; --text-main: #37474F; }
+        * { box-sizing: border-box; }
+        body { background-color: var(--bg-color); font-family: 'Nunito', sans-serif; margin: 0; padding: 20px; color: var(--text-main); padding-bottom: 120px; }
+        #app-container { max-width: 900px; margin: 0 auto; }
+        h1 { text-align: center; color: var(--title-color); margin-bottom: 30px; font-size: 2rem; }
+        
+        #app-intro { background: rgba(255,255,255,0.6); padding: 15px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid var(--header-color); }
+        #app-intro a { color: var(--header-color); font-weight: bold; }
+        #raw-content-placeholder { display: none !important; }
+        
+        .ficha-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); margin-bottom: 25px; overflow: hidden; border: 2px solid transparent; transition: all 0.3s ease; }
+        .ficha-card.selected-for-print { border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(255, 112, 67, 0.2); }
+        .ficha-header { background-color: var(--header-color); padding: 10px 15px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+        .ficha-title { color: white; font-weight: 700; font-size: 1.1rem; flex-grow: 1; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-send-editor { background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: background 0.2s; text-decoration: none; }
+        .btn-send-editor:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
+        .btn-toggle-card { background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,.45); color: white; border-radius: 999px; padding: 7px 10px; cursor: pointer; font-weight: 900; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .btn-toggle-card:hover { background: rgba(255,255,255,0.34); transform: translateY(-1px); }
+        .custom-checkbox { width: 28px; height: 28px; background: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid rgba(255,255,255,0.6); }
+        .ficha-card.selected-for-print .custom-checkbox { background: var(--accent-color); border-color: white; }
+        .custom-checkbox::after { content: '✓'; color: white; font-weight: 900; font-size: 18px; display: none; }
+        .ficha-card.selected-for-print .custom-checkbox::after { display: block; }
+        .ficha-body { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; background: white; }
+        .ficha-card.open .ficha-body { padding: 25px 20px; max-height: none; overflow: visible; }
+        
+        /* --- CORRECCIÓN NUCLEAR Y ROMPE-MARCOS --- */
+        .ficha-body * { font-family: 'Nunito', sans-serif !important; box-sizing: border-box !important; line-height: 1.5 !important; }
+        .ficha-body img { display: block !important; max-width: 100% !important; height: auto !important; margin: 15px auto !important; transform: none !important; box-shadow: none !important; border-radius: 6px !important; }
+        .ficha-body table { width: 100% !important; border-collapse: collapse !important; margin: 10px 0 !important; table-layout: auto !important; }
+       .ficha-body td, .ficha-body th { padding: 8px !important; vertical-align: top !important; border: 1px solid #000 !important; word-wrap: break-word; }
+        .ficha-body p, .ficha-body span { background-color: transparent !important; color: #444 !important; }
+        .ficha-body span { overflow: visible !important; width: auto !important; height: auto !important; max-width: 100% !important; display: inline-block !important; }
+        
+        .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column-reverse; gap: 15px; z-index: 1000; align-items: center; }
+        .fab { width: 56px; height: 56px; border-radius: 50%; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; transition: transform 0.2s; position: relative; }
+        .fab:hover { transform: scale(1.1); }
+        .fab-print { background-color: var(--accent-color); color: white; width: 70px; height: 70px; font-size: 30px; }
+        .fab-print:disabled { background-color: #CFD8DC; cursor: not-allowed; }
+        .badge { position: absolute; top: 0; right: 0; background-color: #D32F2F; color: white; font-size: 12px; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+        .fab-copy { background-color: var(--copy-color); color: white; display: none; }
+        .fab-clear { background: white; color: #E57373; width: 45px; height: 45px; font-size: 18px; display: none; }
+        
+        @media print {
+            body { background: white; padding: 0; margin: 0; }
+           .fab-container, header, nav, .header-actions, #app-container > p, #app-container > h1, #app-intro { display: none !important; }
+            #app-container { max-width: 100%; margin: 0; }
+            .page-header { display: none !important; }
+            .ficha-card { display: none; border: none; box-shadow: none; margin: 0; margin-bottom: 20px; break-inside: auto; }
+            .ficha-card.selected-for-print[data-print="1"] { display: block !important; }
+            .ficha-header { background-color: transparent !important; color: #000 !important; padding: 5px 0 !important; border-bottom: 2px solid #000 !important; display: flex !important; }
+            .ficha-title { color: #000 !important; font-weight: bold !important; font-size: 1.2rem !important; }
+            .ficha-body { max-height: none !important; display: block !important; padding: 10px 0 !important; overflow: visible !important; color: #000 !important; }
+            .ficha-body p { display: block !important; color: #000 !important; }
+            .ficha-body * { color: #000 !important; visibility: visible !important; opacity: 1 !important; }
+            .ficha-body table { table-layout: auto !important; }
+        }
+    </style>
+</head>
+<body>
+    <style>body{margin:0!important;padding:0!important;}</style>
+    <div style="height: 24px;"></div>
+    <div id="app-container">
+        <div class="page-header">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="/images/gato03_1.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: var(--title-color);">El gato con botas</h1></div></div>
+        </div>
+        <p style="text-align: center; margin-bottom: 5px; color: #607D8B; font-size: 0.95rem;">
+            <small>Presionar <span style="background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px 6px;">▸ Abrir</span> para desplegar la ficha o <span style="background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px 6px;">↗️</span> para editarla</small>
+        </p>
+        <p style="text-align: center; margin-bottom: 35px; color: #607D8B; font-size: 0.95rem;">
+            <small>Marcar la casilla y luego 📋 para copiar la actividad o 🖨️ para imprimir o exportar a .PDF</small>
+        </p>
+        
+        
+        <div id="fichas-render-area"></div>
+    </div>
+    
+    <div class="fab-container">
+        <button class="fab fab-print" id="btn-print" onclick="printSelected()" disabled>🖨️ <div class="badge" id="print-badge" style="display: none;">0</div></button>
+        <button class="fab fab-copy" id="btn-copy" onclick="copySelected()">📋</button>
+        <button class="fab fab-clear" id="btn-clear" onclick="clearSelection()">🗑️</button>
+    </div>
+    
+    <script type="application/json" id="constructor-fichas-state">{"schema":"constructor-fichas","version":"v12-nombre-fijo-sin-numeracion","appTitle":"El gato con botas","cloudJsonFilename":"el_gato_con_botas_capitulos.json","appTheme":"lengua","appNavbar":"volver","outputLocation":"subfolder","volverText":"Actividades mixtas","heroLayout":"img-left","heroImg1":"gato03_1.png","heroImg2":"","showIntro":false,"introText":"\u003cbr>","cards":[{"title":"Gato con botas - Parte 1","content":"\u003cdiv style=\"text-align: center;\">I\u003c/div>\u003cdiv style=\"text-align: left;\">Había una vez un molinero que, antes de morir, llamó a sus tres hijos y les dejó todos sus bienes: un molino, un asno y un gato. El reparto de la herencia se hizo enseguida. El hijo mayor se quedó con el molino; el segundo, con el asno, y al más pequeño sólo le correspondió el gato.&nbsp; El hijo menor no podía consolarse de haber recibido tan poca cosa.\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato01.png\" src=\"/images/gato01.png\" style=\"height: auto;\">\u003c/div>\u003cdiv>—Mis hermanos —decía— podrán ganarse la vida honradamente juntándose los dos. En cambio yo, en cuanto me haya comido el gato y me haya hecho un manguito con su piel, me moriré de hambre.&nbsp;\u003c/div>\u003cdiv>&nbsp;El gato, que entendía estas palabras pero ponía cara de que no, le dijo con aire serio y sosegado:\u003c/div>\u003cdiv>—No se aflija en absoluto, mi amo. No tiene más que darme un saco y hacerme un par de botas para ir por los matorrales y ya verá que su herencia no es tan poca cosa como usted cree.&nbsp;&nbsp;\u003c/div>\u003cdiv>Aunque el amo del gato no puso muchas esperanzas en él, lo había visto valerse de tantas tretas para cazar ratas y ratones, como cuando se colgaba por sus patas traseras o se escondía en la harina haciéndose el muerto, que no perdió totalmente la ilusión de que lo socorriera en su miseria.&nbsp;&nbsp;\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato02.png\" src=\"/images/gato02.png\" style=\"height: auto;\">\u003c/div>\u003cdiv>En cuanto el gato tuvo lo que había solicitado, se calzó rápidamente las botas, se echó el saco al hombro, tomó los cordones con sus patas delanteras y se dirigió hacia un coto de caza en donde había muchos conejos. Puso salvado y hierbas dentro del saco, se tendió en el suelo como si estuviera muerto, y esperó que algún conejillo, poco conocedor de las trampas de este mundo, viniera a meterse en el saco para comer lo que en él había echado. Apenas se recostó tuvo la primera satisfacción: un distraído conejito entró en el saco. El gato tiró enseguida de los cordones para atraparlo y lo mató sin compasión.&nbsp; Muy orgulloso de su presa, el gato se dirigió hacia el palacio del rey y pidió a los guardias que lo dejaran entrar para hablar con él. Lo hicieron pasar a los aposentos del rey y, después de hacer una gran reverencia, le dijo:\u003c/div>\u003cdiv>—Majestad, aquí tenéis un conejo de campo que el señor Marqués de Carabás (que es el nombre que se le ocurrió dar a su amo) me ha encargado ofreceros de su parte.\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato03.png\" src=\"/images/gato03.png\" style=\"height: auto;\">\u003c/div>\u003cdiv>—Dile a tu amo —contestó el rey— que se lo agradezco y que me halaga en gran medida.&nbsp;&nbsp;\u003c/div>\u003cdiv>Tiempo más tarde, se escondió en un campo de trigo con el saco abierto. En cuanto dos perdices entraron en él, tiró de los cordones y las cazó. Enseguida fue a ofrecérselas al rey, tal como había hecho con el conejo de campo. Una vez más, el rey se sintió halagado al recibir las dos perdices. Ordenó a sus criados que le dieran al gato una propina y le sirvieran, además, lo que deseara comer y beber.&nbsp;&nbsp;\u003c/div>\u003cdiv>Durante dos o tres meses el gato continuó llevando al rey las presas que cazaba. Siempre le decía que lo enviaba su amo, el Marqués de Carabás.&nbsp;\u003c/div>","startOpen":true,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Gato con botas - Parte 2","content":"\u003cdiv style=\"text-align: center;\">II\u003c/div>\u003cdiv>Un día el gato se enteró que el rey iba a dar un paseo por la orilla del río con su hija. Sin perder un segundo, le dijo a su amo:\u003c/div>\u003cdiv>—Si sigue mi consejo podrá hacer fortuna. No tiene más que bañarse en el río, en el lugar que yo le indique, y luego dejarme hacer a mí. Pero recuerde que ahora usted es el Marqués de Carabás, ya no es más el hijo de un pobre molinero.&nbsp;&nbsp;\u003c/div>\u003cdiv>El Marqués de Carabás hizo lo que su gato le aconsejaba pero sin saber con qué fines lo hacía. Mientras el joven se bañaba, el gato escondió las ropas de su amo debajo de una enorme piedra. Cuando el rey pasó por allí, se puso a gritar con todas sus fuerzas:\u003c/div>\u003cdiv>—¡SOCORRO! ¡SOCORRO! ¡Se ahoga el Marqués de Carabás!&nbsp; &nbsp;\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato04.png\" src=\"/images/gato04.png\" style=\"height: auto;\">\u003c/div>\u003cdiv>Al oír los gritos, el rey se asomó por la ventanilla de su carruaje y, reconociendo al gato que tantas piezas de caza le había llevado, ordenó a sus guardias que fueran enseguida en auxilio del Marqués de Carabás. Mientras sacaban del río al pobre Marqués, el gato se acercó a la carroza y le dijo al rey que unos ladrones se habían llevado toda la ropa del Marqués a pesar de que él había gritado con todas sus fuerzas pidiendo ayuda. Al instante, el rey ordenó a los encargados de su guardarropa que fueran a buscar uno de sus más hermosos trajes y vistieran con él al señor Marqués de Carabás.&nbsp;&nbsp;\u003c/div>\u003cdiv>El rey quiso que subiera a la carroza y lo acompañara en su paseo. A partir de ese momento, le ofreció mil muestras de amistad al hijo del molinero. El hermoso traje que acababan de darle realzaba su figura y la hija del rey lo encontró muy de su agrado; en cuanto el Marqués de Carabás le dirigió dos o tres miradas muy respetuosas y un poco tiernas, ella se enamoró locamente de él.\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato05.png\" src=\"/images/gato05.png\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Gato con botas - Parte 3","content":"\u003cdiv style=\"text-align: center;\">III\u003c/div>\u003cdiv>El gato, encantado al ver que su plan empezaba a dar resultado, se adelantó y, encontrando a unos campesinos que trabajaban en el campo, les dijo:\u003c/div>\u003cdiv>—¡Eh, oigan, buenas gentes, si no decís al rey que el campo que estáis trabajando pertenece al señor Marqués de Carabás, seréis hechos picadillo como carne de pastel!&nbsp; &nbsp;\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato07.png\" src=\"/images/gato07.png\" style=\"height: auto;\">\u003c/div>\u003cdiv>Al pasar por allí, el rey no dejó de preguntar a los trabajadores de quién era el campo que estaban segando.\u003c/div>\u003cdiv>—Estos campos pertenecen al señor Marqués de Carabás —respondieron todos a la vez, pues la amenaza del gato los había asustado.\u003c/div>\u003cdiv>—Tiene usted una muy hermosa herencia —le dijo el rey al Marqués de Carabás.\u003c/div>\u003cdiv>—Como usted ve, Su Majestad —respondió el Marqués— es un prado que no deja de dar grano en abundancia todos los años.&nbsp;&nbsp;\u003c/div>\u003cdiv>Mientras tanto, el gato, que seguía yendo adelante de la carroza, se encontró con un grupo de cosechadores y les dijo:\u003c/div>\u003cdiv>—¡Eh, oigan, buenas gentes, si no decís al rey que todo este trigo pertenece al señor Marqués de Carabás, seréis hechos picadillo como carne de pastel!&nbsp; &nbsp;\u003c/div>\u003cdiv>\u003cbr>\u003c/div>\u003cdiv>Un momento después pasó el rey y quiso saber a quién pertenecía todo el trigo que se veía.\u003c/div>\u003cdiv>—Todo el trigo pertenece al señor Marqués de Carabás —respondieron todos a la vez, pues la amenaza del gato los había asustado.\u003c/div>\u003cdiv>Y el rey se sentía cada vez más complacido con el Marqués.&nbsp;&nbsp;\u003c/div>\u003cdiv>\u003cbr>\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Gato con botas - Parte 4","content":"\u003cdiv style=\"text-align: center;\">IV\u003c/div>\u003cdiv>Finalmente, el Gato con Botas llegó a un grandioso castillo. Su dueño era un temible ogro, el más rico de todo el reino ya que todas las tierras por donde el rey había paseado le pertenecían. El gato, que sabía muy bien quién era aquel ogro y qué cosas sabía hacer, llamó a la puerta y pidió hablar con él para presentarle sus respetos. El ogro lo recibió tan cordialmente como puede hacerlo un ogro y lo invitó a descansar un rato.&nbsp;&nbsp;\u003c/div>\u003cdiv>—Me han asegurado —comentó el gato mientras recuperaba el aliento— que tenéis la habilidad de convertiros en cualquier clase de animal. Que podéis, si os place, transformaros en un león o en elefante.\u003c/div>\u003cdiv>—Es cierto —contestó el ogro bruscamente—. Y para demostrarlo, me veréis convertido en un león.&nbsp;&nbsp;\u003c/div>\u003cdiv>El gato se asustó mucho al encontrarse de pronto enfrente de un león y, con gran esfuerzo y dificultad pues sus botas no servían para andar por las tejas, se trepó al alero del tejado. Un rato después, en cuanto el gato comprobó que el ogro había tomado otra vez su aspecto habitual, bajó del tejado y le confesó que había pasado mucho miedo.&nbsp;&nbsp;\u003c/div>\u003cdiv>—También me han asegurado —dijo el gato— que sois capaz de convertiros en un animal pequeño, como una rata o un ratón, aunque debo confesaros que esto sí me parece del todo imposible.\u003c/div>\u003cdiv>—¿Imposible? —replicó el ogro—. ¡Ya lo veréis!&nbsp; &nbsp;\u003c/div>\u003cdiv>Y mientras decía esto se transformó en un ratón que se puso a corretear por el suelo. El gato, en cuanto lo vio, se arrojó sobre él y se lo comió.\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato08.png\" src=\"/images/gato08.png\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Gato con botas - Parte 5","content":"\u003cdiv style=\"text-align: center;\">V\u003c/div>\u003cdiv>\u003cbr>\u003c/div>\u003cdiv>Mientras tanto, el rey, al pasar ante el hermoso castillo, quiso entrar en él. El gato, que había oído el repiqueteo de la carroza al atravesar el puente levadizo, corrió a su encuentro y saludó al rey con una gran reverencia:\u003c/div>\u003cdiv>—Sea bienvenido Vuestra Majestad al castillo del señor Marqués de Carabás.\u003c/div>\u003cdiv>—¡Pero bueno, señor Marqués! —exclamó el rey—. ¿Este castillo también es vuestro? ¡Qué belleza de patio! Y los edificios que lo rodean también son magníficos. ¿Pasamos al interior?&nbsp; &nbsp;\u003c/div>\u003cdiv>El Marqués de Carabás tomó de la mano a la princesa y, siguiendo al rey, entraron en un majestuoso salón, donde los esperaban exquisitos manjares que estaban preparados para el ogro.&nbsp;&nbsp;\u003c/div>\u003cdiv>El rey, encantado de las buenas cualidades del señor Marqués de Carabás, lo mismo que su hija, que estaba loca por él, y contemplando los grandes bienes que poseía, le dijo:\u003c/div>\u003cdiv>—Solo depende de usted, señor Marqués, que sea mi yerno.&nbsp;\u003c/div>\u003cdiv>El Marqués, haciendo grandes reverencias, aceptó el honor que le hacía el rey y, ese mismo día, se casó con la princesa. Así fue como el gato se convirtió en un gran señor y ya no corrió detrás de los ratones más que por diversión.\u003c/div>\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"gato09.png\" src=\"/images/gato09.png\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true}]}</script>
+    <div id="raw-content-placeholder"><table data-open="1" data-copy="1" data-print="1" data-editor="1"><tr><td>Gato con botas - Parte 1</td></tr><tr><td><div style="text-align: center;">I</div><div style="text-align: left;">Había una vez un molinero que, antes de morir, llamó a sus tres hijos y les dejó todos sus bienes: un molino, un asno y un gato. El reparto de la herencia se hizo enseguida. El hijo mayor se quedó con el molino; el segundo, con el asno, y al más pequeño sólo le correspondió el gato.&nbsp; El hijo menor no podía consolarse de haber recibido tan poca cosa.</div><div style="text-align: center;"><img data-img="gato01.png" src="/images/gato01.png" style="height: auto;"></div><div>—Mis hermanos —decía— podrán ganarse la vida honradamente juntándose los dos. En cambio yo, en cuanto me haya comido el gato y me haya hecho un manguito con su piel, me moriré de hambre.&nbsp;</div><div>&nbsp;El gato, que entendía estas palabras pero ponía cara de que no, le dijo con aire serio y sosegado:</div><div>—No se aflija en absoluto, mi amo. No tiene más que darme un saco y hacerme un par de botas para ir por los matorrales y ya verá que su herencia no es tan poca cosa como usted cree.&nbsp;&nbsp;</div><div>Aunque el amo del gato no puso muchas esperanzas en él, lo había visto valerse de tantas tretas para cazar ratas y ratones, como cuando se colgaba por sus patas traseras o se escondía en la harina haciéndose el muerto, que no perdió totalmente la ilusión de que lo socorriera en su miseria.&nbsp;&nbsp;</div><div style="text-align: center;"><img data-img="gato02.png" src="/images/gato02.png" style="height: auto;"></div><div>En cuanto el gato tuvo lo que había solicitado, se calzó rápidamente las botas, se echó el saco al hombro, tomó los cordones con sus patas delanteras y se dirigió hacia un coto de caza en donde había muchos conejos. Puso salvado y hierbas dentro del saco, se tendió en el suelo como si estuviera muerto, y esperó que algún conejillo, poco conocedor de las trampas de este mundo, viniera a meterse en el saco para comer lo que en él había echado. Apenas se recostó tuvo la primera satisfacción: un distraído conejito entró en el saco. El gato tiró enseguida de los cordones para atraparlo y lo mató sin compasión.&nbsp; Muy orgulloso de su presa, el gato se dirigió hacia el palacio del rey y pidió a los guardias que lo dejaran entrar para hablar con él. Lo hicieron pasar a los aposentos del rey y, después de hacer una gran reverencia, le dijo:</div><div>—Majestad, aquí tenéis un conejo de campo que el señor Marqués de Carabás (que es el nombre que se le ocurrió dar a su amo) me ha encargado ofreceros de su parte.</div><div style="text-align: center;"><img data-img="gato03.png" src="/images/gato03.png" style="height: auto;"></div><div>—Dile a tu amo —contestó el rey— que se lo agradezco y que me halaga en gran medida.&nbsp;&nbsp;</div><div>Tiempo más tarde, se escondió en un campo de trigo con el saco abierto. En cuanto dos perdices entraron en él, tiró de los cordones y las cazó. Enseguida fue a ofrecérselas al rey, tal como había hecho con el conejo de campo. Una vez más, el rey se sintió halagado al recibir las dos perdices. Ordenó a sus criados que le dieran al gato una propina y le sirvieran, además, lo que deseara comer y beber.&nbsp;&nbsp;</div><div>Durante dos o tres meses el gato continuó llevando al rey las presas que cazaba. Siempre le decía que lo enviaba su amo, el Marqués de Carabás.&nbsp;</div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Gato con botas - Parte 2</td></tr><tr><td><div style="text-align: center;">II</div><div>Un día el gato se enteró que el rey iba a dar un paseo por la orilla del río con su hija. Sin perder un segundo, le dijo a su amo:</div><div>—Si sigue mi consejo podrá hacer fortuna. No tiene más que bañarse en el río, en el lugar que yo le indique, y luego dejarme hacer a mí. Pero recuerde que ahora usted es el Marqués de Carabás, ya no es más el hijo de un pobre molinero.&nbsp;&nbsp;</div><div>El Marqués de Carabás hizo lo que su gato le aconsejaba pero sin saber con qué fines lo hacía. Mientras el joven se bañaba, el gato escondió las ropas de su amo debajo de una enorme piedra. Cuando el rey pasó por allí, se puso a gritar con todas sus fuerzas:</div><div>—¡SOCORRO! ¡SOCORRO! ¡Se ahoga el Marqués de Carabás!&nbsp; &nbsp;</div><div style="text-align: center;"><img data-img="gato04.png" src="/images/gato04.png" style="height: auto;"></div><div>Al oír los gritos, el rey se asomó por la ventanilla de su carruaje y, reconociendo al gato que tantas piezas de caza le había llevado, ordenó a sus guardias que fueran enseguida en auxilio del Marqués de Carabás. Mientras sacaban del río al pobre Marqués, el gato se acercó a la carroza y le dijo al rey que unos ladrones se habían llevado toda la ropa del Marqués a pesar de que él había gritado con todas sus fuerzas pidiendo ayuda. Al instante, el rey ordenó a los encargados de su guardarropa que fueran a buscar uno de sus más hermosos trajes y vistieran con él al señor Marqués de Carabás.&nbsp;&nbsp;</div><div>El rey quiso que subiera a la carroza y lo acompañara en su paseo. A partir de ese momento, le ofreció mil muestras de amistad al hijo del molinero. El hermoso traje que acababan de darle realzaba su figura y la hija del rey lo encontró muy de su agrado; en cuanto el Marqués de Carabás le dirigió dos o tres miradas muy respetuosas y un poco tiernas, ella se enamoró locamente de él.</div><div style="text-align: center;"><img data-img="gato05.png" src="/images/gato05.png" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Gato con botas - Parte 3</td></tr><tr><td><div style="text-align: center;">III</div><div>El gato, encantado al ver que su plan empezaba a dar resultado, se adelantó y, encontrando a unos campesinos que trabajaban en el campo, les dijo:</div><div>—¡Eh, oigan, buenas gentes, si no decís al rey que el campo que estáis trabajando pertenece al señor Marqués de Carabás, seréis hechos picadillo como carne de pastel!&nbsp; &nbsp;</div><div style="text-align: center;"><img data-img="gato07.png" src="/images/gato07.png" style="height: auto;"></div><div>Al pasar por allí, el rey no dejó de preguntar a los trabajadores de quién era el campo que estaban segando.</div><div>—Estos campos pertenecen al señor Marqués de Carabás —respondieron todos a la vez, pues la amenaza del gato los había asustado.</div><div>—Tiene usted una muy hermosa herencia —le dijo el rey al Marqués de Carabás.</div><div>—Como usted ve, Su Majestad —respondió el Marqués— es un prado que no deja de dar grano en abundancia todos los años.&nbsp;&nbsp;</div><div>Mientras tanto, el gato, que seguía yendo adelante de la carroza, se encontró con un grupo de cosechadores y les dijo:</div><div>—¡Eh, oigan, buenas gentes, si no decís al rey que todo este trigo pertenece al señor Marqués de Carabás, seréis hechos picadillo como carne de pastel!&nbsp; &nbsp;</div><div><br></div><div>Un momento después pasó el rey y quiso saber a quién pertenecía todo el trigo que se veía.</div><div>—Todo el trigo pertenece al señor Marqués de Carabás —respondieron todos a la vez, pues la amenaza del gato los había asustado.</div><div>Y el rey se sentía cada vez más complacido con el Marqués.&nbsp;&nbsp;</div><div><br></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Gato con botas - Parte 4</td></tr><tr><td><div style="text-align: center;">IV</div><div>Finalmente, el Gato con Botas llegó a un grandioso castillo. Su dueño era un temible ogro, el más rico de todo el reino ya que todas las tierras por donde el rey había paseado le pertenecían. El gato, que sabía muy bien quién era aquel ogro y qué cosas sabía hacer, llamó a la puerta y pidió hablar con él para presentarle sus respetos. El ogro lo recibió tan cordialmente como puede hacerlo un ogro y lo invitó a descansar un rato.&nbsp;&nbsp;</div><div>—Me han asegurado —comentó el gato mientras recuperaba el aliento— que tenéis la habilidad de convertiros en cualquier clase de animal. Que podéis, si os place, transformaros en un león o en elefante.</div><div>—Es cierto —contestó el ogro bruscamente—. Y para demostrarlo, me veréis convertido en un león.&nbsp;&nbsp;</div><div>El gato se asustó mucho al encontrarse de pronto enfrente de un león y, con gran esfuerzo y dificultad pues sus botas no servían para andar por las tejas, se trepó al alero del tejado. Un rato después, en cuanto el gato comprobó que el ogro había tomado otra vez su aspecto habitual, bajó del tejado y le confesó que había pasado mucho miedo.&nbsp;&nbsp;</div><div>—También me han asegurado —dijo el gato— que sois capaz de convertiros en un animal pequeño, como una rata o un ratón, aunque debo confesaros que esto sí me parece del todo imposible.</div><div>—¿Imposible? —replicó el ogro—. ¡Ya lo veréis!&nbsp; &nbsp;</div><div>Y mientras decía esto se transformó en un ratón que se puso a corretear por el suelo. El gato, en cuanto lo vio, se arrojó sobre él y se lo comió.</div><div style="text-align: center;"><img data-img="gato08.png" src="/images/gato08.png" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Gato con botas - Parte 5</td></tr><tr><td><div style="text-align: center;">V</div><div><br></div><div>Mientras tanto, el rey, al pasar ante el hermoso castillo, quiso entrar en él. El gato, que había oído el repiqueteo de la carroza al atravesar el puente levadizo, corrió a su encuentro y saludó al rey con una gran reverencia:</div><div>—Sea bienvenido Vuestra Majestad al castillo del señor Marqués de Carabás.</div><div>—¡Pero bueno, señor Marqués! —exclamó el rey—. ¿Este castillo también es vuestro? ¡Qué belleza de patio! Y los edificios que lo rodean también son magníficos. ¿Pasamos al interior?&nbsp; &nbsp;</div><div>El Marqués de Carabás tomó de la mano a la princesa y, siguiendo al rey, entraron en un majestuoso salón, donde los esperaban exquisitos manjares que estaban preparados para el ogro.&nbsp;&nbsp;</div><div>El rey, encantado de las buenas cualidades del señor Marqués de Carabás, lo mismo que su hija, que estaba loca por él, y contemplando los grandes bienes que poseía, le dijo:</div><div>—Solo depende de usted, señor Marqués, que sea mi yerno.&nbsp;</div><div>El Marqués, haciendo grandes reverencias, aceptó el honor que le hacía el rey y, ese mismo día, se casó con la princesa. Así fue como el gato se convirtió en un gran señor y ya no corrió detrás de los ratones más que por diversión.</div><div style="text-align: center;"><img data-img="gato09.png" src="/images/gato09.png" style="height: auto;"></div></td></tr></table><hr></div>
+    
+    <script>
+        const EDITOR_URL = '../editor.html'; 
+        document.addEventListener('DOMContentLoaded', () => { processRawContent(); });
+        let selectedCount = 0;
+        function processRawContent() {
+            const rawContainer = document.getElementById('raw-content-placeholder');
+            const renderArea = document.getElementById('fichas-render-area');
+            const fullHtml = rawContainer.innerHTML;
+            if (!fullHtml.trim()) return;
+            const chunks = fullHtml.split(/<hr[^>]*>/i);
+            let fichaIndex = 1;
+            chunks.forEach((chunk) => {
+                if (!chunk.trim()) return;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = chunk;
+                const table = tempDiv.querySelector('table');
+                let titleText = `Ficha ${fichaIndex}`;
+                let contentHtml = chunk;
+                if (table) {
+                    const rows = table.querySelectorAll('tr');
+                    if (rows.length >= 2) {
+                        titleText = rows[0].innerText.trim() || titleText;
+                        const contentTd = rows[1].querySelector('td');
+                        contentHtml = contentTd ? contentTd.innerHTML : rows[1].innerHTML;
+                    }
+                }
+                const opts = table ? {
+                    startOpen: table.dataset.open === '1',
+                    allowCopy: table.dataset.copy !== '0',
+                    allowPrint: table.dataset.print !== '0',
+                    allowEditor: table.dataset.editor !== '0'
+                } : {};
+                createCard(fichaIndex, titleText, contentHtml, renderArea, opts);
+                fichaIndex++;
+            });
+        }
+        function createCard(id, title, content, container, opts = {}) {
+            const settings = Object.assign({ startOpen:false, allowCopy:true, allowPrint:true, allowEditor:true }, opts || {});
+            const card = document.createElement('div');
+            card.className = 'ficha-card' + (settings.startOpen ? ' open' : '');
+            card.id = `ficha-${id}`;
+            card.dataset.copy = settings.allowCopy ? '1' : '0';
+            card.dataset.print = settings.allowPrint ? '1' : '0';
+            card.dataset.editor = settings.allowEditor ? '1' : '0';
+            const header = document.createElement('div'); header.className = 'ficha-header';
+            header.onclick = (e) => { if (!e.target.closest('button') && !e.target.closest('.custom-checkbox')) toggleCard(card); };
+            const hTitle = document.createElement('div'); hTitle.className = 'ficha-title'; hTitle.innerText = title;
+            const actionsDiv = document.createElement('div'); actionsDiv.className = 'header-actions';
+            if (settings.allowEditor) {
+                const btnEdit = document.createElement('button'); btnEdit.className = 'btn-send-editor'; btnEdit.innerHTML = '↗️'; btnEdit.title = 'Abrir en el editor de textos';
+                btnEdit.onclick = (e) => { e.stopPropagation(); sendToEditor(title, content); };
+                actionsDiv.appendChild(btnEdit);
+            }
+            const btnToggle = document.createElement('button');
+            btnToggle.className = 'btn-toggle-card';
+            btnToggle.type = 'button';
+            btnToggle.innerText = settings.startOpen ? '▾ Cerrar' : '▸ Abrir';
+            btnToggle.onclick = (e) => { e.stopPropagation(); toggleCard(card); };
+            actionsDiv.appendChild(btnToggle);
+            if (settings.allowCopy || settings.allowPrint) {
+                const checkbox = document.createElement('div'); checkbox.className = 'custom-checkbox'; checkbox.title = 'Seleccionar ficha';
+                checkbox.onclick = (e) => { e.stopPropagation(); toggleSelection(card); };
+                actionsDiv.appendChild(checkbox);
+            }
+            header.appendChild(hTitle); header.appendChild(actionsDiv);
+            const body = document.createElement('div'); body.className = 'ficha-body'; body.innerHTML = content;
+            card.appendChild(header); card.appendChild(body); container.appendChild(card);
+        }
+        function sendToEditor(title, htmlContent) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            const images = tempDiv.querySelectorAll('img');
+            images.forEach(img => { if (img.getAttribute('src')) { img.src = img.src; } });
+            const packageHTML = `<h3>${title}</h3>${tempDiv.innerHTML}`;
+            localStorage.setItem('import_content', packageHTML);
+            window.open(EDITOR_URL, 'Editor de Textos');
+        }
+        function toggleCard(card) {
+            card.classList.toggle('open');
+            const btn = card.querySelector('.btn-toggle-card');
+            if (btn) btn.innerText = card.classList.contains('open') ? '▾ Cerrar' : '▸ Abrir';
+        }
+        function toggleSelection(card) { card.classList.toggle('selected-for-print'); updateFabState(); }
+        function clearSelection() { document.querySelectorAll('.ficha-card.selected-for-print').forEach(c => c.classList.remove('selected-for-print')); updateFabState(); }
+        function updateFabState() {
+            const selected = document.querySelectorAll('.ficha-card.selected-for-print');
+            const printable = document.querySelectorAll('.ficha-card.selected-for-print[data-print="1"]');
+            const copyable = document.querySelectorAll('.ficha-card.selected-for-print[data-copy="1"]');
+            selectedCount = selected.length; 
+            const btnPrint = document.getElementById('btn-print'); const btnCopy = document.getElementById('btn-copy'); const badge = document.getElementById('print-badge'); const btnClear = document.getElementById('btn-clear');
+            if (selectedCount > 0) {
+                btnPrint.disabled = printable.length === 0;
+                badge.style.display = 'flex'; badge.innerText = selectedCount;
+                btnClear.style.display = 'flex';
+                btnCopy.style.display = copyable.length > 0 ? 'flex' : 'none';
+            } else {
+                btnPrint.disabled = true; badge.style.display = 'none'; btnClear.style.display = 'none'; btnCopy.style.display = 'none';
+            }
+        }
+        function copySelected() {
+            const selected = document.querySelectorAll('.ficha-card.selected-for-print[data-copy="1"]');
+            if (selected.length === 0) return;
+            const temp = document.createElement('div'); temp.style.backgroundColor = '#fff'; temp.style.color = '#000'; temp.style.position = 'absolute'; temp.style.left = '-9999px';
+            selected.forEach(card => {
+                const title = card.querySelector('.ficha-title').innerText;
+                const bodyClone = card.querySelector('.ficha-body').cloneNode(true);
+                const els = bodyClone.getElementsByTagName("*"); for(let el of els) { el.style.background = "transparent"; }
+                temp.innerHTML += `<div><h2>${title}</h2><div>${bodyClone.innerHTML}</div></div><hr>`;
+            });
+            document.body.appendChild(temp); const range = document.createRange(); range.selectNode(temp); window.getSelection().removeAllRanges(); window.getSelection().addRange(range); document.execCommand('copy'); alert('✅ ¡Fichas copiadas!'); document.body.removeChild(temp);
+        }
+        function printSelected() {
+            const printable = document.querySelectorAll('.ficha-card.selected-for-print[data-print="1"]');
+            if(printable.length>0) window.print();
+        }
+    </script>
+    <div id="contenedor-pie"></div>
+    <script>
+      fetch('/pie.html')
+        .then(function(response) {
+          if (response.ok) return response.text();
+          throw new Error('No se pudo cargar el pie de página');
+        })
+        .then(function(data) {
+          document.getElementById('contenedor-pie').innerHTML = data;
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

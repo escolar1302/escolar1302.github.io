@@ -1,0 +1,167 @@
+{
+"id": "bella-bestia-4grado",
+"titulo": "La Bella y la Bestia",
+"area": "Lengua",
+"grado": "4°",
+"descripcion": "Rosco basado en el cuento La Bella y la Bestia",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Joven bondadosa que decide ir al palacio para salvar a su padre.",
+"respuestas": [
+"bella"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Animal en el que viaja el mercader cuando atraviesa el bosque.",
+"respuestas": [
+"caballo",
+"caballos"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Habitación del palacio que tiene una inscripción con el nombre de Bella.",
+"respuestas": [
+"dormitorio",
+"dormitorio de bella"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Sentimiento que tenían las hermanas de Bella al verla más hermosa y querida.",
+"respuestas": [
+"envidia"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "F",
+"modo": "empieza",
+"pregunta": "Así viven Bella y el príncipe al final del cuento.",
+"respuestas": [
+"felices",
+"feliz"
+],
+"ayuda": "Empieza con F."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Ser mágico que aparece en el sueño de Bella y luego premia su elección.",
+"respuestas": [
+"hada",
+"hadas"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "J",
+"modo": "empieza",
+"pregunta": "Lugar del palacio donde Bella encuentra a la Bestia tendida junto al estanque.",
+"respuestas": [
+"jardín",
+"jardin"
+],
+"ayuda": "Empieza con J."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Animales que aúllan cerca del mercader cuando se pierde en el bosque.",
+"respuestas": [
+"lobos",
+"lobo"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Padre de Bella que pierde sus bienes y llega al palacio de la Bestia.",
+"respuestas": [
+"mercader"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Fenómeno que cubre el camino cuando el mercader se pierde en el bosque.",
+"respuestas": [
+"nieve"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "O",
+"modo": "contiene",
+"pregunta": "Objeto mágico en el que Bella puede ver a su padre.",
+"respuestas": [
+"espejo",
+"espejos"
+],
+"ayuda": "Contiene la letra O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Gran edificio donde vive la Bestia y luego se queda Bella.",
+"respuestas": [
+"palacio",
+"palacios"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Flor que Bella le pide a su padre antes de que él viaje.",
+"respuestas": [
+"rosa",
+"rosas"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Objeto que Bella debe poner sobre la mesa para regresar al palacio.",
+"respuestas": [
+"sortija",
+"sortijas"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Prenda que encuentra el mercader en el palacio para cambiar sus ropas viejas.",
+"respuestas": [
+"traje",
+"trajes"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Prenda que las hermanas mayores le piden al padre cuando creen que recuperará su fortuna.",
+"respuestas": [
+"vestidos",
+"vestido"
+],
+"ayuda": "Empieza con V."
+}
+]
+}

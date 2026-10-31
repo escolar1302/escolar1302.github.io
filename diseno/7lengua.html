@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lengua 7°</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            /* =========================================================== */
+            /* >>> CAMBIA EL COLOR AQUÍ PARA OTROS CICLOS <<< */
+            /* Verde Segundo Ciclo: #27ae60 */
+            /* Naranja Primer Ciclo: #e67e22 */
+            /* =========================================================== */
+            
+            --primary-color: #27ae60; 
+
+            /* El resto de colores se calculan solos o son neutros */
+            --header-bg: #f4f6f7;
+            --selected-bg: #e8f8f5; 
+            --selected-border: var(--primary-color);
+            --text-color: #333;
+        }
+
+        /* Bloqueo de estilos intrusos de Word */
+        body {
+            font-family: 'Roboto', sans-serif !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            padding-bottom: 100px !important;
+            background-color: #f9f9f9 !important;
+            color: var(--text-color) !important;
+            width: 100% !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN FIJA --- */
+        header {
+            background-color: #2c3e50 !important;
+            padding: 10px 0 !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1000 !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+            width: 100% !important;
+            display: block !important;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        h1 { text-align: center; color: #2c3e50; margin: 30px 0; }
+
+        /* --- ACORDEÓN --- */
+        .accordion {
+            background-color: var(--header-bg);
+            color: #2c3e50;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.4s;
+            margin-bottom: 5px;
+            border-left: 6px solid var(--primary-color);
+            display: flex; justify-content: space-between; align-items: center;
+            box-sizing: border-box;
+        }
+        .active, .accordion:hover { background-color: #e2e6ea; } /* Gris suave al pasar mouse */
+        
+        /* Icono (+) que cambia a (-) */
+        .accordion:after { content: '\002B'; color: var(--primary-color); font-weight: bold; font-size: 1.5rem; }
+        .active:after { content: "\2212"; }
+
+        /* --- PANEL DE CONTENIDO --- */
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Grilla 50% / 50% */
+        .grid-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px 0;
+        }
+
+        .col-header {
+            font-weight: bold; text-align: center; color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; 
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+        }
+
+        .content-cell {
+            padding: 15px; background-color: #fff; border: 1px solid #ddd;
+            border-radius: 5px; cursor: pointer; font-size: 0.95rem;
+        }
+        .content-cell:hover { border-color: var(--primary-color); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* Estado Seleccionado */
+        .content-cell.selected {
+            background-color: var(--selected-bg); 
+            border: 2px solid var(--selected-border); 
+            position: relative;
+        }
+        .content-cell.selected::after {
+            content: "✔"; position: absolute; top: 5px; right: 5px; 
+            color: var(--selected-border); font-weight: bold;
+        }
+
+        /* Limpieza de estilos basura */
+        .content-cell p { margin-bottom: 8px; }
+        .content-cell ul { padding-left: 20px; margin: 0; }
+        .content-cell span { background-color: transparent !important; color: inherit !important; font-family: inherit !important; font-size: inherit !important; }
+
+        #raw-import { display: none; }
+
+        .fab {
+            position: fixed; bottom: 30px; right: 30px;
+            background-color: var(--primary-color); color: white;
+            width: 70px; height: 70px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;
+            font-size: 30px; border: none; z-index: 2000; transition: transform 0.2s;
+        }
+        .fab:hover { transform: scale(1.1); }
+
+        #toast {
+            visibility: hidden; min-width: 250px; margin-left: -125px;
+            background-color: #333; color: #fff; text-align: center;
+            border-radius: 50px; padding: 16px; position: fixed;
+            z-index: 3000; left: 50%; bottom: 30px;
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        @media print {
+            header, .fab { display: none !important; }
+            .accordion { border: none; padding: 0; border-bottom: 2px solid #000; }
+            .panel { max-height: none !important; display: block !important; margin-bottom: 30px; }
+            body { max-width: 100% !important; margin: 0 !important; }
+            .grid-container { page-break-inside: avoid; }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <h1>Contenidos Lengua 7°</h1>
+
+    <div id="accordion-container"></div>
+
+    <div id="raw-import">
+        <html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">ol{margin:0;padding:0}table td,table th{padding:0}.c0{border-right-style:solid;padding-top:0pt;border-top-width:0pt;border-right-width:0pt;padding-left:0pt;padding-bottom:0pt;line-height:1.15;border-left-width:0pt;border-top-style:solid;border-left-style:solid;border-bottom-width:0pt;border-bottom-style:solid;orphans:2;widows:2;text-align:left;padding-right:0pt}.c16{border-right-style:solid;border-top-width:0pt;border-right-width:0pt;padding-left:0pt;border-left-width:0pt;border-top-style:solid;border-left-style:solid;border-bottom-width:0pt;border-bottom-style:solid;orphans:2;widows:2;padding-right:0pt;height:11pt}.c18{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:441.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c12{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:162pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c14{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:162pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c22{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:538.6pt;border-top-color:#000000;border-bottom-style:solid}.c30{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:1pt;border-right-width:1pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:269.3pt;border-top-color:#000000;border-bottom-style:solid}.c28{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:263.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c21{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:279.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c10{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:178.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c3{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c1{color:#1f1f1f;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c26{color:#000000;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:13pt;font-family:"Arial";font-style:normal}.c17{color:#434343;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:14pt;font-family:"Arial";font-style:normal}.c4{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left;height:11pt}.c20{color:#000000;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c9{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c33{padding-top:0pt;padding-bottom:24pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c27{text-decoration:none;vertical-align:baseline;font-size:14pt;font-family:"Arial";font-style:normal}.c25{text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c2{padding-top:0pt;padding-bottom:0pt;line-height:1.0;text-align:left}.c8{border-spacing:0;border-collapse:collapse;margin-right:auto}.c7{background-color:#ffffff;max-width:538.6pt;padding:28.3pt 28.3pt 28.3pt 28.3pt}.c24{orphans:2;widows:2;height:11pt}.c6{color:#1f1f1f;font-weight:700}.c36{color:#000000;font-size:13pt}.c13{height:786pt}.c32{font-weight:700}.c34{font-size:10pt}.c37{height:1365.8pt}.c5{height:0pt}.c31{height:837pt}.c29{height:11pt}.c35{page-break-after:avoid}.c11{height:40.5pt}.c15{height:951.8pt}.c23{background-color:#efefef}.c19{height:21pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style></head><body class="c7 doc-content"><p class="c4"><span class="c3"></span></p><table class="c8"><tr class="c11"><td class="c18" colspan="2" rowspan="1"><h3 class="c9" id="h.v23x9abii41i"><span class="c36 c32">Eje: Comprensi&oacute;n lectora</span></h3></td></tr><tr class="c11"><td class="c10 c23" colspan="1" rowspan="1"><p class="c9"><span class="c6">Indicadores de logro</span></p></td><td class="c23 c28" colspan="1" rowspan="1"><p class="c9"><span class="c6">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c15"><td class="c10" colspan="1" rowspan="3"><p class="c0"><span class="c1">&bull; Lee en voz alta obras literarias: var&iacute;a la entonaci&oacute;n en funci&oacute;n de su interpretaci&oacute;n del contenido del texto y atiende al ritmo al leer poemas en voz alta.</span></p><p class="c0"><span class="c1">&bull; Puede explicitar las inferencias que realiza, indicando qu&eacute; informaci&oacute;n falta y c&oacute;mo reponerla.</span></p><p class="c0"><span class="c1">&bull; Reconoce y explica las caracter&iacute;sticas de diferentes g&eacute;neros y subg&eacute;neros literarios y no literarios.</span></p><p class="c0"><span class="c1">&bull; Recurre a los elementos paratextuales y conocimientos previos para recuperar y completar la informaci&oacute;n sobre el tema de un texto.</span></p><p class="c0"><span class="c1">&bull; Integra informaci&oacute;n de distintos textos sobre un tema, seg&uacute;n el objetivo de la lectura.</span></p><p class="c0"><span class="c1">&bull; Monitorea la comprensi&oacute;n: identifica dificultades para reconocer el vocabulario o las ideas centrales durante la lectura y las resuelve con autonom&iacute;a; reconoce incongruencias dentro del texto y datos faltantes.</span></p><p class="c0"><span class="c1">&bull; Reconoce las ideas y conceptos centrales de varios textos sobre un tema para organizar la informaci&oacute;n en cuadros, gr&aacute;ficos e infograf&iacute;as.</span></p><p class="c0"><span class="c1">&bull; Distingue el enunciador en el discurso indirecto en textos literarios y no literarios.</span></p><p class="c0"><span class="c1">&bull; Analiza relatos ficcionales, como cuentos o novelas:</span></p><p class="c0"><span class="c1">reconoce c&oacute;mo evolucionan los personajes principales y secundarios a lo largo del relato, identifica cambios en su personalidad, actitudes o creencias, y qu&eacute; eventos o interacciones motivan estos cambios;</span></p><p class="c0"><span class="c1">identifica la caracterizaci&oacute;n del ambiente y del contexto hist&oacute;rico o cultural y los relaciona con otras obras;</span></p><p class="c0"><span class="c1">analiza los roles del protagonista y del antagonista;</span></p><p class="c4"><span class="c1"></span></p><p class="c0"><span class="c1">examina los recursos ling&uuml;&iacute;sticos que utiliza el autor, como met&aacute;foras y personificaciones, y analiza c&oacute;mo contribuyen al tono y a la atm&oacute;sfera del relato;</span></p><p class="c0"><span class="c1">reconoce los cambios en el tiempo narrativo del relato;</span></p><p class="c0"><span class="c1">identifica distintos tipos y cambios de narrador;</span></p><p class="c0"><span class="c1">identifica el tema central de una obra (amistad, justicia, libertad, etc.);</span></p><p class="c0"><span class="c1">compara personajes protot&iacute;picos de diferentes obras le&iacute;das.</span></p><p class="c0"><span class="c1">&bull; Identifica diversos recursos para crear humor en las comedias que se analizan (por ejemplo: exageraciones y caricaturas de personajes).</span></p><p class="c0"><span class="c1">&bull; Identifica el &quot;yo po&eacute;tico&quot;, diferenci&aacute;ndolo del autor y reconoci&eacute;ndolo mediante los recursos l&iacute;ricos.</span></p><p class="c0"><span class="c1">&bull; Comprende textos no literarios:</span></p><p class="c0"><span class="c1">identifica la informaci&oacute;n expl&iacute;cita e impl&iacute;cita;</span></p><p class="c0"><span class="c1">relaciona el texto con sus experiencias y conocimientos;</span></p><p class="c0"><span class="c1">vincula im&aacute;genes, gr&aacute;ficos, tablas, mapas o diagramas, con el tema del texto;</span></p><p class="c0"><span class="c1">relaciona el uso del lenguaje figurado con la intenci&oacute;n o prop&oacute;sito;</span></p><p class="c0"><span class="c1">compara dos o m&aacute;s textos sobre un mismo tema:</span></p><p class="c0"><span class="c1">identifica ideas centrales y recupera datos de uno o m&aacute;s textos para fundamentar ideas;</span></p><p class="c0"><span class="c1">distingue argumentos, de opiniones y de datos;</span></p><p class="c0"><span class="c1">eval&uacute;a la informaci&oacute;n presente en diversas fuentes: identifica el emisor, el prop&oacute;sito y a qui&eacute;n dirige el mensaje, y si aporta conocimientos sobre el tema que est&aacute; indagando.</span></p><p class="c0"><span class="c1">&bull; Analiza y eval&uacute;a textos argumentativos (columnas de opini&oacute;n, cartas y discursos): identifica la postura del autor, los argumentos e informaci&oacute;n que la sostienen; distingue entre hecho y opini&oacute;n.</span></p><p class="c0"><span class="c1">&bull; Establece conexiones entre textos literarios y no literarios vinculando temas y problemas abordados y con conocimientos de otras &aacute;reas, como la ciencia, la historia, la sociedad y el medioambiente, entre otros.</span></p></td><td class="c28" colspan="1" rowspan="3"><p class="c0"><span class="c1">&bull; Lectura en voz alta y en silencio de textos con atenci&oacute;n a un objetivo (por ejemplo, aprender sobre un tema, identificar opiniones, etc.).</span></p><p class="c0"><span class="c1">&bull; Uso de estrategias de comprensi&oacute;n y monitoreo durante el proceso de lectura cuando se presentan textos m&aacute;s complejos (por ejemplo, textos que desarrollan temas abstractos o poco conocidos).</span></p><p class="c0"><span class="c1">&bull; Reconocimiento de los recursos de cohesi&oacute;n l&eacute;xica y gramatical propios de cada uno de los g&eacute;neros que se abordan.</span></p><p class="c0"><span class="c1">&bull; Abordaje sistem&aacute;tico, en carpetas o en cuadernos, del vocabulario nuevo (literario y cient&iacute;fico-disciplinar), en el contexto de los textos le&iacute;dos, mostrando relaciones entre los conceptos para poder utilizarlos en otros contextos (exposiciones orales, producciones textuales, entre otros).</span></p><p class="c0"><span class="c1">&bull; Identificaci&oacute;n de elementos paratextuales, cuadros y gr&aacute;ficos en distintos g&eacute;neros; relaci&oacute;n con el contenido y pertinencia en relaci&oacute;n con el tema.</span></p><p class="c0"><span class="c1">&bull; Selecci&oacute;n de las ideas centrales de los textos para organizarlas en cuadros y en infograf&iacute;as.</span></p><p class="c0"><span class="c1">&bull; Reconocimiento del discurso directo e indirecto en los diferentes g&eacute;neros.</span></p><p class="c0"><span class="c1">&bull; Selecci&oacute;n de textos y obras literarias, en bibliotecas f&iacute;sicas o virtuales, tomando como referencia las recomendaciones, las lecturas previas y el contenido de estudio.</span></p><p class="c0"><span class="c1">&bull; Dise&ntilde;o de preguntas posibles y de consignas (prompts) para buscar nuevos datos sobre un tema ya conocido usando programas de inteligencia artificial generativa (chat de inteligencia artificial).</span></p><p class="c0"><span class="c1">&bull; Empleo de estrategias para b&uacute;squedas en internet a partir de una tem&aacute;tica dada:</span></p><p class="c0"><span class="c1">selecci&oacute;n, en colaboraci&oacute;n con el docente y con sus pares, de determinadas palabras clave para utilizar en el buscador, ensayando distintas opciones a partir de los criterios de pertinencia;</span></p><p class="c0"><span class="c1">identificaci&oacute;n de las extensiones de los sitios web (.edu, .org, .gob, .com, .net) para conocer el origen de esa fuente y evaluar su confiabilidad;</span></p><p class="c0"><span class="c1">reconocimiento de la estructura (mapa) del sitio web seleccionado y del recorrido que hay que hacer para encontrar los temas y datos que se est&aacute;n buscando;</span></p><p class="c0"><span class="c1">identificaci&oacute;n de datos, evaluaci&oacute;n de la fuente y sistematizaci&oacute;n del contenido seg&uacute;n el objetivo.</span></p><p class="c0"><span class="c25 c6">Literatura</span></p><p class="c0"><span class="c1">&bull; Lectura de poes&iacute;as, historietas, obras de teatro, cuentos, novelas cortas y otras narraciones seleccionadas para el nivel:</span></p><p class="c0"><span class="c1">&bull; Cuentos y novelas en el marco de los recorridos de lectura por autor, subg&eacute;nero o tem&aacute;tica.</span></p><p class="c0"><span class="c1">&bull; Perspectiva de quien narra e identificaci&oacute;n de los tipos de narrador. Identificaci&oacute;n de diversas voces narrativas que se alternan en una misma narraci&oacute;n. Abordaje de temas como &quot;el camino del h&eacute;roe&quot;.</span></p><p class="c0"><span class="c1">&bull; Cuentos fant&aacute;sticos. La irrupci&oacute;n de lo imposible dentro del orden de lo real y cotidiano. Diferencia entre lo fant&aacute;stico y lo maravilloso.</span></p><p class="c0"><span class="c1">&bull; Cuentos de terror. Aparici&oacute;n de elementos (personajes o ambientes) sobrenaturales y macabros. Creaci&oacute;n de la atm&oacute;sfera.</span></p><p class="c0"><span class="c1">&bull; Relato policial o de misterio. La figura del periodista/detective en la construcci&oacute;n de la ficci&oacute;n policial, su deducci&oacute;n a partir de pistas y el proceso para resolver los casos.</span></p><p class="c0"><span class="c1">&bull; Obras de teatro. La comedia como subg&eacute;nero dram&aacute;tico; uso del humor para exagerar, ridiculizar, convertir en grotesco. Perspectiva cr&iacute;tica (s&aacute;tira e iron&iacute;a) de diversas situaciones sociales.</span></p><p class="c0"><span class="c1">&bull; Poes&iacute;a popular y de autor. An&aacute;lisis del lenguaje po&eacute;tico que emplea el autor y la creaci&oacute;n de im&aacute;genes sensoriales; met&aacute;fora y sin&eacute;cdoque. Reconocimiento del yo y del t&uacute; intratextuales al poema.</span></p><p class="c0"><span class="c1">&bull; Relatos de ciencia ficci&oacute;n. Identificaci&oacute;n de temas propios del g&eacute;nero como posibles inventos o descubrimientos cient&iacute;ficos y t&eacute;cnicos, futuros ut&oacute;picos o dist&oacute;picos, cyberpunk, steampunk, entre otros. Relaci&oacute;n con otros g&eacute;neros, como la historieta, y con el cine y las series de televisi&oacute;n.</span></p><p class="c0"><span class="c1">&bull; Lectura de fragmentos de una obra teatral ante un auditorio conocido (teatro le&iacute;do): puesta en voz, entrada y salida de personajes en cada escena.</span></p><p class="c0"><span class="c1">&bull; Lectura de poemas en el marco de actos, representaciones y diversas situaciones de v&iacute;nculo con la comunidad educativa.</span></p><p class="c0"><span class="c1">&bull; &lt;Lectura de guiones de cine o televisi&oacute;n. &gt;</span></p><p class="c0"><span class="c1">&bull; &lt;&lt;B&uacute;squeda y an&aacute;lisis de s&iacute;mbolos o elementos recurrentes en las obras literarias que puedan tener significados m&aacute;s profundos o representativos.&gt;</span></p><p class="c0"><span class="c25 c6">Textos no literarios en distintos soportes, dispositivos y formatos</span></p><p class="c0"><span class="c1">&bull; En la planificaci&oacute;n institucional del ciclo se optar&aacute; por abordar alguno de los siguientes contenidos en propuestas de articulaci&oacute;n curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formaci&oacute;n &Eacute;tica y Ciudadana - Educaci&oacute;n Ambiental - Educaci&oacute;n Alimentaria - Movilidad Sustentable y Segura.</span></p><p class="c0"><span class="c1">&bull; Lectura de textos para encontrar o profundizar sobre un tema de estudio o de inter&eacute;s, con diversos prop&oacute;sitos pautados por el docente:</span></p><p class="c0"><span class="c1">&gt;&gt; Lectura de relatos hist&oacute;ricos.</span></p><p class="c0"><span class="c1">&gt;&gt; Lectura de textos expositivos que expliquen, comparen y clasifiquen diferentes aspectos sobre un tema.</span></p><p class="c0"><span class="c1">&gt; Lectura y an&aacute;lisis de cr&oacute;nicas period&iacute;sticas. Identificaci&oacute;n de sus partes: entrada, cuerpo, conclusi&oacute;n.</span></p><p class="c0"><span class="c1">&gt;&gt; Vinculaci&oacute;n entre las noticias y las cr&oacute;nicas policiales y deportivas.</span></p><p class="c0"><span class="c1">&gt; Publicidades. Identificaci&oacute;n de recursos y estrategias de persuasi&oacute;n.</span></p><p class="c0"><span class="c1">&gt;&gt; Lectura de textos argumentativos de los medios de comunicaci&oacute;n y en sitios web (como columna de opini&oacute;n, rese&ntilde;a cr&iacute;tica de series de televisi&oacute;n, pel&iacute;culas u obras literarias y publicidades). Identificaci&oacute;n de ideas contrapuestas y su argumentaci&oacute;n. Discriminaci&oacute;n entre opini&oacute;n y argumentaci&oacute;n.</span></p><p class="c0"><span class="c1">&bull; Lectura de los resultados que ofrece la inteligencia artificial generativa a partir de preguntas realizadas (prompts) y de la evaluaci&oacute;n de la pertinencia y especificidad de la informaci&oacute;n producida por el programa.</span></p><p class="c0"><span class="c1">&bull; Confrontaci&oacute;n entre el contenido verbal y el visual.</span></p><p class="c0"><span class="c1">&bull; &lt;Lectura de guiones para tutoriales y presentaciones para promover ideas.&gt;</span></p><p class="c0"><span class="c1">&bull; &lt;Lectura de pr&oacute;logos para identificar recursos y organizaci&oacute;n.&gt;</span></p><p class="c0"><span class="c1">&bull; &lt;Lectura de monograf&iacute;as para aprender sobre un tema espec&iacute;fico. An&aacute;lisis de sus partes: introducci&oacute;n (planteo del problema), desarrollo tem&aacute;tico, conclusi&oacute;n.&gt;</span></p></td></tr><tr class="c31"></tr><tr class="c5"></tr></table><p class="c4"><span class="c3"></span></p><hr style="page-break-before:always;display:none;"><p class="c4"><span class="c3"></span></p><table class="c8"><tr class="c19"><td class="c22" colspan="2" rowspan="1"><h3 class="c2 c35" id="h.96hrlmwmvcb"><span class="c32">Eje: Producci&oacute;n de textos I</span></h3></td></tr><tr class="c5"><td class="c30" colspan="1" rowspan="1"><p class="c2"><span class="c32 c34">Indicadores de logro</span></p></td><td class="c30" colspan="1" rowspan="1"><p class="c2"><span class="c20">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c5"><td class="c30" colspan="1" rowspan="1"><p class="c2"><span class="c3">&bull; Planifica y escribe borradores de textos para publicar y presentar al docente, considerando la organizaci&oacute;n textual, las particularidades del g&eacute;nero, el destinatario, la situaci&oacute;n comunicativa y el vocabulario espec&iacute;fico.</span></p><p class="c2"><span class="c3">&bull; Utiliza cuadros o mapas conceptuales para organizar un tema y planificar la producci&oacute;n de sus textos</span></p><p class="c2"><span class="c3">&bull; Compone textos de diversos g&eacute;neros en forma creativa y en las narraciones (cuentos, historietas, episodios de novelas, etc.):</span></p><p class="c2"><span class="c3">sostiene la coherencia en el desarrollo de la trama;</span></p><p class="c2"><span class="c3">utiliza conectores;</span></p><p class="c2"><span class="c3">incluye descripciones sobre los personajes y el ambiente, y el di&aacute;logo (si es necesario);</span></p><p class="c2"><span class="c3">usa los tiempos verbales adecuadamente cuando las narraciones incluyen fluctuaciones temporales y para narrar pasado, presente y futuro tomando como eje el pasado narrativo.</span></p><p class="c2"><span class="c3">&bull; Elabora contenidos expositivos basados en la lectura de diversos textos o en la investigaci&oacute;n sobre un tema, utilizando medios anal&oacute;gicos o digitales, e integra im&aacute;genes o gr&aacute;ficos.</span></p><p class="c2"><span class="c3">&bull; Redacta art&iacute;culos informativos: organiza el texto de forma clara, desarrolla una idea central por p&aacute;rrafo y agrega las fuentes utilizadas.</span></p><p class="c2"><span class="c3">&bull; Escribe sus textos seg&uacute;n el prop&oacute;sito y utiliza recursos para transmitir sus ideas con claridad:</span></p><p class="c2"><span class="c3">agrega ejemplos, datos y justificaciones para profundizar las ideas;</span></p><p class="c2"><span class="c3">emplea vocabulario preciso y variado, y un registro adecuado;</span></p><p class="c2"><span class="c3">relee a medida que escribe para revisar;</span></p><p class="c2"><span class="c3">sostiene la coherencia e incluye conectores;</span></p><p class="c2"><span class="c3">usa recursos de correferencia evitando la ambig&uuml;edad;</span></p><p class="c2"><span class="c3">edita, en forma independiente, la ortograf&iacute;a y presentaci&oacute;n;</span></p><p class="c2"><span class="c3">cuando escribe textos digitales, utiliza las herramientas del procesador de textos para buscar sin&oacute;nimos, corregir ortograf&iacute;a y gram&aacute;tica, y dar formato.</span></p><p class="c2"><span class="c3">&bull; Escribe textos argumentativos (por ejemplo, cartas, cr&iacute;ticas literarias, etc.): reconoce el prop&oacute;sito (persuadir, en este caso), presenta las afirmaciones de manera organizada, fundamenta con evidencia y mantiene la coherencia.</span></p><p class="c2"><span class="c3">&bull; Revisa y edita sus textos para mejorar el contenido, la estructura y organizaci&oacute;n, los recursos de cohesi&oacute;n, la ortograf&iacute;a, el uso de los tiempos verbales e incorpora cuadros, gr&aacute;ficos o im&aacute;genes en concordancia con la informaci&oacute;n que presenta.</span></p><p class="c2"><span class="c3">&bull; Sintetiza, registra y ordena las ideas principales de textos escuchados o le&iacute;dos durante una investigaci&oacute;n o para tomar nota de detalles.</span></p></td><td class="c30" colspan="1" rowspan="1"><p class="c2"><span class="c3">&bull; Planificaci&oacute;n de textos de diversos g&eacute;neros. Redacci&oacute;n de textos narrativos, expositivos, instructivos y argumentativos, atendiendo a las particularidades del g&eacute;nero, la distribuci&oacute;n de la informaci&oacute;n, el reconocimiento de la superestructura textual, las relaciones jer&aacute;rquicas entre los p&aacute;rrafos y la selecci&oacute;n l&eacute;xica adecuada al contenido y al destinatario.</span></p><p class="c2"><span class="c3">&bull; Revisi&oacute;n de los textos atendiendo a la gram&aacute;tica, la coherencia, la cohesi&oacute;n y al uso de la correferencia durante la redacci&oacute;n: sustituci&oacute;n l&eacute;xica, sinonimia e hiperonimia.</span></p><p class="c2"><span class="c3">&bull; Edici&oacute;n del texto en funci&oacute;n del soporte en el que ser&aacute; publicado, decidiendo el t&iacute;tulo, la inclusi&oacute;n de im&aacute;genes y ep&iacute;grafes, la diagramaci&oacute;n (tipograf&iacute;a, color, uso de sangr&iacute;as, etc.).</span></p><p class="c2"><span class="c3">&bull; Publicaci&oacute;n de los textos escritos a trav&eacute;s de dispositivos y formatos variados (mural colaborativo digital, instalaciones art&iacute;sticas, libro digital, audiolibro, booktrailer, folleto).</span></p><p class="c2"><span class="c3">&bull; &lt;Escritura de retratos de personajes relacionando aspectos psicol&oacute;gicos con sus acciones.&gt;</span></p><p class="c2"><span class="c20">Escritura creativa</span></p><p class="c2"><span class="c3">&bull; Escritura de historietas: caracterizaci&oacute;n de personajes, marco espacio-temporal de la acci&oacute;n, destinatario, tem&aacute;ticas que retomen alg&uacute;n subg&eacute;nero abordado (por ejemplo: ciencia ficci&oacute;n, policial, etc.). Redacci&oacute;n de guiones. Articulaci&oacute;n entre el dibujo y los di&aacute;logos.</span></p><p class="c2"><span class="c3">&bull; Producci&oacute;n de un cuento de ciencia ficci&oacute;n a partir de una noticia period&iacute;stica sobre un avance cient&iacute;fico.</span></p><p class="c2"><span class="c3">&bull; Escritura de una cr&oacute;nica a partir de un cuento policial le&iacute;do.</span></p><p class="c2"><span class="c3">&bull; Escritura de guiones de cine o escenas teatrales breves que incluyan di&aacute;logos y descripciones y que reflejen posibles situaciones dentro de una comedia: malentendidos, caricaturas de diversos personajes por exageraci&oacute;n, conflictos humor&iacute;sticos.</span></p><p class="c2"><span class="c3">&bull; Escritura de poemas: inclusi&oacute;n de recursos como la met&aacute;fora, las im&aacute;genes sensoriales y la sin&eacute;cdoque.</span></p><p class="c2"><span class="c3">&bull; Escritura de mon&oacute;logos teatrales c&oacute;micos que recuperen aspectos humor&iacute;sticos abordados en las comedias le&iacute;das.</span></p><p class="c2"><span class="c3">&bull; &lt;Descripciones de ambientes o escenarios propios de los cuentos fant&aacute;sticos o de terror, por ejemplo: atm&oacute;sfera o duda entre lo real y lo imaginario.&gt;</span></p><p class="c2"><span class="c3">&bull; &lt;Reescritura de un cuento (o cap&iacute;tulo de novela) de ciencia ficci&oacute;n o policial desde la perspectiva de un narrador-protagonista (como si fuera el diario personal de un detective o de un cient&iacute;fico-inventor).&gt;</span></p><p class="c2"><span class="c20">Textos no literarios en distintos soportes, dispositivos y formatos</span></p><p class="c2"><span class="c3">&bull; En la planificaci&oacute;n institucional del ciclo se optar&aacute; por abordar alguno de los siguientes contenidos en propuestas de articulaci&oacute;n curricular y transversalidad: Ciencias Sociales - Ciencias Naturales - Formaci&oacute;n &Eacute;tica y Ciudadana - Educaci&oacute;n Ambiental - Educaci&oacute;n Alimentaria - Movilidad Sustentable y Segura.</span></p><p class="c2"><span class="c3">&bull; Planificaci&oacute;n y dise&ntilde;o de infograf&iacute;as para organizar, sistematizar y dar a conocer un tema estudiado o de inter&eacute;s.</span></p><p class="c2"><span class="c3">&bull; Producci&oacute;n de textos que expliquen procesos hist&oacute;ricos o fen&oacute;menos naturales.</span></p><p class="c2"><span class="c3">&bull; Producci&oacute;n de textos argumentativos que aborden ideas contrapuestas sobre un tema de actualidad, a partir de noticias o notas de divulgaci&oacute;n cient&iacute;fica.</span></p><p class="c2"><span class="c3">&bull; Escritura de textos expositivos donde se explique, compare y clasifique diferente informaci&oacute;n sobre un tema.</span></p><p class="c2"><span class="c3">&bull; Elaboraci&oacute;n de res&uacute;menes personales sobre lo le&iacute;do para ser reutilizados en exposiciones orales.</span></p><p class="c2"><span class="c3">&bull; Escritura de cr&oacute;nicas policiales considerando sus partes (introducci&oacute;n, cuerpo del texto y conclusi&oacute;n) a partir de una noticia.</span></p><p class="c2"><span class="c3">&bull; Redacci&oacute;n de guiones para programas radiales o formatos multimediales (por ejemplo, podcast) sobre temas de inter&eacute;s de la comunidad.</span></p><p class="c2"><span class="c3">&bull; Elaboraci&oacute;n de fichas, cuadros sin&oacute;pticos, mapas o esquemas conceptuales para sistematizar la informaci&oacute;n.</span></p><p class="c2"><span class="c3">&bull; Incorporaci&oacute;n del uso de las normas de citaci&oacute;n de las fuentes consultadas.</span></p><p class="c2"><span class="c3">&bull; &lt;Composici&oacute;n de publicidades: articulaci&oacute;n de imagen y texto en funci&oacute;n de estrategias de persuasi&oacute;n.&gt;</span></p><p class="c2"><span class="c3">&bull; &lt;&lt;Escritura de textos argumentativos para desarrollar posturas contrapuestas con datos o referencias a otros autores para justificar las ideas que expone (cita de autoridad) e incorporaci&oacute;n de recursos del g&eacute;nero (ejemplificaci&oacute;n, contraejemplo, generalizaci&oacute;n).&gt;</span></p><p class="c2"><span class="c3">&bull; &lt;&lt;Escritura de guiones para videos tutoriales.&gt;</span></p><p class="c2"><span class="c3">&bull; &lt;&lt;Escritura de textos breves con el prop&oacute;sito de persuadir (por ejemplo, cartas, editoriales, cr&iacute;ticas literarias, etc.): uso de la afirmaci&oacute;n, selecci&oacute;n de evidencia, coherencia.&gt;</span></p><p class="c2"><span class="c3">&bull; &lt;Producci&oacute;n de presentaciones expositivo-argumentativas en conversatorios y en videos, con recursos anal&oacute;gicos y digitales (por ejemplo: charlas de divulgaci&oacute;n y booktrailers).</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c4"><span class="c3"></span></p><p class="c4"><span class="c3"></span></p><p class="c4"><span class="c3"></span></p><table class="c8"><tr class="c11"><td class="c18" colspan="2" rowspan="1"><h3 class="c9" id="h.jclnwxlzxkb3"><span class="c26">Eje: Oralidad</span></h3><p class="c4"><span class="c25 c6"></span></p></td></tr><tr class="c11"><td class="c12" colspan="1" rowspan="1"><p class="c9"><span class="c6">Indicadores de logro</span></p></td><td class="c21 c23" colspan="1" rowspan="1"><p class="c9"><span class="c6">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c37"><td class="c14" colspan="1" rowspan="1"><p class="c0"><span class="c1">&bull; Dialoga para desarrollar acuerdos, plantear problemas y coordinar acciones con docentes y compa&ntilde;eros:</span></p><p class="c0"><span class="c1">mantiene el foco;</span></p><p class="c0"><span class="c1">formula sugerencias o soluciones;</span></p><p class="c0"><span class="c1">retoma los comentarios de los interlocutores;</span></p><p class="c0"><span class="c1">fundamenta su postura;</span></p><p class="c0"><span class="c1">expresa acuerdo y desacuerdo con respeto y adecuaci&oacute;n a la situaci&oacute;n comunicativa.</span></p><p class="c0"><span class="c1">&bull; Intercambia sobre un tema de estudio:</span></p><p class="c0"><span class="c1">formula preguntas y comentarios que evidencian comprensi&oacute;n del objetivo de la tarea de indagaci&oacute;n;</span></p><p class="c0"><span class="c1">aporta conocimientos sobre el tema;</span></p><p class="c0"><span class="c1">recupera vocabulario espec&iacute;fico y conceptos clave;</span></p><p class="c0"><span class="c1">determina y explica si necesita ampliar la informaci&oacute;n para comprender un tema.</span></p><p class="c0"><span class="c1">&bull; Expone sobre un tema de inter&eacute;s o investigaci&oacute;n:</span></p><p class="c0"><span class="c1">planifica su presentaci&oacute;n e identifica las mejores formas de exponer oralmente un tema en funci&oacute;n de las caracter&iacute;sticas de la audiencia;</span></p><p class="c0"><span class="c1">utiliza vocabulario espec&iacute;fico y variado.</span></p><p class="c0"><span class="c1">organiza la informaci&oacute;n en recursos gr&aacute;ficos, en formatos digitales o anal&oacute;gicos;</span></p><p class="c0"><span class="c1">incorpora datos y ejemplos;</span></p><p class="c0"><span class="c1">utiliza notas como referencia para desarrollar el tema;</span></p><p class="c0"><span class="c1">usa la prosodia para marcar foco en ideas o en conceptos y para mantener la atenci&oacute;n del oyente.</span></p><p class="c0"><span class="c1">&bull; Utiliza recursos propios de la argumentaci&oacute;n en los debates dentro del aula, por ejemplo, incorpora datos y remite a fuentes trabajadas para argumentar su postura.</span></p><p class="c0"><span class="c1">&bull; Aporta ideas para diferentes propuestas de vinculaci&oacute;n con la comunidad, como proyectos radiales, simulaciones de debates, exposiciones a las familias o la comunidad escolar, entre otros.</span></p><p class="c0"><span class="c1">&bull; Reconoce y utiliza recursos del lenguaje figurado (por ejemplo, met&aacute;foras, sarcasmo, iron&iacute;a, analog&iacute;as verbales).</span></p></td><td class="c21" colspan="1" rowspan="1"><p class="c0"><span class="c1">&bull; Formulaci&oacute;n de enunciados para transmitir ideas, pensamientos y opiniones, con coherencia y claridad en distintas situaciones comunicativas.</span></p><p class="c0"><span class="c1">&bull; Organizaci&oacute;n de debates sobre noticias period&iacute;sticas o columnas de opini&oacute;n le&iacute;das para defender posturas y plantear argumentos.</span></p><p class="c0"><span class="c1">&bull; Participaci&oacute;n en conversaciones y discusiones en el aula, siguiendo el tema central que plantea el docente o un compa&ntilde;ero, formulando preguntas y comentarios pertinentes con distintos prop&oacute;sitos: dirimir conflictos, llegar a acuerdos, planificar acciones conjuntas, compartir conocimientos sobre un tema u obras le&iacute;das, etc&eacute;tera.</span></p><p class="c0"><span class="c1">&bull; Recitado de poemas de diversas tem&aacute;ticas y estructuras, y narraci&oacute;n oral de cuentos breves, an&eacute;cdotas o leyendas, variando la entonaci&oacute;n para captar la atenci&oacute;n de la audiencia.</span></p><p class="c0"><span class="c1">&bull; Participaci&oacute;n en representaciones teatrales en el aula, en el contexto de actos patrios o de presentaciones a la comunidad educativa (familias, estudiantes de otros grados).</span></p><p class="c0"><span class="c1">&bull; Uso del lenguaje figurado para generar humor, juegos con palabras, iron&iacute;a, sarcasmo, met&aacute;foras, malentendidos (en un juego o en una obra de teatro, por ejemplo).</span></p><p class="c0"><span class="c1">&bull; An&aacute;lisis de programas de radio y podcasts sobre temas de inter&eacute;s.</span></p><p class="c0"><span class="c1">&bull; &lt;Planificaci&oacute;n de entrevistas: adecuar las preguntas seg&uacute;n la persona entrevistada y el tema de inter&eacute;s.&gt;</span></p><p class="c0"><span class="c1">&bull; &lt;Intercambio y discusi&oacute;n sobre el lenguaje y los recursos comunicativos para dise&ntilde;ar material destinado a p&uacute;blico infantil: videos sobre videojuegos, juguetes, desaf&iacute;os, tutoriales, ficciones, etc.&gt;</span></p><p class="c0"><span class="c1">&bull; En la planificaci&oacute;n se optar&aacute; por alguna de estas propuestas en articulaci&oacute;n con otras &aacute;reas:</span></p><p class="c0"><span class="c1">Planificaci&oacute;n de las diferentes instancias de producci&oacute;n de un podcast de noticias y de temas de inter&eacute;s: definici&oacute;n de secciones, elaboraci&oacute;n de guiones de manera aut&oacute;noma y puesta en funcionamiento del proyecto.</span></p><p class="c0"><span class="c1">Producci&oacute;n de entrevistas sobre temas de inter&eacute;s del grupo y de la comunidad, tomando como referencia las preguntas elaboradas previamente y utilizando herramientas digitales para realizar encuentros virtuales, grabar y editar.</span></p><p class="c0"><span class="c1">Exposici&oacute;n oral sobre temas de inter&eacute;s para compartir con la comunidad: planificaci&oacute;n guiada del docente del tema a exponer, incorporaci&oacute;n de ejemplos o presentaciones interactivas. Por ejemplo, se puede reflexionar sobre las identidades en los medios de comunicaci&oacute;n y sobre la promoci&oacute;n de miradas m&aacute;s inclusivas.</span></p><p class="c0"><span class="c1">Participaci&oacute;n en un proyecto de producci&oacute;n de una radio escolar de noticias en grupos y guiado por el docente: elaboraci&oacute;n de los guiones, presentaci&oacute;n de las noticias, intercambios de puntos de vista.</span></p><p class="c0"><span class="c1">&bull; &lt;Planificaci&oacute;n y participaci&oacute;n en mesas o foros de debate sobre temas de inter&eacute;s. &gt;</span></p><p class="c0"><span class="c1">&bull; &lt;Organizaci&oacute;n de conversaciones literarias y entrevistas a escritores.&gt;</span></p><p class="c0"><span class="c1">&bull; &lt;Uso del estilo de lenguaje acad&eacute;mico en las exposiciones: por ejemplo, cita de autor, uso de f&oacute;rmulas de inicio y cierre del discurso, menci&oacute;n de conceptos, explicaci&oacute;n y ejemplificaci&oacute;n para lograr la comprensi&oacute;n del auditorio.&gt;</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c4"><span class="c3"></span></p><p class="c4"><span class="c3"></span></p><table class="c8"><tr class="c11"><td class="c18" colspan="2" rowspan="1"><h3 class="c9" id="h.esgfgymtx9da"><span class="c32 c36">Eje: Conocimiento de la lengua</span></h3></td></tr><tr class="c11"><td class="c12" colspan="1" rowspan="1"><p class="c33"><span class="c6">Indicadores de logro</span></p></td><td class="c21 c23" colspan="1" rowspan="1"><p class="c9"><span class="c6">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c13"><td class="c14" colspan="1" rowspan="1"><p class="c0"><span class="c1">&bull; Reconoce la diferencia entre los modos indicativo, subjuntivo e imperativo y conjuga verbos en cada uno.</span></p><p class="c0"><span class="c1">&bull; Identifica si las oraciones que lee y escribe son gramaticales y las corrige cuando es necesario.</span></p><p class="c0"><span class="c1">&bull; Reconoce oraciones impersonales. Reconoce el sujeto t&aacute;cito de una oraci&oacute;n.</span></p><p class="c0"><span class="c1">&bull; Deriva palabras para transformar su categor&iacute;a gramatical.</span></p><p class="c0"><span class="c1">&bull; Identifica oraciones coordinadas.</span></p><p class="c0"><span class="c1">&bull; Selecciona los elementos de cohesi&oacute;n l&eacute;xica y gramatical en funci&oacute;n de lo que quiere transmitir en la oralidad o la producci&oacute;n escrita.</span></p><p class="c0"><span class="c1">&bull; Selecciona y reemplaza palabras seg&uacute;n su categor&iacute;a gramatical dentro de las oraciones.</span></p><p class="c0"><span class="c1">&bull; Identifica errores comunes del uso de la lengua y puede corregirlos apoy&aacute;ndose en su conocimiento.</span></p><p class="c0"><span class="c1">&bull; Recurre a su conocimiento de la ortograf&iacute;a al escribir palabras nuevas y revisar las producciones escritas.</span></p></td><td class="c21" colspan="1" rowspan="1"><p class="c0"><span class="c1">&bull; Revisi&oacute;n de tipos de sustantivos: propios y comunes, individuales y colectivos, abstractos y concretos, contables e incontables.</span></p><p class="c0"><span class="c1">&bull; Revisi&oacute;n de tipos de adjetivos: calificativos, gentilicios, relacionales.</span></p><p class="c0"><span class="c1">&bull; Revisi&oacute;n de determinantes y cuantificadores.</span></p><p class="c0"><span class="c1">&bull; Revisi&oacute;n de adverbios de tiempo, lugar, cantidad y modo, y clasificaci&oacute;n de adverbios de afirmaci&oacute;n, negaci&oacute;n, duda.</span></p><p class="c0"><span class="c1">&bull; Conjugaci&oacute;n del paradigma verbal completo en funci&oacute;n de las diversas situaciones de enunciaci&oacute;n de los discursos producidos.</span></p><p class="c0"><span class="c1">&bull; Identificaci&oacute;n de n&uacute;cleos, especificadores, modificadores, complementos y adjuntos.</span></p><p class="c0"><span class="c1">&bull; An&aacute;lisis de oraciones: con sintagma nominal simple y compuesto en el sujeto; con sintagma verbal simple y compuesto en el predicado.</span></p><p class="c0"><span class="c1">&bull; An&aacute;lisis de oraciones con verbos copulativos: predicativo subjetivo obligatorio.</span></p><p class="c0"><span class="c1">&bull; An&aacute;lisis de oraciones con sujeto t&aacute;cito.</span></p><p class="c0"><span class="c1">&bull; An&aacute;lisis de oraciones impersonales con los verbos haber y hacer.</span></p><p class="c0"><span class="c1">&bull; Reconocimiento y an&aacute;lisis de oraciones coordinadas.</span></p><p class="c0"><span class="c1">&bull; Construcci&oacute;n de familias morfol&oacute;gicas de palabras: reconocimiento de palabras derivadas, como los sustantivos y adjetivos deverbales.</span></p><p class="c0"><span class="c1">&bull; An&aacute;lisis y resoluci&oacute;n de problemas usuales del uso de la lengua: empleo de la misma y el mismo con valor anaf&oacute;rico, concordancia de g&eacute;nero para adjetivos ordinales (primer parte y primera parte, por ejemplo), etc&eacute;tera.</span></p><p class="c0"><span class="c1">&bull; &lt;Reconocimiento de las caracter&iacute;sticas sint&aacute;cticas de los verbos no conjugados: infinitivo con funci&oacute;n nominal, participio con funci&oacute;n adjetival, gerundio con funci&oacute;n adverbial.&gt;</span></p><p class="c0"><span class="c1">&bull; &lt;Clasificaci&oacute;n de oraciones subordinadas.&gt;</span></p><p class="c0"><span class="c1">&bull; Identificaci&oacute;n de oraciones con ambig&uuml;edad sint&aacute;ctica (por ejemplo, &quot;es una cantante de m&uacute;sica conocida&quot;).</span></p></td></tr></table><p class="c4"><span class="c3"></span></p></body></html>
+        </div>
+    <button class="fab" onclick="copySelectedText()" title="Copiar seleccionados">📋</button>
+    <div id="toast">Texto copiado al portapapeles</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            procesarTablasImportadas();
+        });
+
+        function procesarTablasImportadas() {
+            const rawContainer = document.getElementById('raw-import');
+            if (!rawContainer) return;
+            
+            const tables = rawContainer.getElementsByTagName('table');
+            const outputContainer = document.getElementById('accordion-container');
+            outputContainer.innerHTML = ''; 
+
+            for (let table of tables) {
+                let rows = Array.from(table.rows);
+                if (rows.length < 2) continue;
+
+                // 1. Título
+                let rawTitle = rows[0].innerHTML.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                if (!rawTitle) continue;
+
+                let acumuladoIzq = "";
+                let acumuladoDer = "";
+                let hayContenidoReal = false;
+
+                // 2. Recorremos filas buscando contenido
+                for (let i = 1; i < rows.length; i++) {
+                    let row = rows[i];
+                    let cells = row.cells;
+                    
+                    if (cells.length >= 2) {
+                        // Limpieza para detectar encabezados
+                        let textoIzq = cells[0].innerText.toLowerCase().trim();
+                        let textoDer = cells[1].innerText.toLowerCase().trim();
+
+                        // FILTRO CORREGIDO: 
+                        // Solo saltamos si es explícitamente un encabezado conocido.
+                        // Quitamos el check suelto de "contenidos" en la izquierda para evitar falsos positivos.
+                        if (textoIzq === "indicadores de logro" || 
+                            textoIzq === "modos de conocer" || 
+                            textoDer.includes("contenidos nodales")) {
+                            continue;
+                        }
+
+                        // Limpieza y Extracción
+                        let htmlIzq = limpiarAtributos(cells[0].innerHTML);
+                        let htmlDer = limpiarAtributos(cells[1].innerHTML);
+
+                        let checkIzq = htmlIzq.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+                        let checkDer = htmlDer.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+                        let tieneImg = cells[0].querySelector('img') || cells[1].querySelector('img');
+
+                        if (checkIzq.length > 0 || checkDer.length > 0 || tieneImg) {
+                            acumuladoIzq += htmlIzq + "<br>";
+                            acumuladoDer += htmlDer + "<br>";
+                            hayContenidoReal = true;
+                        }
+                    }
+                }
+
+                if (hayContenidoReal) {
+                    let htmlBloque = `
+                        <button class="accordion">${rawTitle}</button>
+                        <div class="panel">
+                            <div class="grid-container">
+                                <div class="col-header">Indicadores de logro</div>
+                                <div class="col-header">Contenidos nodales y de ampliación/profundización</div>
+                                
+                                <div class="content-cell" onclick="toggleSelect(this)">
+                                    ${acumuladoIzq}
+                                </div>
+                                <div class="content-cell" onclick="toggleSelect(this)">
+                                    ${acumuladoDer}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    outputContainer.innerHTML += htmlBloque;
+                }
+            }
+            activarAcordeones();
+        }
+
+        function limpiarAtributos(html) {
+            return html
+                .replace(/ class="[^"]*"/g, '') 
+                .replace(/ style="[^"]*"/g, '') 
+                .replace(/ width="[^"]*"/g, '') 
+                .replace(/&nbsp;/g, ' ');
+        }
+
+        function activarAcordeones() {
+            var acc = document.getElementsByClassName("accordion");
+            for (var i = 0; i < acc.length; i++) {
+                var newAcc = acc[i].cloneNode(true);
+                acc[i].parentNode.replaceChild(newAcc, acc[i]);
+                newAcc.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = "5000px"; 
+                    }
+                });
+            }
+        }
+
+        function toggleSelect(element) {
+            element.classList.toggle("selected");
+        }
+
+        function copySelectedText() {
+            var selectedElements = document.getElementsByClassName("selected");
+            if (selectedElements.length === 0) { showToast("No seleccionaste nada."); return; }
+            var textToCopy = "";
+            for (var i = 0; i < selectedElements.length; i++) {
+                var cell = selectedElements[i];
+                var contentText = cell.innerText.trim();
+                var panel = cell.closest('.panel');
+                var titulo = panel && panel.previousElementSibling ? panel.previousElementSibling.innerText : "Sección";
+                var pageTitle = document.querySelector('h1') ? document.querySelector('h1').innerText : "Documento";
+                textToCopy += pageTitle + " > " + titulo + "\n" + contentText + "\n\n-------------------\n\n";
+            }
+            navigator.clipboard.writeText(textToCopy).then(() => showToast("¡Copiado!"), (err) => showToast("Error: " + err));
+        }
+
+        function showToast(msg) {
+            var x = document.getElementById("toast");
+            if (!x) return;
+            x.innerText = msg; x.className = "show";
+            setTimeout(() => { x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

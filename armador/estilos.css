@@ -1,0 +1,413 @@
+
+:root{
+  --bg:#eef1f4; --panel:#fff; --ink:#263238; --muted:#607d8b; --line:#d5dce1;
+  --ui-accent:#b71c1c; --ui-dark:#37474f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+.app{max-width:1180px;margin:auto;padding:24px}
+h1{margin:0 0 6px;font-size:1.8rem}
+.lead{margin:0 0 20px;color:var(--muted)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.control{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:.92rem}
+select,input[type="text"]{
+  width:100%;padding:10px 11px;border:1px solid #b8c1c8;border-radius:7px;background:#fff;font-size:1rem
+}
+.actions,.toolbar{display:flex;gap:9px;flex-wrap:wrap}
+.actions{margin-top:16px}
+button{border:0;border-radius:7px;padding:10px 14px;font-size:.94rem;font-weight:700;cursor:pointer}
+.primary{background:var(--ui-accent);color:#fff}
+.secondary{background:var(--ui-dark);color:#fff}
+.ghost{background:#eef1f3;border:1px solid #cbd3d8;color:#263238}
+.danger-lite{background:#fff3f3;border:1px solid #e4bdbd;color:#8c1b1b}
+.note,.status,.tiny{color:var(--muted);font-size:.88rem}
+.warning{display:none;background:#fff7df;border:1px solid #e5cf8e;border-radius:7px;padding:10px 12px;margin-top:12px}
+.checks{display:flex;gap:9px 18px;flex-wrap:wrap;margin-top:8px}
+.checks label{font-weight:400}
+#advanced{display:none;border-top:1px solid var(--line);margin-top:17px;padding-top:16px}
+
+/* Presentación principal */
+.presentation{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.presentation-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px;align-items:end}
+.segmented{display:flex;flex-wrap:wrap;gap:7px}
+.segmented label{font-weight:400}
+
+/* Complementos: primero se elige el módulo; recién entonces aparecen sus opciones */
+.supplement-zone{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.supplement-heading{font-weight:700;margin-bottom:9px}
+.supplement-toggles{display:flex;gap:10px;flex-wrap:wrap}
+.module-toggle{
+  display:flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid #cdd6dc;border-radius:9px;
+  background:#f7f9fa;cursor:pointer;font-weight:700;transition:.15s ease
+}
+.module-toggle.active{border-color:#8fa2ae;background:#eef3f5}
+.module-toggle input{margin:0}
+.supp-panel{
+  display:none;margin-top:12px;padding:14px 15px;border:1px solid #d8e0e5;border-radius:10px;background:#fafbfc
+}
+.supp-panel.on{display:block}
+.supp-title{font-weight:700;margin-bottom:10px}
+.supp-types{display:flex;gap:10px 20px;flex-wrap:wrap;margin-bottom:12px}
+.supp-types label{font-weight:400}
+.compact-controls{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,220px));gap:12px;align-items:end;justify-content:start
+}
+.compact-controls .control{min-width:0}
+.compact-note{margin-top:9px}
+
+/* Vista previa */
+.preview-wrap{display:none}
+.teacher-summary{
+  background:#fff;border:1px solid var(--line);border-left:5px solid var(--ui-accent);
+  border-radius:9px;padding:12px 15px;margin:0 0 12px
+}
+.teacher-summary strong{display:block;margin-bottom:4px}
+.summary-line{font-size:.93rem;color:#455a64}
+.toolbar{margin-bottom:12px}
+.edit-hint{
+  display:none;margin:0 0 10px;padding:8px 10px;background:#eef5f7;border-radius:6px;font-size:.88rem;color:#455a64
+}
+.edit-mode .edit-hint{display:block}
+#designPanel{display:none}
+
+.pages-stage{display:flex;flex-direction:column;align-items:center;gap:28px;padding:8px 0 32px}
+.page-shell{position:relative}
+.page-label{position:absolute;top:-22px;left:2px;font-size:.78rem;color:#73818a;font-weight:700}
+.a4-page{
+  --sheet-accent:#b71c1c;--sheet-soft:#fbefef;
+  width:210mm;height:297mm;background:#fff;padding:14mm 13mm 14mm 13mm;
+  box-shadow:0 2px 16px rgba(0,0,0,.14);overflow:hidden
+}
+.student-heading{display:flex;justify-content:space-between;gap:22px;align-items:flex-end;margin-bottom:17px}
+.student-name{flex:1}.student-date{width:185px}
+.write-line{display:inline-block;border-bottom:1px solid #444;min-width:65%;height:20px;vertical-align:bottom}
+.sheet-title{font-weight:700;font-size:1.12rem;margin:7px 0 15px;color:var(--sheet-accent)}
+
+/* Problemas */
+.problem{position:relative;line-height:1.48;font-size:1.02rem;break-inside:avoid;margin:0 0 12px;padding:0}
+.problem::before{content:attr(data-number) ".";font-weight:700;margin-right:5px;color:var(--sheet-accent)}
+.style-clean .problem{padding:0;margin-bottom:12px}
+.style-box .problem,.style-box-space .problem{
+  border:1.4px solid #aeb8bf;border-radius:10px;padding:12px 14px 12px 39px;margin-bottom:12px;
+  background:linear-gradient(90deg,var(--sheet-soft) 0 7px,#fff 7px 100%)
+}
+.style-box .problem::before,.style-box-space .problem::before{
+  position:absolute;left:14px;top:12px;background:var(--sheet-accent);color:#fff;width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:.8rem;margin:0
+}
+.answer-space{display:none}
+.style-box-space .answer-space{
+  display:block;height:22mm;margin-top:10px;
+  background:repeating-linear-gradient(to bottom,transparent 0,transparent 8mm,#d7dde1 8.2mm,transparent 8.4mm)
+}
+.edit-controls{
+  display:none;position:absolute;right:7px;top:7px;gap:5px;background:#fff;padding:4px;border-radius:7px;
+  border:1px solid #d7dde1;box-shadow:0 1px 5px rgba(0,0,0,.08)
+}
+.edit-mode .edit-controls{display:flex}
+.edit-controls button{font-size:.74rem;padding:5px 7px}
+
+/* Títulos de los bloques complementarios */
+.section-heading{
+  font-weight:700;font-size:1.05rem;color:var(--sheet-accent);border-bottom:1px solid #d6dde1;
+  padding-bottom:4px;margin:5px 0 10px
+}
+.print-block{break-inside:avoid}
+
+/* OPERACIONES: inspirado en la fábrica específica */
+.ops-sheet-block{
+  border:1px solid #9da8ae;
+  border-radius:4mm;
+  padding:7mm 6mm 6mm;
+  margin-bottom:5mm;
+  background:#fff;
+  width:100%;
+  overflow:hidden;
+}
+.ops-grid{
+  display:grid;
+  column-gap:5mm;
+  row-gap:9mm;
+  align-items:start;
+  width:100%;
+}
+.ops-grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ops-grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.ops-grid.cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.op-card{
+  min-width:0;
+  min-height:25mm;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  overflow:hidden;
+}
+.op-stack{
+  width:26mm;
+  max-width:100%;
+  font-family:"Courier New",Courier,monospace;
+  font-weight:700;
+  font-size:1.08rem;
+  line-height:1.12;
+  font-variant-numeric:tabular-nums;
+  text-align:right;
+}
+.op-stack .top,.op-stack .second{display:block;padding:1mm 1mm;white-space:nowrap}
+.op-stack .second{border-bottom:1.2px solid #20272b}
+.op-stack .result-space{display:block;height:8mm;padding:1mm}
+.op-symbol{display:inline-block;width:4.5mm;text-align:left}
+.division-algorithm{
+  width:34mm;
+  height:29mm;
+  display:grid;
+  grid-template-columns:1fr 13mm;
+  grid-template-rows:9mm 1fr;
+  font-family:"Courier New",Courier,monospace;
+  font-weight:700;
+  font-size:1.08rem;
+  line-height:1.1;
+  font-variant-numeric:tabular-nums;
+}
+.division-dividend{
+  grid-column:1;grid-row:1 / span 2;
+  text-align:right;padding:1.5mm 2.3mm 0 0;
+}
+.division-divisor{
+  grid-column:2;grid-row:1;
+  border-left:1.35px solid #20272b;
+  border-bottom:1.35px solid #20272b;
+  text-align:center;padding:1.5mm 1mm 1mm;
+  white-space:nowrap;
+}
+.division-quotient{
+  grid-column:2;grid-row:2;
+  border-left:1.35px solid #20272b;
+  min-height:15mm;
+}
+.ops-grid.horizontal{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:12mm;row-gap:8mm}
+.op-horizontal{
+  width:100%;min-height:18mm;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Courier New",Courier,monospace;
+  font-weight:700;font-size:1.08rem;line-height:1.12;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.op-horizontal .horizontal-answer{display:inline-block;width:25mm;border-bottom:1.2px solid #333;margin-left:2mm}
+
+/* NUMERACIÓN: actividades visuales tipo ficha */
+.num-activity{
+  position:relative;
+  padding:0 0 1mm 13mm;
+  margin-bottom:7mm;
+  min-height:20mm;
+  width:100%;
+  overflow:hidden;
+}
+.activity-badge{
+  position:absolute;left:0;top:0;width:10mm;height:10mm;border-radius:4mm;background:#616161;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem
+}
+.activity-instruction{font-weight:700;font-size:1.04rem;margin:0 0 4mm}
+.activity-help{font-size:.78rem;color:#59666d;margin:-1.5mm 0 4mm}
+
+/* Ordenamiento */
+.number-chips{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:2.7mm;
+  margin:1mm 0 4mm;
+  width:100%;
+}
+.number-chip{
+  min-width:0;
+  padding:3.1mm 1.5mm;
+  border:1px solid #9da8ae;
+  border-radius:4mm;
+  text-align:center;
+  font-weight:700;
+  background:#fbfcfc;
+  white-space:nowrap;
+  overflow:hidden;
+}
+.order-answer{
+  display:grid;
+  grid-template-columns:repeat(11,minmax(0,auto));
+  align-items:center;
+  justify-content:center;
+  gap:1.6mm;
+  width:100%;
+}
+.order-slot{
+  width:20.5mm;
+  max-width:100%;
+  height:11.5mm;
+  border:1px solid #aeb8bf;
+  border-radius:3mm;
+  background:#fff;
+}
+.order-sign{font-weight:700;font-size:1.1rem}
+
+/* Recta numérica */
+.recta-wrap{margin:0 2mm 0}
+.recta-scale{
+  display:grid;
+  grid-template-columns:repeat(8,minmax(0,1fr));
+  position:relative;
+  padding-top:10mm;
+  width:100%;
+}
+.recta-scale::before{
+  content:"";
+  position:absolute;
+  left:1.4%;
+  right:1.4%;
+  top:20.5mm;
+  border-top:1.25px solid #455a64;
+}
+.recta-point{position:relative;text-align:center;min-width:0}
+.recta-box{
+  width:78%;
+  max-width:23mm;
+  height:8.5mm;
+  margin:0 auto 5.5mm;
+  border:1px solid #aeb8bf;
+  border-radius:2.6mm;
+  background:#fff;
+}
+.recta-box.empty-ref{border-color:transparent;background:transparent}
+.recta-tick{height:9mm;position:relative}
+.recta-tick::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-1mm;
+  height:9mm;
+  border-left:1.2px solid #607d8b;
+}
+.recta-point.major .recta-tick::before{border-left:2px solid #455a64}
+.recta-label{
+  font-size:.74rem;
+  font-weight:700;
+  min-height:5mm;
+  white-space:nowrap;
+  overflow:visible;
+}
+
+/* Tabla */
+.num-table{
+  border-collapse:separate;border-spacing:0;width:100%;font-size:.9rem;border:1px solid #9eaab2;border-radius:3mm;overflow:hidden
+}
+.num-table th,.num-table td{border-right:1px solid #aeb4b8;border-bottom:1px solid #aeb4b8;padding:2.8mm;text-align:center;height:10mm}
+.num-table th:last-child,.num-table td:last-child{border-right:0}
+.num-table tr:last-child td{border-bottom:0}
+.num-table th{background:#f2f5f7;font-weight:700}
+.cell-blank{display:inline-block;width:24mm;height:7mm;border-bottom:1px solid #77858d}
+
+/* Descomposición */
+.decomp-card{
+  border:1px solid #c6cdd1;border-radius:3mm;padding:4mm 5mm;background:#fbfcfc
+}
+.decomp-line{display:flex;align-items:center;gap:3mm;font-size:1rem;margin:2mm 0}
+.decomp-number{font-weight:700;min-width:24mm}
+.decomp-answer{flex:1;border-bottom:1px solid #6e7b82;height:8mm}
+
+/* Colores */
+.color-red{--sheet-accent:#b71c1c;--sheet-soft:#fbefef}
+.color-blue{--sheet-accent:#1565c0;--sheet-soft:#edf5fd}
+.color-green{--sheet-accent:#2e7d32;--sheet-soft:#eef8ef}
+.color-violet{--sheet-accent:#6a1b9a;--sheet-soft:#f6eef9}
+.color-gray{--sheet-accent:#455a64;--sheet-soft:#f2f4f5}
+.color-swatches{display:flex;gap:9px;flex-wrap:wrap;margin-top:7px}
+.color-swatches label{
+  display:flex;align-items:center;gap:6px;border:1px solid #d5dce1;border-radius:7px;padding:6px 8px;font-weight:400;background:#fff
+}
+.swatch{width:18px;height:18px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.18)}
+.sw-red{background:#b71c1c}.sw-blue{background:#1565c0}.sw-green{background:#2e7d32}.sw-violet{background:#6a1b9a}.sw-gray{background:#455a64}
+
+.measure-zone{position:absolute;left:-10000px;top:0;width:184mm;visibility:hidden}
+.measure-zone .measure-inner{width:184mm}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+  .presentation-grid{grid-template-columns:1fr}
+  .compact-controls{grid-template-columns:repeat(2,minmax(170px,1fr))}
+  .pages-stage{align-items:stretch}
+  .a4-page{width:100%;height:auto;min-height:297mm}
+}
+@media(max-width:620px){
+  .grid,.compact-controls{grid-template-columns:1fr}
+  .student-heading{display:block}.student-date{width:auto;margin-top:12px}
+  .ops-grid.cols-3,.ops-grid.cols-4,.ops-grid.cols-5{grid-template-columns:repeat(2,1fr)}
+}
+@media print{
+  .ops-grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+  .ops-grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .ops-grid.cols-5{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+}
+@media print{
+  body{background:#fff}
+  .app>h1,.lead,#configPanel,.teacher-summary,.toolbar,.status,.edit-hint,#designPanel,.page-label,.edit-controls,.num-edit-controls{display:none!important}
+  .app{max-width:none;padding:0}
+  .preview-wrap{display:block!important}
+  .pages-stage{display:block;padding:0}
+  .page-shell{page-break-after:always;break-after:page}
+  .page-shell:last-child{page-break-after:auto;break-after:auto}
+  .a4-page{width:210mm;height:297mm;box-shadow:none;margin:0;padding:14mm 13mm 14mm 13mm;overflow:hidden}
+  @page{size:A4;margin:0}
+}
+
+.pagination-test-pair,.pagination-holder{display:contents}
+
+.decomp-example{
+  margin:-1mm 0 3.5mm;
+  padding:2.5mm 3.5mm;
+  border-radius:2.5mm;
+  background:#f4f6f7;
+  font-size:.9rem;
+}
+.decomp-multi .decomp-line{
+  margin:3mm 0;
+}
+.anterior-table td,.anterior-table th{
+  width:33.333%;
+}
+
+/* Edición de actividades de numeración */
+.num-edit-controls{
+  display:none;position:absolute;right:0;top:-1mm;z-index:4;
+  gap:4px;background:#fff;padding:4px;border-radius:7px;
+  border:1px solid #d7dde1;box-shadow:0 1px 5px rgba(0,0,0,.08)
+}
+.edit-mode .num-edit-controls{display:flex}
+.num-edit-controls button{font-size:.72rem;padding:5px 7px}
+.decomp-mode-label{font-weight:700;min-width:32mm;color:#455a64;font-size:.88rem}
+.decomp-line.multiplicative .decomp-number{min-width:24mm}
+@media print{.num-edit-controls{display:none!important}.ops-grid.horizontal{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+
+
+/* Identidad visual de escolar.com.ar */
+.site-header{background-color:#2c3e50;padding:10px 0;width:100%;box-sizing:border-box;position:sticky;top:0;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,.3);font-family:Roboto,Arial,sans-serif}
+.site-nav{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.site-logo{display:flex;align-items:center;text-decoration:none;flex:none}
+.site-logo img{height:60px;width:auto;display:block;transition:transform .2s ease}
+.site-logo:hover img{transform:scale(1.03)}
+.site-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.site-links a{color:#fff;text-decoration:none;font-size:.9rem;font-weight:400}
+.site-links a:hover,.site-links a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+.site-links .site-back{color:#f1c40f;font-weight:700;border-left:1px solid #7f8c8d;padding-left:20px;white-space:nowrap}
+.site-links .site-back:hover,.site-links .site-back:focus-visible{color:#ffe36b}
+#contenedor-pie{position:relative;z-index:1}
+.site-footer-fallback{max-width:1100px;margin:28px auto 0;padding:22px 20px 28px;border-top:1px solid #d5dce1;color:#54636b;text-align:center;font-size:.88rem;line-height:1.5}
+
+/* Pie de licencia de cada hoja generada */
+.a4-page{position:relative;padding-bottom:24mm!important}
+.sheet-footer{position:absolute;left:13mm;right:13mm;bottom:7mm;min-height:8mm;border-top:1px solid #d6dde1;padding-top:2.2mm;display:grid;grid-template-columns:1fr auto auto;gap:5mm;align-items:center;font-size:7.8pt;line-height:1.15;color:#59666d}
+.sheet-footer .footer-brand{white-space:nowrap}
+.sheet-footer .footer-license{display:flex;align-items:center;gap:2mm;white-space:nowrap}
+.sheet-footer .cc-logo{height:7mm;width:auto;display:block}
+.sheet-footer .footer-page{white-space:nowrap;text-align:right}
+@media(max-width:640px){.site-nav{padding:0 14px;gap:10px}.site-logo img{height:48px}.site-links{gap:12px}.site-links a{font-size:.82rem}}
+@media(max-width:460px){.site-nav{align-items:flex-start;flex-direction:column}.site-links{width:100%;justify-content:flex-start;gap:10px 14px;padding-bottom:3px}.site-links .site-back{border-left:0;padding-left:0;width:100%;padding-top:4px}}
+@media print{.site-header,#contenedor-pie{display:none!important}.a4-page{padding:14mm 13mm 24mm 13mm!important}.sheet-footer{display:grid!important}}

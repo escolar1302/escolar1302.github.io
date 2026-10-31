@@ -1,0 +1,214 @@
+{
+"id": "traje-nuevo-emperador-5grado",
+"titulo": "El traje nuevo del emperador",
+"area": "Lengua",
+"grado": "5°",
+"descripcion": "Rosco sobre los personajes, las acciones, los objetos y el conflicto del cuento de Hans Christian Andersen.",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta según el cuento.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "A",
+"modo": "empieza",
+"pregunta": "Bolsas en las que los estafadores guardaban las sedas y el hilo de oro.",
+"respuestas": [
+"alforjas",
+"alforja"
+],
+"ayuda": "Empieza con A."
+},
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Adjetivo que usa el narrador para referirse a los falsos tejedores cuando terminan el traje.",
+"respuestas": [
+"bribones",
+"bribón",
+"bribon"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Acción que realizó la multitud después que el pequeño dijo: Pero...isi está desnudo!.",
+"respuestas": [
+"cuchichear",
+"cuchichearon"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Recorrido público que el gobernante decidió continuar hasta el final.",
+"respuestas": [
+"desfile",
+"desfiles"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Cargo del protagonista del cuento.",
+"respuestas": [
+"emperador",
+"emperadores"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "F",
+"modo": "empieza",
+"pregunta": "Empleado enviado por el monarca para supervisar el tejido después del ministro.",
+"respuestas": [
+"funcionario",
+"funcionarios"
+],
+"ayuda": "Empieza con F."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Material dorado y de gran calidad que exigieron los falsos tejedores.",
+"respuestas": [
+"hilo",
+"hilos"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "I",
+"modo": "empieza",
+"pregunta": "Así se volverían las prendas ante los ojos de las personas que no merecieran su cargo.",
+"respuestas": [
+"invisibles",
+"invisible"
+],
+"ayuda": "Empieza con I."
+},
+{
+"letra": "J",
+"modo": "contiene",
+"pregunta": "Herramientas con las que los engañadores fingieron cortar la tela.",
+"respuestas": [
+"tijeras",
+"tijera"
+],
+"ayuda": "Contiene la letra J."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Servidor considerado honesto que fue enviado primero a inspeccionar el trabajo.",
+"respuestas": [
+"ministro",
+"ministros"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Persona que se animó a decir en voz alta que el gobernante estaba desnudo.",
+"respuestas": [
+"niño",
+"niños"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "Ñ",
+"modo": "contiene",
+"pregunta": "Momento del día en que el gobernante se quitó sus ricas ropas para vestirse.",
+"respuestas": [
+"mañana"
+],
+"ayuda": "Contiene la letra Ñ."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Metal precioso del que estaba hecho el hilo solicitado por los estafadores.",
+"respuestas": [
+"oro"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Así llama el cuento a los dos hombres que llegaron fingiendo ser tejedores.",
+"respuestas": [
+"pícaros",
+"picaros",
+"pícaro",
+"picaro"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Prendas por las que el protagonista sentía una gran debilidad.",
+"respuestas": [
+"ropas",
+"ropa"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Grupo de acompañantes del gobernante que también fingió admirar la tela.",
+"respuestas": [
+"séquito",
+"sequito"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Máquinas que permanecían vacías mientras los engañadores simulaban trabajar.",
+"respuestas": [
+"telares",
+"telar"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "U",
+"modo": "contiene",
+"pregunta": "Así pensaba el gobernante que podían ser algunos de sus servidores si no veían la tela.",
+"respuestas": [
+"inútiles",
+"inutiles",
+"inútil",
+"inutil"
+],
+"ayuda": "Contiene la letra U."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Nombre que recibe la pareja de engañadores mientras empaca sus pertenencias.",
+"respuestas": [
+"villanos",
+"villano"
+],
+"ayuda": "Empieza con V."
+},
+{
+"letra": "Z",
+"modo": "contiene",
+"pregunta": "Bienes que el gobernante gastaba para vestirse con elegancia.",
+"respuestas": [
+"riquezas",
+"riqueza"
+],
+"ayuda": "Contiene la letra Z."
+}
+]
+}

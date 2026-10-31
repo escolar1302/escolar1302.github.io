@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fábrica del campo aditivo v1.3</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --accent:#168985;--accent2:#0f6e6a;--soft:#e9f5f4;--line:#b7d9d6;
+  --text:#26383b;--muted:#6f7c7e;--page:#fff;--panel:#fff;--bg:#edf2f2;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg)}
+.app{display:grid;grid-template-columns:minmax(355px,455px) 1fr;min-height:100vh}
+.controls{background:#fff;border-right:1px solid #d8e3e2;padding:16px;overflow:auto;height:100vh;position:sticky;top:0}
+h1{margin:0 0 5px;color:var(--accent2);font-size:22px}
+.lead{margin:0 0 12px;color:var(--muted);font-size:12.5px;line-height:1.4}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0 13px}
+button{border:0;border-radius:8px;padding:10px 9px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff}
+button.secondary{background:#52676a}
+button.light{background:var(--soft);color:var(--accent2);border:1px solid var(--line)}
+button:disabled{opacity:.55;cursor:wait}
+details{border:1px solid #d8e3e2;border-radius:10px;background:#fff;margin-bottom:9px;overflow:hidden}
+summary{padding:10px 11px;background:#f8fbfb;color:var(--accent2);font-weight:700;cursor:pointer}
+.section{padding:11px}
+label{font-size:12px;font-weight:700;display:block;margin:0 0 4px}
+input[type=text],input[type=number],textarea,select{
+  width:100%;border:1px solid #bdcccb;border-radius:7px;padding:8px;font:inherit;font-size:13px;background:#fff
+}
+textarea{min-height:62px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:8px}
+.field{margin-bottom:8px}
+.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:5px 0}
+.inline label{font-weight:400;margin:0}
+.inline input{width:auto}
+.small{font-size:11px;color:var(--muted);line-height:1.35}
+.presetbar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:7px 0}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.seg.four{grid-template-columns:repeat(4,1fr)}
+.seg label{padding:7px 5px;border:1px solid #cbd7d6;border-radius:7px;text-align:center;font-weight:700;font-size:11.5px;cursor:pointer}
+.seg input{display:none}
+.seg label:has(input:checked){background:var(--soft);border-color:var(--accent);color:var(--accent2)}
+.notice{display:none;border:1px solid #d6b36b;background:#fff7e7;color:#6e531d;padding:8px;border-radius:7px;font-size:11px;line-height:1.35;margin-top:8px}
+.notice.show{display:block}
+.editor{display:none;border:1px solid var(--line);background:#f8fbfb;border-radius:9px;padding:10px;margin-top:10px}
+.editor.open{display:block}
+.editor h3{margin:0 0 8px;color:var(--accent2);font-size:15px}
+.preview-wrap{padding:18px;overflow:auto}
+.preview-note{max-width:210mm;margin:0 auto 8px;font-size:12px;color:#4e6063}
+.version-tabs{max-width:210mm;margin:0 auto 10px;display:flex;gap:6px;flex-wrap:wrap}
+.version-tabs button{padding:7px 10px;background:#6a7b7e}
+.version-tabs button.active{background:var(--accent)}
+#printArea{display:flex;flex-direction:column;align-items:center;gap:16px}
+#printArea.exporting{gap:0}
+.sheet{
+  width:210mm;height:297mm;min-height:297mm;max-height:297mm;background:#fff;
+  box-shadow:0 2px 13px rgba(0,0,0,.14);padding:11mm 14mm 11mm;position:relative;
+  overflow:hidden;page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid
+}
+.page-body{width:100%;transform-origin:top center}
+.sheet-header{background:var(--soft);border-radius:7mm;padding:6.5mm 8mm 6mm;margin-bottom:5mm}
+.sheet-header h2{margin:0;color:var(--accent2);font-size:18pt;line-height:1.1}
+.sheet-header p{margin:2mm 0 0;color:var(--muted);font-size:8.5pt}
+.name-row{display:grid;grid-template-columns:1.2fr .8fr .6fr;gap:8mm;font-size:8.5pt;margin:0 2mm 5mm}
+.write-line{display:inline-block;min-width:40mm;border-bottom:1px solid #718083;height:3.5mm;vertical-align:bottom}
+.activity{margin:0 0 5mm;page-break-inside:avoid;break-inside:avoid}
+.act-title{display:flex;gap:2.6mm;align-items:flex-start;margin-bottom:3mm}
+.badge{width:9mm;height:9mm;border-radius:3mm;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:10.5pt;flex:0 0 9mm}
+.act-title h3{margin:1mm 0 0;font-size:13pt;line-height:1.15}
+.ops-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:3mm;border:1px solid var(--line);border-radius:3mm;padding:4mm 3mm 3mm;background:#fff}
+.op-card{min-width:0;text-align:center}
+.op-label{height:5mm;font-size:7.5pt;font-weight:700;color:var(--muted);text-align:left;padding-left:1mm}
+.vertical-op{display:inline-block;text-align:right;font-family:"Courier New",monospace;font-weight:700;font-size:13pt;line-height:1.25;min-width:27mm;position:relative}
+.vertical-op .carry-row{height:4.3mm;font-size:7pt;color:var(--accent2);letter-spacing:1.2mm;padding-right:1mm;white-space:pre}
+.vertical-op .numline{white-space:pre}
+.vertical-op .bar{border-top:1.6px solid var(--text);height:1.5mm;margin-top:1mm}
+.vertical-op .answer{height:6.5mm}
+.missing-box{display:inline-block;border:1.2px dashed #6f7c7e;border-radius:2mm;min-width:24mm;height:7mm;vertical-align:middle}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm;align-items:start}.bottom-grid.tables-only{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom-grid.tables-only>.mini-panel:only-child{grid-column:1 / -1;max-width:92mm;justify-self:start}.bottom-grid.tables-only table{font-size:8.2pt}.bottom-grid.tables-only th,.bottom-grid.tables-only td{height:7.3mm;padding:1.7mm 1.2mm}
+.mini-panel{border:1px solid var(--line);border-radius:3mm;padding:3mm;background:#fff}
+.mini-title{font-size:9pt;font-weight:700;color:var(--accent2);margin:0 0 2.5mm}
+table{width:100%;border-collapse:collapse;font-size:8.5pt}
+th,td{border:1px solid var(--accent);padding:2.1mm 1.4mm;text-align:center;height:8mm}
+th{background:var(--soft);color:var(--accent2)}
+td.known{font-weight:700}
+.unknown-head{display:inline-block;border:1px dashed #777;border-radius:1.5mm;width:17mm;height:6mm;vertical-align:middle;background:#fff}
+.triangles{display:grid;grid-template-columns:1fr 1fr;gap:4mm}.activity+.activity{margin-top:1mm}
+.triangle{border:1px solid var(--line);border-radius:3mm;padding:2.5mm 2mm 3mm;min-height:51mm;position:relative}
+.tri-title{text-align:center;font-size:8.5pt;font-weight:700;border-bottom:1px solid #777;padding-bottom:1.2mm;margin-bottom:1.5mm}
+.tri-wrap{position:relative;height:39mm}
+.tri-cell{position:absolute;width:15mm;height:8mm;border:1.2px solid var(--text);border-radius:1.5mm;display:flex;align-items:center;justify-content:center;font-size:9pt;font-weight:700;background:#f4f4f4}
+.tri-cell.blank{border-style:dashed;background:#fff;color:transparent}
+.t-top{left:50%;top:1mm;transform:translateX(-50%)}
+.t-mid-l{left:32%;top:13mm;transform:translateX(-50%)}
+.t-mid-r{left:68%;top:13mm;transform:translateX(-50%)}
+.t-bot-l{left:18%;top:26mm;transform:translateX(-50%)}
+.t-bot-m{left:50%;top:26mm;transform:translateX(-50%)}
+.t-bot-r{left:82%;top:26mm;transform:translateX(-50%)}
+.footer{position:absolute;left:14mm;right:14mm;bottom:6.5mm;border-top:1px solid var(--line);padding-top:2mm;display:flex;justify-content:space-between;font-size:7.5pt;color:var(--muted)}
+.answer-sheet .answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm 8mm;font-size:8.5pt}
+.answer-box{border:1px solid #c9d8d7;border-radius:3mm;padding:3mm}
+.answer-box h4{margin:0 0 2mm;color:var(--accent2);font-size:9.5pt}
+.answer-op{font-family:"Courier New",monospace;white-space:pre}
+@page{size:A4 portrait;margin:0}
+@media(max-width:1100px){.app{grid-template-columns:1fr}.controls{height:auto;position:relative;border-right:0;border-bottom:1px solid #d8e3e2}}
+@media print{
+  html,body{margin:0!important;padding:0!important;background:#fff}
+  .controls,.preview-note,.version-tabs{display:none!important}
+  .app{display:block}.preview-wrap{padding:0!important;margin:0!important}
+  #printArea{display:block!important;gap:0!important;margin:0!important;padding:0!important}
+  .sheet{width:210mm!important;height:297mm!important;min-height:297mm!important;max-height:297mm!important;box-shadow:none!important;margin:0!important;padding:11mm 14mm 11mm!important;page-break-after:always!important;break-after:page!important;page-break-inside:avoid!important;break-inside:avoid!important}
+  .sheet:last-child{page-break-after:auto!important;break-after:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="controls">
+  <h1>Fábrica del campo aditivo <span style="font-size:11px;color:#6f7c7e">v1.3</span></h1>
+  <p class="lead">Genera fichas de sumas y restas con control real del reagrupamiento, términos faltantes, tablas de resta y triángulos de suma.</p>
+
+  <div class="actions">
+    <button id="generate">Generar ficha</button>
+    <button id="regenerate" class="secondary">Generar otra</button>
+    <button id="download">Descargar PDF</button>
+    <button id="print" class="secondary">Imprimir / PDF</button>
+    <button id="toggleEditor" class="light">Editar números</button>
+    <button id="newSet" class="light">Nueva combinación</button>
+  </div>
+
+  <details open>
+    <summary>1. Tipo de operaciones</summary>
+    <div class="section">
+      <label>Campo de trabajo</label>
+      <div class="seg">
+        <label><input type="radio" name="opMode" value="add">Sumas</label>
+        <label><input type="radio" name="opMode" value="sub">Restas</label>
+        <label><input type="radio" name="opMode" value="mixed" checked>Mixtas</label>
+      </div>
+      <div class="field" style="margin-top:9px">
+        <label>Reagrupamiento</label>
+        <select id="regroupMode">
+          <option value="none">Sin reagrupamiento</option>
+          <option value="one">Una reagrupación</option>
+          <option value="multi" selected>Varias reagrupaciones</option>
+          <option value="mixed">Mixto</option>
+        </select>
+      </div>
+      <div class="inline"><input id="includeZeros" type="checkbox" checked><label for="includeZeros">Incluir algunos casos con ceros</label></div>
+      <div class="notice" id="logicNotice"></div>
+    </div>
+  </details>
+
+  <details open>
+    <summary>2. Rango</summary>
+    <div class="section">
+      <div class="presetbar">
+        <button class="light digitsPreset" data-digits="2">2 cifras</button>
+        <button class="light digitsPreset" data-digits="3">3 cifras</button>
+        <button class="light digitsPreset" data-digits="4">4 cifras</button>
+        <button class="light" id="customRange">Personalizado</button>
+      </div>
+      <div class="row">
+        <div><label>Desde</label><input id="rangeMin" type="number" value="100"></div>
+        <div><label>Hasta</label><input id="rangeMax" type="number" value="999"></div>
+      </div>
+      <div class="small">El rango se aplica a los números principales de la cuenta. En una suma, el resultado puede tener una cifra más; por ejemplo, dos números de 2 cifras pueden sumar 100 o más.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary>3. Actividades</summary>
+    <div class="section">
+      <div class="row">
+        <div><label>Total en “Cuentas para resolver”</label><input id="countOps" type="number" min="3" max="6" value="4"></div>
+        <div><label>Total en “Buscar el que falta”</label><input id="countMissing" type="number" min="3" max="6" value="4"></div>
+      </div>
+      <div class="inline"><input id="showExample" type="checkbox" checked><label for="showExample">Mostrar un ejemplo resuelto en cada bloque</label></div><div class="small">La cantidad indicada es el total visible. Si hay ejemplo, el ejemplo cuenta dentro de ese total.</div>
+      <div class="small" style="margin-bottom:8px">En modo mixto se generan siempre las dos propuestas: tabla de restas y triángulos de sumas.</div>
+      <div class="field">
+        <label>Tabla de restas</label>
+        <select id="tableMode">
+          <option value="direct">Directa</option>
+          <option value="unknown" selected>Con encabezados incógnita</option>
+          <option value="mixed">Dos tablas: directa + incógnitas</option>
+        </select>
+      </div>
+      <div class="row">
+        <div>
+          <label>Triángulos</label>
+          <select id="triangleCount"><option value="1">1</option><option value="2" selected>2</option></select>
+        </div>
+        <div>
+          <label>Dificultad</label>
+          <select id="triangleDifficulty">
+            <option value="basic">Básica</option>
+            <option value="medium" selected>Media</option>
+            <option value="challenge">Desafío</option>
+            <option value="mixed">Mixta</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>4. Versiones y salida</summary>
+    <div class="section">
+      <div class="row">
+        <div><label>Cantidad de versiones</label><input id="versions" type="number" min="1" max="5" value="1"></div>
+        <div><label>N.º de ficha (opcional)</label><input id="sheetNo" type="text"></div>
+      </div>
+      <div class="row">
+        <div><label>Estilo de impresión</label><select id="colorMode"><option value="color">Color</option><option value="gray" selected>Escala de grises</option></select></div>
+        <div><label>Vista</label><select id="previewMode"><option value="same" selected>Igual a la impresión</option><option value="alwaysColor">Vista siempre en color</option></select></div>
+      </div>
+      <div class="inline"><input id="answers" type="checkbox"><label for="answers">Agregar hoja de respuestas</label></div>
+      <div class="field"><label>Título</label><input id="title" type="text" value="Práctica de sumas y restas"></div>
+      <div class="field"><label>Subtítulo</label><input id="subtitle" type="text" value="Operaciones del campo aditivo"></div>
+    </div>
+  </details>
+
+  <div id="editor" class="editor">
+    <h3>Editar versión actual</h3>
+    <div class="field"><label>Versión</label><select id="editVersion"></select></div>
+    <div class="field"><label>Cuentas para resolver (una por línea: 632-275 o 347+285)</label><textarea id="edOps"></textarea></div>
+    <div class="field"><label>Cuentas con término faltante (una por línea)</label><textarea id="edMissing"></textarea></div>
+    <button id="applyEdit">Aplicar cambios</button>
+    <div class="small" style="margin-top:7px">Si escribís una cuenta manualmente, la aplicación verifica que sea matemáticamente válida antes de mostrarla.</div>
+  </div>
+</aside>
+
+<main class="preview-wrap">
+  <div class="preview-note">Vista previa A4. Cada versión ocupa una página. En modo mixto aparecen primero las tablas de resta y debajo los triángulos de suma. Las pestañas cambian la versión visible; al descargar o imprimir se incluyen todas.</div>
+  <div id="tabs" class="version-tabs"></div>
+  <div id="printArea"></div>
+</main>
+</div>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+let generated=[],activeVersion=0;
+
+const fmt=n=>Math.trunc(n).toLocaleString('es-AR');
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const choice=a=>a[rand(0,a.length-1)];
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rand(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const unique=a=>[...new Set(a)];
+
+function rangeInfo(){
+  let min=Number($('rangeMin').value)||0,max=Number($('rangeMax').value)||999;
+  if(max<=min)max=min+99;
+  return{min,max,span:max-min,digits:String(Math.max(1,max)).length}
+}
+function opMode(){return document.querySelector('input[name=opMode]:checked').value}
+function themePalette(mode){
+  if(mode==='gray')return{accent:'#5c5c5c',accent2:'#202020',soft:'#ededed',line:'#8f8f8f',text:'#111111',muted:'#555555'};
+  return{accent:'#168985',accent2:'#0f6e6a',soft:'#e9f5f4',line:'#b7d9d6',text:'#26383b',muted:'#6f7c7e'};
+}
+function applyTheme(forExport=false){
+  const printMode=$('colorMode').value,preview=$('previewMode').value;
+  const effective=(!forExport&&preview==='alwaysColor')?'color':printMode;
+  const p=themePalette(effective),r=document.documentElement;
+  r.style.setProperty('--accent',p.accent);r.style.setProperty('--accent2',p.accent2);
+  r.style.setProperty('--soft',p.soft);r.style.setProperty('--line',p.line);
+  r.style.setProperty('--text',p.text);r.style.setProperty('--muted',p.muted);
+}
+function digitsOf(n,width){
+  return String(Math.abs(n)).padStart(width,'0').split('').map(Number);
+}
+function addCarryCount(a,b){
+  const width=Math.max(String(a).length,String(b).length),A=digitsOf(a,width),B=digitsOf(b,width);
+  let carry=0,count=0,marks=Array(width).fill('');
+  for(let i=width-1;i>=0;i--){
+    const s=A[i]+B[i]+carry;
+    const next=s>=10?1:0;
+    if(next){count++;if(i>0)marks[i-1]='1'}
+    carry=next;
+  }
+  return{count,marks};
+}
+function subBorrowInfo(a,b){
+  const width=Math.max(String(a).length,String(b).length),A=digitsOf(a,width),B=digitsOf(b,width);
+  let borrow=0,count=0,borrowed=Array(width).fill(false);
+  for(let i=width-1;i>=0;i--){
+    let top=A[i]-borrow;
+    if(top<B[i]){
+      count++;borrowed[i]=true;borrow=1;
+    }else borrow=0;
+  }
+  return{count,borrowed};
+}
+function regroupMatches(type,a,b,mode){
+  if(mode==='mixed')return true;
+  const c=type==='add'?addCarryCount(a,b).count:subBorrowInfo(a,b).count;
+  if(mode==='none')return c===0;
+  if(mode==='one')return c===1;
+  if(mode==='multi'){
+    const maxPossible=type==='sub'?Math.max(1,rangeInfo().digits-1):Math.max(2,rangeInfo().digits);
+    return c>=Math.min(2,maxPossible);
+  }
+  return true;
+}
+function includesZero(n){return String(Math.abs(n)).includes('0')}
+function randomOp(type,mode,index=0){
+  const {min,max}=rangeInfo();
+  let tries=0;
+  while(tries++<8000){
+    let a,b;
+    if(type==='add'){
+      a=rand(Math.max(0,min),max);
+      b=rand(Math.max(0,min),max);
+    }else{
+      a=rand(Math.max(1,min),max);
+      b=rand(Math.max(0,min),max);
+      if(a<=b)continue;
+    }
+    if(!regroupMatches(type,a,b,mode))continue;
+    if($('includeZeros').checked && index%3===2 && !(includesZero(a)||includesZero(b)))continue;
+    return{type,a,b,result:type==='add'?a+b:a-b};
+  }
+  throw new Error(`No pude generar una ${type==='add'?'suma':'resta'} que cumpla exactamente el reagrupamiento elegido dentro del rango ${fmt(min)}–${fmt(max)}. Probá ampliar el rango o cambiar el tipo de reagrupamiento.`);
+}
+function desiredRegroup(i){
+  const m=$('regroupMode').value;
+  if(m!=='mixed')return m;
+  return ['none','one','multi'][i%3];
+}
+function desiredType(i){
+  const m=opMode();
+  if(m==='add'||m==='sub')return m;
+  return i%2===0?'add':'sub';
+}
+function generateOps(count){
+  return Array.from({length:count},(_,i)=>randomOp(desiredType(i),desiredRegroup(i),i));
+}
+function makeMissing(base,i){
+  if(base.type==='add'){
+    return{...base,missing:i%2===0?'a':'b'};
+  }
+  return{...base,missing:i%2===0?'a':'b'}; // alterna minuendo / sustraendo
+}
+function generateMissing(count){
+  return Array.from({length:count},(_,i)=>makeMissing(randomOp(desiredType(i),desiredRegroup(i),i+1),i));
+}
+function makeTable(kind='direct'){
+  const {min,max}=rangeInfo();
+  const cols=[],rows=[];
+  let guard=0;
+  while(cols.length<3&&guard++<1000){
+    const c=rand(Math.max(1,min),Math.max(2,Math.floor(max*.55)));
+    if(!cols.includes(c))cols.push(c);
+  }
+  guard=0;
+  while(rows.length<3&&guard++<1000){
+    const low=Math.max(...cols)+1;
+    const r=rand(Math.max(low,Math.floor(max*.6)),max);
+    if(!rows.includes(r))rows.push(r);
+  }
+  const grid=rows.map(r=>cols.map(c=>r-c));
+  const hiddenHeaders=kind==='unknown'?[1,2]:[];
+  const revealed=[];
+  if(kind==='unknown'){
+    hiddenHeaders.forEach((ci,k)=>revealed.push({ri:k%rows.length,ci,value:grid[k%rows.length][ci]}));
+  }
+  return{kind,cols,rows,grid,hiddenHeaders,revealed};
+}
+function triangleDifficulty(i){
+  const d=$('triangleDifficulty').value;
+  if(d!=='mixed')return d;
+  return ['basic','medium','challenge'][i%3];
+}
+function makeTriangle(diff){
+  const {min,max}=rangeInfo();
+  let a,b,c,d,e,f,tries=0;
+  const baseMax=Math.max(9,Math.floor(max/4));
+  do{
+    a=rand(Math.max(1,Math.min(min,baseMax)),baseMax);
+    b=rand(Math.max(1,Math.min(min,baseMax)),baseMax);
+    c=rand(Math.max(1,Math.min(min,baseMax)),baseMax);
+    d=a+b;e=b+c;f=d+e;tries++;
+  }while(f>max&&tries<3000);
+  if(f>max){a=10;b=20;c=15;d=30;e=35;f=65}
+  let known;
+  if(diff==='basic')known=['a','b','c'];
+  else if(diff==='medium')known=['a','c','d'];
+  else known=['c','d','f'];
+  return{a,b,c,d,e,f,diff,known};
+}
+function makeBottom(){
+  const m=opMode();
+  const out={tables:[],triangles:[]};
+  if(m==='sub'||m==='mixed'){
+    const tm=$('tableMode').value;
+    if(tm==='mixed')out.tables=[makeTable('direct'),makeTable('unknown')];
+    else out.tables=[makeTable(tm)];
+  }
+  if(m==='add'||m==='mixed'){
+    const n=Number($('triangleCount').value)||2;
+    out.triangles=Array.from({length:n},(_,i)=>makeTriangle(triangleDifficulty(i)));
+  }
+  return out;
+}
+function makeVersion(){
+  const opTotal=clamp(Number($('countOps').value)||4,3,6);
+  const missTotal=clamp(Number($('countMissing').value)||4,3,6);
+  const hasExample=$('showExample').checked;
+  const opPractice=Math.max(1,opTotal-(hasExample?1:0));
+  const missPractice=Math.max(1,missTotal-(hasExample?1:0));
+  return{
+    example:randomOp(opMode()==='sub'?'sub':'add',desiredRegroup(0),0),
+    ops:generateOps(opPractice),
+    missingExample:makeMissing(randomOp(opMode()==='add'?'add':'sub',desiredRegroup(1),1),0),
+    missing:generateMissing(missPractice),
+    bottom:makeBottom()
+  };
+}
+function validationNotice(){
+  const box=$('logicNotice');
+  const digits=rangeInfo().digits,m=opMode(),r=$('regroupMode').value;
+  let msg='';
+  if(digits<=2 && r==='multi' && (m==='sub'||m==='mixed')){
+    msg='En restas de 2 cifras no puede haber dos préstamos independientes. En esos casos la fábrica genera la máxima reagrupación posible sin forzar cuentas incorrectas.';
+  }
+  box.textContent=msg;box.classList.toggle('show',!!msg);
+}
+function generate(all=true){
+  validationNotice();
+  const previous=generated;
+  try{
+    const count=clamp(Number($('versions').value)||1,1,5);
+    if(all||!generated.length)generated=Array.from({length:count},makeVersion);
+    else generated[activeVersion]=makeVersion();
+    activeVersion=0;
+    populateEditor();loadEditor();render();
+  }catch(err){
+    generated=previous;
+    const box=$('logicNotice');
+    box.textContent=err.message;
+    box.classList.add('show');
+    alert(err.message);
+    if(generated.length)render();
+  }
+}
+function opSymbol(t){return t==='add'?'+':'−'}
+function carryText(op){
+  const width=Math.max(String(op.a).length,String(op.b).length);
+  if(op.type==='add')return addCarryCount(op.a,op.b).marks.join(' ');
+  const info=subBorrowInfo(op.a,op.b);
+  // simple visual marker: dots above columns where borrowing occurs
+  return info.borrowed.map(x=>x?'•':' ').join(' ');
+}
+function verticalOp(op,solved=false,missing=null){
+  const width=Math.max(String(op.a).length,String(op.b).length,String(op.result).length);
+  const filled=n=>`<span class="missing-box" style="border-style:solid;font-family:Arial,Helvetica,sans-serif;font-size:9pt">${fmt(n)}</span>`;
+  const top=missing==='a'?(solved?filled(op.a):'<span class="missing-box"></span>'):fmt(op.a);
+  const bot=missing==='b'?(solved?filled(op.b):'<span class="missing-box"></span>'):fmt(op.b);
+  const result=solved
+    ? fmt(op.result)
+    : (missing==='result'
+        ? '<span class="missing-box"></span>'
+        : (missing ? fmt(op.result) : ''));
+  return `<div class="vertical-op">
+    <div class="carry-row">${solved?esc(carryText(op)):'&nbsp;'}</div>
+    <div class="numline">${top}</div>
+    <div class="numline">${opSymbol(op.type)} ${bot}</div>
+    <div class="bar"></div>
+    <div class="answer">${result}</div>
+  </div>`;
+}
+function actTitle(n,t){return `<div class="act-title"><div class="badge">${n}</div><h3>${esc(t)}</h3></div>`}
+function opsBlock(v){
+  const cards=[];
+  if($('showExample').checked)cards.push(`<div class="op-card"><div class="op-label">EJEMPLO</div>${verticalOp(v.example,true)}</div>`);
+  v.ops.forEach(op=>cards.push(`<div class="op-card"><div class="op-label">&nbsp;</div>${verticalOp(op,false)}</div>`));
+  return `<section class="activity">${actTitle(1,'Resolvé las cuentas.')}<div class="ops-grid" style="grid-template-columns:repeat(${cards.length},1fr)">${cards.join('')}</div></section>`;
+}
+function missingBlock(v){
+  const cards=[];
+  if($('showExample').checked)cards.push(`<div class="op-card"><div class="op-label">EJEMPLO</div>${verticalOp(v.missingExample,true,v.missingExample.missing)}</div>`);
+  v.missing.forEach(op=>cards.push(`<div class="op-card"><div class="op-label">&nbsp;</div>${verticalOp(op,false,op.missing)}</div>`));
+  return `<section class="activity">${actTitle(2,'Completá el número que falta.')}<div class="ops-grid" style="grid-template-columns:repeat(${cards.length},1fr)">${cards.join('')}</div></section>`;
+}
+function tableHtml(t,index){
+  const revealMap=new Map(t.revealed.map(x=>[`${x.ri}-${x.ci}`,x.value]));
+  return `<div class="mini-panel"><div class="mini-title">${t.kind==='direct'?'Tabla de restar':'Descubrí también los encabezados que faltan'}</div>
+    <table><thead><tr><th>−</th>${t.cols.map((c,ci)=>`<th>${t.hiddenHeaders.includes(ci)?'<span class="unknown-head"></span>':fmt(c)}</th>`).join('')}</tr></thead>
+    <tbody>${t.rows.map((r,ri)=>`<tr><th>${fmt(r)}</th>${t.cols.map((c,ci)=>`<td class="${revealMap.has(`${ri}-${ci}`)?'known':''}">${revealMap.has(`${ri}-${ci}`)?fmt(revealMap.get(`${ri}-${ci}`)):''}</td>`).join('')}</tr>`).join('')}</tbody></table>
+  </div>`;
+}
+function triCell(cls,key,t){
+  const val=t[key],known=t.known.includes(key);
+  return `<div class="tri-cell ${cls} ${known?'':'blank'}">${known?fmt(val):'0'}</div>`;
+}
+function triangleHtml(t,i){
+  return `<div class="triangle"><div class="tri-title">TRIÁNGULO DE SUMAS</div><div class="tri-wrap">
+    ${triCell('t-top','f',t)}${triCell('t-mid-l','d',t)}${triCell('t-mid-r','e',t)}
+    ${triCell('t-bot-l','a',t)}${triCell('t-bot-m','b',t)}${triCell('t-bot-r','c',t)}
+  </div></div>`;
+}
+function bottomBlock(v){
+  const tables=v.bottom.tables.map(tableHtml).join('');
+  const tris=v.bottom.triangles.map(triangleHtml).join('');
+  if(v.bottom.tables.length&&v.bottom.triangles.length){
+    return `<section class="activity">${actTitle(3,'Completá las tablas de restar.')}<div class="bottom-grid tables-only">${tables}</div></section>
+            <section class="activity">${actTitle(4,'Completá los triángulos de sumas.')}<div class="triangles">${tris}</div></section>`;
+  }
+  if(v.bottom.tables.length){
+    return `<section class="activity">${actTitle(3,'Completá las tablas de restar.')}<div class="bottom-grid tables-only">${tables}</div></section>`;
+  }
+  return `<section class="activity">${actTitle(3,'Completá los triángulos de sumas.')}<div class="triangles">${tris}</div></section>`;
+}
+function footer(vi){
+  const no=$('sheetNo').value.trim(),range=rangeInfo();
+  return `<div class="footer"><span>${no?`Ficha ${esc(no)} - `:''}${opMode()==='add'?'Sumas':opMode()==='sub'?'Restas':'Sumas y restas'} - ${fmt(range.min)} a ${fmt(range.max)}${generated.length>1?` - Versión ${vi+1}`:''}</span><span>Página 1</span></div>`;
+}
+function renderVersion(v,vi){
+  const header=`<div class="sheet-header"><h2>${esc($('title').value.trim()||'Práctica de sumas y restas')}</h2><p>${esc($('subtitle').value.trim())}</p></div>
+  <div class="name-row"><div>Nombre: <span class="write-line"></span></div><div>Fecha: <span class="write-line"></span></div><div>Curso: <span class="write-line" style="min-width:24mm"></span></div></div>`;
+  return `<section class="sheet"><div class="page-body">${header}${opsBlock(v)}${missingBlock(v)}${bottomBlock(v)}</div>${footer(vi)}</section>${$('answers').checked?answerSheet(v,vi):''}`;
+}
+function answerSheet(v,vi){
+  const ops=v.ops.map(o=>`${fmt(o.a)} ${opSymbol(o.type)} ${fmt(o.b)} = ${fmt(o.result)}`).join('<br>');
+  const miss=v.missing.map(o=>{
+    const what=o.missing==='a'?fmt(o.a):fmt(o.b);
+    return `${fmt(o.a)} ${opSymbol(o.type)} ${fmt(o.b)} = ${fmt(o.result)} → faltaba ${what}`;
+  }).join('<br>');
+  const tables=v.bottom.tables.map((t,i)=>`<b>Tabla ${i+1}:</b><br>Columnas: ${t.cols.map(fmt).join(' | ')}<br>Filas: ${t.rows.map(fmt).join(' | ')}<br>${t.grid.map(row=>row.map(fmt).join(' | ')).join('<br>')}`).join('<br><br>');
+  const tris=v.bottom.triangles.map((t,i)=>`Triángulo ${i+1}: base ${fmt(t.a)}, ${fmt(t.b)}, ${fmt(t.c)} / medio ${fmt(t.d)}, ${fmt(t.e)} / cima ${fmt(t.f)}`).join('<br>');
+  return `<section class="sheet answer-sheet"><div class="page-body"><div class="sheet-header"><h2>Respuestas</h2><p>Versión ${vi+1}</p></div>
+    <div class="answer-grid">
+      <div class="answer-box"><h4>Cuentas</h4>${ops}</div>
+      <div class="answer-box"><h4>Términos faltantes</h4>${miss}</div>
+      ${tables?`<div class="answer-box"><h4>Tablas</h4>${tables}</div>`:''}
+      ${tris?`<div class="answer-box"><h4>Triángulos</h4>${tris}</div>`:''}
+    </div></div><div class="footer"><span>Respuestas - Versión ${vi+1}</span><span>R</span></div></section>`;
+}
+function nextFrame(){return new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))}
+function fitSheets(root=$('printArea')){
+  root.querySelectorAll('.sheet').forEach(sheet=>{
+    const body=sheet.querySelector('.page-body');if(!body)return;
+    body.style.transform='none';
+    const cs=getComputedStyle(sheet),pt=parseFloat(cs.paddingTop)||0,pb=parseFloat(cs.paddingBottom)||0;
+    const footer=sheet.querySelector('.footer'),reserve=(footer?footer.getBoundingClientRect().height:0)+16;
+    const available=sheet.clientHeight-pt-pb-reserve,needed=body.scrollHeight;
+    let scale=needed>available?available/needed:1;
+    scale=Math.max(.78,Math.min(1,scale));
+    body.style.transform=`scale(${scale})`;
+  });
+}
+function render(){
+  applyTheme(false);
+  if(!generated.length)generated=[makeVersion()];
+  if(activeVersion>=generated.length)activeVersion=0;
+  $('tabs').innerHTML=generated.map((_,i)=>`<button data-i="${i}" class="${i===activeVersion?'active':''}">Versión ${i+1}</button>`).join('');
+  $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{activeVersion=+b.dataset.i;loadEditor();render();document.querySelector('.preview-wrap').scrollTop=0});
+  $('printArea').innerHTML=renderVersion(generated[activeVersion],activeVersion);
+  nextFrame().then(()=>fitSheets($('printArea')));
+}
+function renderAllVersions(){return generated.map((v,i)=>renderVersion(v,i)).join('')}
+function populateEditor(){
+  $('editVersion').innerHTML=generated.map((_,i)=>`<option value="${i}">Versión ${i+1}</option>`).join('');
+  $('editVersion').value=activeVersion;
+}
+function opToText(o){return `${o.a}${o.type==='add'?'+':'-'}${o.b}`}
+function loadEditor(){
+  if(!generated.length)return;const v=generated[activeVersion];
+  $('editVersion').value=activeVersion;
+  $('edOps').value=v.ops.map(opToText).join('\n');
+  $('edMissing').value=v.missing.map(opToText).join('\n');
+}
+function parseManualLine(s){
+  const m=String(s).trim().match(/^(\d+)\s*([+-])\s*(\d+)$/);
+  if(!m)return null;
+  const a=Number(m[1]),b=Number(m[3]),type=m[2]==='+'?'add':'sub';
+  if(type==='sub'&&a<b)return null;
+  const result=type==='add'?a+b:a-b;
+  return{type,a,b,result};
+}
+function applyEdit(){
+  const i=Number($('editVersion').value)||0,v=generated[i];
+  const ops=$('edOps').value.split(/\n+/).map(parseManualLine).filter(Boolean);
+  const miss=$('edMissing').value.split(/\n+/).map(parseManualLine).filter(Boolean);
+  if(ops.length)v.ops=ops;
+  if(miss.length)v.missing=miss.map((o,j)=>makeMissing(o,j));
+  activeVersion=i;render();
+}
+function restoreActivePreview(){applyTheme(false);render()}
+
+document.querySelectorAll('.digitsPreset').forEach(b=>b.onclick=()=>{
+  const d=Number(b.dataset.digits),min=10**(d-1),max=10**d-1;
+  $('rangeMin').value=min;$('rangeMax').value=max;generated=[];generate(true);
+});
+$('customRange').onclick=()=>{$('rangeMin').focus()};
+$('generate').onclick=()=>generate(true);
+$('regenerate').onclick=()=>generate(false);
+$('newSet').onclick=()=>generate(true);
+$('toggleEditor').onclick=()=>{$('editor').classList.toggle('open');populateEditor();loadEditor()};
+$('editVersion').onchange=()=>{activeVersion=+$('editVersion').value;loadEditor();render()};
+$('applyEdit').onclick=applyEdit;
+
+['colorMode','previewMode'].forEach(id=>$(id).addEventListener('change',()=>render()));
+['rangeMin','rangeMax','regroupMode'].forEach(id=>$(id).addEventListener('change',validationNotice));
+
+$('print').onclick=async()=>{
+  const a=$('printArea'),selected=activeVersion;
+  applyTheme(true);a.innerHTML=renderAllVersions();await nextFrame();fitSheets(a);await nextFrame();
+  const restore=()=>{window.removeEventListener('afterprint',restore);activeVersion=selected;restoreActivePreview()};
+  window.addEventListener('afterprint',restore);window.print();
+  setTimeout(()=>restore(),1800);
+};
+
+$('download').onclick=async()=>{
+  const a=$('printArea');
+  if(typeof html2canvas==='undefined'||!window.jspdf||!window.jspdf.jsPDF){alert('No se pudo cargar el generador de PDF. Usá “Imprimir / PDF”.');return}
+  const btn=$('download'),old=btn.textContent,selected=activeVersion;
+  btn.disabled=true;btn.textContent='Generando PDF...';
+  applyTheme(true);a.innerHTML=renderAllVersions();a.classList.add('exporting');
+  await nextFrame();fitSheets(a);await nextFrame();
+  try{
+    const sheets=[...a.querySelectorAll('.sheet')],{jsPDF}=window.jspdf;
+    const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
+    for(let i=0;i<sheets.length;i++){
+      if(i>0)pdf.addPage('a4','portrait');
+      const canvas=await html2canvas(sheets[i],{scale:2,useCORS:true,backgroundColor:'#fff',logging:false,scrollX:0,scrollY:0,windowWidth:Math.max(document.documentElement.clientWidth,1200)});
+      const img=canvas.toDataURL('image/jpeg',.96);pdf.addImage(img,'JPEG',0,0,210,297,undefined,'FAST');canvas.width=1;canvas.height=1;
+    }
+    pdf.save(`fabrica_campo_aditivo_${$('colorMode').value==='gray'?'grises':'color'}.pdf`);
+  }catch(err){console.error(err);alert('Hubo un problema al generar el PDF. Probá con “Imprimir / PDF”.')}
+  finally{a.classList.remove('exporting');activeVersion=selected;restoreActivePreview();btn.disabled=false;btn.textContent=old}
+};
+
+applyTheme(false);generate(true);
+})();
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+{
+  "id": "animales-4grado",
+  "titulo": "Rosco de animales",
+  "area": "Lengua",
+  "grado": "4°",
+  "descripcion": "Rosco para trabajar vocabulario sobre animales.",
+  "instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+  "consignas": [
+    {
+      "letra": "A",
+      "modo": "empieza",
+      "pregunta": "Animal que puede vivir en el agua y en la tierra.",
+      "respuestas": ["anfibio"],
+      "ayuda": "Empieza con A."
+    },
+    {
+      "letra": "B",
+      "modo": "empieza",
+      "pregunta": "Animal grande, marino, que respira por pulmones.",
+      "respuestas": ["ballena"],
+      "ayuda": "Empieza con B."
+    },
+    {
+      "letra": "C",
+      "modo": "empieza",
+      "pregunta": "Forma más literaria de nombrar al perro.",
+      "respuestas": ["can"],
+      "ayuda": "Empieza con C."
+    },
+    {
+      "letra": "E",
+      "modo": "empieza",
+      "pregunta": "Animal muy grande, con trompa y colmillos.",
+      "respuestas": ["elefante"],
+      "ayuda": "Empieza con E."
+    },
+    {
+      "letra": "G",
+      "modo": "empieza",
+      "pregunta": "Animal doméstico que suele maullar.",
+      "respuestas": ["gato"],
+      "ayuda": "Empieza con G."
+    },
+    {
+      "letra": "H",
+      "modo": "empieza",
+      "pregunta": "Animal carnívoro de África y Asia, famoso por un sonido parecido a una risa.",
+      "respuestas": ["hiena"],
+      "ayuda": "Empieza con H."
+    },
+    {
+      "letra": "J",
+      "modo": "empieza",
+      "pregunta": "Animal de cuello muy largo.",
+      "respuestas": ["jirafa"],
+      "ayuda": "Empieza con J."
+    },
+    {
+      "letra": "L",
+      "modo": "empieza",
+      "pregunta": "Felino conocido como el rey de la selva.",
+      "respuestas": ["león", "leon"],
+      "ayuda": "Empieza con L."
+    },
+    {
+      "letra": "M",
+      "modo": "empieza",
+      "pregunta": "Animal que vive en el agua y tiene aletas.",
+      "respuestas": ["merluza"],
+      "ayuda": "Empieza con M."
+    },
+    {
+      "letra": "Ñ",
+      "modo": "contiene",
+      "pregunta": "Animal pequeño parecido a una rata, de hocico alargado.",
+      "respuestas": ["musaraña"],
+      "ayuda": "Contiene Ñ."
+    },
+    {
+      "letra": "O",
+      "modo": "empieza",
+      "pregunta": "Animal grande y pesado que vive en zonas frías y puede ser polar.",
+      "respuestas": ["oso"],
+      "ayuda": "Empieza con O."
+    },
+    {
+      "letra": "P",
+      "modo": "empieza",
+      "pregunta": "Ave que puede hablar imitando sonidos humanos.",
+      "respuestas": ["papagayo", "loro"],
+      "ayuda": "Empieza con P."
+    },
+    {
+      "letra": "R",
+      "modo": "empieza",
+      "pregunta": "Anfibio que salta y suele vivir cerca del agua.",
+      "respuestas": ["rana"],
+      "ayuda": "Empieza con R."
+    },
+    {
+      "letra": "T",
+      "modo": "empieza",
+      "pregunta": "Felino grande de pelaje anaranjado con rayas negras.",
+      "respuestas": ["tigre"],
+      "ayuda": "Empieza con T."
+    },
+    {
+      "letra": "Z",
+      "modo": "empieza",
+      "pregunta": "Animal parecido al caballo, con rayas blancas y negras.",
+      "respuestas": ["zebra", "cebra"],
+      "ayuda": "Empieza con Z."
+    }
+  ]
+}

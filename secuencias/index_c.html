@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secuencias de Lengua</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --theme:#27AE60; --soft:#E8F5E9; --title:#1B5E20;
+  --docente:#E67E22; --docente-soft:#FDF1E4; --docente-title:#A34E00;
+  --auto:#036FB0; --auto-soft:#E3F2FD; --auto-title:#01579B;
+  --nav:#2c3e50; --text:#263238; --surface:#fff;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--soft);font-family:'Nunito',sans-serif;color:var(--text);line-height:1.5}
+
+/* Navegación y Hero originales */
+.site-nav{background:var(--nav);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 3px 10px rgba(0,0,0,.22)}
+.site-nav img{height:54px;max-width:220px;object-fit:contain}
+.site-nav nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.site-nav a{color:#fff;text-decoration:none;font-weight:800;font-size:.95rem}
+
+.page-header{background:var(--theme);color:#fff;padding:32px 20px}
+.hero-inner{max-width:1150px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:24px}
+.hero-text{flex:1;text-align:center}
+.hero-text h1{margin:0 0 6px;font-size:clamp(1.8rem,4vw,2.7rem)}
+.hero-text p{margin:0;font-size:1.1rem;opacity:.95}
+.hero-img{max-height:120px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.18))}
+
+.page-wrap{max-width:1150px;margin:0 auto;padding:24px 20px 70px}
+
+/* Carrusel de Recorridos */
+.reco-showcase{margin-bottom:28px}
+.reco-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.reco-header h2{margin:0;font-size:1.3rem;color:var(--nav);display:flex;align-items:center;gap:8px}
+.reco-strip{display:flex;gap:16px;overflow-x:auto;padding:4px 4px 14px;scroll-snap-type:x mandatory}
+.reco-pill{flex:0 0 280px;scroll-snap-align:start;background:#fff;border-radius:14px;padding:16px;border-left:6px solid var(--nav);box-shadow:0 3px 10px rgba(0,0,0,.07);cursor:pointer;transition:.2s;display:flex;flex-direction:column;justify-content:space-between}
+.reco-pill:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.reco-pill.activo{background:var(--nav);color:#fff;border-left-color:var(--theme)}
+.reco-pill h3{margin:0 0 6px;font-size:1.1rem}
+.reco-pill p{margin:0 0 10px;font-size:.86rem;opacity:.85}
+.reco-badge{font-size:.78rem;font-weight:800;background:rgba(0,0,0,.07);padding:3px 10px;border-radius:999px;align-self:flex-start}
+.reco-pill.activo .reco-badge{background:rgba(255,255,255,.2)}
+
+/* Barra de Filtros Combinados */
+.filter-bar{background:#fff;padding:16px 20px;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.06);margin-bottom:24px;position:sticky;top:10px;z-index:9}
+.filter-top{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.buscar{flex:1 1 260px;padding:10px 16px;border:2px solid #e0e0e0;border-radius:999px;font:inherit}
+.buscar:focus{outline:none;border-color:var(--theme)}
+.select-filtro{padding:10px 16px;border:2px solid #e0e0e0;border-radius:999px;font:700 .9rem 'Nunito',sans-serif;background:#fff;color:var(--nav);cursor:pointer}
+.genero-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.g-chip{border:1.5px solid #cfd8dc;background:#fff;color:var(--text);border-radius:999px;padding:5px 14px;font:700 .85rem 'Nunito',sans-serif;cursor:pointer;white-space:nowrap;transition:.15s}
+.g-chip[aria-pressed="true"]{background:var(--theme);border-color:var(--theme);color:#fff}
+
+/* Banner de Recorrido Seleccionado */
+.reco-banner{background:var(--nav);color:#fff;border-radius:14px;padding:18px 22px;margin-bottom:24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.reco-banner h3{margin:0 0 4px;font-size:1.3rem}
+.reco-banner p{margin:0;opacity:.9;font-size:.95rem}
+.reco-docs{display:flex;gap:10px;flex-wrap:wrap}
+
+/* Grilla y Tarjetas con Pestañas Internas */
+.cuentos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.card{background:#fff;border-radius:16px;box-shadow:0 4px 14px rgba(0,0,0,.07);display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(0,0,0,.05)}
+.card-head{padding:18px 18px 12px}
+.card-genero{display:inline-block;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--title);background:var(--soft);padding:2px 10px;border-radius:999px;margin-bottom:6px}
+.card-tit{margin:0 0 4px;font-size:1.25rem;color:var(--nav);line-height:1.2}
+.card-autor{margin:0;font-size:.9rem;font-weight:700;color:#607D8B}
+
+/* Pestañas dentro de la tarjeta */
+.card-tabs{display:flex;border-top:1px solid #eceff1;border-bottom:1px solid #eceff1;background:#f8fafb}
+.c-tab{flex:1;border:0;background:none;padding:9px 6px;font:800 .82rem 'Nunito',sans-serif;cursor:pointer;color:#78909C;border-bottom:3px solid transparent;transition:.15s}
+.c-tab:hover{color:var(--nav)}
+.c-tab.t-aula.active{color:var(--title);border-bottom-color:var(--theme);background:#fff}
+.c-tab.t-docente.active{color:var(--docente-title);border-bottom-color:var(--docente);background:#fff}
+.c-tab.t-auto.active{color:var(--auto-title);border-bottom-color:var(--auto);background:#fff}
+
+.card-body{padding:16px 18px;flex:1;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.btn-doc{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-radius:10px;text-decoration:none;font-weight:800;font-size:.92rem;border:2px solid var(--theme);color:var(--text);background:#fff;transition:.15s}
+.btn-doc:hover{background:var(--soft);transform:translateX(2px)}
+.btn-doc.docente{border-color:var(--docente)}
+.btn-doc.docente:hover{background:var(--docente-soft)}
+.btn-doc.auto{border-color:var(--auto);justify-content:center;background:var(--auto);color:#fff}
+.btn-doc.auto:hover{filter:brightness(1.08)}
+.btn-doc.pronto{border-color:#cfd8dc;color:#90a4ae;background:#f5f7f8;pointer-events:none}
+.sub-autor{display:block;font-size:.75rem;font-weight:600;color:#607D8B}
+
+@media(max-width:768px){.hero-inner{flex-direction:column}.hero-img{display:none}}
+</style>
+</head>
+<body>
+
+
+<section class="page-header"><div class="hero-inner">
+  <img class="hero-img" src="../images/oso-lengua.png" alt="" onerror="this.style.display='none'">
+  <div class="hero-text"><h1>Secuencias de Lengua</h1><p>Cuentos, secuencias, fichas y guías docentes</p></div>
+  <img class="hero-img" src="../images/tres-lengua.png" alt="" onerror="this.style.display='none'">
+</div></section>
+
+<main class="page-wrap">
+  <!-- Carrusel de Recorridos -->
+  <section class="reco-showcase" id="sec-recorridos">
+    <div class="reco-header">
+      <h2>🧭 Recorridos lectores</h2>
+      <button id="limpiar-reco" class="g-chip" hidden>Ver todos los cuentos ✕</button>
+    </div>
+    <div class="reco-strip" id="reco-strip"></div>
+  </section>
+
+  <!-- Barra de herramientas multicriterio -->
+  <section class="filter-bar">
+    <div class="filter-top">
+      <input id="buscar" class="buscar" type="search" placeholder="Buscar por título, autor o tema…">
+      <select id="sel-autor" class="select-filtro" aria-label="Filtrar por autor">
+        <option value="">Todos los autores</option>
+      </select>
+      <select id="sel-recurso" class="select-filtro" aria-label="Filtrar por tipo de recurso">
+        <option value="">Todos los materiales</option>
+        <option value="secuencia">Con Secuencia</option>
+        <option value="fichas">Con Fichas</option>
+        <option value="guia">Con Guía docente</option>
+        <option value="auto">Con Autoevaluación</option>
+      </select>
+    </div>
+    <div class="genero-chips" id="genero-chips"></div>
+  </section>
+
+  <!-- Banner de recorrido activo -->
+  <div id="reco-activo-banner" class="reco-banner" hidden></div>
+
+  <!-- Grilla de cuentos -->
+  <p id="vacio" style="text-align:center;font-weight:800" hidden>No se encontraron cuentos con esos filtros.</p>
+  <section id="lista" class="cuentos-grid"></section>
+</main>
+
+<script src="cuentos.js"></script>
+<script>
+(function(){
+  const norm = s => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  const carpeta = typeof CARPETA_PDF !== "undefined" ? CARPETA_PDF : "pdf/";
+
+  const estado = { q: "", genero: "", autor: "", recurso: "", recoIdx: null };
+
+  const DOCS = [
+    {clave: "cuento",         etiqueta: "📖 Cuento",                   grupo: "aula"},
+    {clave: "texto2",         etiqueta: "📄 Texto 2",                  grupo: "aula", extra: 2},
+    {clave: "texto3",         etiqueta: "📄 Texto 3",                  grupo: "aula", extra: 3},
+    {clave: "secuencia",      etiqueta: "📝 Secuencia didáctica",      grupo: "aula"},
+    {clave: "fichas",         etiqueta: "🗂️ Fichas de actividades",    grupo: "aula"},
+    {clave: "secuencia_guia", etiqueta: "🧭 Guía · Secuencia",         grupo: "docente"},
+    {clave: "fichas_guia",    etiqueta: "🧭 Guía · Fichas",            grupo: "docente"}
+  ];
+
+  function cantTextos(c){
+    let n = Number(c.textos) || 1;
+    const nombra = k => [c.enlaces, c.excepciones, c.etiquetas, c.autores].some(o => o && k in o);
+    if (nombra("texto2")) n = Math.max(n, 2);
+    if (nombra("texto3")) n = Math.max(n, 3);
+    return n;
+  }
+
+  function mostrarDoc(c, d){
+    if (Array.isArray(c.solo)) return c.solo.includes(d.clave);
+    return !d.extra || d.extra <= cantTextos(c);
+  }
+
+  function crearBotonDoc(c, d){
+    const etq = (c.etiquetas && c.etiquetas[d.clave]) || d.etiqueta;
+    if (c.faltan && c.faltan.includes(d.clave)){
+      const s = document.createElement("span");
+      s.className = "btn-doc pronto";
+      s.textContent = etq + " (próximamente)";
+      return s;
+    }
+    const a = document.createElement("a");
+    a.className = "btn-doc " + (d.grupo === "docente" ? "docente" : "");
+    const ext = c.enlaces && c.enlaces[d.clave];
+    const arch = (c.excepciones && c.excepciones[d.clave]) || (c.slug + "_" + d.clave + ".pdf");
+    a.href = ext ? ext : carpeta + encodeURIComponent(arch);
+    a.target = "_blank";
+    a.rel = "noopener";
+
+    const textoSpan = document.createElement("span");
+    textoSpan.textContent = etq;
+    if (c.autores && c.autores[d.clave]){
+      const sub = document.createElement("span");
+      sub.className = "sub-autor";
+      sub.textContent = c.autores[d.clave];
+      textoSpan.appendChild(sub);
+    }
+    a.appendChild(textoSpan);
+
+    const ico = document.createElement("span");
+    ico.textContent = ext ? "↗" : "⬇";
+    a.appendChild(ico);
+    return a;
+  }
+
+  // Inicializar selectores y chips
+  const autoresSet = new Set();
+  CUENTOS.forEach(c => { if (c.autor) autoresSet.add(c.autor.trim()); });
+  const selAutor = document.getElementById("sel-autor");
+  Array.from(autoresSet).sort((a,b) => a.localeCompare(b, "es")).forEach(au => {
+    const opt = document.createElement("option");
+    opt.value = au; opt.textContent = au;
+    selAutor.appendChild(opt);
+  });
+
+  const contGeneros = document.getElementById("genero-chips");
+  ["Todos"].concat(GENEROS).forEach(g => {
+    const btn = document.createElement("button");
+    btn.className = "g-chip";
+    btn.textContent = g;
+    const val = g === "Todos" ? "" : g;
+    btn.setAttribute("aria-pressed", val === estado.genero ? "true" : "false");
+    btn.addEventListener("click", () => {
+      estado.genero = val;
+      estado.recoIdx = null;
+      actualizarUI();
+    });
+    contGeneros.appendChild(btn);
+  });
+
+  // Inicializar Carrusel de Recorridos
+  const strip = document.getElementById("reco-strip");
+  const btnLimpiarReco = document.getElementById("limpiar-reco");
+  if (typeof RECORRIDOS !== "undefined" && RECORRIDOS.length){
+    RECORRIDOS.forEach((r, idx) => {
+      const pill = document.createElement("div");
+      pill.className = "reco-pill";
+      pill.dataset.idx = idx;
+      pill.innerHTML = `<div><h3>${r.titulo}</h3><p>${r.descripcion || "Lectura y actividades transversales."}</p></div>
+                        <span class="reco-badge">${(r.cuentos || []).length} cuentos</span>`;
+      pill.addEventListener("click", () => {
+        estado.recoIdx = (estado.recoIdx === idx) ? null : idx;
+        actualizarUI();
+      });
+      strip.appendChild(pill);
+    });
+  } else {
+    document.getElementById("sec-recorridos").hidden = true;
+  }
+
+  btnLimpiarReco.addEventListener("click", () => { estado.recoIdx = null; actualizarUI(); });
+
+  function armarTarjeta(c){
+    const art = document.createElement("article");
+    art.className = "card";
+
+    const head = document.createElement("div");
+    head.className = "card-head";
+    if (c.genero) head.innerHTML += `<span class="card-genero">${c.genero}</span>`;
+    head.innerHTML += `<h3 class="card-tit">${c.titulo}</h3>`;
+    if (c.autor) head.innerHTML += `<p class="card-autor">${c.autor}</p>`;
+    art.appendChild(head);
+
+    const docsAula = DOCS.filter(d => d.grupo === "aula" && mostrarDoc(c, d));
+    const docsDocente = DOCS.filter(d => d.grupo === "docente" && mostrarDoc(c, d));
+    const tieneAuto = Boolean(c.autoevaluacion && c.autoevaluacion.trim());
+
+    const tabs = document.createElement("div");
+    tabs.className = "card-tabs";
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    function mostrarPanel(tipo){
+      body.innerHTML = "";
+      Array.from(tabs.children).forEach(t => t.classList.toggle("active", t.dataset.tipo === tipo));
+      if (tipo === "aula"){
+        docsAula.forEach(d => body.appendChild(crearBotonDoc(c, d)));
+      } else if (tipo === "docente"){
+        docsDocente.forEach(d => body.appendChild(crearBotonDoc(c, d)));
+      } else if (tipo === "auto"){
+        const a = document.createElement("a");
+        a.className = "btn-doc auto";
+        a.href = c.autoevaluacion.trim();
+        a.textContent = "🎯 Realizar autoevaluación interactiva";
+        body.appendChild(a);
+      }
+    }
+
+    if (docsAula.length){
+      const b = document.createElement("button");
+      b.className = "c-tab t-aula"; b.dataset.tipo = "aula";
+      b.textContent = `Aula (${docsAula.length})`;
+      b.onclick = () => mostrarPanel("aula");
+      tabs.appendChild(b);
+    }
+    if (docsDocente.length){
+      const b = document.createElement("button");
+      b.className = "c-tab t-docente"; b.dataset.tipo = "docente";
+      b.textContent = `Docente (${docsDocente.length})`;
+      b.onclick = () => mostrarPanel("docente");
+      tabs.appendChild(b);
+    }
+    if (tieneAuto){
+      const b = document.createElement("button");
+      b.className = "c-tab t-auto"; b.dataset.tipo = "auto";
+      b.textContent = "Práctica";
+      b.onclick = () => mostrarPanel("auto");
+      tabs.appendChild(b);
+    }
+
+    art.appendChild(tabs);
+    art.appendChild(body);
+    mostrarPanel( estado.recurso === "auto" && tieneAuto ? "auto" : (estado.recurso === "guia" && docsDocente.length ? "docente" : "aula") );
+    return art;
+  }
+
+  function actualizarUI(){
+    // Actualizar chips de género
+    Array.from(contGeneros.children).forEach(btn => {
+      const g = btn.textContent === "Todos" ? "" : btn.textContent;
+      btn.setAttribute("aria-pressed", (estado.recoIdx === null && estado.genero === g) ? "true" : "false");
+    });
+
+    // Actualizar píldoras de recorrido y banner
+    Array.from(strip.children).forEach(p => p.classList.toggle("activo", Number(p.dataset.idx) === estado.recoIdx));
+    btnLimpiarReco.hidden = estado.recoIdx === null;
+
+    const banner = document.getElementById("reco-activo-banner");
+    if (estado.recoIdx !== null){
+      const r = RECORRIDOS[estado.recoIdx];
+      banner.hidden = false;
+      banner.innerHTML = `<div><h3>🧭 Recorrido: ${r.titulo}</h3><p>${r.descripcion || "Cuentos que integran este itinerario de lectura."}</p></div>`;
+      if (r.slug){
+        const dCont = document.createElement("div");
+        dCont.className = "reco-docs";
+        DOCS.filter(d => mostrarDoc(r, d)).forEach(d => dCont.appendChild(crearBotonDoc(r, d)));
+        banner.appendChild(dCont);
+      }
+    } else {
+      banner.hidden = true;
+    }
+
+    // Filtrar cuentos
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+    const filtrados = CUENTOS.filter(c => {
+      if (estado.recoIdx !== null){
+        const r = RECORRIDOS[estado.recoIdx];
+        if (!r.cuentos || !r.cuentos.includes(c.slug)) return false;
+      }
+      if (estado.genero && c.genero !== estado.genero) return false;
+      if (estado.autor && (!c.autor || c.autor.trim() !== estado.autor)) return false;
+      if (estado.recurso === "auto" && !c.autoevaluacion) return false;
+      if (estado.recurso === "secuencia" && (c.faltan || []).includes("secuencia")) return false;
+      if (estado.recurso === "fichas" && (c.faltan || []).includes("fichas")) return false;
+      if (estado.recurso === "guia" && ((c.faltan || []).includes("secuencia_guia") && (c.faltan || []).includes("fichas_guia"))) return false;
+      if (estado.q){
+        const texto = norm([c.titulo, c.autor, c.genero, (c.temas || []).join(" ")].join(" "));
+        if (!estado.q.split(" ").every(t => texto.includes(t))) return false;
+      }
+      return true;
+    });
+
+    filtrados.forEach(c => lista.appendChild(armarTarjeta(c)));
+    document.getElementById("vacio").hidden = filtrados.length > 0;
+  }
+
+  document.getElementById("buscar").addEventListener("input", e => { estado.q = norm(e.target.value); actualizarUI(); });
+  selAutor.addEventListener("change", e => { estado.autor = e.target.value; actualizarUI(); });
+  document.getElementById("sel-recurso").addEventListener("change", e => { estado.recurso = e.target.value; actualizarUI(); });
+
+  actualizarUI();
+})();
+</script>
+
+<div id="contenedor-pie"></div>
+<script>
+  fetch('/pie.html')
+    .then(r => r.ok ? r.text() : Promise.reject())
+    .then(data => { document.getElementById('contenedor-pie').innerHTML = data; })
+    .catch(err => console.error('Error:', err));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumas con cartas</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VL13MMLPRV');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================
+       ESTILOS GENERALES
+       ========================================= */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #dbe9d8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    header {
+        background-color: #2c3e50;
+        padding: 10px 0;
+        font-family: 'Roboto', sans-serif;
+        width: 100%;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        z-index: 1000;
+        position: sticky;
+        top: 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .container {
+        text-align: center;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 95%;
+        width: 750px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    h1 { margin-top: 0; font-size: 1.8rem; color: #2c3e50; }
+
+    /* Selector de Niveles */
+    .niveles {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    .btn-nivel {
+        padding: 8px 15px;
+        border: 2px solid #3498db;
+        background-color: white;
+        color: #3498db;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+    .btn-nivel.activo { background-color: #3498db; color: white; }
+
+    /* Zona de la ecuación */
+    .ecuacion-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background-color: #f0e9df;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .suma {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        min-height: 150px;
+    }
+
+    .carta img, .hueco-carta img {
+        width: 90px;
+        height: auto;
+        border-radius: 5px;
+        display: block;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .hueco-carta {
+        width: 90px;
+        height: 130px;
+        border: 2px dashed #888;
+        border-radius: 8px;
+        background-color: rgba(255,255,255,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #888;
+        box-sizing: border-box;
+    }
+
+    .signo { font-size: 2.5rem; font-weight: bold; color: #333; }
+    
+    .resultado-texto { font-size: 3rem; font-weight: bold; color: #2c3e50; min-width: 60px; }
+    .resultado-incognita { color: #e67e22; }
+
+    /* Botón Reset Nivel 5 */
+    #btn-reset {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        transition: transform 0.2s;
+    }
+    #btn-reset:hover { background-color: #c0392b; transform: rotate(-45deg); }
+    #btn-reset:active { transform: scale(0.9); }
+
+    /* Teclado (Niveles 1 y 2) */
+    .teclado { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+    .btn-numero {
+        width: 50px; height: 50px; font-size: 1.2rem; font-weight: bold;
+        background-color: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 10px;
+        cursor: pointer; color: #2c3e50;
+    }
+    .btn-numero:hover { background-color: #e0e6ed; border-color: #95a5a6; }
+    .btn-numero:active { transform: scale(0.95); }
+
+    /* Cartas (Niveles 3, 4 y 5) */
+    .cartas-opciones { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .piloto-carta { position: relative; width: 75px; height: 110px; cursor: pointer; transition: transform 0.2s; }
+    .piloto-carta:hover { transform: translateY(-5px); }
+    .piloto-carta img { width: 100%; height: 100%; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); object-fit: contain; }
+    
+    /* Estado vacío del pilón */
+    .piloto-vacio { opacity: 0.3; pointer-events: none; filter: grayscale(100%); }
+
+    /* Animación Temblor */
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-6px) rotate(-3deg); }
+        75% { transform: translateX(6px) rotate(3deg); }
+    }
+    .shake { animation: shake 0.4s ease-in-out; }
+
+    /* Botón Siguiente */
+    #btn-nuevo {
+        background-color: #27ae60; color: white; border: none; padding: 12px 30px;
+        border-radius: 20px; font-size: 1.1rem; cursor: pointer; margin-top: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2); display: none; font-weight: bold;
+    }
+    #btn-nuevo:hover { background-color: #2ecc71; }
+
+    .hidden { display: none !important; }
+    #mensaje { margin: 15px 0; font-size: 1.2rem; font-weight: bold; min-height: 28px;}
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+        .carta img, .hueco-carta img { width: 65px; }
+        .hueco-carta { width: 65px; height: 95px; font-size: 1.8rem; }
+        .signo { font-size: 1.8rem; }
+        .resultado-texto { font-size: 2.2rem; }
+        .piloto-carta { width: 60px; height: 88px; }
+        .nav-links a { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div class="container">
+  <h1>Sumas con cartas</h1>
+  
+  <div class="niveles">
+      <button class="btn-nivel activo" data-nivel="1">Nivel 1</button>
+      <button class="btn-nivel" data-nivel="2">Nivel 2</button>
+      <button class="btn-nivel" data-nivel="3">Nivel 3</button>
+      <button class="btn-nivel" data-nivel="4">Nivel 4</button>
+      <button class="btn-nivel" data-nivel="5">Nivel 5</button>
+<a href="modo-juego.html" style="background-color:#e67e22; color:white; padding:8px 15px; border-radius:20px; text-decoration:none; font-weight:bold; margin-left:10px;">🕹️ Ir al Modo Juego</a>
+  </div>
+
+  <div class="ecuacion-wrapper">
+      <div class="suma" id="zona-ecuacion"></div>
+      <button id="btn-reset" class="hidden" title="Limpiar cartas">↺</button>
+  </div>
+
+  <div id="mensaje"></div>
+
+  <div id="teclado" class="teclado hidden"></div>
+
+  <div id="contenedor-cartas" class="cartas-opciones hidden">
+      </div>
+
+  <button id="btn-nuevo">Siguiente Juego ➝</button>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const zonaEcuacion = document.getElementById('zona-ecuacion');
+  const mensaje = document.getElementById('mensaje');
+  const teclado = document.getElementById('teclado');
+  const contenedorCartas = document.getElementById('contenedor-cartas');
+  const btnNuevo = document.getElementById('btn-nuevo');
+  const btnsNivel = document.querySelectorAll('.btn-nivel');
+  const btnReset = document.getElementById('btn-reset');
+
+  let nivelActual = 1;
+  let valor1 = 0, valor2 = 0, sumaCorrecta = 0;
+  let juegoBloqueado = false;
+  
+  // Variables Nivel 5
+  let estadoPilones = {}; // {1: 2, 2: 2...} (2 cartas por número)
+  let slot1Lleno = false, slot2Lleno = false;
+  let valorSlot1 = 0, valorSlot2 = 0;
+
+  // ------------------------------------------
+  // INICIALIZACIÓN DE INTERFAZ
+  // ------------------------------------------
+  function crearTeclado(maxSuma) {
+      teclado.innerHTML = '';
+      for (let i = 2; i <= maxSuma; i++) {
+          const boton = document.createElement('button');
+          boton.classList.add('btn-numero');
+          boton.textContent = i;
+          boton.addEventListener('click', () => verificarNumero(i));
+          teclado.appendChild(boton);
+      }
+  }
+
+  function crearPilones() {
+      contenedorCartas.innerHTML = '';
+      for(let i = 1; i <= 9; i++) {
+          const div = document.createElement('div');
+          div.classList.add('piloto-carta');
+          div.setAttribute('data-valor', i);
+          div.innerHTML = `<img src="0${i}_oro.jpg" alt="${i}">`;
+          div.addEventListener('click', () => manejarClickCarta(i, div));
+          contenedorCartas.appendChild(div);
+      }
+  }
+
+  function reiniciarPilones() {
+      estadoPilones = {1:2, 2:2, 3:2, 4:2, 5:2, 6:2, 7:2, 8:2, 9:2};
+      const pilones = document.querySelectorAll('.piloto-carta');
+      pilones.forEach(pilon => {
+          pilon.classList.remove('piloto-vacio');
+          const val = pilon.getAttribute('data-valor');
+          pilon.querySelector('img').src = `0${val}_oro.jpg`; // Vuelve al oro
+      });
+  }
+
+  // ------------------------------------------
+  // LÓGICA DE NIVELES
+  // ------------------------------------------
+  function iniciarJuego() {
+      mensaje.textContent = '';
+      btnNuevo.style.display = 'none';
+      btnReset.classList.add('hidden');
+      juegoBloqueado = false;
+      
+      if (nivelActual === 1 || nivelActual === 2) {
+          teclado.classList.remove('hidden');
+          contenedorCartas.classList.add('hidden');
+          
+          let maxCarta = (nivelActual === 1) ? 5 : 9;
+          valor1 = Math.floor(Math.random() * maxCarta) + 1;
+          valor2 = Math.floor(Math.random() * maxCarta) + 1;
+          sumaCorrecta = valor1 + valor2;
+          
+          crearTeclado((nivelActual === 1) ? 10 : 18);
+
+          // Cartas fijas en Nivel 1 y 2 son Espadas
+          zonaEcuacion.innerHTML = `
+              <div class="carta"><img src="0${valor1}_espada.jpg" alt="Carta 1"></div>
+              <div class="signo">+</div>
+              <div class="carta"><img src="0${valor2}_espada.jpg" alt="Carta 2"></div>
+              <div class="signo">=</div>
+              <div class="resultado-texto resultado-incognita" id="texto-resultado">?</div>
+          `;
+      } 
+      else if (nivelActual === 3 || nivelActual === 4) {
+          teclado.classList.add('hidden');
+          contenedorCartas.classList.remove('hidden');
+          crearPilones(); // Pilones infinitos (siempre oro abajo)
+
+          if (nivelActual === 3) {
+              sumaCorrecta = Math.floor(Math.random() * 9) + 2; // 2 a 10
+              valor1 = Math.floor(Math.random() * (sumaCorrecta - 1)) + 1; 
+              valor2 = sumaCorrecta - valor1;
+          } else {
+              // Nivel 4: Resultados altos (11 a 18)
+              sumaCorrecta = Math.floor(Math.random() * 8) + 11; 
+              const minV1 = Math.max(1, sumaCorrecta - 9);
+              valor1 = Math.floor(Math.random() * (9 - minV1 + 1)) + minV1;
+              valor2 = sumaCorrecta - valor1;
+          }
+
+          // Carta fija es Espada, el hueco espera el Oro
+          zonaEcuacion.innerHTML = `
+              <div class="carta"><img src="0${valor1}_espada.jpg" alt="Carta 1"></div>
+              <div class="signo">+</div>
+              <div class="hueco-carta" id="incognita-box">?</div>
+              <div class="signo">=</div>
+              <div class="resultado-texto">${sumaCorrecta}</div>
+          `;
+      }
+      else if (nivelActual === 5) {
+          teclado.classList.add('hidden');
+          contenedorCartas.classList.remove('hidden');
+          btnReset.classList.remove('hidden');
+          crearPilones();
+          reiniciarPilones();
+          
+          slot1Lleno = false;
+          slot2Lleno = false;
+          valorSlot1 = 0;
+          valorSlot2 = 0;
+
+          // Suma objetivo entre 4 y 18
+          sumaCorrecta = Math.floor(Math.random() * 15) + 4;
+
+          zonaEcuacion.innerHTML = `
+              <div class="hueco-carta" id="slot-1">?</div>
+              <div class="signo">+</div>
+              <div class="hueco-carta" id="slot-2">?</div>
+              <div class="signo">=</div>
+              <div class="resultado-texto">${sumaCorrecta}</div>
+          `;
+      }
+  }
+
+  // ------------------------------------------
+  // INTERACCIONES Y ANIMACIONES
+  // ------------------------------------------
+  function verificarNumero(numeroElegido) {
+      if (juegoBloqueado) return;
+      if (numeroElegido === sumaCorrecta) {
+          juegoBloqueado = true;
+          mostrarExito(valor1, valor2, sumaCorrecta);
+          const textoRes = document.getElementById('texto-resultado');
+          textoRes.textContent = sumaCorrecta;
+          textoRes.style.color = "#27ae60";
+          textoRes.classList.remove('resultado-incognita');
+          teclado.classList.add('hidden');
+      } else {
+          mostrarError();
+      }
+  }
+
+  function manejarClickCarta(valorElegido, elementoPilon) {
+      if (juegoBloqueado) return;
+
+      if (nivelActual === 3 || nivelActual === 4) {
+          if (valorElegido === valor2) {
+              juegoBloqueado = true;
+              mensaje.textContent = "";
+              const destino = document.getElementById('incognita-box');
+              
+              // En niveles 3 y 4 siempre viaja y se deposita como Oro
+              animarCarta(elementoPilon, destino, valorElegido, 'oro', () => {
+                  llenarHueco(destino, valor2, 'oro');
+                  mostrarExito(valor1, valor2, sumaCorrecta);
+                  contenedorCartas.classList.add('hidden');
+              });
+          } else {
+              mostrarError();
+              elementoPilon.classList.add('shake');
+              setTimeout(() => elementoPilon.classList.remove('shake'), 400);
+          }
+      } 
+      else if (nivelActual === 5) {
+          if (estadoPilones[valorElegido] === 0 || (slot1Lleno && slot2Lleno)) return;
+
+          let paloCarta = (estadoPilones[valorElegido] === 2) ? 'oro' : 'espada';
+          let destino = !slot1Lleno ? document.getElementById('slot-1') : document.getElementById('slot-2');
+          
+          // Registrar en qué slot cayó
+          if (!slot1Lleno) {
+              slot1Lleno = true;
+              valorSlot1 = valorElegido;
+          } else {
+              slot2Lleno = true;
+              valorSlot2 = valorElegido;
+          }
+
+          mensaje.textContent = "";
+
+          // Animamos creando la imagen con el palo exacto que corresponde AHORA
+          animarCarta(elementoPilon, destino, valorElegido, paloCarta, () => {
+              llenarHueco(destino, valorElegido, paloCarta);
+              
+              if (slot1Lleno && slot2Lleno) {
+                  if (valorSlot1 + valorSlot2 === sumaCorrecta) {
+                      juegoBloqueado = true;
+                      btnReset.classList.add('hidden');
+                      contenedorCartas.classList.add('hidden');
+                      mostrarExito(valorSlot1, valorSlot2, sumaCorrecta);
+                  } else {
+                      mostrarError("La suma da " + (valorSlot1 + valorSlot2) + ". Usa el botón ↺ para limpiar.");
+                      document.getElementById('slot-1').classList.add('shake');
+                      document.getElementById('slot-2').classList.add('shake');
+                      setTimeout(() => {
+                          document.getElementById('slot-1').classList.remove('shake');
+                          document.getElementById('slot-2').classList.remove('shake');
+                      }, 400);
+                  }
+              }
+          });
+
+          // Actualizamos visualmente el pilón de abajo justo DESPUÉS de lanzar la animación
+          estadoPilones[valorElegido]--;
+          if (estadoPilones[valorElegido] === 1) {
+              elementoPilon.querySelector('img').src = `0${valorElegido}_espada.jpg`;
+          } else {
+              elementoPilon.classList.add('piloto-vacio');
+          }
+      }
+  }
+
+  // Funciones de utilidad visual
+  function animarCarta(elementoOrigen, destino, valorCarta, paloCarta, callback) {
+      const rectOrigen = elementoOrigen.getBoundingClientRect();
+      const rectDestino = destino.getBoundingClientRect();
+
+      // Creamos un clon explícito para blindar el src correcto
+      const clon = document.createElement('img');
+      clon.src = `0${valorCarta}_${paloCarta}.jpg`;
+      clon.style.position = 'fixed';
+      clon.style.top = rectOrigen.top + 'px';
+      clon.style.left = rectOrigen.left + 'px';
+      clon.style.width = rectOrigen.width + 'px';
+      clon.style.height = rectOrigen.height + 'px';
+      clon.style.margin = '0';
+      clon.style.zIndex = '9999';
+      clon.style.transition = 'all 0.4s ease-in-out';
+      clon.style.borderRadius = '5px';
+      clon.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+      clon.style.objectFit = 'contain';
+      
+      document.body.appendChild(clon);
+      clon.getBoundingClientRect(); // Forzamos reflow para la transición
+
+      clon.style.top = rectDestino.top + 'px';
+      clon.style.left = rectDestino.left + 'px';
+      clon.style.width = rectDestino.width + 'px';
+      clon.style.height = rectDestino.height + 'px';
+
+      clon.addEventListener('transitionend', () => {
+          clon.remove();
+          callback();
+      }, { once: true });
+  }
+
+  function llenarHueco(elemento, valor, palo) {
+      elemento.style.border = 'none';
+      elemento.style.backgroundColor = 'transparent';
+      elemento.innerHTML = `<img src="0${valor}_${palo}.jpg" alt="Carta" style="width:100%; height:100%; object-fit:contain; border-radius:5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">`;
+  }
+
+  function vaciarHueco(elemento) {
+      elemento.style.border = '2px dashed #888';
+      elemento.style.backgroundColor = 'rgba(255,255,255,0.5)';
+      elemento.innerHTML = '?';
+  }
+
+  function mostrarExito(v1, v2, total) {
+      mensaje.textContent = "¡Excelente! " + v1 + " + " + v2 + " = " + total;
+      mensaje.style.color = "#27ae60";
+      btnNuevo.style.display = 'inline-block';
+  }
+
+  function mostrarError(textoCustom = "Ups... Intenta de nuevo.") {
+      mensaje.textContent = textoCustom;
+      mensaje.style.color = "#c0392b";
+  }
+
+  // ------------------------------------------
+  // EVENTOS DE BOTONES
+  // ------------------------------------------
+  btnReset.addEventListener('click', () => {
+      if (juegoBloqueado) return;
+      slot1Lleno = false;
+      slot2Lleno = false;
+      valorSlot1 = 0;
+      valorSlot2 = 0;
+      mensaje.textContent = "";
+      vaciarHueco(document.getElementById('slot-1'));
+      vaciarHueco(document.getElementById('slot-2'));
+      reiniciarPilones();
+  });
+
+  btnsNivel.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+          btnsNivel.forEach(b => b.classList.remove('activo'));
+          e.target.classList.add('activo');
+          nivelActual = parseInt(e.target.getAttribute('data-nivel'));
+          iniciarJuego();
+      });
+  });
+
+  btnNuevo.addEventListener('click', iniciarJuego);
+
+  // Arranque inicial
+  iniciarJuego();
+});
+</script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

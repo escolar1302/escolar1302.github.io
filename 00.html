@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Panel de Herramientas</title>
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 15px;
+            box-sizing: border-box;
+        }
+
+        /* Caja blanca principal */
+        .contenedor {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 850px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 1.6rem;
+        }
+
+        /* En PC: dos columnas */
+        .enlaces-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        /* Botones */
+        .boton-enlace {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 12px 18px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.05rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .boton-enlace:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Colores individuales */
+        .btn-1 { 
+            background-color: #27ae60; 
+        }
+
+        .btn-1:hover { 
+            background-color: #2ecc71; 
+        }
+
+        .btn-2 { 
+            background-color: #e67e22; 
+        }
+
+        .btn-2:hover { 
+            background-color: #d35400; 
+        }
+
+        .btn-3 { 
+            background-color: #2980b9; 
+        }
+
+        .btn-3:hover { 
+            background-color: #3498db; 
+        }
+
+        .btn-4 { 
+            background-color: #7f8c8d; 
+        }
+
+        .btn-4:hover { 
+            background-color: #95a5a6; 
+        }
+
+        /* En celular: una columna */
+        @media (max-width: 700px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .contenedor {
+                padding: 25px 18px;
+            }
+
+            .enlaces-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.35rem;
+            }
+
+            .boton-enlace {
+                font-size: 1rem;
+                min-height: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <h1>🛠️ Mis Accesos Directos</h1>
+
+        <div class="enlaces-grid">
+            <a href="parapro2.html" class="boton-enlace btn-1">📝 1. Hacer fichas problemas</a>
+
+            <a href="parapro3.html" class="boton-enlace btn-1">📝 2. Hacer fichas problemas en línea</a>
+            <a href="constructor_lengua_choice.html" class="boton-enlace btn-1">📝 2. Hacer fichas choice lengua</a>
+			 <a href="cuestionario.html" class="boton-enlace btn-1">📝 Cuestionario</a>
+            <a href="buscador.html" class="boton-enlace btn-3">🔍 3. Buscador del sitio</a>
+
+            <a href="nube" class="boton-enlace btn-3">🔍 4. Nube</a>
+
+            <a href="suite" class="boton-enlace btn-3">🔍 5. Suite</a>
+
+            <a href="editor.html" class="boton-enlace btn-4">🚀 6. Editor del sitio</a>
+
+            <a href="formulario" class="boton-enlace btn-4">🚀 7. Formulario</a>
+			<a href="https://chatgpt.com/share/6a3754c0-cc64-83e9-9f3f-89ea6cd1196c" class="boton-enlace btn-2">⚙️ GPT cuestioanrio</a>
+
+            <a href="https://chatgpt.com/g/g-69ee9b78868c8191ab043f17daa1d8ab-lengua-analisis-y-actividades" class="boton-enlace btn-2">⚙️ GPT Lengua análisis y actividades</a>
+
+            <a href="https://chatgpt.com/g/g-69eea1de73648191a8f2043a68d6474d-para-fichas-lengua" class="boton-enlace btn-2">⚙️ GPT Lengua Para fichas</a>
+
+            <a href="https://chatgpt.com/g/g-69eea6da6c788191ac55de6eeda6450f-para-choice-lengua" class="boton-enlace btn-2">⚙️ GPT Lengua Para choice</a>
+
+            <a href="https://chatgpt.com/g/g-69ee315a0d6081919eac0d4f9e22f578-analisis-problemas" class="boton-enlace btn-2">⚙️ GPT Matemática análisis Problemas</a>
+
+            <a href="https://chatgpt.com/g/g-69ee2a7e8410819180cec29e4339120e-problemas-para-zona" class="boton-enlace btn-2">⚙️ GPT Matemática Zona problemas</a>
+        </div>
+    </div>
+
+</body>
+</html>

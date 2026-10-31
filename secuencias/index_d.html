@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secuencias de Lengua</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --theme:#27AE60; --soft:#E8F5E9; --title:#1B5E20;
+  --docente:#E67E22; --docente-soft:#FDF1E4; --docente-title:#A34E00;
+  --auto:#036FB0; --auto-soft:#E3F2FD; --auto-title:#01579B;
+  --nav:#2c3e50; --text:#263238; --surface:#fff;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--soft);font-family:'Nunito',sans-serif;color:var(--text);line-height:1.5}
+
+.site-nav{background:var(--nav);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 3px 10px rgba(0,0,0,.22)}
+.site-nav img{height:54px;max-width:220px;object-fit:contain}
+.site-nav nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.site-nav a{color:#fff;text-decoration:none;font-weight:800;font-size:.95rem}
+
+.page-header{background:var(--theme);color:#fff;padding:28px 20px}
+.hero-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:24px}
+.hero-text{flex:1;text-align:center}
+.hero-text h1{margin:0 0 4px;font-size:clamp(1.8rem,3.5vw,2.5rem)}
+.hero-text p{margin:0;font-size:1.05rem;opacity:.95}
+.hero-img{max-height:105px;object-fit:contain}
+
+/* Layout de 2 columnas: Sidebar + Catálogo */
+.explorer-layout{max-width:1200px;margin:0 auto;padding:26px 20px 70px;display:grid;grid-template-columns:270px 1fr;gap:26px;align-items:start}
+
+/* Barra lateral */
+.sidebar{background:#fff;border-radius:16px;padding:18px;box-shadow:0 3px 14px rgba(0,0,0,.07);position:sticky;top:16px}
+.side-search{width:100%;padding:9px 14px;border:2px solid #dfe6e9;border-radius:10px;font:inherit;margin-bottom:16px}
+.side-search:focus{outline:none;border-color:var(--theme)}
+.side-group-title{font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.6px;color:#78909C;margin:14px 0 6px;padding-left:8px}
+.side-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
+.side-btn{width:100%;text-align:left;border:0;background:none;padding:7px 10px;border-radius:8px;font:700 .9rem 'Nunito',sans-serif;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:.15s}
+.side-btn:hover{background:#f1f5f8}
+.side-btn.activo{background:var(--nav);color:#fff;font-weight:800}
+.side-count{font-size:.76rem;background:rgba(0,0,0,.07);padding:1px 8px;border-radius:999px}
+.side-btn.activo .side-count{background:rgba(255,255,255,.22)}
+
+/* Panel derecho y filas acordeón */
+.catalog-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:10px}
+.catalog-title{margin:0;font-size:1.4rem;color:var(--title)}
+.expand-btn{border:2px solid var(--nav);background:#fff;color:var(--nav);border-radius:999px;padding:5px 14px;font:800 .83rem 'Nunito',sans-serif;cursor:pointer}
+
+.accordion-list{display:flex;flex-direction:column;gap:10px}
+.item-row{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden;border-left:5px solid var(--theme);transition:.2s}
+.item-row.es-reco{border-left-color:var(--nav)}
+.row-summary{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;user-select:none}
+.row-summary:hover{background:#fafdfc}
+.row-main{flex:1;min-width:0}
+.row-tit{margin:0;font-size:1.12rem;color:var(--nav);font-weight:800;display:inline;margin-right:10px}
+.row-autor{font-size:.9rem;color:#607D8B;font-weight:700}
+.row-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+/* Insignias indicadoras en la fila cerrada */
+.badge-dot{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;font-weight:800;padding:3px 10px;border-radius:999px}
+.badge-dot.aula{background:var(--soft);color:var(--title)}
+.badge-dot.doc{background:var(--docente-soft);color:var(--docente-title)}
+.badge-dot.auto{background:var(--auto-soft);color:var(--auto-title)}
+.chevron{font-weight:900;color:#90A4AE;transition:transform .2s}
+.item-row.abierto .chevron{transform:rotate(180deg)}
+
+/* Panel desplegable en 3 columnas */
+.row-details{display:none;padding:16px 18px 20px;border-top:1px solid #eceff1;background:#fcfefe}
+.item-row.abierto .row-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.col-group h4{margin:0 0 8px;font-size:.88rem;text-transform:uppercase;letter-spacing:.5px}
+.col-group.aula h4{color:var(--title)}
+.col-group.docente h4{color:var(--docente-title)}
+.col-group.auto h4{color:var(--auto-title)}
+.col-btns{display:flex;flex-direction:column;gap:7px}
+
+.pill-link{display:inline-flex;align-items:center;justify-content:space-between;padding:7px 13px;border-radius:8px;border:2px solid var(--theme);background:#fff;color:var(--text);text-decoration:none;font-weight:800;font-size:.88rem;transition:.15s}
+.pill-link:hover{background:var(--soft)}
+.pill-link.docente{border-color:var(--docente)}
+.pill-link.docente:hover{background:var(--docente-soft)}
+.pill-link.auto{border-color:var(--auto);background:var(--auto);color:#fff}
+.pill-link.auto:hover{filter:brightness(1.08)}
+
+@media(max-width:860px){
+  .explorer-layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .hero-img{display:none}
+}
+</style>
+</head>
+<body>
+
+
+<section class="page-header"><div class="hero-inner">
+  <img class="hero-img" src="../images/oso-lengua.png" alt="" onerror="this.style.display='none'">
+  <div class="hero-text"><h1>Secuencias de Lengua</h1><p>Índice interactivo de cuentos, secuencias, fichas y guías docentes</p></div>
+  <img class="hero-img" src="../images/tres-lengua.png" alt="" onerror="this.style.display='none'">
+</div></section>
+
+<div class="explorer-layout">
+  <!-- Barra de navegación lateral -->
+  <aside class="sidebar">
+    <input id="buscar" class="side-search" type="search" placeholder="Buscar cuento o autor…">
+    <div id="menu-lateral"></div>
+  </aside>
+
+  <!-- Contenido principal en acordeón -->
+  <main>
+    <div class="catalog-header">
+      <h2 id="titulo-seccion" class="catalog-title">Todos los cuentos</h2>
+      <button id="toggle-todos" class="expand-btn" type="button">Desplegar todos</button>
+    </div>
+    <p id="vacio" hidden>No hay resultados para esa búsqueda.</p>
+    <div id="lista-acordeon" class="accordion-list"></div>
+  </main>
+</div>
+
+<script src="cuentos.js"></script>
+<script>
+(function(){
+  const norm = s => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  const carpeta = typeof CARPETA_PDF !== "undefined" ? CARPETA_PDF : "pdf/";
+
+  const DOCS = [
+    {clave: "cuento",         etiqueta: "Cuento",                   grupo: "aula"},
+    {clave: "texto2",         etiqueta: "Texto 2",                  grupo: "aula", extra: 2},
+    {clave: "texto3",         etiqueta: "Texto 3",                  grupo: "aula", extra: 3},
+    {clave: "secuencia",      etiqueta: "Secuencia",                grupo: "aula"},
+    {clave: "fichas",         etiqueta: "Fichas",                   grupo: "aula"},
+    {clave: "secuencia_guia", etiqueta: "Guía docente · secuencia", grupo: "docente"},
+    {clave: "fichas_guia",    etiqueta: "Guía docente · fichas",    grupo: "docente"}
+  ];
+
+  const estado = { filtroTipo: "todos", filtroValor: "", q: "", todosAbiertos: false };
+
+  function cantTextos(c){
+    let n = Number(c.textos) || 1;
+    const nombra = k => [c.enlaces, c.excepciones, c.etiquetas, c.autores].some(o => o && k in o);
+    if (nombra("texto2")) n = Math.max(n, 2);
+    if (nombra("texto3")) n = Math.max(n, 3);
+    return n;
+  }
+
+  function mostrarDoc(c, d){
+    if (Array.isArray(c.solo)) return c.solo.includes(d.clave);
+    return !d.extra || d.extra <= cantTextos(c);
+  }
+
+  function crearLink(c, d){
+    const etq = (c.etiquetas && c.etiquetas[d.clave]) || d.etiqueta;
+    const a = document.createElement("a");
+    a.className = "pill-link " + (d.grupo === "docente" ? "docente" : "");
+    const ext = c.enlaces && c.enlaces[d.clave];
+    const arch = (c.excepciones && c.excepciones[d.clave]) || (c.slug + "_" + d.clave + ".pdf");
+    a.href = ext ? ext : carpeta + encodeURIComponent(arch);
+    a.target = "_blank"; a.rel = "noopener";
+    a.innerHTML = `<span>${etq}</span><span>${ext ? "↗" : "PDF"}</span>`;
+    return a;
+  }
+
+  // Construcción del menú lateral
+  function construirSidebar(){
+    const menu = document.getElementById("menu-lateral");
+    menu.innerHTML = "";
+
+    function agregarSeccion(titulo, items){
+      if (titulo){
+        const h = document.createElement("div");
+        h.className = "side-group-title"; h.textContent = titulo;
+        menu.appendChild(h);
+      }
+      const ul = document.createElement("ul");
+      ul.className = "side-list";
+      items.forEach(it => {
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.className = "side-btn" + (estado.filtroTipo === it.tipo && estado.filtroValor === it.valor ? " activo" : "");
+        btn.innerHTML = `<span>${it.etiqueta}</span><span class="side-count">${it.cuenta}</span>`;
+        btn.onclick = () => {
+          estado.filtroTipo = it.tipo;
+          estado.filtroValor = it.valor;
+          document.getElementById("titulo-seccion").textContent = it.tituloVista || it.etiqueta;
+          construirSidebar();
+          renderAcordeon();
+        };
+        li.appendChild(btn);
+        ul.appendChild(li);
+      });
+      menu.appendChild(ul);
+    }
+
+    agregarSeccion("", [
+      {tipo: "todos", valor: "", etiqueta: "📚 Todos los cuentos", cuenta: CUENTOS.length, tituloVista: "Todos los cuentos"},
+      {tipo: "auto", valor: "si", etiqueta: "🎯 Con Autoevaluación", cuenta: CUENTOS.filter(c => c.autoevaluacion).length, tituloVista: "Cuentos con Autoevaluación"}
+    ]);
+
+    if (typeof RECORRIDOS !== "undefined" && RECORRIDOS.length){
+      agregarSeccion("Recorridos", RECORRIDOS.map((r, i) => ({
+        tipo: "reco", valor: String(i), etiqueta: "🧭 " + r.titulo, cuenta: (r.cuentos || []).length, tituloVista: "Recorrido: " + r.titulo
+      })));
+    }
+
+    agregarSeccion("Por Género", GENEROS.map(g => ({
+      tipo: "genero", valor: g, etiqueta: g, cuenta: CUENTOS.filter(c => c.genero === g).length
+    })).filter(x => x.cuenta > 0));
+  }
+
+  function crearFilaAcordeon(c, esReco){
+    const row = document.createElement("article");
+    row.className = "item-row" + (esReco ? " es-reco" : "") + (estado.todosAbiertos ? " abierto" : "");
+
+    const docsAula = DOCS.filter(d => d.grupo === "aula" && mostrarDoc(c, d));
+    const docsDoc = DOCS.filter(d => d.grupo === "docente" && mostrarDoc(c, d));
+    const tieneAuto = Boolean(c.autoevaluacion && c.autoevaluacion.trim());
+
+    const sum = document.createElement("div");
+    sum.className = "row-summary";
+    sum.innerHTML = `
+      <div class="row-main">
+        <h3 class="row-tit">${esReco ? "🧭 " + c.titulo : c.titulo}</h3>
+        <span class="row-autor">${esReco ? "Material transversal del recorrido" : (c.autor || "")}</span>
+      </div>
+      <div class="row-meta">
+        ${docsAula.length ? `<span class="badge-dot aula">${docsAula.length} Aula</span>` : ""}
+        ${docsDoc.length ? `<span class="badge-dot doc">${docsDoc.length} Guía</span>` : ""}
+        ${tieneAuto ? `<span class="badge-dot auto">Autoeval.</span>` : ""}
+        <span class="chevron">▼</span>
+      </div>`;
+    sum.onclick = () => row.classList.toggle("abierto");
+
+    const det = document.createElement("div");
+    det.className = "row-details";
+
+    if (docsAula.length){
+      const col = document.createElement("div"); col.className = "col-group aula";
+      col.innerHTML = "<h4>Para el aula</h4>";
+      const b = document.createElement("div"); b.className = "col-btns";
+      docsAula.forEach(d => b.appendChild(crearLink(c, d)));
+      col.appendChild(b); det.appendChild(col);
+    }
+    if (docsDoc.length){
+      const col = document.createElement("div"); col.className = "col-group docente";
+      col.innerHTML = "<h4>Para el docente</h4>";
+      const b = document.createElement("div"); b.className = "col-btns";
+      docsDoc.forEach(d => b.appendChild(crearLink(c, d)));
+      col.appendChild(b); det.appendChild(col);
+    }
+    if (tieneAuto){
+      const col = document.createElement("div"); col.className = "col-group auto";
+      col.innerHTML = "<h4>Para practicar</h4>";
+      const b = document.createElement("div"); b.className = "col-btns";
+      const a = document.createElement("a");
+      a.className = "pill-link auto";
+      a.href = c.autoevaluacion.trim();
+      a.innerHTML = "<span>Autoevaluación interactiva</span><span>▶</span>";
+      b.appendChild(a); col.appendChild(b); det.appendChild(col);
+    }
+
+    row.appendChild(sum);
+    row.appendChild(det);
+    return row;
+  }
+
+  function renderAcordeon(){
+    const cont = document.getElementById("lista-acordeon");
+    cont.innerHTML = "";
+    let items = [];
+
+    if (estado.filtroTipo === "reco"){
+      const r = RECORRIDOS[Number(estado.filtroValor)];
+      if (r.slug) cont.appendChild(crearFilaAcordeon(r, true));
+      items = (r.cuentos || []).map(slug => CUENTOS.find(c => c.slug === slug)).filter(Boolean);
+    } else {
+      items = CUENTOS.filter(c => {
+        if (estado.filtroTipo === "genero" && c.genero !== estado.filtroValor) return false;
+        if (estado.filtroTipo === "auto" && !c.autoevaluacion) return false;
+        return true;
+      });
+    }
+
+    if (estado.q){
+      items = items.filter(c => norm([c.titulo, c.autor, c.genero].join(" ")).includes(estado.q));
+    }
+
+    items.forEach(c => cont.appendChild(crearFilaAcordeon(c, false)));
+    document.getElementById("vacio").hidden = cont.children.length > 0;
+  }
+
+  document.getElementById("buscar").addEventListener("input", e => { estado.q = norm(e.target.value); renderAcordeon(); });
+  document.getElementById("toggle-todos").addEventListener("click", function(){
+    estado.todosAbiertos = !estado.todosAbiertos;
+    this.textContent = estado.todosAbiertos ? "Contraer todos" : "Desplegar todos";
+    Array.from(document.querySelectorAll(".item-row")).forEach(r => r.classList.toggle("abierto", estado.todosAbiertos));
+  });
+
+  construirSidebar();
+  renderAcordeon();
+})();
+</script>
+
+<div id="contenedor-pie"></div>
+<script>
+  fetch('/pie.html')
+    .then(r => r.ok ? r.text() : Promise.reject())
+    .then(data => { document.getElementById('contenedor-pie').innerHTML = data; })
+    .catch(err => console.error('Error:', err));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

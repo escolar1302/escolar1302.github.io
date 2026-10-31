@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escritor de secuencias de Lengua</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ====================== INTERFAZ (solo pantalla) ====================== */
+:root{
+  --ink:#1f2a2e; --muted:#5b6a6e; --line:#b4c2bd;
+  --accent:#2e6f5e; --accent-soft:#e8f2ee; --accent-dark:#1d4a3f;
+  --warm:#d9783b; --warm-soft:#fcefe4;
+}
+*{ box-sizing:border-box; }
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body{ margin:0; font-family:'Inter',sans-serif; color:var(--ink); background:#eef1ef; }
+.app-top{ background:#2c3e50; color:#fff; padding:12px 20px; display:flex; flex-wrap:wrap; gap:8px 20px; align-items:baseline; }
+.app-top h1{ font-family:'Poppins',sans-serif; font-size:1.15rem; margin:0; }
+.app-top span{ font-size:.85rem; opacity:.8; }
+.app{ display:grid; grid-template-columns:minmax(300px,42%) 1fr; gap:16px; padding:16px; align-items:start; }
+@media (max-width:900px){ .app{ grid-template-columns:1fr; } }
+.panel{ background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,.12); padding:14px; }
+.panel h2{ font-family:'Poppins',sans-serif; font-size:1rem; margin:0 0 8px; color:var(--accent-dark); }
+textarea.t{ width:100%; height:62vh; min-height:320px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.45; border:1px solid #cfd8d4; border-radius:8px; padding:10px; resize:vertical; }
+.botones{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; }
+button{ font-family:'Inter',sans-serif; font-size:.9rem; border:0; border-radius:8px; padding:9px 14px; cursor:pointer; background:var(--accent); color:#fff; font-weight:500; }
+button.sec{ background:#e3e9e6; color:var(--ink); }
+button:hover{ filter:brightness(.95); }
+.avisos{ font-size:.88rem; margin-top:6px; }
+.avisos .ok{ color:#1d6b3f; }
+.avisos ul{ margin:6px 0 0; padding-left:18px; }
+.avisos li{ margin-bottom:4px; color:#8a3b12; }
+details{ margin-top:10px; font-size:.88rem; }
+details summary{ cursor:pointer; font-weight:600; color:var(--accent-dark); }
+details pre{ background:#f4f6f5; padding:10px; border-radius:8px; overflow:auto; font-size:12px; line-height:1.4; }
+.vista{ background:#cfd6d3; padding:16px; border-radius:10px; overflow:auto; }
+.hoja{ background:#fff; width:100%; max-width:210mm; margin:0 auto 18px; padding:16mm 17mm; box-shadow:0 2px 8px rgba(0,0,0,.25); min-height:120mm; }
+.nota-vista{ font-size:.8rem; color:var(--muted); margin:0 0 8px; text-align:center; }
+
+/* ====================== DISEÑO DEL MATERIAL ====================== */
+.hoja{ font-size:11pt; line-height:1.45; }
+.hoja h1,.hoja h2,.hoja h3{ font-family:'Poppins','Inter',sans-serif; margin:0; line-height:1.2; }
+.hoja p{ margin:0 0 .5em; }
+.salto{ break-before:page; }
+
+.portada{ margin-bottom:12mm; }
+.portada .franja{ background:var(--accent); color:#fff; border-radius:6mm; padding:16mm 14mm 14mm; margin-bottom:10mm; }
+.portada .kicker{ font-family:'Poppins'; font-weight:500; letter-spacing:.08em; text-transform:uppercase; font-size:10pt; opacity:.85; }
+.portada .franja h1{ font-size:30pt; margin:4mm 0 3mm; color:#fff; }
+.portada .autor{ font-family:'Lora',serif; font-style:italic; font-size:14pt; opacity:.95; }
+.portada .nombre{ margin:6mm 0 10mm; font-size:12pt; }
+.portada .nombre .raya{ display:inline-block; width:105mm; max-width:60%; border-bottom:1.2px solid var(--ink); height:1em; vertical-align:bottom; }
+.portada h2{ font-size:14pt; color:var(--accent-dark); margin-bottom:4mm; }
+.portada ul{ list-style:none; padding:0; margin:0; }
+.portada li{ position:relative; padding:0 0 3.2mm 9mm; font-size:12pt; }
+.portada li::before{ content:""; position:absolute; left:0; top:.45em; width:4mm; height:4mm; border-radius:50%; background:var(--warm); }
+
+.agenda{ break-inside:avoid; }
+.agenda h2{ font-size:16pt; color:var(--accent-dark); margin-bottom:3mm; }
+.agenda td{ padding:1.3mm 3mm; }
+.agenda th{ padding:1.6mm 3mm; }
+.hoja table{ border-collapse:collapse; width:100%; break-inside:avoid; }
+.hoja th{ background:var(--accent); color:#fff; font-family:'Poppins'; font-weight:600; font-size:10.5pt; text-align:left; padding:2.6mm 3mm; }
+.hoja td{ border-bottom:1px solid var(--line); padding:3mm 3mm; vertical-align:top; }
+.hoja td.n{ width:22mm; font-family:'Poppins'; font-weight:700; color:var(--accent-dark); }
+.hoja tr.vacia td{ height:12mm; }
+.consigna table{ margin-top:2mm; }
+.consigna td{ height:12mm; }
+
+.enc{ counter-reset:cons; margin-top:9mm; }
+.enc-head{ display:flex; gap:5mm; align-items:center; margin:0 0 5mm; break-after:avoid; }
+.enc-head .num{ flex:0 0 auto; width:17mm; height:17mm; border-radius:50%; background:var(--accent); color:#fff; font-family:'Poppins'; font-weight:700; font-size:20pt; display:flex; align-items:center; justify-content:center; }
+.enc-head .tit small{ display:block; font-family:'Poppins'; font-size:9.5pt; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.enc-head .tit h2{ font-size:19pt; color:var(--accent-dark); }
+.problema{ break-after:avoid; background:var(--warm-soft); border-left:1.6mm solid var(--warm); padding:2.5mm 5mm; margin:0 0 5mm; border-radius:0 2mm 2mm 0; break-inside:avoid; }
+.problema b{ font-family:'Poppins'; font-size:9.5pt; letter-spacing:.06em; text-transform:uppercase; color:#9a4b17; display:block; margin-bottom:1mm; }
+
+.herramienta{ border:1.4px solid var(--accent); border-radius:3mm; padding:3mm 5mm 2mm; margin:0 0 5mm; break-inside:avoid; background:var(--accent-soft); }
+.herramienta h3{ font-size:11.5pt; color:var(--accent-dark); margin-bottom:2mm; }
+.herramienta ol{ margin:0; padding-left:6.5mm; }
+.herramienta li{ margin-bottom:1mm; }
+.recordar{ border-top:2px solid var(--warm); border-bottom:2px solid var(--warm); padding:3mm 1mm; margin:5mm 0 6mm; break-inside:avoid; }
+.recordar b{ font-family:'Poppins'; color:#9a4b17; }
+
+.consigna{ counter-increment:cons; position:relative; padding-left:11mm; margin:0 0 5mm; break-inside:avoid; }
+.consigna::before{ content:counter(cons); position:absolute; left:0; top:.05em; width:7.5mm; height:7.5mm; border-radius:50%; background:var(--accent-dark); color:#fff; font-family:'Poppins'; font-weight:600; font-size:10.5pt; display:flex; align-items:center; justify-content:center; }
+.consigna .texto{ font-weight:500; }
+.consigna .head{ break-inside:avoid; break-after:avoid; }
+.cita{ font-family:'Lora',serif; font-size:11.5pt; line-height:1.55; border-left:1.2mm solid var(--line); padding:1mm 0 1mm 4.5mm; margin:2.5mm 0 3mm; color:#2b3437; break-inside:avoid; }
+.cita .fuente{ display:block; font-family:'Inter'; font-size:9pt; color:var(--muted); margin-top:1mm; }
+.inciso{ display:flex; gap:3.5mm; margin:0 0 3.2mm; break-inside:avoid; }
+.texto.despues{ margin-top:2mm; }
+.inciso .letra{ flex:0 0 6mm; font-family:'Poppins'; font-weight:600; color:var(--accent-dark); }
+.inciso .cuerpo{ flex:1 1 auto; }
+.lineas{ margin-top:1mm; }
+.lineas .l{ height:8.2mm; border-bottom:1px solid #9fb0aa; }
+.opciones{ display:flex; gap:7mm; margin-top:1.5mm; }
+.opciones span{ display:inline-flex; align-items:center; gap:2mm; font-size:10.5pt; }
+.opciones i{ display:inline-block; width:4mm; height:4mm; border:1.3px solid var(--accent-dark); border-radius:1mm; flex:0 0 auto; }
+.inciso .fila{ display:flex; justify-content:space-between; align-items:flex-start; gap:6mm; }
+.inciso .fila .tx{ flex:1 1 auto; }
+.inciso .fila .opciones{ flex:0 0 auto; flex-direction:column; gap:1.4mm; margin-top:.4mm; min-width:50mm; }
+.opc-lista{ margin:2mm 0 0; padding:0 0 0 8mm; list-style:none; break-inside:avoid; }
+.opc-lista li{ display:flex; gap:2.5mm; align-items:baseline; margin-bottom:1.8mm; }
+.opc-lista li i{ flex:0 0 4mm; width:4mm; height:4mm; border:1.3px solid var(--accent-dark); border-radius:1mm; align-self:center; }
+.opc-lista li b{ font-family:'Poppins'; font-weight:600; color:var(--accent-dark); }
+.numerar{ margin:2mm 0 0; padding:0; list-style:none; }
+.numerar li{ display:flex; gap:3mm; align-items:baseline; margin-bottom:2.4mm; break-inside:avoid; }
+.numerar li i{ flex:0 0 9mm; border-bottom:1.2px solid var(--ink); height:1em; }
+.carpeta{ display:inline-block; margin-top:2mm; font-family:'Poppins'; font-size:9.5pt; font-weight:500; color:var(--accent-dark); background:var(--accent-soft); border-radius:99px; padding:.6mm 4mm; }
+
+.cuento h1{ font-size:24pt; color:var(--accent-dark); }
+.cuento .sigue{ break-before:page; }
+.cuento .autor-c{ font-family:'Lora'; font-style:italic; margin:1mm 0 8mm; color:var(--muted); }
+.cuento p{ font-family:'Lora',serif; font-size:12pt; line-height:1.6; margin-bottom:.7em; orphans:3; widows:3; }
+
+
+/* ---------- ficha de trabajo (una o dos hojas) ---------- */
+.ficha-cab{ display:flex; justify-content:space-between; align-items:flex-end; gap:6mm; border-bottom:2.2px solid var(--accent); padding-bottom:2.5mm; margin-bottom:4mm; }
+.ficha-tit small{ display:block; font-family:'Poppins'; font-size:8pt; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.ficha-tit h1{ font-size:14pt; white-space:nowrap; color:var(--accent-dark); }
+.ficha-datos{ font-size:9.5pt; text-align:right; white-space:nowrap; flex:0 0 auto; }
+.ficha-datos .raya{ display:inline-block; width:50mm; border-bottom:1px solid var(--ink); height:1em; vertical-align:bottom; }
+.ficha-datos .raya.corta{ width:28mm; }
+.ficha-datos div{ margin-top:1.5mm; }
+.hoja .ficha-cuerpo{ margin-top:0; font-size:10pt; line-height:1.32; }
+.ficha-cuerpo .consigna{ margin-bottom:2.8mm; padding-left:9mm; }
+.ficha-cuerpo .consigna::before{ width:6mm; height:6mm; font-size:9pt; }
+.ficha-cuerpo .cita{ font-size:10pt; line-height:1.45; margin:1.5mm 0 2mm; padding:.6mm 0 .6mm 3.5mm; }
+.ficha-cuerpo .inciso{ margin-bottom:1.8mm; }
+.ficha-cuerpo .lineas .l{ height:5.9mm; }
+.ficha-cuerpo .opc-lista{ margin-top:1mm; display:grid; grid-template-columns:1fr 1fr; column-gap:6mm; }
+.ficha-cuerpo .opc-lista li{ margin-bottom:.7mm; }
+.ficha-cuerpo .numerar{ margin-top:1.2mm; }
+.ficha-cuerpo .numerar li{ margin-bottom:1.2mm; }
+.ficha-cuerpo .consigna td{ height:7mm; }
+.ficha-cuerpo .consigna th{ padding:1.4mm 3mm; font-size:9.5pt; }
+.ficha-cuerpo .consigna{ break-inside:auto; }
+.ficha-cuerpo .inciso{ break-inside:avoid; }
+.ficha-cuerpo .lineas{ break-inside:avoid; }
+.ficha-cuerpo .recordar{ margin:2mm 0 3mm; padding:1.6mm 1mm; }
+
+/* ---------- pestañas y cuadros independientes ---------- */
+.tabs{ display:flex; flex-wrap:wrap; gap:6px; padding:14px 16px 0; }
+.tab{ background:#dfe6e3; color:var(--ink); border-radius:8px 8px 0 0; padding:9px 16px; font-weight:500; }
+.tab.on{ background:#fff; font-weight:600; color:var(--accent-dark); box-shadow:0 -2px 0 var(--accent) inset; }
+.tab .punto{ display:inline-block; width:8px; height:8px; border-radius:50%; background:#1d9a5b; margin-left:7px; visibility:hidden; }
+.tab.llena .punto{ visibility:visible; }
+.app{ padding-top:0; }
+.caja{ display:none; }
+.caja.on{ display:block; }
+.caja .ayuda{ font-size:.85rem; color:var(--muted); margin:0 0 8px; }
+.caja input{ width:100%; font:inherit; padding:7px 9px; border:1px solid #cfd8d4; border-radius:8px; margin-bottom:8px; }
+.caja .fila2{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.hoja.oculta{ display:none; }
+.hoja.fichas{ page:ficha; }
+.hoja.p ~ .hoja.p{ break-before:page; }
+/* ---------- varias fichas en un archivo y guía docente ---------- */
+.ficha-wrap.sigue{ break-before:page; margin-top:10mm; }
+.guia{ font-size:10.5pt; line-height:1.4; }
+.guia h1{ font-size:17pt; color:var(--accent-dark); margin:0 0 3mm; }
+.guia h2{ font-size:13pt; color:var(--accent-dark); margin:5mm 0 2mm; break-after:avoid; }
+.guia h3{ font-size:11pt; margin:4mm 0 1.5mm; break-after:avoid; }
+.guia p{ margin:0 0 2.2mm; }
+.guia ul,.guia ol{ margin:0 0 2.5mm; padding-left:6mm; }
+.guia li{ margin-bottom:1mm; }
+.guia table{ width:100%; border-collapse:collapse; margin:2mm 0 4mm; font-size:9.5pt; }
+.guia th{ background:var(--accent-soft); color:var(--accent-dark); text-align:left; padding:1.6mm 2.5mm; border:1px solid var(--line); font-family:'Poppins'; font-weight:600; }
+.guia td{ padding:1.5mm 2.5mm; border:1px solid var(--line); vertical-align:top; }
+.guia tr{ break-inside:avoid; }
+.guia hr{ border:0; border-top:1px solid var(--line); margin:4mm 0; }
+.guia blockquote{ margin:2mm 0; padding:1mm 4mm; border-left:1.2mm solid var(--line); color:#2b3437; }
+
+/* ====================== IMPRESIÓN ====================== */
+@media print{
+  body{ background:#fff; }
+  .app-top,.app > .panel.izq,.nota-vista,.no-imprimir{ display:none !important; }
+  .panel{ box-shadow:none; padding:0; background:none; border-radius:0; }
+  .app{ display:block; padding:0; }
+  .vista{ background:none; padding:0; overflow:visible; }
+  .hoja{ box-shadow:none; margin:0; padding:0; max-width:none; min-height:0; width:auto; }
+  .tabs{ display:none !important; }
+  .vista .hoja{ display:none !important; }
+  .vista .hoja.p{ display:block !important; }
+  @page{ size:A4; margin:16mm 17mm 20mm 17mm; }
+}
+</style>
+<style id="pie"></style>
+</head>
+<body>
+
+<div class="app-top">
+  <h1>Escritor de secuencias de Lengua</h1>
+  <span>Pegá el texto que escribió el proyecto, revisá los avisos y guardá el PDF.</span>
+  <span>Versión 18/10 · cuadros independientes</span>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab" data-k="sec">Secuencia<i class="punto"></i></button>
+  <button class="tab" data-k="fic">Fichas<i class="punto"></i></button>
+  <button class="tab" data-k="cue">Cuento y textos<i class="punto"></i></button>
+  <button class="tab" data-k="gse">Guía de la secuencia<i class="punto"></i></button>
+  <button class="tab" data-k="gfi">Guía de las fichas<i class="punto"></i></button>
+</div>
+<div class="app">
+  <div class="panel izq">
+    <div class="caja" id="cx-sec">
+      <h2>Secuencia</h2>
+      <p class="ayuda">Pegá el texto de la secuencia, con portada y encuentros. No hace falta pegar el cuento acá.</p>
+      <textarea class="t" id="t-sec" spellcheck="false" placeholder="Pegá acá el texto de la secuencia…"></textarea>
+      <div class="avisos" id="av-sec"></div>
+    </div>
+    <div class="caja" id="cx-fic">
+      <h2>Fichas</h2>
+      <p class="ayuda">Pegá una o varias fichas del día. Si son varias (los tres niveles, por ejemplo), una debajo de otra, separadas por la línea <b>NUEVA FICHA</b>.</p>
+      <textarea class="t" id="t-fic" spellcheck="false" placeholder="Pegá acá las fichas…"></textarea>
+      <div class="avisos" id="av-fic"></div>
+    </div>
+    <div class="caja" id="cx-cue">
+      <h2>Cuento y textos informativos</h2>
+      <p class="ayuda">Pegá el cuento, un párrafo por línea (o con una línea en blanco entre párrafos). Si el encuentro usa otro texto (una biografía, una nota sobre un animal o un lugar), pegalo debajo, precedido de una línea <b>TEXTO: Título | Fuente</b>. Con todos se comprueban las citas, y se arma el PDF de lectura.</p>
+      <div class="fila2"><input id="i-tit" placeholder="Título del cuento (opcional)"><input id="i-aut" placeholder="Autor (opcional)"></div>
+      <textarea class="t" id="t-cue" spellcheck="false" placeholder="Pegá acá el cuento…"></textarea>
+      <div class="avisos" id="av-cue"></div>
+    </div>
+    <div class="caja" id="cx-gse">
+      <h2>Guía de la secuencia</h2>
+      <p class="ayuda">Pegá la guía docente tal como la escribió el proyecto (dentro del bloque de código).</p>
+      <textarea class="t" id="t-gse" spellcheck="false" placeholder="Pegá acá la guía docente de la secuencia…"></textarea>
+      <div class="avisos" id="av-gse"></div>
+    </div>
+    <div class="caja" id="cx-gfi">
+      <h2>Guía de las fichas</h2>
+      <p class="ayuda">Pegá la guía docente de las fichas, con la tabla de colores y las respuestas.</p>
+      <textarea class="t" id="t-gfi" spellcheck="false" placeholder="Pegá acá la guía docente de las fichas…"></textarea>
+      <div class="avisos" id="av-gfi"></div>
+    </div>
+    <div class="botones">
+      <button class="sec" id="b-ejemplo">Cargar ejemplo</button>
+      <button class="sec" id="b-limpiar">Borrar todo</button>
+    </div>
+    <details>
+      <summary>¿Cómo se escribe el texto de la secuencia?</summary>
+<pre>TÍTULO: Las medias de los flamencos
+AUTOR: Horacio Quiroga
+VAS A:
+- Leer y releer para encontrar pistas.
+- Escribir una escena y revisarla.
+
+ENCUENTRO 1: Buscamos huellas en el cuento
+PARA PENSAR: ¿Por qué se descubre el engaño?
+
+HERRAMIENTA: Paso a paso para explicar mejor
+1. Volvé al momento del cuento.
+2. Separá lo que **dice** de lo que **pensás**.
+
+CONSIGNA: Leé este momento del cuento.
+CITA: Texto copiado del cuento…
+a) Pregunta con renglones [2 renglones]
+b) Pregunta con casillas [ ] Lo dice | [ ] Lo pensamos
+
+CONSIGNA: Explicá por qué… [5 renglones]
+CARPETA: Escribí en tu carpeta
+
+RECORDAR: Una idea breve para recordar.
+
+CITA: (otra consigna con texto armado)
+FUENTE: Escena para esta actividad
+
+ORDENAR:
+- Primer hecho
+- Segundo hecho
+
+TABLA:
+| Quién | Qué hace |
+| La lechuza | … |
+
+NUEVA PÁGINA</pre>
+      <p>Las palabras entre <code>**dos asteriscos**</code> salen en negrita y entre <code>*uno*</code> en cursiva. La agenda se arma sola con los títulos de los encuentros. Para las fichas del día: <code>FORMATO: ficha</code> debajo de <code>ACENTO:</code>, y una línea <code>NUEVA FICHA</code> entre una ficha y la siguiente. El cuento se pega en su propio cuadro.</p>
+    </details>
+  </div>
+
+  <div class="panel der">
+    <div class="botones no-imprimir">
+      <button id="b-imp">Imprimir / guardar PDF de esta pestaña</button>
+      <button class="sec" id="b-imp-todo">Imprimir todo lo cargado</button>
+    </div>
+    <p class="nota-vista">Acá se ve continuo. Los cortes de página aparecen al imprimir o guardar como PDF (elegí «Guardar como PDF», tamaño A4, sin encabezados ni pies del navegador). «Imprimir todo lo cargado» junta en un solo PDF todas las pestañas que tengan texto, en este orden: secuencia, fichas, cuento y guías.</p>
+    <div class="vista">
+      <div class="hoja" id="h-sec"></div>
+      <div class="hoja" id="h-fic"></div>
+      <div class="hoja cuento" id="h-cue"></div>
+      <div class="hoja guia" id="h-gse"></div>
+      <div class="hoja guia" id="h-gfi"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const EJEMPLO = "TÍTULO: Las medias de los flamencos\nAUTOR: Horacio Quiroga\nVAS A:\n- Leer y releer un cuento para encontrar pistas y explicar lo que pasa.\n- Distinguir lo que dice el cuento de lo que podemos pensar a partir de él.\n- Descubrir quién hace cada cosa cuando en una escena hay muchos personajes.\n- Escribir una escena y revisarla para que quien la lea la entienda bien.\n\nENCUENTRO 1: Buscamos huellas en el cuento\nPARA PENSAR: ¿Por qué el engaño de los flamencos se descubre justo cuando uno de ellos se cae?\n\nHERRAMIENTA: Paso a paso para explicar mejor\n1. Volvé al momento del cuento.\n2. Separá lo que el cuento **dice** de lo que podés **pensar** a partir de eso.\n3. Justificá con una o dos **huellas**: partes del cuento que lo muestran.\n\nCONSIGNA: Leé este momento del cuento.\nCITA: Las víboras de coral, que conocieron esto, pidieron enseguida a las ranas sus farolitos, que eran bichitos de luz, y esperaron todas juntas a que los flamencos se cayeran de cansados.\na) ¿A qué se refiere «esto»? Volvé a las oraciones anteriores y marcá la parte del cuento que lo explica. [2 renglones]\nb) ¿Para qué piden las víboras los farolitos y esperan a que los flamencos se caigan? [2 renglones]\n\nCONSIGNA: Indicá en cada caso si **lo dice el cuento** o **lo pensamos a partir de las pistas**.\na) Los flamencos estaban cansadísimos. [ ] Lo dice el cuento | [ ] Lo pensamos por las pistas\nb) Las víboras esperaron a que los flamencos se detuvieran para mirar las medias de cerca. [ ] Lo dice el cuento | [ ] Lo pensamos por las pistas\nc) La lengua de las víboras es como la mano de las personas. [ ] Lo dice el cuento | [ ] Lo pensamos por las pistas\nd) Si los flamencos hubieran seguido bailando, las víboras no habrían descubierto el engaño. [ ] Lo dice el cuento | [ ] Lo pensamos por las pistas\n\nCONSIGNA: Explicá por qué el engaño se descubre justo cuando un flamenco se cae. Relacioná la advertencia de la lechuza, el cansancio de los flamencos y lo que hacen las víboras. Subrayá en el cuento las dos huellas que usaste. [5 renglones]\n\nENCUENTRO 2: ¿Quién hace qué?\nPARA PENSAR: En una escena con muchos personajes, ¿cómo hacemos para que se entienda quién hace cada cosa sin repetir todo el tiempo?\n\nCONSIGNA: Leé.\nCITA: Pero poco a poco, sin embargo, las víboras comenzaron a desconfiar. Cuando los flamencos pasaban bailando al lado de ellas se agachaban hasta el suelo para ver bien.\na) ¿Quiénes se agachaban hasta el suelo? [1 renglón]\nb) ¿A quiénes se refiere «ellas» en «al lado de ellas»? [1 renglón]\nc) ¿Qué partes del cuento te ayudaron a decidirlo? Copiá una. [2 renglones]\n\nCONSIGNA: Compará estas dos formas de contar el mismo momento. ¿Cuál se entiende mejor? ¿Cuál suena más natural? Explicá por qué. [3 renglones]\nCITA: **A.** Los flamencos fueron a ver a la lechuza. Ella les dio los cueros y les hizo una advertencia.\n**B.** Los flamencos fueron a ver a la lechuza. La lechuza les dio los cueros y la lechuza les hizo una advertencia.\nFUENTE: Dos versiones para comparar\n\nRECORDAR: Para no repetir, los textos usan pronombres (*ella, ellos, les*) y a veces no escriben el sujeto. Funciona cuando quien lee puede saber a quién se refieren. Si hay dudas, conviene aclarar.\n\nCONSIGNA: Leé esta escena armada para la actividad.\nCITA: Las víboras de coral hablaron con las ranas. Ellas pidieron los farolitos.\nFUENTE: Escena para esta actividad\na) ¿Se entiende en estas dos oraciones quién pidió los farolitos? Explicá. [2 renglones]\nb) Reescribí la segunda oración para que no haya dudas. Probá de dos maneras distintas. [3 renglones]\n\nCONSIGNA: Contá en cuatro o cinco oraciones cómo las víboras descubren el engaño de los flamencos. Cuidá que quien lea siempre sepa quién hace cada cosa: podés repetir un nombre, reemplazarlo o dejarlo implícito, según cada momento.\nCARPETA: Escribí en tu carpeta\n\nCONSIGNA: Releé lo que escribiste. Marcá un lugar donde quien lea podría dudar de quién habla o actúa y decidí cómo arreglarlo: repetir el nombre, usar otra expresión o agregar un dato.\n\nCUENTO:\nCierta vez las víboras dieron un gran baile. Invitaron a las ranas y a los sapos, a los flamencos, y a los yacarés y a los pescados. Los pescados, como no caminan, no pudieron bailar; pero siendo el baile a la orilla del río los pescados estaban asomados a la arena, y aplaudían con la cola.\n\nLos yacarés, para adornarse bien, se habían puesto en el pescuezo un collar de bananas, y fumaban cigarros paraguayos. Los sapos se habían pegado escamas de pescado en todo el cuerpo, y caminaban meneándose, como si nadaran. Y cada vez que pasaban muy serios por la orilla del río, los pescados les gritaban haciéndoles burla.\n\nLas ranas se habían perfumado todo el cuerpo, y caminaban en dos pies. Además, cada una llevaba colgada, como un farolito, una luciérnaga que se balanceaba.\n\nPero las que estaban hermosísimas eran las víboras. Todas, sin excepción, estaban vestidas con traje de bailarina, del mismo color de cada víbora. Las víboras coloradas llevaban una pollerita de tul colorado; las verdes, una de tul verde; las amarillas, otra de tul amarillo; y las yararás, una pollerita de tul gris pintada con rayas de polvo de ladrillo y ceniza, porque así es el color de las yararás.\n\nY las más espléndidas de todas eran las víboras de coral, que estaban vestidas con larguísimas gasas rojas, blancas y negras, y bailaban como serpentinas. Cuando las víboras danzaban y daban vueltas apoyadas en la punta de la cola, todos los invitados aplaudían como locos.\n\nSolo los flamencos, que entonces tenían las patas blancas, y tienen ahora como antes la nariz muy gruesa y torcida, solo los flamencos estaban tristes, porque como tienen muy poca inteligencia no habían sabido cómo adornarse. Envidiaban el traje de todos, y sobre todo el de las víboras de coral. Cada vez que una víbora pasaba por delante de ellos, coqueteando y haciendo ondular las gasas de serpentinas, los flamencos se morían de envidia.\n\nUn flamenco dijo entonces:\n\n—Yo sé lo que vamos a hacer. Vamos a ponernos medias coloradas, blancas y negras, y las víboras de coral se van a enamorar de nosotros.\n\nY levantando todos juntos el vuelo, cruzaron el río y fueron a golpear en un almacén del pueblo.\n\n—¡Tan-tan! —pegaron con las patas.\n\n—¿Quién es? —respondió el almacenero.\n\n—Somos los flamencos. ¿Tienes medias coloradas, blancas y negras?\n\n—No, no hay —contestó el almacenero—. ¿Están locos? En ninguna parte van a encontrar medias así.\n\nLos flamencos fueron entonces a otro almacén.\n\n—¡Tan-tan! ¿Tienes medias coloradas, blancas y negras?\n\nEl almacenero contestó:\n\n—¿Cómo dice? ¿Coloradas, blancas y negras? No hay medias así en ninguna parte. Ustedes están locos. ¿Quiénes son?\n\n—Somos los flamencos —respondieron ellos.\n\nY el hombre dijo:\n\n—Entonces son con seguridad flamencos locos.\n\nFueron a otro almacén.\n\n—¡Tan-tan! ¿Tienes medias coloradas, blancas y negras?\n\nEl almacenero gritó:\n\n—¿De qué color? ¿Coloradas, blancas y negras? Solamente a pájaros narigudos como ustedes se les ocurre pedir medias así. ¡Váyanse enseguida!\n\nY el hombre los echó con la escoba.\n\nLos flamencos recorrieron así todos los almacenes, y de todas partes los echaban por locos. Entonces un tatú, que había ido a tomar agua al río, se quiso burlar de los flamencos y les dijo, haciéndoles un gran saludo:\n\n—¡Buenas noches, señores flamencos! Yo sé lo que ustedes buscan. No van a encontrar medias así en ningún almacén. Tal vez haya en Buenos Aires, pero tendrán que pedirlas por encomienda postal. Mi cuñada, la lechuza, tiene medias así. Pídanselas, y ella les va a dar las medias coloradas, blancas y negras.\n\nLos flamencos le dieron las gracias, y se fueron volando a la cueva de la lechuza. Y le dijeron:\n\n—¡Buenas noches, lechuza! Venimos a pedirte las medias coloradas, blancas y negras. Hoy es el gran baile de las víboras, y si nos ponemos esas medias, las víboras de coral se van a enamorar de nosotros.\n\n—¡Con mucho gusto! —respondió la lechuza—. Esperen un segundo, y vuelvo enseguida.\n\nY echando a volar, dejó solos a los flamencos; y al rato volvió con las medias. Pero no eran medias, sino cueros de víboras de coral, lindísimos cueros recién sacados a las víboras que la lechuza había cazado.\n\n—Aquí están las medias —les dijo la lechuza—. No se preocupen de nada, sino de una sola cosa: bailen toda la noche, bailen sin parar un momento, bailen de costado, de pico, de cabeza, como ustedes quieran; pero no paren un momento, porque en vez de bailar van entonces a llorar.\n\nPero los flamencos, como son tan tontos, no comprendían bien qué gran peligro había para ellos en eso, y locos de alegría se pusieron los cueros de las víboras de coral, como medias, metiendo las patas dentro de los cueros, que eran como tubos. Y muy contentos se fueron volando al baile.\n\nCuando vieron a los flamencos con sus hermosísimas medias, todos les tuvieron envidia. Las víboras querían bailar con ellos, únicamente, y como los flamencos no dejaban un instante de mover las patas, las víboras no podían ver bien de qué estaban hechas aquellas preciosas medias.\n\nPero poco a poco, sin embargo, las víboras comenzaron a desconfiar. Cuando los flamencos pasaban bailando al lado de ellas se agachaban hasta el suelo para ver bien.\n\nLas víboras de coral, sobre todo, estaban muy inquietas. No apartaban la vista de las medias, y se agachaban también tratando de tocar con la lengua las patas de los flamencos, porque la lengua de las víboras es como la mano de las personas. Pero los flamencos bailaban y bailaban sin cesar, aunque estaban cansadísimos y ya no podían más.\n\nLas víboras de coral, que conocieron esto, pidieron enseguida a las ranas sus farolitos, que eran bichitos de luz, y esperaron todas juntas a que los flamencos se cayeran de cansados.\n\nEfectivamente, un minuto después, un flamenco, que ya no podía más, tropezó con el cigarro de un yacaré, se tambaleó y cayó de costado. Enseguida las víboras de coral corrieron con sus farolitos, y alumbraron bien las patas del flamenco. Y vieron qué eran aquellas medias, y lanzaron un silbido que se oyó desde la otra orilla del Paraná.\n\n—¡No son medias! —gritaron las víboras—. ¡Sabemos lo que es! ¡Nos han engañado! ¡Los flamencos han matado a nuestras hermanas y se han puesto sus cueros como medias! ¡Las medias que tienen son de víboras de coral!\n\nAl oír esto, los flamencos, llenos de miedo porque estaban descubiertos, quisieron volar; pero estaban tan cansados que no pudieron levantar una sola pata. Entonces las víboras de coral se lanzaron sobre ellos, y enroscándose en sus patas les deshicieron a mordiscos las medias. Les arrancaron las medias a pedazos, enfurecidas, y les mordían también las patas, para que murieran.\n\nLos flamencos, locos de dolor, saltaban de un lado para otro, sin que las víboras de coral se desenroscaran de sus patas. Hasta que al fin, viendo que ya no quedaba un solo pedazo de media, las víboras los dejaron libres, cansadas y arreglándose las gasas de sus trajes de baile.\n\nAdemás, las víboras de coral estaban seguras de que los flamencos iban a morir, porque la mitad, por lo menos, de las víboras de coral que los habían mordido eran venenosas.\n\nPero los flamencos no murieron. Corrieron a echarse al agua, sintiendo un grandísimo dolor. Gritaban de dolor, y sus patas, que eran blancas, estaban entonces coloradas por el veneno de las víboras. Pasaron días y días y siempre sentían terrible ardor en las patas, y las tenían siempre de color de sangre, porque estaban envenenadas.\n\nHace de esto muchísimo tiempo. Y ahora todavía están los flamencos casi todo el día con sus patas coloradas metidas en el agua, tratando de calmar el ardor que sienten en ellas.\n\nA veces se apartan de la orilla, y dan unos pasos por tierra, para ver cómo se hallan. Pero los dolores del veneno vuelven enseguida, y corren a meterse en el agua. A veces el ardor que sienten es tan grande, que encogen una pata y quedan así horas enteras, porque no pueden estirarla.\n\nEsta es la historia de los flamencos, que antes tenían las patas blancas y ahora las tienen coloradas. Todos los pescados saben por qué es, y se burlan de ellos. Pero los flamencos, mientras se curan en el agua, no pierden ocasión de vengarse, comiendo a cuanto pescadito se acerca demasiado a burlarse de ellos.\n";
+
+/* ---------- utilidades ---------- */
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function inline(s){
+  s = esc(s);
+  s = s.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+  s = s.replace(/(^|[^*])\*(?!\*)(.+?)\*(?!\*)/g,'$1<i>$2</i>');
+  return s.replace(/\n/g,'<br>');
+}
+const quitarMarcas = s => s.replace(/\*+/g,'');
+
+/* ---------- lector del formato ---------- */
+const KW = [
+  ['titulo', /^T[ÍI]TULO\s*:\s*(.*)$/i],
+  ['autor', /^AUTOR(?:A)?\s*:\s*(.*)$/i],
+  ['kicker', /^ETIQUETA\s*:\s*(.*)$/i],
+  ['acento', /^ACENTO\s*:\s*(.*)$/i],
+  ['formato', /^FORMATO\s*:\s*ficha\s*$/i],
+  ['agenda', /^AGENDA\s*:\s*(?:no|sin)\s*$/i],
+  ['propositos', /^(?:VAS A|PROP[ÓO]SITOS)\s*:\s*(.*)$/i],
+  ['encuentro', /^ENCUENTRO\s+(\d+)\s*:\s*(.*)$/i],
+  ['pensar', /^PARA PENSAR\s*:\s*(.*)$/i],
+  ['herramienta', /^HERRAMIENTA\s*:\s*(.*)$/i],
+  ['recordar', /^(?:PARA )?RECORDAR\s*:\s*(.*)$/i],
+  ['consigna', /^CONSIGNA\s*:\s*(.*)$/i],
+  ['cita', /^CITA\s*:\s*(.*)$/i],
+  ['fuente', /^FUENTE\s*:\s*(.*)$/i],
+  ['ordenar', /^ORDENAR\s*:\s*(.*)$/i],
+  ['opciones', /^OPCIONES\s*:\s*$/i],
+  ['tabla', /^TABLA\s*:\s*(.*)$/i],
+  ['carpeta', /^CARPETA\s*:\s*(.*)$/i],
+  ['pagina', /^NUEVA P[ÁA]GINA\s*$/i],
+  ['cuento', /^(?:CUENTO|TEXTO)\s*:\s*(.*)$/i],
+];
+
+function parsear(texto){
+  const d = { titulo:'', autor:'', kicker:'Lengua · Lectura y escritura', acento:null, propositos:[], bloques:[], cuento:[], cuentos:[], sinAgenda:false, ficha:false, avisos:[] };
+  const lines = texto.replace(/\r\n?/g,'\n').replace(/[\u2028\u2029\u0085\u000b\u000c]/g,'\n').split('\n');
+  let ctx = null, enc = null, cons = null, inciso = null, herr = null, rec = null, tabla = null, cuentoActivo = false, parrafo = [], cu = null;
+  const aviso = (n, m) => d.avisos.push(`Línea ${n}: ${m}`);
+  let dp = null;  // objeto que recibe texto escrito DESPUÉS de una cita (por ejemplo, la pregunta)
+  const TRIG = /^(¿|(?:Escribí|Explicá|Elegí|Marcá|Copiá|Completá|Buscá|Subrayá|Contá|Relacioná|Reescribí|Ordená|Compará|Pensá|Decí|Justificá|Respondé|Indicá|Anotá|Fijate|Mirá|Imaginá|Releé|Leé|Pasá|Cambiá|Usá|Armá|Dibujá|Sacá|Conservá|Revisá|Contestá|Señalá|Identificá|Reconocé|Transformá|Reemplazá|Agregá|Inventá|Resumí|Opiná|Decidí)(?![A-Za-zÁÉÍÓÚáéíóúñ]))/;
+
+  const objetivoCita = () => (ctx === 'cita-inciso' && inciso) ? inciso : cons;
+
+  for (let i = 0; i < lines.length; i++){
+    const raw = lines[i], n = i + 1;
+    let t = raw.trim();
+    if (!cuentoActivo){ if (/^`{3,}\w*$/.test(t)) continue; t = t.replace(/^#{1,6}\s*(?=(?:T[ÍI]TULO|AUTOR|ETIQUETA|ACENTO|FORMATO|AGENDA|VAS A|ENCUENTRO|PARA PENSAR|HERRAMIENTA|RECORDAR|PARA RECORDAR|CONSIGNA|CITA|FUENTE|ORDENAR|OPCIONES|TABLA|CARPETA|NUEVA|CUENTO)\b)/i, ''); }
+
+    if (cuentoActivo){
+      const mc = t.match(/^(?:CUENTO|TEXTO)\s*:\s*(.*)$/i);
+      if (mc){
+        if (parrafo.length){ cu.parrafos.push(parrafo); parrafo = []; }
+        const pp = mc[1].split('|').map(x => x.trim());
+        cu = { titulo: pp[0] || d.titulo, autor: pp[1] || d.autor, parrafos: [] }; d.cuentos.push(cu);
+      }
+      else if (t === ''){ if (parrafo.length){ cu.parrafos.push(parrafo); parrafo = []; } }
+      else { if (cu.parrafos.length && !parrafo.length) cu.hayBlanco = true; parrafo.push(t); }
+      continue;
+    }
+    if (t === ''){
+      if (ctx === 'cita') ctx = 'cons';
+      if (ctx === 'cita-inciso') ctx = 'inciso';
+      continue;
+    }
+
+    let hit = null;
+    for (const [k, re] of KW){ const m = t.match(re); if (m){ hit = [k, m]; break; } }
+
+    if (hit){
+      const [k, m] = hit;
+      dp = null;
+      switch (k){
+        case 'titulo': d.titulo = m[1].trim(); ctx = null; break;
+        case 'autor': d.autor = m[1].trim(); ctx = null; break;
+        case 'agenda': d.sinAgenda = true; ctx = null; break;
+        case 'formato': d.ficha = true; d.sinAgenda = true; ctx = null; break;
+        case 'kicker': d.kicker = m[1].trim(); ctx = null; break;
+        case 'acento': {
+          const c = m[1].trim().split(/\s+/);
+          if (c.length === 3 && c.every(x => /^#[0-9a-f]{6}$/i.test(x))) d.acento = c;
+          else aviso(n, 'ACENTO necesita tres colores, por ejemplo: #2e6f5e #e8f2ee #1d4a3f');
+          ctx = null; break; }
+        case 'propositos': ctx = 'prop'; if (m[1].trim()) d.propositos.push(m[1].trim()); break;
+        case 'encuentro': enc = { t:'encuentro', n:+m[1], titulo:m[2].trim(), problema:'' }; d.bloques.push(enc); cons = inciso = null; ctx = null; break;
+        case 'pensar': if (!enc){ aviso(n, 'PARA PENSAR va después de ENCUENTRO.'); break; } enc.problema = m[1].trim(); ctx = 'pensar'; break;
+        case 'herramienta': herr = { t:'herramienta', titulo:m[1].trim() || 'Paso a paso', pasos:[] }; d.bloques.push(herr); ctx = 'herr'; break;
+        case 'recordar': rec = { t:'recordar', texto:m[1].trim() }; d.bloques.push(rec); ctx = 'recordar'; break;
+        case 'consigna': {
+          let tx = m[1].trim(); let renglones = 0;
+          const r = tx.match(/\s*\[(\d+)\s*rengl[oó]n(?:es)?\]\s*$/i);
+          if (r){ renglones = +r[1]; tx = tx.slice(0, r.index).trim(); }
+          cons = { t:'consigna', texto:tx, cita:'', fuente:'', incisos:[], lineas:renglones, ordenar:[], opciones:[], tabla:null, carpeta:'' };
+          d.bloques.push(cons); inciso = null; ctx = 'cons'; break; }
+        case 'cita':
+          if (!cons){ aviso(n, 'CITA va dentro de una CONSIGNA.'); break; }
+          if (ctx === 'inciso' || ctx === 'cita-inciso'){ inciso.cita = m[1].trim(); ctx = 'cita-inciso'; }
+          else { cons.cita = m[1].trim(); ctx = 'cita'; }
+          break;
+        case 'fuente': {
+          if (!cons){ aviso(n, 'FUENTE va después de una CITA.'); break; }
+          const o = (ctx === 'inciso' || ctx === 'cita-inciso') && inciso ? inciso : cons;
+          o.fuente = m[1].trim(); break; }
+        case 'opciones': if (!cons){ aviso(n, 'OPCIONES va dentro de una CONSIGNA.'); break; } ctx = 'opciones'; break;
+        case 'ordenar': if (!cons){ aviso(n, 'ORDENAR va dentro de una CONSIGNA.'); break; } ctx = 'ordenar'; break;
+        case 'tabla': if (!cons){ aviso(n, 'TABLA va dentro de una CONSIGNA.'); break; } tabla = { encabezado:null, filas:[] }; cons.tabla = tabla; ctx = 'tabla'; break;
+        case 'carpeta': if (!cons){ aviso(n, 'CARPETA va dentro de una CONSIGNA.'); break; } cons.carpeta = m[1].trim() || 'Escribí en tu carpeta'; break;
+        case 'pagina': d.bloques.push({ t:'salto' }); cons = inciso = null; ctx = null; break;
+        case 'cuento': {
+          cuentoActivo = true;
+          const pp = m[1].split('|').map(x => x.trim());
+          cu = { titulo: pp[0] || '', autor: pp[1] || '', parrafos: [] }; d.cuentos.push(cu); break; }
+      }
+      continue;
+    }
+
+    // líneas sin palabra clave
+    let m;
+    if (ctx === 'prop' && (m = t.match(/^[-•]\s*(.+)$/))){ d.propositos.push(m[1].trim()); continue; }
+    if (ctx === 'ordenar' && (m = t.match(/^[-•]\s*(.+)$/))){ cons.ordenar.push(m[1].trim()); continue; }
+    if (ctx === 'opciones' && (m = t.match(/^[-•]\s*(.+)$/))){ cons.opciones.push(m[1].trim()); continue; }
+    if (ctx === 'herr' && (m = t.match(/^\d+[.)]\s*(.+)$/))){ herr.pasos.push(m[1].trim()); continue; }
+    if (ctx === 'tabla' && t.startsWith('|')){
+      const celdas = t.replace(/^\||\|$/g,'').split('|').map(x => x.trim());
+      if (!tabla.encabezado) tabla.encabezado = celdas; else tabla.filas.push(celdas);
+      continue;
+    }
+    // casillas «[ ] op | [ ] op» escritas en su propia línea (debajo de la cita o de la pregunta)
+    if (cons && /^\[\s*\]/.test(t)){
+      const ops = t.split('|').map(x => x.replace(/\[\s*\]/g,'').trim()).filter(Boolean);
+      if ((ctx === 'inciso' || ctx === 'cita-inciso') && inciso) inciso.opciones = ops; else cons.casillas = ops;
+      continue;
+    }
+    if (cons && (m = t.match(/^([a-j])\)\s*(.*)$/i))){
+      let tx = m[2].trim(), renglones = 0, opciones = null;
+      const r = tx.match(/\s*\[(\d+)\s*rengl[oó]n(?:es)?\]\s*$/i);
+      if (r){ renglones = +r[1]; tx = tx.slice(0, r.index).trim(); }
+      const o = tx.indexOf('[ ]');
+      if (o >= 0){
+        opciones = tx.slice(o).split('|').map(x => x.replace(/\[\s*\]/g,'').trim()).filter(Boolean);
+        tx = tx.slice(0, o).trim();
+      }
+      inciso = { texto:tx, lineas:renglones, opciones, cita:'', fuente:'' };
+      cons.incisos.push(inciso); ctx = 'inciso'; continue;
+    }
+    if (cons && (m = t.match(/^\[(\d+)\s*rengl[oó]n(?:es)?\]$/i))){
+      if ((ctx === 'inciso' || ctx === 'cita-inciso') && inciso) inciso.lineas = +m[1]; else cons.lineas = +m[1];
+      continue;
+    }
+    // continuaciones
+    if (dp && ctx === 'despues' && dp === cons){ cons.despues += ' ' + t; continue; }
+    if (dp && ctx === 'inciso' && dp === inciso){ inciso.despues += ' ' + t; continue; }
+    if (ctx === 'cita' && cons){
+      if (TRIG.test(t)){ cons.despues = t; ctx = 'despues'; dp = cons; continue; }
+      cons.cita += '\n' + t; continue; }
+    if (ctx === 'cita-inciso' && inciso){
+      if (TRIG.test(t)){ inciso.despues = t; ctx = 'inciso'; dp = inciso; continue; }
+      inciso.cita += '\n' + t; continue; }
+    if (ctx === 'cons' && cons){
+      const r = t.match(/\s*\[(\d+)\s*rengl[oó]n(?:es)?\]\s*$/i);
+      if (r){ cons.lineas = +r[1]; cons.texto += ' ' + t.slice(0, r.index).trim(); } else cons.texto += ' ' + t;
+      continue;
+    }
+    if (ctx === 'inciso' && inciso){ inciso.texto += ' ' + t; continue; }
+    if (ctx === 'pensar' && enc){ enc.problema += ' ' + t; continue; }
+    if (ctx === 'recordar' && rec){ rec.texto += ' ' + t; continue; }
+    aviso(n, `no entendí esta línea: «${t.slice(0, 60)}${t.length > 60 ? '…' : ''}»`);
+  }
+  if (parrafo.length && cu) cu.parrafos.push(parrafo);
+  // Los guiones de diálogo (-) del cuento y de las citas se pasan a raya (—). Un guion entre letras (tan-tan) no se toca.
+  const rayas = t => t.replace(/(?<![\p{L}\p{N}])-|-(?![\p{L}\p{N}])/gu, '—');
+  // con renglones en blanco entre párrafos, las líneas seguidas se unen; si no hay ninguno, cada línea es un párrafo
+  d.cuentos.forEach(c => {
+    // dentro de un bloque, una línea que termina en punto, signo de cierre o puntos suspensivos cierra el párrafo; si no, la línea sigue (texto cortado en renglones fijos)
+    const out = [];
+    c.parrafos.forEach(bloque => { let cur = ''; bloque.forEach(l => { cur = cur ? cur + ' ' + l : l; if (/[.!?…»”"')\]]$/.test(l)){ out.push(cur); cur = ''; } }); if (cur) out.push(cur); });
+    c.parrafos = out.map(rayas);
+  });
+  d.bloques.filter(x => x.t === 'consigna').forEach(c => { c.cita = rayas(c.cita); c.incisos.forEach(x => { x.cita = rayas(x.cita); }); });
+  d.cuentos.forEach(c => { if (!c.titulo) c.titulo = d.titulo; if (!c.autor) c.autor = d.autor; });
+  d.cuento = d.cuentos.flatMap(c => c.parrafos);
+  return d;
+}
+
+/* ---------- controles ---------- */
+function controlar(d, texto){
+  const av = [...d.avisos];
+  if (!d.titulo) av.push('Falta la línea TÍTULO:.');
+  if (!d.ficha && !d.bloques.some(b => b.t === 'encuentro')) av.push('No hay ningún ENCUENTRO.');
+  const lines = texto.replace(/\r\n?/g,'\n').replace(/[\u2028\u2029\u0085\u000b\u000c]/g,'\n').split('\n');
+  const idxCuento = lines.findIndex(l => /^(?:CUENTO|TEXTO)\s*:/i.test(l.trim()));
+  const hasta = idxCuento >= 0 ? idxCuento : lines.length;
+  const prohibidas = [
+    [/enseñ\w*/i, 'palabra que no debe aparecer en el material'],
+    [/aprend\w*/i, 'palabra que no debe aparecer en el material'],
+    [/cuadernillo/i, 'palabra que no debe aparecer'],
+    [/\bgrados?\b|\b\d\s*[°º]/i, 'no se menciona el grado en el material del estudiante'],
+  ];
+  const tuteo = /(^|[.¿?!:]\s*|\)\s*)(Lee|Marca|Copia|Escribe|Responde|Relaciona|Explica|Completa|Busca|Indica|Piensa|Compara|Subraya|Ordena|Mira|Fíjate|Elige)(?![A-Za-zÁÉÍÓÚáéíóúñ])/;
+  const tuteo2 = /\b(crees|puedes|quieres|sabes|piensas|recuerdas)\b/i;
+  for (let i = 0; i < hasta; i++){
+    const l = lines[i];
+    for (const [re, msg] of prohibidas){ const m = l.match(re); if (m) av.push(`Línea ${i+1}: «${m[0]}» — ${msg}.`); }
+    if (tuteo.test(l) || tuteo2.test(l)) av.push(`Línea ${i+1}: parece tuteo; el material va en voseo (Leé, Marcá, Copiá…).`);
+  }
+  if (d.cuentos.length && !d.cuento.length) av.push('Falta pegar el cuento debajo de la línea CUENTO:. Sin el cuento no se pueden comprobar las citas.');
+  if (d.cuento.length){
+    const norm = s => quitarMarcas(s).replace(/[“”«»„"]/g,'"').replace(/[‘’]/g,"'").replace(/\.\.\./g,'…').replace(/\s*—\s*/g,' — ').replace(/\s+/g,' ').trim();
+    const cuentoN = norm(d.cuento.join(' '));
+    const prefijo = ct => { let lo = 0, hi = ct.length; while (lo < hi){ const m = (lo + hi + 1) >> 1; if (cuentoN.includes(ct.slice(0, m))) lo = m; else hi = m - 1; } return lo; };
+    const esta = ct => cuentoN.includes(ct) || ct.split(/\s*\[?…\]?\s*/).filter(x => x.length > 3).every(f => cuentoN.includes(f.trim()));
+    d.bloques.filter(b => b.t === 'consigna').forEach((c, k) => {
+      const citas = [[c.cita, c.fuente]].concat(c.incisos.map(x => [x.cita, x.fuente]));
+      citas.forEach(([ct, fu]) => {
+        if (!ct || fu) return;
+        const nc = norm(ct);
+        if (esta(nc)) return;
+        const kk = prefijo(nc);
+        av.push(kk < 12
+          ? `Consigna ${k+1}: la cita «${nc.slice(0, 50)}…» no se encuentra en el cuento pegado (ni siquiera el comienzo). ¿Pegaste el cuento completo? Si es un texto armado, agregá una línea FUENTE:.`
+          : `Consigna ${k+1}: la cita coincide con el cuento hasta «…${nc.slice(Math.max(0, kk - 30), kk)}» y ahí difiere: la cita sigue «${nc.slice(kk, kk + 40)}…». Revisá esa parte, o agregá una línea FUENTE: si es un texto armado.`);
+      });
+    });
+  }
+  return av;
+}
+
+/* ---------- dibujo ---------- */
+const renglones = n => n ? '<div class="lineas">' + '<div class="l"></div>'.repeat(n) + '</div>' : '';
+function citaHtml(texto, fuente){
+  if (!texto) return '';
+  return `<div class="cita">${inline(texto)}${fuente ? `<span class="fuente">${inline(fuente)}</span>` : ''}</div>`;
+}
+function despuesHtml(t){ return t ? `<div class="texto despues">${inline(t)}</div>` : ''; }
+function opcionesHtml(ops){ return ops && ops.length ? '<div class="opciones">' + ops.map(o => `<span><i></i>${inline(o)}</span>`).join('') + '</div>' : ''; }
+
+function consignaHtml(b){
+  let h = '';
+  h += `<div class="consigna"><div class="head"><div class="texto">${inline(b.texto)}</div>${citaHtml(b.cita, b.fuente)}${despuesHtml(b.despues)}</div>`;
+  b.incisos.forEach((x, i) => {
+    const letra = 'abcdefghij'[i];
+    const cuerpo = (x.opciones && x.cita)
+      ? `<div class="cuerpo">${inline(x.texto)}${citaHtml(x.cita, x.fuente)}${despuesHtml(x.despues)}${opcionesHtml(x.opciones)}</div>`
+      : x.opciones
+      ? `<div class="cuerpo fila"><div class="tx">${inline(x.texto)}${citaHtml(x.cita, x.fuente)}${despuesHtml(x.despues)}</div>${opcionesHtml(x.opciones)}</div>`
+      : `<div class="cuerpo">${inline(x.texto)}${citaHtml(x.cita, x.fuente)}${despuesHtml(x.despues)}${renglones(x.lineas)}</div>`;
+    h += `<div class="inciso"><div class="letra">${letra})</div>${cuerpo}</div>`;
+  });
+  if (b.casillas) h += opcionesHtml(b.casillas);
+  if (b.opciones.length) h += `<ul class="opc-lista">${b.opciones.map((t, k) => `<li><i></i><b>${'abcdefgh'[k]})</b><span>${inline(t)}</span></li>`).join('')}</ul>`;
+  if (b.ordenar.length) h += `<ul class="numerar">${b.ordenar.map(t => `<li><i></i><span>${inline(t)}</span></li>`).join('')}</ul>`;
+  if (b.tabla && b.tabla.encabezado){
+    h += `<table><tr>${b.tabla.encabezado.map(c => `<th>${inline(c)}</th>`).join('')}</tr>` +
+      b.tabla.filas.map(f => `<tr>${f.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('') + `</table>`;
+  }
+  h += renglones(b.lineas);
+  if (b.carpeta) h += `<span class="carpeta">✎ ${inline(b.carpeta)}</span>`;
+  h += `</div>`;
+  return h;
+}
+function dibujarSecuencia(d){
+  if (d.ficha) return dibujarFicha(d);
+  let h = `<section class="portada"><div class="franja"><div class="kicker">${inline(d.kicker)}</div><h1>${inline(d.titulo || 'Título de la secuencia')}</h1><div class="autor">${inline(d.autor)}</div></div>`;
+  h += `<div class="nombre">Esta secuencia es de: <span class="raya"></span></div>`;
+  if (d.propositos.length) h += `<h2>En estos encuentros vas a:</h2><ul>${d.propositos.map(p => `<li>${inline(p)}</li>`).join('')}</ul>`;
+  h += `</section>`;
+  const encs = d.bloques.filter(b => b.t === 'encuentro');
+  if (encs.length && !d.sinAgenda){
+    h += `<section class="agenda"><h2>Agenda</h2><table><tr><th>Encuentro</th><th>Qué hacemos</th><th>Quién me acompañó</th></tr>` +
+      encs.map(e => `<tr><td class="n">${e.n}</td><td>${inline(e.titulo)}</td><td></td></tr>`).join('') +
+      (encs.length <= 5 ? `<tr class="vacia"><td class="n"></td><td></td><td></td></tr><tr class="vacia"><td class="n"></td><td></td><td></td></tr>` : '') + `</table></section>`;
+  }
+  let abierta = false, primero = true;
+  for (const b of d.bloques){
+    if (b.t === 'encuentro'){
+      if (abierta) h += '</section>';
+      h += `<section class="enc"><div class="enc-head"><div class="num">${b.n}</div><div class="tit"><small>Encuentro ${b.n}</small><h2>${inline(b.titulo)}</h2></div></div>`;
+      if (b.problema) h += `<div class="problema"><b>Para pensar hoy</b>${inline(b.problema)}</div>`;
+      abierta = true;
+    } else if (b.t === 'salto'){
+      h += `<div class="salto"></div>`;
+    } else if (b.t === 'herramienta'){
+      h += `<div class="herramienta"><h3>${inline(b.titulo)}</h3><ol>${b.pasos.map(p => `<li>${inline(p)}</li>`).join('')}</ol></div>`;
+    } else if (b.t === 'recordar'){
+      h += `<div class="recordar"><b>Para recordar · </b>${inline(b.texto)}</div>`;
+    } else if (b.t === 'consigna'){
+      h += consignaHtml(b);
+    }
+  }
+  if (abierta) h += '</section>';
+  return h;
+}
+function dibujarFicha(d){
+  let h = `<div class="ficha-cab"><div class="ficha-tit"><small>${inline(d.kicker)}</small><h1>${inline(d.titulo || 'Título de la ficha')}</h1></div><div class="ficha-datos"><div>Alumno/a <span class="raya"></span></div><div>Fecha <span class="raya corta"></span></div></div></div><section class="enc ficha-cuerpo">`;
+  for (const b of d.bloques){
+    if (b.t === 'salto') h += `<div class="salto"></div>`;
+    else if (b.t === 'recordar') h += `<div class="recordar"><b>Para recordar · </b>${inline(b.texto)}</div>`;
+    else if (b.t === 'consigna') h += consignaHtml(b);
+  }
+  return h + `</section>`;
+}
+function mdHtml(src){
+  const L = src.replace(/\r\n?/g,'\n').split('\n'); let h = '', i = 0;
+  const celdas = l => l.trim().replace(/^\||\|$/g,'').split('|').map(c => c.trim());
+  while (i < L.length){
+    const t = L[i].trim();
+    if (!t){ i++; continue; }
+    let m;
+    if ((m = t.match(/^(#{1,3})\s+(.*)$/))){ h += `<h${m[1].length}>${inline(m[2])}</h${m[1].length}>`; i++; }
+    else if (/^(-{3,}|\*{3,})$/.test(t)){ h += '<hr>'; i++; }
+    else if (t.startsWith('|')){
+      const f = []; while (i < L.length && L[i].trim().startsWith('|')){ f.push(L[i]); i++; }
+      const cuerpo = f.filter(x => !/^\s*\|?[\s:|-]+\|?\s*$/.test(x) || !/-/.test(x));
+      const [enc, ...filas] = cuerpo;
+      h += `<table><tr>${celdas(enc).map(c => `<th>${inline(c)}</th>`).join('')}</tr>${filas.map(x => `<tr>${celdas(x).map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</table>`;
+    }
+    else if (/^[-*]\s+/.test(t)){ const it = []; while (i < L.length && /^\s*[-*]\s+/.test(L[i])){ it.push(L[i].trim().replace(/^[-*]\s+/,'')); i++; } h += `<ul>${it.map(x => `<li>${inline(x)}</li>`).join('')}</ul>`; }
+    else if (/^\d+[.)]\s+/.test(t)){ const it = []; while (i < L.length && /^\s*\d+[.)]\s+/.test(L[i])){ it.push(L[i].trim().replace(/^\d+[.)]\s+/,'')); i++; } h += `<ol>${it.map(x => `<li>${inline(x)}</li>`).join('')}</ol>`; }
+    else if (t.startsWith('>')){ const q = []; while (i < L.length && L[i].trim().startsWith('>')){ q.push(L[i].trim().replace(/^>\s?/,'')); i++; } h += `<blockquote>${inline(q.join(' '))}</blockquote>`; }
+    else { const par = []; while (i < L.length && L[i].trim() && !/^(#{1,3}\s|\||[-*]\s|\d+[.)]\s|>|-{3,}$)/.test(L[i].trim())){ par.push(L[i].trim()); i++; } h += `<p>${inline(par.join(' '))}</p>`; }
+  }
+  return h;
+}
+function dibujarCuento(d){
+  if (d.cuentos.length) return d.cuentos.map((c, i) => `<section class="un-cuento${i ? ' sigue' : ''}"><h1>${inline(c.titulo)}</h1><div class="autor-c">${inline(c.autor)}</div>` + c.parrafos.map(p => `<p>${inline(p)}</p>`).join('') + '</section>').join('');
+  if (!d.cuento.length) return '<p style="color:#5b6a6e">No hay cuento en el texto. Agregalo al final, después de la línea <b>CUENTO:</b> (si son dos, repetí la línea: <b>CUENTO: Título | Autor</b>).</p>';
+  return `<h1>${inline(d.titulo)}</h1><div class="autor-c">${inline(d.autor)}</div>` + d.cuento.map(p => `<p>${inline(p)}</p>`).join('');
+}
+
+/* ---------- interfaz ---------- */
+const $ = id => document.getElementById(id);
+const CAJAS = ['sec','fic','cue','gse','gfi'];
+const norm = t => t.replace(/\r\n?/g,'\n').replace(/[\u2028\u2029\u0085\u000b\u000c]/g,'\n');
+// separa de un texto la parte "CUENTO:" (formato anterior, con el cuento pegado al final)
+function sacarCuento(texto){
+  const L = norm(texto).split('\n'); const i = L.findIndex(l => /^(?:CUENTO|TEXTO)\s*:/i.test(l.trim()));
+  return i < 0 ? { cuerpo: L.join('\n'), cuento: '' } : { cuerpo: L.slice(0, i).join('\n'), cuento: L.slice(i).join('\n') };
+}
+const valorDe = (texto, clave) => { const m = norm(texto).match(new RegExp('^\\s*#?\\s*' + clave + '\\s*:\\s*(.+)$', 'im')); return m ? m[1].trim() : ''; };
+const llena = k => $('t-' + k).value.trim() !== '';
+let activa = 'sec';
+
+function procesarVarias(cuerpo, cola){
+  // varias fichas en un mismo texto: se separan con una línea NUEVA FICHA
+  const partes = cuerpo.split(/^[ \t]*NUEVA FICHA[ \t]*$/im);
+  const textos = partes.map(p => p + '\n' + cola);
+  const ds = textos.map(parsear);
+  const d = ds[0];
+  ds.forEach((x, k) => { if (k){ if (!x.titulo) x.titulo = d.titulo; if (!x.autor) x.autor = d.autor; if (!/^\s*FORMATO\s*:/im.test(textos[k])){ x.ficha = d.ficha; x.sinAgenda = d.sinAgenda; } } });
+  let av = [];
+  ds.forEach((x, k) => controlar(x, textos[k]).forEach(a => av.push(ds.length > 1 ? `Ficha ${k+1}: ${a}` : a)));
+  return { ds, av };
+}
+const estiloAcento = x => x.acento ? `--accent:${x.acento[0]};--accent-soft:${x.acento[1]};--accent-dark:${x.acento[2]}` : '';
+const pintarAvisos = (id, av, extra) => { $(id).innerHTML = (av.length ? `<ul>${av.map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : '<span class="ok">✔ Sin avisos.</span>') + (extra ? ` <span class="ok">${extra}</span>` : ''); };
+
+function actualizar(){
+  CAJAS.forEach(k => { $('t-' + k).dataset.v = $('t-' + k).value; });
+  const S = sacarCuento($('t-sec').value), F = sacarCuento($('t-fic').value), cuentoCaja = norm($('t-cue').value).trim();
+  const tit = $('i-tit').value.trim() || (valorDe(S.cuerpo, 'T[ÍI]TULO') || valorDe(F.cuerpo, 'T[ÍI]TULO')).split(/\s*·\s*/)[0];
+  const aut = $('i-aut').value.trim() || valorDe(S.cuerpo, 'AUTOR(?:A)?') || valorDe(F.cuerpo, 'AUTOR(?:A)?');
+  let cola = '';
+  if (cuentoCaja) cola = /^(?:CUENTO|TEXTO)\s*:/i.test(cuentoCaja) ? cuentoCaja : `CUENTO: ${tit} | ${aut}\n\n${cuentoCaja}`;
+  else if (S.cuento || F.cuento) cola = S.cuento || F.cuento;
+  const sinCuento = !cola;
+
+  // secuencia
+  let dS = null;
+  if (llena('sec')){
+    const r = procesarVarias(S.cuerpo, cola); dS = r.ds[0];
+    $('h-sec').innerHTML = r.ds.length === 1 ? dibujarSecuencia(dS) : r.ds.map((x, k) => `<div class="ficha-wrap${k ? ' sigue' : ''}" style="${estiloAcento(x)}">${dibujarSecuencia(x)}</div>`).join('');
+    const av = r.av.slice(); if (/^\s*CONSIGNA\s*:/im.test('') ) {}
+    if (!/^\s*CONSIGNA\s*:/im.test(S.cuerpo) && (/^#{1,3}\s/m.test(S.cuerpo.replace(/^#\s*(T[ÍI]TULO)/im, '')) || /^\|[\s:-]+\|/m.test(S.cuerpo))) av.splice(0, av.length, 'Esto parece una guía docente, no el texto de una secuencia. Pegala en la pestaña de la guía.');
+    pintarAvisos('av-sec', av, sinCuento ? 'Sin cuento pegado: no se comprobaron las citas.' : '');
+    if (sinCuento) $('av-sec').querySelector('.ok:last-child') && ($('av-sec').lastElementChild.style.color = '#8a3b12');
+  } else { $('h-sec').innerHTML = '<p style="color:#5b6a6e">Pegá el texto de la secuencia en el cuadro de la izquierda.</p>'; $('av-sec').innerHTML = ''; }
+
+  // fichas
+  let dF = null;
+  if (llena('fic')){
+    const r = procesarVarias(F.cuerpo, cola); dF = r.ds[0];
+    $('h-fic').innerHTML = r.ds.length === 1 ? dibujarSecuencia(dF) : r.ds.map((x, k) => `<div class="ficha-wrap${k ? ' sigue' : ''}" style="${estiloAcento(x)}">${dibujarSecuencia(x)}</div>`).join('');
+    $('h-fic').classList.toggle('fichas', !!dF.ficha);
+    const av = r.av.slice();
+    if (!/^\s*CONSIGNA\s*:/im.test(F.cuerpo) && (/^#{1,3}\s/m.test(F.cuerpo.replace(/^#\s*(T[ÍI]TULO)/im, '')) || /^\|[\s:-]+\|/m.test(F.cuerpo))) av.splice(0, av.length, 'Esto parece una guía docente, no el texto de las fichas. Pegala en la pestaña de la guía.');
+    pintarAvisos('av-fic', av, (r.ds.length > 1 ? `Fichas: ${r.ds.length}. ` : '') + (sinCuento ? 'Sin cuento pegado: no se comprobaron las citas.' : ''));
+  } else { $('h-fic').innerHTML = '<p style="color:#5b6a6e">Pegá una o varias fichas en el cuadro de la izquierda.</p>'; $('h-fic').classList.remove('fichas'); $('av-fic').innerHTML = ''; }
+
+  // cuento
+  if (cola){
+    const dC = parsear(`TÍTULO: ${tit}\nAUTOR: ${aut}\n` + cola);
+    $('h-cue').innerHTML = dibujarCuento(dC);
+    const n = dC.cuento.length;
+    pintarAvisos('av-cue', n ? [] : ['No se encontró texto del cuento.'], n ? `Cuento: ${n} párrafo${n === 1 ? '' : 's'}.` : '');
+  } else { $('h-cue').innerHTML = '<p style="color:#5b6a6e">Pegá el cuento en el cuadro de la izquierda.</p>'; $('av-cue').innerHTML = ''; }
+
+  // guías
+  [['gse', 'la secuencia'], ['gfi', 'las fichas']].forEach(([k, de]) => {
+    const t = norm($('t-' + k).value);
+    $('h-' + k).innerHTML = t.trim() ? mdHtml(t) : `<p style="color:#5b6a6e">Pegá la guía de ${de} en el cuadro de la izquierda.</p>`;
+    $('av-' + k).innerHTML = /^\s*CONSIGNA\s*:/im.test(t) ? '<ul><li>Esto parece el texto de una ficha o secuencia, no una guía. Pegalo en su pestaña.</li></ul>' : '';
+  });
+
+  // acento y pie
+  const base = dS || dF;
+  const r = document.documentElement.style;
+  if (base && base.acento){ r.setProperty('--accent', base.acento[0]); r.setProperty('--accent-soft', base.acento[1]); r.setProperty('--accent-dark', base.acento[2]); }
+  else ['--accent','--accent-soft','--accent-dark'].forEach(p => r.removeProperty(p));
+  const pie = base ? [base.titulo, base.autor].filter(Boolean).join(' · ').replace(/["\\]/g, '') : '';
+  $('pie').textContent = `@media print{ @page{ @bottom-left{ content:"${pie}"; font:8.5pt Inter,sans-serif; color:#5b6a6e; } @bottom-right{ content:counter(page); font:8.5pt Inter,sans-serif; color:#5b6a6e; } } @page ficha{ margin:11mm 15mm 15mm 15mm; } }`;
+
+  // pestañas
+  document.querySelectorAll('.tab').forEach(b => { b.classList.toggle('llena', llena(b.dataset.k)); b.classList.toggle('on', b.dataset.k === activa); });
+  CAJAS.forEach(k => { $('cx-' + k).classList.toggle('on', k === activa); $('h-' + k).classList.toggle('oculta', k !== activa); });
+  try { CAJAS.forEach(k => localStorage.setItem('esc-' + k, $('t-' + k).value)); localStorage.setItem('esc-tit', $('i-tit').value); localStorage.setItem('esc-aut', $('i-aut').value); } catch(e){}
+}
+function mostrar(k){ activa = k; actualizar(); }
+function imprimir(ks){
+  ks = ks.filter(llena);
+  if (!ks.length){ alert('No hay nada cargado para imprimir en esa pestaña.'); return; }
+  CAJAS.forEach(k => $('h-' + k).classList.toggle('p', ks.includes(k)));
+  window.print();
+}
+window.addEventListener('afterprint', () => CAJAS.forEach(k => $('h-' + k).classList.remove('p')));
+document.querySelectorAll('.tab').forEach(b => b.onclick = () => mostrar(b.dataset.k));
+let t0; [...CAJAS.map(k => 't-' + k), 'i-tit', 'i-aut'].forEach(id => $(id).addEventListener('input', () => { clearTimeout(t0); t0 = setTimeout(actualizar, 250); }));
+$('b-imp').onclick = () => imprimir([activa]);
+$('b-imp-todo').onclick = () => imprimir(CAJAS);
+$('b-ejemplo').onclick = () => { const e = sacarCuento(EJEMPLO); $('t-sec').value = e.cuerpo.trim(); $('t-cue').value = e.cuento.trim(); activa = 'sec'; actualizar(); };
+$('b-limpiar').onclick = () => { if (confirm('¿Borrar todos los cuadros?')){ CAJAS.forEach(k => { $('t-' + k).value = ''; }); $('i-tit').value = ''; $('i-aut').value = ''; actualizar(); } };
+try {
+  CAJAS.forEach(k => { const g = localStorage.getItem('esc-' + k); if (g) $('t-' + k).value = g; });
+  if (!localStorage.getItem('esc-sec')){ const v = localStorage.getItem('secuencia-borrador'); if (v) $('t-sec').value = v; }
+  $('i-tit').value = localStorage.getItem('esc-tit') || ''; $('i-aut').value = localStorage.getItem('esc-aut') || '';
+} catch(e){}
+activa = CAJAS.find(llena) || 'sec';
+actualizar();
+</script>
+</body>
+</html>

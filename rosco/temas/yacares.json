@@ -1,0 +1,193 @@
+{
+"id": "guerra-yacares-5grado",
+"titulo": "La guerra de los yacarés",
+"area": "Lengua",
+"grado": "5°",
+"descripcion": "Rosco sobre personajes, acciones y objetos importantes del cuento La guerra de los yacarés.",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "A",
+"modo": "empieza",
+"pregunta": "Buque de guerra de color ratón que tenía terribles cañones.",
+"respuestas": [
+"acorazado"
+],
+"ayuda": "Empieza con A."
+},
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Embarcación pequeña que los hombres mandaron para acercarse al dique.",
+"respuestas": [
+"bote",
+"botes"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Disparos con los que el buque de guerra destruyó los diques.",
+"respuestas": [
+"cañonazos",
+"cañonazo"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Construcción de troncos que hicieron los yacarés para impedir el paso de los buques.",
+"respuestas": [
+"dique",
+"diques"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Ruido muy fuerte que se escuchaba cuando disparaban los cañones.",
+"respuestas": [
+"estampido",
+"estampidos"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "F",
+"modo": "empieza",
+"pregunta": "Así vivieron los yacarés al final del cuento.",
+"respuestas": [
+"felices",
+"feliz"
+],
+"ayuda": "Empieza con F."
+},
+{
+"letra": "G",
+"modo": "empieza",
+"pregunta": "Lugar donde vivía el Surubí junto a su torpedo.",
+"respuestas": [
+"gruta",
+"grutas"
+],
+"ayuda": "Empieza con G."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Problema que sufrían los yacarés cuando los pescados se iban.",
+"respuestas": [
+"hambre"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Árboles de madera dura que los yacarés usaron para hacer el dique.",
+"respuestas": [
+"lapachos",
+"lapacho"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Hombres que iban con el oficial en el bote.",
+"respuestas": [
+"marineros",
+"marinero"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Parte del cuerpo que los yacarés dejaban fuera del agua cuando se escondían.",
+"respuestas": [
+"nariz",
+"narices"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Hombre del buque que se burló del viejo yacaré.",
+"respuestas": [
+"oficial",
+"oficialito"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Alimento principal de los yacarés que se espantaba por el ruido del vapor.",
+"respuestas": [
+"pescados",
+"pescado",
+"peces",
+"pez"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "Q",
+"modo": "empieza",
+"pregunta": "Árboles de madera muy dura que también usaron para construir el dique.",
+"respuestas": [
+"quebrachos",
+"quebracho"
+],
+"ayuda": "Empieza con Q."
+},
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Lugar donde vivían los yacarés y por donde pasaban los vapores.",
+"respuestas": [
+"río",
+"rio"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Pez grande que ayudó a los yacarés con el torpedo.",
+"respuestas": [
+"surubí",
+"surubi"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Objeto explosivo que el Surubí prestó para atacar al buque de guerra.",
+"respuestas": [
+"torpedo",
+"torpedos"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "Y",
+"modo": "empieza",
+"pregunta": "Animales protagonistas del cuento.",
+"respuestas": [
+"yacarés",
+"yacares",
+"yacaré",
+"yacare"
+],
+"ayuda": "Empieza con Y."
+}
+]
+}

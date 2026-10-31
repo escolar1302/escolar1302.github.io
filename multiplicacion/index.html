@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>  
+        window.dataLayer = window.dataLayer || [];  
+        function gtag(){dataLayer.push(arguments);}  
+        gtag('js', new Date());  
+        gtag('config', 'G-VL13MMLPRV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ruta Multiplicativa - Recursos para Docentes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-principal: #036fb0;
+            --color-fondo: #f4f6f7;
+            --color-texto: #333;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Para que el salto de los enlaces sea suave */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .introduccion {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--color-principal);
+        }
+
+        /* --- BOTONERA DE ANEXOS --- */
+        .menu-anexos {
+            background-color: #eaf4fb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid var(--color-principal);
+        }
+
+        .menu-anexos h3 {
+            margin-top: 0;
+            color: var(--color-principal);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .menu-anexos-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .accordion {
+            background-color: var(--color-principal);
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: 0.3s;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .active, .accordion:hover {
+            background-color: #025a8f;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            font-size: 1.5rem;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            padding: 0 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--color-principal);
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid var(--color-principal);
+            width: 40%;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: var(--color-principal);
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid var(--color-principal);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            transition: 0.2s;
+            background-color: white;
+        }
+
+        .btn-link:hover {
+            background-color: var(--color-principal);
+            color: white;
+        }
+
+        h3.eje-nombre {
+            color: var(--color-principal);
+            font-size: 1rem;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detalle-actividad {
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        /* ESTILOS PARA LOS ÍNDICES (ANEXOS) */
+        .indice-capitulo {
+            color: var(--color-principal);
+            font-size: 1.05rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .indice-lista {
+            list-style-type: none;
+            padding-left: 10px;
+            margin-top: 0;
+        }
+        .indice-lista li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .btn-subir {
+            float: right;
+            color: var(--color-principal);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #f4f6f7;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .btn-subir:hover {
+            background-color: var(--color-principal);
+            color: white;
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    
+
+    <div class="container">
+        
+        <div class="introduccion">
+            <h2 style="margin-top:0; color:var(--color-principal)">Recursos de Campo Multiplicativo</h2>
+            <p>Esta página ofrece un mapeo  para la planificación docente, cruzando los contenidos del <strong>Diseño Curricular</strong> con las secuencias de <strong>"Yo amo aprender"</strong> y las fichas de  de <strong>"Trayectorias"</strong>. De 3° a 7° Grado.</p>
+            <p>Está pensado humanamente pero <strong>gestionado con IA</strong>, es probable que  <strong>haya errores involuntarios</strong>. Si se encuentran inconsistencias didáticas o fallas conceptuales, por favor avisar por el  <strong>formulario</strong> que está en la portada del sitio. Gracias.</p>
+        </div>
+
+        
+
+        <button class="accordion">3° GRADO: Iniciación al Campo Multiplicativo</button>
+        <div class="panel">
+            <h3 class="eje-nombre">1. Eje: Repartos, Particiones y Reversibilidad</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Problemas de reparto equitativo y partición. Relación entre multiplicación y división (operaciones inversas).</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%203er%20grado%20Matematica.pdf" target="_blank" class="btn-link">Yo amo aprender 3</a><br>
+                        <span class="detalle-actividad">• Págs. 70-71: Repartos y particiones.</span>
+                        <span class="detalle-actividad">• Pág. 72: Multiplicar para dividir (Reversibilidad).</span>
+                        <span class="detalle-actividad">• Pág. 73: Repartir lo que sobra (Análisis del resto).</span>
+                        <a href="https://bde-ueicee.bue.edu.ar/documentos/618-trayectorias-1-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 1</a><br>
+                        <span class="detalle-actividad">• Pág. 72 (Ficha 4): Relaciones entre la suma y la multiplicación.</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">2. Eje: Organizaciones Rectangulares y Proporcionalidad</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Problemas en contextos de proporcionalidad directa y organizaciones rectangulares.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%203er%20grado%20Matematica.pdf" target="_blank" class="btn-link">Yo amo aprender 3</a><br>
+                        <span class="detalle-actividad">• Págs. 27 y 74-75: Filas y columnas.</span>
+                        <span class="detalle-actividad">• Pág. 76: Proporcionalidad (Tablas de relación).</span>
+                        <a href="https://bde-ueicee.bue.edu.ar/documentos/618-trayectorias-1-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 1</a><br>
+                        <span class="detalle-actividad">• Págs. 76-77 (Fichas 8 y 9): Problemas con tablas y facturas. Tablas proporcionales simples.</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">3. Eje: Repertorios y Relaciones Numéricas</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Multiplicación por 10, 100 y 1.000. Construcción de la tabla pitagórica.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%203er%20grado%20Matematica.pdf" target="_blank" class="btn-link">Yo amo aprender 3</a><br>
+                        <span class="detalle-actividad">• Pág. 33: Multiplicar por 10 y por 100.</span>
+                        <span class="detalle-actividad">• Págs. 29-30: Descubrir patrones y relaciones en la tabla pitagórica.</span>
+                        <a href="https://bde-ueicee.bue.edu.ar/documentos/618-trayectorias-1-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 1</a><br>
+                        <span class="detalle-actividad">• Págs. 81-82 (Fichas 1 y 2): La tabla pitagórica y usos para buscar resultados.</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">4° GRADO: Consolidación y Algoritmos Intermedios</button>
+        <div class="panel">
+            <h3 class="eje-nombre">1. Eje: Repertorios y cálculo mental con la unidad seguida de ceros</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Resolución de cálculos mentales exactos y estimativos de multiplicaciones y divisiones por 10, 100 y 1.000.</td>
+                    <td>
+                        <a href="https://bde-ueicee.bue.edu.ar/documentos/618-trayectorias-1-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 1</a><br>
+                        <span class="detalle-actividad">• Ficha Nº 5 (Pág. 85): "Multiplicar por 10, 100, 1000".</span>
+                        <span class="detalle-actividad">• Ficha Nº 6 (Pág. 86): "Multiplicaciones de números mayores" (x20, x30).</span>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%204to%20grado_0.pdf" target="_blank" class="btn-link">Yo amo aprender 4</a><br>
+                        <span class="detalle-actividad">• Págs. 172-173: "Multiplicar por 10, por 100 y por 1.000" / "Resolver cálculos por cifras seguidas de cero".</span>
+                        <span class="detalle-actividad">• Pág. 186: "Dividir por 10, 100 y 1.000".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">2. Eje: Propiedades, flexibilidad de cálculo y algoritmos</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Uso de resultados conocidos (dobles, mitades, descomposiciones) y análisis de algoritmos de la multiplicación.</td>
+                    <td>
+                        <a href="https://bde-ueicee.bue.edu.ar/documentos/618-trayectorias-1-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 1</a><br>
+                        <span class="detalle-actividad">• Fichas Nº 7, 8 y 9 (Págs. 87-89): "Dobles y mitades".</span>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%204to%20grado_0.pdf" target="_blank" class="btn-link">Yo amo aprender 4</a><br>
+                        <span class="detalle-actividad">• Pág. 174: "Multiplicar con estrategias" (Uso de dobles, triples y mitades).</span>
+                        <span class="detalle-actividad">• Pág. 178: "Multiplicar números grandes" (Descomposición de factores).</span>
+                        <span class="detalle-actividad">• Pág. 179: "Multiplicar en columnas" (El algoritmo vertical).</span>
+                        <span class="detalle-actividad">• Pág. 180: "Usar la estrategia más conveniente".</span>
+                        <span class="detalle-actividad">• Pág. 187: "Usar estrategias de cálculo mental" (Dividir usando mitades).</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">3. Eje: El camino hacia la división (Aproximaciones, Repartos y Resto)</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Problemas de reparto y partición. Análisis del resto. Uso de algoritmos intermedios a través de estimaciones.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%204to%20grado_0.pdf" target="_blank" class="btn-link">Yo amo aprender 4</a><br>
+                        <span class="detalle-actividad">• Págs. 182-183: "Divisiones" (Situaciones de reparto equitativo).</span>
+                        <span class="detalle-actividad">• Pág. 184: "Resolver divisiones con la tabla pitagórica".</span>
+                        <span class="detalle-actividad">• Pág. 185: "Usar la tabla pitagórica para dividir con resto".</span>
+                        <span class="detalle-actividad">• Pág. 188: "Resolver repartos con resto y con resto cero".</span>
+                        <span class="detalle-actividad">• Pág. 189: "Estimar y aproximar para dividir" (Redondeo).</span>
+                        <span class="detalle-actividad">• Págs. 190-191: "Usar distintas formas de dividir" y "Practicar el procedimiento".</span>
+                        <span class="detalle-actividad">• Págs. 192-193: "Resolver divisiones con resto" y "Usar la división para resolver problemas".</span>
+                        <span class="detalle-actividad">• Págs. 194-195: "Resolver problemas con multiplicación y división" / Actividad de Integración.</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">4. Eje: Organizaciones rectangulares y Proporcionalidad Directa</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Resolución de problemas en organizaciones de filas/columnas y proporcionalidad con tablas y constante.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%204to%20grado_0.pdf" target="_blank" class="btn-link">Yo amo aprender 4</a><br>
+                        <span class="detalle-actividad">• Págs. 170-171: "Resolver problemas de organización rectangular" (Bandejas).</span>
+                        <span class="detalle-actividad">• Págs. 244-245: "Proporcionalidad" / "Organizar datos en tablas".</span>
+                        <span class="detalle-actividad">• Págs. 246-247: "Usar estrategias..." / "Construir distintas estrategias".</span>
+                        <span class="detalle-actividad">• Pág. 248: "Comprender la constante de proporcionalidad".</span>
+                        <span class="detalle-actividad">• Págs. 249-250: "Analizar y calcular para tomar decisiones" / Tablas de proporcionalidad directa.</span>
+                        <span class="detalle-actividad">• Pág. 251: "Actividad de integración" de proporcionalidad.</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">5° GRADO: Combinatoria, Propiedades y Racionales</button>
+        <div class="panel">
+            <h3 class="eje-nombre">1. Eje: Organizaciones rectangulares y Combinatoria</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Resolución de problemas multiplicativos en contextos de organizaciones rectangulares y situaciones de combinatoria.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%205to%20grado.pdf" target="_blank" class="btn-link">Yo amo aprender 5</a><br>
+                        <span class="detalle-actividad">• Pág. 121: "Organizar en filas y columnas o en tablas para multiplicar".</span>
+                        <span class="detalle-actividad">• Págs. 122-124: "Contar las combinaciones posibles" y "Explorar más combinaciones".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">2. Eje: Propiedades, descomposiciones y cálculo mental</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Uso de las propiedades conmutativa, asociativa y distributiva para desarmar números y facilitar el cálculo mental.</td>
+                    <td>
+                        <a href="https://bde-ueicee.bue.edu.ar/documentos/584-trayectorias-2-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 2</a><br>
+                        <span class="detalle-actividad">• Fichas Nº 1 y 2 (Págs. 39-40): "Multiplicación de números redondos".</span>
+                        <span class="detalle-actividad">• Ficha Nº 3 (Pág. 45): "Desarmar números para multiplicar".</span>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%205to%20grado.pdf" target="_blank" class="btn-link">Yo amo aprender 5</a><br>
+                        <span class="detalle-actividad">• Pág. 125: "Calcular mentalmente de diversas formas".</span>
+                        <span class="detalle-actividad">• Pág. 126: "Estimar resultados".</span>
+                        <span class="detalle-actividad">• Págs. 128-130: "Descomponer números en multiplicaciones".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">3. Eje: Algoritmos de la división y relación D = d × c + r</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Comparación de algoritmos de división y análisis de la relación exacta entre dividendo, divisor, cociente y resto.</td>
+                    <td>
+                        <a href="https://bde-ueicee.bue.edu.ar/documentos/584-trayectorias-2-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link">Trayectorias 2</a><br>
+                        <span class="detalle-actividad">• Fichas Nº 1 y 2 (Págs. 73-74): "Dividir por partes... Parte I y II" (Aproximaciones algorítmicas).</span>
+                        <span class="detalle-actividad">• Ficha Nº 5 (Pág. 77): "Cálculos que ayudan para dividir" (Tabla pitagórica del divisor).</span>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%205to%20grado.pdf" target="_blank" class="btn-link">Yo amo aprender 5</a><br>
+                        <span class="detalle-actividad">• Págs. 132-133: "Pensar y analizar distintos modos de hacer cuentas de divisiones".</span>
+                        <span class="detalle-actividad">• Pág. 134: "Explorar las relaciones entre el dividendo, el divisor, el cociente y el resto".</span>
+                        <span class="detalle-actividad">• Págs. 135-136: "Resolver problemas con varios pasos" / "Resolver problemas de dividir".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">4. Eje: Proporcionalidad Directa (Naturales y Fracciones)</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Tablas de proporcionalidad directa, constante de proporcionalidad e identificación de relaciones no proporcionales.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%205to%20grado.pdf" target="_blank" class="btn-link">Yo amo aprender 5</a><br>
+                        <span class="detalle-actividad">• Págs. 148-150: "Identificar relaciones de proporcionalidad" / "Resolver problemas".</span>
+                        <span class="detalle-actividad">• Pág. 151: "Resolver problemas de proporcionalidad sin conocer el valor de la unidad".</span>
+                        <span class="detalle-actividad">• Pág. 152: "Identificar relaciones proporcionales o no proporcionales".</span>
+                        <span class="detalle-actividad">• Págs. 153-154: "Resolver problemas de proporcionalidad directa con fracciones".</span>
+                        <span class="detalle-actividad">• Págs. 155-156: "Determinar la oferta más conveniente".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">5. Eje: El campo multiplicativo en números racionales</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>La fracción como operador multiplicativo, multiplicación de decimales por 10, 100 y 1.000, y divisiones inexactas.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/Yo%20amo%20aprender%205to%20grado.pdf" target="_blank" class="btn-link">Yo amo aprender 5</a><br>
+                        <span class="detalle-actividad">• Pág. 195: "Reconocer la fracción de una colección I y II".</span>
+                        <span class="detalle-actividad">• Págs. 196-197: "Multiplicar una fracción por un número natural".</span>
+                        <span class="detalle-actividad">• Pág. 200: "Multiplicar un número decimal por 10, 100, 1.000, 10.000".</span>
+                        <span class="detalle-actividad">• Pág. 201: "Multiplicar un número natural por un número decimal".</span>
+                        <span class="detalle-actividad">• Pág. 202: "Calcular y resolver la división no exacta".</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">6° GRADO: Divisibilidad y División Eficiente</button>
+        <div class="panel">
+            <h3 class="eje-nombre">1. Eje: Relaciones numéricas y Algoritmos de la División</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Relación entre dividendo, divisor, cociente y resto. Uso de la multiplicación para anticipar el cociente y estimar cifras.</td>
+                    <td>
+                        <a href="https://biblioteca-digital.bue.edu.ar/catalogo/aceleracion-nivelacion-1/8720/detalle/7611" target="_blank" class="btn-link">Trayectorias 3</a><br>
+                        <span class="detalle-actividad">• Fichas Nº 2, 3, 4 y 5 (Págs. 12-15): "Estimar resultados y estimar la cantidad de cifras de divisiones".</span>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_6to.pdf" target="_blank" class="btn-link">Yo amo aprender 6</a><br>
+                        <span class="detalle-actividad">• Págs. 122-123: "Resolver multiplicaciones y divisiones con números mayores que un millón".</span>
+                        <span class="detalle-actividad">• Pág. 124: "Reconocer relaciones entre la división y otras operaciones".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">2. Eje: Divisibilidad (Múltiplos, Divisores y Criterios)</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Números primos y compuestos. Múltiplos y divisores comunes. Criterios de divisibilidad por 2, 5 y 10.</td>
+                    <td>
+                        <a href="https://biblioteca-digital.bue.edu.ar/catalogo/aceleracion-nivelacion-1/8720/detalle/7611" target="_blank" class="btn-link">Trayectorias 3</a><br>
+                        <span class="detalle-actividad">• Fichas Nº 2 y 3 (Págs. 28-29): "Desarmar números usando multiplicaciones" (Exploración de factores).</span>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_6to.pdf" target="_blank" class="btn-link">Yo amo aprender 6</a><br>
+                        <span class="detalle-actividad">• Pág. 136: "Explorar múltiplos y divisores".</span>
+                        <span class="detalle-actividad">• Pág. 137: "Identificar los divisores de un número".</span>
+                        <span class="detalle-actividad">• Págs. 139-140: "Usar los criterios de divisibilidad I y II".</span>
+                        <span class="detalle-actividad">• Pág. 141: "Reconocer números primos y números compuestos".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">3. Eje: Proporcionalidad Directa y Porcentajes</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Relaciones de proporcionalidad directa con números naturales y racionales. Uso de la constante y porcentaje.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_6to.pdf" target="_blank" class="btn-link">Yo amo aprender 6</a><br>
+                        <span class="detalle-actividad">• Pág. 166: "Identificar relaciones de proporcionalidad directa".</span>
+                        <span class="detalle-actividad">• Pág. 167: "Calcular la constante de proporcionalidad".</span>
+                        <span class="detalle-actividad">• Pág. 168: "Resolver problemas de proporcionalidad con distintas estrategias".</span>
+                        <span class="detalle-actividad">• Pág. 171: "Relacionar la proporcionalidad con el cálculo de porcentajes".</span>
+                        <span class="detalle-actividad">• Pág. 172: "Calcular descuentos y recargos".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">4. Eje: El campo multiplicativo con Números Racionales</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Multiplicación y división de fracciones y decimales en contextos de proporcionalidad, escalas y medidas.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_6to.pdf" target="_blank" class="btn-link">Yo amo aprender 6</a><br>
+                        <span class="detalle-actividad">• Pág. 154: "Multiplicar una fracción por un número natural".</span>
+                        <span class="detalle-actividad">• Pág. 160: "Multiplicar números decimales por 10, 100 y 1.000".</span>
+                        <span class="detalle-actividad">• Pág. 161: "Multiplicar un número decimal por un número natural".</span>
+                        <span class="detalle-actividad">• Pág. 162: "Multiplicar dos números decimales".</span>
+                        <span class="detalle-actividad">• Pág. 163: "Dividir un número decimal por un número natural".</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <button class="accordion">7° GRADO: MCM, DCM y Proporcionalidad Inversa</button>
+        <div class="panel">
+            <h3 class="eje-nombre">1. Eje: Jerarquía, potencias y raíces</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Estimación de cocientes y productos como control. Resolución de cálculos combinados. Potenciación y radicación.</td>
+                    <td>
+                        <a href="https://biblioteca-digital.bue.edu.ar/catalogo/aceleracion-nivelacion-1/8720/detalle/7611" target="_blank" class="btn-link">Trayectorias 3</a><br>
+                        <span class="detalle-actividad">• Fichas Nº 4 y 5 (Págs. 14 y 15): "Estimar la cantidad de cifras para hacer divisiones más cortas" y "Resultados ajustados".</span>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_7mo.pdf" target="_blank" class="btn-link">Yo amo aprender 7</a><br>
+                        <span class="detalle-actividad">• Págs. 117-121: "Reconocer el orden en las operaciones", "Aplicar la jerarquía" y "Elegir cómo resolver".</span>
+                        <span class="detalle-actividad">• Págs. 122-124: "Resolver con potencias", "Descubrir las potencias" y "Calcular raíces cuadradas".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">2. Eje: Divisibilidad avanzada y Combinatoria</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>MCM, DCM. Análisis de propiedades de las operaciones. Búsqueda de regularidades.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_7mo.pdf" target="_blank" class="btn-link">Yo amo aprender 7</a><br>
+                        <span class="detalle-actividad">• Págs. 133-134: "Resolver situaciones problemáticas que involucran múltiplos y divisores".</span>
+                        <span class="detalle-actividad">• Págs. 135-137: "Usar múltiplos, divisores y criterios de divisibilidad".</span>
+                        <span class="detalle-actividad">• Págs. 138-139: "Resolver problemas: múltiplo común menor y divisor común mayor".</span>
+                        <span class="detalle-actividad">• Págs. 126-129: "Formas de contar posibilidades", "Permutaciones" y "Variaciones".</span>
+                        <span class="detalle-actividad">• Págs. 140-142: "Buscar regularidades en tablas" y "Usar la calculadora para explorar regularidades".</span>
+                    </td>
+                </tr>
+            </table>
+
+            <h3 class="eje-nombre">3. Eje: Proporcionalidad directa e inversa</h3>
+            <table>
+                <tr>
+                    <th>Contenido (Diseño Curricular)</th>
+                    <th>Recursos y Páginas</th>
+                </tr>
+                <tr>
+                    <td>Proporcionalidad directa e inversa con números racionales. Análisis de porcentajes y gráficos cartesianos.</td>
+                    <td>
+                        <a href="https://static.buenosaires.gob.ar/sites/default/files/2026-03/2026_YaA_7mo.pdf" target="_blank" class="btn-link">Yo amo aprender 7</a><br>
+                        <span class="detalle-actividad">• Págs. 144-147: "Resolver problemas con proporciones" y "Proporcionalidad y números racionales".</span>
+                        <span class="detalle-actividad">• Págs. 148-150: "Proporcionalidad y porcentajes".</span>
+                        <span class="detalle-actividad">• Págs. 153-156: "Explorar la proporcionalidad inversa" y "Analizar y representar relaciones de proporcionalidad inversa".</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+		 
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+{
+"id": "la-muerta-7grado",
+"titulo": "La muerta",
+"area": "Lengua",
+"grado": "7°",
+"descripcion": "Rosco sobre el cuento La muerta, de Guy de Maupassant.",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "A",
+"modo": "empieza",
+"pregunta": "Persona a quien, según la nueva inscripción, la mujer fue a engañar un día de lluvia.",
+"respuestas": [
+"amante"
+],
+"ayuda": "Empieza con A."
+},
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Color del mármol de la cruz que marca la tumba de la mujer.",
+"respuestas": [
+"blanco"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Lugar al que va el narrador para visitar la tumba de la mujer.",
+"respuestas": [
+"cementerio"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Momento en que encuentran al narrador tendido sobre la tumba.",
+"respuestas": [
+"día",
+"dia"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Objeto del vestíbulo en el que ella solía contemplarse antes de salir.",
+"respuestas": [
+"espejo"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "F",
+"modo": "empieza",
+"pregunta": "Bien que Jacques Olivant deseaba heredar de su padre.",
+"respuestas": [
+"fortuna"
+],
+"ayuda": "Empieza con F."
+},
+{
+"letra": "G",
+"modo": "empieza",
+"pregunta": "Pequeñas aberturas de las paredes donde el narrador imagina que quedan rastros de ella.",
+"respuestas": [
+"grietas"
+],
+"ayuda": "Empieza con G."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Parte del esqueleto con la que el muerto escribe la verdad en la lápida.",
+"respuestas": [
+"hueso"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "I",
+"modo": "empieza",
+"pregunta": "Dedo con el que el esqueleto de Jacques Olivant cambió lainscripción de su lápida.",
+"respuestas": [
+"índice",
+"indice"
+],
+"ayuda": "Empieza con I."
+},
+{
+"letra": "J",
+"modo": "empieza",
+"pregunta": "Nombre del muerto cuya lápida empieza a moverse cerca del narrador.",
+"respuestas": [
+"jacques",
+"jacques olivant"
+],
+"ayuda": "Empieza con J."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Piedras de las tumbas donde estaban grabadas las frases sobre los muertos.",
+"respuestas": [
+"lápidas",
+"lapidas",
+"lápida",
+"lapida"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Material de la cruz que señala la tumba de la mujer.",
+"respuestas": [
+"mármol",
+"marmol"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Momento del día en el que el narrador permanece escondido dentro del cementerio.",
+"respuestas": [
+"noche"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "Ñ",
+"modo": "contiene",
+"pregunta": "Acción que revela la nueva inscripción sobre la salida de la mujer bajo la lluvia.",
+"respuestas": [
+"engañar",
+"engano",
+"engaño"
+],
+"ayuda": "Contiene la letra Ñ."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Fuerza que, según el narrador, borra a los muertos.",
+"respuestas": [
+"olvido"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Enfermedad que la mujer contrae después de salir bajo la lluvia, según la inscripción final.",
+"respuestas": [
+"pulmonía",
+"pulmonia"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "q",
+"modo": "contiene",
+"pregunta": "Hay muchos en los cementerios.",
+"respuestas": [
+"esqueleto",
+"esqueletos"
+],
+"ayuda": "Contiene con q."
+},
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Plantas que crecen sin cuidado en la parte más antigua del cementerio.",
+"respuestas": [
+"rosales",
+"rosal"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Acción de llorar que realiza el narrador con la frente apoyada en el suelo.",
+"respuestas": [
+"sollozar",
+"sollozó",
+"sollozo"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Lugar donde yace la mujer y sobre el que encuentran al narrador al amanecer.",
+"respuestas": [
+"tumba"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Tela negra que cubre el rostro de la mujer cuando el narrador cree reconocerla.",
+"respuestas": [
+"velo"
+],
+"ayuda": "Empieza con V."
+}
+]
+}

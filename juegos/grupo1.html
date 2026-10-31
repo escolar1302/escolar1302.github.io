@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos - Grupo 1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ESTILOS */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0; padding: 0;
+            background-color: #fff3e0; /* Fondo cremita */
+            color: #333;
+        }
+
+        /* BARRA (OPCIÓN B) */
+        header { background-color: #2c3e50; padding: 15px 0; }
+        nav {
+            max-width: 1100px; margin: 0 auto; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+        }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+
+        /* ENCABEZADO CON BOTÓN VOLVER */
+        .page-header {
+            max-width: 1000px; margin: 30px auto 20px; padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        h1 { color: #e67e22; margin: 0; font-size: 2rem; }
+
+        .btn-back {
+            background-color: #7f8c8d; color: white;
+            text-decoration: none; padding: 10px 20px;
+            border-radius: 30px; font-weight: bold; font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+        .btn-back:hover { background-color: #95a5a6; }
+
+        /* GRILLA DE 3 JUEGOS */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px; margin: 0 auto; padding: 0 20px 60px;
+        }
+
+        .game-card {
+            background: white; border-radius: 15px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid #e67e22;
+        }
+
+        .game-title { padding: 15px; text-align: center; font-weight: bold; color: #2c3e50; border-bottom: 1px solid #eee; }
+
+        .iframe-container {
+            width: 100%; height: 380px; background: #eee;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .iframe-container iframe { width: 100%; height: 100%; border: none; }
+/* --- ESTILO CORREGIDO PARA EL TÍTULO DE LA TARJETA --- */
+        .game-card h2, .game-title { 
+            padding: 15px 20px;       /* 15px arriba/abajo, 20px a los costados */
+            text-align: center;       /* Centrado horizontal */
+            font-weight: bold; 
+            color: #2c3e50; 
+            margin: 0;                /* Quita márgenes extraños */
+            border-bottom: 1px solid #eee; /* Línea suave abajo */
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+  
+
+<div class="main-container">
+    <div class="page-header">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="images/02.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: #e67e22;">Numeración</h1></div></div>
+        </div>
+    
+
+    <div class="games-grid">
+
+        <div class="game-card">
+            <div class="game-header">
+                <h2>Escala con audio</h2>
+            </div>
+            <div class="iframe-container">
+                <iframe style="max-width:100%" src="https://wordwall.net/es/embed/1b344a869e0a42869a6096b5df8d34dc?themeId=1&templateId=5&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-header">
+                <h2>Escala con letras</h2>
+            </div>
+            <div class="iframe-container">
+                <iframe style="max-width:100%" src="https://wordwall.net/es/embed/2c06fe03ea9f4401bead7bbfc54c25b3?themeId=1&templateId=5&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <div class="game-header">
+                <h2>Elegir número y nombre</h2>
+            </div>
+            <div class="iframe-container">
+               <iframe style="max-width:100%" src="https://wordwall.net/es/embed/79d232deecd1458f90c90c2bd42a3380?themeId=1&templateId=46&fontStackId=1" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

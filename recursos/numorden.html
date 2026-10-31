@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+  <meta charset="UTF-8" />
+  <title>Juego de memoria numérica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f3f6fb;
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .game-container {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px 18px 20px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .game-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .game-header-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .controls-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.9rem;
+    }
+
+    select,
+    button {
+      border-radius: 999px;
+      border: 1px solid #c2c8e0;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background: #f9fafc;
+      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    button {
+      background: #4177ff;
+      color: #fff;
+      border-color: #4177ff;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: #335fd4;
+      box-shadow: 0 3px 8px rgba(65, 119, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    select:focus,
+    button:focus {
+      outline: 2px solid #335fd4;
+      outline-offset: 1px;
+    }
+
+    .status-bar {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #555;
+    }
+
+    .board {
+      margin-top: 16px;
+      display: grid;
+      /* Hasta 4 columnas, se adapta en pantallas chicas */
+      grid-template-columns: repeat(4, minmax(60px, 1fr));
+      gap: 10px;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* cuadrado */
+      perspective: 800px;
+    }
+
+    .card-inner {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.35s ease;
+    }
+
+    .card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      backface-visibility: hidden;
+    }
+
+    .card-back {
+      background: linear-gradient(135deg, #4e8cff, #7ba9ff);
+      color: #ffffff;
+    }
+
+    .card-front {
+      background: #ffffff;
+      color: #1b2555;
+      border: 2px solid #4e8cff;
+      transform: rotateY(180deg);
+    }
+
+    .card-inner.correct .card-front {
+      background: #e2f7d8;
+      border-color: #43a047;
+      color: #1b5e20;
+    }
+
+    .card-inner.wrong .card-front {
+      background: #ffe4e4;
+      border-color: #e53935;
+      color: #b71c1c;
+    }
+
+    .card-inner.disabled {
+      cursor: default;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+    }
+
+    .message {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      background: #eef3ff;
+      color: #1b2555;
+      text-align: center;
+    }
+
+    .message strong {
+      font-weight: 700;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .overlay.visible {
+      display: flex;
+    }
+
+    .overlay-content {
+      background: #ffffff;
+      padding: 20px 22px 16px;
+      border-radius: 16px;
+      text-align: center;
+      max-width: 320px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .overlay-content h2 {
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+    }
+
+    .overlay-content p {
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .overlay-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .overlay-buttons button.secondary {
+      background: #f3f5fb;
+      color: #222;
+      border-color: #c2c8e0;
+      box-shadow: none;
+    }
+
+    .overlay-buttons button.secondary:hover {
+      background: #e4e7f3;
+    }
+
+    @media (max-width: 480px) {
+      .game-container {
+        padding: 14px 12px 16px;
+      }
+
+      .game-header-title {
+        font-size: 1.2rem;
+      }
+
+      .card-face {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<style>
+    /* CORRECCIÓN DE LAYOUT (Solo afecta a la posición de la barra) */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        /* Esto obliga a que la barra quede ARRIBA y el juego ABAJO */
+        display: flex !important;
+        flex-direction: column !important; 
+        align-items: center !important;
+        justify-content: flex-start !important;
+    }
+    
+    /* Pequeño margen para que tu juego no quede pegado a la barra */
+    body > *:not(header) {
+        margin-top: 20px;
+    }
+</style>
+
+
+
+  <div class="game-container" aria-label="Juego de memoria numérica">
+    <header class="game-header">
+      <div class="game-header-title">Memoria numérica en orden</div>
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="difficulty">Dificultad:</label>
+          <select id="difficulty" aria-label="Seleccionar dificultad">
+            <option value="6">6 números (1 a 6)</option>
+            <option value="8">8 números (1 a 8)</option>
+            <option value="10">10 números (1 a 10)</option>
+            <option value="12" selected>12 números (1 a 12)</option>
+          </select>
+        </div>
+        <button id="restartBtn" type="button">Reiniciar</button>
+      </div>
+      <div class="status-bar" id="statusBar">
+        Próximo número a encontrar: <strong>1</strong>
+      </div>
+    </header>
+
+    <main>
+      <div class="board" id="board" aria-live="polite"></div>
+      <div class="message" id="infoMessage">
+        Da vuelta las fichas para encontrar los números en orden: 1, 2, 3, ...
+        Si te equivocás, todas las fichas se vuelven a tapar y volvés a empezar desde el 1.
+      </div>
+    </main>
+  </div>
+
+  <!-- Overlay de victoria -->
+  <div class="overlay" id="winOverlay" role="dialog" aria-modal="true">
+    <div class="overlay-content">
+      <h2>¡Felicitaciones!</h2>
+      <p>Encontraste todos los números en orden. ¿Querés jugar otra vez?</p>
+      <div class="overlay-buttons">
+        <button id="playAgainBtn" type="button">Jugar de nuevo</button>
+        <button id="closeOverlayBtn" type="button" class="secondary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Elementos principales
+    const board = document.getElementById("board");
+    const difficultySelect = document.getElementById("difficulty");
+    const restartBtn = document.getElementById("restartBtn");
+    const statusBar = document.getElementById("statusBar");
+    const winOverlay = document.getElementById("winOverlay");
+    const playAgainBtn = document.getElementById("playAgainBtn");
+    const closeOverlayBtn = document.getElementById("closeOverlayBtn");
+
+    let totalNumbers = 12;           // N actual (6, 8, 10 o 12)
+    let nextExpected = 1;            // Próximo número que se debe hallar
+    let isBoardLocked = false;       // Para bloquear clics mientras se espera el giro
+    let timeoutId = null;            // ID del setTimeout en caso de error
+
+    /**
+     * Mezcla un array usando el algoritmo de Fisher-Yates.
+     */
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    /**
+     * Actualiza el texto que indica el próximo número a encontrar.
+     */
+    function updateStatusBar() {
+      statusBar.innerHTML = `Próximo número a encontrar: <strong>${nextExpected}</strong>`;
+    }
+
+    /**
+     * Cierra el overlay de victoria.
+     */
+    function hideWinOverlay() {
+      winOverlay.classList.remove("visible");
+    }
+
+    /**
+     * Muestra el overlay de victoria.
+     */
+    function showWinOverlay() {
+      winOverlay.classList.add("visible");
+    }
+
+    /**
+     * Genera y dibuja las cartas según el totalNumbers actual.
+     */
+    function renderBoard() {
+      // Limpiar tablero
+      board.innerHTML = "";
+
+      // Generar números 1..N y mezclarlos
+      const numbers = [];
+      for (let i = 1; i <= totalNumbers; i++) {
+        numbers.push(i);
+      }
+      shuffle(numbers);
+
+      // Crear cartas
+      numbers.forEach((num) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.classList.add("card");
+        card.setAttribute("aria-label", "Ficha de juego");
+
+        const inner = document.createElement("div");
+        inner.classList.add("card-inner");
+        inner.dataset.number = num.toString();
+
+        const backFace = document.createElement("div");
+        backFace.classList.add("card-face", "card-back");
+        backFace.textContent = "?";
+
+        const frontFace = document.createElement("div");
+        frontFace.classList.add("card-face", "card-front");
+        frontFace.textContent = num.toString();
+
+        inner.appendChild(backFace);
+        inner.appendChild(frontFace);
+        card.appendChild(inner);
+        board.appendChild(card);
+
+        // Manejo de clic
+        card.addEventListener("click", () => handleCardClick(inner));
+      });
+    }
+
+    /**
+     * Reinicia el juego manteniendo la dificultad actual.
+     */
+    function resetGame() {
+      // Cancelar cualquier timeout pendiente
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
+
+      isBoardLocked = false;
+      nextExpected = 1;
+      updateStatusBar();
+      renderBoard();
+      hideWinOverlay();
+    }
+
+    /**
+     * Maneja el clic en una carta.
+     */
+    function handleCardClick(cardInner) {
+      if (isBoardLocked) return;
+
+      const number = parseInt(cardInner.dataset.number, 10);
+
+      // Si ya está dada vuelta y marcada como correcta, no hacemos nada
+      if (cardInner.classList.contains("correct")) return;
+
+      // Si ya está dada vuelta (pero no es correcta permanente), tampoco
+      if (cardInner.classList.contains("flipped") && !cardInner.classList.contains("wrong")) {
+        return;
+      }
+
+      // Voltear la carta
+      cardInner.classList.add("flipped");
+
+      // Verificamos si es el número esperado
+      if (number === nextExpected) {
+        // Correcto: la dejamos marcada
+        cardInner.classList.add("correct");
+        cardInner.classList.add("disabled");
+
+        // Si era el último número, ganar
+        if (nextExpected === totalNumbers) {
+          updateStatusBar();
+          // Pequeño delay para que se vea el último giro
+          setTimeout(() => {
+            showWinOverlay();
+          }, 300);
+          return;
+        }
+
+        // Seguimos al próximo número
+        nextExpected++;
+        updateStatusBar();
+      } else {
+        // Error: marcamos, bloqueamos el tablero y luego reseteamos
+        cardInner.classList.add("wrong");
+        isBoardLocked = true;
+
+        timeoutId = setTimeout(() => {
+          // Volver a tapar todas las cartas (correctas y equivocadas)
+          const allInners = board.querySelectorAll(".card-inner");
+          allInners.forEach((inner) => {
+            inner.classList.remove("flipped", "correct", "wrong", "disabled");
+          });
+
+          // Volvemos a empezar desde el 1
+          nextExpected = 1;
+          updateStatusBar();
+          isBoardLocked = false;
+          timeoutId = null;
+        }, 3000);
+      }
+    }
+
+    /**
+     * Cambia la dificultad según el valor seleccionado en el <select>.
+     */
+    function changeDifficulty() {
+      const value = parseInt(difficultySelect.value, 10);
+      totalNumbers = value;
+      resetGame();
+    }
+
+    // Eventos principales
+    difficultySelect.addEventListener("change", changeDifficulty);
+    restartBtn.addEventListener("click", resetGame);
+    playAgainBtn.addEventListener("click", () => {
+      resetGame();
+    });
+    closeOverlayBtn.addEventListener("click", () => {
+      hideWinOverlay();
+    });
+
+    // Inicializar juego al cargar la página
+    window.addEventListener("DOMContentLoaded", () => {
+      totalNumbers = parseInt(difficultySelect.value, 10);
+      resetGame();
+    });
+  </script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Problemas Matemáticos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* --- VARIABLES DE ESTILO --- */
+            --bg-color: #E8F5E9; 
+            --header-color: #43A047;
+            --title-color: #1B5E20;
+            --accent-color: #FF7043;
+            --copy-color: #9C27B0;
+            --edit-color: #4FC3F7;
+            --card-bg: #FFFFFF;
+            --text-main: #37474F;
+            --selected-border: #FF7043;
+            --selected-bg: #FFF3E0;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding-bottom: 80px; 
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--header-color);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { margin: 0; font-size: 1.5rem; }
+
+        /* --- LAYOUT PRINCIPAL --- */
+        .main-container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+            max-width: 100%;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* --- BARRA LATERAL (Filtros) --- */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+            flex-shrink: 0;
+        }
+
+        .sidebar h3 { color: var(--title-color); margin-top: 0; }
+        .filter-group { margin-bottom: 20px; }
+        .filter-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--text-main); }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: #fafafa;
+        }
+        select:focus { outline: none; border-color: var(--header-color); }
+
+        .btn-reset {
+            background-color: #eceff1;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #546e7a;
+            font-weight: bold;
+        }
+        .btn-reset:hover { background-color: #cfd8dc; }
+
+        /* --- ÁREA DE RESULTADOS --- */
+        .results-area { flex: 1; }
+        
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--title-color);
+            font-weight: bold;
+            gap: 10px;
+        }
+
+        .options-section {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .options-section h4 {
+            margin: 0 0 10px 0;
+            color: var(--title-color);
+            font-size: 1rem;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .option-item input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .option-tags input { accent-color: var(--header-color); }
+        .option-numbering input { accent-color: var(--accent-color); }
+        .option-borders input { accent-color: #6d4c41; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        /* --- TARJETAS --- */
+        .problem-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .problem-card.selected {
+            border-color: var(--selected-border);
+            background-color: var(--selected-bg);
+        }
+
+        /* CHECKBOX FLOTANTE */
+        .card-check {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .problem-card.selected .card-check {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            box-shadow: inset 0 0 0 3px white;
+        }
+
+        .problem-content {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            padding-right: 30px; /* Espacio para que el texto no toque el checkbox */
+            overflow-x: auto; /* IMPORTANTE: Para que las tablas no rompan la tarjeta en pantallas chicas */
+        }
+
+        .export-number {
+            display: none;
+            font-weight: 800;
+            color: var(--title-color);
+        }
+
+        .problem-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .problem-tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: #e0f7fa;
+            color: #006064;
+            border: 1px solid #b2ebf2;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .problem-tag:hover {
+            background: #b2ebf2;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        body.tags-hidden .problem-tags { display: none; }
+
+        /* Asegurar que las tablas se vean bien */
+        .problem-content table {
+            max-width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        
+        /* --- BARRA FLOTANTE --- */
+        .floating-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(150%);
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            transition: transform 0.3s ease-in-out;
+            z-index: 2000;
+            border: 1px solid #eee;
+        }
+
+        .floating-bar.active {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 980px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                position: static;
+            }
+            .results-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .fb-text { font-weight: bold; color: var(--text-main); margin-right: 10px; }
+
+        .fb-btn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .btn-copy { background-color: var(--copy-color); }
+        .btn-print { background-color: var(--header-color); }
+        .btn-bulk-edit { background-color: var(--edit-color); color: #333; }
+
+        .file-upload-backup {
+            padding: 20px; text-align: center; background: #fff3e0; margin: 20px; border-radius: 8px; display: none;
+        }
+
+        /* --- IMPRESIÓN --- */
+        @media print {
+            header, .sidebar, .floating-bar, #upload-backup, .results-info, .btn-reset { display: none !important; }
+            .card-check { display: none !important; }
+            .problem-tags { display: none !important; }
+            body, .main-container, .results-area { background: white; width: 100%; margin: 0; padding: 0; display: block; }
+            .cards-grid { display: block; }
+            .problem-card { display: none !important; }
+            .problem-card.selected {
+                display: block !important;
+                box-shadow: none;
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+                background-color: white !important; 
+            }
+            .export-number { display: inline; font-weight: 800; color: var(--title-color); }
+            body.print-borders .problem-card.selected {
+                border: 1px solid #ccc;
+            }
+            body:not(.print-borders) .problem-card.selected {
+                border: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<style>
+    /* Elimina los márgenes blancos para que el menú toque los bordes */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+
+
+
+
+
+    <div id="upload-backup" class="file-upload-backup">
+        <p>⚠️ No se pudo cargar automáticamente la base de datos.</p>
+        <p>Por favor, selecciona el archivo <strong>problemas_base.html</strong> manualmente:</p>
+        <input type="file" id="fileInput" accept=".html">
+    </div>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <h3>Filtros</h3>
+            <div class="filter-group">
+                <label>1. Tipo de Campo</label>
+                <select id="filter-type">
+                    <option value="all">Ver Todos</option>
+                    <option value="A">A. Campo Aditivo (Sumas/Restas)</option>
+                    <option value="B">B. Campo Multiplicativo (Mult/Div)</option>
+                    <option value="C">C. Problemas Combinados</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>2. Subtipo / Sentido</label>
+                <select id="filter-subtype" disabled>
+                    <option value="all">-- Selecciona un Tipo primero --</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>3. Nivel de Dificultad</label>
+                <select id="filter-level">
+                    <option value="all">Cualquier Nivel</option>
+                    <option value="1">Nivel 1 (Hasta 200)</option>
+                    <option value="2">Nivel 2 (Hasta 1.000)</option>
+                    <option value="3">Nivel 3 (Hasta 100.000)</option>
+                    <option value="4">Nivel 4 (Números Grandes)</option>
+                </select>
+            </div>
+            <button class="btn-reset" id="btn-reset">Limpiar Filtros</button>
+            <div class="options-section">
+                <h4>Opciones</h4>
+                <label class="option-item option-tags">
+                    <input type="checkbox" id="toggle-tags">
+                    Mostrar etiquetas
+                </label>
+                <label class="option-item option-numbering">
+                    <input type="checkbox" id="toggle-numbering" checked>
+                    Numerar al exportar
+                </label>
+                <label class="option-item option-borders">
+                    <input type="checkbox" id="toggle-print-borders" checked>
+                    Borde al imprimir
+                </label>
+            </div>
+        </aside>
+
+        <main class="results-area">
+            <div class="results-info">
+                <span id="result-count">Mostrando todos los problemas</span>
+            </div>
+            <div class="cards-grid" id="grid-container"></div>
+        </main>
+    </div>
+
+    <div class="floating-bar" id="floating-bar">
+        <span class="fb-text" id="selection-count">0 seleccionados</span>
+        <button class="fb-btn btn-copy" onclick="copySelection()">📋 Copiar</button>
+        <button class="fb-btn btn-print" onclick="printSelection()">🖨️ Imprimir</button>
+        <button class="fb-btn btn-bulk-edit" onclick="sendSelectedToEditor()">↗️ Todo al Editor</button>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN: RUTA DEL EDITOR
+        const EDITOR_URL = '../editor.html';
+
+        const SUBTIPOS_DATA = {
+            'A': [
+                { code: 'A1', label: 'A1. Composición / Reunión (Buscar total)' },
+                { code: 'A2', label: 'A2. Transformación (Incógnita final)' },
+                { code: 'A3', label: 'A3. Transformación (Incógnita inicial / Inversa)' },
+                { code: 'A4', label: 'A4. Transformación (Incógnita en el cambio)' },
+                { code: 'A5', label: 'A5. Comparación (Diferencia, más/menos que)' },
+                { code: 'A6', label: 'A6. Transformaciones Sucesivas' }
+            ],
+            'B': [
+                { code: 'B1', label: 'B1. Proporcionalidad Directa' },
+                { code: 'B2', label: 'B2. Organización Rectangular' },
+                { code: 'B3', label: 'B3. Reparto y Partición' },
+                { code: 'B4', label: 'B4. Combinatoria' },
+                { code: 'B5', label: 'B5. Iteración' },
+                { code: 'B6', label: 'B6. Análisis del Resto' }
+            ],
+            'C': [
+                { code: 'C1', label: 'C1. Combinados Aditivos' },
+                { code: 'C2', label: 'C2. Combinados Aditivos-Multiplicativos' },
+                { code: 'C3', label: 'C3. Situaciones Complejas' }
+            ]
+        };
+
+        const TYPE_LABELS = {
+            'A': 'Campo Aditivo',
+            'B': 'Campo Multiplicativo',
+            'C': 'Combinados'
+        };
+
+        const LEVEL_LABELS = {
+            '1': 'Nivel 1',
+            '2': 'Nivel 2',
+            '3': 'Nivel 3',
+            '4': 'Nivel 4'
+        };
+
+        let allProblems = [];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTagsToggle();
+            initNumberingToggle();
+            initPrintBorderToggle();
+            setupPrintNumbering();
+            fetch('problemas_base.html')
+                .then(r => r.ok ? r.text() : Promise.reject())
+                .then(parseDatabase)
+                .catch(() => document.getElementById('upload-backup').style.display = 'block');
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                parseDatabase(e.target.result);
+                document.getElementById('upload-backup').style.display = 'none';
+            };
+            reader.readAsText(file);
+        });
+
+        // ==========================================
+        //  PARSER MEJORADO (CORTA POR ||| Y NO POR <P>)
+        // ==========================================
+        function parseDatabase(htmlContent) {
+            // Dividimos el archivo por el separador |||
+            // Esto asegura que la tabla, el texto y el metadato se mantengan juntos en un bloque
+            const rawChunks = htmlContent.split('|||');
+            
+            allProblems = [];
+            const regexMeta = /\[\s*Tipo:\s*([A-C])\s*\|\s*Sentido:\s*([A-C][0-9]+).*?\|\s*Nivel:\s*([0-9]+)\s*\]/i;
+
+            rawChunks.forEach(chunk => {
+                // Limpiamos espacios vacíos
+                if (!chunk.trim()) return;
+
+                const match = chunk.match(regexMeta);
+                if (match) {
+                    // Quitamos el texto del metadato (ej: [Tipo: A...]) del HTML para que no se vea
+                    let cleanContent = chunk.replace(match[0], '').trim();
+                    let cleanSubtype = match[2].toUpperCase(); 
+                    
+                    allProblems.push({
+                        id: Math.random().toString(36).substr(2, 9),
+                        content: cleanContent, // Aquí va todo: tabla, p, img, etc.
+                        type: match[1].toUpperCase(),
+                        subtype: cleanSubtype,
+                        level: match[3]
+                    });
+                }
+            });
+            applyFilters();
+        }
+
+        const typeSelect = document.getElementById('filter-type');
+        const subtypeSelect = document.getElementById('filter-subtype');
+        const levelSelect = document.getElementById('filter-level');
+        const gridContainer = document.getElementById('grid-container');
+        const resultCount = document.getElementById('result-count');
+
+        typeSelect.addEventListener('change', () => {
+            const selectedType = typeSelect.value;
+            subtypeSelect.innerHTML = '<option value="all">Todos los subtipos</option>';
+            if (selectedType !== 'all' && SUBTIPOS_DATA[selectedType]) {
+                subtypeSelect.disabled = false;
+                SUBTIPOS_DATA[selectedType].forEach(sub => {
+                    const option = document.createElement('option');
+                    option.value = sub.code; option.textContent = sub.label; subtypeSelect.appendChild(option);
+                });
+            } else {
+                subtypeSelect.disabled = true;
+                subtypeSelect.innerHTML = '<option value="all">-- Selecciona un Tipo --</option>';
+            }
+            applyFilters();
+        });
+
+        subtypeSelect.addEventListener('change', applyFilters);
+        levelSelect.addEventListener('change', applyFilters);
+        document.getElementById('btn-reset').addEventListener('click', () => {
+            typeSelect.value = 'all'; levelSelect.value = 'all'; typeSelect.dispatchEvent(new Event('change'));
+        });
+
+        function applyFilters() {
+            const typeVal = typeSelect.value;
+            const subtypeVal = subtypeSelect.value;
+            const levelVal = levelSelect.value;
+            const filtered = allProblems.filter(p => {
+                return (typeVal === 'all' || p.type === typeVal) &&
+                       (subtypeVal === 'all' || subtypeSelect.disabled || p.subtype === subtypeVal) &&
+                       (levelVal === 'all' || p.level === levelVal);
+            });
+            renderGrid(filtered);
+        }
+
+        function renderGrid(problems) {
+            gridContainer.innerHTML = '';
+            resultCount.textContent = `Encontrados: ${problems.length} problemas`;
+            
+            if (problems.length === 0) {
+                gridContainer.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #888; padding: 40px;">No hay resultados.</div>';
+                return;
+            }
+
+            problems.forEach(p => {
+                createCard(p, gridContainer);
+            });
+            updateFloatingBar();
+        }
+
+        function createCard(problem, container) {
+            const card = document.createElement('div'); 
+            card.className = 'problem-card'; 
+            card.id = `ficha-${problem.id}`;
+
+            const checkbox = document.createElement('div'); 
+            checkbox.className = 'card-check';
+            card.appendChild(checkbox);
+
+            const tagsRow = document.createElement('div');
+            tagsRow.className = 'problem-tags';
+            tagsRow.innerHTML = buildTagHTML(problem);
+            card.appendChild(tagsRow);
+
+            const body = document.createElement('div'); 
+            body.className = 'problem-content'; 
+            body.innerHTML = problem.content;
+            card.appendChild(body);
+
+            card.onclick = () => toggleSelection(card);
+            tagsRow.querySelectorAll('.problem-tag').forEach(tag => {
+                tag.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    handleTagClick(problem, tag.dataset.tagType);
+                });
+            });
+
+            container.appendChild(card);
+        }
+
+        function toggleSelection(card) {
+            card.classList.toggle('selected');
+            updateFloatingBar();
+        }
+
+        function updateFloatingBar() {
+            const count = document.querySelectorAll('.problem-card.selected').length;
+            const bar = document.getElementById('floating-bar');
+            document.getElementById('selection-count').textContent = `${count} seleccionados`;
+            if (count > 0) bar.classList.add('active'); else bar.classList.remove('active');
+        }
+
+        function copySelection() {
+            const selected = document.querySelectorAll('.problem-card.selected .problem-content');
+            let text = "";
+            const numberingOn = isNumberingEnabled();
+            selected.forEach((div, idx) => {
+                const prefix = numberingOn ? `${idx + 1}. ` : '';
+                text += prefix + div.innerText + "\n\n";
+            });
+            navigator.clipboard.writeText(text).then(() => alert(`✅ ${selected.length} problemas copiados.`));
+        }
+
+        // ==========================================
+        //  LÓGICA EDITOR (LIMPIA: SIN TÍTULOS EXTRA)
+        // ==========================================
+        
+        function sendSelectedToEditor() {
+            const selectedCards = document.querySelectorAll('.problem-card.selected');
+            if (selectedCards.length === 0) return;
+
+            let combinedHTML = "";
+            const numberingOn = isNumberingEnabled();
+            selectedCards.forEach((card, idx) => {
+                const content = card.querySelector('.problem-content').innerHTML;
+                // Envolvemos en un div simple para separar
+                if (numberingOn) {
+                    combinedHTML += wrapNumberIntoContent(idx + 1, content) + "<br>";
+                } else {
+                    combinedHTML += `<div>${content}</div><br>`;
+                }
+            });
+
+            localStorage.setItem('import_content', combinedHTML);
+            window.open(EDITOR_URL, 'Editor de Textos');
+        }
+
+        function buildTagHTML(problem) {
+            const subtypeLabel = getSubtypeLabel(problem.subtype);
+            const typeLabel = TYPE_LABELS[problem.type] || problem.type;
+            const levelLabel = LEVEL_LABELS[problem.level] || `Nivel ${problem.level}`;
+
+            return `
+                <span class="problem-tag" data-tag-type="field">${problem.type} · ${typeLabel}</span>
+                <span class="problem-tag" data-tag-type="subtype">${problem.subtype} · ${subtypeLabel}</span>
+                <span class="problem-tag" data-tag-type="level">${levelLabel}</span>
+            `;
+        }
+
+        function getSubtypeLabel(code) {
+            const list = SUBTIPOS_DATA[code[0]] || [];
+            const found = list.find(item => item.code === code);
+            return found ? found.label.replace(/^.*?\.\s*/, '') : code;
+        }
+
+        function initTagsToggle() {
+            const toggle = document.getElementById('toggle-tags');
+            const enabled = false;
+            toggle.checked = enabled;
+            document.body.classList.toggle('tags-hidden', !enabled);
+            localStorage.setItem('show_tags', enabled ? '1' : '0');
+
+            toggle.addEventListener('change', () => {
+                const isOn = toggle.checked;
+                document.body.classList.toggle('tags-hidden', !isOn);
+                localStorage.setItem('show_tags', isOn ? '1' : '0');
+            });
+        }
+
+        function initNumberingToggle() {
+            const toggle = document.getElementById('toggle-numbering');
+            const enabled = true;
+            toggle.checked = enabled;
+            document.body.classList.toggle('numbering-enabled', enabled);
+            localStorage.setItem('numbering_enabled', enabled ? '1' : '0');
+
+            toggle.addEventListener('change', () => {
+                const isOn = toggle.checked;
+                document.body.classList.toggle('numbering-enabled', isOn);
+                localStorage.setItem('numbering_enabled', isOn ? '1' : '0');
+            });
+        }
+
+        function isNumberingEnabled() {
+            return document.body.classList.contains('numbering-enabled');
+        }
+
+        function initPrintBorderToggle() {
+            const toggle = document.getElementById('toggle-print-borders');
+            const enabled = true;
+            toggle.checked = enabled;
+            document.body.classList.toggle('print-borders', enabled);
+            localStorage.setItem('print_borders', enabled ? '1' : '0');
+
+            toggle.addEventListener('change', () => {
+                const isOn = toggle.checked;
+                document.body.classList.toggle('print-borders', isOn);
+                localStorage.setItem('print_borders', isOn ? '1' : '0');
+            });
+        }
+
+        function wrapNumberIntoContent(number, html) {
+            const container = document.createElement('div');
+            container.innerHTML = html.trim();
+            insertNumberBeforeFirstText(container, number);
+            return `<div>${container.innerHTML}</div>`;
+        }
+
+        function setupPrintNumbering() {
+            window.addEventListener('beforeprint', () => {
+                if (!isNumberingEnabled()) return;
+                preparePrintNumbers();
+            });
+            window.addEventListener('afterprint', () => {
+                cleanupPrintNumbers();
+            });
+        }
+
+        function printSelection() {
+            if (isNumberingEnabled()) {
+                preparePrintNumbers();
+                window.print();
+                setTimeout(() => {
+                    cleanupPrintNumbers();
+                }, 500);
+            } else {
+                window.print();
+            }
+        }
+
+        function preparePrintNumbers() {
+            const selectedCards = document.querySelectorAll('.problem-card.selected');
+            selectedCards.forEach((card, idx) => {
+                const content = card.querySelector('.problem-content');
+                if (content.dataset.originalHtml === undefined) {
+                    content.dataset.originalHtml = content.innerHTML;
+                }
+                const temp = document.createElement('div');
+                temp.innerHTML = content.dataset.originalHtml;
+                insertNumberBeforeFirstText(temp, idx + 1);
+                content.innerHTML = temp.innerHTML;
+            });
+        }
+
+        function cleanupPrintNumbers() {
+            document.querySelectorAll('.problem-content').forEach((content) => {
+                if (content.dataset.originalHtml !== undefined) {
+                    content.innerHTML = content.dataset.originalHtml;
+                    delete content.dataset.originalHtml;
+                }
+            });
+        }
+
+        function insertNumberBeforeFirstText(container, number) {
+            const existing = container.querySelectorAll('.export-number');
+            existing.forEach(node => node.remove());
+
+            const prefix = document.createElement('span');
+            prefix.className = 'export-number';
+            prefix.textContent = `${number}. `;
+
+            const walker = document.createTreeWalker(
+                container,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode(node) {
+                        return node.nodeValue && node.nodeValue.trim()
+                            ? NodeFilter.FILTER_ACCEPT
+                            : NodeFilter.FILTER_REJECT;
+                    }
+                }
+            );
+
+            const firstText = walker.nextNode();
+            if (firstText && firstText.parentNode) {
+                firstText.parentNode.insertBefore(prefix, firstText);
+            } else {
+                container.insertBefore(prefix, container.firstChild);
+            }
+        }
+
+        function handleTagClick(problem, tagType) {
+            if (tagType === 'field') {
+                setTypeAndSubtype(problem.type, null);
+                return;
+            }
+            if (tagType === 'subtype') {
+                setTypeAndSubtype(problem.type, problem.subtype);
+                return;
+            }
+            if (tagType === 'level') {
+                levelSelect.value = problem.level;
+                applyFilters();
+            }
+        }
+
+        function setTypeAndSubtype(type, subtype) {
+            typeSelect.value = type;
+            typeSelect.dispatchEvent(new Event('change'));
+            if (subtype) {
+                subtypeSelect.value = subtype;
+            } else {
+                subtypeSelect.value = 'all';
+            }
+            applyFilters();
+        }
+
+    </script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

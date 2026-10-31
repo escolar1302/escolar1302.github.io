@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Números</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           ESTILOS GENERALES
+           ========================================= */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdf2e9; /* Naranja muy pálido de fondo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* =========================================
+           BARRA DE NAVEGACIÓN (OPCIÓN B)
+           ========================================= */
+        header {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            margin-bottom: 30px;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo { color: white; text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 15px; font-size: 0.9rem; }
+        .nav-links a:hover { text-decoration: underline; }
+
+        /* =========================================
+           CONTENEDOR DEL JUEGO
+           ========================================= */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #d35400; /* Naranja oscuro */
+            margin-top: 0;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p.instruction {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* =========================================
+           GRILLA DE BOTONES
+           ========================================= */
+        .number-grid {
+            display: grid;
+            /* Se ajusta automáticamente: mínimo 140px por botón */
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* Estilo del Botón/Tarjeta */
+        .num-card {
+            background-color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 20px 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #bdc3c7; /* Sombra sólida tipo botón 3D */
+            transition: all 0.1s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ecf0f1;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Efecto al presionar */
+        .num-card:active {
+            transform: translateY(4px); /* Se hunde */
+            box-shadow: 0 0 0 #bdc3c7;  /* Desaparece la sombra */
+        }
+
+        /* Clase para cuando está sonando (se ilumina) */
+        .num-card.playing {
+            background-color: #f39c12; /* Naranja fuerte */
+            border-color: #d35400;
+            box-shadow: 0 4px 0 #d35400;
+            color: white;
+        }
+
+        /* El Número Grande */
+        .num-digit {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        
+        /* La Palabra Abajo */
+        .num-text {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #7f8c8d;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* Cambiar colores de texto cuando está sonando */
+        .num-card.playing .num-digit,
+        .num-card.playing .num-text {
+            color: white;
+        }
+
+        /* Diferenciar grupos visualmente (opcional) */
+        /* Del 10 al 15 un borde sutil naranja */
+        .group-1 { border-bottom: 5px solid #ffcc80; }
+        /* Decenas puras un borde sutil azul */
+        .group-2 { border-bottom: 5px solid #90caf9; }
+
+    </style>
+</head>
+<body>
+
+    
+<div class="page-header">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="images/01.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: #d35400;">Escucha los Números</h1></div></div>
+        </div>
+    <div class="container">
+       
+        <p class="instruction">Toca un número para escuchar su nombre 🔊</p>
+
+        <div class="number-grid">
+            <button class="num-card group-1" onclick="playAudio('10', this)">
+                <span class="num-digit">10</span>
+                <span class="num-text">Diez</span>
+            </button>
+            <button class="num-card group-1" onclick="playAudio('11', this)">
+                <span class="num-digit">11</span>
+                <span class="num-text">Once</span>
+            </button>
+            <button class="num-card group-1" onclick="playAudio('12', this)">
+                <span class="num-digit">12</span>
+                <span class="num-text">Doce</span>
+            </button>
+            <button class="num-card group-1" onclick="playAudio('13', this)">
+                <span class="num-digit">13</span>
+                <span class="num-text">Trece</span>
+            </button>
+            <button class="num-card group-1" onclick="playAudio('14', this)">
+                <span class="num-digit">14</span>
+                <span class="num-text">Catorce</span>
+            </button>
+            <button class="num-card group-1" onclick="playAudio('15', this)">
+                <span class="num-digit">15</span>
+                <span class="num-text">Quince</span>
+            </button>
+
+            <button class="num-card group-2" onclick="playAudio('20', this)">
+                <span class="num-digit">20</span>
+                <span class="num-text">Veinte</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('30', this)">
+                <span class="num-digit">30</span>
+                <span class="num-text">Treinta</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('40', this)">
+                <span class="num-digit">40</span>
+                <span class="num-text">Cuarenta</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('50', this)">
+                <span class="num-digit">50</span>
+                <span class="num-text">Cincuenta</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('60', this)">
+                <span class="num-digit">60</span>
+                <span class="num-text">Sesenta</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('70', this)">
+                <span class="num-digit">70</span>
+                <span class="num-text">Setenta</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('80', this)">
+                <span class="num-digit">80</span>
+                <span class="num-text">Ochenta</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('90', this)">
+                <span class="num-digit">90</span>
+                <span class="num-text">Noventa</span>
+            </button>
+            <button class="num-card group-2" onclick="playAudio('100', this)">
+                <span class="num-digit">100</span>
+                <span class="num-text">Cien</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentAudio = null; // Para saber si hay un audio sonando
+
+        function playAudio(numero, boton) {
+            // 1. Detener audio anterior si existe
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            // 2. Quitar clase "playing" de todos los botones
+            document.querySelectorAll('.num-card').forEach(btn => btn.classList.remove('playing'));
+
+            // 3. Crear nuevo audio
+            // Nota: Asume que los archivos están en la misma carpeta (ej: "10.mp3")
+            const audio = new Audio(`${numero}.mp3`);
+            currentAudio = audio;
+
+            // 4. Activar visualmente el botón
+            boton.classList.add('playing');
+
+            // 5. Reproducir
+            audio.play().catch(error => {
+                console.log("Error al reproducir: " + error);
+                alert("No se encuentra el archivo de audio: " + numero + ".mp3");
+            });
+
+            // 6. Cuando termine el audio, apagar el botón
+            audio.onended = () => {
+                boton.classList.remove('playing');
+                currentAudio = null;
+            };
+        }
+    </script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

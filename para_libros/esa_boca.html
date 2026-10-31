@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esa boca</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #E8F5E9; --header-color: #27AE60; --title-color: #1B5E20; --accent-color: #FF7043; --copy-color: #9C27B0; --card-bg: #FFFFFF; --text-main: #37474F; }
+        * { box-sizing: border-box; }
+        body { background-color: var(--bg-color); font-family: 'Nunito', sans-serif; margin: 0; padding: 20px; color: var(--text-main); padding-bottom: 120px; }
+        #app-container { max-width: 900px; margin: 0 auto; }
+        h1 { text-align: center; color: var(--title-color); margin-bottom: 30px; font-size: 2rem; }
+        
+        #app-intro { background: rgba(255,255,255,0.6); padding: 15px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid var(--header-color); }
+        #app-intro a { color: var(--header-color); font-weight: bold; }
+        #raw-content-placeholder { display: none !important; }
+        
+        .ficha-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); margin-bottom: 25px; overflow: hidden; border: 2px solid transparent; transition: all 0.3s ease; }
+        .ficha-card.selected-for-print { border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(255, 112, 67, 0.2); }
+        .ficha-header { background-color: var(--header-color); padding: 10px 15px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+        .ficha-title { color: white; font-weight: 700; font-size: 1.1rem; flex-grow: 1; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-send-editor { background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: background 0.2s; text-decoration: none; }
+        .btn-send-editor:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
+        .btn-toggle-card { background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,.45); color: white; border-radius: 999px; padding: 7px 10px; cursor: pointer; font-weight: 900; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .btn-toggle-card:hover { background: rgba(255,255,255,0.34); transform: translateY(-1px); }
+        .custom-checkbox { width: 28px; height: 28px; background: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid rgba(255,255,255,0.6); }
+        .ficha-card.selected-for-print .custom-checkbox { background: var(--accent-color); border-color: white; }
+        .custom-checkbox::after { content: '✓'; color: white; font-weight: 900; font-size: 18px; display: none; }
+        .ficha-card.selected-for-print .custom-checkbox::after { display: block; }
+        .ficha-body { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; background: white; }
+        .ficha-card.open .ficha-body { padding: 25px 20px; max-height: none; overflow: visible; }
+        
+        /* --- CORRECCIÓN NUCLEAR Y ROMPE-MARCOS --- */
+        .ficha-body * { font-family: 'Nunito', sans-serif !important; box-sizing: border-box !important; line-height: 1.5 !important; }
+        .ficha-body img { display: block !important; max-width: 100% !important; height: auto !important; margin: 15px auto !important; transform: none !important; box-shadow: none !important; border-radius: 6px !important; }
+        .ficha-body table { width: 100% !important; border-collapse: collapse !important; margin: 10px 0 !important; table-layout: auto !important; }
+       .ficha-body td, .ficha-body th { padding: 8px !important; vertical-align: top !important; border: 1px solid #000 !important; word-wrap: break-word; }
+        .ficha-body p, .ficha-body span { background-color: transparent !important; color: #444 !important; }
+        .ficha-body span { overflow: visible !important; width: auto !important; height: auto !important; max-width: 100% !important; display: inline-block !important; }
+        
+        .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column-reverse; gap: 15px; z-index: 1000; align-items: center; }
+        .fab { width: 56px; height: 56px; border-radius: 50%; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; transition: transform 0.2s; position: relative; }
+        .fab:hover { transform: scale(1.1); }
+        .fab-print { background-color: var(--accent-color); color: white; width: 70px; height: 70px; font-size: 30px; }
+        .fab-print:disabled { background-color: #CFD8DC; cursor: not-allowed; }
+        .badge { position: absolute; top: 0; right: 0; background-color: #D32F2F; color: white; font-size: 12px; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+        .fab-copy { background-color: var(--copy-color); color: white; display: none; }
+        .fab-clear { background: white; color: #E57373; width: 45px; height: 45px; font-size: 18px; display: none; }
+        
+        @media print {
+            body { background: white; padding: 0; margin: 0; }
+           .fab-container, header, nav, .header-actions, #app-container > p, #app-container > h1, #app-intro { display: none !important; }
+            #app-container { max-width: 100%; margin: 0; }
+            .page-header { display: none !important; }
+            .ficha-card { display: none; border: none; box-shadow: none; margin: 0; margin-bottom: 20px; break-inside: auto; }
+            .ficha-card.selected-for-print[data-print="1"] { display: block !important; }
+            .ficha-header { background-color: transparent !important; color: #000 !important; padding: 5px 0 !important; border-bottom: 2px solid #000 !important; display: flex !important; }
+            .ficha-title { color: #000 !important; font-weight: bold !important; font-size: 1.2rem !important; }
+            .ficha-body { max-height: none !important; display: block !important; padding: 10px 0 !important; overflow: visible !important; color: #000 !important; }
+            .ficha-body p { display: block !important; color: #000 !important; }
+            .ficha-body * { color: #000 !important; visibility: visible !important; opacity: 1 !important; }
+            .ficha-body table { table-layout: auto !important; }
+        }
+    </style>
+</head>
+<body>
+    <style>body{margin:0!important;padding:0!important;}</style>
+    <div style="height: 24px;"></div>
+    <div id="app-container">
+        <div class="page-header">
+            <div><h1 style="margin: 0; font-size: 2.2rem; color: var(--title-color);">Esa boca</h1></div>
+        </div>
+        <p style="text-align: center; margin-bottom: 5px; color: #607D8B; font-size: 0.95rem;">
+            <small>Presionar <span style="background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px 6px;">▸ Abrir</span> para desplegar la ficha o <span style="background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px 6px;">↗️</span> para editarla</small>
+        </p>
+        <p style="text-align: center; margin-bottom: 35px; color: #607D8B; font-size: 0.95rem;">
+            <small>Marcar la casilla y luego 📋 para copiar la actividad o 🖨️ para imprimir o exportar a .PDF</small>
+        </p>
+        
+        <div id="app-intro">En esta ficha, se presentan tres niveles de organización de consignas que abordan el texto con similar profundidad pero de distintas dificultad. En la Opción 1 están presentadas todas las preguntas en múltiple choice, tres opciones de ordenamiento y seis errores de ortografía en la actividad final. Las opciones 2 y 3 aumentan las respuestas de desarrollo, de ordenamiento y la cantidad de errores en la última actividad, además de intensificar la dificultad.<div>Se pueden hacer grupos con distinto grado de apropiación en relación a la comprensión de textos y presentar las diferentes actividades.</div><div><a href="https://escolar.com.ar/para_libros/esa_boca/esa_boca_rubricas.pdf" target="_blank" style="color: blue;">Rubricas todas las opciones</a></div><div><a href="https://escolar.com.ar/para_libros/esa_boca/esa_boca_3_niveles_resultados.xlsx" target="_blank" style="color: blue;">Bajar .xls para cargar datos</a>&nbsp;(botón derecho/descargar)</div></div>
+        <div id="fichas-render-area"></div>
+    </div>
+    
+    <div class="fab-container">
+        <button class="fab fab-print" id="btn-print" onclick="printSelected()" disabled>🖨️ <div class="badge" id="print-badge" style="display: none;">0</div></button>
+        <button class="fab fab-copy" id="btn-copy" onclick="copySelected()">📋</button>
+        <button class="fab fab-clear" id="btn-clear" onclick="clearSelection()">🗑️</button>
+    </div>
+    
+    <script type="application/json" id="constructor-fichas-state">{"schema":"constructor-fichas","version":"v12-nombre-fijo-sin-numeracion","appTitle":"Esa boca","cloudJsonFilename":"esa_boca.json","appTheme":"lengua","appNavbar":"volver","outputLocation":"subfolder","volverText":"lectura autónoma","heroLayout":"img-left","heroImg1":"","heroImg2":"","showIntro":true,"introText":"En esta ficha, se presentan tres niveles de organización de consignas que abordan el texto con similar profundidad pero de distintas dificultad. En la Opción 1 están presentadas todas las preguntas en múltiple choice, tres opciones de ordenamiento y seis errores de ortografía en la actividad final. Las opciones 2 y 3 aumentan las respuestas de desarrollo, de ordenamiento y la cantidad de errores en la última actividad, además de intensificar la dificultad.\u003cdiv>Se pueden hacer grupos con distinto grado de apropiación en relación a la comprensión de textos y presentar las diferentes actividades.\u003c/div>\u003cdiv>\u003ca href=\"https://escolar.com.ar/para_libros/esa_boca/esa_boca_rubricas.pdf\" target=\"_blank\" style=\"color: blue;\">Rubricas todas las opciones\u003c/a>\u003c/div>\u003cdiv>\u003ca href=\"https://escolar.com.ar/para_libros/esa_boca/esa_boca_3_niveles_resultados.xlsx\" target=\"_blank\" style=\"color: blue;\">Bajar .xls para cargar datos\u003c/a>&nbsp;(botón derecho/descargar)\u003c/div>","cards":[{"title":"Cuento ","content":"\u003cheader style=\"box-sizing: border-box; color: rgb(51, 51, 51); font-family: &quot;PT Serif&quot;, serif; font-size: 16px;\">\u003cdiv class=\"text-center\" style=\"box-sizing: border-box; text-align: center;\">\u003ch1 style=\"box-sizing: border-box; font-size: 1.6em; margin: 22px 0px 11px; font-family: inherit; font-weight: 500; line-height: 1.1; color: inherit;\">Esa boca -&nbsp;\u003cspan style=\"font-size: 16px;\">Mario Benedetti\u003c/span>\u003c/h1>\u003c/div>\u003cdiv class=\"text-center\" style=\"box-sizing: border-box; text-align: center;\">\u003cbr>\u003c/div>\u003c/header>\u003cdiv class=\"text-justify\" style=\"box-sizing: border-box; text-align: justify; color: rgb(51, 51, 51); font-family: &quot;PT Serif&quot;, serif; font-size: 16px;\">\u003cp style=\"box-sizing: border-box; margin: 0px 0px 11px;\">Su entusiasmo por el circo se venía arrastrando desde tiempo atrás. Dos meses, quizá. Pero cuando siete años son toda la vida y aún se ve el mundo de los mayores como una muchedumbre a través de un vidrio esmerilado, entonces dos meses representan un largo, insondable proceso. Sus hermanos mayores habían ido dos o tres veces e imitaban minuciosamente las graciosas desgracias de los payasos y las contorsiones y equilibrios de los forzudos. También los compañeros de la escuela lo habían visto y se reían con grandes aspavientos al recordar este golpe o aquella pirueta. Solo que Carlos no sabía que eran exageraciones destinadas a él, a él que no iba al circo porque el padre entendía que era muy impresionable y podía conmoverse demasiado ante el riesgo inútil que corrían los trapecistas. Sin embargo, Carlos sentía algo parecido a un dolor en el pecho siempre que pensaba en los payasos. Cada día se le iba siendo más difícil soportar su curiosidad.\u003c/p>\u003cp style=\"box-sizing: border-box; margin: 0px 0px 11px;\">Entonces preparó la frase y en el momento oportuno se la dijo al padre: “¿No habría forma de que yo pudiese ir alguna vez al circo?” A los siete años, toda frase larga resulta simpática y el padre se vio obligado primero a sonreír, luego a explicarse: “No quiero que veas a los trapecistas.” En cuanto oyó esto, Carlos se sintió verdaderamente a salvo, porque él no tenía interés en los trapecistas. “¿Y si me fuera cuando empieza ese número?” “Bueno”, contestó el padre, “así, sí”.\u003c/p>\u003cp style=\"box-sizing: border-box; margin: 0px 0px 11px;\">La madre compró dos entradas y lo llevó el sábado de noche. Apareció una mujer de malla roja que hacía equilibrio sobre un caballo blanco. Él esperaba a los payasos. Aplaudieron. Después salieron unos monos que andaban en bicicleta, pero él esperaba a los payasos. Otra vez aplaudieron y apareció un malabarista. Carlos miraba con los ojos muy abiertos, pero de pronto se encontró bostezando. Aplaudieron de nuevo y salieron —ahora sí— los payasos.\u003c/p>\u003cp style=\"box-sizing: border-box; margin: 0px 0px 11px;\">Su interés llegó a la máxima tensión. Eran cuatro, dos de ellos enanos. Uno de los grandes hizo una cabriola, de aquellas que imitaba su hermano mayor. Un enano se le metió entre las piernas y el payaso grande le pegó sonoramente en el trasero. Casi todos los espectadores se reían y algunos muchachitos empezaban a festejar el chiste mímico antes aún de que el payaso emprendiera su gesto. Los dos enanos se trenzaron en la milésima versión de una pelea absurda, mientras el menos cómico de los otros dos los alentaba para que se pegasen. Entonces el segundo payaso grande, que era sin lugar a dudas el más cómico, se acercó a la baranda que limitaba la pista, y Carlos lo vio junto a él, tan cerca que pudo distinguir la boca cansada del hombre bajo la risa pintada y fija del payaso. Por un instante el pobre diablo vio aquella carita asombrada y le sonrió, de modo imperceptible, con sus labios verdaderos. Pero los otros tres habían concluido y el payaso más cómico se unió a los demás en los porrazos y saltos finales, y todos aplaudieron, aun la madre de Carlos.\u003c/p>\u003cp style=\"box-sizing: border-box; margin: 0px 0px 11px;\">Y como después venían los trapecistas, de acuerdo a lo convenido la madre lo tomó de un brazo y salieron a la calle. Ahora sí había visto el circo, como sus hermanos y los compañeros del colegio. Sentía el pecho vacío y no le importaba qué iba a decir mañana. Serían las once de la noche, pero la madre sospechaba algo y lo introdujo en la zona de luz de una vidriera. Le pasó despacio, como si no lo creyera, una mano por los ojos, y después le preguntó si estaba llorando. Él no dijo nada. “¿Es por los trapecistas? ¿Tenías ganas de verlos?”\u003c/p>\u003cp style=\"box-sizing: border-box; margin: 0px 0px 11px;\">Ya era demasiado. A él no le interesaban los trapecistas. Solo para destruir el malentendido, explicó que lloraba porque los payasos no le hacían reír.\u003c/p>\u003cp align=\"center\" style=\"box-sizing: border-box; margin: 0px 0px 11px;\">*FIN*\u003c/p>\u003cdiv>\u003cbr>\u003c/div>\u003c/div>","startOpen":true,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Opción 1","content":"\u003col data-start=\"248\" data-end=\"308\">\u003cli data-section-id=\"cuf3tf\" data-start=\"248\" data-end=\"308\">¿Por qué el padre de Carlos no quería que fuera al circo?\u003cspan aria-hidden=\"true\" class=\"PDq2pG_selectionAnchor\">\u003c/span>\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"310\" data-end=\"562\">A. Porque consideraba que los payasos eran demasiado violentos.\u003cbr data-start=\"373\" data-end=\"376\">\nB. Porque Carlos ya había ido varias veces.\u003cbr data-start=\"419\" data-end=\"422\">\nC. Porque pensaba que era muy impresionable y podía conmoverse con el riesgo de los trapecistas.\u003cbr data-start=\"518\" data-end=\"521\">\nD. Porque no quería que saliera de noche.\u003c/p>\n\u003col start=\"2\" data-start=\"564\" data-end=\"700\">\n\u003cli data-section-id=\"1agc1s7\" data-start=\"564\" data-end=\"700\">\nEn el fragmento “Después salieron unos monos que andaban en bicicleta, pero \u003cstrong data-start=\"643\" data-end=\"649\">él\u003c/strong> esperaba a los payasos”, ¿a quién se refiere “él”?\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"702\" data-end=\"775\">A. Al padre.\u003cbr data-start=\"714\" data-end=\"717\">\nB. A Carlos.\u003cbr data-start=\"729\" data-end=\"732\">\nC. A uno de los hermanos.\u003cbr data-start=\"757\" data-end=\"760\">\nD. A un payaso.\u003c/p>\n\u003col start=\"3\" data-start=\"777\" data-end=\"897\">\n\u003cli data-section-id=\"10ldc9a\" data-start=\"777\" data-end=\"897\">\n¿Por qué Carlos se sintió “verdaderamente a salvo” cuando su padre le dijo que no quería que viera a los trapecistas?\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"899\" data-end=\"1160\">A. Porque a Carlos no le interesaban los trapecistas y podría irse antes de ese número.\u003cbr data-start=\"986\" data-end=\"989\">\nB. Porque sabía que los trapecistas no actuarían esa noche.\u003cbr data-start=\"1048\" data-end=\"1051\">\nC. Porque su madre le había prometido quedarse con él.\u003cbr data-start=\"1105\" data-end=\"1108\">\nD. Porque prefería ver a los monos y al malabarista.\u003c/p>\n\u003col start=\"4\" data-start=\"1162\" data-end=\"1239\">\n\u003cli data-section-id=\"13w04w\" data-start=\"1162\" data-end=\"1239\">\n¿Quién dice: “¿No habría forma de que yo pudiese ir alguna vez al circo?”?\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"1241\" data-end=\"1307\">A. La madre.\u003cbr data-start=\"1253\" data-end=\"1256\">\nB. El padre.\u003cbr data-start=\"1268\" data-end=\"1271\">\nC. Uno de los hermanos.\u003cbr data-start=\"1294\" data-end=\"1297\">\nD. Carlos.\u003c/p>\n\u003col start=\"5\" data-start=\"1309\" data-end=\"1400\">\n\u003cli data-section-id=\"1nuxek0\" data-start=\"1309\" data-end=\"1400\">\n¿Por qué Carlos termina llorando después de haber esperado tanto para ver a los payasos?\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"1402\" data-end=\"1652\">A. Porque no pudo quedarse a ver a los trapecistas.\u003cbr data-start=\"1453\" data-end=\"1456\">\nB. Porque su madre lo obligó a salir demasiado temprano.\u003cbr data-start=\"1512\" data-end=\"1515\">\nC. Porque los payasos no le produjeron la alegría que esperaba y no lograron hacerlo reír.\u003cbr data-start=\"1605\" data-end=\"1608\">\nD. Porque los otros niños se burlaron de él.\u003c/p>\n\u003col start=\"6\" data-start=\"1654\" data-end=\"1716\">\n\u003cli data-section-id=\"1naopcw\" data-start=\"1654\" data-end=\"1716\">\nNumerá los hechos del 1 al 3 según el orden en que suceden.\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"1718\" data-end=\"1779\">___ Carlos ve de cerca al payaso y distingue su boca cansada.\u003c/p>\n\u003cp data-start=\"1781\" data-end=\"1864\">___ El padre acepta que Carlos vaya al circo si se retira antes de los trapecistas.\u003c/p>\n\u003cp data-start=\"1866\" data-end=\"1945\">___ Carlos le explica a su madre que llora porque los payasos no le hacen reír.\u003c/p>\n\u003col start=\"7\" data-start=\"1947\" data-end=\"2137\">\n\u003cli data-section-id=\"1npnhv9\" data-start=\"1947\" data-end=\"2137\">\nUn alumno de 5.º grado escribió este texto y tuvo \u003cstrong data-start=\"2000\" data-end=\"2027\">6 errores de ortografía\u003c/strong>. Marcá las palabras que están mal escritas, escribilas correctamente y explicá cuál es el error en cada caso.\n\u003c/li>\n\u003c/ol>\n\u003cblockquote data-start=\"2139\" data-end=\"2376\">\n\u003cp data-start=\"2141\" data-end=\"2376\">carlos esperaba con entusiasmo el número de los payasos. Cuando enpezó la función, tanbién miró otros actos, pero quería acer una sola cosa: reírse. Pensaba que abía esperado mucho tiempo y su curiosidad se arastraba desde hacía meses.\u003c/p>\u003cp data-start=\"2141\" data-end=\"2376\">\u003ca href=\"https://escolar.com.ar/para_libros/esa_boca/esa_boca_1.pdf\" target=\"_blank\" style=\"color: blue;\">Descargar PDF\u003c/a>\u003c/p>\u003c/blockquote>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Opción 2","content":"\u003col data-start=\"2395\" data-end=\"2546\">\u003cli data-section-id=\"1l3zpw2\" data-start=\"2395\" data-end=\"2522\">Explicá qué habían contado o hecho los hermanos y los compañeros de Carlos para aumentar su curiosidad por conocer el circo.\u003cspan aria-hidden=\"true\" class=\"PDq2pG_selectionAnchor\">\u003c/span>\n\u003c/li>\n\u003cli data-section-id=\"7pac2z\" data-start=\"2524\" data-end=\"2546\">\nLeé este fragmento:\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"2548\" data-end=\"2681\">“Por un instante \u003cstrong data-start=\"2565\" data-end=\"2584\">el pobre diablo\u003c/strong> vio aquella carita asombrada y \u003cstrong data-start=\"2616\" data-end=\"2622\">le\u003c/strong> sonrió, de modo imperceptible, con sus labios verdaderos.”\u003c/p>\n\u003cp data-start=\"2683\" data-end=\"2762\">¿A quién se refiere “el pobre diablo”? ¿A quién se refiere “le” en “le sonrió”?\u003c/p>\n\u003col start=\"3\" data-start=\"2764\" data-end=\"3264\">\n\u003cli data-section-id=\"a22p7r\" data-start=\"2764\" data-end=\"2944\">\nAntes de que aparezcan los payasos, Carlos los espera con enorme entusiasmo. Sin embargo, después de verlos siente “el pecho vacío”. Explicá qué pudo haber provocado ese cambio.\n\u003c/li>\n\u003cli data-section-id=\"sntzj9\" data-start=\"2946\" data-end=\"3195\">\nAl salir del circo, la madre pregunta: “¿Es por los trapecistas? ¿Tenías ganas de verlos?”. Carlos finalmente responde que lloraba porque los payasos no le hacían reír. Explicá qué había interpretado la madre y qué aclara Carlos con su respuesta.\n\u003c/li>\n\u003cli data-section-id=\"kuoaym\" data-start=\"3197\" data-end=\"3264\">\n¿Por qué el padre finalmente permitió que Carlos fuera al circo?\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"3266\" data-end=\"3500\">A. Porque Carlos prometió no mirar a los payasos.\u003cbr data-start=\"3315\" data-end=\"3318\">\nB. Porque acordaron que saldría cuando comenzara el número de los trapecistas.\u003cbr data-start=\"3396\" data-end=\"3399\">\nC. Porque los hermanos mayores irían con él.\u003cbr data-start=\"3443\" data-end=\"3446\">\nD. Porque el padre dejó de considerarlo impresionable.\u003c/p>\n\u003col start=\"6\" data-start=\"3502\" data-end=\"3615\">\n\u003cli data-section-id=\"6bp3yq\" data-start=\"3502\" data-end=\"3615\">\n¿Qué permite comprender la descripción de “la boca cansada del hombre bajo la risa pintada y fija del payaso”?\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"3617\" data-end=\"3853\">A. Que el maquillaje del payaso estaba mal hecho.\u003cbr data-start=\"3666\" data-end=\"3669\">\nB. Que Carlos descubre a una persona cansada detrás de la apariencia alegre del personaje.\u003cbr data-start=\"3759\" data-end=\"3762\">\nC. Que el payaso estaba enojado con Carlos.\u003cbr data-start=\"3805\" data-end=\"3808\">\nD. Que el payaso había olvidado cómo sonreír.\u003c/p>\n\u003col start=\"7\" data-start=\"3855\" data-end=\"3920\">\n\u003cli data-section-id=\"tx8cs9\" data-start=\"3855\" data-end=\"3920\">\nOrdená los cuatro acontecimientos según aparecen en el relato.\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"3922\" data-end=\"3988\">___ Carlos observa de cerca la boca cansada de uno de los payasos.\u003c/p>\n\u003cp data-start=\"3990\" data-end=\"4053\">___ El padre acepta que Carlos vaya al circo con una condición.\u003c/p>\n\u003cp data-start=\"4055\" data-end=\"4107\">___ Carlos explica a su madre por qué está llorando.\u003c/p>\n\u003cp data-start=\"4109\" data-end=\"4190\">___ Carlos observa distintos números mientras espera la aparición de los payasos.\u003c/p>\n\u003col start=\"8\" data-start=\"4192\" data-end=\"4384\">\n\u003cli data-section-id=\"1nt5qnl\" data-start=\"4192\" data-end=\"4384\">\nUn alumno de 5.º grado escribió este resumen y tuvo \u003cstrong data-start=\"4247\" data-end=\"4274\">8 errores de ortografía\u003c/strong>. Marcá las palabras que están mal escritas, escribilas correctamente y explicá cuál es el error en cada caso.\n\u003c/li>\n\u003c/ol>\n\u003cblockquote data-start=\"4386\" data-end=\"4790\">\n\u003cp data-start=\"4388\" data-end=\"4790\">carlos fue al circo con su madre. Cuando enpezó el espectáculo, tanbién observó a los otros artistas, pero esperaba a los payasos. Quería acer lo mismo que sus hermanos: reírse de sus vromas. El payaso más cómico se acercó a la baranda y después le hizo un gesto amavle. Carlos quedó embuelto en una sensación distinta. Al salir, abía comprendido que los payasos no le causaban la alegría que esperaba.\u003c/p>\n\u003c/blockquote>\n\u003ca href=\"https://escolar.com.ar/para_libros/esa_boca/esa_boca_2.pdf\" target=\"_blank\" style=\"color: blue;\">Descargar .PDF\u003c/a>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Opción 3","content":"\u003col data-start=\"4809\" data-end=\"6421\">\u003cli data-section-id=\"1h3mu9j\" data-start=\"4809\" data-end=\"5052\">Reconstruí cómo van cambiando las expectativas de Carlos desde el comienzo del cuento hasta que sale del circo. Explicá qué esperaba antes de ir, qué ocurre cuando finalmente aparecen los payasos y cómo se siente al terminar el espectáculo.\u003cspan aria-hidden=\"true\" class=\"PDq2pG_selectionAnchor\">\u003c/span>\n\u003c/li>\n\u003cli data-section-id=\"113swyc\" data-start=\"5054\" data-end=\"5294\">\nEl mismo personaje es mencionado como “el segundo payaso grande”, “el más cómico”, “el hombre” y “el pobre diablo”. Explicá a quién se refieren estas expresiones y qué cambio se produce en la manera en que Carlos percibe a ese personaje.\n\u003c/li>\n\u003cli data-section-id=\"ru3bvd\" data-start=\"5296\" data-end=\"5584\">\nEl narrador contrapone “la boca cansada del hombre” con “la risa pintada y fija del payaso” y luego menciona que el hombre sonríe “con sus labios verdaderos”. Explicá qué diferencia establece el texto entre esas dos sonrisas y por qué ese descubrimiento resulta importante para Carlos.\n\u003c/li>\n\u003cli data-section-id=\"k8nvpb\" data-start=\"5586\" data-end=\"5864\">\nLa madre interpreta que Carlos llora porque no pudo ver a los trapecistas. Carlos le responde que llora porque los payasos no le hacen reír. Explicá qué muestra este diálogo acerca de la experiencia que Carlos acaba de vivir y de lo que su madre alcanza a comprender de ella.\n\u003c/li>\n\u003cli data-section-id=\"1gakd0t\" data-start=\"5866\" data-end=\"6146\">\nAl comienzo, Carlos está muy pendiente de haber ido finalmente al circo como sus hermanos y compañeros. Después del espectáculo, el narrador dice que “no le importaba qué iba a decir mañana”. ¿Por qué creés que dejó de importarle? Justificá a partir de lo sucedido en el circo.\n\u003c/li>\n\u003cli data-section-id=\"kpm19f\" data-start=\"6148\" data-end=\"6345\">\nEl cuento se titula \u003cstrong data-start=\"6171\" data-end=\"6185\">“Esa boca”\u003c/strong>. Explicá por qué la boca del payaso puede considerarse el elemento central que modifica la experiencia de Carlos y relacioná el título con el final del cuento.\n\u003c/li>\n\u003cli data-section-id=\"kysyvf\" data-start=\"6347\" data-end=\"6421\">\nOrdená los seis acontecimientos de acuerdo con la secuencia del relato.\n\u003c/li>\n\u003c/ol>\n\u003cp data-start=\"6423\" data-end=\"6515\">___ Carlos ve de cerca al payaso más cómico y descubre la boca cansada bajo la risa pintada.\u003c/p>\n\u003cp data-start=\"6517\" data-end=\"6615\">___ Carlos escucha durante mucho tiempo las historias de sus hermanos y compañeros sobre el circo.\u003c/p>\n\u003cp data-start=\"6617\" data-end=\"6710\">___ La madre advierte que Carlos está llorando y le pregunta si quería ver a los trapecistas.\u003c/p>\n\u003cp data-start=\"6712\" data-end=\"6804\">___ El padre permite que Carlos vaya con la condición de retirarse antes de los trapecistas.\u003c/p>\n\u003cp data-start=\"6806\" data-end=\"6886\">___ Carlos observa varios números mientras espera con impaciencia a los payasos.\u003c/p>\n\u003cp data-start=\"6888\" data-end=\"6953\">___ Carlos explica que llora porque los payasos no le hacen reír.\u003c/p>\n\u003col start=\"8\" data-start=\"6955\" data-end=\"7146\">\n\u003cli data-section-id=\"1idfist\" data-start=\"6955\" data-end=\"7146\">\nUn alumno de 5.º grado escribió este texto y tuvo \u003cstrong data-start=\"7008\" data-end=\"7036\">10 errores de ortografía\u003c/strong>. Marcá las palabras que están mal escritas, escribilas correctamente y explicá cuál es el error en cada caso.\n\u003c/li>\n\u003c/ol>\n\u003cblockquote data-start=\"7148\" data-end=\"7599\">\n\u003cp data-start=\"7150\" data-end=\"7599\">carlos esperava que los payasos lo hicieran reír. Había visto a la mujer sobre el caballo vlanco y a otros artistas, pero solo aguardaba a los payasos. Cuando el más comico se acercó, Carlos mirava su cara con atención y comprendió que abía una diferencia entre la risa pintada y los labios verdaderos. Tanbién notó que el hombre parecía cansado. despues, su madre lo tomó del vrazo para salir. Carlos quedó embuelto en una tristeza que no esperaba.\u003c/p>\u003cp data-start=\"7150\" data-end=\"7599\">\u003ca href=\"https://escolar.com.ar/para_libros/esa_boca/esa_boca_3.pdf\" target=\"_blank\" style=\"color: blue;\">Descargar en PDF\u003c/a>\u003c/p>\u003c/blockquote>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true}]}</script>
+    <div id="raw-content-placeholder"><table data-open="1" data-copy="1" data-print="1" data-editor="1"><tr><td>Cuento </td></tr><tr><td><header style="box-sizing: border-box; color: rgb(51, 51, 51); font-family: &quot;PT Serif&quot;, serif; font-size: 16px;"><div class="text-center" style="box-sizing: border-box; text-align: center;"><h1 style="box-sizing: border-box; font-size: 1.6em; margin: 22px 0px 11px; font-family: inherit; font-weight: 500; line-height: 1.1; color: inherit;">Esa boca -&nbsp;<span style="font-size: 16px;">Mario Benedetti</span></h1></div><audio controls>
+  <source src="https://escolar.com.ar/para_libros/esa_boca/esa_boca.mp3" type="audio/mpeg">
+  Tu navegador no soporta el elemento de audio.
+</audio><div class="text-center" style="box-sizing: border-box; text-align: center;"><br></div></header><div class="text-justify" style="box-sizing: border-box; text-align: justify; color: rgb(51, 51, 51); font-family: &quot;PT Serif&quot;, serif; font-size: 16px;"><p style="box-sizing: border-box; margin: 0px 0px 11px;">Su entusiasmo por el circo se venía arrastrando desde tiempo atrás. Dos meses, quizá. Pero cuando siete años son toda la vida y aún se ve el mundo de los mayores como una muchedumbre a través de un vidrio esmerilado, entonces dos meses representan un largo, insondable proceso. Sus hermanos mayores habían ido dos o tres veces e imitaban minuciosamente las graciosas desgracias de los payasos y las contorsiones y equilibrios de los forzudos. También los compañeros de la escuela lo habían visto y se reían con grandes aspavientos al recordar este golpe o aquella pirueta. Solo que Carlos no sabía que eran exageraciones destinadas a él, a él que no iba al circo porque el padre entendía que era muy impresionable y podía conmoverse demasiado ante el riesgo inútil que corrían los trapecistas. Sin embargo, Carlos sentía algo parecido a un dolor en el pecho siempre que pensaba en los payasos. Cada día se le iba siendo más difícil soportar su curiosidad.</p><p style="box-sizing: border-box; margin: 0px 0px 11px;">Entonces preparó la frase y en el momento oportuno se la dijo al padre: “¿No habría forma de que yo pudiese ir alguna vez al circo?” A los siete años, toda frase larga resulta simpática y el padre se vio obligado primero a sonreír, luego a explicarse: “No quiero que veas a los trapecistas.” En cuanto oyó esto, Carlos se sintió verdaderamente a salvo, porque él no tenía interés en los trapecistas. “¿Y si me fuera cuando empieza ese número?” “Bueno”, contestó el padre, “así, sí”.</p><p style="box-sizing: border-box; margin: 0px 0px 11px;">La madre compró dos entradas y lo llevó el sábado de noche. Apareció una mujer de malla roja que hacía equilibrio sobre un caballo blanco. Él esperaba a los payasos. Aplaudieron. Después salieron unos monos que andaban en bicicleta, pero él esperaba a los payasos. Otra vez aplaudieron y apareció un malabarista. Carlos miraba con los ojos muy abiertos, pero de pronto se encontró bostezando. Aplaudieron de nuevo y salieron —ahora sí— los payasos.</p><p style="box-sizing: border-box; margin: 0px 0px 11px;">Su interés llegó a la máxima tensión. Eran cuatro, dos de ellos enanos. Uno de los grandes hizo una cabriola, de aquellas que imitaba su hermano mayor. Un enano se le metió entre las piernas y el payaso grande le pegó sonoramente en el trasero. Casi todos los espectadores se reían y algunos muchachitos empezaban a festejar el chiste mímico antes aún de que el payaso emprendiera su gesto. Los dos enanos se trenzaron en la milésima versión de una pelea absurda, mientras el menos cómico de los otros dos los alentaba para que se pegasen. Entonces el segundo payaso grande, que era sin lugar a dudas el más cómico, se acercó a la baranda que limitaba la pista, y Carlos lo vio junto a él, tan cerca que pudo distinguir la boca cansada del hombre bajo la risa pintada y fija del payaso. Por un instante el pobre diablo vio aquella carita asombrada y le sonrió, de modo imperceptible, con sus labios verdaderos. Pero los otros tres habían concluido y el payaso más cómico se unió a los demás en los porrazos y saltos finales, y todos aplaudieron, aun la madre de Carlos.</p><p style="box-sizing: border-box; margin: 0px 0px 11px;">Y como después venían los trapecistas, de acuerdo a lo convenido la madre lo tomó de un brazo y salieron a la calle. Ahora sí había visto el circo, como sus hermanos y los compañeros del colegio. Sentía el pecho vacío y no le importaba qué iba a decir mañana. Serían las once de la noche, pero la madre sospechaba algo y lo introdujo en la zona de luz de una vidriera. Le pasó despacio, como si no lo creyera, una mano por los ojos, y después le preguntó si estaba llorando. Él no dijo nada. “¿Es por los trapecistas? ¿Tenías ganas de verlos?”</p><p style="box-sizing: border-box; margin: 0px 0px 11px;">Ya era demasiado. A él no le interesaban los trapecistas. Solo para destruir el malentendido, explicó que lloraba porque los payasos no le hacían reír.</p><p align="center" style="box-sizing: border-box; margin: 0px 0px 11px;">*FIN*</p><div><br></div></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Opción 1</td></tr><tr><td><ol data-start="248" data-end="308"><li data-section-id="cuf3tf" data-start="248" data-end="308">¿Por qué el padre de Carlos no quería que fuera al circo?<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span>
+</li>
+</ol>
+<p data-start="310" data-end="562">A. Porque consideraba que los payasos eran demasiado violentos.<br data-start="373" data-end="376">
+B. Porque Carlos ya había ido varias veces.<br data-start="419" data-end="422">
+C. Porque pensaba que era muy impresionable y podía conmoverse con el riesgo de los trapecistas.<br data-start="518" data-end="521">
+D. Porque no quería que saliera de noche.</p>
+<ol start="2" data-start="564" data-end="700">
+<li data-section-id="1agc1s7" data-start="564" data-end="700">
+En el fragmento “Después salieron unos monos que andaban en bicicleta, pero <strong data-start="643" data-end="649">él</strong> esperaba a los payasos”, ¿a quién se refiere “él”?
+</li>
+</ol>
+<p data-start="702" data-end="775">A. Al padre.<br data-start="714" data-end="717">
+B. A Carlos.<br data-start="729" data-end="732">
+C. A uno de los hermanos.<br data-start="757" data-end="760">
+D. A un payaso.</p>
+<ol start="3" data-start="777" data-end="897">
+<li data-section-id="10ldc9a" data-start="777" data-end="897">
+¿Por qué Carlos se sintió “verdaderamente a salvo” cuando su padre le dijo que no quería que viera a los trapecistas?
+</li>
+</ol>
+<p data-start="899" data-end="1160">A. Porque a Carlos no le interesaban los trapecistas y podría irse antes de ese número.<br data-start="986" data-end="989">
+B. Porque sabía que los trapecistas no actuarían esa noche.<br data-start="1048" data-end="1051">
+C. Porque su madre le había prometido quedarse con él.<br data-start="1105" data-end="1108">
+D. Porque prefería ver a los monos y al malabarista.</p>
+<ol start="4" data-start="1162" data-end="1239">
+<li data-section-id="13w04w" data-start="1162" data-end="1239">
+¿Quién dice: “¿No habría forma de que yo pudiese ir alguna vez al circo?”?
+</li>
+</ol>
+<p data-start="1241" data-end="1307">A. La madre.<br data-start="1253" data-end="1256">
+B. El padre.<br data-start="1268" data-end="1271">
+C. Uno de los hermanos.<br data-start="1294" data-end="1297">
+D. Carlos.</p>
+<ol start="5" data-start="1309" data-end="1400">
+<li data-section-id="1nuxek0" data-start="1309" data-end="1400">
+¿Por qué Carlos termina llorando después de haber esperado tanto para ver a los payasos?
+</li>
+</ol>
+<p data-start="1402" data-end="1652">A. Porque no pudo quedarse a ver a los trapecistas.<br data-start="1453" data-end="1456">
+B. Porque su madre lo obligó a salir demasiado temprano.<br data-start="1512" data-end="1515">
+C. Porque los payasos no le produjeron la alegría que esperaba y no lograron hacerlo reír.<br data-start="1605" data-end="1608">
+D. Porque los otros niños se burlaron de él.</p>
+<ol start="6" data-start="1654" data-end="1716">
+<li data-section-id="1naopcw" data-start="1654" data-end="1716">
+Numerá los hechos del 1 al 3 según el orden en que suceden.
+</li>
+</ol>
+<p data-start="1718" data-end="1779">___ Carlos ve de cerca al payaso y distingue su boca cansada.</p>
+<p data-start="1781" data-end="1864">___ El padre acepta que Carlos vaya al circo si se retira antes de los trapecistas.</p>
+<p data-start="1866" data-end="1945">___ Carlos le explica a su madre que llora porque los payasos no le hacen reír.</p>
+<ol start="7" data-start="1947" data-end="2137">
+<li data-section-id="1npnhv9" data-start="1947" data-end="2137">
+Un alumno de 5.º grado escribió este texto y tuvo <strong data-start="2000" data-end="2027">6 errores de ortografía</strong>. Marcá las palabras que están mal escritas, escribilas correctamente y explicá cuál es el error en cada caso.
+</li>
+</ol>
+<blockquote data-start="2139" data-end="2376">
+<p data-start="2141" data-end="2376">carlos esperaba con entusiasmo el número de los payasos. Cuando enpezó la función, tanbién miró otros actos, pero quería acer una sola cosa: reírse. Pensaba que abía esperado mucho tiempo y su curiosidad se arastraba desde hacía meses.</p><p data-start="2141" data-end="2376"><a href="https://escolar.com.ar/para_libros/esa_boca/esa_boca_1.pdf" target="_blank" style="color: blue;">Descargar PDF</a></p></blockquote></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Opción 2</td></tr><tr><td><ol data-start="2395" data-end="2546"><li data-section-id="1l3zpw2" data-start="2395" data-end="2522">Explicá qué habían contado o hecho los hermanos y los compañeros de Carlos para aumentar su curiosidad por conocer el circo.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span>
+</li>
+<li data-section-id="7pac2z" data-start="2524" data-end="2546">
+Leé este fragmento:
+</li>
+</ol>
+<p data-start="2548" data-end="2681">“Por un instante <strong data-start="2565" data-end="2584">el pobre diablo</strong> vio aquella carita asombrada y <strong data-start="2616" data-end="2622">le</strong> sonrió, de modo imperceptible, con sus labios verdaderos.”</p>
+<p data-start="2683" data-end="2762">¿A quién se refiere “el pobre diablo”? ¿A quién se refiere “le” en “le sonrió”?</p>
+<ol start="3" data-start="2764" data-end="3264">
+<li data-section-id="a22p7r" data-start="2764" data-end="2944">
+Antes de que aparezcan los payasos, Carlos los espera con enorme entusiasmo. Sin embargo, después de verlos siente “el pecho vacío”. Explicá qué pudo haber provocado ese cambio.
+</li>
+<li data-section-id="sntzj9" data-start="2946" data-end="3195">
+Al salir del circo, la madre pregunta: “¿Es por los trapecistas? ¿Tenías ganas de verlos?”. Carlos finalmente responde que lloraba porque los payasos no le hacían reír. Explicá qué había interpretado la madre y qué aclara Carlos con su respuesta.
+</li>
+<li data-section-id="kuoaym" data-start="3197" data-end="3264">
+¿Por qué el padre finalmente permitió que Carlos fuera al circo?
+</li>
+</ol>
+<p data-start="3266" data-end="3500">A. Porque Carlos prometió no mirar a los payasos.<br data-start="3315" data-end="3318">
+B. Porque acordaron que saldría cuando comenzara el número de los trapecistas.<br data-start="3396" data-end="3399">
+C. Porque los hermanos mayores irían con él.<br data-start="3443" data-end="3446">
+D. Porque el padre dejó de considerarlo impresionable.</p>
+<ol start="6" data-start="3502" data-end="3615">
+<li data-section-id="6bp3yq" data-start="3502" data-end="3615">
+¿Qué permite comprender la descripción de “la boca cansada del hombre bajo la risa pintada y fija del payaso”?
+</li>
+</ol>
+<p data-start="3617" data-end="3853">A. Que el maquillaje del payaso estaba mal hecho.<br data-start="3666" data-end="3669">
+B. Que Carlos descubre a una persona cansada detrás de la apariencia alegre del personaje.<br data-start="3759" data-end="3762">
+C. Que el payaso estaba enojado con Carlos.<br data-start="3805" data-end="3808">
+D. Que el payaso había olvidado cómo sonreír.</p>
+<ol start="7" data-start="3855" data-end="3920">
+<li data-section-id="tx8cs9" data-start="3855" data-end="3920">
+Ordená los cuatro acontecimientos según aparecen en el relato.
+</li>
+</ol>
+<p data-start="3922" data-end="3988">___ Carlos observa de cerca la boca cansada de uno de los payasos.</p>
+<p data-start="3990" data-end="4053">___ El padre acepta que Carlos vaya al circo con una condición.</p>
+<p data-start="4055" data-end="4107">___ Carlos explica a su madre por qué está llorando.</p>
+<p data-start="4109" data-end="4190">___ Carlos observa distintos números mientras espera la aparición de los payasos.</p>
+<ol start="8" data-start="4192" data-end="4384">
+<li data-section-id="1nt5qnl" data-start="4192" data-end="4384">
+Un alumno de 5.º grado escribió este resumen y tuvo <strong data-start="4247" data-end="4274">8 errores de ortografía</strong>. Marcá las palabras que están mal escritas, escribilas correctamente y explicá cuál es el error en cada caso.
+</li>
+</ol>
+<blockquote data-start="4386" data-end="4790">
+<p data-start="4388" data-end="4790">carlos fue al circo con su madre. Cuando enpezó el espectáculo, tanbién observó a los otros artistas, pero esperaba a los payasos. Quería acer lo mismo que sus hermanos: reírse de sus vromas. El payaso más cómico se acercó a la baranda y después le hizo un gesto amavle. Carlos quedó embuelto en una sensación distinta. Al salir, abía comprendido que los payasos no le causaban la alegría que esperaba.</p>
+</blockquote>
+<a href="https://escolar.com.ar/para_libros/esa_boca/esa_boca_2.pdf" target="_blank" style="color: blue;">Descargar .PDF</a></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Opción 3</td></tr><tr><td><ol data-start="4809" data-end="6421"><li data-section-id="1h3mu9j" data-start="4809" data-end="5052">Reconstruí cómo van cambiando las expectativas de Carlos desde el comienzo del cuento hasta que sale del circo. Explicá qué esperaba antes de ir, qué ocurre cuando finalmente aparecen los payasos y cómo se siente al terminar el espectáculo.<span aria-hidden="true" class="PDq2pG_selectionAnchor"></span>
+</li>
+<li data-section-id="113swyc" data-start="5054" data-end="5294">
+El mismo personaje es mencionado como “el segundo payaso grande”, “el más cómico”, “el hombre” y “el pobre diablo”. Explicá a quién se refieren estas expresiones y qué cambio se produce en la manera en que Carlos percibe a ese personaje.
+</li>
+<li data-section-id="ru3bvd" data-start="5296" data-end="5584">
+El narrador contrapone “la boca cansada del hombre” con “la risa pintada y fija del payaso” y luego menciona que el hombre sonríe “con sus labios verdaderos”. Explicá qué diferencia establece el texto entre esas dos sonrisas y por qué ese descubrimiento resulta importante para Carlos.
+</li>
+<li data-section-id="k8nvpb" data-start="5586" data-end="5864">
+La madre interpreta que Carlos llora porque no pudo ver a los trapecistas. Carlos le responde que llora porque los payasos no le hacen reír. Explicá qué muestra este diálogo acerca de la experiencia que Carlos acaba de vivir y de lo que su madre alcanza a comprender de ella.
+</li>
+<li data-section-id="1gakd0t" data-start="5866" data-end="6146">
+Al comienzo, Carlos está muy pendiente de haber ido finalmente al circo como sus hermanos y compañeros. Después del espectáculo, el narrador dice que “no le importaba qué iba a decir mañana”. ¿Por qué creés que dejó de importarle? Justificá a partir de lo sucedido en el circo.
+</li>
+<li data-section-id="kpm19f" data-start="6148" data-end="6345">
+El cuento se titula <strong data-start="6171" data-end="6185">“Esa boca”</strong>. Explicá por qué la boca del payaso puede considerarse el elemento central que modifica la experiencia de Carlos y relacioná el título con el final del cuento.
+</li>
+<li data-section-id="kysyvf" data-start="6347" data-end="6421">
+Ordená los seis acontecimientos de acuerdo con la secuencia del relato.
+</li>
+</ol>
+<p data-start="6423" data-end="6515">___ Carlos ve de cerca al payaso más cómico y descubre la boca cansada bajo la risa pintada.</p>
+<p data-start="6517" data-end="6615">___ Carlos escucha durante mucho tiempo las historias de sus hermanos y compañeros sobre el circo.</p>
+<p data-start="6617" data-end="6710">___ La madre advierte que Carlos está llorando y le pregunta si quería ver a los trapecistas.</p>
+<p data-start="6712" data-end="6804">___ El padre permite que Carlos vaya con la condición de retirarse antes de los trapecistas.</p>
+<p data-start="6806" data-end="6886">___ Carlos observa varios números mientras espera con impaciencia a los payasos.</p>
+<p data-start="6888" data-end="6953">___ Carlos explica que llora porque los payasos no le hacen reír.</p>
+<ol start="8" data-start="6955" data-end="7146">
+<li data-section-id="1idfist" data-start="6955" data-end="7146">
+Un alumno de 5.º grado escribió este texto y tuvo <strong data-start="7008" data-end="7036">10 errores de ortografía</strong>. Marcá las palabras que están mal escritas, escribilas correctamente y explicá cuál es el error en cada caso.
+</li>
+</ol>
+<blockquote data-start="7148" data-end="7599">
+<p data-start="7150" data-end="7599">carlos esperava que los payasos lo hicieran reír. Había visto a la mujer sobre el caballo vlanco y a otros artistas, pero solo aguardaba a los payasos. Cuando el más comico se acercó, Carlos mirava su cara con atención y comprendió que abía una diferencia entre la risa pintada y los labios verdaderos. Tanbién notó que el hombre parecía cansado. despues, su madre lo tomó del vrazo para salir. Carlos quedó embuelto en una tristeza que no esperaba.</p><p data-start="7150" data-end="7599"><a href="https://escolar.com.ar/para_libros/esa_boca/esa_boca_3.pdf" target="_blank" style="color: blue;">Descargar en PDF</a></p></blockquote></td></tr></table><hr></div>
+    
+    <script>
+        const EDITOR_URL = '../editor.html'; 
+        document.addEventListener('DOMContentLoaded', () => { processRawContent(); });
+        let selectedCount = 0;
+        function processRawContent() {
+            const rawContainer = document.getElementById('raw-content-placeholder');
+            const renderArea = document.getElementById('fichas-render-area');
+            const fullHtml = rawContainer.innerHTML;
+            if (!fullHtml.trim()) return;
+            const chunks = fullHtml.split(/<hr[^>]*>/i);
+            let fichaIndex = 1;
+            chunks.forEach((chunk) => {
+                if (!chunk.trim()) return;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = chunk;
+                const table = tempDiv.querySelector('table');
+                let titleText = `Ficha ${fichaIndex}`;
+                let contentHtml = chunk;
+                if (table) {
+                    const rows = table.querySelectorAll('tr');
+                    if (rows.length >= 2) {
+                        titleText = rows[0].innerText.trim() || titleText;
+                        const contentTd = rows[1].querySelector('td');
+                        contentHtml = contentTd ? contentTd.innerHTML : rows[1].innerHTML;
+                    }
+                }
+                const opts = table ? {
+                    startOpen: table.dataset.open === '1',
+                    allowCopy: table.dataset.copy !== '0',
+                    allowPrint: table.dataset.print !== '0',
+                    allowEditor: table.dataset.editor !== '0'
+                } : {};
+                createCard(fichaIndex, titleText, contentHtml, renderArea, opts);
+                fichaIndex++;
+            });
+        }
+        function createCard(id, title, content, container, opts = {}) {
+            const settings = Object.assign({ startOpen:false, allowCopy:true, allowPrint:true, allowEditor:true }, opts || {});
+            const card = document.createElement('div');
+            card.className = 'ficha-card' + (settings.startOpen ? ' open' : '');
+            card.id = `ficha-${id}`;
+            card.dataset.copy = settings.allowCopy ? '1' : '0';
+            card.dataset.print = settings.allowPrint ? '1' : '0';
+            card.dataset.editor = settings.allowEditor ? '1' : '0';
+            const header = document.createElement('div'); header.className = 'ficha-header';
+            header.onclick = (e) => { if (!e.target.closest('button') && !e.target.closest('.custom-checkbox')) toggleCard(card); };
+            const hTitle = document.createElement('div'); hTitle.className = 'ficha-title'; hTitle.innerText = title;
+            const actionsDiv = document.createElement('div'); actionsDiv.className = 'header-actions';
+            if (settings.allowEditor) {
+                const btnEdit = document.createElement('button'); btnEdit.className = 'btn-send-editor'; btnEdit.innerHTML = '↗️'; btnEdit.title = 'Abrir en el editor de textos';
+                btnEdit.onclick = (e) => { e.stopPropagation(); sendToEditor(title, content); };
+                actionsDiv.appendChild(btnEdit);
+            }
+            const btnToggle = document.createElement('button');
+            btnToggle.className = 'btn-toggle-card';
+            btnToggle.type = 'button';
+            btnToggle.innerText = settings.startOpen ? '▾ Cerrar' : '▸ Abrir';
+            btnToggle.onclick = (e) => { e.stopPropagation(); toggleCard(card); };
+            actionsDiv.appendChild(btnToggle);
+            if (settings.allowCopy || settings.allowPrint) {
+                const checkbox = document.createElement('div'); checkbox.className = 'custom-checkbox'; checkbox.title = 'Seleccionar ficha';
+                checkbox.onclick = (e) => { e.stopPropagation(); toggleSelection(card); };
+                actionsDiv.appendChild(checkbox);
+            }
+            header.appendChild(hTitle); header.appendChild(actionsDiv);
+            const body = document.createElement('div'); body.className = 'ficha-body'; body.innerHTML = content;
+            card.appendChild(header); card.appendChild(body); container.appendChild(card);
+        }
+        function sendToEditor(title, htmlContent) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            const images = tempDiv.querySelectorAll('img');
+            images.forEach(img => { if (img.getAttribute('src')) { img.src = img.src; } });
+            const packageHTML = `<h3>${title}</h3>${tempDiv.innerHTML}`;
+            localStorage.setItem('import_content', packageHTML);
+            window.open(EDITOR_URL, 'Editor de Textos');
+        }
+        function toggleCard(card) {
+            card.classList.toggle('open');
+            const btn = card.querySelector('.btn-toggle-card');
+            if (btn) btn.innerText = card.classList.contains('open') ? '▾ Cerrar' : '▸ Abrir';
+        }
+        function toggleSelection(card) { card.classList.toggle('selected-for-print'); updateFabState(); }
+        function clearSelection() { document.querySelectorAll('.ficha-card.selected-for-print').forEach(c => c.classList.remove('selected-for-print')); updateFabState(); }
+        function updateFabState() {
+            const selected = document.querySelectorAll('.ficha-card.selected-for-print');
+            const printable = document.querySelectorAll('.ficha-card.selected-for-print[data-print="1"]');
+            const copyable = document.querySelectorAll('.ficha-card.selected-for-print[data-copy="1"]');
+            selectedCount = selected.length; 
+            const btnPrint = document.getElementById('btn-print'); const btnCopy = document.getElementById('btn-copy'); const badge = document.getElementById('print-badge'); const btnClear = document.getElementById('btn-clear');
+            if (selectedCount > 0) {
+                btnPrint.disabled = printable.length === 0;
+                badge.style.display = 'flex'; badge.innerText = selectedCount;
+                btnClear.style.display = 'flex';
+                btnCopy.style.display = copyable.length > 0 ? 'flex' : 'none';
+            } else {
+                btnPrint.disabled = true; badge.style.display = 'none'; btnClear.style.display = 'none'; btnCopy.style.display = 'none';
+            }
+        }
+        function copySelected() {
+            const selected = document.querySelectorAll('.ficha-card.selected-for-print[data-copy="1"]');
+            if (selected.length === 0) return;
+            const temp = document.createElement('div'); temp.style.backgroundColor = '#fff'; temp.style.color = '#000'; temp.style.position = 'absolute'; temp.style.left = '-9999px';
+            selected.forEach(card => {
+                const title = card.querySelector('.ficha-title').innerText;
+                const bodyClone = card.querySelector('.ficha-body').cloneNode(true);
+                const els = bodyClone.getElementsByTagName("*"); for(let el of els) { el.style.background = "transparent"; }
+                temp.innerHTML += `<div><h2>${title}</h2><div>${bodyClone.innerHTML}</div></div><hr>`;
+            });
+            document.body.appendChild(temp); const range = document.createRange(); range.selectNode(temp); window.getSelection().removeAllRanges(); window.getSelection().addRange(range); document.execCommand('copy'); alert('✅ ¡Fichas copiadas!'); document.body.removeChild(temp);
+        }
+        function printSelected() {
+            const printable = document.querySelectorAll('.ficha-card.selected-for-print[data-print="1"]');
+            if(printable.length>0) window.print();
+        }
+    </script>
+    <div id="contenedor-pie"></div>
+    <script>
+      fetch('/pie.html')
+        .then(function(response) {
+          if (response.ok) return response.text();
+          throw new Error('No se pudo cargar el pie de página');
+        })
+        .then(function(data) {
+          document.getElementById('contenedor-pie').innerHTML = data;
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

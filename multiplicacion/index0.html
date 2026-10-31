@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>  
+        window.dataLayer = window.dataLayer || [];  
+        function gtag(){dataLayer.push(arguments);}  
+        gtag('js', new Date());  
+        gtag('config', 'G-VL13MMLPRV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ruta Multiplicativa - Recursos para Docentes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-principal: #036fb0;
+            --color-fondo: #f4f6f7;
+            --color-texto: #333;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Para que el salto de los enlaces sea suave */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .introduccion {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--color-principal);
+        }
+
+        /* --- BOTONERA DE ANEXOS --- */
+        .menu-anexos {
+            background-color: #eaf4fb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+            border: 1px solid var(--color-principal);
+        }
+
+        .menu-anexos h3 {
+            margin-top: 0;
+            color: var(--color-principal);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .menu-anexos-links {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .accordion {
+            background-color: var(--color-principal);
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: 0.3s;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .active, .accordion:hover {
+            background-color: #025a8f;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            font-size: 1.5rem;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            padding: 0 20px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--color-principal);
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid var(--color-principal);
+            width: 40%;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .btn-link {
+            display: inline-block;
+            color: var(--color-principal);
+            text-decoration: none;
+            font-weight: 700;
+            border: 1px solid var(--color-principal);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            transition: 0.2s;
+            background-color: white;
+        }
+
+        .btn-link:hover {
+            background-color: var(--color-principal);
+            color: white;
+        }
+
+        h3.eje-nombre {
+            color: var(--color-principal);
+            font-size: 1rem;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .detalle-actividad {
+            margin-bottom: 8px;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        /* ESTILOS PARA LOS ÍNDICES (ANEXOS) */
+        .indice-capitulo {
+            color: var(--color-principal);
+            font-size: 1.05rem;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .indice-lista {
+            list-style-type: none;
+            padding-left: 10px;
+            margin-top: 0;
+        }
+        .indice-lista li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .btn-subir {
+            float: right;
+            color: var(--color-principal);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: #f4f6f7;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .btn-subir:hover {
+            background-color: var(--color-principal);
+            color: white;
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    
+
+    <div class="container">
+        
+        <div class="introduccion">
+            <h2 style="margin-top:0; color:var(--color-principal)">Índice de Trayectorias 1, 2, 3 y Quitar, retroceder, comparar, completar…   </h2>
+            <p>Para tener a mano los <strong>temas y contenidos</strong> de estos materiales y el enlace para descargar </p>
+            
+        </div>
+
+        
+
+       
+        
+        
+        
+<div>
+    
+
+
+        <button class="accordion" id="anexo-t1">Trayectorias 1 - Índice Completo</button>
+        <div class="panel">
+            <div style="margin-top: 15px;">
+                <a href="https://bde-ueicee.bue.edu.ar/documentos/618-trayectorias-1-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link" style="background-color: var(--color-principal); color: white;">Ver/Descargar Documento Original</a>
+            </div>
+            
+            <h3 class="indice-capitulo">1. LEER Y ESCRIBIR NÚMEROS DE VARIAS CIFRAS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Números más o menos conocidos. Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Números más o menos conocidos. Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Números más o menos conocidos. Parte III</li>
+                <li><strong>Ficha Nº 4:</strong> Uno más y uno menos</li>
+                <li><strong>Ficha Nº 5:</strong> Los de mil. Parte I</li>
+                <li><strong>Ficha Nº 6:</strong> Los de mil. Parte II</li>
+                <li><strong>Ficha Nº 7:</strong> Los de mil. Parte III</li>
+                <li><strong>Ficha Nº 8:</strong> Un juego con cartas para armar números de 4 cifras</li>
+                <li><strong>Ficha Nº 9:</strong> Para después de jugar II</li>
+                <li><strong>Ficha Nº 10:</strong> Los "dieces" de los miles. Parte I</li>
+                <li><strong>Ficha Nº 11:</strong> Los "dieces" de los miles. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">2. LOS NÚMEROS ESCRITOS Y EL VALOR DE SUS CIFRAS: LOS AGRUPAMIENTOS DE 10, 100, 1000</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas con billetes. Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas con billetes. Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Juego de dados mágicos. Parte I</li>
+                <li><strong>Ficha Nº 4:</strong> Juego de dados mágicos. Parte II</li>
+                <li><strong>Ficha Nº 5:</strong> Juego con cuatro dados mágicos</li>
+                <li><strong>Ficha Nº 6:</strong> Para después de jugar con los dados</li>
+                <li><strong>Ficha Nº 7:</strong> Problemas más difíciles con billetes. Parte I</li>
+                <li><strong>Ficha Nº 8:</strong> Problemas más difíciles con billetes. Parte II</li>
+                <li><strong>Ficha Nº 9:</strong> Problemas más difíciles con billetes. Parte III</li>
+                <li><strong>Ficha Nº 10:</strong> Juego de cartas que valen 10, 100, 1000</li>
+                <li><strong>Ficha Nº 11:</strong> Para después de jugar II</li>
+                <li><strong>Ficha Nº 12:</strong> Billetes de 10, 100, 1.000 y cálculos Parte I</li>
+                <li><strong>Ficha Nº 13:</strong> Billetes de 10, 100, 1000 y cálculos. Parte II</li>
+                <li><strong>Ficha Nº 14:</strong> Billetes de 10, 100, 1000 y cálculos. Parte III</li>
+                <li><strong>Ficha Nº 15:</strong> Usar cálculos para desarmar números</li>
+                <li><strong>Ficha Nº 16:</strong> Cálculos usando 100. Parte I</li>
+                <li><strong>Ficha Nº 17:</strong> Cálculos usando 100. Parte II</li>
+                <li><strong>Ficha Nº 18:</strong> Con la calculadora...</li>
+            </ul>
+
+            <h3 class="indice-capitulo">3. CÁLCULOS FÁCILES (Y NO TAN FÁCILES) DE SUMA Y RESTA</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> La tabla de sumas</li>
+                <li><strong>Ficha Nº 2:</strong> Usar cálculos conocidos para resolver otros. Parte I</li>
+                <li><strong>Ficha Nº 3:</strong> Usar cálculos conocidos para resolver otros. Parte II</li>
+                <li><strong>Ficha Nº 4:</strong> Usar cálculos conocidos para resolver otros. Parte III</li>
+                <li><strong>Ficha Nº 5:</strong> Usar cálculos conocidos para resolver otros. Parte IV</li>
+                <li><strong>Ficha Nº 6:</strong> Juego: "Armar el número clave"</li>
+                <li><strong>Ficha Nº 7:</strong> Para despúes de jugar II</li>
+                <li><strong>Ficha Nº 8:</strong> Adivinanzas y cálculos escritos</li>
+                <li><strong>Ficha Nº 9:</strong> Distintas formas de resolver sumas. Parte I</li>
+                <li><strong>Ficha Nº 10:</strong> Distintas formas de resolver sumas. Parte II</li>
+                <li><strong>Ficha Nº 11:</strong> Resolver cálculos de resta usando otras restas</li>
+                <li><strong>Ficha Nº 12:</strong> Restar números redondos</li>
+                <li><strong>Ficha Nº 13:</strong> Resolver restas usando sumas. Parte I</li>
+                <li><strong>Ficha Nº 14:</strong> Resolver restas usando sumas. Parte II</li>
+                <li><strong>Ficha Nº 15:</strong> Restar por partes...</li>
+                <li><strong>Ficha Nº 16:</strong> Estimar resultados de sumas</li>
+            </ul>
+
+            <h3 class="indice-capitulo">4. LAS INFORMACIONES Y LAS PREGUNTAS DE LOS PROBLEMAS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas, preguntas y datos. Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas, preguntas y datos. Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Problemas para resolver. Parte I</li>
+                <li><strong>Ficha Nº 4:</strong> Problemas para resolver. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">5. LA SUMA Y LA MULTIPLICACIÓN</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Cuándo usar la suma y cuándo usar la multiplicación</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas y cálculos</li>
+                <li><strong>Ficha Nº 3:</strong> ¿Qué cálculo sirve?</li>
+                <li><strong>Ficha Nº 4:</strong> Relaciones entre la suma y la multiplicación</li>
+                <li><strong>Ficha Nº 5:</strong> Más problemas... ¿suma o multiplicación?</li>
+                <li><strong>Ficha Nº 6:</strong> Relaciones entre cálculos y problemas</li>
+                <li><strong>Ficha Nº 7:</strong> Problemas con facturas</li>
+                <li><strong>Ficha Nº 8:</strong> Problemas con tablas</li>
+                <li><strong>Ficha Nº 9:</strong> Armar tablas con multiplicación</li>
+                <li><strong>Ficha Nº 10:</strong> Usar resultados de las tablas para los problemas</li>
+            </ul>
+
+            <h3 class="indice-capitulo">6. EL CÁLCULO DE MULTIPLICACIÓN</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> La tabla pitagórica</li>
+                <li><strong>Ficha Nº 2:</strong> Usar la tabla para buscar...</li>
+                <li><strong>Ficha Nº 3:</strong> Sobre los cálculos de multiplicación... Parte I</li>
+                <li><strong>Ficha Nº 4:</strong> Sobre los cálculos de multiplicación... Parte II</li>
+                <li><strong>Ficha Nº 5:</strong> Multiplicar por 10, 100, 1000</li>
+                <li><strong>Ficha Nº 6:</strong> Multiplicaciones de números mayores</li>
+                <li><strong>Ficha Nº 7:</strong> Dobles y mitades. Parte I</li>
+                <li><strong>Ficha Nº 8:</strong> Dobles y mitades. Parte II</li>
+                <li><strong>Ficha Nº 9:</strong> Dobles y mitades. Parte III</li>
+            </ul>
+            <a href="#inicio" class="btn-subir">↑ Volver al inicio</a>
+            <div style="clear: both;"></div>
+        </div>
+
+        <button class="accordion" id="anexo-t2">Trayectorias 2 - Índice Completo</button>
+        <div class="panel">
+            <div style="margin-top: 15px;">
+                <a href="https://bde-ueicee.bue.edu.ar/documentos/584-trayectorias-2-matematica-fichas-para-el-alumno-1deg-y-2deg-ciclo-aceleracion-y-nivelacion" target="_blank" class="btn-link" style="background-color: var(--color-principal); color: white;">Ver/Descargar Documento Original</a>
+            </div>
+
+            <h3 class="indice-capitulo">1. LA MULTIPLICACIÓN EN PROBLEMAS CON TABLAS Y FACTURAS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Completar facturas. Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Completar facturas. Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> La tabla pitagórica</li>
+                <li><strong>Ficha Nº 4:</strong> Facturas y cálculos. Parte I</li>
+                <li><strong>Ficha Nº 5:</strong> Facturas y cálculos. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">2. PARA RECORDAR MULTIPLICACIONES...</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Recordar resultados...</li>
+                <li><strong>Ficha Nº 2:</strong> Guerra de multiplicaciones con cartas</li>
+                <li><strong>Ficha Nº 3:</strong> Doble guerra de multiplicaciones con cartas</li>
+                <li><strong>Ficha Nº 4:</strong> Otro juego para recordar tablas: ¿Quién sabe?</li>
+                <li><strong>Ficha Nº 5:</strong> Otro juego: ¿De qué tabla salió?</li>
+                <li><strong>Ficha Nº 6:</strong> ¿De qué tabla se trata?</li>
+                <li><strong>Ficha Nº 7:</strong> Cartas con multiplicaciones y resultados</li>
+                <li><strong>Ficha Nº 8:</strong> Tablas y resultados para practicar...</li>
+                <li><strong>Ficha Nº 9:</strong> Trucos para recordar resultados...</li>
+            </ul>
+
+            <h3 class="indice-capitulo">3. NUEVOS PROBLEMAS PARA USAR LA MULTIPLICACIÓN: FILAS Y COLUMNAS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Patios, baldosas y cálculos. Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Patios, baldosas y cálculos. Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Patios, baldosas y cálculos. Parte III</li>
+                <li><strong>Ficha Nº 4:</strong> Patios, baldosas y cálculos. Parte IV</li>
+                <li><strong>Ficha Nº 5:</strong> Problemas de filas y columnas</li>
+                <li><strong>Ficha Nº 6:</strong> Un juego: armar patios</li>
+                <li><strong>Ficha Nº 7:</strong> Rectángulos adentro de otros rectángulos</li>
+                <li><strong>Ficha Nº 8:</strong> Rectángulos y cálculos. Parte I</li>
+                <li><strong>Ficha Nº 9:</strong> Rectángulos y cálculos. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">4. MULTIPLICACIONES DE NÚMEROS MAYORES</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Multiplicación por números "redondos". Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Multiplicación por números "redondos". Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Desarmar números para multiplicar</li>
+                <li><strong>Ficha Nº 4:</strong> Cuentas para multiplicar. Parte I</li>
+                <li><strong>Ficha Nº 5:</strong> Cuentas para multiplicar. Parte II</li>
+                <li><strong>Ficha Nº 6:</strong> Cuentas para multiplicar. Parte III</li>
+            </ul>
+
+            <h3 class="indice-capitulo">5. RELACIONES ENTRE TABLAS: USAR MULTIPLICACIONES PARA RESOLVER OTRAS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Tablas con datos para completar. Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Tablas con datos para completar. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">6. REPARTOS Y PARTICIONES</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Adivinanzas con cálculos</li>
+                <li><strong>Ficha Nº 2:</strong> Repartiendo en partes iguales. Parte I</li>
+                <li><strong>Ficha Nº 3:</strong> Repartiendo en partes iguales. Parte II</li>
+                <li><strong>Ficha Nº 4:</strong> Usar la tabla pitagórica para dividir</li>
+                <li><strong>Ficha Nº 5:</strong> Problemas y cálculos...</li>
+                <li><strong>Ficha Nº 6:</strong> A veces sobra... Parte I</li>
+                <li><strong>Ficha Nº 7:</strong> A veces sobra... Parte II</li>
+                <li><strong>Ficha Nº 8:</strong> A veces sobra... Parte III</li>
+                <li><strong>Ficha Nº 9:</strong> A veces sobra... Parte IV</li>
+            </ul>
+
+            <h3 class="indice-capitulo">7. DIVIDIR NÚMEROS MAYORES</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> ¿Más que... o menos que? Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> ¿Más que... o menos que? Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Cálculos mentales de división con números grandes</li>
+                <li><strong>Ficha Nº 4:</strong> ¿Cuántas veces...?</li>
+            </ul>
+
+            <h3 class="indice-capitulo">8. ESTRATEGIAS DE CÁLCULO PARA DIVIDIR: CUENTAS NUEVAS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Dividir por partes... Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> Dividir por partes... Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Analizar cuentas de dividir</li>
+                <li><strong>Ficha Nº 4:</strong> Cuentas con números grandes. Parte I</li>
+                <li><strong>Ficha Nº 5:</strong> Cuentas con números grandes. Parte II</li>
+                <li><strong>Ficha Nº 6:</strong> Cuentas con números grandes. Parte III</li>
+            </ul>
+
+            <h3 class="indice-capitulo">9. OTROS NÚMEROS: PARTES Y PARTES</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> ¿Qué hacemos con lo que sobra? Parte I</li>
+                <li><strong>Ficha Nº 2:</strong> ¿Qué hacemos con lo que sobra? Parte II</li>
+                <li><strong>Ficha Nº 3:</strong> Repartiendo en partes iguales</li>
+                <li><strong>Ficha Nº 4:</strong> Kilos, litros y partes</li>
+                <li><strong>Ficha Nº 5:</strong> Kilo, medio kilo y un cuarto kilo</li>
+                <li><strong>Ficha Nº 6:</strong> ¿Cómo repartimos? Nuevos números. Parte I</li>
+                <li><strong>Ficha Nº 7:</strong> ¿Cómo repartimos? Nuevos números. Parte II</li>
+                <li><strong>Ficha Nº 8:</strong> Plegado y fracciones. Parte I</li>
+                <li><strong>Ficha Nº 9:</strong> Plegado y fracciones. Parte II</li>
+                <li><strong>Ficha Nº 10:</strong> Distintos repartos... ¿la misma cantidad? Parte I</li>
+                <li><strong>Ficha Nº 11:</strong> Distintos repartos... ¿la misma cantidad? Parte II</li>
+                <li><strong>Ficha Nº 12:</strong> Distintos repartos... ¿la misma cantidad? Parte III</li>
+                <li><strong>Ficha Nº 13:</strong> Kilos de café: paquetes de 1/2, 1/4 y 1/8. Parte I</li>
+                <li><strong>Ficha Nº 14:</strong> Kilos de café: paquetes de 1/2, 1/4 y 1/8. Parte II</li>
+                <li><strong>Ficha Nº 15:</strong> Los nombres de las fracciones...</li>
+                <li><strong>Ficha Nº 16:</strong> De las partes al entero. Parte I</li>
+                <li><strong>Ficha Nº 17:</strong> De las partes al entero. Parte II</li>
+                <li><strong>Ficha Nº 18:</strong> ¿Qué parte es?</li>
+                <li><strong>Ficha Nº 19:</strong> Problemas con fracciones</li>
+                <li><strong>Ficha Nº 20:</strong> Cálculos con fracciones</li>
+            </ul>
+
+            <h3 class="indice-capitulo">10. NÚMEROS CON COMAS PARA ESCRIBIR PRECIOS Y MEDIDAS (MEDIDA)</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Longitudes y distancias</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas con medidas de longitud</li>
+                <li><strong>Ficha Nº 3:</strong> Medir pesos y capacidades</li>
+                <li><strong>Ficha Nº 4:</strong> Equivalencias entre medidas</li>
+                <li><strong>Ficha Nº 5:</strong> Problemas con pesos, capacidades y fracciones</li>
+            </ul>
+            <a href="#inicio" class="btn-subir">↑ Volver al inicio</a>
+            <div style="clear: both;"></div>
+        </div>
+
+        <button class="accordion" id="anexo-t3">Trayectorias 3 - Índice Completo</button>
+        <div class="panel">
+            <div style="margin-top: 15px;">
+                <a href="https://biblioteca-digital.bue.edu.ar/catalogo/aceleracion-nivelacion-1/8720/detalle/7611" target="_blank" class="btn-link" style="background-color: var(--color-principal); color: white;">Ver/Descargar Documento Original</a>
+            </div>
+
+            <h3 class="indice-capitulo">1. EL CÁLCULO DE DIVISIÓN</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Usar multiplicaciones para resolver divisiones</li>
+                <li><strong>Ficha Nº 2:</strong> Estimar resultados de divisiones. Parte I</li>
+                <li><strong>Ficha Nº 3:</strong> Estimar resultados de divisiones. Parte II</li>
+                <li><strong>Ficha Nº 4:</strong> Estimar la cantidad de cifras para hacer divisiones más cortas...</li>
+                <li><strong>Ficha Nº 5:</strong> Resultados más y más "ajustados"</li>
+            </ul>
+
+            <h3 class="indice-capitulo">2. LAS PARTES DE LA DIVISIÓN: DIVIDENDO, DIVISOR, COCIENTE Y RESTO</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Las "partes" de la cuenta de dividir</li>
+                <li><strong>Ficha Nº 2:</strong> Cuando el resto es un problema. Parte I</li>
+                <li><strong>Ficha Nº 3:</strong> Cuando el resto es un problema. Parte II</li>
+                <li><strong>Ficha Nº 4:</strong> ¿Cómo funciona la cuenta de dividir? Parte I</li>
+                <li><strong>Ficha Nº 5:</strong> ¿Cómo funciona la cuenta de dividir? Parte II</li>
+                <li><strong>Ficha Nº 6:</strong> ¿Cómo funciona la cuenta de dividir? Parte III</li>
+            </ul>
+
+            <h3 class="indice-capitulo">3. PROPIEDADES DE LA MULTIPLICACIÓN Y DE LA DIVISIÓN</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Juego con dados para multiplicar</li>
+                <li><strong>Ficha Nº 2:</strong> Para después de jugar: Desarmar números con multiplicaciones</li>
+                <li><strong>Ficha Nº 3:</strong> Desarmar números usando multiplicaciones</li>
+                <li><strong>Ficha Nº 4:</strong> Propiedades de la multiplicación. Parte I</li>
+                <li><strong>Ficha Nº 5:</strong> Propiedades de la multiplicación. Parte II</li>
+                <li><strong>Ficha Nº 6:</strong> Propiedades de la multiplicación. Parte III</li>
+                <li><strong>Ficha Nº 7:</strong> Propiedades de la división. Parte I</li>
+                <li><strong>Ficha Nº 8:</strong> Propiedades de la división. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">4. SABER MÁS SOBRE LA MULTIPLICACIÓN Y LA DIVISIÓN: MÚLTIPLOS Y DIVISORES</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Un juego: Camino con trampas</li>
+                <li><strong>Ficha Nº 2:</strong> Para después de jugar</li>
+                <li><strong>Ficha Nº 3:</strong> Escalas, tablas y múltiplos</li>
+                <li><strong>Ficha Nº 4:</strong> Multiplicaciones que dan...</li>
+                <li><strong>Ficha Nº 5:</strong> Restar muchas veces</li>
+                <li><strong>Ficha Nº 6:</strong> Divisiones y divisores. Parte I</li>
+                <li><strong>Ficha Nº 7:</strong> Divisiones y divisores. Parte II</li>
+                <li><strong>Ficha Nº 8:</strong> Múltiplos y divisores</li>
+                <li><strong>Ficha Nº 9:</strong> Múltiplos comunes: otro juego con trampas</li>
+                <li><strong>Ficha Nº 10:</strong> Múltiplos y divisores comunes</li>
+            </ul>
+
+            <h3 class="indice-capitulo">5. PROBLEMAS PARA RESOLVER CON VARIOS CÁLCULOS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas de muchos pasos</li>
+                <li><strong>Ficha Nº 2:</strong> Escribir cálculos con muchas operaciones</li>
+                <li><strong>Ficha Nº 3:</strong> El orden de las operaciones</li>
+            </ul>
+
+            <h3 class="indice-capitulo">6. FRACCIONES I</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Usando lo que ya sabés sobre las fracciones...</li>
+                <li><strong>Ficha Nº 2:</strong> Distintas escrituras y la misma cantidad</li>
+                <li><strong>Ficha Nº 3:</strong> Las fracciones y la división. Parte I</li>
+                <li><strong>Ficha Nº 4:</strong> Las fracciones y la división. Parte II</li>
+                <li><strong>Ficha Nº 5:</strong> Fracciones equivalentes. Parte I</li>
+                <li><strong>Ficha Nº 6:</strong> Fracciones equivalentes. Parte II</li>
+                <li><strong>Ficha Nº 7:</strong> Fracciones equivalentes. Parte III</li>
+                <li><strong>Ficha Nº 8:</strong> Fracciones equivalentes. Parte IV</li>
+                <li><strong>Ficha Nº 9:</strong> Fracciones decimales equivalentes</li>
+            </ul>
+
+            <h3 class="indice-capitulo">7. FRACCIONES II</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Comparación de fracciones</li>
+                <li><strong>Ficha Nº 2:</strong> Fracción de una cantidad. Parte I</li>
+                <li><strong>Ficha Nº 3:</strong> Fracción de una cantidad. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">8. FRACCIONES III</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Carrera de fracciones</li>
+                <li><strong>Ficha Nº 2:</strong> Sumas y restas de fracciones. Parte I</li>
+                <li><strong>Ficha Nº 3:</strong> Sumas y restas de fracciones. Parte II</li>
+                <li><strong>Ficha Nº 4:</strong> Dobles y mitades. Parte I</li>
+                <li><strong>Ficha Nº 5:</strong> Dobles y mitades. Parte II</li>
+                <li><strong>Ficha Nº 6:</strong> Multiplicación de fracciones por números enteros</li>
+                <li><strong>Ficha Nº 7:</strong> Fracciones, multiplicación y problemas con tablas</li>
+                <li><strong>Ficha Nº 8:</strong> Problemas y cálculos con fracciones</li>
+                <li><strong>Ficha Nº 9:</strong> División de fracciones por números enteros. Parte I</li>
+                <li><strong>Ficha Nº 10:</strong> División de fracciones por números enteros. Parte II</li>
+                <li><strong>Ficha Nº 11:</strong> Multiplicación de fracciones</li>
+            </ul>
+
+            <h3 class="indice-capitulo">9. NÚMEROS DECIMALES I</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Usando lo que ya sabés sobre los números con coma</li>
+                <li><strong>Ficha Nº 2:</strong> Repartiendo dinero</li>
+                <li><strong>Ficha Nº 3:</strong> Números decimales y fracciones decimales. Parte I</li>
+                <li><strong>Ficha Nº 4:</strong> Números decimales y fracciones decimales. Parte II</li>
+                <li><strong>Ficha Nº 5:</strong> Números decimales y fracciones decimales. Parte III</li>
+                <li><strong>Ficha Nº 6:</strong> Números decimales y fracciones decimales. Parte IV</li>
+                <li><strong>Ficha Nº 7:</strong> Números decimales y fracciones decimales. Parte V</li>
+            </ul>
+
+            <h3 class="indice-capitulo">10. NÚMEROS DECIMALES II</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> ¿Cuál es mayor? ¿Cuál es menor?</li>
+                <li><strong>Ficha Nº 2:</strong> Comparar fracciones y números decimales</li>
+                <li><strong>Ficha Nº 3:</strong> Un juego: el 5 y medio</li>
+                <li><strong>Ficha Nº 4:</strong> Sumar y restar números decimales. Parte I</li>
+            </ul>
+
+            <h3 class="indice-capitulo">11. MEDIDA</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Comparando medidas...</li>
+                <li><strong>Ficha Nº 2:</strong> Metros, centímetros y milímetros</li>
+                <li><strong>Ficha Nº 3:</strong> Metros, centímetros, milímetros... y ahora: decímetros</li>
+                <li><strong>Ficha Nº 4:</strong> Unidades mayores: el kilómetro</li>
+                <li><strong>Ficha Nº 5:</strong> Equivalencias entre diferentes unidades de longitud</li>
+                <li><strong>Ficha Nº 6:</strong> Medidas, escalas y perímetros</li>
+                <li><strong>Ficha Nº 7:</strong> Medidas de peso: el gramo y el kilogramo. Parte I</li>
+                <li><strong>Ficha Nº 8:</strong> Medidas de peso: el gramo y el kilogramo. Parte II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">12. PROPORCIONALIDAD</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Hay tablas y tablas...</li>
+                <li><strong>Ficha Nº 2:</strong> Relaciones de proporcionalidad. Parte I</li>
+                <li><strong>Ficha Nº 3:</strong> Relaciones de proporcionalidad. Parte II</li>
+                <li><strong>Ficha Nº 4:</strong> Relaciones de proporcionalidad. Parte III</li>
+            </ul>
+
+            <h3 class="indice-capitulo">REPASO</h3>
+            <ul class="indice-lista">
+                <li>Para repasar todo lo que aprendiste 4</li>
+            </ul>
+            <a href="#inicio" class="btn-subir">↑ Volver al inicio</a>
+            <div style="clear: both;"></div>
+        </div>
+
+        <button class="accordion" id="anexo-resta">Quitar, retroceder, comparar, completar... - Índice Completo</button>
+        <div class="panel">
+            <div style="margin-top: 15px;">
+                <a href="https://biblioteca-digital.bue.edu.ar/catalogo/aceleracion-nivelacion-1/8720/detalle/7572" target="_blank" class="btn-link" style="background-color: var(--color-principal); color: white;">Ver/Descargar Documento Original</a>
+            </div>
+
+            <h3 class="indice-capitulo">1. PROBLEMAS DE QUITAR Y RETROCEDER...</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas para resolver usando todo lo que sabés</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas de tableros</li>
+                <li><strong>Ficha Nº 3:</strong> Problemas para seguir pensando</li>
+                <li><strong>Ficha Nº 4:</strong> Problemas y cálculos I</li>
+                <li><strong>Ficha Nº 5:</strong> Problemas y cálculos II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">2. JUEGOS Y CUADROS PARA REPASAR Y MEMORIZAR CÁLCULOS DE SUMA</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Cálculos para aprender de memoria</li>
+                <li><strong>Ficha Nº 2:</strong> Un juego: lo mío, lo tuyo, lo nuestro</li>
+                <li><strong>Ficha Nº 3:</strong> Para hacer después de jugar II</li>
+                <li><strong>Ficha Nº 4:</strong> Repasamos sumas conocidas I</li>
+                <li><strong>Ficha Nº 5:</strong> Repasamos sumas conocidas II</li>
+                <li><strong>Ficha Nº 6:</strong> El juego de las pirámides de sumas</li>
+            </ul>
+
+            <h3 class="indice-capitulo">3. CÁLCULOS DE RESTAS FÁCILES Y NO TAN FÁCILES...</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Un juego en el patio de baldosas</li>
+                <li><strong>Ficha Nº 2:</strong> Restas fáciles y difíciles</li>
+                <li><strong>Ficha Nº 3:</strong> Pensar sobre cálculos de resta</li>
+                <li><strong>Ficha Nº 4:</strong> El 1 en las cuentas de restar</li>
+            </ul>
+
+            <h3 class="indice-capitulo">4. PROBLEMAS DE PARTES</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas de partes I</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas de partes II</li>
+                <li><strong>Ficha Nº 3:</strong> Cálculos para los problemas de partes</li>
+                <li><strong>Ficha Nº 4:</strong> Problemas de partes III</li>
+            </ul>
+
+            <h3 class="indice-capitulo">5. ADIVINANZAS, CUADROS Y JUEGOS PARA COMPLETAR SUMAS</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Adivinanzas y sumas incompletas</li>
+                <li><strong>Ficha Nº 2:</strong> Un juego: armar números "redondos"</li>
+                <li><strong>Ficha Nº 3:</strong> Para despues de jugar II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">6. NUEVOS TRUCOS PARA RESOLVER CÁLCULOS DE RESTA</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Usar sumas para restar I</li>
+                <li><strong>Ficha Nº 2:</strong> Usar sumas para restar II</li>
+                <li><strong>Ficha Nº 3:</strong> Restar de a diez</li>
+                <li><strong>Ficha Nº 4:</strong> Restar de a diez, de a cien y restar números redondos</li>
+                <li><strong>Ficha Nº 5:</strong> Restar números redondos</li>
+                <li><strong>Ficha Nº 6:</strong> Un juego para restar</li>
+                <li><strong>Ficha Nº 7:</strong> Restar usando los miles</li>
+                <li><strong>Ficha Nº 8:</strong> Juegos de pirámides</li>
+            </ul>
+
+            <h3 class="indice-capitulo">7. PROBLEMAS PARA COMPARAR: ¿CUÁNTO MÁS?</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas para empatar I</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas para empatar II</li>
+                <li><strong>Ficha Nº 3:</strong> Problemas para comparar I</li>
+                <li><strong>Ficha Nº 4:</strong> Problemas para comparar II</li>
+                <li><strong>Ficha Nº 5:</strong> Problemas de diferencia y cálculos</li>
+            </ul>
+
+            <h3 class="indice-capitulo">8. ¡VOLVEMOS CON LOS CÁLCULOS DE RESTA PARA SABER MÁS!</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Ideas para restar un número a los números redondos</li>
+                <li><strong>Ficha Nº 2:</strong> Un juego: Tutti Frutti de resta</li>
+                <li><strong>Ficha Nº 3:</strong> Restar por partes...</li>
+            </ul>
+
+            <h3 class="indice-capitulo">9. PROBLEMAS DE COMPRAR Y VENDER</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas de compras y vueltos I</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas de compras y vueltos II</li>
+                <li><strong>Ficha Nº 3:</strong> Vueltos y cálculos I</li>
+                <li><strong>Ficha Nº 4:</strong> Vueltos y cálculos II</li>
+            </ul>
+
+            <h3 class="indice-capitulo">10. PENSANDO SOBRE CÓMO FUNCIONAN LOS CÁLCULOS DE RESTA</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Relaciones entre cálculos de resta</li>
+                <li><strong>Ficha Nº 2:</strong> Usamos la calculadora para explorar cálculos</li>
+            </ul>
+
+            <h3 class="indice-capitulo">11. ¿CUÁNTO HABÍA ANTES?</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas un poco más difíciles</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas un poco más difíciles II</li>
+                <li><strong>Ficha Nº 3:</strong> Nuevos cálculos de sumas incompletas</li>
+            </ul>
+
+            <h3 class="indice-capitulo">12. CUANDO LOS AÑOS SON UN PROBLEMA</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Los años pasan en problemas I</li>
+                <li><strong>Ficha Nº 2:</strong> Los años pasan en problemas II</li>
+                <li><strong>Ficha Nº 3:</strong> Los años pasan en problemas III</li>
+            </ul>
+
+            <h3 class="indice-capitulo">13. LA CUENTA DE RESTAR</h3>
+            <ul class="indice-lista">
+                <li><strong>Ficha Nº 1:</strong> Problemas de billetes I</li>
+                <li><strong>Ficha Nº 2:</strong> Problemas de billetes II</li>
+                <li><strong>Ficha Nº 3:</strong> Juego del Tutti Frutti</li>
+                <li><strong>Ficha Nº 4:</strong> La cuenta de restar I</li>
+                <li><strong>Ficha Nº 5:</strong> La cuenta de restar II</li>
+                <li><strong>Ficha Nº 6:</strong> La cuenta de restar III</li>
+            </ul>
+            <a href="#inicio" class="btn-subir">↑ Volver al inicio</a>
+            <div style="clear: both;"></div>
+        </div>
+
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+            });
+        }
+    </script>
+
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tres portugueses bajo un paraguas · investigación interactiva</title>
+<style>
+:root{
+  --nav:#2c3e50;
+  --ink:#243039;
+  --muted:#66747c;
+  --paper:#fffef9;
+  --cream:#f6f0e6;
+  --storm:#29445a;
+  --rain:#5c89a4;
+  --blue:#3d708d;
+  --gold:#c79b45;
+  --red:#a94d49;
+  --green:#347e62;
+  --violet:#685b91;
+  --line:#dfe4e5;
+  --shadow:0 18px 48px rgba(20,38,50,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:ui-rounded,"Trebuchet MS","Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    linear-gradient(115deg,rgba(255,255,255,.85),rgba(240,246,248,.78)),
+    repeating-linear-gradient(105deg,transparent 0 24px,rgba(66,112,140,.10) 25px 26px,transparent 27px 53px),
+    #e8eff2;
+  background-attachment:fixed;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.24;
+  background:
+    radial-gradient(circle at 8% 16%,rgba(199,155,69,.24) 0 80px,transparent 81px),
+    radial-gradient(circle at 90% 22%,rgba(61,112,141,.22) 0 125px,transparent 126px),
+    radial-gradient(circle at 84% 88%,rgba(104,91,145,.15) 0 150px,transparent 151px);
+}
+button,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* Barra del sitio */
+.site-header{background:var(--nav);padding:10px 0;width:100%;position:sticky;top:0;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,.28)}
+.site-nav{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.site-logo{display:flex;align-items:center;text-decoration:none}
+.site-logo img{height:60px;width:auto;display:block}
+.site-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.site-links a{color:#fff;text-decoration:none;font-size:.9rem;white-space:nowrap}
+.site-links a:hover{text-decoration:underline;text-underline-offset:4px}
+.site-links .site-back{color:#f1c40f;font-weight:800;border-left:1px solid #7f8c8d;padding-left:20px}
+
+.app{width:min(1160px,calc(100% - 28px));margin:0 auto;padding:26px 0 58px;position:relative;z-index:1}
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,254,249,.97),rgba(242,248,250,.95));
+  border:1px solid rgba(36,48,57,.08);border-radius:34px;padding:34px 38px;box-shadow:var(--shadow)
+}
+.hero::before{
+  content:"";position:absolute;right:-50px;top:-40px;width:330px;height:330px;border-radius:50%;
+  background:radial-gradient(circle at 48% 48%,rgba(61,112,141,.12) 0 48%,transparent 49%);
+}
+.hero-grid{display:grid;grid-template-columns:1fr 230px;gap:30px;align-items:center}
+.eyebrow{font-size:.78rem;font-weight:950;letter-spacing:.09em;text-transform:uppercase;color:#765f32}
+h1{font-size:clamp(2.2rem,5vw,4.5rem);line-height:.98;letter-spacing:-.045em;margin:12px 0 14px;max-width:820px}
+.hero p{font-size:1.04rem;line-height:1.58;color:var(--muted);max-width:780px;margin:0}
+.badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.badge{padding:8px 12px;border-radius:999px;background:#eef5f8;border:1px solid #cfdee5;color:#3d6377;font-weight:850;font-size:.84rem}
+.umbrella-wrap{display:grid;place-items:center;min-height:200px}
+.umbrella{width:190px;height:160px;position:relative}
+.umbrella .canopy{
+  width:178px;height:88px;position:absolute;top:8px;left:6px;
+  background:linear-gradient(180deg,#3e6278,#29445a);
+  border-radius:95px 95px 8px 8px;clip-path:polygon(0 100%,7% 74%,19% 100%,31% 74%,43% 100%,55% 74%,67% 100%,79% 74%,91% 100%,100% 74%,100% 0,0 0);
+  box-shadow:0 10px 20px rgba(41,68,90,.2)
+}
+.umbrella .pole{position:absolute;left:94px;top:82px;width:5px;height:61px;background:#6f5634;border-radius:4px}
+.umbrella .hook{position:absolute;left:94px;top:134px;width:30px;height:23px;border:5px solid #6f5634;border-top:0;border-left:0;border-radius:0 0 22px 0}
+.rain-line{position:absolute;width:2px;height:34px;background:rgba(61,112,141,.38);transform:rotate(17deg);border-radius:2px}
+.r1{left:8px;top:0}.r2{left:38px;top:18px}.r3{right:25px;top:8px}.r4{right:5px;top:42px}
+
+.dashboard{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;margin:20px 0}
+.panel{background:rgba(255,254,249,.96);border:1px solid rgba(36,48,57,.07);border-radius:24px;padding:20px;box-shadow:0 12px 30px rgba(36,48,57,.09)}
+.panel-title{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:12px}
+.panel-title strong{font-size:1.02rem}.panel-title span{font-size:.9rem;color:var(--muted)}
+.bar{height:15px;border-radius:999px;overflow:hidden;background:#e4e8e8}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rain),var(--gold),var(--violet),var(--green));border-radius:inherit;transition:width .35s}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.stat{background:#f7f7f2;border:1px solid #e8e7df;border-radius:16px;padding:12px 13px}
+.stat b{display:block;font-size:1.2rem}.stat small{color:var(--muted)}
+.save-note{display:flex;gap:11px;align-items:flex-start;color:var(--muted);font-size:.92rem;line-height:1.45}
+.save-dot{width:12px;height:12px;background:var(--green);border-radius:50%;box-shadow:0 0 0 6px rgba(52,126,98,.12);margin-top:4px;flex:none}
+.text-btn{border:0;background:transparent;color:var(--red);font-weight:850;text-decoration:underline;text-underline-offset:3px;padding:8px 0 0}
+
+.case-board{
+  background:rgba(255,254,249,.96);border:1px solid rgba(36,48,57,.08);border-radius:26px;padding:21px 22px;margin:20px 0;box-shadow:0 12px 30px rgba(36,48,57,.08)
+}
+.case-board h2{font-size:1.15rem;margin:0 0 5px}
+.case-board p{margin:0 0 16px;color:var(--muted);font-size:.93rem}
+.clues{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.clue{min-height:74px;border:1px dashed #c9d2d6;background:#f5f8f8;border-radius:16px;padding:11px;font-size:.82rem;font-weight:800;color:#617078;display:flex;align-items:center;justify-content:center;text-align:center}
+.clue.found{border-style:solid;background:#eef7f3;border-color:#bddacb;color:#2f6b54}
+.clue.found::before{content:"✓ ";font-weight:950}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:30px 2px 15px}
+.section-head h2{margin:0;font-size:clamp(1.35rem,3vw,2rem)}
+.section-head p{margin:5px 0 0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.module-card{
+  position:relative;min-height:286px;overflow:hidden;border:1px solid rgba(36,48,57,.08);background:rgba(255,254,249,.98);
+  border-radius:25px;padding:22px;text-align:left;color:var(--ink);box-shadow:0 13px 34px rgba(36,48,57,.1);transition:.18s
+}
+.module-card:hover{transform:translateY(-4px);box-shadow:0 18px 42px rgba(36,48,57,.14)}
+.module-card.locked{cursor:not-allowed;filter:saturate(.6);opacity:.75}.module-card.locked:hover{transform:none}
+.module-card::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;background:var(--accent)}
+.module-card::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-60px;bottom:-70px;background:var(--wash)}
+.card-top{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:19px}
+.module-label{font-size:.76rem;text-transform:uppercase;letter-spacing:.09em;font-weight:950;color:var(--accent)}
+.status{font-size:.73rem;font-weight:900;padding:7px 9px;border-radius:999px;background:#f0f1ed;color:#66716c}
+.status.done{background:#e3f4ed;color:#247152}.status.progress{background:#fff0dd;color:#9b5a20}.status.lock{background:#ece9f3;color:#6c637d}
+.module-symbol{width:62px;height:62px;border-radius:19px;display:grid;place-items:center;background:var(--wash);border:1px solid rgba(0,0,0,.05);margin-bottom:16px}
+.module-symbol svg{width:34px;height:34px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.module-card h3{font-size:1.25rem;line-height:1.1;margin:0 0 9px;letter-spacing:-.02em}.module-card p{margin:0;color:var(--muted);line-height:1.46;font-size:.92rem;max-width:94%}
+.card-foot{position:absolute;left:22px;right:22px;bottom:19px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:.78rem;font-weight:800}
+.mini-bar{width:76px;height:7px;background:#e8e8e2;border-radius:999px;overflow:hidden}.mini-bar i{display:block;height:100%;background:var(--accent);border-radius:inherit}
+
+.workspace{display:none;min-height:680px}.workspace.active{display:block}.workspace-shell{max-width:930px;margin:0 auto}
+.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+.ghost{border:1px solid #d7d9d3;background:rgba(255,254,249,.92);padding:10px 14px;border-radius:14px;font-weight:850;color:#526069}
+.counter{color:var(--muted);font-weight:850;font-size:.9rem}
+.work-card{background:rgba(255,254,249,.99);border:1px solid rgba(36,48,57,.08);border-radius:30px;overflow:hidden;box-shadow:var(--shadow)}
+.work-banner{padding:22px 25px;background:linear-gradient(135deg,var(--wash),rgba(255,255,255,.82));border-bottom:1px solid rgba(36,48,57,.07)}
+.banner-line{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.banner-line h2{margin:4px 0 0;font-size:1.55rem}.score-pill{background:#fff;border:1px solid rgba(36,48,57,.08);border-radius:14px;padding:9px 12px;white-space:nowrap;font-weight:850}
+.dual-bars{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.bar-caption{display:flex;justify-content:space-between;color:#607078;font-size:.78rem;font-weight:850;margin-bottom:5px}.smallbar{height:9px;background:#e6e5df;border-radius:999px;overflow:hidden}.smallbar i{display:block;height:100%;background:var(--accent);border-radius:inherit;transition:width .35s}.smallbar.general i{background:linear-gradient(90deg,var(--rain),var(--gold),var(--violet),var(--green))}
+.question-area{padding:28px 28px 25px}.question-kicker{color:var(--accent);font-size:.77rem;font-weight:950;letter-spacing:.08em;text-transform:uppercase;margin-bottom:9px}.question{font-size:clamp(1.25rem,2.7vw,1.72rem);font-weight:900;line-height:1.24;letter-spacing:-.015em;margin-bottom:22px}
+.options{display:grid;gap:11px}.option{width:100%;display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;text-align:left;border:1px solid #dfe2dc;background:#fff;padding:13px 15px;border-radius:17px;color:var(--ink);transition:.16s}
+.option:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px);box-shadow:0 6px 15px rgba(36,48,57,.06)}.option:disabled{cursor:default}
+.letter{width:34px;height:34px;border-radius:11px;background:#f1f2ed;display:grid;place-items:center;font-weight:950;color:#59666d}.option.correct{border-color:#7bc9a8;background:#eefaf4}.option.correct .letter{background:#d8f2e6;color:#237653}.option.wrong{border-color:#e3a39f;background:#fff1ef}.option.wrong .letter{background:#f8d9d6;color:#a5403d}
+.feedback{display:none;margin-top:17px;padding:14px 16px;border-radius:17px;line-height:1.45}.feedback.show{display:block}.feedback.ok{background:#ebf8f2;border:1px solid #c8ead9;color:#2a634c}.feedback.no{background:#fff2ef;border:1px solid #efd0ca;color:#82413a}.feedback strong{display:block;margin-bottom:4px}
+.next-row{display:flex;justify-content:flex-end;margin-top:18px}.primary,.secondary{border:0;border-radius:15px;padding:11px 16px;font-weight:900}.primary{background:var(--accent);color:#fff;box-shadow:0 7px 18px rgba(0,0,0,.12)}.secondary{background:#eff0eb;color:#4e5d65}
+
+/* Reconstrucción */
+.recon{padding:26px}.recon-intro{color:var(--muted);line-height:1.5;margin:0 0 20px}
+.scene{
+  display:grid;grid-template-columns:1fr 1.25fr;gap:22px;align-items:start
+}
+.compass-card,.hats-card{background:#f8faf9;border:1px solid #dfe7e8;border-radius:22px;padding:18px}
+.compass-card h3,.hats-card h3{margin:0 0 4px}.sub{color:var(--muted);font-size:.9rem;margin:0 0 15px}
+.compass{
+  width:min(390px,100%);aspect-ratio:1;margin:0 auto;position:relative;border-radius:50%;
+  background:radial-gradient(circle,#fff 0 24%,#f2f6f7 25% 57%,#e7eef1 58% 100%);
+  border:2px solid #cad9df;box-shadow:inset 0 0 0 10px rgba(255,255,255,.55)
+}
+.axis-h,.axis-v{position:absolute;background:#b9cbd3}.axis-h{left:10%;right:10%;top:50%;height:2px}.axis-v{top:10%;bottom:10%;left:50%;width:2px}
+.dir{position:absolute;font-size:.75rem;font-weight:950;color:#527185;letter-spacing:.08em}
+.north{top:4%;left:50%;transform:translateX(-50%)}.south{bottom:4%;left:50%;transform:translateX(-50%)}.east{right:4%;top:50%;transform:translateY(-50%)}.west{left:4%;top:50%;transform:translateY(-50%)}
+.slot{position:absolute;width:122px;transform:translate(-50%,-50%)}
+.slot.n{left:50%;top:24%}.slot.s{left:50%;top:76%}.slot.e{left:76%;top:50%}.slot.w{left:24%;top:50%}
+.slot select,.hat-row select{width:100%;border:1px solid #c9d5d8;border-radius:12px;background:#fff;padding:9px 10px;color:var(--ink)}
+.slot.good select,.hat-row.good select{border-color:#72b995;background:#eef8f3}.slot.bad select,.hat-row.bad select{border-color:#d79b96;background:#fff3f1}
+.direction-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.direction-row{display:grid;grid-template-columns:62px 1fr;gap:9px;align-items:center;background:#fff;border:1px solid #e1e6e5;border-radius:14px;padding:9px 10px}
+.direction-row label{font-size:.78rem;font-weight:950;color:#527185;letter-spacing:.04em}
+.direction-row select{width:100%;min-width:0;border:1px solid #c9d5d8;border-radius:11px;background:#fff;padding:9px 10px;color:var(--ink)}
+.direction-row.good select{border-color:#72b995;background:#eef8f3}
+.direction-row.bad select{border-color:#d79b96;background:#fff3f1}
+.center-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:#29445a;color:#fff;display:grid;place-items:center;font-weight:950;font-size:.72rem;text-align:center;line-height:1.05}
+.hat-list{display:grid;gap:10px}
+.hat-row{display:grid;grid-template-columns:95px 1fr;gap:10px;align-items:center;background:#fff;border:1px solid #e1e6e5;border-radius:15px;padding:10px}
+.hat-name{font-weight:900;font-size:.88rem}.hat-icon{width:48px;height:24px;border-radius:50% 50% 12px 12px;background:#40515d;position:relative;margin:2px auto 7px}.hat-icon::after{content:"";position:absolute;left:-9px;right:-9px;bottom:-4px;height:7px;background:#40515d;border-radius:50%}
+.recon-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:18px}
+.recon-msg{display:none;margin-top:15px;padding:14px 16px;border-radius:16px;line-height:1.45}.recon-msg.show{display:block}.recon-msg.ok{background:#ebf8f2;border:1px solid #c8ead9;color:#2a634c}.recon-msg.no{background:#fff5e8;border:1px solid #edd4a7;color:#76531f}
+.decisive{margin-top:20px;background:#f3f0fa;border:1px solid #ddd4ef;border-radius:18px;padding:17px}.decisive h3{margin:0 0 7px}.decisive p{margin:0 0 12px;color:var(--muted)}.decisive .options{gap:8px}
+
+/* Veredicto */
+.verdict{padding:28px}.verdict h2{margin:0 0 8px;font-size:2rem}.verdict>p{color:var(--muted);line-height:1.5}
+.suspects{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.suspect{border:1px solid #dce1e1;background:#fff;border-radius:18px;padding:17px;text-align:center}.suspect b{display:block;font-size:1.05rem}.suspect small{color:var(--muted)}
+.chain{display:grid;gap:8px;margin-top:18px}.chain-step{display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center;background:#f7f8f5;border:1px solid #e2e5df;border-radius:15px;padding:10px 12px}.chain-num{width:30px;height:30px;border-radius:10px;background:#e5e9e6;display:grid;place-items:center;font-weight:950}.chain-step select{width:100%;border:1px solid #ccd5d5;background:#fff;border-radius:11px;padding:9px 10px}.chain-arrow{text-align:center;color:#809199;font-weight:950}.verdict-box{display:none;margin-top:18px;border-radius:20px;padding:20px}.verdict-box.show{display:block}.verdict-box.ok{background:#eaf7f1;border:1px solid #bedfce;color:#2b674f}.verdict-box.no{background:#fff0ee;border:1px solid #edc8c4;color:#83423d}
+.result-score{font-size:3.4rem;font-weight:950;line-height:1;margin:16px 0 5px;color:var(--accent)}
+.result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.result{text-align:center;padding:36px 28px}.result h2{font-size:2rem;margin:8px 0}.result p{max-width:650px;margin:0 auto;color:var(--muted);line-height:1.5}
+
+
+.report-block{margin-top:22px;padding:20px;background:#f8fafb;border:1px solid #d9e3e7;border-radius:20px}
+.report-block h3{margin:0 0 6px;color:#29445a}
+.report-block>p{margin:0 0 14px;color:var(--muted);line-height:1.45}
+.report-name{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0}
+.report-name label{font-weight:900}
+.report-name input{width:min(100%,360px);padding:11px 13px;border:1px solid #cbd6da;border-radius:12px;background:#fff;color:var(--ink);font:inherit}
+.report-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.report-actions button{border:0;border-radius:14px;padding:11px 15px;font-weight:900}
+.report-download{background:#d77b2f;color:#fff}
+.report-print{background:#3d708d;color:#fff}
+.report-detail-btn{background:#eceff0;color:#43535b}
+.report-detail{display:none;margin-top:18px;text-align:left}
+.report-detail.show{display:block}
+.report-stage{margin:18px 0 8px;padding:9px 12px;border-radius:12px;background:#eaf1f4;color:#29445a;font-weight:950}
+.report-item{border:1px solid #dfe5e7;border-left:6px solid #75838a;border-radius:12px;background:#fff;padding:12px 14px;margin:9px 0}
+.report-item.correct{border-left-color:#347e62}
+.report-item.incorrect{border-left-color:#a94d49}
+.report-item p{margin:4px 0;line-height:1.4}
+.report-item .state-ok{color:#287054;font-weight:900}
+.report-item .state-no{color:#9a413d;font-weight:900}
+.report-note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f4f1fa;border:1px solid #ddd6ec;color:#5e547c;line-height:1.45}
+
+.final-summary{margin-top:20px;background:linear-gradient(135deg,rgba(255,254,249,.98),rgba(242,247,249,.98));border:1px solid #d5e0e5;border-radius:28px;padding:25px;box-shadow:var(--shadow)}
+.final-summary h2{margin:0 0 6px}.final-summary p{margin:0;color:var(--muted)}.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}.summary-item{background:#fff;border:1px solid #e1e6e7;border-radius:17px;padding:14px}.summary-item small{display:block;color:var(--muted);margin-bottom:4px}.summary-item b{font-size:1.2rem}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#2f3f46;color:#fff;padding:11px 16px;border-radius:999px;font-weight:850;z-index:1500;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+#contenedor-pie{position:relative;z-index:1}
+
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.hero-grid{grid-template-columns:1fr 180px}.scene{grid-template-columns:1fr}.clues{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.dashboard{grid-template-columns:1fr}.hero-grid{grid-template-columns:1fr}.umbrella-wrap{display:none}.cards{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr 1fr}.suspects{grid-template-columns:1fr}.dual-bars{grid-template-columns:1fr}.clues{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.direction-grid{grid-template-columns:1fr}.site-nav{align-items:flex-start;flex-direction:column;padding:0 14px;gap:10px}.site-logo img{height:48px}.site-links{width:100%;gap:10px 14px;padding-bottom:3px}.site-links a{font-size:.82rem}.site-links .site-back{border-left:0;padding-left:0;width:100%;padding-top:4px}.app{width:min(100% - 18px,1160px)}.hero{padding:26px 22px}.question-area,.recon,.verdict{padding:22px 17px}.work-banner{padding:20px 17px}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}.clues{grid-template-columns:1fr}.summary-grid{grid-template-columns:1fr}.compass{transform:scale(.96)}.slot{width:104px}.hat-row{grid-template-columns:78px 1fr}}
+</style>
+</head>
+<body>
+
+<script>
+(() => {
+  const btn = document.getElementById("btn-volver-origen");
+  if (!btn) return;
+  const fallbackHref = btn.dataset.fallbackHref || btn.getAttribute("href") || "/autoeva/index.html";
+  const fallbackLabel = btn.dataset.fallbackLabel || "Autoevaluaciones";
+  function usarFallback(){btn.href=fallbackHref;btn.textContent="← Volver a "+fallbackLabel;}
+  function limpiarTitulo(titulo){titulo=String(titulo||"").replace(/\s+/g," ").trim();return titulo||fallbackLabel;}
+  const anterior=document.referrer;
+  if(!anterior){usarFallback();return;}
+  let urlAnterior,urlActual;
+  try{urlAnterior=new URL(anterior);urlActual=new URL(window.location.href);}catch(e){usarFallback();return;}
+  if(urlAnterior.origin!==urlActual.origin||urlAnterior.href===urlActual.href){usarFallback();return;}
+  btn.href=urlAnterior.pathname+urlAnterior.search+urlAnterior.hash;
+  fetch(urlAnterior.href,{credentials:"same-origin"})
+    .then(r=>{if(!r.ok)throw new Error();return r.text();})
+    .then(html=>{const doc=new DOMParser().parseFromString(html,"text/html");const t=doc.querySelector("title");btn.textContent="← Volver a "+limpiarTitulo(t?t.textContent:"");})
+    .catch(()=>{btn.textContent="← Volver a "+fallbackLabel;});
+})();
+</script>
+
+<div class="app">
+  <main id="home">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Lectura policial · investigación interactiva</div>
+          <h1>Tres portugueses bajo un paraguas</h1>
+          <p>Leé las pistas, reconstruí la escena y descubrí cómo Rodolfo Walsh convierte un interrogatorio breve en un problema lógico para el lector.</p>
+          <div class="badges"><span class="badge">3 etapas + veredicto</span><span class="badge">Autovalidación</span><span class="badge">Progreso guardado</span></div>
+        </div>
+        <div class="umbrella-wrap" aria-hidden="true">
+          <div class="umbrella"><span class="rain-line r1"></span><span class="rain-line r2"></span><span class="rain-line r3"></span><span class="rain-line r4"></span><div class="canopy"></div><div class="pole"></div><div class="hook"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <div class="panel">
+        <div class="panel-title"><strong>Avance de la investigación</strong><span id="overallPct">0 %</span></div>
+        <div class="bar"><i id="overallBar"></i></div>
+        <div class="stats">
+          <div class="stat"><b id="completedCount">0/4</b><small>etapas completadas</small></div>
+          <div class="stat"><b id="totalScore">0/24</b><small>puntaje en actividades</small></div>
+          <div class="stat"><b id="caseStatus">Abierto</b><small>estado del caso</small></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="save-note"><span class="save-dot"></span><div><strong>El avance se guarda en este navegador.</strong><br>Podés continuar más tarde desde la misma computadora o dispositivo.</div></div>
+        <button class="text-btn" id="resetAll" type="button">Reiniciar toda la investigación</button>
+      </div>
+    </section>
+
+    <section class="case-board">
+      <h2>Expediente: pistas reunidas</h2>
+      <p>Las pistas se irán activando a medida que avances.</p>
+      <div class="clues" id="clueBoard"></div>
+    </section>
+
+    <div class="section-head"><div><h2>Recorrido del caso</h2><p>Las etapas se desbloquean en orden para no revelar la solución antes de tiempo.</p></div></div>
+    <section class="cards" id="moduleCards"></section>
+
+    <section id="finalSummary" class="final-summary hidden">
+      <h2>Caso cerrado</h2>
+      <p>Terminaste la investigación completa. Además del resultado general, podés preparar un informe para enviar al docente.</p>
+      <div class="summary-grid" id="summaryGrid"></div>
+
+      <div class="report-block">
+        <h3>Informe para enviar al docente</h3>
+        <p>Escribí tu nombre. Después podés descargar una copia HTML o abrir la versión preparada para imprimir y guardar como PDF.</p>
+        <div class="report-name">
+          <label for="studentName">Nombre y apellido:</label>
+          <input id="studentName" type="text" autocomplete="name" placeholder="Escribí tu nombre y apellido">
+        </div>
+        <div class="report-actions">
+          <button class="report-download" id="downloadReport" type="button">Descargar corrección</button>
+          <button class="report-print" id="printReport" type="button">PDF / Imprimir</button>
+          <button class="report-detail-btn" id="toggleReportDetail" type="button">Ver detalle</button>
+        </div>
+        <div class="report-detail" id="reportDetail"></div>
+      </div>
+    </section>
+  </main>
+
+  <section id="workspace" class="workspace" aria-live="polite">
+    <div class="workspace-shell">
+      <div class="toolbar"><button class="ghost" id="homeBtn" type="button">← Volver al inicio</button><span class="counter" id="topCounter"></span></div>
+      <div class="work-card" id="workCard"></div>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="contenedor-pie"></div>
+<script>
+  fetch('/pie.html')
+    .then(response => { if(response.ok) return response.text(); throw new Error('No se pudo cargar el pie de página'); })
+    .then(data => { document.getElementById('contenedor-pie').innerHTML = data; })
+    .catch(error => console.error('Error:', error));
+</script>
+
+<script id="activity-data" type="application/json">{"quiz1": [{"tag": "Información explícita", "q": "¿Por qué los portugueses estaban detenidos en esa esquina durante la tormenta?", "o": ["Esperaban que dejara de llover para volver caminando.", "Esperaban un taxi.", "Buscaban al comisario Jiménez.", "Vigilaban una casa sospechosa."], "a": 1, "exp": "El primer portugués dice que esperaban un taxi. Más adelante, Daniel Hernández explica que cada uno vigilaba una bocacalle distinta para aumentar las posibilidades de encontrarlo."}, {"tag": "Pistas · localización", "q": "¿Qué tenía de particular el sombrero del segundo portugués?", "o": ["Estaba completamente seco.", "Estaba todo mojado.", "Estaba mojado solamente adelante.", "Estaba seco en el medio: se había mojado adelante y atrás."], "a": 3, "exp": "La descripción indica que el sombrero del segundo estaba seco en el medio. La explicación final aclara que eso significa que se mojó adelante y atrás."}, {"tag": "Personajes · referencia", "q": "¿Hacia qué punto cardinal miraba el cuarto portugués cuando murió?", "o": ["Hacia el oeste.", "Hacia el norte.", "Hacia el sur.", "Hacia el este."], "a": 0, "exp": "El relato distribuye las miradas en cuatro direcciones: norte, este, sur y oeste. El muerto miraba hacia el oeste."}, {"tag": "Inferencia · diálogo", "q": "Cuando preguntan «¿Quién tenía el paraguas?» y el segundo responde «Yo soy bajo y gordo», ¿qué ocurre con su respuesta?", "o": ["Aporta directamente el nombre del dueño del paraguas.", "Desmiente que hubiera un paraguas.", "No responde de manera directa a lo que le preguntaron.", "Confiesa que estaba debajo del paraguas."], "a": 2, "exp": "La respuesta habla de su aspecto físico, no de quién sostenía el paraguas. Ese tipo de contestaciones obliga al lector a distinguir entre información pertinente y evasiones."}, {"tag": "Causa y consecuencia", "q": "¿Por qué el disparo pudo pasar inadvertido durante la tormenta?", "o": ["Porque el arma no tenía municiones.", "Porque el muerto estaba muy lejos del grupo.", "Porque todos estaban durmiendo.", "Porque la detonación podía confundirse con los truenos."], "a": 3, "exp": "El relato insiste en que tronaba intensamente. En la explicación, Hernández señala que la pequeña detonación se confundió con los truenos."}, {"tag": "Secuencia temporal", "q": "¿Cuándo dijeron que advirtieron que el cuarto portugués estaba muerto?", "o": ["Cuando terminó de llover y de tronar.", "Antes de que empezara la tormenta.", "Cuando llegó el taxi.", "Mientras todavía llovía con la misma intensidad."], "a": 0, "exp": "Las respuestas ubican el descubrimiento al finalizar la lluvia y los truenos; por eso ese momento es importante para interpretar cómo se mojaron los sombreros."}, {"tag": "Pistas · información explícita", "q": "¿Dónde recibió el disparo la víctima?", "o": ["En el pecho.", "En la nuca.", "En la espalda, a la altura de la cintura.", "En el brazo derecho."], "a": 1, "exp": "El texto informa que el cuarto portugués tenía una bala en la nuca. Esa ubicación será decisiva para reconstruir la posición del tirador."}, {"tag": "Lectura crítica", "q": "¿Cuál de estos datos parece menor al comienzo pero se vuelve fundamental para resolver el caso?", "o": ["La altura del comisario Jiménez.", "El material del escritorio.", "La forma en que se mojaron los sombreros.", "El color del sobretodo del muerto."], "a": 2, "exp": "El estado de los sombreros parece un detalle cotidiano, pero termina funcionando como la pista material que permite distinguir al culpable."}], "quiz3": [{"tag": "Organización del relato", "q": "¿Qué efecto produce que gran parte del cuento esté dividido en fragmentos breves y numerados?", "o": ["Hace que el relato avance como una serie ordenada de preguntas, respuestas y pistas.", "Convierte el cuento en una carta personal.", "Elimina por completo la presencia de un narrador.", "Presenta los hechos en orden alfabético."], "a": 0, "exp": "Los fragmentos numerados organizan el interrogatorio y permiten que la información aparezca de manera dosificada, casi como piezas de un expediente."}, {"tag": "Repetición", "q": "¿Qué función cumple la reiteración de que «el cuarto portugués estaba muerto» y sus variantes?", "o": ["Introduce personajes nuevos en cada fragmento.", "Mantiene presente el hecho central y produce un efecto insistente, a veces cercano al humor negro.", "Explica quién disparó desde el comienzo.", "Indica que el narrador duda de la muerte."], "a": 1, "exp": "La muerte se repite de forma casi mecánica, pero con variaciones. Esa insistencia sostiene el eje del caso y genera un tono particular."}, {"tag": "Voces del relato", "q": "¿Qué forma de discurso predomina durante el interrogatorio?", "o": ["Descripción extensa del paisaje.", "Monólogo interior del asesino.", "Diálogo directo entre investigadores y sospechosos.", "Carta escrita por la víctima."], "a": 2, "exp": "La mayor parte del interrogatorio se construye con preguntas y respuestas reproducidas directamente, lo que acelera el ritmo y acerca al lector a la escena."}, {"tag": "Policial de enigma", "q": "¿Qué característica del cuento permite que el lector intente resolver el caso antes de leer la explicación final?", "o": ["El culpable aparece identificado en el título.", "Las pistas necesarias se presentan antes de la resolución.", "El narrador informa los pensamientos secretos del asesino.", "La víctima deja una confesión escrita."], "a": 1, "exp": "Las posiciones, la lluvia, los sombreros, el paraguas, la nuca y los truenos aparecen antes de que Hernández explique cómo se relacionan."}, {"tag": "Pista y explicación", "q": "¿Qué cambia en el tramo final cuando Daniel Hernández explica el caso?", "o": ["Aparece una quinta persona que había sido ocultada.", "Se reemplazan las pistas anteriores por datos completamente nuevos.", "Se reorganizan y relacionan datos que el lector ya conocía.", "Se demuestra que no hubo ningún crimen."], "a": 2, "exp": "La resolución no depende de una pista secreta: Hernández conecta datos ya presentados y muestra por qué juntos señalan a un solo sospechoso."}, {"tag": "Título · interpretación", "q": "Después de leer el comienzo, ¿qué llama la atención en el título «Tres portugueses bajo un paraguas»?", "o": ["Que el título menciona tres portugueses, pero en la escena aparecen cuatro.", "Que no aparece ningún paraguas en el cuento.", "Que ninguno de los personajes es portugués.", "Que la historia transcurre de día y sin lluvia."], "a": 0, "exp": "La aparente discordancia entre los tres del título y los cuatro portugueses que aparecen desde el inicio contribuye a instalar la rareza del caso."}, {"tag": "Recursos expresivos", "q": "Expresiones como «dormía la muerte» o «estaba borracho de muerte» se apartan de una formulación puramente informativa. ¿Qué aportan?", "o": ["Una explicación científica de la muerte.", "Variaciones expresivas que mantienen la repetición sin decir siempre exactamente lo mismo.", "Una duda acerca de si el personaje está vivo.", "Datos nuevos sobre la bebida que tomó la víctima."], "a": 1, "exp": "Las variantes reformulan una misma idea y contribuyen al ritmo, al tono y al humor oscuro del cuento."}, {"tag": "Lector y detective", "q": "¿Qué relación establece el cuento entre Daniel Hernández y el lector?", "o": ["El lector sabe desde el principio más que Hernández.", "Hernández resuelve con pistas que también estuvieron disponibles para el lector.", "El lector no conoce ninguna pista hasta el último párrafo.", "Hernández recibe información secreta fuera del relato."], "a": 1, "exp": "El desafío consiste en observar y relacionar las mismas pistas que usa el detective. La explicación final muestra el razonamiento que el lector podía intentar reconstruir."}]}</script>
+<script>
+const DATA = JSON.parse(document.getElementById('activity-data').textContent);
+const STORAGE_KEY='tres_portugueses_walsh_v1';
+const letters=['A','B','C','D'];
+const MODULES=[
+ {id:'interrogatorio',label:'Etapa 1',title:'Interrogatorio',desc:'Leé con atención las declaraciones y distinguí datos, pistas y evasiones.',accent:'#3d708d',kind:'quiz',questions:DATA.quiz1},
+ {id:'reconstruccion',label:'Etapa 2',title:'Reconstrucción de la escena',desc:'Ubicá a cada portugués y relacioná los sombreros con la lluvia.',accent:'#c79b45',kind:'recon'},
+ {id:'estructura',label:'Etapa 3',title:'Cómo funciona el cuento',desc:'Analizá la forma del relato, la repetición, las voces y el policial de enigma.',accent:'#685b91',kind:'quiz',questions:DATA.quiz3},
+ {id:'veredicto',label:'Final',title:'El veredicto',desc:'Elegí al culpable y completá la cadena deductiva que demuestra la acusación.',accent:'#347e62',kind:'verdict'}
+];
+const CLUES=[
+ 'Noche de tormenta','Esperaban un taxi','Cada uno miraba a una dirección','Paraguas pequeño','Bala en la nuca','Truenos intensos','Sombreros mojados de manera distinta','Segundo sombrero: adelante y atrás'
+];
+const icons={
+ search:`<svg viewBox="0 0 64 64"><circle cx="27" cy="27" r="15"></circle><path d="M38 38l13 13"></path><path d="M21 22h12M21 28h9"></path></svg>`,
+ compass:`<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24"></circle><path d="M38 26l-5 14-12 5 5-14z"></path><path d="M32 4v6M32 54v6M4 32h6M54 32h6"></path></svg>`,
+ text:`<svg viewBox="0 0 64 64"><path d="M14 14h36v36H14z"></path><path d="M21 23h22M21 31h22M21 39h15"></path></svg>`,
+ check:`<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24"></circle><path d="M20 33l8 8 17-19"></path></svg>`
+};
+const iconMap={interrogatorio:'search',reconstruccion:'compass',estructura:'text',veredicto:'check'};
+
+function wash(hex){const h=hex.replace('#','');const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);return `rgba(${r},${g},${b},.12)`;}
+function defaultState(){return{
+ modules:{
+  interrogatorio:{completed:false,score:0,progress:0,selected:{}},
+  reconstruccion:{completed:false,score:0,progress:0,best:0},
+  estructura:{completed:false,score:0,progress:0,selected:{}},
+  veredicto:{completed:false,correct:false}
+ },
+ clues:0,
+ studentName:''
+};}
+function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return defaultState();const s=JSON.parse(raw),d=defaultState();Object.keys(d.modules).forEach(k=>{if(s.modules&&s.modules[k])d.modules[k]={...d.modules[k],...s.modules[k]};});d.clues=s.clues||0;d.studentName=s.studentName||'';return d;}catch(e){return defaultState();}}
+let state=loadState(),active=null,attempt=null;
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800);}
+function completedCount(){return MODULES.filter(m=>state.modules[m.id].completed).length;}
+function totalScore(){return state.modules.interrogatorio.score+state.modules.reconstruccion.score+state.modules.estructura.score;}
+function unlocked(id){
+ if(id==='interrogatorio')return true;
+ if(id==='reconstruccion')return state.modules.interrogatorio.completed;
+ if(id==='estructura')return state.modules.reconstruccion.completed;
+ if(id==='veredicto')return state.modules.estructura.completed;
+ return false;
+}
+function overallPct(){return completedCount()*25;}
+function renderClues(){
+ const n=state.modules.interrogatorio.completed?6:(state.modules.interrogatorio.progress>=5?4:(state.modules.interrogatorio.progress>=2?2:0));
+ const n2=state.modules.reconstruccion.completed?8:n;
+ document.getElementById('clueBoard').innerHTML=CLUES.map((c,i)=>`<div class="clue ${i<n2?'found':''}">${i<n2?c:'Pista por descubrir'}</div>`).join('');
+}
+function statusFor(m){
+ const s=state.modules[m.id];
+ if(!unlocked(m.id))return{cls:'lock',txt:'Bloqueada'};
+ if(s.completed){
+   if(m.id==='veredicto')return{cls:'done',txt:'Caso resuelto'};
+   return{cls:'done',txt:`Completada · ${s.score}/8`};
+ }
+ if((s.progress||0)>0)return{cls:'progress',txt:'En curso'};
+ return{cls:'',txt:'Sin comenzar'};
+}
+function renderHome(){
+ document.getElementById('home').classList.remove('hidden');document.getElementById('workspace').classList.remove('active');
+ const pct=overallPct();document.getElementById('overallPct').textContent=pct+' %';document.getElementById('overallBar').style.width=pct+'%';
+ document.getElementById('completedCount').textContent=completedCount()+'/4';document.getElementById('totalScore').textContent=totalScore()+'/24';document.getElementById('caseStatus').textContent=state.modules.veredicto.completed?'Cerrado':'Abierto';
+ renderClues();
+ const cards=document.getElementById('moduleCards');cards.innerHTML='';
+ MODULES.forEach(m=>{
+   const locked=!unlocked(m.id),st=statusFor(m),s=state.modules[m.id];
+   let prog=0;if(s.completed)prog=100;else if(m.kind==='quiz')prog=(s.progress||0)/8*100;else if(m.kind==='recon')prog=(s.progress||0)*100;
+   const btn=document.createElement('button');btn.type='button';btn.className='module-card'+(locked?' locked':'');btn.style.setProperty('--accent',m.accent);btn.style.setProperty('--wash',wash(m.accent));
+   btn.innerHTML=`<div class="card-top"><span class="module-label">${m.label}</span><span class="status ${st.cls}">${st.txt}</span></div><div class="module-symbol">${icons[iconMap[m.id]]}</div><h3>${m.title}</h3><p>${m.desc}</p><div class="card-foot"><span>${locked?'Completá la etapa anterior':(m.kind==='quiz'?'8 preguntas':m.kind==='recon'?'Actividad visual':'Resolución final')}</span><span class="mini-bar"><i style="width:${prog}%"></i></span></div>`;
+   btn.addEventListener('click',()=>{if(locked){toast('Primero completá la etapa anterior.');return;}openModule(m.id);});cards.appendChild(btn);
+ });
+ const final=document.getElementById('finalSummary');
+ if(state.modules.veredicto.completed){
+   final.classList.remove('hidden');
+   document.getElementById('summaryGrid').innerHTML=`
+    <div class="summary-item"><small>Interrogatorio</small><b>${state.modules.interrogatorio.score}/8</b></div>
+    <div class="summary-item"><small>Reconstrucción</small><b>${state.modules.reconstruccion.score}/8</b></div>
+    <div class="summary-item"><small>Estructura</small><b>${state.modules.estructura.score}/8</b></div>
+    <div class="summary-item"><small>Total</small><b>${totalScore()}/24</b></div>`;
+   const nameInput=document.getElementById('studentName');
+   if(nameInput){
+     nameInput.value=state.studentName||'';
+     nameInput.oninput=()=>{state.studentName=nameInput.value;save();};
+   }
+   const detail=document.getElementById('reportDetail');
+   if(detail) detail.innerHTML=buildOnPageReportDetail();
+   const downloadBtn=document.getElementById('downloadReport');
+   const printBtn=document.getElementById('printReport');
+   const toggleBtn=document.getElementById('toggleReportDetail');
+   if(downloadBtn) downloadBtn.onclick=downloadCorrection;
+   if(printBtn) printBtn.onclick=printCorrection;
+   if(toggleBtn) toggleBtn.onclick=toggleReportDetail;
+ } else final.classList.add('hidden');
+}
+function openModule(id,retry=false){
+ active=MODULES.find(m=>m.id===id);
+ document.getElementById('home').classList.add('hidden');document.getElementById('workspace').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});
+ if(active.kind==='quiz')startQuiz(retry); else if(active.kind==='recon')renderRecon(); else renderVerdict();
+}
+function generalDuring(moduleProgress){
+ const before={interrogatorio:0,reconstruccion:25,estructura:50,veredicto:75}[active.id]||0;
+ return Math.min(100,before+moduleProgress*25);
+}
+function startQuiz(retry=false){
+ const s=state.modules[active.id];
+ if(retry||s.completed)attempt={index:0,score:0,selected:{}};
+ else{
+   attempt={index:s.progress||0,score:0,selected:{...(s.selected||{})}};
+   attempt.score=Object.entries(attempt.selected).reduce((sum,[i,ch])=>sum+(active.questions[+i].a===ch?1:0),0);
+ }
+ renderQuizQuestion();
+}
+function renderQuizQuestion(){
+ const q=active.questions[attempt.index];if(!q){finishQuiz();return;}
+ const p=attempt.index/8;
+ document.getElementById('topCounter').textContent=`Pregunta ${attempt.index+1} de 8`;
+ const card=document.getElementById('workCard');card.style.setProperty('--accent',active.accent);card.style.setProperty('--wash',wash(active.accent));
+ card.innerHTML=`<div class="work-banner"><div class="banner-line"><div><span class="module-label">${active.label}</span><h2>${active.title}</h2></div><div class="score-pill">Puntaje: ${attempt.score}/8</div></div><div class="dual-bars"><div><div class="bar-caption"><span>Esta etapa</span><span>${attempt.index}/8</span></div><div class="smallbar"><i style="width:${p*100}%"></i></div></div><div><div class="bar-caption"><span>Investigación total</span><span>${Math.round(generalDuring(p))} %</span></div><div class="smallbar general"><i style="width:${generalDuring(p)}%"></i></div></div></div></div><div class="question-area"><div class="question-kicker">${q.tag}</div><div class="question">${q.q}</div><div class="options" id="options"></div><div class="feedback" id="feedback"></div><div class="next-row"><button class="primary" id="nextBtn" type="button" hidden>${attempt.index===7?'Ver resultado':'Siguiente pregunta'} →</button></div></div>`;
+ const opts=card.querySelector('#options');q.o.forEach((txt,idx)=>{const b=document.createElement('button');b.type='button';b.className='option';b.innerHTML=`<span class="letter">${letters[idx]}</span><span>${txt}</span>`;b.addEventListener('click',()=>answerQuiz(idx));opts.appendChild(b);});
+ card.querySelector('#nextBtn').addEventListener('click',()=>{attempt.index++;renderQuizQuestion();});
+}
+function answerQuiz(choice){
+ const q=active.questions[attempt.index];if(attempt.selected[attempt.index]!==undefined)return;
+ attempt.selected[attempt.index]=choice;const correct=choice===q.a;if(correct)attempt.score++;
+ [...document.querySelectorAll('.option')].forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===choice&&!correct)b.classList.add('wrong');});
+ const f=document.getElementById('feedback');f.className='feedback show '+(correct?'ok':'no');f.innerHTML=`<strong>${correct?'Respuesta correcta.':'No es la opción correcta.'}</strong>${q.exp}`;document.getElementById('nextBtn').hidden=false;
+ const s=state.modules[active.id];if(!s.completed){s.progress=Math.max(s.progress||0,attempt.index+1);s.selected={...attempt.selected};save();}
+}
+function finishQuiz(){
+ const s=state.modules[active.id];s.completed=true;s.score=attempt.score;s.progress=8;s.selected={...attempt.selected};save();
+ if(active.id==='interrogatorio')state.clues=6;save();
+ renderResult(active,attempt.score,()=>openModule(active.id==='interrogatorio'?'reconstruccion':'veredicto'));
+}
+function renderResult(mod,score,nextFn){
+ document.getElementById('topCounter').textContent='Etapa finalizada';
+ const card=document.getElementById('workCard');card.style.setProperty('--accent',mod.accent);card.style.setProperty('--wash',wash(mod.accent));
+ const nextLabel=mod.id==='interrogatorio'?'Continuar con la reconstrucción':mod.id==='estructura'?'Ir al veredicto':'Continuar';
+ card.innerHTML=`<div class="result"><div class="module-label">${mod.label}</div><h2>Etapa completada</h2><p>Terminaste <strong>${mod.title}</strong>. El puntaje corresponde a las respuestas correctas; el avance de la investigación queda guardado.</p><div class="result-score">${score}/8</div><div class="result-actions"><button class="primary" id="continueBtn" type="button">${nextLabel}</button><button class="secondary" id="retryBtn" type="button">Reintentar</button><button class="secondary" id="resultHome" type="button">Volver al inicio</button></div></div>`;
+ card.querySelector('#continueBtn').addEventListener('click',nextFn);card.querySelector('#retryBtn').addEventListener('click',()=>openModule(mod.id,true));card.querySelector('#resultHome').addEventListener('click',renderHome);
+}
+
+/* Reconstrucción */
+const PEOPLE=['','Primer portugués','Segundo portugués','Tercer portugués','Cuarto portugués'];
+const HATS=[
+  {value:'',label:'Elegí...'},
+  {value:'front',label:'Mojado solo adelante'},
+  {value:'frontback',label:'Mojado adelante y atrás'},
+  {value:'all',label:'Completamente mojado'}
+];
+function optionsHTML(arr){return arr.map((x,i)=>`<option value="${i}">${i?x:'Elegí...'}</option>`).join('');}
+function hatOptionsHTML(){return HATS.map(x=>`<option value="${x.value}">${x.label}</option>`).join('');}
+function renderRecon(){
+ document.getElementById('topCounter').textContent='Reconstrucción de la escena';
+ const card=document.getElementById('workCard');card.style.setProperty('--accent',active.accent);card.style.setProperty('--wash',wash(active.accent));
+ card.innerHTML=`<div class="work-banner"><div class="banner-line"><div><span class="module-label">Etapa 2</span><h2>Reconstrucción de la escena</h2></div><div class="score-pill">Mejor resultado: ${state.modules.reconstruccion.best||0}/8</div></div><div class="dual-bars"><div><div class="bar-caption"><span>Esta etapa</span><span>${state.modules.reconstruccion.completed?'Completada':'En curso'}</span></div><div class="smallbar"><i style="width:${state.modules.reconstruccion.completed?100:35}%"></i></div></div><div><div class="bar-caption"><span>Investigación total</span><span>${state.modules.reconstruccion.completed?50:34} %</span></div><div class="smallbar general"><i style="width:${state.modules.reconstruccion.completed?50:34}%"></i></div></div></div></div>
+ <div class="recon"><p class="recon-intro">Primero ubicá a cada portugués según la dirección que dijo estar mirando. Después relacioná cada sombrero con el modo en que se mojó.</p>
+ <div class="scene">
+  <div class="compass-card"><h3>1. Ubicá las miradas</h3><p class="sub">Cada persona ocupaba una dirección distinta.</p>
+   <div class="compass"><div class="axis-h"></div><div class="axis-v"></div><span class="dir north">NORTE</span><span class="dir south">SUR</span><span class="dir east">ESTE</span><span class="dir west">OESTE</span><div class="center-mark">ESQUINA</div></div>
+   <div class="direction-grid">
+    <div class="direction-row" data-key="north"><label>NORTE</label><select>${optionsHTML(PEOPLE)}</select></div>
+    <div class="direction-row" data-key="east"><label>ESTE</label><select>${optionsHTML(PEOPLE)}</select></div>
+    <div class="direction-row" data-key="south"><label>SUR</label><select>${optionsHTML(PEOPLE)}</select></div>
+    <div class="direction-row" data-key="west"><label>OESTE</label><select>${optionsHTML(PEOPLE)}</select></div>
+   </div>
+  </div>
+  <div class="hats-card"><h3>2. Relacioná los sombreros</h3><p class="sub">Pensá qué parte quedó mojada en cada caso.</p>
+   <div class="hat-list">
+    ${[1,2,3,4].map(i=>`<div class="hat-row" data-hat="${i}"><div><div class="hat-icon"></div><div class="hat-name">${PEOPLE[i]}</div></div><select>${hatOptionsHTML()}</select></div>`).join('')}
+   </div>
+  </div>
+ </div>
+ <div class="recon-actions"><button class="primary" id="checkRecon" type="button">Comprobar reconstrucción</button><button class="secondary" id="clearRecon" type="button">Limpiar</button></div>
+ <div id="reconMsg" class="recon-msg"></div>
+ <div id="decisive" class="decisive hidden"><h3>3. La pista decisiva</h3><p>¿Cuál de los cuatro sombreros muestra que su dueño tuvo que darse vuelta mientras todavía llovía?</p><div class="options" id="decisiveOpts"></div></div>
+ </div>`;
+ document.getElementById('checkRecon').addEventListener('click',checkRecon);
+ document.getElementById('clearRecon').addEventListener('click',()=>{document.querySelectorAll('.recon select').forEach(s=>s.value='0');document.querySelectorAll('.direction-row,.hat-row').forEach(x=>x.classList.remove('good','bad'));document.getElementById('reconMsg').className='recon-msg';document.getElementById('decisive').classList.add('hidden');});
+}
+function checkRecon(){
+ const correctDirs={north:1,east:2,south:3,west:4};const correctHats={1:'front',2:'frontback',3:'front',4:'all'};let score=0,filled=true;
+ document.querySelectorAll('.direction-row').forEach(el=>{const v=+el.querySelector('select').value;if(!v)filled=false;const ok=v===correctDirs[el.dataset.key];el.classList.toggle('good',ok);el.classList.toggle('bad',!!v&&!ok);if(ok)score++;});
+ document.querySelectorAll('.hat-row').forEach(el=>{const v=el.querySelector('select').value;if(!v)filled=false;const ok=v===correctHats[+el.dataset.hat];el.classList.toggle('good',ok);el.classList.toggle('bad',!!v&&!ok);if(ok)score++;});
+ const msg=document.getElementById('reconMsg');
+ if(!filled){msg.className='recon-msg show no';msg.textContent='Completá todas las ubicaciones y todos los sombreros antes de validar.';return;}
+ const s=state.modules.reconstruccion;s.best=Math.max(s.best||0,score);s.score=s.best;s.progress=.7;save();
+ if(score===8){msg.className='recon-msg show ok';msg.innerHTML='<strong>Reconstrucción correcta.</strong> Ya tenés el plano de la escena y el comportamiento de los sombreros. Ahora elegí cuál contiene la pista decisiva.';document.getElementById('decisive').classList.remove('hidden');renderDecisive();}
+ else{msg.className='recon-msg show no';msg.innerHTML=`Lograste <strong>${score}/8</strong>. Las casillas marcadas necesitan revisión. Corregilas y volvé a comprobar.`;}
+}
+function renderDecisive(){
+ const box=document.getElementById('decisiveOpts');box.innerHTML='';
+ PEOPLE.slice(1).forEach((name,idx)=>{const b=document.createElement('button');b.type='button';b.className='option';b.innerHTML=`<span class="letter">${letters[idx]}</span><span>${name}</span>`;b.addEventListener('click',()=>answerDecisive(idx,b));box.appendChild(b);});
+}
+function answerDecisive(choice,btn){
+ const correct=1;const buttons=[...document.querySelectorAll('#decisiveOpts .option')];buttons.forEach((b,i)=>{b.disabled=true;if(i===correct)b.classList.add('correct');if(i===choice&&choice!==correct)b.classList.add('wrong');});
+ const decisive=document.getElementById('decisive');const note=document.createElement('div');note.className='feedback show '+(choice===correct?'ok':'no');note.innerHTML=choice===correct?'<strong>Correcto.</strong> El sombrero del segundo portugués es el único mojado adelante y atrás.':'<strong>Revisá la reconstrucción.</strong> Buscá el sombrero que se mojó adelante y atrás.';decisive.appendChild(note);
+ if(choice===correct){const s=state.modules.reconstruccion;s.completed=true;s.score=8;s.best=8;s.progress=1;save();setTimeout(()=>renderResult(MODULES[1],8,()=>openModule('estructura')),500);}
+ else setTimeout(()=>renderRecon(),1300);
+}
+
+/* Veredicto */
+function renderVerdict(){
+ document.getElementById('topCounter').textContent='Resolución final';
+ const card=document.getElementById('workCard');card.style.setProperty('--accent',active.accent);card.style.setProperty('--wash',wash(active.accent));
+ card.innerHTML=`<div class="work-banner"><div class="banner-line"><div><span class="module-label">Final</span><h2>El veredicto</h2></div><div class="score-pill">Caso: ${state.modules.veredicto.completed?'cerrado':'abierto'}</div></div><div class="dual-bars"><div><div class="bar-caption"><span>Etapas previas</span><span>3/3</span></div><div class="smallbar"><i style="width:100%"></i></div></div><div><div class="bar-caption"><span>Investigación total</span><span>75 %</span></div><div class="smallbar general"><i style="width:75%"></i></div></div></div></div>
+ <div class="verdict"><h2>¿Quién mató al cuarto portugués?</h2><p>Elegí un sospechoso. Después, si acertás, completá la cadena que demuestra por qué esa acusación se sostiene con las pistas.</p>
+ <div class="suspects">${[1,2,3].map(i=>`<button class="suspect" type="button" data-sus="${i}"><b>${PEOPLE[i]}</b><small>Seleccionar sospechoso</small></button>`).join('')}</div>
+ <div id="verdictFeedback"></div>
+ <div id="chainBox" class="hidden"><h3>Completá la cadena deductiva</h3><div class="chain">
+  <div class="chain-step"><div class="chain-num">1</div><div>El segundo portugués miraba hacia <select data-c="0"><option value="">Elegí...</option><option>el norte</option><option>el este</option><option>el sur</option><option>el oeste</option></select></div></div><div class="chain-arrow">↓</div>
+  <div class="chain-step"><div class="chain-num">2</div><div>La víctima miraba hacia <select data-c="1"><option value="">Elegí...</option><option>el norte</option><option>el este</option><option>el sur</option><option>el oeste</option></select></div></div><div class="chain-arrow">↓</div>
+  <div class="chain-step"><div class="chain-num">3</div><div>Para apuntar a la nuca, el segundo portugués tuvo que <select data-c="2"><option value="">Elegí...</option><option>agacharse</option><option>darse vuelta</option><option>cerrar el paraguas</option><option>mirar hacia arriba</option></select></div></div><div class="chain-arrow">↓</div>
+  <div class="chain-step"><div class="chain-num">4</div><div>Mientras lo hacía todavía <select data-c="3"><option value="">Elegí...</option><option>llovía</option><option>había salido el sol</option><option>pasaba el taxi</option><option>estaban todos dentro de una casa</option></select></div></div><div class="chain-arrow">↓</div>
+  <div class="chain-step"><div class="chain-num">5</div><div>Por eso su sombrero quedó mojado <select data-c="4"><option value="">Elegí...</option><option>solo adelante</option><option>solo atrás</option><option>adelante y atrás</option><option>por completo al caer al suelo</option></select></div></div>
+ </div><div class="recon-actions"><button class="primary" id="checkChain" type="button">Comprobar razonamiento</button></div></div>
+ </div>`;
+ document.querySelectorAll('.suspect').forEach(b=>b.addEventListener('click',()=>chooseSuspect(+b.dataset.sus)));
+}
+function chooseSuspect(n){
+ const area=document.getElementById('verdictFeedback');document.querySelectorAll('.suspect').forEach(b=>b.disabled=true);
+ if(n===2){area.className='verdict-box show ok';area.innerHTML='<strong>La acusación coincide con la solución de Daniel Hernández.</strong> Falta demostrarla paso a paso.';document.getElementById('chainBox').classList.remove('hidden');document.getElementById('checkChain').addEventListener('click',checkChain);}
+ else{area.className='verdict-box show no';area.innerHTML='<strong>Esa acusación no explica todas las pistas.</strong> Volvé a observar qué sospechoso necesitaba darse vuelta para apuntar a la nuca del hombre que miraba hacia el oeste.';setTimeout(()=>renderVerdict(),1800);}
+}
+function checkChain(){
+ const expected=['el este','el oeste','darse vuelta','llovía','adelante y atrás'];const vals=[...document.querySelectorAll('#chainBox select')].map(s=>s.value);
+ if(vals.some(v=>!v)){toast('Completá toda la cadena antes de comprobar.');return;}
+ const ok=vals.every((v,i)=>v===expected[i]);const area=document.getElementById('verdictFeedback');
+ if(ok){
+   state.modules.veredicto.completed=true;state.modules.veredicto.correct=true;save();
+   area.className='verdict-box show ok';area.innerHTML='<strong>Caso resuelto.</strong> La posición del segundo portugués lo obligaba a darse vuelta. Ese movimiento expuso la parte posterior de su sombrero a la lluvia y dejó la marca que lo diferencia de los otros sospechosos.';
+   document.querySelectorAll('#chainBox select').forEach(s=>s.disabled=true);document.getElementById('checkChain').disabled=true;
+   const actions=document.createElement('div');actions.className='result-actions';actions.innerHTML='<button class="primary" id="closeCase" type="button">Ver resumen final</button><button class="secondary" id="restartVerdict" type="button">Revisar el caso</button>';document.getElementById('chainBox').appendChild(actions);
+   document.getElementById('closeCase').addEventListener('click',()=>{renderHome();setTimeout(()=>document.getElementById('finalSummary').scrollIntoView({behavior:'smooth'}),80);});
+   document.getElementById('restartVerdict').addEventListener('click',renderVerdict);
+ } else {area.className='verdict-box show no';area.innerHTML='<strong>La cadena todavía tiene un problema.</strong> Revisá las direcciones, el movimiento necesario para disparar y la relación entre ese movimiento y la lluvia.';}
+}
+
+/* Informe final para enviar al docente */
+function escapeHTML(value){
+ return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+}
+function getStudentName(){
+ const input=document.getElementById('studentName');
+ const name=(input?input.value:state.studentName||'').trim();
+ if(!name){
+   alert('Escribí tu nombre y apellido antes de generar el informe.');
+   if(input) input.focus();
+   return '';
+ }
+ state.studentName=name;save();return name;
+}
+function slugify(value){
+ return String(value||'informe').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
+   .replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+}
+function quizDetailHTML(moduleId,title){
+ const module=MODULES.find(m=>m.id===moduleId);
+ const selected=state.modules[moduleId].selected||{};
+ let out=`<div class="report-stage">${escapeHTML(title)}</div>`;
+ module.questions.forEach((q,idx)=>{
+   const choice=selected[idx];
+   const answered=choice!==undefined && choice!==null;
+   const ok=answered && Number(choice)===q.a;
+   const student=answered ? `${letters[Number(choice)]}. ${q.o[Number(choice)]}` : 'Sin respuesta';
+   const correct=`${letters[q.a]}. ${q.o[q.a]}`;
+   out+=`<div class="report-item ${ok?'correct':'incorrect'}">
+     <p><strong>${idx+1}. ${escapeHTML(q.q)}</strong></p>
+     <p><strong>Tu respuesta:</strong> ${escapeHTML(student)}</p>
+     <p><strong>Respuesta correcta:</strong> ${escapeHTML(correct)}</p>
+     <p><strong>Estado:</strong> <span class="${ok?'state-ok':'state-no'}">${ok?'Correcta':'Incorrecta'}</span></p>
+   </div>`;
+ });
+ return out;
+}
+function reconstructionDetailHTML(){
+ const rows=[
+   ['Dirección norte','Primer portugués'],
+   ['Dirección este','Segundo portugués'],
+   ['Dirección sur','Tercer portugués'],
+   ['Dirección oeste','Cuarto portugués'],
+   ['Sombrero del primer portugués','Mojado solo adelante'],
+   ['Sombrero del segundo portugués','Mojado adelante y atrás'],
+   ['Sombrero del tercer portugués','Mojado solo adelante'],
+   ['Sombrero del cuarto portugués','Completamente mojado']
+ ];
+ let out='<div class="report-stage">Etapa 2 · Reconstrucción de la escena</div>';
+ rows.forEach((row,idx)=>{
+   out+=`<div class="report-item correct">
+     <p><strong>${idx+1}. ${escapeHTML(row[0])}</strong></p>
+     <p><strong>Resolución:</strong> ${escapeHTML(row[1])}</p>
+     <p><strong>Estado:</strong> <span class="state-ok">Correcta</span></p>
+   </div>`;
+ });
+ out+=`<div class="report-note"><strong>Pista decisiva:</strong> el sombrero del segundo portugués, mojado adelante y atrás. Esta etapa exige corregir la reconstrucción antes de poder continuar, por eso el informe registra su resolución final.</div>`;
+ return out;
+}
+function verdictDetailHTML(){
+ return `<div class="report-stage">Resolución final · El veredicto</div>
+   <div class="report-item correct">
+     <p><strong>Culpable identificado:</strong> Segundo portugués</p>
+     <p><strong>Cadena deductiva:</strong> Este → Oeste → darse vuelta → todavía llovía → sombrero mojado adelante y atrás.</p>
+     <p><strong>Estado:</strong> <span class="state-ok">Caso resuelto</span></p>
+   </div>`;
+}
+function buildOnPageReportDetail(){
+ return quizDetailHTML('interrogatorio','Etapa 1 · Interrogatorio')+
+        reconstructionDetailHTML()+
+        quizDetailHTML('estructura','Etapa 3 · Cómo funciona el cuento')+
+        verdictDetailHTML();
+}
+function toggleReportDetail(){
+ const detail=document.getElementById('reportDetail');
+ const btn=document.getElementById('toggleReportDetail');
+ if(!detail)return;
+ const show=!detail.classList.contains('show');
+ detail.classList.toggle('show',show);
+ if(btn) btn.textContent=show?'Ocultar detalle':'Ver detalle';
+}
+function buildCorrectionHTML(student){
+ const score=totalScore();
+ const pct=Math.round((score/24)*100);
+ const date=new Date().toLocaleString('es-AR');
+ const detail=buildOnPageReportDetail()
+   .replaceAll('report-stage','stage')
+   .replaceAll('report-item','item')
+   .replaceAll('report-note','note')
+   .replaceAll('state-ok','state-ok')
+   .replaceAll('state-no','state-no');
+ return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <title>Corrección - Tres portugueses bajo un paraguas</title>
+ <style>
+ *{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#f2f5f6;color:#263238;margin:0;padding:24px}
+ main{max-width:920px;margin:0 auto;background:white;border-radius:16px;padding:26px;box-shadow:0 5px 18px rgba(0,0,0,.08)}
+ h1{text-align:center;color:#29445a;margin:0 0 8px}.sub{text-align:center;color:#66747c;margin:5px 0}
+ .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:22px 0}
+ .datum{background:#edf4f6;border:1px solid #bfcfd6;border-radius:12px;padding:13px;text-align:center}.datum strong{display:block;font-size:1.55rem;color:#29445a}
+ .stage{margin:22px 0 9px;padding:10px 13px;border-radius:10px;background:#eaf1f4;color:#29445a;font-weight:bold}
+ .item{border:1px solid #d7dde2;border-left:7px solid #667085;border-radius:9px;padding:13px;margin:10px 0;background:#fff}
+ .item.correct{border-left-color:#347e62}.item.incorrect{border-left-color:#a94d49}.item p{margin:5px 0;line-height:1.4}
+ .state-ok{color:#287054;font-weight:bold}.state-no{color:#9a413d;font-weight:bold}
+ .note{margin:12px 0;padding:12px 14px;border-radius:10px;background:#f4f1fa;border:1px solid #ddd6ec;color:#5e547c;line-height:1.45}
+ .actions{text-align:center;margin:0 0 18px}.actions button{background:#3d708d;color:white;border:0;border-radius:22px;padding:11px 17px;font-weight:bold;cursor:pointer}
+ @media print{body{background:white;padding:0}main{box-shadow:none;border-radius:0}.actions{display:none}}
+ </style></head><body><main>
+ <div class="actions"><button onclick="window.print()">PDF / Imprimir</button></div>
+ <h1>Corrección de actividad</h1>
+ <p class="sub"><strong>Actividad:</strong> Tres portugueses bajo un paraguas</p>
+ <p class="sub"><strong>Autor:</strong> Rodolfo Walsh</p>
+ <p class="sub"><strong>Alumno/a:</strong> ${escapeHTML(student)}</p>
+ <p class="sub"><strong>Fecha:</strong> ${escapeHTML(date)}</p>
+ <div class="summary">
+   <div class="datum"><strong>${state.modules.interrogatorio.score}/8</strong>Interrogatorio</div>
+   <div class="datum"><strong>${state.modules.reconstruccion.score}/8</strong>Reconstrucción</div>
+   <div class="datum"><strong>${state.modules.estructura.score}/8</strong>Estructura</div>
+   <div class="datum"><strong>${score}/24</strong>Puntaje total</div>
+   <div class="datum"><strong>${pct}%</strong>Porcentaje</div>
+   <div class="datum"><strong>Resuelto</strong>Veredicto</div>
+ </div>
+ <h2>Detalle de respuestas</h2>${detail}
+ </main></body></html>`;
+}
+function downloadCorrection(){
+ const student=getStudentName();if(!student)return;
+ const report=buildCorrectionHTML(student);
+ const blob=new Blob([report],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ a.download=`correccion_tres_portugueses_${slugify(student)}.html`;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function printCorrection(){
+ const student=getStudentName();if(!student)return;
+ const report=buildCorrectionHTML(student);
+ const win=window.open('','_blank');
+ if(!win){alert('No se pudo abrir la ventana de impresión. Revisá si el navegador bloqueó ventanas emergentes.');return;}
+ win.document.open();win.document.write(report);win.document.close();win.focus();
+ setTimeout(()=>win.print(),350);
+}
+
+document.getElementById('homeBtn').addEventListener('click',renderHome);
+document.getElementById('resetAll').addEventListener('click',()=>{if(confirm('¿Querés borrar todo el progreso de esta investigación?')){state=defaultState();save();renderHome();toast('Investigación reiniciada.');}});
+renderHome();
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

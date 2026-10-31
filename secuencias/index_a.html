@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secuencias de Lengua</title>
+<meta name="description" content="Secuencias didácticas, fichas y guías docentes de Lengua para descargar, organizadas por cuento, género, autor y recorridos.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Paleta del sitio (tema Lengua) + naranja para el material docente
+   + azul para la práctica. */
+:root{
+  --theme:#27AE60; --soft:#E8F5E9; --title:#1B5E20;
+  --docente:#E67E22; --docente-soft:#FDF1E4; --docente-title:#A34E00;
+  --auto:#036FB0; --auto-soft:#E3F2FD; --auto-title:#01579B;
+  --nav:#2c3e50;
+  --text:#263238; --surface:#fff;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+/* Los saltos (#…, scrollIntoView) dejan el destino justo debajo de la barra fija.
+   --alto-barra y --alto-nav las calcula el JS (cambian en el celular, donde la barra ocupa más líneas).
+   Se usa scroll-margin-top en los destinos y NO scroll-padding-top en html: con padding, al escribir en el
+   buscador (que está pegado arriba) el navegador intenta "traerlo a la vista" y scrollea la página en cada tecla. */
+#lista,#vacio,.grupo,.grupo-titulo,.column{scroll-margin-top:calc(var(--alto-barra, 0px) + 14px)}
+/* Altura mínima: con pocos resultados la página sigue siendo lo bastante larga para quedar scrolleada
+   (la barra no se despega y el encabezado no vuelve a aparecer de golpe) */
+#lista{min-height:calc(100vh - var(--alto-barra, 0px) - 80px)}
+body{margin:0;background:var(--soft);font-family:'Nunito',sans-serif;color:var(--text);line-height:1.5}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Barra de navegación (igual que el resto del sitio) */
+.site-nav{background:var(--nav);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 3px 10px rgba(0,0,0,.22);position:relative;z-index:10}
+/* El menú se va con el scroll. Para que vuelva a acompañarlo: position:sticky;top:0 (la barra de abajo se acomoda sola). */
+.site-nav img{height:54px;max-width:220px;object-fit:contain}
+.site-nav nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.site-nav a{color:#fff;text-decoration:none;font-weight:800;font-size:.95rem}
+
+/* Encabezado */
+.page-header{background:var(--theme);color:#fff;padding:42px 20px}
+.hero-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:24px}
+.hero-text{flex:1;min-width:0;text-align:center}
+.hero-text h1{margin:0 0 8px;font-size:clamp(2rem,4vw,3rem);line-height:1.05}
+.hero-text p{margin:0;font-size:1.15rem;opacity:.93}
+.hero-img{max-height:150px;max-width:190px;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.18))}
+
+.page-wrap{max-width:1100px;margin:0 auto;padding:28px 20px 70px}
+
+/* Barra fija: leyenda + buscador + pestañas */
+.centinela{height:1px;margin-bottom:-1px;pointer-events:none}
+.barra{position:sticky;top:var(--alto-nav, 0px);z-index:9;background:var(--soft);transition:box-shadow .2s ease}
+.barra.pegada{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.barra-in{max-width:1100px;margin:0 auto;padding:12px 20px}
+
+/* Referencias de color y buscador */
+.tools{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin:0 0 10px}
+.leyenda{display:flex;gap:16px;flex-wrap:wrap;font-weight:700;font-size:.92rem}
+.leyenda span{display:inline-flex;align-items:center;gap:8px}
+.leyenda i{width:14px;height:14px;border-radius:50%;display:inline-block}
+.buscar{flex:0 1 320px;width:100%;padding:10px 16px;border:2px solid rgba(0,0,0,.08);border-radius:999px;font:inherit;background:#fff;color:var(--text)}
+.buscar:focus{outline:2px solid var(--theme);outline-offset:1px}
+
+/* Selector de vistas */
+.vistas{display:flex;flex-wrap:wrap;gap:8px;margin:0}
+.vista-btn{border:2px solid var(--nav);background:#fff;color:var(--nav);border-radius:999px;padding:7px 18px;font:800 .93rem 'Nunito',sans-serif;cursor:pointer;transition:.16s ease}
+.vista-btn:hover{background:#eceff1}
+.vista-btn[aria-pressed="true"]{background:var(--nav);color:#fff}
+.vista-btn:focus-visible,.chip:focus-visible,.reco-item:focus-visible{outline:3px solid var(--nav);outline-offset:2px}
+
+/* Secciones (vistas agrupadas) */
+.grupo{margin-bottom:36px}
+.grupo-titulo{margin:0 0 16px;color:var(--title);font-size:1.45rem;line-height:1.2;display:flex;align-items:center;gap:10px;border-bottom:3px solid rgba(0,0,0,.08);padding-bottom:6px}
+.cuenta{font-size:.82rem;font-weight:800;background:var(--nav);color:#fff;border-radius:999px;padding:1px 10px}
+
+/* Tarjetas */
+.orden{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 16px;font-weight:800;color:var(--nav)}
+.orden-btn{border:2px solid var(--nav);background:#fff;color:var(--nav);border-radius:999px;padding:4px 14px;font:800 .85rem 'Nunito',sans-serif;cursor:pointer}
+.orden-btn[aria-pressed="true"]{background:var(--nav);color:#fff}
+.orden-btn:focus-visible{outline:3px solid var(--nav);outline-offset:2px}
+.column.fila{padding:14px 18px}
+.fila-autor{margin:0 0 6px;color:#555;font-weight:700;font-size:.92rem}
+.fila .thin-button-bar{margin-top:6px}
+.cuentos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.column{background:#fff;border-radius:14px;padding:18px;box-shadow:0 3px 14px rgba(0,0,0,.08);border-top:5px solid var(--theme)}
+.column.reco{border-top-color:var(--nav)}
+.column .tit{margin:0 0 8px;color:var(--title);font-size:1.25rem;line-height:1.2}
+.destacada{animation:flash 1.8s ease-out}
+@keyframes flash{0%,35%{box-shadow:0 0 0 5px #ffde72,0 3px 14px rgba(0,0,0,.08)}100%{box-shadow:0 3px 14px rgba(0,0,0,.08)}}
+@media (prefers-reduced-motion:reduce){.destacada{animation:none;outline:3px solid #ffde72}}
+
+/* Autor, género y temas */
+.meta,.temas,.enreco{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 8px}
+.chip{font:inherit;cursor:pointer;border:0;background:none;padding:0}
+.chip.autor{color:#546E7A;font-weight:800;font-size:.93rem;text-decoration:underline;text-decoration-color:rgba(84,110,122,.35);text-underline-offset:3px}
+.chip.autor:hover{text-decoration-color:#546E7A}
+.chip.genero{background:#ECEFF1;color:var(--nav);font-weight:800;font-size:.8rem;border-radius:999px;padding:2px 11px;border:1px solid #cfd8dc}
+.chip.genero:hover{background:#dfe5e8}
+.chip.tema{background:#fff;color:#607D8B;font-weight:700;font-size:.78rem;border-radius:999px;padding:1px 10px;border:1px solid #cfd8dc}
+.chip.tema:hover{background:#f3f6f7}
+.enreco{font-size:.85rem;color:#607D8B;font-weight:700}
+.chip.reco{color:var(--nav);font-weight:800;text-decoration:underline;text-decoration-color:rgba(44,62,80,.35);text-underline-offset:3px}
+
+/* Recorridos */
+.reco-desc{margin:0 0 10px;color:#546E7A;font-size:.95rem}
+.reco-lista{margin:0 0 6px;padding-left:24px}
+.reco-lista li{margin:0 0 5px}
+.reco-item{font:inherit;font-weight:800;color:var(--title);cursor:pointer;border:0;background:none;padding:0;text-align:left;text-decoration:underline;text-decoration-color:rgba(27,94,32,.35);text-underline-offset:3px}
+.reco-item:hover{text-decoration-color:var(--title)}
+.reco-autor{display:block;font-size:.82rem;color:#78909C;font-weight:600}
+
+/* Botones de documentos */
+.subtitle-block{margin:14px 0 8px;font-size:1.05rem;font-weight:900;text-align:center;border-bottom:2px solid rgba(0,0,0,.08);padding-bottom:5px}
+.subtitle-block.aula{color:var(--theme)}
+.subtitle-block.docente{color:var(--docente-title);border-bottom-color:rgba(230,126,34,.35)}
+.subtitle-block.auto{color:var(--auto-title);border-bottom-color:rgba(3,111,176,.3)}
+.thin-button-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center}
+.thin-btn{display:inline-flex;align-items:center;justify-content:center;width:260px;max-width:100%;min-height:34px;padding:7px 14px;border-radius:999px;border:2px solid var(--theme);background:#fff;color:var(--text);text-decoration:none;font-weight:900;line-height:1.1;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:.16s ease;text-align:center}
+.thin-btn:hover{background:var(--soft);transform:translateY(-1px)}
+.thin-btn.docente{border-color:var(--docente)}
+.thin-btn.docente:hover{background:var(--docente-soft)}
+.thin-btn.auto{border-color:var(--auto)}
+.thin-btn.auto:hover{background:var(--auto-soft)}
+.thin-btn:focus-visible{outline:3px solid var(--nav);outline-offset:2px}
+.thin-btn.pronto{border-color:#cfd8dc;color:#90a4ae;background:#f6f8fb;box-shadow:none;cursor:default}
+.thin-btn.pronto:hover{transform:none;background:#f6f8fb}
+.btn-col{display:flex;flex-direction:column;align-items:center;width:260px;max-width:100%}
+.btn-col .thin-btn{width:100%}
+.texto-autor{font-size:.8rem;color:#78909C;font-weight:700;margin-top:3px;text-align:center}
+.vacio{text-align:center;font-weight:700;display:none;margin:0 0 20px}
+
+/* Panel de revisión (solo con ?revisar) */
+.revision{background:#fff;border-radius:14px;padding:18px 22px;margin-bottom:26px;box-shadow:0 3px 14px rgba(0,0,0,.08);border-top:5px solid var(--nav)}
+.revision h2{margin:0 0 6px;font-size:1.3rem;color:var(--nav)}
+.revision h3{margin:16px 0 6px;font-size:1.02rem}
+.revision p{margin:0 0 8px;font-size:.93rem;color:#546E7A}
+.revision ul{margin:0;padding-left:22px}
+.revision li{margin-bottom:4px;font-size:.93rem}
+.revision .err{color:#B03A2E}
+.revision .avi{color:var(--docente-title)}
+.revision .pen{color:#546E7A}
+.revision .ok{color:var(--title);font-weight:800}
+.revision .resumen li{color:var(--text)}
+
+@media(max-width:850px){.hero-inner{flex-direction:column}.site-nav{justify-content:center}.site-nav nav{justify-content:center}.tools{justify-content:center}.vistas{justify-content:center}}
+/* Celular: la barra se compacta para no tapar media pantalla */
+@media(max-width:600px){
+  .barra-in{padding:8px 14px}
+  .tools{gap:8px;margin-bottom:8px}
+  .leyenda{gap:4px 12px;font-size:.78rem}
+  .buscar{flex-basis:100%;padding:8px 14px}
+  .vistas{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}
+  .vistas::-webkit-scrollbar{display:none}
+  .vista-btn{flex:0 0 auto;white-space:nowrap;padding:6px 14px;font-size:.88rem}
+}
+</style>
+</head>
+<body>
+
+
+<section class="page-header"><div class="hero-inner">
+  <img class="hero-img" src="../images/oso-lengua.png" alt="" onerror="this.style.display='none'">
+  <div class="hero-text"><h1>Secuencias de Lengua</h1><p>Cuentos, secuencias, fichas y guías docentes</p></div>
+  <img class="hero-img" src="../images/tres-lengua.png" alt="" onerror="this.style.display='none'">
+</div></section>
+
+<div id="centinela" class="centinela" aria-hidden="true"></div>
+<div id="barra" class="barra">
+  <div class="barra-in">
+    <div class="tools">
+      <div class="leyenda">
+        <span><i style="background:var(--theme)"></i>Para el aula</span>
+        <span><i style="background:var(--docente)"></i>Para el docente</span>
+        <span id="ley-auto" hidden><i style="background:var(--auto)"></i>Para practicar</span>
+      </div>
+      <input id="buscar" class="buscar" type="search" placeholder="Buscar por título, autor, género o tema…" aria-label="Buscar por título, autor, género o tema">
+    </div>
+    <div id="vistas" class="vistas" role="group" aria-label="Cómo ordenar los cuentos" hidden></div>
+  </div>
+</div>
+
+<main class="page-wrap">
+  <aside id="revision" class="revision" hidden></aside>
+  <p id="vacio" class="vacio">No se encontró nada con esa búsqueda.</p>
+  <section id="lista"></section>
+</main>
+
+<script src="cuentos.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     Utilidades de texto
+     ============================================================ */
+  // Clave de comparación: sin tildes, sin mayúsculas, sin signos ni espacios dobles
+  const norm = s => String(s == null ? "" : s).normalize("NFD").replace(/[̀-ͯ]/g, "")
+                      .toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+  const sinTildes = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "");
+
+  // Distancia de edición (cuántas letras hay que cambiar para pasar de a a b)
+  function lev(a, b){
+    if (a === b) return 0;
+    const m = a.length, n = b.length;
+    if (!m) return n;
+    if (!n) return m;
+    let prev = Array.from({length: n + 1}, (_, j) => j);
+    for (let i = 1; i <= m; i++){
+      const cur = [i];
+      for (let j = 1; j <= n; j++){
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      }
+      prev = cur;
+    }
+    return prev[n];
+  }
+  // ¿Dos claves distintas se parecen tanto que seguramente son la misma cosa mal escrita?
+  function parecidos(ka, kb){
+    if (ka === kb) return false;
+    if (ka.split(" ").sort().join(" ") === kb.split(" ").sort().join(" ")) return true;
+    const L = Math.min(ka.length, kb.length);
+    if (L < 4) return false;
+    return lev(ka, kb) <= (L <= 6 ? 1 : 2);
+  }
+
+  // Agrupa textos que solo difieren en mayúsculas, tildes o espacios
+  function unificador(){
+    const m = new Map();
+    return {
+      add(txt){
+        const t = String(txt).trim(), k = norm(t);
+        if (!k) return "";
+        let e = m.get(k);
+        if (!e){ e = {vars: new Map()}; m.set(k, e); }
+        e.vars.set(t, (e.vars.get(t) || 0) + 1);
+        return k;
+      },
+      etiqueta(k){
+        return Array.from(m.get(k).vars.entries())
+          .sort((a, b) => (b[1] - a[1]) || ((b[0] !== sinTildes(b[0])) - (a[0] !== sinTildes(a[0]))))[0][0];
+      },
+      variantes(k){ return Array.from(m.get(k).vars.keys()); },
+      claves(){ return Array.from(m.keys()); },
+      cuenta(k){ return Array.from(m.get(k).vars.values()).reduce((x, y) => x + y, 0); }
+    };
+  }
+
+  /* ============================================================
+     Lectura y control del catálogo
+     ============================================================ */
+  const ORDEN_VISTAS = ["todos", "genero", "autor", "tema", "recorridos", "secuencias", "fichas", "cuentos", "autoevals"];
+  const NOMBRE_VISTA = {todos: "Todos", genero: "Por género", autor: "Por autor", tema: "Por tema", recorridos: "Recorridos", secuencias: "Secuencias", fichas: "Fichas", cuentos: "Cuentos", autoevals: "Autoevaluaciones"};
+  const CLAVES_OK = ["slug", "titulo", "autor", "genero", "temas", "textos", "etiquetas", "autores", "solo", "enlaces", "excepciones", "faltan", "autoevaluacion"];
+  const CLAVES_RECO = ["slug", "titulo", "descripcion", "cuentos", "textos", "etiquetas", "autores", "solo", "enlaces", "excepciones", "faltan", "autoevaluacion"];
+  // Los documentos que puede tener un cuento (o un recorrido con documentos propios)
+  const CLAVES_DOC = ["cuento", "texto2", "texto3", "secuencia", "fichas", "secuencia_guia", "fichas_guia"];
+
+  const rep = {errores: [], avisos: [], pendientes: []};
+  const err = m => rep.errores.push(m), avi = m => rep.avisos.push(m), pen = m => rep.pendientes.push(m);
+
+  // Revisa los grupos { clave: valor } y la lista "faltan" de un cuento o recorrido
+  function validarDocs(c, ref){
+    const sugerir = k => CLAVES_DOC.filter(o => lev(norm(k).replace(/ /g, ""), o.replace(/_/g, "")) <= 2)[0];
+    ["enlaces", "excepciones", "etiquetas", "autores"].forEach(function(campo){
+      const o = c[campo];
+      if (o == null) return;
+      if (typeof o !== "object" || Array.isArray(o)){
+        err("En «" + ref + "», «" + campo + "» tiene que ser un grupo entre llaves, por ejemplo " + campo + ': { texto2: "…" }.' +
+            (campo === "autores" ? " Para el autor principal se usa «autor»." : ""));
+        return;
+      }
+      Object.keys(o).forEach(function(k){
+        if (CLAVES_DOC.indexOf(k) === -1){
+          const sg = sugerir(k);
+          err("En «" + ref + "», dentro de «" + campo + "», «" + k + "» no es un documento válido" +
+              (sg ? ". ¿Quisiste decir «" + sg + "»?" : ". Los válidos son: " + CLAVES_DOC.join(", ") + "."));
+        } else if (typeof o[k] !== "string"){
+          err("En «" + ref + "», «" + campo + "» → «" + k + "» tiene que ir entre comillas.");
+        }
+      });
+    });
+    if (c.faltan != null){
+      if (!Array.isArray(c.faltan)) err("En «" + ref + "», «faltan» tiene que ir entre corchetes, por ejemplo faltan: [\"fichas\"].");
+      else c.faltan.forEach(function(k){
+        if (CLAVES_DOC.indexOf(k) === -1){
+          const sg = sugerir(String(k));
+          err("En «" + ref + "», «faltan» incluye «" + k + "», que no es un documento válido" + (sg ? ". ¿Quisiste decir «" + sg + "»?" : "."));
+        }
+      });
+    }
+    if (c.solo != null){
+      if (!Array.isArray(c.solo)) err("En «" + ref + "», «solo» tiene que ir entre corchetes, por ejemplo solo: [\"secuencia\"].");
+      else {
+        if (!c.solo.length) avi("En «" + ref + "», «solo» está vacío: no se muestra ningún botón de documento.");
+        c.solo.forEach(function(k){
+          if (CLAVES_DOC.indexOf(k) === -1){
+            const sg = sugerir(String(k));
+            err("En «" + ref + "», «solo» incluye «" + k + "», que no es un documento válido" + (sg ? ". ¿Quisiste decir «" + sg + "»?" : ". Los válidos son: " + CLAVES_DOC.join(", ") + "."));
+          }
+        });
+        ["enlaces", "excepciones", "etiquetas", "autores"].forEach(function(campo){
+          const o = c[campo];
+          if (o && typeof o === "object" && !Array.isArray(o)) Object.keys(o).forEach(function(k){
+            if (CLAVES_DOC.indexOf(k) !== -1 && c.solo.indexOf(k) === -1)
+              avi("En «" + ref + "», «" + campo + "» nombra «" + k + "», pero ese botón no se muestra porque no está en «solo».");
+          });
+        });
+      }
+    }
+    if (c.textos != null && !(Number.isInteger(Number(c.textos)) && Number(c.textos) >= 1 && Number(c.textos) <= 3))
+      err("En «" + ref + "», «textos» tiene que ser 1, 2 o 3.");
+  }
+
+  // Cuántos textos tiene (1 a 3): lo que dice "textos", o los que se nombran en enlaces, etiquetas, etc.
+  function cantidadTextos(c){
+    let n = Number(c.textos);
+    n = (Number.isInteger(n) && n >= 1 && n <= 3) ? n : 1;
+    const nombra = k => [c.enlaces, c.excepciones, c.etiquetas, c.autores].some(o => o && typeof o === "object" && !Array.isArray(o) && k in o) ||
+                        (Array.isArray(c.faltan) && c.faltan.indexOf(k) !== -1);
+    if (nombra("texto2")) n = Math.max(n, 2);
+    if (nombra("texto3")) n = Math.max(n, 3);
+    return n;
+  }
+  // ¿Se muestra el botón de este documento? Con "solo", únicamente los que se listan.
+  function mostrarDoc(c, d){
+    if (Array.isArray(c.solo)) return c.solo.indexOf(d.clave) !== -1;
+    return !d.extra || d.extra <= cantidadTextos(c);
+  }
+  const textoDe = (c, campo, clave) => (c[campo] && typeof c[campo] === "object" && typeof c[campo][clave] === "string") ? c[campo][clave].trim() : "";
+
+  const LISTA_GENEROS = (typeof GENEROS !== "undefined" && Array.isArray(GENEROS)) ? GENEROS.map(String) : [];
+  const CLAVES_GENERO = LISTA_GENEROS.map(norm);
+
+  // Género de la lista cerrada; corrige abreviaturas y errores de una o dos letras
+  function resolverGenero(g){
+    const k = norm(g);
+    if (!k) return {estado: "vacio"};
+    if (!LISTA_GENEROS.length) return {estado: "ok", valor: String(g).trim()};
+    const i = CLAVES_GENERO.indexOf(k);
+    if (i >= 0) return {estado: "ok", valor: LISTA_GENEROS[i]};
+    if (k.length >= 5){
+      const c = CLAVES_GENERO.map((x, j) => x.indexOf(k) === 0 ? j : -1).filter(j => j >= 0);
+      if (c.length === 1) return {estado: "corregido", valor: LISTA_GENEROS[c[0]]};
+    }
+    let mejor = -1, dm = 99, empate = false;
+    CLAVES_GENERO.forEach((x, j) => {
+      const d = lev(k, x);
+      if (d < dm){ dm = d; mejor = j; empate = false; } else if (d === dm){ empate = true; }
+    });
+    if (mejor >= 0 && dm <= 2 && !empate && k.length >= 4) return {estado: "corregido", valor: LISTA_GENEROS[mejor]};
+    return {estado: "desconocido"};
+  }
+
+  const A = unificador(), T = unificador();
+  const cuentos = [];
+  const porSlug = new Map();
+
+  (Array.isArray(CUENTOS) ? CUENTOS : []).forEach(function(c, i){
+    if (!c || typeof c !== "object"){ err("El elemento n.º " + (i + 1) + " de CUENTOS no es un bloque { … } válido."); return; }
+    const ref = c.titulo || c.slug || ("el cuento n.º " + (i + 1));
+    if (!c.slug){ err("«" + ref + "» no tiene slug: no se puede mostrar."); return; }
+    if (!c.titulo){ err("El cuento con slug «" + c.slug + "» no tiene título: no se puede mostrar."); return; }
+    if (porSlug.has(c.slug)){ err("El slug «" + c.slug + "» está repetido (en «" + porSlug.get(c.slug).titulo + "» y en «" + c.titulo + "»)."); return; }
+    if (!/^[a-z0-9_]+$/.test(c.slug)) avi("El slug «" + c.slug + "» tiene mayúsculas, tildes, espacios u otros signos: los archivos tienen que llamarse igual.");
+
+    Object.keys(c).forEach(function(p){
+      if (CLAVES_OK.indexOf(p) !== -1 || p === "género") return;
+      const cerca = CLAVES_OK.filter(o => lev(norm(p), o) <= 2)[0];
+      err("En «" + ref + "» hay un dato que no se reconoce: «" + p + "»" + (cerca ? ". ¿Quisiste decir «" + cerca + "»?" : "."));
+    });
+
+    validarDocs(c, ref);
+    const it = Object.assign({}, c, {_ref: ref});
+    // autor
+    if (c.autor != null && typeof c.autor !== "string") err("El autor de «" + ref + "» tiene que ir entre comillas.");
+    it._autorK = typeof c.autor === "string" ? A.add(c.autor) : "";
+    if (!it._autorK) pen("«" + ref + "» no tiene autor.");
+    // autores de otros textos (opcional): el cuento también se encuentra por ellos
+    it._autoresExtraK = [];
+    if (c.autores && typeof c.autores === "object" && !Array.isArray(c.autores)){
+      Object.keys(c.autores).forEach(function(k){
+        if (typeof c.autores[k] !== "string") return;
+        const kk = A.add(c.autores[k]);
+        if (kk && kk !== it._autorK && it._autoresExtraK.indexOf(kk) === -1) it._autoresExtraK.push(kk);
+      });
+    }
+    // género (se acepta también "género" con tilde)
+    const g = c.genero != null ? c.genero : c["género"];
+    const rg = resolverGenero(g);
+    it._genero = rg.valor || "";
+    if (rg.estado === "vacio") pen("«" + ref + "» no tiene género.");
+    else if (rg.estado === "corregido") avi("En «" + ref + "» el género está escrito «" + g + "»: se interpretó como «" + rg.valor + "». Corregilo en cuentos.js.");
+    else if (rg.estado === "desconocido") err("En «" + ref + "» el género «" + g + "» no está en la lista GENEROS: el cuento queda en «Sin clasificar».");
+    // temas
+    let t = c.temas;
+    if (typeof t === "string"){ avi("En «" + ref + "» los temas tienen que ir entre corchetes: temas: [\"" + t + "\"]."); t = [t]; }
+    if (t != null && !Array.isArray(t)){ err("En «" + ref + "» los temas no se pudieron leer."); t = []; }
+    const ks = [];
+    (t || []).forEach(function(x){ const k = T.add(x); if (k && ks.indexOf(k) === -1) ks.push(k); });
+    it._temasK = ks;
+    // autoevaluación
+    if (c.autoevaluacion != null && typeof c.autoevaluacion !== "string") err("La autoevaluación de «" + ref + "» tiene que ir entre comillas.");
+
+    porSlug.set(c.slug, it);
+    cuentos.push(it);
+  });
+
+  // Recorridos
+  const recorridos = [];
+  (typeof RECORRIDOS !== "undefined" && Array.isArray(RECORRIDOS) ? RECORRIDOS : []).forEach(function(r, i){
+    if (!r || !r.titulo){ err("El recorrido n.º " + (i + 1) + " no tiene título."); return; }
+    const miembros = [], vistos = [];
+    if (!Array.isArray(r.cuentos) || !r.cuentos.length) avi("El recorrido «" + r.titulo + "» no tiene cuentos.");
+    (Array.isArray(r.cuentos) ? r.cuentos : []).forEach(function(s){
+      if (vistos.indexOf(s) !== -1){ avi("El recorrido «" + r.titulo + "» repite el cuento «" + s + "»."); return; }
+      vistos.push(s);
+      const c = porSlug.get(s);
+      if (!c){
+        const cerca = Array.from(porSlug.keys()).filter(k => lev(k, String(s)) <= Math.min(3, Math.floor(String(s).length / 3)))[0];
+        err("El recorrido «" + r.titulo + "» incluye «" + s + "», que no existe en CUENTOS" + (cerca ? ". ¿Quisiste decir «" + cerca + "»?" : ".") + " Se omite.");
+        return;
+      }
+      miembros.push(c);
+    });
+    if (r.slug && porSlug.has(r.slug)) err("El recorrido «" + r.titulo + "» usa el mismo slug que un cuento («" + r.slug + "»).");
+    Object.keys(r).forEach(function(p){
+      if (CLAVES_RECO.indexOf(p) !== -1) return;
+      const cerca = CLAVES_RECO.filter(o => lev(norm(p), o) <= 2)[0];
+      err("En el recorrido «" + r.titulo + "» hay un dato que no se reconoce: «" + p + "»" + (cerca ? ". ¿Quisiste decir «" + cerca + "»?" : "."));
+    });
+    validarDocs(r, r.titulo);
+    const it = Object.assign({}, r, {_miembros: miembros, _esReco: true, _idx: recorridos.length});
+    it._busq = norm([r.titulo, r.descripcion || ""].concat(miembros.map(c => c.titulo + " " + (c.autor || ""))).join(" "));
+    recorridos.push(it);
+  });
+  cuentos.forEach(function(c){
+    c._recos = recorridos.filter(r => r._miembros.indexOf(c) !== -1);
+    c._busq = norm([c.titulo, c._autorK ? A.etiqueta(c._autorK) : "", c._genero]
+                   .concat(c._temasK.map(k => T.etiqueta(k)))
+                   .concat(c._autoresExtraK.map(k => A.etiqueta(k)))
+                   .concat(c.etiquetas && typeof c.etiquetas === "object" ? Object.keys(c.etiquetas).map(k => textoDe(c, "etiquetas", k)) : [])
+                   .join(" "));
+  });
+
+  // Autores y temas casi iguales (probable error de tipeo) o unificados
+  function revisarParecidos(U, nombre){
+    const ks = U.claves();
+    ks.forEach(function(k){
+      const v = U.variantes(k);
+      if (v.length > 1) avi(nombre + " escritos de distintas maneras: " + v.map(x => "«" + x + "»").join(", ") + ". Se unificaron, pero conviene escribirlos igual.");
+    });
+    for (let i = 0; i < ks.length; i++) for (let j = i + 1; j < ks.length; j++){
+      if (parecidos(ks[i], ks[j]))
+        avi(nombre + " muy parecidos: «" + U.etiqueta(ks[i]) + "» (" + U.cuenta(ks[i]) + ") y «" + U.etiqueta(ks[j]) + "» (" + U.cuenta(ks[j]) + "). Si son lo mismo, escribilos igual.");
+    }
+  }
+  revisarParecidos(A, "Autores");
+  revisarParecidos(T, "Temas");
+  rep.errores.concat(rep.avisos).forEach(m => console.warn("[Secuencias] " + m));
+
+  /* ============================================================
+     Armado de tarjetas
+     ============================================================ */
+  const DOCS = [
+    {clave: "cuento",         etiqueta: "Cuento",                   grupo: "aula"},
+    {clave: "texto2",         etiqueta: "Texto 2",                  grupo: "aula", extra: 2},
+    {clave: "texto3",         etiqueta: "Texto 3",                  grupo: "aula", extra: 3},
+    {clave: "secuencia",      etiqueta: "Secuencia",                grupo: "aula"},
+    {clave: "fichas",         etiqueta: "Fichas",                   grupo: "aula"},
+    {clave: "secuencia_guia", etiqueta: "Guía docente · secuencia", grupo: "docente"},
+    {clave: "fichas_guia",    etiqueta: "Guía docente · fichas",    grupo: "docente"}
+  ];
+
+  function el(tag, cls, texto){
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (texto != null) e.textContent = texto;
+    return e;
+  }
+
+  function nombreArchivo(c, clave){
+    if (c.excepciones && c.excepciones[clave]) return c.excepciones[clave];
+    return c.slug + "_" + clave + ".pdf";
+  }
+
+  function boton(c, d){
+    // El nombre se puede cambiar con "etiquetas". En un recorrido, el texto principal es un compilado: "Cuentos"
+    const etiqueta = textoDe(c, "etiquetas", d.clave) || ((c._esReco && d.clave === "cuento") ? "Cuentos" : d.etiqueta);
+    if (c.faltan && c.faltan.indexOf(d.clave) !== -1){
+      return el("span", "thin-btn pronto", etiqueta + " (próximamente)");
+    }
+    const a = el("a", "thin-btn" + (d.grupo === "docente" ? " docente" : ""));
+    const externo = c.enlaces && c.enlaces[d.clave];
+    if (externo){
+      // El documento no está en el servidor: se enlaza a la página original
+      a.href = externo;
+      a.textContent = etiqueta + " ↗";
+      a.title = "Se abre en otro sitio";
+    } else {
+      a.href = (typeof CARPETA_PDF !== "undefined" ? CARPETA_PDF : "pdf/") + encodeURIComponent(nombreArchivo(c, d.clave));
+      a.textContent = etiqueta;
+    }
+    a.target = "_blank";
+    a.rel = "noopener";
+    return a;
+  }
+
+  function grupoDocs(c, titulo, nombre){
+    const frag = document.createDocumentFragment();
+    const docs = DOCS.filter(d => d.grupo === nombre && mostrarDoc(c, d));
+    if (!docs.length) return frag;          // sin botones en este grupo: tampoco se muestra su título
+    frag.appendChild(el("h4", "subtitle-block " + nombre, titulo));
+    const b = el("div", "thin-button-bar");
+    docs.forEach(function(d){
+      const btn = boton(c, d), au = textoDe(c, "autores", d.clave);
+      if (au){
+        // Autor/a propio de ese texto, bajo su botón
+        const col = el("div", "btn-col");
+        col.appendChild(btn);
+        col.appendChild(el("span", "texto-autor", au));
+        b.appendChild(col);
+      } else b.appendChild(btn);
+    });
+    frag.appendChild(b);
+    return frag;
+  }
+
+  // Autoevaluación: botón azul que solo existe si el cuento tiene su dirección
+  const tieneAuto = c => typeof c.autoevaluacion === "string" && c.autoevaluacion.trim() !== "";
+
+  function grupoAuto(c){
+    const frag = document.createDocumentFragment();
+    frag.appendChild(el("h4", "subtitle-block auto", "Para practicar"));
+    const b = el("div", "thin-button-bar");
+    const a = el("a", "thin-btn auto", "Autoevaluación");
+    a.href = c.autoevaluacion.trim();
+    // Misma pestaña: la autoevaluación tiene un botón "Volver" que regresa acá
+    b.appendChild(a);
+    frag.appendChild(b);
+    return frag;
+  }
+
+  function bloqueDocs(c){
+    const frag = document.createDocumentFragment();
+    frag.appendChild(grupoDocs(c, "Para el aula", "aula"));
+    frag.appendChild(grupoDocs(c, "Para el docente", "docente"));
+    if (tieneAuto(c)) frag.appendChild(grupoAuto(c));
+    return frag;
+  }
+
+  function chip(texto, tipo, vista, clave){
+    const b = el("button", "chip " + tipo, texto);
+    b.type = "button";
+    b.addEventListener("click", () => irA(vista, clave));
+    return b;
+  }
+
+  function tarjetaCuento(c){
+    const card = el("article", "column");
+    card.dataset.slug = c.slug;
+    card.appendChild(el("h3", "tit", c.titulo));
+    const meta = el("div", "meta");
+    if (c._autorK) meta.appendChild(chip(A.etiqueta(c._autorK), "autor", "autor", c._autorK));
+    if (c._genero) meta.appendChild(chip(c._genero, "genero", "genero", norm(c._genero)));
+    if (meta.children.length) card.appendChild(meta);
+    if (c._temasK.length){
+      const t = el("div", "temas");
+      c._temasK.forEach(k => t.appendChild(chip(T.etiqueta(k), "tema", "tema", k)));
+      card.appendChild(t);
+    }
+    if (c._recos.length){
+      const r = el("div", "enreco");
+      r.appendChild(document.createTextNode(c._recos.length > 1 ? "Recorridos:" : "Recorrido:"));
+      c._recos.forEach(x => r.appendChild(chip(x.titulo, "reco", "recorridos", String(x._idx))));
+      card.appendChild(r);
+    }
+    card.appendChild(bloqueDocs(c));
+    return card;
+  }
+
+  function tarjetaRecorrido(r){
+    const card = el("article", "column reco");
+    card.dataset.grupo = "recorridos:" + r._idx;
+    card.appendChild(el("h3", "tit", r.titulo));
+    if (r.descripcion) card.appendChild(el("p", "reco-desc", r.descripcion));
+    if (r._miembros.length){
+      const ol = el("ol", "reco-lista");
+      r._miembros.forEach(function(c){
+        const li = el("li");
+        const b = el("button", "reco-item", c.titulo);
+        b.type = "button";
+        b.addEventListener("click", () => irACuento(c.slug));
+        li.appendChild(b);
+        if (c._autorK) li.appendChild(el("span", "reco-autor", A.etiqueta(c._autorK)));
+        ol.appendChild(li);
+      });
+      card.appendChild(ol);
+    }
+    if (r.slug) card.appendChild(bloqueDocs(r));
+    else if (tieneAuto(r)) card.appendChild(grupoAuto(r));   // sin documentos propios, pero con autoevaluación
+    return card;
+  }
+
+  /* ============================================================
+     Pestañas por documento (Secuencias, Fichas, Cuentos, Autoevaluaciones)
+     ============================================================ */
+  const VISTAS_DOC = {
+    secuencias: {claves: ["secuencia"], titulo: "Secuencias"},
+    fichas:     {claves: ["fichas"], titulo: "Fichas"},
+    cuentos:    {claves: ["cuento", "texto2", "texto3"], titulo: "Cuentos"},
+    autoevals:  {auto: true, titulo: "Autoevaluaciones"}
+  };
+
+  // Documentos de ese tipo que tiene un cuento o recorrido (los "próximamente" solos no cuentan)
+  function docsDe(it, def){
+    if (def.auto) return tieneAuto(it) ? [true] : [];
+    if (it._esReco && !it.slug) return [];
+    const ds = DOCS.filter(d => def.claves.indexOf(d.clave) !== -1 && mostrarDoc(it, d));
+    return ds.some(d => !(it.faltan && it.faltan.indexOf(d.clave) !== -1)) ? ds : [];
+  }
+  const itemsDe = def => cuentos.concat(recorridos).filter(it => docsDe(it, def).length);
+
+  function filaDoc(it, def){
+    const card = el("article", "column fila" + (it._esReco ? " reco" : ""));
+    if (!it._esReco) card.dataset.slug = it.slug;
+    card.appendChild(el("h3", "tit", it.titulo));
+    const quien = it._esReco ? "Recorrido" + (it._miembros.length ? " · " + it._miembros.length + (it._miembros.length > 1 ? " cuentos" : " cuento") : "")
+                             : (it._autorK ? A.etiqueta(it._autorK) : "");
+    if (quien) card.appendChild(el("p", "fila-autor", quien));
+    const b = el("div", "thin-button-bar");
+    if (def.auto){
+      const a = el("a", "thin-btn auto", "Autoevaluación");
+      a.href = it.autoevaluacion.trim();
+      b.appendChild(a);
+    } else {
+      docsDe(it, def).forEach(function(d){
+        const btn = boton(it, d), au = textoDe(it, "autores", d.clave);
+        if (au){
+          const col = el("div", "btn-col");
+          col.appendChild(btn);
+          col.appendChild(el("span", "texto-autor", au));
+          b.appendChild(col);
+        } else b.appendChild(btn);
+      });
+    }
+    card.appendChild(b);
+    return card;
+  }
+
+  /* ============================================================
+     Vistas
+     ============================================================ */
+  function agrupar(vista){
+    const out = [];
+    if (vista === "genero"){
+      LISTA_GENEROS.forEach(function(g){
+        const its = cuentos.filter(c => c._genero === g);
+        if (its.length) out.push({clave: norm(g), titulo: g, items: its});
+      });
+      const sin = cuentos.filter(c => !c._genero);
+      if (sin.length) out.push({clave: "", titulo: "Sin clasificar", items: sin});
+    } else if (vista === "autor"){
+      const ks = A.claves().sort(function(x, y){
+        const ax = x === "anonimo", ay = y === "anonimo";
+        if (ax !== ay) return ax ? 1 : -1;
+        return A.etiqueta(x).localeCompare(A.etiqueta(y), "es");
+      });
+      ks.forEach(k => out.push({clave: k, titulo: A.etiqueta(k), items: cuentos.filter(c => c._autorK === k || c._autoresExtraK.indexOf(k) !== -1)}));
+      const sin = cuentos.filter(c => !c._autorK);
+      if (sin.length) out.push({clave: "", titulo: "Sin autor", items: sin});
+    } else if (vista === "tema"){
+      T.claves().sort((x, y) => T.etiqueta(x).localeCompare(T.etiqueta(y), "es"))
+        .forEach(k => out.push({clave: k, titulo: cap(T.etiqueta(k)), items: cuentos.filter(c => c._temasK.indexOf(k) !== -1)}));
+      const sin = cuentos.filter(c => !c._temasK.length);
+      if (sin.length) out.push({clave: "", titulo: "Sin tema asignado", items: sin});
+    }
+    return out;
+  }
+
+  const disponibles = ORDEN_VISTAS.filter(function(v){
+    if (v === "todos") return true;
+    if (v === "genero") return cuentos.some(c => c._genero);
+    if (v === "autor") return cuentos.some(c => c._autorK);
+    if (v === "tema") return cuentos.some(c => c._temasK.length);
+    if (v === "recorridos") return recorridos.length > 0;
+    if (VISTAS_DOC[v]) return itemsDe(VISTAS_DOC[v]).length > 0;
+    return false;
+  });
+
+  const lista = document.getElementById("lista");
+  const buscar = document.getElementById("buscar");
+  const vacio = document.getElementById("vacio");
+  const tabs = document.getElementById("vistas");
+  const barra = document.getElementById("barra");
+  const centinela = document.getElementById("centinela");
+  const raiz = document.documentElement;
+  const menu = document.querySelector(".site-nav");
+  const estado = {vista: "todos", q: "", orden: "az"};
+
+  function render(){
+    const destino = document.createDocumentFragment();   // se arma aparte y se cambia de una vez: la página no se achica ni salta
+    const tokens = estado.q.split(" ").filter(Boolean);
+    const pasa = it => tokens.every(t => it._busq.indexOf(t) !== -1);
+    let total = 0;
+
+    if (estado.vista === "todos"){
+      destino.appendChild(el("h2", "sr", "Todos los cuentos"));
+      const g = el("div", "cuentos-grid");
+      cuentos.filter(pasa).forEach(c => { g.appendChild(tarjetaCuento(c)); total++; });
+      // Los recorridos que tienen sus propios documentos (compilados) también se ven acá
+      recorridos.filter(r => r.slug && pasa(r)).forEach(r => { g.appendChild(tarjetaRecorrido(r)); total++; });
+      destino.appendChild(g);
+    } else if (estado.vista === "recorridos"){
+      destino.appendChild(el("h2", "sr", "Recorridos"));
+      const g = el("div", "cuentos-grid");
+      recorridos.filter(pasa).forEach(r => { g.appendChild(tarjetaRecorrido(r)); total++; });
+      destino.appendChild(g);
+    } else if (VISTAS_DOC[estado.vista]){
+      const def = VISTAS_DOC[estado.vista];
+      destino.appendChild(el("h2", "sr", def.titulo));
+      // Elegir cómo ordenar: de la A a la Z o agrupado por género
+      const ord = el("div", "orden");
+      ord.appendChild(document.createTextNode("Ordenar:"));
+      [["az", "De la A a la Z"], ["genero", "Por género"]].forEach(function(o){
+        const b = el("button", "orden-btn", o[1]);
+        b.type = "button"; b.dataset.orden = o[0];
+        b.setAttribute("aria-pressed", estado.orden === o[0] ? "true" : "false");
+        b.addEventListener("click", function(){
+          if (estado.orden === o[0]) return;
+          estado.orden = o[0]; render();
+          const nb = lista.querySelector('.orden-btn[data-orden="' + o[0] + '"]'); if (nb) nb.focus({preventScroll: true});
+        });
+        ord.appendChild(b);
+      });
+      destino.appendChild(ord);
+      const its = itemsDe(def).filter(pasa);
+      const porTitulo = (x, y) => x.titulo.localeCompare(y.titulo, "es");
+      if (estado.orden === "genero"){
+        const grupos = LISTA_GENEROS.map(g => ({clave: norm(g), titulo: g, items: its.filter(c => !c._esReco && c._genero === g)}));
+        grupos.push({clave: "", titulo: "Sin clasificar", items: its.filter(c => !c._esReco && !c._genero)});
+        grupos.push({clave: "recorridos", titulo: "Recorridos", items: its.filter(c => c._esReco)});
+        grupos.forEach(function(gr){
+          if (!gr.items.length) return;
+          const sec = el("section", "grupo");
+          sec.dataset.grupo = estado.vista + ":" + gr.clave;
+          const h = el("h2", "grupo-titulo", gr.titulo);
+          h.appendChild(el("span", "cuenta", String(gr.items.length)));
+          sec.appendChild(h);
+          const g = el("div", "cuentos-grid");
+          gr.items.sort(porTitulo).forEach(c => { g.appendChild(filaDoc(c, def)); total++; });
+          sec.appendChild(g);
+          destino.appendChild(sec);
+        });
+      } else {
+        const g = el("div", "cuentos-grid");
+        its.sort(porTitulo).forEach(c => { g.appendChild(filaDoc(c, def)); total++; });
+        destino.appendChild(g);
+      }
+    } else {
+      agrupar(estado.vista).forEach(function(gr){
+        const its = gr.items.filter(pasa);
+        if (!its.length) return;
+        const sec = el("section", "grupo");
+        sec.dataset.grupo = estado.vista + ":" + gr.clave;
+        const h = el("h2", "grupo-titulo", gr.titulo);
+        h.appendChild(el("span", "cuenta", String(its.length)));
+        sec.appendChild(h);
+        const g = el("div", "cuentos-grid");
+        its.forEach(c => { g.appendChild(tarjetaCuento(c)); total++; });
+        sec.appendChild(g);
+        destino.appendChild(sec);
+      });
+    }
+    lista.replaceChildren(destino);
+    vacio.style.display = total ? "none" : "block";
+  }
+
+  /* ---------- Barra fija: medidas, sombra y posiciones ---------- */
+  let altoNav = 0, navObservado = -1, observador = null;
+
+  // Alto del menú del sitio (solo si acompaña el scroll) y alto total que queda tapado arriba
+  function medir(){
+    const pos = menu ? getComputedStyle(menu).position : "static";
+    altoNav = (pos === "sticky" || pos === "fixed") ? Math.ceil(menu.getBoundingClientRect().height) : 0;
+    raiz.style.setProperty("--alto-nav", altoNav + "px");
+    raiz.style.setProperty("--alto-barra", (altoNav + Math.ceil(barra.getBoundingClientRect().height)) + "px");
+    observarCentinela();
+  }
+
+  // Sombra suave solo cuando la barra está pegada arriba: se detecta con un centinela justo antes de ella
+  function observarCentinela(){
+    if (navObservado === altoNav || !("IntersectionObserver" in window)) return;
+    navObservado = altoNav;
+    if (observador) observador.disconnect();
+    observador = new IntersectionObserver(function(entradas){
+      const e = entradas[entradas.length - 1];
+      barra.classList.toggle("pegada", !e.isIntersecting && e.boundingClientRect.bottom <= altoNav + 1);
+    }, {rootMargin: "-" + altoNav + "px 0px 0px 0px", threshold: [0, 1]});
+    observador.observe(centinela);
+  }
+
+  // ¿Ya se scrolleó más allá del encabezado (la barra está pegada arriba)?
+  const estaPegada = () => window.scrollY > 0 && barra.getBoundingClientRect().top <= altoNav + 1;
+  const altoTotal = () => altoNav + Math.ceil(barra.getBoundingClientRect().height);
+
+  // Lleva el inicio de la lista justo debajo de la barra (scrollIntoView respeta scroll-margin-top)
+  function irAlInicio(){ (vacio.style.display === "block" ? vacio : lista).scrollIntoView({block: "start", behavior: "auto"}); }
+
+  // o.hash === false: no escribe el #hash. o.mover: al cambiar de pestaña, si ya se scrolleó, va al inicio del contenido
+  function setVista(v, o){
+    o = o || {};
+    const pegada = estaPegada();
+    estado.vista = v;
+    Array.prototype.forEach.call(tabs.children, b => b.setAttribute("aria-pressed", b.dataset.vista === v ? "true" : "false"));
+    if (o.hash !== false){
+      try { history.replaceState(null, "", location.pathname + location.search + "#" + v); } catch (e) {}
+    }
+    render();
+    if (o.mover && pegada) irAlInicio();
+  }
+
+  function destacar(e){
+    if (!e) return;
+    const auto = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    e.scrollIntoView({behavior: auto ? "auto" : "smooth", block: "start"});
+    e.classList.remove("destacada");
+    void e.offsetWidth;
+    e.classList.add("destacada");
+    setTimeout(() => e.classList.remove("destacada"), 1900);
+  }
+
+  // Salta a la sección (género, autor, tema) o al recorrido indicado
+  function irA(vista, clave){
+    if (disponibles.indexOf(vista) === -1) return;
+    estado.q = ""; buscar.value = "";
+    setVista(vista);
+    const e = lista.querySelector('[data-grupo="' + vista + ":" + clave + '"]');
+    destacar(e && (e.querySelector(".grupo-titulo") || e));
+  }
+
+  function irACuento(slug){
+    estado.q = ""; buscar.value = "";
+    setVista("todos");
+    destacar(Array.prototype.filter.call(lista.querySelectorAll("[data-slug]"), e => e.dataset.slug === slug)[0]);
+  }
+
+  buscar.addEventListener("input", function(){
+    estado.q = norm(buscar.value);
+    const pegada = estaPegada();
+    render();
+    // Si estaba scrolleado y quedan pocos resultados que tapa la barra o quedaron más arriba de lo visible, se los acerca.
+    // Con muchos resultados (o si ya se ven bien) no se mueve nada.
+    if (pegada){
+      const vacioVisible = vacio.style.display === "block";
+      const r = (vacioVisible ? vacio : lista).getBoundingClientRect(), ultimo = lista.lastElementChild;
+      const alto = ultimo ? ultimo.getBoundingClientRect().bottom - r.top : 0;
+      if (r.top < altoTotal() && alto <= window.innerHeight - altoTotal()) irAlInicio();
+    }
+  });
+
+  // Cambio de #hash dentro de la página (link interno, o escrito en la barra de direcciones)
+  window.addEventListener("hashchange", function(){
+    const h = location.hash.replace("#", "");
+    if (disponibles.indexOf(h) === -1) return;
+    if (h !== estado.vista) setVista(h, {hash: false});
+    irAlInicio();
+  });
+
+  /* ============================================================
+     Panel de revisión (solo con ?revisar)
+     ============================================================ */
+  function mostrarRevision(){
+    const box = document.getElementById("revision");
+    box.hidden = false;
+    box.appendChild(el("h2", null, "Revisión del catálogo"));
+    box.appendChild(el("p", null, "Este panel solo se ve con ?revisar al final de la dirección. Los visitantes no lo ven."));
+    [["Errores a corregir", "err", rep.errores], ["Para revisar", "avi", rep.avisos], ["Pendientes de completar", "pen", rep.pendientes]]
+      .forEach(function(s){
+        if (!s[2].length) return;
+        box.appendChild(el("h3", s[1], s[0] + " (" + s[2].length + ")"));
+        const ul = el("ul");
+        s[2].forEach(m => ul.appendChild(el("li", s[1], m)));
+        box.appendChild(ul);
+      });
+    if (!rep.errores.length && !rep.avisos.length) box.appendChild(el("p", "ok", "No se encontró nada para corregir."));
+
+    box.appendChild(el("h3", null, "Resumen"));
+    const ul = el("ul", "resumen");
+    const cont = (titulo, pares) => ul.appendChild(el("li", null, titulo + ": " + (pares.length ? pares.join(" · ") : "—")));
+    ul.appendChild(el("li", null, "Cuentos: " + cuentos.length + " · Recorridos: " + recorridos.length));
+    cont("Géneros", agrupar("genero").map(g => g.titulo + " (" + g.items.length + ")"));
+    cont("Autores", agrupar("autor").map(g => g.titulo + " (" + g.items.length + ")"));
+    cont("Temas", agrupar("tema").filter(g => g.clave).map(g => g.titulo + " (" + g.items.length + ")"));
+    box.appendChild(ul);
+  }
+
+  /* ============================================================
+     Inicio
+     ============================================================ */
+  document.getElementById("ley-auto").hidden = !cuentos.concat(recorridos).some(tieneAuto);
+
+  disponibles.forEach(function(v){
+    const b = el("button", "vista-btn", NOMBRE_VISTA[v]);
+    b.type = "button";
+    b.dataset.vista = v;
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("click", function(){ setVista(v, {mover: true}); });
+    tabs.appendChild(b);
+  });
+  tabs.hidden = disponibles.length < 2;
+
+  // La barra se mide antes de posicionar nada, y se vuelve a medir cada vez que cambia de alto
+  medir();
+  if ("ResizeObserver" in window){
+    const ro = new ResizeObserver(medir);
+    ro.observe(barra);
+    if (menu) ro.observe(menu);
+  }
+  window.addEventListener("resize", medir);
+
+  const deHash = location.hash.replace("#", "");
+  const inicial = [deHash, typeof VISTA_INICIAL !== "undefined" ? VISTA_INICIAL : "todos"]
+                    .filter(v => disponibles.indexOf(v) !== -1)[0] || "todos";
+  setVista(inicial, {hash: false});     // al abrir no se escribe el #hash: así recargar no mueve la página
+
+  // Entrada directa con #hash válido: se abre la pestaña y el contenido queda visible debajo de la barra.
+  // Se repite cuando termina de cargar (imágenes y tipografías pueden cambiar las alturas) si la persona todavía no scrolleó.
+  const tipoNav = ((performance.getEntriesByType && performance.getEntriesByType("navigation")[0]) || {}).type;
+  if (disponibles.indexOf(deHash) !== -1 && tipoNav !== "reload" && tipoNav !== "back_forward"){
+    let movio = false;
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(t => window.addEventListener(t, () => { movio = true; }, {passive: true, once: true}));
+    const alinear = () => { if (!movio) irAlInicio(); };
+    alinear();
+    window.addEventListener("load", alinear);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(alinear);
+  }
+  if (/[?&]revisar(\b|=)/.test(location.search)) mostrarRevision();
+})();
+</script>
+
+<div id="contenedor-pie"></div>
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

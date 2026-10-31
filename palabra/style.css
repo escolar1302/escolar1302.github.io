@@ -1,0 +1,220 @@
+:root {
+    --bg-yellow: #fcdb05; 
+    --blue: #0076bb;      
+    --orange: #f37a1f;    
+    --red: #e31821;       
+    --green: #009640;     
+    --white: #ffffff;
+    --dark: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-yellow);
+    margin: 0;
+    padding-top: 100px; /* Espacio para la barra superior en PC */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Nueva barra superior */
+.top-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+#logo {
+    width: 80px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#logo:hover { transform: scale(1.05); }
+
+.score-board {
+    display: flex;
+    gap: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.correct-score { color: var(--green); }
+.incorrect-score { color: var(--red); }
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    padding: 20px;
+}
+
+.card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+#current-image {
+    max-width: 250px;
+    max-height: 250px;
+    margin-bottom: 20px;
+    border: 3px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+
+input[type="text"]:focus { border-color: var(--blue); }
+
+.btn {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.btn:hover { opacity: 0.85; }
+
+.btn-blue { background-color: var(--blue); }
+.btn-green { background-color: var(--green); }
+.btn-orange { background-color: var(--orange); }
+.btn-red { background-color: var(--red); }
+
+.hidden { display: none !important; }
+
+#feedback-area {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed #eee;
+}
+
+#feedback-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.summary-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.summary-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.summary-text p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.txt-red { color: var(--red); }
+.txt-green { color: var(--green); }
+
+/* Adaptación para celulares */
+/* Adaptación para celulares */
+/* Adaptación para celulares */
+@media (max-width: 768px) {
+    /* Hacemos que la barra superior agrupe las cosas en vez de hacer una torre alta */
+    .top-header {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        padding: 10px 15px !important;
+    }
+
+    /* Achicamos el logo a la mitad */
+    #logo {
+        width: 50px !important; 
+    }
+
+    /* Achicamos el botón de reiniciar y lo acomodamos arriba */
+    #btn-restart {
+        padding: 6px 12px !important;
+        font-size: 0.9rem !important;
+        height: max-content;
+        margin-top: 5px;
+    }
+
+    /* Los puntos ocupan todo el ancho pero debajo del logo, y letra más chica */
+    .score-board {
+        width: 100% !important; 
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 15px !important;
+        font-size: 1rem !important;
+        margin-top: 10px !important;
+        padding: 5px !important;
+        order: 3 !important; /* Magia para que se vaya abajo del logo y el botón */
+    }
+
+    .container {
+        padding: 10px !important;
+    }
+
+    .card { 
+        padding: 15px !important; 
+    }
+
+    /* Achicamos un poco la imagen para que no nos robe toda la pantalla */
+    #current-image {
+        max-width: 150px !important;
+        max-height: 150px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* Cuadro de texto un poquito más compacto */
+    input[type="text"] {
+        padding: 10px !important;
+        font-size: 1.2rem !important;
+    }
+}

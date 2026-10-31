@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseño Curricular - Buscador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FDF2E9; 
+            --header-color: #E67E22; 
+            --title-color: #2C3E50;
+            --text-main: #333333;
+            --card-bg: #FFFFFF;
+            --selected-border: #2C3E50;
+            --selected-bg: #fdf8f5;
+            --header-offset: 140px; 
+        }
+
+        body.theme-primer-ciclo {
+            --bg-color: #FDF2E9;
+            --header-color: #E67E22;
+            --title-color: #2C3E50;
+            --selected-bg: #faebd7;
+        }
+
+        body.theme-segundo-ciclo {
+            --bg-color: #E9F7EF;
+            --header-color: #27AE60;
+            --title-color: #2C3E50;
+            --selected-bg: #e2f2e9;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0 0 100px 0;
+            color: var(--text-main);
+            transition: background-color 0.4s ease;
+        }
+
+        /* --- HEADER Y CONTROLES --- */
+        header {
+            background-color: var(--header-color);
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.4s ease;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 { margin: 0; font-size: 1.6rem; font-weight: 800; }
+
+        .filters-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .filter-group label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        select {
+            padding: 8px;
+            border: none;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        /* --- BOTONES DE GRADO --- */
+        .grades-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .grades-label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .grade-btn {
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .grade-btn:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .grade-btn.active {
+            background-color: white;
+            color: var(--header-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Animación de latido para llamar la atención */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        .pulse-anim {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* --- ÁREA PRINCIPAL --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+            padding: 0 20px;
+        }
+
+        .subtema-title {
+            color: var(--title-color);
+            font-size: 1.4rem;
+            margin: 0;
+            padding: 30px 0 10px 0;
+            border-bottom: 3px solid var(--header-color);
+            position: sticky;
+            top: var(--header-offset);
+            z-index: 900;
+            background-color: var(--bg-color);
+            transition: background-color 0.4s ease;
+        }
+
+        .comparison-grid {
+            display: grid;
+            gap: 20px;
+            padding-top: 15px;
+        }
+
+        .grade-column {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .grade-header {
+            text-align: center;
+            font-weight: 800;
+            color: var(--title-color);
+            font-size: 1.2rem;
+            padding: 10px;
+            background: var(--card-bg);
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: calc(var(--header-offset) + 65px);
+            z-index: 800;
+        }
+
+        /* --- CELDAS SELECCIONABLES --- */
+        .content-cell {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .content-cell:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .content-cell.selected {
+            border-color: var(--header-color);
+            background-color: var(--selected-bg);
+        }
+
+        .ampliacion-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            background-color: var(--title-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* --- BARRA FLOTANTE --- */
+        .floating-bar {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 2000;
+            border: 2px solid var(--header-color);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .floating-bar.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .fb-text { font-weight: 800; color: var(--title-color); margin-right: 10px; }
+
+        .fb-btn {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+
+        .fb-btn:hover { opacity: 0.8; }
+        .btn-copy { background-color: #9C27B0; }
+        .btn-print { background-color: var(--header-color); }
+        .btn-bulk-edit { background-color: #4FC3F7; color: #000; }
+
+        /* --- IMPRESIÓN --- */
+        @media print {
+            header, .floating-bar { display: none !important; }
+            body { background: white; margin: 0; padding: 0; }
+            #print-grouped-container { display: block !important; }
+            #table-container { display: none !important; }
+        }
+    </style>
+</head>
+<body class="theme-primer-ciclo">
+<style>
+    /* Elimina los márgenes blancos para que el menú toque los bordes */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+
+
+
+    <header id="main-header">
+        <div class="header-content">
+            <div class="header-top">
+                <h1>Diseño Curricular C.A.B.A.</h1>
+                <div class="grades-container">
+                    <span class="grades-label">Hacé clic para comparar grados:</span>
+                    <div id="grade-buttons-container">
+                        </div>
+                </div>
+            </div>
+            
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label>Ciclo</label>
+                    <select id="sel-ciclo">
+                        <option value="Primer Ciclo">Primer Ciclo</option>
+                        <option value="Segundo Ciclo">Segundo Ciclo</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Materia</label>
+                    <select id="sel-materia">
+                        <option value="Matemática">Matemática</option>
+                        <option value="Lengua">Lengua</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Eje</label>
+                    <select id="sel-eje"><option value="">Seleccione Eje...</option></select>
+                </div>
+                <div class="filter-group">
+                    <label>Tema</label>
+                    <select id="sel-tema"><option value="">Seleccione Tema...</option></select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container" id="table-container">
+        <h2 style="text-align: center; color: var(--title-color); margin-top: 50px;">Cargando base de datos...</h2>
+    </div>
+
+    <div class="floating-bar" id="floating-bar">
+        <span class="fb-text" id="selection-count">0 seleccionados</span>
+        <button class="fb-btn btn-copy" onclick="copySelection()">📋 Copiar</button>
+        <button class="fb-btn btn-print" onclick="printSelection()">🖨️ Imprimir</button>
+        <button class="fb-btn btn-bulk-edit" onclick="sendSelectedToEditor()">↗️ Todo al Editor</button>
+    </div>
+
+    <script>
+        let allData = [];
+        let filteredData = [];
+        const gradosPrimerCiclo = ["1°", "2°", "3°"];
+        const gradosSegundoCiclo = ["4°", "5°", "6°", "7°"];
+        let activeGrades = []; 
+        
+        // Variable para controlar si el usuario ya entendió la mecánica
+        let userHasClickedGrade = false;
+
+        const headerEl = document.getElementById('main-header');
+        const selMateria = document.getElementById('sel-materia');
+        const selCiclo = document.getElementById('sel-ciclo');
+        const selEje = document.getElementById('sel-eje');
+        const selTema = document.getElementById('sel-tema');
+        const tableContainer = document.getElementById('table-container');
+        const floatingBar = document.getElementById('floating-bar');
+        const selectionCount = document.getElementById('selection-count');
+        const gradeButtonsContainer = document.getElementById('grade-buttons-container');
+
+        function updateHeaderOffset() {
+            if(headerEl) {
+                const height = headerEl.offsetHeight;
+                document.documentElement.style.setProperty('--header-offset', height + 'px');
+            }
+        }
+        window.addEventListener('resize', updateHeaderOffset);
+
+        async function init() {
+            try {
+                let dataMat = [];
+                let dataLen = [];
+
+                try {
+                    const resMat = await fetch('matematica.json');
+                    dataMat = await resMat.json();
+                } catch(e) {
+                    throw new Error("Hay un error de formato en matematica.json.");
+                }
+
+                try {
+                    const resLen = await fetch('lengua.json');
+                    dataLen = await resLen.json();
+                } catch(e) {
+                    throw new Error("Hay un error de formato en lengua.json.");
+                }
+
+                allData = [...dataMat, ...dataLen];
+                
+                selCiclo.addEventListener('change', handleCicloChange);
+                selMateria.addEventListener('change', updateEjes);
+                selEje.addEventListener('change', updateTemas);
+                selTema.addEventListener('change', renderTable);
+
+                handleCicloChange(); 
+            } catch (error) {
+                tableContainer.innerHTML = `
+                    <div style="text-align:center; margin-top:50px; color:#d32f2f; background:white; padding:30px; border-radius:8px; border:2px solid #ef5350;">
+                        <h2>${error.message}</h2>
+                    </div>`;
+            }
+        }
+
+        function handleCicloChange() {
+            const ciclo = selCiclo.value;
+            const gradosDisponibles = ciclo === "Primer Ciclo" ? gradosPrimerCiclo : gradosSegundoCiclo;
+            
+            document.body.className = ciclo === "Primer Ciclo" ? "theme-primer-ciclo" : "theme-segundo-ciclo";
+            
+            activeGrades = [gradosDisponibles[0]]; 
+            
+            renderGradeButtons(gradosDisponibles);
+            updateFloatingBar(true); 
+            updateEjes();
+        }
+
+        function renderGradeButtons(grados) {
+            gradeButtonsContainer.innerHTML = '';
+            grados.forEach(grado => {
+                const btn = document.createElement('button');
+                btn.className = 'grade-btn';
+                
+                // Agregamos el tooltip explicativo
+                btn.title = "Hacé clic para ver u ocultar este grado";
+
+                if (activeGrades.includes(grado)) {
+                    btn.classList.add('active');
+                } else if (!userHasClickedGrade) {
+                    // Si no está activo y el usuario nunca hizo clic, le ponemos el latido
+                    btn.classList.add('pulse-anim');
+                }
+
+                btn.textContent = grado;
+                
+                btn.onclick = () => {
+                    // Marcamos que el usuario ya entendió la mecánica
+                    userHasClickedGrade = true;
+                    // Apagamos la animación en todos los botones de una vez
+                    document.querySelectorAll('.grade-btn').forEach(b => b.classList.remove('pulse-anim'));
+
+                    if (activeGrades.includes(grado)) {
+                        if (activeGrades.length > 1) {
+                            activeGrades = activeGrades.filter(g => g !== grado);
+                            btn.classList.remove('active');
+                        }
+                    } else {
+                        activeGrades.push(grado);
+                        activeGrades.sort((a, b) => parseInt(a) - parseInt(b));
+                        btn.classList.add('active');
+                    }
+                    renderTable(); 
+                };
+                gradeButtonsContainer.appendChild(btn);
+            });
+            setTimeout(updateHeaderOffset, 50);
+        }
+
+        function updateEjes() {
+            const materia = selMateria.value;
+            const ciclo = selCiclo.value;
+            
+            const ejes = [...new Set(allData
+                .filter(d => d.materia === materia && d.ciclo === ciclo)
+                .map(d => d.eje))];
+            
+            selEje.innerHTML = '<option value="Todos">Todos los ejes</option>';
+            ejes.forEach(eje => {
+                selEje.innerHTML += `<option value="${eje}">${eje}</option>`;
+            });
+            
+            updateTemas();
+        }
+
+        function updateTemas() {
+            const materia = selMateria.value;
+            const ciclo = selCiclo.value;
+            const eje = selEje.value;
+
+            let dataToFilter = allData.filter(d => d.materia === materia && d.ciclo === ciclo);
+            if (eje !== "Todos") {
+                dataToFilter = dataToFilter.filter(d => d.eje === eje);
+            }
+
+            const temas = [...new Set(dataToFilter.map(d => d.tema))];
+            
+            selTema.innerHTML = '<option value="Todos">Todos los temas</option>';
+            temas.forEach(tema => {
+                selTema.innerHTML += `<option value="${tema}">${tema}</option>`;
+            });
+
+            renderTable();
+        }
+
+        function renderTable() {
+            const materia = selMateria.value;
+            const ciclo = selCiclo.value;
+            const eje = selEje.value;
+            const tema = selTema.value;
+
+            filteredData = allData.filter(d => 
+                d.materia === materia && 
+                d.ciclo === ciclo &&
+                activeGrades.includes(d.grado)
+            );
+            
+            if (eje !== "Todos") filteredData = filteredData.filter(d => d.eje === eje);
+            if (tema !== "Todos") filteredData = filteredData.filter(d => d.tema === tema);
+
+            tableContainer.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                tableContainer.innerHTML = '<h3 style="text-align:center; color:#888;">No hay contenidos para esta selección.</h3>';
+                return;
+            }
+
+            const subtemasSet = [...new Set(filteredData.map(d => d.subtema || d.tema))];
+
+            subtemasSet.forEach(sub => {
+                const title = document.createElement('h3');
+                title.className = 'subtema-title';
+                title.textContent = sub;
+                tableContainer.appendChild(title);
+
+                const grid = document.createElement('div');
+                grid.className = 'comparison-grid';
+                grid.style.gridTemplateColumns = `repeat(${activeGrades.length}, 1fr)`;
+
+                activeGrades.forEach(grado => {
+                    const col = document.createElement('div');
+                    col.className = 'grade-column';
+                    
+                    const header = document.createElement('div');
+                    header.className = 'grade-header';
+                    header.textContent = grado;
+                    col.appendChild(header);
+
+                    const contenidos = filteredData.filter(d => (d.subtema || d.tema) === sub && d.grado === grado);
+                    
+                    if(contenidos.length === 0) {
+                        const empty = document.createElement('div');
+                        empty.style.color = "#999";
+                        empty.style.fontStyle = "italic";
+                        empty.style.textAlign = "center";
+                        empty.textContent = "Sin contenidos.";
+                        col.appendChild(empty);
+                    }
+
+                    contenidos.forEach(item => {
+                        const cell = document.createElement('div');
+                        cell.className = 'content-cell';
+                        
+                        cell.dataset.grado = grado;
+                        cell.dataset.materia = materia;
+                        cell.dataset.subtema = sub;
+                        
+                        cell.onclick = () => toggleSelection(cell);
+
+                        let innerHtml = '';
+                        if (item.es_ampliacion) {
+                            innerHtml += `<span class="ampliacion-badge">Ampliación</span><br>`;
+                        }
+                        
+                        let textoLimpio = item.contenido;
+                        textoLimpio = textoLimpio.replace(/\[\s*cite[^\]]*\]/gi, '');
+                        textoLimpio = textoLimpio.replace(/\[\s*cite\s*:/gi, '');
+                        textoLimpio = textoLimpio.replace(/cite\s*:\s*\d*/gi, '');
+                        textoLimpio = textoLimpio.replace(/\[\d+\]/g, '');
+                        textoLimpio = textoLimpio.replace(/\(\d+\)/g, '');
+                        textoLimpio = textoLimpio.replace(/\s+\d+\.?$/, '');
+                        textoLimpio = textoLimpio.replace(/^\]|\]$/g, '');
+                        textoLimpio = textoLimpio.trim();
+
+                        innerHtml += `<span class="cell-text">${textoLimpio}</span>`;
+                        
+                        cell.innerHTML = innerHtml;
+                        col.appendChild(cell);
+                    });
+
+                    grid.appendChild(col);
+                });
+
+                tableContainer.appendChild(grid);
+            });
+            
+            updateFloatingBar();
+            setTimeout(updateHeaderOffset, 100);
+        }
+
+        function toggleSelection(element) {
+            element.classList.toggle('selected');
+            updateFloatingBar();
+        }
+
+        function updateFloatingBar(reset = false) {
+            if(reset) {
+                document.querySelectorAll('.content-cell.selected').forEach(el => el.classList.remove('selected'));
+            }
+            const count = document.querySelectorAll('.content-cell.selected').length;
+            selectionCount.textContent = `${count} seleccionados`;
+            
+            if (count > 0) {
+                floatingBar.classList.add('active');
+            } else {
+                floatingBar.classList.remove('active');
+            }
+        }
+
+        function groupSelected() {
+            const selected = document.querySelectorAll('.content-cell.selected');
+            const groups = {};
+            
+            selected.forEach(cell => {
+                const grado = cell.dataset.grado;
+                const materia = cell.dataset.materia;
+                const subtema = cell.dataset.subtema;
+                const textContent = cell.querySelector('.cell-text').innerText;
+                
+                const key = `[${grado} - ${materia} | ${subtema}]`;
+                if(!groups[key]) groups[key] = [];
+                groups[key].push(textContent);
+            });
+            return groups;
+        }
+
+        function copySelection() {
+            const groups = groupSelected();
+            const keys = Object.keys(groups);
+            if (keys.length === 0) return;
+            
+            let text = "";
+            keys.forEach(key => {
+                text += `${key}\n`;
+                groups[key].forEach(item => {
+                    text += `• ${item}\n`;
+                });
+                text += `\n`;
+            });
+            
+            navigator.clipboard.writeText(text.trim()).then(() => alert(`✅ Contenidos copiados (agrupados por tema).`));
+        }
+
+        function sendSelectedToEditor() {
+            const groups = groupSelected();
+            const keys = Object.keys(groups);
+            if (keys.length === 0) return;
+
+            let combinedHTML = "";
+            keys.forEach(key => {
+                combinedHTML += `<h4 style="color:#2C3E50; margin-bottom:5px;">${key}</h4><ul style="margin-top:0;">`;
+                groups[key].forEach(item => {
+                    combinedHTML += `<li style="margin-bottom:8px;">${item}</li>`;
+                });
+                combinedHTML += `</ul>`;
+            });
+
+            localStorage.setItem('import_content', combinedHTML);
+            window.open('../editor.html', 'Editor de Textos');
+        }
+
+        window.addEventListener('beforeprint', () => {
+            const groups = groupSelected();
+            const keys = Object.keys(groups);
+            if (keys.length === 0) return;
+
+            let oldContainer = document.getElementById('print-grouped-container');
+            if(oldContainer) oldContainer.remove();
+
+            const printContainer = document.createElement('div');
+            printContainer.id = 'print-grouped-container';
+            printContainer.style.padding = '20px';
+            printContainer.style.fontFamily = "'Nunito', sans-serif";
+            
+            keys.forEach(key => {
+                const groupDiv = document.createElement('div');
+                groupDiv.style.marginBottom = '20px';
+                
+                const title = document.createElement('h3');
+                title.textContent = key;
+                title.style.borderBottom = '2px solid #ccc';
+                title.style.paddingBottom = '5px';
+                title.style.marginTop = '0';
+                title.style.color = '#2C3E50';
+                groupDiv.appendChild(title);
+                
+                const ul = document.createElement('ul');
+                groups[key].forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    li.style.marginBottom = '8px';
+                    li.style.lineHeight = '1.4';
+                    ul.appendChild(li);
+                });
+                
+                groupDiv.appendChild(ul);
+                printContainer.appendChild(groupDiv);
+            });
+
+            document.body.appendChild(printContainer);
+        });
+
+        window.addEventListener('afterprint', () => {
+            const printContainer = document.getElementById('print-grouped-container');
+            if(printContainer) printContainer.remove();
+        });
+
+        function printSelection() {
+            window.print();
+        }
+
+        window.onload = init;
+
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

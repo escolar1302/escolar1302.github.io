@@ -1,0 +1,1869 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+    <title>Editor de textos Escolar.com.ar - prueba JSON + modo trabajo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* TEMA POR DEFECTO: BOSQUE (Verde) */
+            --bg-color: #E8F5E9;
+            --header-color: #66BB6A;
+            --title-color: #1B5E20;
+            --accent-color: #795548;
+            --toolbar-bg: #F1F8E9;
+            --border-color: #C8E6C9;
+            --text-grey: #33691E;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 120px;
+            transition: background-color 0.5s ease;
+        }
+
+        #app-container { max-width: 950px; margin: 0 auto; }
+
+        h1 {
+            text-align: center;
+            color: var(--title-color);
+            margin-bottom: 10px;
+        }
+
+        /* --- SELECTOR DE TEMAS --- */
+        .theme-selector-container {
+            display: flex; justify-content: center; gap: 15px;
+            margin-bottom: 25px; padding: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50px;
+            width: fit-content; margin-left: auto; margin-right: auto;
+        }
+
+        .theme-option {
+            width: 30px; height: 30px; border-radius: 50%;
+            cursor: pointer; border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .theme-option:hover { transform: scale(1.2); }
+        .theme-option.active { box-shadow: 0 0 0 3px var(--title-color); transform: scale(1.1); }
+
+        /* --- PANEL DE INSTRUCCIONES --- */
+        .info-panel {
+            background-color: white;
+            border-radius: 12px;
+            border-left: 6px solid var(--header-color);
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            color: var(--text-grey);
+            line-height: 1.6;
+        }
+        .info-panel ul { margin: 10px 0 15px 0; padding-left: 20px; }
+        .info-panel li { margin-bottom: 5px; }
+
+        /* Barra de estado */
+        .status-bar {
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-size: 0.95rem;
+            display: flex; align-items: center; gap: 15px;
+            min-height: 24px;
+        }
+        
+        .save-indicator {
+            font-weight: bold; opacity: 1; transition: color 0.3s;
+            color: #4CAF50; display: flex; align-items: center; gap: 5px;
+        }
+        
+        .storage-warning {
+            color: #E65100; background: #FFF3E0; padding: 5px 10px;
+            border-radius: 4px; font-size: 0.85rem; display: none;
+            border: 1px solid #FFE0B2;
+        }
+
+        /* --- TARJETAS --- */
+        .ficha-card {
+            background: white; border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            margin-bottom: 25px; overflow: visible; 
+            border: 2px solid transparent; transition: all 0.3s ease;
+        }
+        .ficha-card.selected-for-print {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 4px rgba(0,0,0, 0.1);
+        }
+
+        .ficha-header {
+            background-color: var(--header-color);
+            padding: 10px 20px; display: flex; justify-content: space-between;
+            align-items: center; color: white; cursor: pointer; user-select: none;
+            transition: background-color 0.5s ease; border-radius: 10px 10px 0 0;
+        }
+
+        .header-title-area { display: flex; align-items: baseline; gap: 10px; }
+        .header-controls { display: flex; align-items: center; gap: 15px; }
+
+        .btn-icon-only {
+            background: transparent; border: none; color: rgba(255,255,255,0.9);
+            cursor: pointer; transition: 0.2s; padding: 5px; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .btn-icon-only:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+
+        .custom-checkbox {
+            width: 24px; height: 24px; background: rgba(255,255,255,0.3);
+            border: 2px solid white; border-radius: 4px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ficha-card.selected-for-print .custom-checkbox { background: var(--accent-color); }
+        .custom-checkbox::after { content: '✓'; color: white; font-weight: bold; display: none; }
+        .ficha-card.selected-for-print .custom-checkbox::after { display: block; }
+
+        /* --- BARRA DE HERRAMIENTAS --- */
+        .editor-toolbar {
+            background: var(--toolbar-bg); padding: 8px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex; gap: 4px; flex-wrap: wrap; align-items: center;
+            transition: background-color 0.5s ease;
+        }
+
+        .tool-btn {
+            background: white; border: 1px solid #ccc; border-radius: 4px;
+            padding: 4px 8px; cursor: pointer; font-size: 14px;
+            display: flex; align-items: center; gap: 5px; 
+            color: #455A64; height: 32px;
+            transition: background 0.2s;
+            position: relative;
+        }
+        .tool-btn:hover { background: #E1F5FE; border-color: #29B6F6; color: #0277BD; }
+        
+        .tool-btn.btn-image { border-color: #2196F3; color: #1565C0; font-weight: bold; }
+        .tool-btn.btn-image:hover { background: #E3F2FD; }
+
+        /* Estilo para el selector de tamaño */
+        .tool-select {
+            height: 32px; border: 1px solid #ccc; border-radius: 4px; 
+            color: #455A64; cursor: pointer; background: white;
+            padding-left: 5px; font-family: 'Nunito', sans-serif;
+        }
+        .tool-select:hover { border-color: #29B6F6; color: #0277BD; background: #E1F5FE; }
+
+        .tool-btn .material-icons { font-size: 18px; }
+        .tool-btn.icon-only { padding: 4px; min-width: 32px; justify-content: center; }
+
+        .separator { width: 1px; height: 24px; background: #cfd8dc; margin: 0 4px; }
+
+        /* --- ÁREA DE EDICIÓN --- */
+        .editor-content {
+            min-height: 250px; padding: 30px; outline: none;
+            overflow-y: auto; line-height: 1.5; font-size: 16px; color: #333;
+            background-color: white;
+        }
+       .editor-content img { 
+            max-width: 100%; 
+            height: auto; 
+            cursor: pointer; 
+            display: block; /* PARCHE 1: Convierte la imagen en bloque independiente */
+            margin: 10px 0; /* Da un pequeño respiro arriba y abajo */
+        }
+        
+        .editor-content table {
+            border-collapse: collapse; width: 100%; margin: 15px 0;
+            border: 1px solid #000; table-layout: fixed !important;
+        }
+        .editor-content td, .editor-content th {
+            border: 1px solid #000; padding: 8px; vertical-align: top;
+            overflow-wrap: anywhere; word-break: break-word; position: relative;
+            box-sizing: border-box; min-width: 0;
+        }
+
+        .editor-content:empty:before {
+            content: 'Escribe aquí...'; color: #ccc; pointer-events: none;
+        }
+/* --- PARCHE 1: DOMADOR DE MÁRGENES (Elimina el interlineado doble forzado) --- */
+        .editor-content p, .editor-content div, 
+        .editor-content h1, .editor-content h2, 
+        .editor-content h3, .editor-content h4, 
+        .editor-content ul, .editor-content ol, .editor-content li {
+            margin-top: 0 !important; 
+            margin-bottom: 0 !important;
+        }
+        /* --- BOTONES FLOTANTES (FAB) --- */
+        .fab-container {
+            position: fixed; bottom: 30px; right: 30px;
+            display: flex; flex-direction: column-reverse; gap: 15px;
+            z-index: 1000; align-items: center;
+        }
+        .fab {
+            width: 50px; height: 50px; border-radius: 50%; border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.2s; color: white;
+        }
+        .fab:hover { transform: scale(1.1); }
+        .fab .material-icons { font-size: 24px; }
+        
+        .fab-print { background-color: #F44336; width: 65px; height: 65px; }
+        .fab-print:disabled { background-color: #CFD8DC; cursor: not-allowed; transform: none; }
+        .fab-add { background: var(--header-color); }
+        .fab-clear { background: #546E7A; }
+        .fab-html { background: #1565C0; }
+        .fab-json-save { background: #6A1B9A; }
+        .fab-json-open { background: #00897B; }
+        .fab-emoji { font-size: 26px; line-height: 1; display: inline-flex; align-items: center; justify-content: center; }
+
+        /* --- BARRA SUPERIOR DE ARCHIVOS --- */
+        .json-action-bar {
+            display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.72); border: 1px solid var(--border-color); border-radius: 14px;
+            padding: 12px; margin: -12px 0 24px 0; box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+        .json-action-btn {
+            border: none; border-radius: 999px; padding: 9px 14px; cursor: pointer; font-family: 'Nunito', sans-serif;
+            font-weight: 800; color: white; display: inline-flex; align-items: center; gap: 7px; min-height: 38px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.18); transition: transform .15s ease, opacity .15s ease;
+        }
+        .json-action-btn:hover { transform: translateY(-1px); }
+        .json-action-btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+        .json-action-btn.open { background: #00897B; }
+        .json-action-btn.save { background: #6A1B9A; }
+        .json-action-btn.pdf { background: #F44336; }
+        .json-action-btn.html { background: #1565C0; }
+
+        /* --- MODO TRABAJO: se activa al entrar desde ↗️ o con ?modo=trabajo --- */
+        body.modo-trabajo .fab-html,
+        body.modo-trabajo .btn-image {
+            display: none !important;
+        }
+        body.modo-trabajo .modo-docente-only {
+            display: none !important;
+        }
+        .modo-trabajo-aviso {
+            background: #E3F2FD;
+            border-left: 6px solid #036FB0;
+            color: #263238;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin: 0 0 14px 0;
+            line-height: 1.45;
+        }
+        .modo-trabajo-aviso strong { color: #01579B; }
+
+        /* --- MODAL Y MENÚ DE TABLAS MEJORADAS --- */
+        #tableModal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: white; padding: 24px; border-radius: 12px;
+            width: min(620px, calc(100vw - 32px)); text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-height: 90vh; overflow-y: auto;
+        }
+        .modal-content h3 { margin: 0 0 8px 0; color: #263238; }
+        .modal-help { color:#607D8B; background:#F5F7FA; border-radius:8px; padding:9px 11px; font-size:.9rem; }
+        .table-options-grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+        .table-options-grid label { display:block; font-weight:700; color:#546E7A; font-size:.9rem; margin-bottom:4px; }
+        .table-options-grid input[type="number"], .table-options-grid select, .table-options-grid input[type="color"] {
+            width: 100%; padding: 8px; border: 1px solid #CFD8DC; border-radius: 8px; background: #fff; min-height: 38px;
+            box-sizing: border-box; font-family: 'Nunito', sans-serif;
+        }
+        .table-checks { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 12px 0; color:#37474F; }
+        .table-checks label { display:flex; align-items:center; gap:6px; font-weight:700; background:#F5F7FA; padding:8px; border-radius:8px; }
+        .table-modal-actions { display:flex; justify-content:flex-end; flex-wrap:wrap; gap:10px; margin-top:16px; }
+        .modal-action-btn { border: none; border-radius: 8px; padding: 9px 13px; cursor:pointer; font-weight:700; }
+
+        #table-floating-menu {
+            display: none; position: absolute; z-index: 1500;
+            background: white; border: 1px solid #bbb; padding: 8px;
+            border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-family: 'Nunito', sans-serif; width: 310px;
+        }
+        .tf-section { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+        .tf-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .tf-btn {
+            background: #f5f5f5; border: 1px solid #ddd; padding: 4px 8px;
+            cursor: pointer; border-radius: 4px; font-size: 12px; display: flex; align-items: center;
+        }
+        .tf-btn:hover { background: #e0f7fa; border-color: #00BCD4; }
+        .tf-color-circle {
+            width: 20px; height: 20px; border-radius: 50%; border: 1px solid #ccc; cursor: pointer; margin-right: 4px;
+        }
+        .tf-label { font-size: 11px; color: #777; width: 100%; margin-bottom: 3px; font-weight:700; }
+        @media (max-width: 560px) {
+            .table-options-grid, .table-checks { grid-template-columns: 1fr; }
+        }
+
+        /* --- MENU EMOJIS --- */
+        #emoji-popup {
+            display: none; position: absolute; z-index: 1600;
+            background: white; border: 1px solid #ccc; padding: 10px;
+            border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            width: 300px; max-height: 250px; overflow-y: auto;
+        }
+        .emoji-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; margin-bottom: 10px; }
+        .emoji-btn {
+            background: none; border: none; font-size: 20px; cursor: pointer; padding: 2px;
+            border-radius: 4px;
+        }
+        .emoji-btn:hover { background: #eee; transform: scale(1.2); }
+        .popup-category-title { font-size: 0.8rem; font-weight: bold; color: #555; margin: 5px 0; border-bottom: 1px solid #eee; }
+
+        /* --- MENU COLORES TEXTO --- */
+        #color-popup {
+            display: none; position: absolute; z-index: 1600;
+            background: white; border: 1px solid #ccc; padding: 8px;
+            border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .color-opt { width: 25px; height: 25px; border-radius: 50%; display: inline-block; cursor: pointer; margin: 0 3px; border: 1px solid #999; }
+
+        /* --- BLOQUES RÁPIDOS / RENGLONES --- */
+        #quick-block-popup, #response-popup {
+            display: none; position: absolute; z-index: 1600;
+            background: white; border: 1px solid #ccc; padding: 10px;
+            border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.16);
+            width: 260px;
+        }
+        .quick-menu-title { font-size: 0.82rem; font-weight: 800; color:#546E7A; margin-bottom:8px; }
+        .quick-menu-grid { display:grid; grid-template-columns: 1fr; gap: 6px; }
+        .quick-menu-btn {
+            background:#F5F7FA; border:1px solid #CFD8DC; border-radius:8px; padding:7px 9px;
+            cursor:pointer; text-align:left; font-family:'Nunito', sans-serif; font-weight:700; color:#37474F;
+        }
+        .quick-menu-btn:hover { background:#E3F2FD; border-color:#29B6F6; color:#01579B; }
+
+        /* --- REDIMENSIONAR IMAGEN CON ARRASTRADOR --- */
+        #img-resize-handle {
+            display: none; position: absolute; width: 18px; height: 18px; border-radius: 50%;
+            background: #2196F3; border: 3px solid white; box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+            z-index: 2000; cursor: nwse-resize; touch-action: none;
+        }
+        #img-resize-label {
+            display: none; position: absolute; background: #263238; color: white; font-size: 0.78rem;
+            padding: 4px 8px; border-radius: 999px; box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1999; pointer-events: none; white-space: nowrap;
+        }
+        #img-delete-btn {
+            display: none; position: absolute; z-index: 2001; background: #D32F2F; color: white; border: 2px solid white;
+            border-radius: 999px; width: 28px; height: 28px; cursor:pointer; box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+        }
+        .selected-image-editor {
+            outline: 3px solid #2196F3;
+            box-shadow: 0 0 10px rgba(33, 150, 243, 0.5);
+        }
+
+        /* --- MEDIA PRINT CORREGIDO (FONDO Y BORDES) --- */
+        @media print {
+            body { background: white; padding: 0; }
+            
+            /* Ocultar UI */
+            .fab-container, .json-action-bar, .editor-toolbar, .ficha-header, h1, .info-panel, 
+            .theme-selector-container, .status-bar, #table-floating-menu, 
+            #emoji-popup, #color-popup, #quick-block-popup, #response-popup, #img-resize-handle, #img-resize-label, #img-delete-btn { display: none !important; }
+
+            #app-container { max-width: 100%; margin: 0; }
+            .ficha-card { display: none; }
+
+            /* Mostrar solo tarjeta seleccionada */
+            .ficha-card.selected-for-print {
+                display: block !important; box-shadow: none; border: none; 
+                margin: 0; page-break-after: always;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+
+            .editor-content { padding: 0; min-height: auto; }
+
+            /* Forzar bordes y colores */
+            .editor-content table, .editor-content td, .editor-content th {
+                border: 1px solid black !important;
+                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app-container">
+        <h1>Editor de textos "Escolar.com.ar"</h1>
+
+        <div class="theme-selector-container" id="themeSelector"></div>
+
+        <div class="info-panel">
+            <p style="margin-top: 0;"><strong>Autoguardado y Sincronizado:</strong> Puedes trabajar en varias pestañas sin perder datos.</p>
+            <ul>
+                <li>Usa los comandos para editar. Presiona ➕ para agregar otra hoja.</li>
+                <li>Marca las casillas para activar el botón <strong>Imprimir / PDF</strong> 🖨️.</li>
+                <li>Para pegar tablas o textos con formato, usa <strong>Ctrl + V</strong> en tu teclado.</li>
+                <li>Puedes moverte entre celdas de la tabla usando la tecla <strong>TAB</strong>.</li>
+            </ul>
+            <p style="font-size:0.9rem; margin-top:10px; border-top:1px solid #eee; padding-top:10px;">
+                <strong>Nuevo:</strong> Usá 🧹 para limpiar formato, 📌 para insertar bloques rápidos, 📝 para renglones o espacios de respuesta. En tablas, hacé clic dentro de una celda y usá ⚙️ Tabla o 🎨 Tabla.<br><strong>Prueba:</strong> 📂 abre un trabajo editable .json y 💾 guarda el trabajo actual como .json.
+            </p>
+            
+            <div class="status-bar">
+                <span id="save-msg" class="save-indicator">
+                    <span class="material-icons" style="font-size: 20px;">save</span> 
+                    Guardado
+                </span>
+                <span id="storage-warning" class="storage-warning">
+                    ⚠️ Memoria llena. Las nuevas imágenes se ven, pero NO se guardarán si cierras.
+                </span>
+            </div>
+        </div>
+
+        <div class="json-action-bar" aria-label="Barra de trabajo editable">
+            <button class="json-action-btn open" type="button" onclick="openJSONPicker()" title="Abrir trabajo editable .json">📂 Abrir trabajo</button>
+            <button class="json-action-btn save" type="button" onclick="exportToJSON()" title="Guardar trabajo editable .json">💾 Guardar trabajo</button>
+            <button class="json-action-btn pdf" id="btn-print-bar" type="button" onclick="window.print()" disabled title="Imprimir o descargar PDF">🖨️ Descargar PDF</button>
+            <button class="json-action-btn html modo-docente-only" type="button" onclick="exportToHTML()" title="Guardar archivo Web HTML">🌐 Guardar HTML</button>
+        </div>
+
+        <div id="cards-area"></div>
+    </div>
+
+    <div class="fab-container">
+        <button class="fab fab-print" id="btn-print" onclick="window.print()" disabled title="Imprimir / PDF">
+            <span class="material-icons">print</span>
+        </button>
+        <button class="fab fab-json-save" onclick="exportToJSON()" title="Guardar trabajo editable (.json)">
+            <span class="fab-emoji">💾</span>
+        </button>
+        <button class="fab fab-json-open" onclick="openJSONPicker()" title="Abrir trabajo editable (.json)">
+            <span class="fab-emoji">📂</span>
+        </button>
+        <button class="fab fab-html modo-docente-only" onclick="exportToHTML()" title="Guardar archivo Web (HTML)">
+            <span class="material-icons">public</span>
+        </button>
+        <button class="fab fab-add" onclick="addNewCard()" title="Agregar nueva hoja">
+            <span class="material-icons">add</span>
+        </button>
+        <button class="fab fab-clear" onclick="clearAllData()" title="Vaciar todo">
+            <span class="material-icons">delete_forever</span>
+        </button>
+    </div>
+
+    <div id="tableModal">
+        <div class="modal-content">
+            <h3 id="tableModalTitle">Crear tabla</h3>
+            <div class="modal-help" id="tableModalHelp">Elegí la estructura y el estilo inicial de la tabla.</div>
+
+            <div class="table-options-grid">
+                <div id="tableRowsBox">
+                    <label>Filas</label>
+                    <input type="number" id="inputRows" value="3" min="1" max="30">
+                </div>
+                <div id="tableColsBox">
+                    <label>Columnas</label>
+                    <input type="number" id="inputCols" value="3" min="1" max="12">
+                </div>
+                <div>
+                    <label>Ancho de tabla</label>
+                    <select id="tableWidth">
+                        <option value="100%">100%</option>
+                        <option value="75%">75%</option>
+                        <option value="50%">50%</option>
+                        <option value="auto">Automático</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Alineación del texto</label>
+                    <select id="tableAlign">
+                        <option value="left">Izquierda</option>
+                        <option value="center">Centro</option>
+                        <option value="right">Derecha</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Borde</label>
+                    <select id="tableBorderWidth">
+                        <option value="1">Fino</option>
+                        <option value="2">Medio</option>
+                        <option value="3">Grueso</option>
+                        <option value="0">Sin bordes</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Color de borde</label>
+                    <input type="color" id="tableBorderColor" value="#000000">
+                </div>
+                <div>
+                    <label>Fondo encabezado</label>
+                    <input type="color" id="tableHeaderBg" value="#eeeeee">
+                </div>
+                <div>
+                    <label>Espaciado interno</label>
+                    <select id="tablePadding">
+                        <option value="5">Chico</option>
+                        <option value="8" selected>Medio</option>
+                        <option value="12">Grande</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-checks">
+                <label><input type="checkbox" id="tableHeaderRow"> Primera fila como encabezado</label>
+                <label><input type="checkbox" id="tableHeaderCol"> Primera columna como encabezado</label>
+            </div>
+
+            <div class="table-modal-actions">
+                <button class="modal-action-btn" onclick="closeTableModal()">Cancelar</button>
+                <button class="modal-action-btn" id="tableApplyBtn" onclick="applyTableModal()" style="background:var(--header-color); color:white;">Insertar tabla</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="table-floating-menu">
+        <div class="tf-label">Filas / Columnas</div>
+        <div class="tf-section">
+            <button class="tf-btn" onclick="tableAction('addRow')">➕ Fila</button>
+            <button class="tf-btn" onclick="tableAction('delRow')">❌ Fila</button>
+            <button class="tf-btn" onclick="tableAction('addCol')">➕ Col</button>
+            <button class="tf-btn" onclick="tableAction('delCol')">❌ Col</button>
+            <button class="tf-btn" onclick="tableAction('deleteTable')">🗑️ Tabla</button>
+        </div>
+        <div class="tf-label">Formato</div>
+        <div class="tf-section">
+            <button class="tf-btn" onclick="openTableModal(null, 'format')">🎨 Bordes / ancho</button>
+            <button class="tf-btn" onclick="tableResize('plus')">⬅️ ➡️ Más ancho</button>
+            <button class="tf-btn" onclick="tableResize('minus')">➡️ ⬅️ Menos ancho</button>
+        </div>
+        <div class="tf-label">Color de fondo</div>
+        <div class="tf-section">
+            <div class="tf-color-circle" style="background:white;" title="Blanco" onclick="tableColor('#ffffff')"></div>
+            <div class="tf-color-circle" style="background:#eeeeee;" title="Gris claro" onclick="tableColor('#eeeeee')"></div>
+            <div class="tf-color-circle" style="background:#bdbdbd;" title="Gris" onclick="tableColor('#bdbdbd')"></div>
+            <div class="tf-color-circle" style="background:#fff9c4;" title="Amarillo claro" onclick="tableColor('#fff9c4')"></div>
+            <div class="tf-color-circle" style="background:#c8e6c9;" title="Verde claro" onclick="tableColor('#c8e6c9')"></div>
+            <div class="tf-color-circle" style="background:#bbdefb;" title="Celeste claro" onclick="tableColor('#bbdefb')"></div>
+            <div class="tf-color-circle" style="background:#424242;" title="Gris oscuro" onclick="tableColor('#424242')"></div>
+            <div class="tf-color-circle" style="background:black;" title="Negro" onclick="tableColor('#000000')"></div>
+        </div>
+        <div class="tf-label">Color de fuente</div>
+        <div class="tf-section">
+            <button class="tf-btn" onclick="tableTextColor('#000000')">Texto negro</button>
+            <button class="tf-btn" onclick="tableTextColor('#ffffff')" style="background:#424242; color:white;">Texto blanco</button>
+        </div>
+    </div>
+
+    <div id="emoji-popup"></div>
+
+    <div id="color-popup">
+        <div class="color-opt" style="background:white;" title="Blanco" onclick="execColor('white')"></div>
+        <div class="color-opt" style="background:black;" title="Negro" onclick="execColor('black')"></div>
+        <div class="color-opt" style="background:#D32F2F;" onclick="execColor('#D32F2F')"></div>
+        <div class="color-opt" style="background:#1976D2;" onclick="execColor('#1976D2')"></div>
+        <div class="color-opt" style="background:#388E3C;" onclick="execColor('#388E3C')"></div>
+        <div class="color-opt" style="background:#7B1FA2;" onclick="execColor('#7B1FA2')"></div>
+        <div class="color-opt" style="background:#F57C00;" onclick="execColor('#F57C00')"></div>
+    </div>
+
+    <div id="quick-block-popup">
+        <div class="quick-menu-title">Insertar bloque rápido</div>
+        <div class="quick-menu-grid">
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertQuickBlock('consigna')">📌 Consigna</button>
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertQuickBlock('respuesta')">✏️ Para responder</button>
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertQuickBlock('ayuda')">💡 Ayuda</button>
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertQuickBlock('recorda')">⚠️ Recordá</button>
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertQuickBlock('revision')">✅ Revisión</button>
+        </div>
+    </div>
+
+    <div id="response-popup">
+        <div class="quick-menu-title">Renglones / espacios de respuesta</div>
+        <div class="quick-menu-grid">
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertResponseElement('lines3')">3 renglones</button>
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertResponseElement('lines5')">5 renglones</button>
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertResponseElement('box')">Cuadro de respuesta</button>
+            <button class="quick-menu-btn" onmousedown="event.preventDefault(); event.stopPropagation(); insertResponseElement('dotted')">Línea punteada</button>
+        </div>
+    </div>
+
+    <div id="img-resize-label">Arrastrá para cambiar tamaño</div>
+    <div id="img-resize-handle" title="Arrastrar para agrandar o achicar"></div>
+    <button id="img-delete-btn" onclick="deleteSelectedImg()" title="Borrar imagen">×</button>
+
+    <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
+    <input type="file" id="jsonFileInput" accept=".json,application/json" style="display: none;" onchange="importFromJSON(this)">
+
+    <script>
+        const STORAGE_KEY = 'mi_editor_v11_escolar';
+        let currentThemeIndex = 2;
+        let cardCounter = 0;
+        let saveTimeout;
+        let activeEditor = null;
+        let activeTableCell = null;
+        let selectedImg = null;
+        let savedRange = null;
+        let imageResizeState = null;
+        let tableModalMode = 'insert';
+
+        const themes = [
+            { name: "Lengua", bg: "#E8F5E9", header: "#27AE60", title: "#1B5E20", accent: "#2E7D32", toolbar: "#F1F8E9", border: "#C8E6C9", text: "#33691E" },
+            { name: "Matemática", bg: "#FFF3E0", header: "#E67E22", title: "#E65100", accent: "#EF6C00", toolbar: "#FFF8E1", border: "#FFE0B2", text: "#5D4037" },
+            { name: "Recursos", bg: "#E3F2FD", header: "#036FB0", title: "#01579B", accent: "#FF7043", toolbar: "#F5FAFF", border: "#BBDEFB", text: "#455A64" },
+            { name: "Diseño", bg: "#FFEBEE", header: "#D31718", title: "#B71C1C", accent: "#C2185B", toolbar: "#FFF5F6", border: "#FFCDD2", text: "#5D4037" }
+        ];
+
+        function activarModoTrabajo() {
+            if (document.body.classList.contains('modo-trabajo')) return;
+            document.body.classList.add('modo-trabajo');
+
+            const titulo = document.querySelector('h1');
+            if (titulo) titulo.textContent = 'Trabajo en editor Escolar.com.ar';
+
+            const panel = document.querySelector('.info-panel');
+            if (panel && !document.getElementById('aviso-modo-trabajo')) {
+                panel.insertAdjacentHTML('afterbegin', `
+                    <div id="aviso-modo-trabajo" class="modo-trabajo-aviso">
+                        <strong>Modo trabajo:</strong> este editor se abrió desde una ficha o como trabajo editable. Podés escribir, usar tablas, renglones, bloques y emojis. Guardá el archivo editable con el botón de descarga y usá Imprimir/PDF para entregar una versión final.<br>
+                        <span style="font-size:.92rem;">Para evitar archivos pesados, en este modo se oculta la subida de imágenes desde la PC y el guardado HTML.</span>
+                    </div>
+                `);
+            }
+        }
+
+        function detectarModoInicial() {
+            const params = new URLSearchParams(window.location.search);
+            const modoPorUrl = params.get('modo') === 'trabajo';
+            const vieneDeFicha = localStorage.getItem('import_content') !== null;
+            if (modoPorUrl || vieneDeFicha) activarModoTrabajo();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            detectarModoInicial();
+            initThemeSelector();
+            loadEmojis();
+            loadDataFromStorage();
+            
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#table-floating-menu') && !e.target.closest('td') && !e.target.closest('th') && !e.target.closest('[onclick*="openTableActionsMenu"]')) {
+                    document.getElementById('table-floating-menu').style.display = 'none';
+                }
+                if (!e.target.closest('#emoji-popup') && !e.target.closest('.btn-emoji')) {
+                    document.getElementById('emoji-popup').style.display = 'none';
+                }
+                if (!e.target.closest('#color-popup') && !e.target.closest('.btn-color')) {
+                    document.getElementById('color-popup').style.display = 'none';
+                }
+                if (!e.target.closest('#quick-block-popup') && !e.target.closest('.quick-trigger') && !e.target.closest('[onmousedown*="openQuickBlockMenu"]') && !e.target.closest('[onclick*="openQuickBlockMenu"]')) {
+                    document.getElementById('quick-block-popup').style.display = 'none';
+                }
+                if (!e.target.closest('#response-popup') && !e.target.closest('.response-trigger') && !e.target.closest('[onmousedown*="openResponseMenu"]') && !e.target.closest('[onclick*="openResponseMenu"]')) {
+                    document.getElementById('response-popup').style.display = 'none';
+                }
+                if (!e.target.closest('#img-resize-handle') && !e.target.closest('#img-delete-btn') && e.target.tagName !== 'IMG') {
+                    clearSelectedImage();
+                }
+            });
+            ['quick-block-popup','response-popup'].forEach(id => {
+                const popup = document.getElementById(id);
+                if (popup) popup.addEventListener('click', ev => ev.stopPropagation());
+            });
+            const imgHandle = document.getElementById('img-resize-handle');
+            if (imgHandle) imgHandle.addEventListener('pointerdown', startImageResize);
+            document.addEventListener('pointermove', handleImageResizeMove);
+            document.addEventListener('pointerup', stopImageResize);
+            window.addEventListener('resize', updateImageResizeHandle);
+            window.addEventListener('scroll', updateImageResizeHandle, true);
+        });
+
+        // --- MANEJO DE SELECCIÓN ---
+        function saveSelection() {
+            const sel = window.getSelection();
+            if (sel.getRangeAt && sel.rangeCount) savedRange = sel.getRangeAt(0);
+        }
+        function restoreSelection() {
+            if (savedRange) {
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(savedRange);
+            }
+        }
+
+        // --- GESTIÓN DE DATOS ---
+        function triggerSave() {
+            clearTimeout(saveTimeout);
+            saveTimeout = setTimeout(saveData, 1000);
+            document.getElementById('save-msg').innerHTML = '⏳ Guardando...';
+            document.getElementById('save-msg').style.color = '#FFA000';
+        }
+
+        function saveData() {
+            const cardsData = [];
+            document.querySelectorAll('.ficha-card').forEach(card => {
+                cardsData.push({ 
+                    content: card.querySelector('.editor-content').innerHTML, 
+                    isSelected: card.classList.contains('selected-for-print') 
+                });
+            });
+            const appState = { themeIndex: currentThemeIndex, cards: cardsData };
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+                document.getElementById('save-msg').innerHTML = '✅ Guardado';
+                document.getElementById('save-msg').style.color = '#4CAF50';
+                document.getElementById('storage-warning').style.display = 'none';
+            } catch (e) {
+                document.getElementById('save-msg').innerHTML = '❌ Error Memoria';
+                document.getElementById('storage-warning').style.display = 'inline-block';
+            }
+        }
+
+        function loadDataFromStorage() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                const state = JSON.parse(saved);
+                applyTheme(state.themeIndex || 0);
+                document.getElementById('cards-area').innerHTML = '';
+                cardCounter = 0;
+                if (state.cards && state.cards.length) {
+                    state.cards.forEach(c => addNewCard(c.content, c.isSelected));
+                } else addNewCard();
+            } else {
+                applyTheme(2); addNewCard();
+            }
+        }
+
+
+        // --- PRUEBA: ABRIR / GUARDAR TRABAJO EDITABLE JSON ---
+        function buildEditorStateForExport() {
+            const cardsData = [];
+            document.querySelectorAll('.ficha-card').forEach(card => {
+                const editor = card.querySelector('.editor-content');
+                cardsData.push({
+                    content: editor ? editor.innerHTML : '',
+                    isSelected: card.classList.contains('selected-for-print')
+                });
+            });
+            return {
+                tipo: 'trabajo_editor_escolar',
+                version: 1,
+                savedAt: new Date().toISOString(),
+                themeIndex: currentThemeIndex,
+                cards: cardsData
+            };
+        }
+
+        function restoreEditorStateFromJSON(state) {
+            if (!state || !Array.isArray(state.cards)) {
+                alert('El archivo no parece ser un trabajo editable válido de Escolar.com.ar.');
+                return false;
+            }
+            document.getElementById('cards-area').innerHTML = '';
+            cardCounter = 0;
+            applyTheme(Number.isInteger(state.themeIndex) ? state.themeIndex : 2);
+            if (state.cards.length) {
+                state.cards.forEach(c => addNewCard(c.content || '', !!c.isSelected));
+            } else {
+                addNewCard();
+            }
+            saveData();
+            updatePrintButton();
+            return true;
+        }
+
+        function safeFileName(name) {
+            return (name || 'trabajo-editor-escolar')
+                .toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9-_]+/g, '-')
+                .replace(/^-+|-+$/g, '') || 'trabajo-editor-escolar';
+        }
+
+        function exportToJSON() {
+            saveData();
+            const state = buildEditorStateForExport();
+            const json = JSON.stringify(state, null, 2);
+            const sizeMB = new Blob([json]).size / (1024 * 1024);
+            if (sizeMB > 2) {
+                const ok = confirm('El trabajo pesa aproximadamente ' + sizeMB.toFixed(1) + ' MB. Puede ser pesado para compartir. ¿Querés guardarlo igual?');
+                if (!ok) return;
+            }
+            const baseName = prompt('Nombre para el archivo editable:', 'trabajo-editor-escolar');
+            if (baseName === null) return;
+            const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = safeFileName(baseName) + '.json';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(link.href);
+        }
+
+        function openJSONPicker() {
+            const input = document.getElementById('jsonFileInput');
+            if (!input) return;
+            input.value = '';
+            input.click();
+        }
+
+        function importFromJSON(input) {
+            const file = input.files && input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const state = JSON.parse(e.target.result);
+                    const okReplace = confirm('Abrir este .json reemplazará el contenido actual del editor. ¿Continuar?');
+                    if (!okReplace) return;
+                    const ok = restoreEditorStateFromJSON(state);
+                    if (ok) alert('Trabajo editable abierto correctamente.');
+                } catch (err) {
+                    alert('No se pudo abrir el archivo .json. Revisá que sea un trabajo editable válido.');
+                    console.error(err);
+                }
+            };
+            reader.readAsText(file, 'utf-8');
+        }
+
+        function clearAllData() {
+            if (confirm("¿BORRAR TODO? Se perderá el trabajo no exportado.")) {
+                localStorage.removeItem(STORAGE_KEY);
+                location.reload();
+            }
+        }
+
+        // --- CREACIÓN DE FICHAS ---
+        function addNewCard(content = '', isSelected = false) {
+            cardCounter++;
+            const id = `card-${Date.now()}-${cardCounter}`;
+            const html = `
+                <div class="ficha-card ${isSelected ? 'selected-for-print' : ''}" id="${id}">
+                    <div class="ficha-header" onclick="toggleSelection('${id}')">
+                        <div class="header-title-area"><span>Hoja ${cardCounter}</span></div>
+                        <div class="header-controls">
+                            <button class="btn-icon-only" onclick="duplicateCard('${id}', event)" title="Duplicar hoja">📄</button>
+                            <button class="btn-icon-only" onclick="deleteCard('${id}', event)" title="Eliminar hoja">🗑️</button>
+                            <div class="custom-checkbox"></div>
+                        </div>
+                    </div>
+                    <div class="editor-toolbar">
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'undo')" title="Deshacer">↩️</button>
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'redo')" title="Rehacer">↪️</button>
+                        <button class="tool-btn icon-only" onclick="copySelection(this)" title="Copiar selección">
+    <span class="material-icons">content_copy</span>
+</button>
+                        <button class="tool-btn" onclick="cleanCurrentEditor(this)" title="Limpiar formato">🧹 Limpiar</button>
+                        <button class="tool-btn quick-trigger" onmousedown="event.preventDefault(); event.stopPropagation(); saveSelection(); openQuickBlockMenu(this)" onclick="event.stopPropagation()" title="Bloques rápidos">📌 Bloques</button>
+                        <button class="tool-btn response-trigger" onmousedown="event.preventDefault(); event.stopPropagation(); saveSelection(); openResponseMenu(this)" onclick="event.stopPropagation()" title="Renglones y espacios de respuesta">📝 Renglones</button>
+                        <div class="separator"></div>
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'bold')" title="Negrita"><span class="material-icons">format_bold</span></button>
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'italic')"><span class="material-icons">format_italic</span></button>
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'underline')"><span class="material-icons">format_underlined</span></button>
+                        
+                        <button class="tool-btn icon-only btn-color" onmousedown="saveSelection(); openColorMenu(this)" title="Color Texto">
+                            <span class="material-icons" style="color:var(--accent-color); text-decoration: underline;">format_color_text</span>
+                        </button>
+                        
+                        <select class="tool-select" onmousedown="saveSelection()" onchange="applyFontSize(this)" title="Tamaño de fuente">
+                            <option value="">Tamaño...</option>
+                            <option value="12px">12 px</option>
+                            <option value="14px">14 px</option>
+                            <option value="16px" selected>16 px</option>
+                            <option value="18px">18 px</option>
+                            <option value="20px">20 px</option>
+                            <option value="24px">24 px</option>
+                            <option value="28px">28 px</option>
+                            <option value="32px">32 px</option>
+                        </select>
+<select class="tool-select" onmousedown="saveSelection()" onchange="changeLineHeight(this)" title="Interlineado">
+                            <option value="1.0">Sencillo (1.0)</option>
+                            <option value="1.5" selected>Medio (1.5)</option>
+                            <option value="2.0">Doble (2.0)</option>
+                        </select>
+                        <div class="separator"></div>
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'justifyLeft')"><span class="material-icons">format_align_left</span></button>
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'justifyCenter')"><span class="material-icons">format_align_center</span></button>
+                        <button class="tool-btn icon-only" onclick="execCmd(this, 'justifyRight')"><span class="material-icons">format_align_right</span></button>
+                        <div class="separator"></div>
+                        
+                        <button class="tool-btn btn-emoji" onmousedown="saveSelection(); openEmojiMenu(this)" title="Insertar Emoji">😀</button>
+                        <button class="tool-btn btn-image" onmousedown="saveSelection(); triggerImgUpload(this)" title="Subir Imagen PC">
+                            <span class="material-icons">add_photo_alternate</span>
+                        </button>
+                        
+                        <div class="separator"></div>
+                        <button class="tool-btn" onclick="openTableModal(this, 'insert')"><span class="material-icons">grid_on</span> Tabla</button>
+                        <button class="tool-btn" onclick="openTableActionsMenu(this)" title="Abrir acciones de la tabla seleccionada">⚙️ Tabla</button>
+                        <button class="tool-btn" onclick="openTableModal(this, 'format')" title="Formato de tabla seleccionada">🎨 Tabla</button>
+                    </div>
+                    <div class="editor-content" contenteditable="true" 
+                         oninput="triggerSave()" 
+                         onmouseup="checkTableClick(event)" 
+                         onkeyup="checkTableClick(event)"
+                         onkeydown="handleTabKey(event)">${content}</div>
+                </div>
+            `;
+            document.getElementById('cards-area').insertAdjacentHTML('beforeend', html);
+            normalizeAllTablesInEditor(document.getElementById(id).querySelector('.editor-content'));
+            updatePrintButton();
+        }
+
+        // --- TAB KEY EN TABLAS ---
+        function handleTabKey(e) {
+            if (e.key === 'Tab') {
+                const sel = window.getSelection();
+                if (!sel.rangeCount) return;
+                let node = sel.getRangeAt(0).startContainer;
+                while (node && node.nodeName !== 'TD' && node.nodeName !== 'TH') {
+                    if (node.classList && node.classList.contains('editor-content')) return;
+                    node = node.parentNode;
+                }
+                if (node && (node.nodeName === 'TD' || node.nodeName === 'TH')) {
+                    e.preventDefault();
+                    const table = node.closest('table');
+                    const cells = Array.from(table.querySelectorAll('td, th'));
+                    const index = cells.indexOf(node);
+                    if (!e.shiftKey && index < cells.length - 1) focusCell(cells[index + 1]);
+                    else if (e.shiftKey && index > 0) focusCell(cells[index - 1]);
+                }
+            }
+        }
+        function focusCell(cell) {
+            const range = document.createRange();
+            const sel = window.getSelection();
+            range.selectNodeContents(cell);
+            range.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
+
+        // --- COMANDOS EDITOR ---
+        function execCmd(btn, cmd, val = null) {
+            const editor = btn.closest('.ficha-card').querySelector('.editor-content');
+            editor.focus();
+            activeEditor = editor;
+            document.execCommand(cmd, false, val);
+            triggerSave();
+        }
+
+        // --- COLORES ---
+        function openColorMenu(btn) {
+            const rect = btn.getBoundingClientRect();
+            const popup = document.getElementById('color-popup');
+            popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+            popup.style.left = rect.left + 'px';
+            popup.style.display = 'block';
+            activeEditor = btn.closest('.ficha-card').querySelector('.editor-content');
+        }
+		function changeLineHeight(select) {
+            restoreSelection();
+            const sel = window.getSelection();
+            if (!sel.rangeCount) return;
+
+            const range = sel.getRangeAt(0);
+            let node = range.commonAncestorContainer;
+            // Si el nodo es texto, pasamos a su contenedor (ej. el párrafo)
+            if (node.nodeType === 3) node = node.parentNode;
+
+            // CASO 1: Seleccionaste varios párrafos a la vez
+            if (node.classList && node.classList.contains('editor-content')) {
+                const blocks = node.querySelectorAll('p, div, li, td, h1, h2, h3, h4');
+                blocks.forEach(b => {
+                    // Solo aplica a los bloques que están dentro de tu selección
+                    if (sel.containsNode(b, true)) {
+                        b.style.lineHeight = select.value;
+                    }
+                });
+            } 
+            // CASO 2: Tienes el cursor en un solo párrafo o línea
+            else {
+                let block = node;
+                // Subimos hasta encontrar el contenedor real del texto
+                while (block && block !== document.body && !block.classList.contains('editor-content')) {
+                    if (['P', 'DIV', 'TD', 'LI', 'H1', 'H2', 'H3', 'H4'].includes(block.tagName)) {
+                        break;
+                    }
+                    block = block.parentNode;
+                }
+                
+                // Aplicamos el interlineado solo a ese bloque
+                if (block && !block.classList.contains('editor-content')) {
+                    block.style.lineHeight = select.value;
+                } else {
+                    node.style.lineHeight = select.value;
+                }
+            }
+            
+            triggerSave();
+        }
+        function execColor(color) {
+            restoreSelection();
+            if(activeEditor) {
+                activeEditor.focus();
+                document.execCommand('foreColor', false, color);
+                document.getElementById('color-popup').style.display = 'none';
+                triggerSave();
+            }
+        }
+
+        function findEditableBlock(node) {
+            if (!node) return null;
+            if (node.nodeType === 3) node = node.parentNode;
+            while (node && node !== document.body && !node.classList?.contains('editor-content')) {
+                if (['P','DIV','LI','TD','TH','H1','H2','H3','H4','SPAN'].includes(node.tagName)) return node;
+                node = node.parentNode;
+            }
+            return null;
+        }
+
+        function applyFontSize(select) {
+            const size = select.value;
+            if (!size) return;
+            restoreSelection();
+            const editor = select.closest('.ficha-card').querySelector('.editor-content');
+            activeEditor = editor;
+            editor.focus();
+
+            const sel = window.getSelection();
+            if (!sel || !sel.rangeCount) return;
+
+            if (sel.isCollapsed) {
+                const block = findEditableBlock(sel.anchorNode);
+                if (block && editor.contains(block)) {
+                    block.style.fontSize = size;
+                } else {
+                    document.execCommand('insertHTML', false, `<span style="font-size:${size};">&nbsp;</span>`);
+                }
+            } else {
+                document.execCommand('fontSize', false, '7');
+                editor.querySelectorAll('font[size="7"]').forEach(font => {
+                    const span = document.createElement('span');
+                    span.style.fontSize = size;
+                    while (font.firstChild) span.appendChild(font.firstChild);
+                    font.replaceWith(span);
+                });
+            }
+            select.value = '';
+            triggerSave();
+        }
+
+        function placePopupNearButton(popup, btn) {
+            const rect = btn.getBoundingClientRect();
+            popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+            popup.style.left = Math.min(window.scrollX + rect.left, window.innerWidth - 280) + 'px';
+            popup.style.display = 'block';
+        }
+
+        function openQuickBlockMenu(btn) {
+            activeEditor = btn.closest('.ficha-card').querySelector('.editor-content');
+            document.getElementById('response-popup').style.display = 'none';
+            placePopupNearButton(document.getElementById('quick-block-popup'), btn);
+        }
+
+        function openResponseMenu(btn) {
+            activeEditor = btn.closest('.ficha-card').querySelector('.editor-content');
+            document.getElementById('quick-block-popup').style.display = 'none';
+            placePopupNearButton(document.getElementById('response-popup'), btn);
+        }
+
+        function insertHTMLAtCursor(html) {
+            restoreSelection();
+            if (activeEditor) {
+                activeEditor.focus();
+                document.execCommand('insertHTML', false, html);
+                triggerSave();
+            }
+        }
+
+        function insertQuickBlock(type) {
+            const blocks = {
+                consigna: `<div style="border-left:6px solid #036FB0; background:#E3F2FD; padding:12px 14px; margin:12px 0; border-radius:8px;"><strong>📌 Consigna:</strong><br>Escribí la consigna aquí.</div>`,
+                respuesta: `<div style="border:1px solid #90A4AE; background:#FAFAFA; padding:12px 14px; margin:12px 0; border-radius:8px;"><strong>✏️ Para responder:</strong><br><br></div>`,
+                ayuda: `<div style="border-left:6px solid #FBC02D; background:#FFFDE7; padding:12px 14px; margin:12px 0; border-radius:8px;"><strong>💡 Ayuda:</strong><br>Agregá una orientación breve.</div>`,
+                recorda: `<div style="border-left:6px solid #E67E22; background:#FFF3E0; padding:12px 14px; margin:12px 0; border-radius:8px;"><strong>⚠️ Recordá:</strong><br>Escribí aquí una aclaración importante.</div>`,
+                revision: `<div style="border-left:6px solid #27AE60; background:#E8F5E9; padding:12px 14px; margin:12px 0; border-radius:8px;"><strong>✅ Revisión:</strong><br>Antes de terminar, revisá tu respuesta.</div>`
+            };
+            insertHTMLAtCursor((blocks[type] || blocks.consigna) + '<p><br></p>');
+            document.getElementById('quick-block-popup').style.display = 'none';
+        }
+
+        function responseLines(count) {
+            let html = '<div style="margin:12px 0;">';
+            for (let i = 0; i < count; i++) {
+                html += '<div style="border-bottom:1px solid #777; height:28px; margin:4px 0;"></div>';
+            }
+            html += '</div><p><br></p>';
+            return html;
+        }
+
+        function insertResponseElement(type) {
+            let html = '';
+            if (type === 'lines3') html = responseLines(3);
+            else if (type === 'lines5') html = responseLines(5);
+            else if (type === 'box') html = '<div style="border:1px solid #777; min-height:110px; padding:10px; margin:12px 0; border-radius:6px;"><br></div><p><br></p>';
+            else if (type === 'dotted') html = '<div style="border-bottom:2px dotted #777; height:28px; margin:12px 0;"></div><p><br></p>';
+            insertHTMLAtCursor(html);
+            document.getElementById('response-popup').style.display = 'none';
+        }
+
+        function cleanCurrentEditor(btn) {
+            const editor = btn.closest('.ficha-card').querySelector('.editor-content');
+            if (!editor) return;
+            if (!confirm('¿Limpiar formato de esta hoja? Se conservará el contenido, imágenes y tablas, pero se quitarán estilos pegados de más.')) return;
+
+            editor.querySelectorAll('font').forEach(font => {
+                const span = document.createElement('span');
+                span.innerHTML = font.innerHTML;
+                font.replaceWith(span);
+            });
+
+            editor.querySelectorAll('*').forEach(el => {
+                const tag = el.tagName;
+                el.removeAttribute('class');
+                el.removeAttribute('id');
+                Array.from(el.attributes).forEach(attr => {
+                    if (attr.name.startsWith('data-')) el.removeAttribute(attr.name);
+                });
+
+                if (tag === 'IMG') {
+                    const width = el.style.width || el.getAttribute('width') || '';
+                    el.removeAttribute('style');
+                    el.style.maxWidth = '100%';
+                    el.style.height = 'auto';
+                    el.style.display = 'block';
+                    el.style.margin = '10px 0';
+                    if (width) el.style.width = width;
+                } else if (tag === 'TABLE') {
+                    el.removeAttribute('style');
+                    el.style.width = '100%';
+                    el.style.borderCollapse = 'collapse';
+                    el.style.margin = '10px 0';
+                    el.style.tableLayout = 'fixed';
+                } else if (tag === 'TD' || tag === 'TH') {
+                    el.removeAttribute('style');
+                    el.style.border = '1px solid #000';
+                    el.style.padding = '8px';
+                    el.style.verticalAlign = 'top';
+                    el.style.overflowWrap = 'anywhere';
+                    el.style.wordBreak = 'break-word';
+                } else if (tag === 'A') {
+                    const href = el.getAttribute('href');
+                    el.removeAttribute('style');
+                    if (href) el.setAttribute('href', href);
+                    el.setAttribute('target', '_blank');
+                } else if (!['BR'].includes(tag)) {
+                    el.removeAttribute('style');
+                }
+            });
+            normalizeAllTablesInEditor(editor);
+            triggerSave();
+        }
+
+        // --- IMÁGENES ---
+        function triggerImgUpload(btn) {
+            activeEditor = btn.closest('.ficha-card').querySelector('.editor-content');
+            document.getElementById('fileInput').click();
+        }
+        function handleImageUpload(input) {
+            const file = input.files[0];
+            if (!file || !activeEditor) return;
+            restoreSelection();
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const MAX_WIDTH = 800;
+                    if (width > MAX_WIDTH) { height *= MAX_WIDTH / width; width = MAX_WIDTH; }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                    activeEditor.focus();
+                    document.execCommand('insertImage', false, dataUrl);
+                    input.value = '';
+                    triggerSave();
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+
+        // --- EMOJIS (COMPLETOS) ---
+        function loadEmojis() {
+            const container = document.getElementById('emoji-popup');
+            container.innerHTML = `
+                <div class="popup-category-title">Caras</div>
+                <div class="emoji-grid">
+                    ${['😀','😉','🤓','😌','🫣','😎','🤔','😮'].map(e => `<button class="emoji-btn" onmousedown="event.preventDefault(); insertEmoji('${e}')">${e}</button>`).join('')}
+                </div>
+                <div class="popup-category-title">Animales y Naturaleza</div>
+                <div class="emoji-grid">
+                    ${['🐧','🐥','🐢','🐶','🐱','🦁','🐝','🌳'].map(e => `<button class="emoji-btn" onmousedown="event.preventDefault(); insertEmoji('${e}')">${e}</button>`).join('')}
+                </div>
+                <div class="popup-category-title">Matemática</div>
+                <div class="emoji-grid">
+                    ${['➕','➖','✖️','➗','🟰','📐','📏','🔢','🎲','🔴','🟠','🟡','🟢','🔵','🟣','🟤','⚫','⚪','🟥'].map(e => `<button class="emoji-btn" onmousedown="event.preventDefault(); insertEmoji('${e}')">${e}</button>`).join('')}
+                </div>
+            `;
+        }
+        function openEmojiMenu(btn) {
+            const rect = btn.getBoundingClientRect();
+            const popup = document.getElementById('emoji-popup');
+            popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+            popup.style.left = rect.left + 'px';
+            popup.style.display = 'block';
+            activeEditor = btn.closest('.ficha-card').querySelector('.editor-content');
+        }
+        function insertEmoji(char) {
+            restoreSelection();
+            if(activeEditor) {
+                activeEditor.focus();
+                document.execCommand('insertText', false, char);
+                triggerSave();
+            }
+        }
+
+        // --- TABLAS MEJORADAS ---
+        function clampNumber(value, min, max, fallback) {
+            const n = parseInt(value, 10);
+            if (Number.isNaN(n)) return fallback;
+            return Math.max(min, Math.min(max, n));
+        }
+
+        function getTableOptionsFromModal() {
+            return {
+                rows: clampNumber(document.getElementById('inputRows').value, 1, 30, 3),
+                cols: clampNumber(document.getElementById('inputCols').value, 1, 12, 3),
+                width: document.getElementById('tableWidth').value || '100%',
+                align: document.getElementById('tableAlign').value || 'left',
+                borderWidth: clampNumber(document.getElementById('tableBorderWidth').value, 0, 6, 1),
+                borderColor: document.getElementById('tableBorderColor').value || '#000000',
+                headerBg: document.getElementById('tableHeaderBg').value || '#eeeeee',
+                padding: clampNumber(document.getElementById('tablePadding').value, 2, 30, 8),
+                headerRow: document.getElementById('tableHeaderRow').checked,
+                headerCol: document.getElementById('tableHeaderCol').checked
+            };
+        }
+
+        function cellStyleFromOptions(opts, isHeader) {
+            const border = opts.borderWidth > 0 ? `${opts.borderWidth}px solid ${opts.borderColor}` : 'none';
+            const bg = isHeader ? ` background:${opts.headerBg}; font-weight:700;` : '';
+            return `border:${border}; padding:${opts.padding}px; text-align:${opts.align}; min-width:40px; vertical-align:top;${bg}`;
+        }
+
+        function buildTableHTML(opts) {
+            const tableWidth = opts.width === 'auto' ? 'auto' : opts.width;
+            let html = `<table style="width:${tableWidth}; border-collapse:collapse; margin:10px 0; table-layout:fixed;">`;
+            for (let r = 0; r < opts.rows; r++) {
+                html += '<tr>';
+                for (let c = 0; c < opts.cols; c++) {
+                    const isHeader = (opts.headerRow && r === 0) || (opts.headerCol && c === 0);
+                    const tag = isHeader ? 'th' : 'td';
+                    html += `<${tag} style="${cellStyleFromOptions(opts, isHeader)}">&nbsp;</${tag}>`;
+                }
+                html += '</tr>';
+            }
+            html += '</table><p><br></p>';
+            return html;
+        }
+
+        function checkTableClick(e) {
+            const menu = document.getElementById('table-floating-menu');
+            if (e.target.tagName === 'IMG') {
+                menu.style.display = 'none';
+                selectEditorImage(e.target);
+                return;
+            }
+            const cell = e.target.closest('td') || e.target.closest('th');
+            if (cell && cell.closest('.editor-content')) {
+                activeTableCell = cell;
+                // No abrimos el menú automáticamente: solo guardamos la celda activa.
+                // Para ver acciones o propiedades, usar los botones ⚙️ Tabla o 🎨 Tabla.
+            }
+        }
+
+        function openTableActionsMenu(btn = null) {
+            if (btn) {
+                activeEditor = btn.closest('.ficha-card').querySelector('.editor-content');
+                saveSelection();
+            }
+            const table = getCurrentTable();
+            if (!table || !activeTableCell) {
+                alert('Primero hacé clic dentro de una celda de la tabla.');
+                return;
+            }
+            const menu = document.getElementById('table-floating-menu');
+            const anchor = btn || activeTableCell;
+            const rect = anchor.getBoundingClientRect();
+            menu.style.display = 'block';
+            menu.style.top = (window.scrollY + rect.bottom + 6) + 'px';
+            menu.style.left = Math.min(window.scrollX + rect.left, window.innerWidth - 330) + 'px';
+        }
+
+        function openTableModal(btn = null, mode = 'insert') {
+            tableModalMode = mode;
+            if (btn) {
+                activeEditor = btn.closest('.ficha-card').querySelector('.editor-content');
+                saveSelection();
+            }
+            const table = getCurrentTable();
+            const title = document.getElementById('tableModalTitle');
+            const help = document.getElementById('tableModalHelp');
+            const applyBtn = document.getElementById('tableApplyBtn');
+            const rowsBox = document.getElementById('tableRowsBox');
+            const colsBox = document.getElementById('tableColsBox');
+
+            if (mode === 'format') {
+                if (!table) {
+                    alert('Primero hacé clic dentro de una tabla para cambiar su formato.');
+                    return;
+                }
+                title.textContent = 'Formato de tabla';
+                help.textContent = 'Aplicá ancho, bordes, alineación, encabezados y espaciado a la tabla seleccionada.';
+                applyBtn.textContent = 'Aplicar formato';
+                rowsBox.style.display = 'none';
+                colsBox.style.display = 'none';
+                readTableStyleIntoModal(table);
+            } else {
+                title.textContent = 'Crear tabla';
+                help.textContent = 'Elegí la estructura y el estilo inicial de la tabla.';
+                applyBtn.textContent = 'Insertar tabla';
+                rowsBox.style.display = '';
+                colsBox.style.display = '';
+            }
+            document.getElementById('tableModal').style.display = 'flex';
+        }
+
+        function closeTableModal() {
+            document.getElementById('tableModal').style.display = 'none';
+        }
+
+        function applyTableModal() {
+            const opts = getTableOptionsFromModal();
+            if (tableModalMode === 'format') {
+                const table = getCurrentTable();
+                if (!table) return alert('Primero hacé clic dentro de una tabla.');
+                applyStyleToTable(table, opts);
+                triggerSave();
+                closeTableModal();
+                return;
+            }
+            if (!activeEditor) return alert('Primero hacé clic dentro de una hoja para insertar la tabla.');
+            restoreSelection();
+            activeEditor.focus();
+            document.execCommand('insertHTML', false, buildTableHTML(opts));
+            closeTableModal();
+            triggerSave();
+        }
+
+        function readTableStyleIntoModal(table) {
+            const firstCell = table.querySelector('td,th');
+            if (!firstCell) return;
+            const tableWidth = table.style.width || '100%';
+            const borderMatch = (firstCell.style.border || '').match(/(\d+)px\s+solid\s+(.+)/);
+            const paddingMatch = (firstCell.style.padding || '').match(/(\d+)px/);
+            document.getElementById('tableWidth').value = ['100%','75%','50%','auto'].includes(tableWidth) ? tableWidth : '100%';
+            document.getElementById('tableAlign').value = firstCell.style.textAlign || 'left';
+            document.getElementById('tableBorderWidth').value = borderMatch ? borderMatch[1] : (firstCell.style.border === 'none' ? '0' : '1');
+            document.getElementById('tablePadding').value = paddingMatch ? paddingMatch[1] : '8';
+            document.getElementById('tableHeaderRow').checked = !!table.rows[0]?.querySelector('th');
+            document.getElementById('tableHeaderCol').checked = Array.from(table.rows).some(row => row.cells[0]?.tagName === 'TH');
+        }
+
+        function replaceCellTag(cell, tagName) {
+            if (cell.tagName === tagName) return cell;
+            const newCell = document.createElement(tagName.toLowerCase());
+            newCell.innerHTML = cell.innerHTML;
+            newCell.setAttribute('style', cell.getAttribute('style') || '');
+            cell.replaceWith(newCell);
+            return newCell;
+        }
+
+        function ensureFixedColgroup(table) {
+            const firstRow = table.rows[0];
+            if (!firstRow) return;
+            const cols = firstRow.cells.length || 1;
+            let colgroup = table.querySelector('colgroup');
+            if (!colgroup || colgroup.children.length !== cols) {
+                if (colgroup) colgroup.remove();
+                colgroup = document.createElement('colgroup');
+                const colWidth = (100 / cols).toFixed(4) + '%';
+                for (let i = 0; i < cols; i++) {
+                    const col = document.createElement('col');
+                    col.style.width = colWidth;
+                    colgroup.appendChild(col);
+                }
+                table.insertBefore(colgroup, table.firstChild);
+            }
+        }
+
+        function applyStyleToTable(table, opts) {
+            table.style.width = opts.width === 'auto' ? '100%' : opts.width;
+            table.style.borderCollapse = 'collapse';
+            table.style.margin = '10px 0';
+            table.style.tableLayout = 'fixed';
+            ensureFixedColgroup(table);
+            Array.from(table.rows).forEach((row, rIndex) => {
+                Array.from(row.cells).forEach((cell, cIndex) => {
+                    const isHeader = (opts.headerRow && rIndex === 0) || (opts.headerCol && cIndex === 0);
+                    cell = replaceCellTag(cell, isHeader ? 'TH' : 'TD');
+                    cell.style.border = opts.borderWidth > 0 ? `${opts.borderWidth}px solid ${opts.borderColor}` : 'none';
+                    cell.style.padding = opts.padding + 'px';
+                    cell.style.textAlign = opts.align;
+                    cell.style.minWidth = '40px';
+                    cell.style.verticalAlign = 'top';
+                    if (isHeader) {
+                        cell.style.background = opts.headerBg;
+                        cell.style.fontWeight = '700';
+                    } else {
+                        cell.style.fontWeight = '';
+                    }
+                });
+            });
+        }
+
+        function getCurrentTable() {
+            if (!activeTableCell) return null;
+            return activeTableCell.closest('table');
+        }
+
+        function cloneCell(sourceCell) {
+            const c = document.createElement(sourceCell.tagName === 'TH' ? 'th' : 'td');
+            c.innerHTML = '&nbsp;';
+            c.setAttribute('style', sourceCell.getAttribute('style') || 'border:1px solid #000; padding:8px;');
+            return c;
+        }
+
+        function tableAction(action) {
+            if (!activeTableCell) return;
+            const row = activeTableCell.parentElement;
+            const table = activeTableCell.closest('table');
+            const cellIndex = activeTableCell.cellIndex;
+            const rowIndex = row.rowIndex;
+
+            if (action === 'addRow') {
+                const newRow = table.insertRow(rowIndex + 1);
+                for(let i=0; i<row.cells.length; i++) newRow.appendChild(cloneCell(row.cells[i]));
+            } else if (action === 'delRow') {
+                if (table.rows.length <= 1) return alert('La tabla debe conservar al menos una fila.');
+                table.deleteRow(rowIndex);
+            } else if (action === 'addCol') {
+                for(let i=0; i<table.rows.length; i++) {
+                    const ref = table.rows[i].cells[Math.max(0, cellIndex)] || activeTableCell;
+                    const c = cloneCell(ref);
+                    table.rows[i].insertBefore(c, table.rows[i].cells[cellIndex + 1] || null);
+                }
+            } else if (action === 'delCol') {
+                if (row.cells.length <= 1) return alert('La tabla debe conservar al menos una columna.');
+                for(let i=0; i<table.rows.length; i++) {
+                    if(table.rows[i].cells[cellIndex]) table.rows[i].deleteCell(cellIndex);
+                }
+            } else if (action === 'deleteTable') {
+                if (confirm('¿Borrar toda la tabla?')) {
+                    table.remove();
+                    document.getElementById('table-floating-menu').style.display = 'none';
+                }
+            }
+            ensureFixedColgroup(table);
+            triggerSave();
+        }
+
+        function normalizeAllTablesInEditor(editor) {
+            if (!editor) return;
+            editor.querySelectorAll('table').forEach(table => {
+                table.style.tableLayout = 'fixed';
+                if (!table.style.width || table.style.width === 'auto') table.style.width = '100%';
+                ensureFixedColgroup(table);
+                table.querySelectorAll('td,th').forEach(cell => {
+                    cell.style.overflowWrap = 'anywhere';
+                    cell.style.wordBreak = 'break-word';
+                    cell.style.boxSizing = 'border-box';
+                    cell.style.minWidth = '0';
+                });
+            });
+        }
+
+        function tableColor(color) {
+            if (!activeTableCell) return;
+            activeTableCell.style.backgroundColor = color;
+            const isDark = (color === '#424242' || color === '#000000');
+            activeTableCell.style.color = isDark ? 'white' : 'black';
+            triggerSave();
+        }
+
+        function tableTextColor(color) {
+            if (!activeTableCell) return;
+            activeTableCell.style.color = color;
+            triggerSave();
+        }
+
+        function tableResize(mode) {
+            if (!activeTableCell) return;
+            let currWidth = activeTableCell.offsetWidth;
+            if (mode === 'plus') activeTableCell.style.width = (currWidth + 20) + 'px';
+            if (mode === 'minus') activeTableCell.style.width = Math.max(30, currWidth - 20) + 'px';
+            triggerSave();
+        }
+
+        // --- IMAGEN CON ARRASTRADOR ---
+        function selectEditorImage(img) {
+            if (selectedImg) selectedImg.classList.remove('selected-image-editor');
+            selectedImg = img;
+            selectedImg.classList.add('selected-image-editor');
+            updateImageResizeHandle();
+        }
+
+        function clearSelectedImage() {
+            if (selectedImg) selectedImg.classList.remove('selected-image-editor');
+            selectedImg = null;
+            imageResizeState = null;
+            ['img-resize-handle','img-resize-label','img-delete-btn'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.style.display = 'none';
+            });
+        }
+
+        function updateImageResizeHandle() {
+            const handle = document.getElementById('img-resize-handle');
+            const label = document.getElementById('img-resize-label');
+            const del = document.getElementById('img-delete-btn');
+            if (!handle || !label || !del || !selectedImg || !document.body.contains(selectedImg)) {
+                if (handle) handle.style.display = 'none';
+                if (label) label.style.display = 'none';
+                if (del) del.style.display = 'none';
+                return;
+            }
+            const r = selectedImg.getBoundingClientRect();
+            handle.style.left = (window.scrollX + r.right - 9) + 'px';
+            handle.style.top = (window.scrollY + r.bottom - 9) + 'px';
+            handle.style.display = 'block';
+            label.style.left = (window.scrollX + r.left) + 'px';
+            label.style.top = (window.scrollY + r.bottom + 10) + 'px';
+            label.style.display = 'block';
+            del.style.left = (window.scrollX + r.right - 14) + 'px';
+            del.style.top = (window.scrollY + r.top - 14) + 'px';
+            del.style.display = 'block';
+        }
+
+        function startImageResize(e) {
+            if (!selectedImg) return;
+            e.preventDefault();
+            e.stopPropagation();
+            const r = selectedImg.getBoundingClientRect();
+            const parent = selectedImg.closest('.editor-content') || selectedImg.parentElement;
+            const parentWidth = parent ? parent.getBoundingClientRect().width : 850;
+            imageResizeState = {
+                pointerId: e.pointerId,
+                startX: e.clientX,
+                startWidth: r.width,
+                maxWidth: Math.max(80, parentWidth - 20)
+            };
+            e.target.setPointerCapture?.(e.pointerId);
+        }
+
+        function handleImageResizeMove(e) {
+            if (!imageResizeState || !selectedImg) return;
+            e.preventDefault();
+            const delta = e.clientX - imageResizeState.startX;
+            let newWidth = imageResizeState.startWidth + delta;
+            newWidth = Math.max(40, Math.min(newWidth, imageResizeState.maxWidth));
+            selectedImg.style.width = Math.round(newWidth) + 'px';
+            selectedImg.style.maxWidth = '100%';
+            selectedImg.style.height = 'auto';
+            updateImageResizeHandle();
+        }
+
+        function stopImageResize() {
+            if (!imageResizeState) return;
+            imageResizeState = null;
+            triggerSave();
+            updateImageResizeHandle();
+        }
+
+        function deleteSelectedImg() {
+            if(selectedImg && confirm('¿Borrar esta imagen?')) {
+                selectedImg.remove();
+                clearSelectedImage();
+                triggerSave();
+            }
+        }
+
+        // --- EXPORTAR HTML INTELIGENTE (CON CHECKBOX Y EDICIÓN) ---
+        function exportToHTML() {
+            // 1. Clonar estilos originales
+            const styles = document.querySelector('style').outerHTML;
+            
+            // 2. Construir el contenido manteniendo estructura
+            let contentHTML = '';
+            document.querySelectorAll('.ficha-card').forEach(card => {
+                const editorHtml = card.querySelector('.editor-content').innerHTML;
+                
+                // Reconstruimos la ficha pero con un checkbox funcional para el archivo exportado
+                contentHTML += `
+                    <div class="ficha-card" style="margin-bottom:30px; position:relative;">
+                        <div class="ficha-header" style="background:${themes[currentThemeIndex].header}; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; border-radius:10px 10px 0 0; color:white;">
+                            <span style="font-weight:bold;">Hoja</span>
+                            <div class="header-controls" style="display:flex; align-items:center;">
+                                <div class="custom-checkbox" onclick="toggleExportSelection(this)" style="cursor:pointer; width:24px; height:24px; border:2px solid white; border-radius:4px; display:flex; align-items:center; justify-content:center;"></div>
+                            </div>
+                        </div>
+                        <div class="editor-content" contenteditable="true" style="padding:30px; background:white; min-height:250px; outline:none; border-radius:0 0 12px 12px;">
+                            ${editorHtml}
+                        </div>
+                    </div>
+                `;
+            });
+
+            // 3. Crear el HTML final con un mini-script inyectado
+            const finalHTML = `
+                <!DOCTYPE html>
+                <html lang="es">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Documento Escolar</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+                    ${styles}
+                    <style>
+                        body { background: #f5f5f5; padding: 40px; max-width: 850px; margin: 0 auto; }
+                        
+                        /* Ocultar elementos del editor que no sirven en el archivo exportado */
+                        .editor-toolbar, .fab-container, .theme-selector-container, .info-panel, 
+                        #tableModal, #table-floating-menu, #emoji-popup, #color-popup, #quick-block-popup, #response-popup, #img-resize-handle, #img-resize-label, #img-delete-btn { display: none; }
+
+                        /* Estilos para que el checkbox funcione visualmente */
+                        .ficha-card.selected-for-print .custom-checkbox { background: var(--accent-color); }
+                        .custom-checkbox::after { content: '✓'; color: white; font-weight: bold; display: none; }
+                        .ficha-card.selected-for-print .custom-checkbox::after { display: block; }
+                        .ficha-card.selected-for-print { border: 2px solid var(--accent-color); }
+
+                        /* Botón de Imprimir Flotante (Solo para el exportado) */
+                        #export-fab-container { position: fixed; bottom: 30px; right: 30px; z-index: 1000; }
+                        #export-print-btn {
+                            width: 60px; height: 60px; border-radius: 50%; border: none;
+                            background-color: #F44336; color: white;
+                            box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer;
+                            display: flex; align-items: center; justify-content: center;
+                            transition: transform 0.2s; opacity: 0.5;
+                        }
+                        #export-print-btn:hover { transform: scale(1.1); }
+                        #export-print-btn:disabled { background-color: #CFD8DC; cursor: not-allowed; }
+
+                        @media print {
+                            body { background: white; padding: 0; margin: 0; }
+                            #export-fab-container { display: none !important; }
+                            .ficha-card { display: none; }
+                            .ficha-card.selected-for-print {
+                                display: block !important; margin: 0; page-break-after: always;
+                                box-shadow: none; border: none;
+                                -webkit-print-color-adjust: exact; print-color-adjust: exact;
+                            }
+                        }
+                    </style>
+                    <script>
+                        // Lógica mini para que funcione el checkbox en el archivo descargado
+                        function toggleExportSelection(el) {
+                            el.closest('.ficha-card').classList.toggle('selected-for-print');
+                            updateExportPrintBtn();
+                        }
+                        function updateExportPrintBtn() {
+                            const hasSel = document.querySelectorAll('.selected-for-print').length > 0;
+                            const btn = document.getElementById('export-print-btn');
+                            if(btn) {
+                                btn.disabled = !hasSel;
+                                btn.style.opacity = hasSel ? '1' : '0.5';
+                            }
+                        }
+                    <\/script>
+                </head>
+                <body>
+                    ${contentHTML}
+
+                    <div id="export-fab-container">
+                        <button id="export-print-btn" onclick="window.print()" disabled title="Imprimir Seleccionadas">
+                            <span class="material-icons" style="font-size:24px;">print</span>
+                        </button>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            // 4. Descargar
+            const blob = new Blob([finalHTML], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Ficha_numero_.html';
+            link.click();
+        }
+
+        // --- UI UTILS ---
+        function initThemeSelector() {
+            const c = document.getElementById('themeSelector');
+            themes.forEach((t, i) => {
+                const b = document.createElement('div');
+                b.className = 'theme-option';
+                b.title = t.name;
+                b.style.backgroundColor = t.header;
+                b.onclick = () => { applyTheme(i); triggerSave(); };
+                c.appendChild(b);
+            });
+        }
+        function applyTheme(i) {
+            currentThemeIndex = i;
+            const t = themes[i];
+            const r = document.documentElement.style;
+            r.setProperty('--bg-color', t.bg);
+            r.setProperty('--header-color', t.header);
+            r.setProperty('--title-color', t.title);
+            r.setProperty('--accent-color', t.accent);
+            r.setProperty('--toolbar-bg', t.toolbar);
+            r.setProperty('--border-color', t.border);
+            r.setProperty('--text-grey', t.text);
+            document.querySelectorAll('.theme-option').forEach((b, idx) => {
+                b.classList.toggle('active', idx === i);
+            });
+        }
+        function toggleSelection(id) {
+            document.getElementById(id).classList.toggle('selected-for-print');
+            updatePrintButton(); triggerSave();
+        }
+        function deleteCard(id, e) {
+            e.stopPropagation();
+            if(confirm("¿Eliminar hoja?")) { document.getElementById(id).remove(); updatePrintButton(); triggerSave(); }
+        }
+
+        function duplicateCard(id, e) {
+            e.stopPropagation();
+            const card = document.getElementById(id);
+            if (!card) return;
+            const content = card.querySelector('.editor-content').innerHTML;
+            addNewCard(content, false);
+            const last = document.querySelector('#cards-area .ficha-card:last-child');
+            if (last) last.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            triggerSave();
+        }
+
+        function updatePrintButton() {
+            const hasSel = document.querySelectorAll('.selected-for-print').length > 0;
+            const btnPrint = document.getElementById('btn-print');
+            if (btnPrint) {
+                btnPrint.disabled = !hasSel;
+                btnPrint.style.opacity = hasSel ? 1 : 0.5;
+            }
+            const btnPrintBar = document.getElementById('btn-print-bar');
+            if (btnPrintBar) {
+                btnPrintBar.disabled = !hasSel;
+                btnPrintBar.style.opacity = hasSel ? 1 : 0.45;
+            }
+        }
+
+        // --- SCRIPT RECEPTOR V4 (Restaurado) ---
+        setTimeout(() => {
+            const pendingContent = localStorage.getItem('import_content');
+            if (pendingContent && typeof addNewCard === 'function') {
+                activarModoTrabajo();
+                addNewCard(pendingContent);
+                triggerSave();
+                const container = document.getElementById('cards-area');
+                if (container && container.lastElementChild) {
+                    container.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    container.lastElementChild.style.transition = "box-shadow 0.5s";
+                    container.lastElementChild.style.boxShadow = "0 0 15px rgba(102, 187, 106, 0.8)";
+                    setTimeout(() => { container.lastElementChild.style.boxShadow = ""; }, 2000);
+                }
+                localStorage.removeItem('import_content');
+            }
+        }, 500);
+function copySelection(btn) {
+    // 1. Aseguramos el foco en el editor de esa ficha
+    const editor = btn.closest('.ficha-card').querySelector('.editor-content');
+    editor.focus();
+
+    // 2. Ejecutamos el comando de copia del sistema
+    const success = document.execCommand('copy');
+
+    // 3. Feedback visual rápido en el botón
+    if (success) {
+        const icon = btn.querySelector('.material-icons');
+        const originalIcon = icon.innerText;
+        icon.innerText = 'done'; // Cambia a un check
+        btn.style.color = '#4CAF50';
+        
+        setTimeout(() => {
+            icon.innerText = originalIcon;
+            btn.style.color = '';
+        }, 1000);
+    }
+}
+// --- ADUANA DE PEGADO (Limpiador Inteligente Único) ---
+        document.addEventListener('paste', function(e) {
+            const editor = e.target.closest('.editor-content');
+            if (!editor) return;
+
+            const clipboardData = e.clipboardData || window.clipboardData;
+            
+            // Si es una imagen (ej. captura de pantalla), la dejamos pasar
+            if (clipboardData.files && clipboardData.files.length > 0) return;
+
+            e.preventDefault(); // Frena el pegado "sucio" de internet
+
+            let htmlData = clipboardData.getData('text/html');
+            let textData = clipboardData.getData('text/plain');
+
+            if (htmlData) {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = htmlData;
+
+                // Arrancar estilos y fondos "basura"
+                tempDiv.querySelectorAll('*').forEach(el => {
+                    el.removeAttribute('style');
+                    el.removeAttribute('class');
+                    el.removeAttribute('id');
+                });
+
+                // Convertir títulos gigantes en texto normal resaltado
+                tempDiv.querySelectorAll('h1, h2, h3, h4').forEach(h => {
+                    const p = document.createElement('div');
+                    p.innerHTML = '<strong>' + h.innerHTML + '</strong>';
+                    h.replaceWith(p);
+                });
+
+                document.execCommand('insertHTML', false, tempDiv.innerHTML);
+            } else if (textData) {
+                // Si es texto puro, respetamos los saltos de línea
+                const formattedText = textData.replace(/\n/g, '<br>');
+                document.execCommand('insertHTML', false, formattedText);
+            }
+            
+            if (typeof normalizeAllTablesInEditor === 'function') normalizeAllTablesInEditor(editor);
+            if (typeof triggerSave === 'function') triggerSave();
+        });
+    </script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

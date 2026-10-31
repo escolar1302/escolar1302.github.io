@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos - Galería de Mascotas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tema-recursos: #036fb0;
+            --tema-recursos-hover: #025a90;
+            --bg-color: #f4f6f7;
+            --text-dark: #2c3e50;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        /* --- BARRA DE NAVEGACIÓN --- */
+        header {
+            background-color: #2c3e50; padding: 10px 0; width: 100%; box-sizing: border-box; 
+            z-index: 1000; position: sticky; top: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        nav {
+            max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; 
+            justify-content: space-between; align-items: center; flex-wrap: wrap; min-height: 60px;
+        }
+        .nav-links a {
+            color: white; text-decoration: none; font-size: 1rem; margin-left: 20px; transition: 0.2s;
+        }
+        .nav-links a:hover { color: #f1c40f; }
+        .nav-active { color: #f1c40f !important; font-weight: bold; border-bottom: 2px solid #f1c40f; padding-bottom: 3px;}
+
+        /* --- ENCABEZADO DE LA SECCIÓN --- */
+        .hero-recursos {
+            background-color: var(--tema-recursos); color: white;
+            text-align: center; padding: 50px 20px; margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .hero-recursos h1 { margin: 0; font-size: 2.8rem; font-weight: 900; letter-spacing: 1px; }
+        .hero-recursos p { margin: 15px 0 0 0; font-size: 1.2rem; opacity: 0.9; }
+
+        /* --- CONTENEDOR GENERAL --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+
+        /* --- TÍTULOS DE CATEGORÍAS --- */
+        .category-title {
+            font-size: 1.8rem; color: var(--tema-recursos);
+            border-bottom: 3px solid var(--tema-recursos);
+            padding-bottom: 10px; margin: 50px 0 30px 0;
+        }
+
+        /* --- GRILLA DE TARJETAS --- */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px;
+        }
+
+        /* --- DISEÑO DE CADA TARJETA --- */
+        .mascot-card {
+            background: white; border-radius: 12px; padding: 20px;
+            text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .mascot-card:hover {
+            transform: translateY(-8px); box-shadow: 0 12px 20px rgba(3, 111, 176, 0.15);
+        }
+        
+        .img-container {
+            height: 180px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;
+        }
+        .img-container img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            transition: transform 0.3s ease; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        .mascot-card:hover .img-container img { transform: scale(1.1); }
+
+        .mascot-card h3 {
+            margin: 0 0 15px 0; font-size: 1.2rem; color: var(--text-dark); text-transform: capitalize;
+        }
+
+        /* --- BOTÓN DE DESCARGA --- */
+        .btn-download {
+            display: block; background-color: var(--tema-recursos); color: white;
+            text-decoration: none; padding: 10px 15px; border-radius: 50px;
+            font-weight: bold; font-size: 0.95rem; transition: background-color 0.2s;
+        }
+        .btn-download:hover { background-color: var(--tema-recursos-hover); }
+
+        /* --- TARJETA FINAL RESERVA --- */
+        .card-especial { max-width: 500px; margin: 40px auto 0 auto; }
+
+    </style>
+</head>
+<body>
+
+   
+    </header>
+
+    <section class="hero-recursos">
+        <h1>Galería de Mascotas</h1>
+        <p>Descargá las mascotas en formato transparente (PNG) para armar tus propias actividades.</p>
+    </section>
+
+    <div class="container">
+
+        <h2 class="category-title">🏫 Escolares</h2>
+        <div class="gallery-grid">
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/carpi-guarda1.png" alt="Carpincho Guarda 1"></div>
+                <h3>Carpincho 1</h3>
+                <a href="images/carpi-guarda1.png" download="carpi-guarda1.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/carpi-guarda2.png" alt="Carpincho Guarda 2"></div>
+                <h3>Carpincho 2</h3>
+                <a href="images/carpi-guarda2.png" download="carpi-guarda2.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/carpi-guarda3.png" alt="Carpincho Guarda 3"></div>
+                <h3>Carpincho 3</h3>
+                <a href="images/carpi-guarda3.png" download="carpi-guarda3.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/oso-guarda1.png" alt="Oso Guarda 1"></div>
+                <h3>Oso Hormiguero 1</h3>
+                <a href="images/oso-guarda 1.png" download="oso-guarda1.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/oso-guarda2.png" alt="Oso Guarda 2"></div>
+                <h3>Oso Hormiguero 2</h3>
+                <a href="images/oso-guarda2.png" download="oso-guarda2.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/oso-guarda3.png" alt="Oso Guarda 3"></div>
+                <h3>Oso Hormiguero 3</h3>
+                <a href="images/oso-guarda3.png" download="oso-guarda3.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+        </div>
+
+        <h2 class="category-title">📚 Listos para aprender</h2>
+        <div class="gallery-grid">
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/carpi-mat.png" alt="Carpincho Matemática"></div>
+                <h3>Carpincho Mat</h3>
+                <a href="images/carpi-mat.png" download="carpi-mat.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/oso-lengua.png" alt="Oso Lengua"></div>
+                <h3>Oso Lengua</h3>
+                <a href="images/oso-lengua.png" download="oso-lengua.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/tres-lengua.png" alt="Tres Lengua"></div>
+                <h3>Tres Lengua</h3>
+                <a href="images/tres-lengua.png" download="tres-lengua.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/tres-mat.png" alt="Tres Matemática"></div>
+                <h3>Tres Matemática</h3>
+                <a href="images/tres-mat.png" download="tres-mat.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+        </div>
+
+        <h2 class="category-title">✨ ¡En acción!</h2>
+        <div class="gallery-grid">
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/01_carpincho.png" alt="01 Carpincho"></div>
+                <h3>Carpincho</h3>
+                <a href="images/01_carpincho.png" download="01_carpincho.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/02_tucan.png" alt="02 Tucán"></div>
+                <h3>Tucán</h3>
+                <a href="images/02_tucan.png" download="02_tucan.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/03_yacare.png" alt="03 Yacaré"></div>
+                <h3>Yacaré</h3>
+                <a href="images/03_yacare.png" download="03_yacare.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/04_oso_hormiguero.png" alt="04 Oso Hormiguero"></div>
+                <h3>Oso Hormiguero</h3>
+                <a href="images/04_oso_hormiguero.png" download="04_oso_hormiguero.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+            <div class="mascot-card">
+                <div class="img-container"><img src="images/05_yaguarete.png" alt="05 Yaguareté"></div>
+                <h3>Yaguareté</h3>
+                <a href="images/05_yaguarete.png" download="05_yaguarete.png" class="btn-download">⬇️ Descargar</a>
+            </div>
+        </div>
+
+        <div class="mascot-card card-especial">
+            <div class="img-container" style="height: 250px;">
+                <img src="images/final_reserva.png" alt="Final Reserva">
+            </div>
+            <h3>El grupo</h3>
+            <a href="images/final_reserva.png" download="final_reserva.png" class="btn-download" style="font-size: 1.1rem; padding: 15px;">⬇️ Descargar Imagen Completa</a>
+        </div>
+
+    </div>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,797 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>60 problemas</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-VL13MMLPRV");</script><style id="app-css">
+        :root {
+            --bg-color: #f4f6f7;
+            --panel-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #dddddd;
+            --accent-math: #d31718;
+            --accent-alt: #036fb0;
+            --accent-action: #e67e22;
+            --accent-success: #27ae60;
+            --accent-nav: #34495e;
+            --accent-muted: #666666;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+
+        header.docente-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-math);
+            padding-bottom: 10px;
+        }
+
+        header.docente-header h1 {
+            color: var(--accent-math);
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .subtitulo {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .zona-pegado,
+        .zona-actividad {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px dashed #aaaaaa;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .zona-actividad {
+            display: none;
+            border-style: solid;
+            border-color: var(--accent-alt);
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            background-color: #fafafa;
+            color: #333;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 10px;
+            font-family: monospace;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        .acciones-actividad {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-generar,
+        .btn-vista,
+        .btn-comprobar,
+        .btn-nav {
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+            min-width: 110px;
+        }
+
+        .btn-generar {
+            background-color: var(--accent-alt);
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-vista {
+            background-color: var(--accent-math);
+        }
+
+        .btn-exportar {
+            background-color: var(--accent-action);
+        }
+
+        .btn-generar:hover,
+        .btn-vista:hover,
+        .btn-comprobar:hover,
+        .btn-nav:hover {
+            filter: brightness(1.08);
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            filter: grayscale(20%);
+        }
+
+        .input-titulo {
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #ccc;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 260px;
+            text-align: center;
+        }
+
+        #bateria-container {
+            width: 100%;
+        }
+
+        .problema-card {
+            background-color: var(--panel-color);
+            border-top: 5px solid var(--accent-math);
+            border-radius: 8px;
+            padding: 22px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            max-width: 760px;
+            margin: 0 auto 24px auto;
+        }
+
+        .avance-ficha {
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .encabezado-tarjeta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            border-bottom: 1px solid #eeeeee;
+            padding-bottom: 10px;
+        }
+
+        .titulo-problema {
+            color: var(--accent-math);
+            font-size: 1.45rem;
+            margin: 0;
+            line-height: 1.2;
+            flex: 1;
+        }
+
+        .img-titulo-card {
+            width: 92px;
+            max-height: 92px;
+            object-fit: contain;
+            flex: 0 0 auto;
+        }
+
+        .enunciado {
+            line-height: 1.55;
+            font-size: 1.12rem;
+            margin: 0 0 4px 0;
+        }
+
+        .opciones-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin: 4px 0 2px 0;
+        }
+
+        .opcion-btn {
+            background: #f9f9f9;
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .opcion-btn:hover {
+            border-color: var(--accent-alt);
+        }
+
+        .opcion-btn.selected {
+            background: var(--accent-alt);
+            color: white;
+            border-color: var(--accent-alt);
+        }
+
+        .opcion-btn.bloqueada {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .opcion-btn.respuesta-correcta {
+            background: var(--accent-success) !important;
+            color: white !important;
+            border-color: var(--accent-success) !important;
+        }
+
+        .opcion-btn.respuesta-incorrecta {
+            background: var(--accent-math) !important;
+            color: white !important;
+            border-color: var(--accent-math) !important;
+        }
+
+        .feedback-msg {
+            text-align: center;
+            font-weight: bold;
+            min-height: 22px;
+            font-size: 1rem;
+        }
+
+        .navegacion-tarjeta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .btn-nav {
+            background-color: var(--accent-nav);
+            flex: 1 1 0;
+        }
+
+        .btn-comprobar {
+            background-color: var(--accent-action);
+            flex: 0 0 150px;
+            min-width: 130px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .mini-resumen {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            color: #555;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+
+        .resumen-final {
+            text-align: center;
+            align-items: center;
+        }
+
+        .resumen-final h2 {
+            color: var(--accent-math);
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                margin-top: 10px;
+            }
+
+            .problema-card {
+                padding: 16px;
+            }
+
+            .encabezado-tarjeta {
+                align-items: flex-start;
+            }
+
+            .titulo-problema {
+                font-size: 1.25rem;
+            }
+
+            .img-titulo-card {
+                width: 72px;
+                max-height: 72px;
+            }
+
+            .opciones-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .navegacion-tarjeta {
+                gap: 6px;
+            }
+
+            .btn-nav,
+            .btn-comprobar {
+                min-width: 0;
+                font-size: 0.78rem;
+                padding: 10px 6px;
+            }
+
+            .btn-comprobar {
+                flex-basis: 122px;
+            }
+        }
+    </style></head><body><div class="container"><header class="docente-header"><h1>60 problemas</h1><p class="subtitulo">Elegí una respuesta para avanzar.</p></header><div class="zona-actividad" id="zona-actividad" style="display:block"><div class="acciones-actividad"><button class="btn-vista" onclick="limpiarActividad()">🧹 Limpiar</button></div><div class="mini-resumen" id="mini-resumen"></div></div><div id="bateria-container"></div></div><script type="application/json" id="datos-actividad" data-slug="60_problemas">[{"titulo":"Las golosinas del kiosco","tipo":"CHOICE","enunciado":"En el kiosco de la escuela, hoy compraste 15 caramelos de frutilla y 9 de menta. ¿Cuántos caramelos tenés en total para compartir con tus amigos?","opciones":["23","6","24","15"],"correcta":"24"},{"titulo":"Pasajeros en el colectivo","tipo":"CHOICE","enunciado":"En el colectivo de la línea 60 viajan 28 pasajeros sentados. Si 13 son varones y el resto son mujeres, ¿cuántas mujeres viajan en el colectivo?","opciones":["41","15","13","11"],"correcta":"15"},{"titulo":"El álbum de figuritas","tipo":"CHOICE","enunciado":"Lucas tiene 27 figuritas y su hermana Sofía tiene 18. ¿Cuántas figuritas más que Sofía tiene Lucas?","opciones":["45","11","18","9"],"correcta":"9"},{"titulo":"Las rifas de la cooperadora","tipo":"CHOICE","enunciado":"Los chicos de primer grado estuvieron vendiendo rifas para el acto escolar. Durante el recreo vendieron 12 rifas y ahora les quedan 17 sin vender. ¿Cuántas rifas tenían antes de empezar el recreo?","opciones":["5","29","17","12"],"correcta":"29"},{"titulo":"Compras en la feria","tipo":"CHOICE","enunciado":"En la feria compraste una manzana por $12 y una banana por $8. ¿Cuánto dinero gastaste en total?","opciones":["18","4","20","22"],"correcta":"20"},{"titulo":"Los niños en el tren","tipo":"CHOICE","enunciado":"En un vagón del tren viajan 25 personas. Si 12 son adultos y el resto son niños, ¿cuántos niños viajan en ese vagón?","opciones":["13","37","12","23"],"correcta":"13"},{"titulo":"Partido de básquet","tipo":"CHOICE","enunciado":"El equipo de \"Los Rayos\" hizo 28 puntos y el de \"Las Nubes\" hizo 22 puntos. ¿Por cuántos puntos de diferencia ganaron \"Los Rayos\"?","opciones":["50","8","6","10"],"correcta":"6"},{"titulo":"Decoración del salón","tipo":"CHOICE","enunciado":"Los chicos colgaron 14 guirnaldas nuevas en el salón y ahora hay 26 guirnaldas colgadas en total. ¿Cuántas guirnaldas ya estaban colgadas antes de que ellos empezaran?","opciones":["40","12","14","24"],"correcta":"12"},{"titulo":"La caja de alfajores","tipo":"CHOICE","enunciado":"Una caja trae 12 alfajores de chocolate y 12 alfajores de dulce de leche. ¿Cuántos alfajores tiene la caja en total?","opciones":["22","14","24","20"],"correcta":"24"},{"titulo":"Micros en la terminal","tipo":"CHOICE","enunciado":"En el sector A de la terminal hay 29 micros estacionados. En el sector B hay 7 micros menos que en el sector A. ¿Cuántos micros hay en el sector B?","opciones":["22","36","29","7"],"correcta":"22"},{"titulo":"Ganando figuritas","tipo":"CHOICE","enunciado":"Tenías 18 figuritas y después de jugar un partido con tus amigos te quedaron 25. ¿Cuántas figuritas ganaste durante el juego?","opciones":["43","7","5","8"],"correcta":"7"},{"titulo":"La merienda escolar","tipo":"CHOICE","enunciado":"Para la merienda compartida trajeron 30 sándwiches. Si 18 son de jamón y el resto son de queso, ¿cuántos sándwiches son de queso?","opciones":["48","18","12","22"],"correcta":"12"},{"titulo":"Precios en la librería","tipo":"CHOICE","enunciado":"Un cuaderno de tapa dura cuesta $26 y un lápiz negro cuesta $9. ¿Cuánto más caro es el cuaderno que el lápiz?","opciones":["17","35","15","19"],"correcta":"17"},{"titulo":"El recorrido del 152","tipo":"CHOICE","enunciado":"El colectivo salió de la terminal con 16 pasajeros. En la primera parada subieron 13 personas más y no bajó nadie. ¿Cuántos pasajeros hay ahora en el colectivo?","opciones":["3","16","29","26"],"correcta":"29"},{"titulo":"El mazo de cartas","tipo":"CHOICE","enunciado":"En un juego de cartas, tenés 15 cartas rojas y 14 cartas negras en la mano. ¿Cuántas cartas tenés en total?","opciones":["28","1","30","29"],"correcta":"29"},{"titulo":"Sillas para el acto","tipo":"CHOICE","enunciado":"Para el acto de cuarto grado los porteros pusieron 25 sillas. Para el acto de primer grado decidieron poner 5 sillas más que para el de cuarto. ¿Cuántas sillas pusieron para primer grado?","opciones":["20","30","25","35"],"correcta":"30"},{"titulo":"El vuelto del kiosco","tipo":"CHOICE","enunciado":"Tenías $30 y compraste un paquete de pastillas. Si te quedaron $12 de vuelto, ¿cuánto costaron las pastillas?","opciones":["42","20","18","15"],"correcta":"18"},{"titulo":"Bicicletas en la plaza","tipo":"CHOICE","enunciado":"En el bicicletero de la plaza hay 22 bicicletas. Si 12 son de adultos y las otras son de niños, ¿cuántas bicicletas de niños hay estacionadas?","opciones":["34","10","12","20"],"correcta":"10"},{"titulo":"Puntaje con dados","tipo":"CHOICE","enunciado":"Matías sumó 24 puntos tirando los dados y Julieta sumó 16. ¿Cuántos puntos menos que Matías sacó Julieta?","opciones":["40","10","6","8"],"correcta":"8"},{"titulo":"Las rifas del abuelo","tipo":"CHOICE","enunciado":"El abuelo de Pedro le regaló 9 rifas y ahora Pedro tiene 27 rifas en total para la escuela. ¿Cuántas rifas tenía Pedro antes del regalo de su abuelo?","opciones":["36","18","9","17"],"correcta":"18"},{"titulo":"Compras en el kiosco","tipo":"CHOICE","enunciado":"En el kiosco compraste un alfajor que cuesta $35 y un chupetín de $15. ¿Cuánto dinero gastaste en total por las dos cosas?","opciones":["40","55","20","50"],"correcta":"50"},{"titulo":"Los asientos del micro","tipo":"CHOICE","enunciado":"Un micro de larga distancia tiene 45 asientos en total. Si 32 asientos ya están ocupados por pasajeros, ¿cuántos asientos quedan libres?","opciones":["77","13","32","15"],"correcta":"13"},{"titulo":"Puntos en el básquet","tipo":"CHOICE","enunciado":"El equipo de la escuela anotó 58 puntos en el último partido y el equipo visitante hizo 42 puntos. ¿Por cuántos puntos de diferencia ganó el equipo de la escuela?","opciones":["100","16","26","14"],"correcta":"16"},{"titulo":"Las rifas vendidas","tipo":"CHOICE","enunciado":"Los alumnos de segundo grado vendieron 18 rifas durante la mañana. Si todavía les quedan 22 rifas para vender, ¿cuántas rifas tenían al empezar el día?","opciones":["4","22","40","38"],"correcta":"40"},{"titulo":"La caja de herramientas","tipo":"CHOICE","enunciado":"En una ferretería, un cajón tiene 38 clavos de una pulgada y 22 clavos de dos pulgadas. ¿Cuántos clavos hay en total en ese cajón?","opciones":["50","58","60","16"],"correcta":"60"},{"titulo":"Vagones en la estación","tipo":"CHOICE","enunciado":"El tren que va a la ciudad tiene 56 vagones de carga. El tren que va al campo tiene 15 vagones menos que el de la ciudad. ¿Cuántos vagones tiene el tren que va al campo?","opciones":["71","41","56","45"],"correcta":"41"},{"titulo":"Sumando figuritas","tipo":"CHOICE","enunciado":"Tenías 34 figuritas y hoy tu primo te regaló 21 más para que completes el álbum. ¿Cuántas figuritas tenés ahora en total?","opciones":["54","13","55","60"],"correcta":"55"},{"titulo":"Sillas para los padres","tipo":"CHOICE","enunciado":"Para el acto escolar se armaron 54 sillas en el salón. Si 30 sillas son de color verde y el resto son azules, ¿cuántas sillas azules hay en el salón?","opciones":["84","30","24","26"],"correcta":"24"},{"titulo":"El vuelto del súper","tipo":"CHOICE","enunciado":"Compraste un paquete de galletitas en el supermercado que costaba $48. Si pagaste con un billete de $60, ¿cuánto dinero te dieron de vuelto?","opciones":["108","12","10","22"],"correcta":"12"},{"titulo":"Duelo de cartas","tipo":"CHOICE","enunciado":"En un juego de cartas, Pedro juntó 33 puntos y Juan juntó 52 puntos. ¿Cuántos puntos más que Pedro tiene Juan?","opciones":["85","33","19","29"],"correcta":"19"},{"titulo":"La alcancía de la cooperadora","tipo":"CHOICE","enunciado":"La cooperadora de la escuela tenía $35 guardados. Hoy recaudaron $25 más con la venta de tortas. ¿Cuánto dinero tienen ahora en total?","opciones":["50","60","65","10"],"correcta":"60"},{"titulo":"Pasajeros en la parada","tipo":"CHOICE","enunciado":"Un colectivo venía con 58 pasajeros. En la parada de la plaza bajaron algunos pasajeros y ahora quedan 40 en el colectivo. ¿Cuántos pasajeros se bajaron en esa parada?","opciones":["98","18","40","28"],"correcta":"18"},{"titulo":"El puntaje del juego","tipo":"CHOICE","enunciado":"En un juego de mesa tenías 42 puntos, pero caíste en una prenda y perdiste 12 puntos. ¿Con cuántos puntos te quedaste?","opciones":["54","32","30","20"],"correcta":"30"},{"titulo":"Artículos de librería","tipo":"CHOICE","enunciado":"Compraste unas gomas de borrar por $31 en la librería. Si pagaste con $50, ¿cuánto dinero recibiste de vuelto?","opciones":["81","19","31","29"],"correcta":"19"},{"titulo":"El viaje del micro","tipo":"CHOICE","enunciado":"Un micro ya recorrió 35 kilómetros de su ruta y todavía le faltan 25 kilómetros más para llegar a la terminal. ¿Cuántos kilómetros tiene el recorrido total?","opciones":["50","70","60","10"],"correcta":"60"},{"titulo":"Competencia de rifas","tipo":"CHOICE","enunciado":"Los chicos de segundo grado vendieron 45 rifas. Los de tercer grado vendieron 12 rifas más que los de segundo. ¿Cuántas rifas vendieron los chicos de tercer grado?","opciones":["33","57","45","55"],"correcta":"57"},{"titulo":"Figuritas antes de jugar","tipo":"CHOICE","enunciado":"Después de jugar en el recreo, ganaste 15 figuritas y ahora tenés 48 en total. ¿Cuántas figuritas tenías antes de empezar a jugar?","opciones":["63","33","30","35"],"correcta":"33"},{"titulo":"Galletitas en el súper","tipo":"CHOICE","enunciado":"En una caja de 55 galletitas surtidas, 25 son de agua y el resto son dulces. ¿Cuántas galletitas dulces trae la caja?","opciones":["80","25","30","35"],"correcta":"30"},{"titulo":"La carrera de Educación Física","tipo":"CHOICE","enunciado":"En la clase de gimnasia tienen que correr una distancia de 60 metros. Si un alumno ya corrió 42 metros, ¿cuántos metros le faltan todavía para llegar a la meta?","opciones":["28","102","18","12"],"correcta":"18"},{"titulo":"Pelotas para el gimnasio","tipo":"CHOICE","enunciado":"La cooperadora compró 32 pelotas de fútbol y 18 pelotas de vóley para las clases de deporte. ¿Cuántas pelotas nuevas compraron en total?","opciones":["14","32","50","48"],"correcta":"50"},{"titulo":"Compras en la ferretería","tipo":"CHOICE","enunciado":"En la ferretería del barrio, un martillo cuesta $65 y una caja de clavos cuesta $35. Si comprás las dos cosas, ¿cuánto tenés que pagar en total?","opciones":["90","100","110","30"],"correcta":"100"},{"titulo":"Pasajeros en el tren","tipo":"CHOICE","enunciado":"En un vagón del tren viajan 80 pasajeros en total. Si 45 pasajeros están sentados y el resto viaja parado, ¿cuántos pasajeros viajan parados?","opciones":["125","45","35","40"],"correcta":"35"},{"titulo":"Torneo de básquet","tipo":"CHOICE","enunciado":"El equipo de \"Los Halcones\" anotó 95 puntos en la final, mientras que \"Los Tigres\" anotaron 72 puntos. ¿Por cuántos puntos de diferencia ganaron \"Los Halcones\"?","opciones":["33","167","23","25"],"correcta":"23"},{"titulo":"El talonario de rifas","tipo":"CHOICE","enunciado":"Para la rifa de la escuela, los alumnos de tercer grado vendieron 38 números durante la mañana. Si todavía les quedan 52 números en el talonario, ¿cuántos números tenían al empezar el día?","opciones":["14","52","90","80"],"correcta":"90"},{"titulo":"Merienda en el kiosco","tipo":"CHOICE","enunciado":"El kiosquero recibió un pedido de 45 alfajores de fruta y 45 alfajores de chocolate. ¿Cuántos alfajores recibió en total para vender esta semana?","opciones":["80","100","90","0"],"correcta":"90"},{"titulo":"Distancias en el camino","tipo":"CHOICE","enunciado":"Un micro escolar recorre 75 kilómetros para llegar a la reserva natural. Un camión de reparto tiene que recorrer 15 kilómetros más que el micro para llegar a su destino. ¿Cuántos kilómetros recorre el camión?","opciones":["60","75","90","85"],"correcta":"90"},{"titulo":"Colección de cartas","tipo":"CHOICE","enunciado":"Tenías 62 cartas de superhéroes y, después de cambiar algunas con tus amigos en el recreo, ahora tenés 88. ¿Cuántas cartas nuevas conseguiste hoy?","opciones":["26","150","20","36"],"correcta":"26"},{"titulo":"El salón de actos","tipo":"CHOICE","enunciado":"En el salón de actos de la escuela hay 100 sillas para el festival. Si ya se ocuparon 65 sillas con las familias, ¿cuántas sillas quedan libres todavía?","opciones":["165","35","65","45"],"correcta":"35"},{"titulo":"Precios de ropa deportiva","tipo":"CHOICE","enunciado":"En la tienda de deportes, una camiseta de fútbol cuesta $98 y una gorra cuesta $64. ¿Cuánto más cara es la camiseta que la gorra?","opciones":["44","162","34","30"],"correcta":"34"},{"titulo":"El recorrido del 60","tipo":"CHOICE","enunciado":"El colectivo de la línea 60 salió de la terminal con 55 pasajeros. En la parada de la estación de tren subieron 32 personas más y no bajó nadie. ¿Cuántos pasajeros viajan ahora en el colectivo?","opciones":["23","55","87","85"],"correcta":"87"},{"titulo":"Figuritas repetidas","tipo":"CHOICE","enunciado":"Julián tiene 48 figuritas en su pilón de repetidas y 42 figuritas que todavía no pegó en el álbum. ¿Cuántas figuritas tiene en total para organizar hoy?","opciones":["80","100","86","90"],"correcta":"90"},{"titulo":"Ventas de la cooperadora","tipo":"CHOICE","enunciado":"Los chicos de primer grado vendieron 84 rifas para el festival de música. Los chicos de segundo grado vendieron 12 rifas menos que los de primero. ¿Cuántas rifas vendieron los de segundo grado?","opciones":["72","96","84","62"],"correcta":"72"},{"titulo":"Compras en el supermercado","tipo":"CHOICE","enunciado":"Fuiste al supermercado con un billete de $100. Después de pagar un paquete de yerba, te devolvieron $15 de vuelto. ¿Cuánto costó el paquete de yerba?","opciones":["115","85","75","95"],"correcta":"85"},{"titulo":"Asientos en el tren","tipo":"CHOICE","enunciado":"Un vagón de tren tiene 92 asientos. Si 50 asientos están del lado de la ventanilla y los demás están del lado del pasillo, ¿cuántos asientos hay del lado del pasillo?","opciones":["142","42","50","48"],"correcta":"42"},{"titulo":"Puntos en el videojuego","tipo":"CHOICE","enunciado":"En una partida de un juego de mesa, Lucas sumó 88 puntos y Martina sumó 61 puntos. ¿Por cuántos puntos le ganó Lucas a Martina?","opciones":["149","20","37","27"],"correcta":"27"},{"titulo":"Decoración escolar","tipo":"CHOICE","enunciado":"Para decorar el patio, los alumnos de cuarto grado armaron 45 banderas argentinas. Los alumnos de quinto grado armaron 35 banderas más. ¿Cuántas banderas tienen en total para colgar?","opciones":["10","80","45","70"],"correcta":"80"},{"titulo":"Útiles de la librería","tipo":"CHOICE","enunciado":"En un estante de la librería hay 55 biromes de tinta roja y 35 biromes de tinta azul. ¿Cuántas biromes hay en total en ese estante?","opciones":["80","90","100","20"],"correcta":"90"},{"titulo":"Recorridos en la ciudad","tipo":"CHOICE","enunciado":"El recorrido del micro escolar A es de 95 kilómetros. El recorrido del micro B es 20 kilómetros más corto que el del micro A. ¿Cuántos kilómetros recorre el micro B?","opciones":["115","95","75","85"],"correcta":"75"},{"titulo":"Perdiendo puntos","tipo":"CHOICE","enunciado":"Tenías 98 puntos acumulados en un juego de cartas, pero en la última vuelta perdiste algunos puntos y ahora te quedaron 63. ¿Cuántos puntos perdiste en esa vuelta?","opciones":["161","35","30","45"],"correcta":"35"},{"titulo":"Chicos en el festival","tipo":"CHOICE","enunciado":"En el coro de la escuela hay 75 chicos en total. Si 40 son varones, ¿cuántas nenas participan del coro?","opciones":["115","40","35","30"],"correcta":"35"}]</script><script id="app-js">
+        let problemas = [];
+        let respuestas = [];
+        let indiceActual = 0;
+        let opcionSeleccionada = null;
+        let temporizadorAvance = null;
+        let modoExportado = false;
+        let slugActividad = 'actividad_de_matematica';
+
+        const CLAVE_INPUT = 'mat_seq_input_save_v2';
+        const RUTA_IMAGEN_TITULO = '/images/carpincho_tarea_mat1.png';
+        const RUTA_IMAGEN_TITULO_LOCAL = 'images/carpincho_tarea_mat1.png';
+
+        function resolverImagenTitulo(img) {
+            if (!img) return;
+
+            if (!img.dataset.intentoLocal) {
+                img.dataset.intentoLocal = '1';
+                img.src = RUTA_IMAGEN_TITULO_LOCAL;
+                return;
+            }
+
+            img.style.visibility = 'hidden';
+        }
+
+        function claveProgreso() {
+            return modoExportado ? 'mat_seq_progreso_' + slugActividad : 'mat_seq_progreso_constructor_v2';
+        }
+
+        function escaparHTML(valor) {
+            return String(valor || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function normalizarRespuesta(valor) {
+            return String(valor || '')
+                .trim()
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/\s+/g, ' ');
+        }
+
+        function soloNumeros(valor) {
+            return String(valor || '').replace(/[^0-9]/g, '');
+        }
+
+        function respuestasEquivalentes(opcion, correcta) {
+            const numerosOpcion = soloNumeros(opcion);
+            const numerosCorrecta = soloNumeros(correcta);
+
+            if (numerosOpcion && numerosCorrecta) {
+                return numerosOpcion === numerosCorrecta;
+            }
+
+            return normalizarRespuesta(opcion) === normalizarRespuesta(correcta);
+        }
+
+        function guardarEstado() {
+            try {
+                localStorage.setItem(claveProgreso(), JSON.stringify({
+                    respuestas: respuestas,
+                    indiceActual: indiceActual
+                }));
+            } catch(e) {}
+        }
+
+        function cargarEstado() {
+            try {
+                const guardado = localStorage.getItem(claveProgreso());
+                if (!guardado) return;
+                const data = JSON.parse(guardado);
+                if (Array.isArray(data.respuestas)) respuestas = data.respuestas;
+                if (Number.isInteger(data.indiceActual)) indiceActual = data.indiceActual;
+                if (indiceActual < 0) indiceActual = 0;
+                if (indiceActual > problemas.length) indiceActual = problemas.length;
+            } catch(e) {}
+        }
+
+        function actualizarMiniResumen() {
+            const mini = document.getElementById('mini-resumen');
+            if (!mini) return;
+
+            const total = problemas.length;
+            const respondidas = respuestas.filter(Boolean).length;
+            const correctas = respuestas.filter(r => r && r.esCorrecta).length;
+            const incorrectas = respuestas.filter(r => r && !r.esCorrecta).length;
+
+            mini.innerHTML = total
+                ? '<span>Respondidas: ' + respondidas + '/' + total + '</span><span>Correctas: ' + correctas + '</span><span>Incorrectas: ' + incorrectas + '</span>'
+                : '';
+        }
+
+        function armarProblemasDesdeTexto(texto) {
+            const lista = [];
+            const fragmentos = String(texto || '').split(/\[PROBLEMA\s+\d+\]/i);
+
+            fragmentos.forEach(frag => {
+                if (!frag.trim()) return;
+
+                const titulo = extraerEtiqueta(frag, 'TITULO');
+                const tipo = extraerEtiqueta(frag, 'TIPO').toUpperCase();
+                const enunciado = extraerEtiqueta(frag, 'ENUNCIADO');
+                const opcionesTexto = extraerEtiqueta(frag, 'OPCIONES');
+                const correcta = extraerEtiqueta(frag, 'CORRECTA');
+
+                if (!tipo.includes('CHOICE')) return;
+
+                const opciones = opcionesTexto
+                    .split('|')
+                    .map(op => op.trim())
+                    .filter(Boolean);
+
+                if (!titulo && !enunciado && opciones.length === 0) return;
+
+                lista.push({
+                    titulo: titulo,
+                    tipo: 'CHOICE',
+                    enunciado: enunciado,
+                    opciones: opciones,
+                    correcta: correcta
+                });
+            });
+
+            return lista;
+        }
+
+        function procesarTexto() {
+            const input = document.getElementById('gem-input');
+            const texto = input ? input.value : '';
+            if (!texto.trim()) return;
+
+            clearTimeout(temporizadorAvance);
+            try { localStorage.setItem(CLAVE_INPUT, texto); } catch(e) {}
+
+            problemas = armarProblemasDesdeTexto(texto);
+            respuestas = [];
+            indiceActual = 0;
+            opcionSeleccionada = null;
+            try { localStorage.removeItem(claveProgreso()); } catch(e) {}
+
+            const zonaActividad = document.getElementById('zona-actividad');
+            if (zonaActividad) zonaActividad.style.display = problemas.length ? 'block' : 'none';
+            renderizarTarjetaActual();
+            guardarEstado();
+        }
+
+        function renderizarTarjetaActual() {
+            clearTimeout(temporizadorAvance);
+            opcionSeleccionada = null;
+
+            const contenedor = document.getElementById('bateria-container');
+            if (!contenedor) return;
+            contenedor.innerHTML = '';
+
+            if (!problemas.length) {
+                actualizarMiniResumen();
+                return;
+            }
+
+            if (indiceActual >= problemas.length) {
+                renderizarResumenFinal();
+                actualizarMiniResumen();
+                return;
+            }
+
+            const problema = problemas[indiceActual];
+            const respuesta = respuestas[indiceActual] || null;
+            const estaBloqueada = !!respuesta;
+
+            let opcionesHTML = '';
+            problema.opciones.forEach((opcion, idx) => {
+                const seleccionada = respuesta ? respuesta.opcion === opcion : false;
+                const esCorrectaDelProblema = respuestasEquivalentes(opcion, problema.correcta);
+                let clases = 'opcion-btn';
+
+                if (seleccionada) clases += ' selected';
+                if (estaBloqueada) clases += ' bloqueada';
+                if (respuesta && seleccionada && respuesta.esCorrecta) clases += ' respuesta-correcta';
+                if (respuesta && seleccionada && !respuesta.esCorrecta) clases += ' respuesta-incorrecta';
+                if (respuesta && !respuesta.esCorrecta && esCorrectaDelProblema) clases += ' respuesta-correcta';
+
+                opcionesHTML += '<div class="' + clases + '" data-opcion="' + escaparHTML(opcion) + '" onclick="seleccionarOpcion(' + idx + ')">' + escaparHTML(opcion) + '</div>';
+            });
+
+            let feedbackHTML = '';
+            let feedbackColor = '';
+
+            if (respuesta) {
+                if (respuesta.esCorrecta) {
+                    feedbackHTML = '✅ ¡Correcto!';
+                    feedbackColor = '#27ae60';
+                } else {
+                    feedbackHTML = '❌ Incorrecto. La correcta está marcada en verde.';
+                    feedbackColor = '#d31718';
+                }
+            }
+
+            const textoSiguiente = indiceActual >= problemas.length - 1 ? 'Finalizar' : 'Siguiente';
+            const disabledAnterior = indiceActual <= 0 ? 'disabled' : '';
+            const disabledSiguiente = respuesta ? '' : 'disabled';
+
+            const botonesHTML =
+                '<div class="navegacion-tarjeta">' +
+                    '<button class="btn-nav" onclick="irTarjetaAnterior()" ' + disabledAnterior + '>Anterior</button>' +
+                    '<button class="btn-nav btn-siguiente" onclick="avanzarTarjeta()" ' + disabledSiguiente + '>' + textoSiguiente + '</button>' +
+                '</div>';
+
+            contenedor.innerHTML =
+                '<div class="problema-card">' +
+                    '<div class="avance-ficha">Ficha ' + (indiceActual + 1) + ' de ' + problemas.length + '</div>' +
+                    '<div class="encabezado-tarjeta">' +
+                        '<h2 class="titulo-problema">' + escaparHTML(problema.titulo) + '</h2>' +
+                        '<img class="img-titulo-card" src="' + RUTA_IMAGEN_TITULO + '" alt="" aria-hidden="true" onerror="resolverImagenTitulo(this)">' +
+                    '</div>' +
+                    '<p class="enunciado">' + escaparHTML(problema.enunciado) + '</p>' +
+                    '<div class="opciones-grid">' + opcionesHTML + '</div>' +
+                    '<div class="feedback-msg" id="feedback-msg" style="color:' + feedbackColor + ';">' + feedbackHTML + '</div>' +
+                    '<div id="zona-boton-accion">' + botonesHTML + '</div>' +
+                '</div>';
+
+            actualizarMiniResumen();
+        }
+
+        function seleccionarOpcion(indiceOpcion) {
+            if (respuestas[indiceActual]) return;
+
+            const problema = problemas[indiceActual];
+            if (!problema) return;
+
+            const botones = document.querySelectorAll('.opcion-btn');
+            botones.forEach(btn => btn.classList.remove('selected'));
+
+            const btn = botones[indiceOpcion];
+            if (!btn) return;
+
+            btn.classList.add('selected');
+            opcionSeleccionada = btn.getAttribute('data-opcion');
+
+            const esCorrecta = respuestasEquivalentes(opcionSeleccionada, problema.correcta);
+
+            respuestas[indiceActual] = {
+                opcion: opcionSeleccionada,
+                esCorrecta: esCorrecta
+            };
+
+            guardarEstado();
+            bloquearOpciones(esCorrecta);
+            actualizarMiniResumen();
+
+            const btnSiguiente = document.querySelector('.btn-siguiente');
+            if (btnSiguiente) btnSiguiente.disabled = false;
+
+            const feedback = document.getElementById('feedback-msg');
+            if (feedback) {
+                if (esCorrecta) {
+                    feedback.innerHTML = '✅ ¡Correcto!';
+                    feedback.style.color = '#27ae60';
+                } else {
+                    feedback.innerHTML = '❌ Incorrecto. La correcta está marcada en verde.';
+                    feedback.style.color = '#d31718';
+                }
+            }
+        }
+
+        function bloquearOpciones(esCorrecta) {
+            const problema = problemas[indiceActual];
+            const botones = document.querySelectorAll('.opcion-btn');
+
+            botones.forEach(btn => {
+                const opcion = btn.getAttribute('data-opcion');
+                btn.classList.add('bloqueada');
+
+                if (opcion === opcionSeleccionada) {
+                    btn.classList.add(esCorrecta ? 'respuesta-correcta' : 'respuesta-incorrecta');
+                }
+
+                if (!esCorrecta && respuestasEquivalentes(opcion, problema.correcta)) {
+                    btn.classList.add('respuesta-correcta');
+                }
+            });
+        }
+
+        function avanzarTarjeta() {
+            clearTimeout(temporizadorAvance);
+
+            if (indiceActual < problemas.length && !respuestas[indiceActual]) {
+                return;
+            }
+
+            if (indiceActual < problemas.length) indiceActual++;
+            guardarEstado();
+            renderizarTarjetaActual();
+        }
+
+        function irTarjetaAnterior() {
+            clearTimeout(temporizadorAvance);
+            if (indiceActual > 0) indiceActual--;
+            guardarEstado();
+            renderizarTarjetaActual();
+        }
+
+        function renderizarResumenFinal() {
+            const contenedor = document.getElementById('bateria-container');
+            if (!contenedor) return;
+
+            const total = problemas.length;
+            const correctas = respuestas.filter(r => r && r.esCorrecta).length;
+            const incorrectas = respuestas.filter(r => r && !r.esCorrecta).length;
+
+            contenedor.innerHTML =
+                '<div class="problema-card resumen-final">' +
+                    '<h2>Actividad terminada</h2>' +
+                    '<p>Respondidas: <strong>' + respuestas.filter(Boolean).length + '/' + total + '</strong></p>' +
+                    '<p>Correctas: <strong>' + correctas + '</strong> | Incorrectas: <strong>' + incorrectas + '</strong></p>' +
+                    '<button class="btn-vista" onclick="limpiarActividad()">🧹 Limpiar y volver a empezar</button>' +
+                '</div>';
+        }
+
+        function limpiarActividad() {
+            clearTimeout(temporizadorAvance);
+            respuestas = [];
+            indiceActual = 0;
+            opcionSeleccionada = null;
+            try { localStorage.removeItem(claveProgreso()); } catch(e) {}
+            renderizarTarjetaActual();
+        }
+
+        function extraerEtiqueta(texto, etiqueta) {
+            const inicio = texto.indexOf('[' + etiqueta + ']');
+            if (inicio === -1) return '';
+            const dInicio = inicio + etiqueta.length + 2;
+            let fin = texto.indexOf('[', dInicio);
+            if (fin === -1) fin = texto.length;
+            return texto.substring(dInicio, fin).trim();
+        }
+
+        function crearSlug(valor) {
+            return String(valor || 'actividad_de_matematica')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-zA-Z0-9 ]/g, '')
+                .replace(/\s+/g, '_')
+                .toLowerCase() || 'actividad_de_matematica';
+        }
+
+        function escaparJSONParaScript(json) {
+            return String(json || '')
+                .replace(/</g, '\\u003c')
+                .replace(/>/g, '\\u003e')
+                .replace(/&/g, '\\u0026');
+        }
+
+        function scriptCierreSeguro(textoScript) {
+            const patron = new RegExp('<' + '\\/script', 'gi');
+            return String(textoScript || '').replace(patron, '<\\/script');
+        }
+
+        function exportarHTML() {
+            if (!problemas.length) {
+                procesarTexto();
+            }
+
+            if (!problemas.length) {
+                alert('Primero generá las fichas.');
+                return;
+            }
+
+            const tituloInput = document.getElementById('titulo-export');
+            const tituloCustom = (tituloInput && tituloInput.value.trim()) ? tituloInput.value.trim() : 'Actividad de Matemática';
+            const slug = crearSlug(tituloCustom);
+            const filename = slug + '.html';
+            const cssHTML = document.getElementById('app-css').innerHTML;
+            const appScript = document.getElementById('app-js').textContent;
+            const datosJson = escaparJSONParaScript(JSON.stringify(problemas));
+
+            const analytics = '<scr' + 'ipt async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"><' + '/scr' + 'ipt><scr' + 'ipt>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-VL13MMLPRV");<' + '/scr' + 'ipt>';
+            const headerSitio = '<header id="header-navegacion" style="background-color: #2c3e50; padding: 10px 0; font-family: \'Roboto\', sans-serif; width: 100%; box-sizing: border-box; flex-shrink: 0; z-index: 1000; position: sticky; top: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"><nav style="max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;"><a href="../index.html" style="text-decoration: none; display: flex; align-items: center;"><img src="../logo.png" alt="Recursos Educativos" style="height: 60px; width: auto; transition: transform 0.2s;"></a><div style="display: flex; gap: 20px; align-items: center;"><a href="../lengua.html" style="color: white; text-decoration: none; font-size: 0.9rem;">Lengua</a><a href="../matematica.html" style="color: white; text-decoration: none; font-size: 0.9rem;">Matemática</a><a href="../recursos.html" style="color: white; text-decoration: none; font-size: 0.9rem;">Recursos</a><a href="../diseno.html" style="color: white; text-decoration: none; font-size: 0.9rem;">Diseño</a></div></nav></header>';
+            const pieCreativeCommons = '<div id="contenedor-pie"></div><scr' + 'ipt>fetch("/pie.html").then(response => { if (response.ok) return response.text(); throw new Error("No se pudo cargar el pie de página"); }).then(data => { document.getElementById("contenedor-pie").innerHTML = data; }).catch(error => console.error("Error:", error));<\/' + 'scr' + 'ipt>';
+
+            const finalDoc =
+                '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>' + escaparHTML(tituloCustom) + '</title>' +
+                analytics +
+                '<style id="app-css">' + cssHTML + '</style></head><body>' +
+                headerSitio +
+                '<div class="container">' +
+                    '<header class="docente-header"><h1>' + escaparHTML(tituloCustom) + '</h1><p class="subtitulo">Elegí una respuesta para avanzar.</p></header>' +
+                    '<div class="zona-actividad" id="zona-actividad" style="display:block"><div class="acciones-actividad"><button class="btn-vista" onclick="limpiarActividad()">🧹 Limpiar</button></div><div class="mini-resumen" id="mini-resumen"></div></div>' +
+                    '<div id="bateria-container"></div>' +
+                '</div>' +
+                '<scr' + 'ipt type="application/json" id="datos-actividad" data-slug="' + escaparHTML(slug) + '">' + datosJson + '<\/' + 'scr' + 'ipt>' +
+                '<scr' + 'ipt id="app-js">' + scriptCierreSeguro(appScript) + '<\/' + 'scr' + 'ipt>' +
+                pieCreativeCommons +
+                '</body></html>';
+
+            const blob = new Blob([finalDoc], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        }
+
+        function inicializarModoExportado() {
+            const datos = document.getElementById('datos-actividad');
+            if (!datos) return false;
+
+            modoExportado = true;
+            slugActividad = datos.getAttribute('data-slug') || 'actividad_de_matematica';
+
+            try {
+                problemas = JSON.parse(datos.textContent || '[]');
+            } catch(e) {
+                problemas = [];
+            }
+
+            const zonaControles = document.getElementById('zona-controles');
+            if (zonaControles) zonaControles.style.display = 'none';
+
+            const btnExportar = document.getElementById('btn-exportar');
+            if (btnExportar) btnExportar.style.display = 'none';
+
+            const tituloExport = document.getElementById('titulo-export');
+            if (tituloExport) tituloExport.style.display = 'none';
+
+            const zonaActividad = document.getElementById('zona-actividad');
+            if (zonaActividad) zonaActividad.style.display = 'block';
+
+            cargarEstado();
+            renderizarTarjetaActual();
+            return true;
+        }
+
+        window.onload = function() {
+            if (inicializarModoExportado()) return;
+
+            const inputArea = document.getElementById('gem-input');
+            let guardado = '';
+            try { guardado = localStorage.getItem(CLAVE_INPUT) || ''; } catch(e) {}
+
+            if (inputArea && guardado) {
+                inputArea.value = guardado;
+                problemas = armarProblemasDesdeTexto(guardado);
+                cargarEstado();
+                if (problemas.length) {
+                    const zonaActividad = document.getElementById('zona-actividad');
+                    if (zonaActividad) zonaActividad.style.display = 'block';
+                    renderizarTarjetaActual();
+                }
+            }
+        };
+    </script><div id="contenedor-pie"></div><script>fetch("/pie.html").then(response => { if (response.ok) return response.text(); throw new Error("No se pudo cargar el pie de página"); }).then(data => { document.getElementById("contenedor-pie").innerHTML = data; }).catch(error => console.error("Error:", error));</script><script src="/volver.js" defer></script>
+</body></html>

@@ -1,0 +1,51 @@
+[
+ {
+    "titulo": "La Bella y la Bestia",
+    "archivo": "temas/bella.json",
+    "area": "Lengua",
+    "grado": "4°"
+  },
+  {
+	      "titulo": "El principe rana",
+    "archivo": "temas/principerana.json",
+    "area": "Lengua",
+    "grado": "4°"
+  },  
+  {
+    "titulo": "El loro pelado - ejemplo",
+    "archivo": "temas/loro-pelado-ejemplo.json",
+    "area": "Lengua",
+    "grado": "5°"
+  },
+ {
+    "titulo": "La guerra de los Yacares",
+    "archivo": "temas/yacares.json",
+    "area": "Lengua",
+    "grado": "5°"
+  },
+{
+    "titulo": "Las medias de los flamencos",
+    "archivo": "temas/flamencos.json",
+    "area": "Lengua",
+    "grado": "5°"
+  },
+ {
+    "titulo": "El almohadón de plumas",
+    "archivo": "temas/almohadon.json",
+    "area": "Lengua",
+    "grado": "6°"
+  },
+  {
+    "titulo": "El corazón delator",
+    "archivo": "temas/delator.json",
+    "area": "Lengua",
+    "grado": "6°"
+  },
+  {
+    "titulo": "La muerta",
+    "archivo": "temas/muerta.json",
+    "area": "Lengua",
+    "grado": "7°"
+  }
+ 
+]

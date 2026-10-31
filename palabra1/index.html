@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Palabras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-header">
+        <a href="../" class="logo-link" title="Volver al inicio">
+            <img src="logo.png" alt="Logo Escolar" id="logo">
+        </a>
+        
+        <div class="score-board">
+            <span class="correct-score">Correctas: <strong id="count-correct">0</strong></span>
+            <span class="incorrect-score">Incorrectas: <strong id="count-incorrect">0</strong></span>
+        </div>
+
+        <button id="btn-restart" class="btn btn-red" style="padding: 8px 15px; font-size: 1rem;">↻ Reiniciar</button>
+    </header>
+
+    <div class="container">
+        <div id="game-area" class="card">
+            <img id="current-image" src="" alt="Adivina la palabra">
+            
+            <div class="input-area">
+                <input type="text" id="word-input" placeholder="Escribe aquí..." autocomplete="off">
+                <button id="btn-validate" class="btn btn-blue">Validar</button>
+            </div>
+
+            <div id="feedback-area" class="hidden">
+                <h3 id="feedback-message"></h3>
+                <div id="feedback-controls">
+                    </div>
+            </div>
+        </div>
+
+        <div id="end-screen" class="card hidden">
+            <h2 id="end-title">¡Ronda terminada!</h2>
+            <p id="end-message"></p>
+            <div id="end-controls">
+                <button id="btn-retry-errors" class="btn btn-orange hidden">Probar con las incorrectas</button>
+                <button id="btn-finish" class="btn btn-red">Finalizar</button>
+            </div>
+        </div>
+
+        <div id="summary-screen" class="card hidden">
+            <h2>Resumen de errores</h2>
+            <div id="summary-gallery" class="gallery"></div>
+            <button class="btn btn-blue" id="btn-play-again" style="margin-top: 20px;">Jugar de nuevo</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

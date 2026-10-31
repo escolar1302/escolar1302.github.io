@@ -1,0 +1,211 @@
+{
+"id": "corazon-delator-7grado",
+"titulo": "El corazón delator",
+"area": "Lengua",
+"grado": "7°",
+"descripcion": "Rosco sobre personajes, acciones, objetos, sensaciones y conflictos del cuento El corazón delator.",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "A",
+"modo": "empieza",
+"pregunta": "Crimen que el narrador planifica y comete contra el viejo.",
+"respuestas": [
+"asesinato",
+"asesinato del viejo"
+],
+"ayuda": "Empieza con A."
+},
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Ave con la que el narrador compara el ojo del viejo.",
+"respuestas": [
+"buitre",
+"buitres"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Órgano cuyo latido cree escuchar el narrador al final del cuento.",
+"respuestas": [
+"corazón",
+"corazon",
+"corazón del viejo",
+"corazon del viejo"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Palabra del título que sugiere que algo termina revelando la verdad.",
+"respuestas": [
+"delator"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Condición que, según el narrador, había agudizado sus sentidos.",
+"respuestas": [
+"enfermedad",
+"la enfermedad"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "G",
+"modo": "empieza",
+"pregunta": "Sonido que oye un vecino y que provoca la llegada de la policía.",
+"respuestas": [
+"grito",
+"gritos"
+],
+"ayuda": "Empieza con G."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Cuarto donde duerme el viejo y al que entra el narrador durante varias noches.",
+"respuestas": [
+"habitación",
+"habitacion",
+"habitación del viejo",
+"habitacion del viejo"
+],
+"ayuda": "Empieza con H."
+},
+
+{
+"letra": "J",
+"modo": "contiene",
+"pregunta": "Parte del cuerpo del viejo que obsesiona al narrador.",
+"respuestas": [
+"ojo",
+"ojo de buitre",
+"ojo del viejo"
+],
+"ayuda": "Contiene la letra J."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Sonido del corazón que el narrador cree escuchar cada vez más fuerte.",
+"respuestas": [
+"latido",
+"latidos",
+"latido del corazón",
+"latido del corazon"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Momento en que el narrador suele entrar en la habitación del viejo.",
+"respuestas": [
+"medianoche",
+"media noche"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Voz que cuenta la historia y participa de los hechos que relata.",
+"respuestas": [
+"narrador",
+"narrador protagonista"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Sentido que el narrador dice tener especialmente agudo.",
+"respuestas": [
+"oído",
+"oido"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Autoridades que llegan a la casa después de que un vecino oye el grito.",
+"respuestas": [
+"policías",
+"policias",
+"policía",
+"policia"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "Q",
+"modo": "empieza",
+"pregunta": "Así permanece el narrador cuando el viejo se despierta y escucha en la oscuridad.",
+"respuestas": [
+"quieto",
+"quieto y en silencio"
+],
+"ayuda": "Empieza con Q."
+},
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Objeto con cuyo tictac se compara el sonido del corazón en el cuento.",
+"respuestas": [
+"reloj",
+"reloj envuelto en algodón",
+"reloj envuelto en algodon"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Cantidad de noches en que el narrador observa al viejo antes de la noche del crimen.",
+"respuestas": [
+"siete",
+"siete noches"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Sentimiento que expresa el grito del viejo cuando descubre que hay alguien en la habitación.",
+"respuestas": [
+"terror",
+"terror mortal"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "U",
+"modo": "contiene",
+"pregunta": "Lo que el narrador esconde después del crimen.",
+"respuestas": [
+"cuerpo",
+"cuerpo del viejo"
+],
+"ayuda": "Contiene la letra U."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Capa que cubre el ojo del viejo, según la descripción del narrador.",
+"respuestas": [
+"velo",
+"velo del ojo"
+],
+"ayuda": "Empieza con V."
+}
+]
+}

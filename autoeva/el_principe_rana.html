@@ -1,0 +1,1670 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>El príncipe rana</title><script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-VL13MMLPRV");</script><style id="app-css">
+        :root {
+            --bg-color: #f4f6f7;
+            --panel-color: #ffffff;
+            --text-color: #263238;
+            --border-color: #d7dde2;
+            --accent-lengua: #27AE60;
+            --accent-title: #1B5E20;
+            --accent-alt: #036fb0;
+            --accent-action: #e67e22;
+            --accent-success: #27ae60;
+            --accent-error: #c62828;
+            --accent-nav: #34495e;
+            --accent-muted: #667085;
+            --soft-green: #E8F5E9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+
+        header.docente-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-lengua);
+            padding-bottom: 12px;
+        }
+
+        header.docente-header h1 {
+            color: var(--accent-title);
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+
+        .subtitulo {
+            color: var(--accent-muted);
+            font-size: 0.98rem;
+            margin: 6px 0 0 0;
+        }
+
+        .zona-pegado,
+        .zona-actividad,
+        .zona-formato {
+            background-color: var(--panel-color);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px dashed #aeb8c2;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .zona-actividad {
+            display: none;
+            border-style: solid;
+            border-color: var(--accent-alt);
+            text-align: center;
+        }
+
+        .zona-formato {
+            display: none;
+            border-style: solid;
+            border-color: var(--accent-lengua);
+        }
+
+        label.label-control {
+            display: block;
+            font-weight: bold;
+            color: var(--accent-muted);
+            margin-bottom: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 230px;
+            background-color: #fafafa;
+            color: #263238;
+            border: 1px solid var(--border-color);
+            border-radius: 7px;
+            padding: 12px;
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 0.92rem;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            resize: vertical;
+            line-height: 1.45;
+        }
+
+        #formato-limpio-output {
+            min-height: 260px;
+            white-space: pre;
+        }
+
+        .fila-controles {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .acciones-actividad {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-generar,
+        .btn-vista,
+        .btn-comprobar,
+        .btn-nav,
+        .btn-secundario {
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+            min-width: 120px;
+        }
+
+        .btn-generar {
+            background-color: var(--accent-lengua);
+            min-width: 220px;
+        }
+
+        .btn-vista {
+            background-color: var(--accent-lengua);
+        }
+
+        .btn-exportar {
+            background-color: var(--accent-action);
+        }
+
+        .btn-secundario {
+            background-color: var(--accent-alt);
+        }
+
+        .btn-generar:hover,
+        .btn-vista:hover,
+        .btn-comprobar:hover,
+        .btn-nav:hover,
+        .btn-secundario:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            filter: grayscale(20%);
+            transform: none;
+        }
+
+        .input-titulo,
+        .input-ruta {
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #cfd8dc;
+            font-weight: bold;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 280px;
+            text-align: center;
+            background: white;
+        }
+
+        .input-ruta {
+            max-width: 140px;
+        }
+
+        .opciones-exportacion {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            padding: 12px;
+            background: #f7fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .checkbox-control {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--accent-muted);
+            white-space: nowrap;
+        }
+
+        .select-color,
+        .input-imagen {
+            padding: 9px 10px;
+            border-radius: 6px;
+            border: 2px solid #cfd8dc;
+            font-weight: bold;
+            font-size: 0.95rem;
+            background: white;
+        }
+
+        .input-imagen {
+            width: 100%;
+            max-width: 230px;
+            text-align: center;
+        }
+
+        .ayuda-formato {
+            background: #eef7f0;
+            border-left: 5px solid var(--accent-lengua);
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            line-height: 1.45;
+        }
+
+        .ayuda-formato code {
+            background: rgba(255,255,255,0.8);
+            padding: 1px 4px;
+            border-radius: 4px;
+        }
+
+        #bateria-container {
+            width: 100%;
+        }
+
+        .problema-card {
+            background-color: var(--panel-color);
+            border-top: 6px solid var(--accent-lengua);
+            border-radius: 10px;
+            padding: 22px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            position: relative;
+            max-width: 820px;
+            margin: 0 auto 24px auto;
+        }
+
+        .avance-ficha {
+            color: var(--accent-muted);
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .seccion-chip {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            background: var(--soft-green);
+            color: var(--accent-title);
+            border: 1px solid var(--accent-lengua);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-align: left;
+            line-height: 1.25;
+        }
+
+        .encabezado-tarjeta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            border-bottom: 1px solid #edf0f2;
+            padding-bottom: 12px;
+        }
+
+        .titulo-problema {
+            color: var(--accent-title);
+            font-size: 1.35rem;
+            margin: 0;
+            line-height: 1.25;
+            flex: 1;
+            text-align: left;
+        }
+
+        .img-titulo-card {
+            width: 88px;
+            max-height: 88px;
+            object-fit: contain;
+            flex: 0 0 auto;
+        }
+
+        .enunciado {
+            line-height: 1.55;
+            font-size: 1.12rem;
+            margin: 0 0 4px 0;
+            text-align: left;
+        }
+
+        .opciones-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin: 4px 0 2px 0;
+        }
+
+        .opcion-btn {
+            background: #fbfbfb;
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 12px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: 600;
+            transition: 0.2s;
+            user-select: none;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            line-height: 1.35;
+        }
+
+        .opcion-letra {
+            background: #e8eef3;
+            color: #263238;
+            min-width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            flex: 0 0 auto;
+        }
+
+        .opcion-texto {
+            padding-top: 5px;
+            flex: 1;
+        }
+
+        .opcion-btn:hover {
+            border-color: var(--accent-alt);
+            background: #f5f9fc;
+        }
+
+        .opcion-btn.selected {
+            background: #e7f1fb;
+            border-color: var(--accent-alt);
+        }
+
+        .opcion-btn.selected .opcion-letra {
+            background: var(--accent-alt);
+            color: white;
+        }
+
+        .opcion-btn.bloqueada {
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .opcion-btn.respuesta-correcta {
+            background: #e7f7ec !important;
+            color: #1b5e20 !important;
+            border-color: var(--accent-success) !important;
+        }
+
+        .opcion-btn.respuesta-correcta .opcion-letra {
+            background: var(--accent-success) !important;
+            color: white !important;
+        }
+
+        .opcion-btn.respuesta-incorrecta {
+            background: #fdecea !important;
+            color: #8e1b12 !important;
+            border-color: var(--accent-error) !important;
+        }
+
+        .opcion-btn.respuesta-incorrecta .opcion-letra {
+            background: var(--accent-error) !important;
+            color: white !important;
+        }
+
+        .feedback-msg {
+            text-align: center;
+            font-weight: bold;
+            min-height: 24px;
+            font-size: 1rem;
+        }
+
+        .navegacion-tarjeta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .btn-nav {
+            background-color: var(--accent-nav);
+            flex: 1 1 0;
+        }
+
+        .btn-comprobar {
+            background-color: var(--accent-action);
+            flex: 0 0 150px;
+            min-width: 130px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .mini-resumen {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            color: #555;
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+
+        .estado-parser {
+            text-align: center;
+            margin-top: 12px;
+            font-weight: bold;
+            min-height: 22px;
+        }
+
+        .resumen-final {
+            text-align: center;
+            align-items: center;
+        }
+
+        .resumen-final h2 {
+            color: var(--accent-title);
+            margin-bottom: 0;
+        }
+
+        .bloque-informe-final {
+            width: 100%;
+            max-width: 760px;
+            margin-top: 14px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: #f7fafc;
+            text-align: left;
+        }
+
+        .bloque-informe-final h3 {
+            margin: 0 0 10px 0;
+            color: var(--accent-title);
+            text-align: center;
+        }
+
+        .campo-alumno-informe {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+
+        .campo-alumno-informe input {
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #cfd8dc;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 340px;
+        }
+
+        .acciones-informe {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .detalle-resultados {
+            display: none;
+            margin-top: 14px;
+            text-align: left;
+        }
+
+        .detalle-item {
+            border: 1px solid var(--border-color);
+            border-left: 6px solid var(--accent-muted);
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .detalle-item.correcta {
+            border-left-color: var(--accent-success);
+        }
+
+        .detalle-item.incorrecta {
+            border-left-color: var(--accent-error);
+        }
+
+        .detalle-item p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                margin-top: 10px;
+            }
+
+            header.docente-header h1 {
+                font-size: 1.55rem;
+            }
+
+            .zona-pegado,
+            .zona-actividad,
+            .zona-formato {
+                padding: 15px;
+            }
+
+            .problema-card {
+                padding: 16px;
+            }
+
+            .encabezado-tarjeta {
+                align-items: flex-start;
+            }
+
+            .titulo-problema {
+                font-size: 1.18rem;
+            }
+
+            .img-titulo-card {
+                width: 68px;
+                max-height: 68px;
+            }
+
+            .enunciado {
+                font-size: 1.03rem;
+            }
+
+            .opcion-btn {
+                padding: 11px 10px;
+                gap: 9px;
+            }
+
+            .opcion-letra {
+                min-width: 29px;
+                height: 29px;
+            }
+
+            .navegacion-tarjeta {
+                gap: 6px;
+            }
+
+            .btn-nav,
+            .btn-comprobar {
+                min-width: 0;
+                font-size: 0.78rem;
+                padding: 10px 6px;
+            }
+
+            .btn-comprobar {
+                flex-basis: 122px;
+            }
+        }
+    
+:root{--accent-lengua:#27AE60;--soft-green:#E8F5E9;--accent-title:#1B5E20;}</style></head><body><div class="container"><header class="docente-header"><h1>El príncipe rana</h1><p class="subtitulo">Elegí una opción y la corrección aparecerá en el momento.</p></header><div class="zona-actividad" id="zona-actividad" style="display:block"><div class="acciones-actividad"><button class="btn-vista" onclick="limpiarActividad()">🧹 Limpiar</button></div><div class="mini-resumen" id="mini-resumen"></div></div><div id="bateria-container"></div></div><script type="application/json" id="datos-actividad" data-slug="el_principe_rana" data-titulo="El príncipe rana" data-color="verde" data-imagen="personaje_pensando.png" data-informe="1">[{"numero":"1","titulo":"Pregunta 1","seccion":"","enunciado":"¿Dónde solía sentarse la hija menor del rey cuando hacía mucho calor?","opciones":[{"letra":"A","texto":"En la escalera de mármol del palacio."},{"letra":"B","texto":"En la orilla de un pozo, bajo un viejo árbol."},{"letra":"C","texto":"En su cuarto, junto a la cama de seda."},{"letra":"D","texto":"En la mesa dorada del salón real."}],"correcta":"B"},{"numero":"2","titulo":"Pregunta 2","seccion":"","enunciado":"¿Qué le sucede a la pelota de oro de la princesa?","opciones":[{"letra":"A","texto":"Se rompe cuando cae sobre una piedra."},{"letra":"B","texto":"La rana se la quita para esconderla."},{"letra":"C","texto":"Cae al pozo y desaparece en el agua."},{"letra":"D","texto":"Rueda hasta la puerta del palacio."}],"correcta":"C"},{"numero":"3","titulo":"Pregunta 3","seccion":"","enunciado":"Indicá si la afirmación es verdadera o falsa: La princesa llora porque no puede recuperar su pelota de oro.","opciones":[{"letra":"V","texto":"Verdadero."},{"letra":"F","texto":"Falso."}],"correcta":"V"},{"numero":"4","titulo":"Pregunta 4","seccion":"","enunciado":"¿Qué le pide la rana a la princesa a cambio de sacar la pelota del pozo?","opciones":[{"letra":"A","texto":"Que le entregue su corona de oro."},{"letra":"B","texto":"Que le regale sus perlas preciosas."},{"letra":"C","texto":"Que la lleve a vivir al bosque."},{"letra":"D","texto":"Que la trate con cariño y la deje acompañarla."}],"correcta":"D"},{"numero":"5","titulo":"Pregunta 5","seccion":"","enunciado":"¿Qué piensa la princesa mientras promete cumplir lo que la rana le pide?","opciones":[{"letra":"A","texto":"Que una rana no puede ser amiga de una persona."},{"letra":"B","texto":"Que la rana será una buena compañera en el palacio."},{"letra":"C","texto":"Que su padre se alegrará al conocer a la rana."},{"letra":"D","texto":"Que debe regalarle su vestido más hermoso."}],"correcta":"A"},{"numero":"6","titulo":"Pregunta 6","seccion":"","enunciado":"Indicá si la afirmación es verdadera o falsa: Después de recuperar la pelota, la princesa lleva enseguida a la rana al palacio.","opciones":[{"letra":"V","texto":"Verdadero."},{"letra":"F","texto":"Falso."}],"correcta":"F"},{"numero":"7","titulo":"Pregunta 7","seccion":"","enunciado":"¿Qué sonido anuncia la llegada de la rana al palacio?","opciones":[{"letra":"A","texto":"Un golpe fuerte en las ventanas del comedor."},{"letra":"B","texto":"Un canto suave que viene desde el bosque."},{"letra":"C","texto":"Un “plis, plas, plis, plas” sobre las escaleras."},{"letra":"D","texto":"Un ruido de agua dentro del pozo profundo."}],"correcta":"C"},{"numero":"8","titulo":"Pregunta 8","seccion":"","enunciado":"¿Qué le ordena el rey a la princesa cuando la rana reclama entrar?","opciones":[{"letra":"A","texto":"Que esconda la pelota de oro."},{"letra":"B","texto":"Que cumpla lo que prometió."},{"letra":"C","texto":"Que vuelva al pozo con la rana."},{"letra":"D","texto":"Que cierre la puerta del palacio."}],"correcta":"B"},{"numero":"9","titulo":"Pregunta 9","seccion":"","enunciado":"Indicá si la afirmación es verdadera o falsa: La princesa comparte la comida con la rana con gusto y alegría.","opciones":[{"letra":"V","texto":"Verdadero."},{"letra":"F","texto":"Falso."}],"correcta":"F"},{"numero":"10","titulo":"Pregunta 10","seccion":"","enunciado":"¿Por qué la princesa se pone a llorar cuando la rana quiere ir a su cuarto?","opciones":[{"letra":"A","texto":"Porque teme que la rana duerma en su cama limpia."},{"letra":"B","texto":"Porque no encuentra su pelota de oro en la mesa."},{"letra":"C","texto":"Porque el rey le prohíbe hablar con la rana."},{"letra":"D","texto":"Porque la rana se niega a comer de su plato."}],"correcta":"A"},{"numero":"11","titulo":"Pregunta 11","seccion":"","enunciado":"¿Qué ocurre a la mañana siguiente en el cuarto de la princesa?","opciones":[{"letra":"A","texto":"La rana vuelve sola al pozo del bosque."},{"letra":"B","texto":"La princesa encuentra a un joven príncipe."},{"letra":"C","texto":"El rey descubre que la rana se escapó."},{"letra":"D","texto":"La pelota de oro aparece sobre la almohada."}],"correcta":"B"},{"numero":"12","titulo":"Pregunta 12","seccion":"","enunciado":"¿Qué explica el príncipe sobre su transformación?","opciones":[{"letra":"A","texto":"Que había elegido vivir como rana para probar a la princesa."},{"letra":"B","texto":"Que el rey lo había enviado al pozo como castigo."},{"letra":"C","texto":"Que una bruja lo había hechizado y el hechizo se rompió."},{"letra":"D","texto":"Que la pelota de oro tenía poderes mágicos."}],"correcta":"C"},{"numero":"13","titulo":"Pregunta 13","seccion":"","enunciado":"Indicá si la afirmación es verdadera o falsa: El príncipe dice que solo una princesa que lo aceptara como amigo y compañero podía romper el hechizo.","opciones":[{"letra":"V","texto":"Verdadero."},{"letra":"F","texto":"Falso."}],"correcta":"V"},{"numero":"14","titulo":"Pregunta 14","seccion":"","enunciado":"¿Por qué la princesa se siente avergonzada al final?","opciones":[{"letra":"A","texto":"Porque descubre que perdió la pelota de oro para siempre."},{"letra":"B","texto":"Porque recuerda que trató mal a la rana."},{"letra":"C","texto":"Porque su padre le pide que abandone el palacio."},{"letra":"D","texto":"Porque la rana no quiere hablar con ella."}],"correcta":"B"},{"numero":"15","titulo":"Pregunta 15","seccion":"","enunciado":"¿Qué cambio importante ocurre en la relación entre la princesa y el príncipe?","opciones":[{"letra":"A","texto":"Se conocen mejor, se enamoran y planean casarse."},{"letra":"B","texto":"Deciden separarse y no volver a verse."},{"letra":"C","texto":"Vuelven juntos al pozo para buscar otra rana."},{"letra":"D","texto":"Se mudan al bosque para vivir lejos del rey."}],"correcta":"A"},{"numero":"16","titulo":"Pregunta 16","seccion":"","enunciado":"Indicá si la afirmación es verdadera o falsa: Al final, la princesa sigue pensando que una rana y una persona nunca pueden ser amigas.","opciones":[{"letra":"V","texto":"Verdadero."},{"letra":"F","texto":"Falso."}],"correcta":"F"}]</script><script id="app-js">
+        let problemas = [];
+        let respuestas = [];
+        let indiceActual = 0;
+        let opcionSeleccionada = null;
+        let temporizadorAvance = null;
+        let modoExportado = false;
+        let slugActividad = 'actividad_de_lengua';
+        let tituloActividadDetectado = '';
+        let ultimoFormatoDetectado = '';
+
+        const CLAVE_INPUT = 'lengua_choice_input_save_v1';
+        const IMAGEN_TITULO_DEFAULT = 'personaje_pensando.png';
+        let nombreImagenTitulo = IMAGEN_TITULO_DEFAULT;
+        let colorActividadActual = 'verde';
+        let informeFinalActivo = true;
+
+        const PALETAS_COLOR = {
+            verde: { nombre: 'Verde', color: '#27AE60', soft: '#E8F5E9', title: '#1B5E20' },
+            naranja: { nombre: 'Naranja', color: '#E67E22', soft: '#FFF3E0', title: '#E65100' },
+            azul: { nombre: 'Azul', color: '#036FB0', soft: '#E3F2FD', title: '#01579B' },
+            rojo: { nombre: 'Rojo', color: '#D31718', soft: '#FFEBEE', title: '#B71C1C' }
+        };
+
+        function normalizarNombreImagen(nombre) {
+            nombre = String(nombre || IMAGEN_TITULO_DEFAULT).trim();
+            nombre = nombre.replace(/^\/+/, '').replace(/^images\//i, '');
+            return nombre || IMAGEN_TITULO_DEFAULT;
+        }
+
+        function obtenerRutaImagenTitulo() {
+            return '/images/' + normalizarNombreImagen(nombreImagenTitulo);
+        }
+
+        function obtenerRutaImagenTituloLocal() {
+            return 'images/' + normalizarNombreImagen(nombreImagenTitulo);
+        }
+
+        function obtenerPaletaActual() {
+            return PALETAS_COLOR[colorActividadActual] || PALETAS_COLOR.verde;
+        }
+
+        function cssVariablesPaleta(colorId) {
+            const paleta = PALETAS_COLOR[colorId] || PALETAS_COLOR.verde;
+            return ':root{--accent-lengua:' + paleta.color + ';--soft-green:' + paleta.soft + ';--accent-title:' + paleta.title + ';}';
+        }
+
+        function aplicarPaleta(colorId) {
+            colorActividadActual = PALETAS_COLOR[colorId] ? colorId : 'verde';
+            const paleta = obtenerPaletaActual();
+            document.documentElement.style.setProperty('--accent-lengua', paleta.color);
+            document.documentElement.style.setProperty('--soft-green', paleta.soft);
+            document.documentElement.style.setProperty('--accent-title', paleta.title);
+        }
+
+        function actualizarOpcionesVisuales() {
+            const selectColor = document.getElementById('color-export');
+            const usarOtra = document.getElementById('usar-otra-imagen');
+            const inputImagen = document.getElementById('nombre-imagen-export');
+
+            aplicarPaleta(selectColor ? selectColor.value : colorActividadActual);
+
+            if (inputImagen) {
+                inputImagen.disabled = usarOtra ? !usarOtra.checked : false;
+                nombreImagenTitulo = (usarOtra && usarOtra.checked) ? normalizarNombreImagen(inputImagen.value) : IMAGEN_TITULO_DEFAULT;
+            } else {
+                nombreImagenTitulo = IMAGEN_TITULO_DEFAULT;
+            }
+
+            if (problemas.length) renderizarTarjetaActual();
+        }
+
+        function resolverImagenTitulo(img) {
+            if (!img) return;
+
+            if (!img.dataset.intentoLocal) {
+                img.dataset.intentoLocal = '1';
+                img.src = obtenerRutaImagenTituloLocal();
+                return;
+            }
+
+            img.style.visibility = 'hidden';
+        }
+
+        function claveProgreso() {
+            return modoExportado ? 'lengua_choice_progreso_' + slugActividad : 'lengua_choice_progreso_constructor_v1';
+        }
+
+        function escaparHTML(valor) {
+            return String(valor || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function normalizarSaltos(valor) {
+            return String(valor || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+        }
+
+        function normalizarLetra(valor) {
+            const letra = String(valor || '').trim().toUpperCase();
+            return /^[A-DVF]$/.test(letra) ? letra : '';
+        }
+
+        function guardarEstado() {
+            try {
+                localStorage.setItem(claveProgreso(), JSON.stringify({
+                    respuestas: respuestas,
+                    indiceActual: indiceActual
+                }));
+            } catch(e) {}
+        }
+
+        function cargarEstado() {
+            try {
+                const guardado = localStorage.getItem(claveProgreso());
+                if (!guardado) return;
+                const data = JSON.parse(guardado);
+                if (Array.isArray(data.respuestas)) respuestas = data.respuestas;
+                if (Number.isInteger(data.indiceActual)) indiceActual = data.indiceActual;
+                if (indiceActual < 0) indiceActual = 0;
+                if (indiceActual > problemas.length) indiceActual = problemas.length;
+            } catch(e) {}
+        }
+
+        function actualizarMiniResumen() {
+            const mini = document.getElementById('mini-resumen');
+            if (!mini) return;
+
+            const total = problemas.length;
+            const respondidas = respuestas.filter(Boolean).length;
+            const correctas = respuestas.filter(r => r && r.esCorrecta).length;
+            const incorrectas = respuestas.filter(r => r && !r.esCorrecta).length;
+
+            mini.innerHTML = total
+                ? '<span>Respondidas: ' + respondidas + '/' + total + '</span><span>Correctas: ' + correctas + '</span><span>Incorrectas: ' + incorrectas + '</span>'
+                : '';
+        }
+
+        function informarEstado(mensaje, ok) {
+            const estado = document.getElementById('estado-parser');
+            if (!estado) return;
+            estado.textContent = mensaje || '';
+            estado.style.color = ok ? '#2e7d32' : '#c62828';
+        }
+
+        function extraerEtiquetaGlobal(texto, etiqueta) {
+            const patron = new RegExp('\\[' + etiqueta + '\\]\\s*([^\\n]+)', 'i');
+            const match = String(texto || '').match(patron);
+            return match ? match[1].trim() : '';
+        }
+
+        function crearProblemaVacio(numero, seccion) {
+            return {
+                numero: numero || '',
+                titulo: numero ? 'Pregunta ' + numero : 'Pregunta',
+                seccion: seccion || '',
+                enunciado: '',
+                opciones: [],
+                correcta: ''
+            };
+        }
+
+        function problemaValido(p) {
+            return !!(p && p.enunciado && Array.isArray(p.opciones) && p.opciones.length >= 2 && normalizarLetra(p.correcta));
+        }
+
+        function parsearFormatoEtiquetado(texto) {
+            const lineas = normalizarSaltos(texto).split('\n');
+            const lista = [];
+            let seccionActual = '';
+            let actual = null;
+            let campoActual = '';
+            let letraActual = '';
+
+            function cerrarActual() {
+                if (!actual) return;
+                actual.correcta = normalizarLetra(actual.correcta);
+                actual.opciones = actual.opciones.filter(op => op && op.letra && op.texto.trim());
+                if (problemaValido(actual)) lista.push(actual);
+                actual = null;
+                campoActual = '';
+                letraActual = '';
+            }
+
+            lineas.forEach(lineaOriginal => {
+                const linea = lineaOriginal.trim();
+                if (!linea) return;
+
+                let match = linea.match(/^\[ACTIVIDAD\]\s*(.*)$/i);
+                if (match) {
+                    tituloActividadDetectado = match[1].trim() || tituloActividadDetectado;
+                    campoActual = '';
+                    return;
+                }
+
+                match = linea.match(/^\[SECCION\]\s*(.*)$/i);
+                if (match) {
+                    seccionActual = match[1].trim();
+                    campoActual = '';
+                    return;
+                }
+
+                match = linea.match(/^\[PREGUNTA\s*(\d*)\]\s*(.*)$/i);
+                if (match) {
+                    cerrarActual();
+                    actual = crearProblemaVacio(match[1].trim(), seccionActual);
+                    if (match[2].trim()) actual.titulo = match[2].trim();
+                    campoActual = '';
+                    return;
+                }
+
+                if (!actual) return;
+
+                match = linea.match(/^\[TITULO\]\s*(.*)$/i);
+                if (match) {
+                    actual.titulo = match[1].trim() || actual.titulo;
+                    campoActual = 'titulo';
+                    return;
+                }
+
+                match = linea.match(/^\[ENUNCIADO\]\s*(.*)$/i);
+                if (match) {
+                    actual.enunciado = match[1].trim();
+                    campoActual = 'enunciado';
+                    return;
+                }
+
+                match = linea.match(/^\[([A-DVF])\]\s*(.*)$/i);
+                if (match) {
+                    letraActual = match[1].toUpperCase();
+                    actual.opciones.push({ letra: letraActual, texto: match[2].trim() });
+                    campoActual = 'opcion';
+                    return;
+                }
+
+                match = linea.match(/^\[CORRECTA\]\s*([A-DVF])\b/i);
+                if (match) {
+                    actual.correcta = match[1].toUpperCase();
+                    campoActual = '';
+                    return;
+                }
+
+                if (campoActual === 'enunciado') {
+                    actual.enunciado += (actual.enunciado ? ' ' : '') + linea;
+                } else if (campoActual === 'opcion' && letraActual) {
+                    const ultima = actual.opciones[actual.opciones.length - 1];
+                    if (ultima) ultima.texto += ' ' + linea;
+                } else if (campoActual === 'titulo') {
+                    actual.titulo += ' ' + linea;
+                }
+            });
+
+            cerrarActual();
+            return lista;
+        }
+
+        function parsearSolucionario(textoSolucionario) {
+            const mapa = {};
+            const lineas = normalizarSaltos(textoSolucionario).split('\n');
+
+            lineas.forEach(lineaOriginal => {
+                const linea = lineaOriginal.trim();
+                if (!linea) return;
+                if (/^Parte\s+/i.test(linea)) return;
+
+                // Acepta: 1 B / 1: B / 1) B / 1. B / 1 - B / 2 V / 7 F
+                const match = linea.match(/^(\d+)\s*(?::|\)|\.|-|\s)\s*([A-DVF])\b/i);
+                if (match) {
+                    mapa[match[1]] = match[2].toUpperCase();
+                }
+            });
+
+            return mapa;
+        }
+
+        function separarCuerpoYSolucionario(texto) {
+            const limpio = normalizarSaltos(texto);
+            const match = limpio.match(/(?:^|\n)\s*(SOLUCIONARIO(?:\s+DOCENTE)?|RESPUESTAS(?:\s+CORRECTAS?)?)\s*(?:\n|$)/i);
+            if (!match) return null;
+
+            return {
+                cuerpo: limpio.slice(0, match.index),
+                solucionario: limpio.slice(match.index + match[0].length)
+            };
+        }
+
+        function detectarTituloActividad(texto) {
+            const porEtiqueta = extraerEtiquetaGlobal(texto, 'ACTIVIDAD');
+            if (porEtiqueta) return porEtiqueta;
+
+            const lineas = normalizarSaltos(texto).split('\n').map(l => l.trim()).filter(Boolean);
+            if (!lineas.length) return '';
+
+            const primera = lineas[0];
+            let match = primera.match(/^Actividad\s+de\s+lectura\s*:\s*(.+)$/i);
+            if (match) return match[1].trim();
+
+            match = primera.match(/^Actividad\s*:\s*(.+)$/i);
+            if (match) return match[1].trim();
+
+            return '';
+        }
+
+        function parsearFormatoConSolucionario(texto) {
+            const separado = separarCuerpoYSolucionario(texto);
+            if (!separado) return [];
+
+            const cuerpo = separado.cuerpo;
+            const solucionario = separado.solucionario;
+            const correctas = parsearSolucionario(solucionario);
+            const lineas = cuerpo.split('\n');
+            const lista = [];
+            let seccionActual = '';
+            let actual = null;
+            let leyendo = '';
+
+            function cerrarActual() {
+                if (!actual) return;
+                actual.correcta = normalizarLetra(correctas[String(actual.numero)] || actual.correcta);
+                actual.opciones = actual.opciones.filter(op => op && op.letra && op.texto.trim());
+                if (problemaValido(actual)) lista.push(actual);
+                actual = null;
+                leyendo = '';
+            }
+
+            lineas.forEach(lineaOriginal => {
+                const linea = lineaOriginal.trim();
+                if (!linea) return;
+
+                // Título general: Actividad de lectura: El hombre sin cabeza
+                let match = linea.match(/^Actividad\s+de\s+lectura\s*:\s*(.+)$/i);
+                if (match) {
+                    tituloActividadDetectado = match[1].trim() || tituloActividadDetectado;
+                    leyendo = '';
+                    return;
+                }
+
+                match = linea.match(/^Actividad\s*:\s*(.+)$/i);
+                if (match) {
+                    tituloActividadDetectado = match[1].trim() || tituloActividadDetectado;
+                    leyendo = '';
+                    return;
+                }
+
+                // Encabezados de parte del formato anterior: 1. Preguntas de la Parte I (Capítulo I)
+                match = linea.match(/^\d+\.\s*Preguntas\s+de\s+la\s+Parte\s+([^\(]+)\s*\((.+)\)\s*$/i);
+                if (match) {
+                    cerrarActual();
+                    seccionActual = 'Parte ' + match[1].trim() + ': ' + match[2].trim();
+                    leyendo = '';
+                    return;
+                }
+
+                match = linea.match(/^\d+\.\s*Preguntas\s+de\s+(.+?)\s*\((.+)\)\s*$/i);
+                if (match) {
+                    cerrarActual();
+                    seccionActual = match[1].trim() + ': ' + match[2].trim();
+                    leyendo = '';
+                    return;
+                }
+
+                // Preguntas: 1. texto o 1) texto
+                match = linea.match(/^(\d+)[\.)]\s+(.+)$/);
+                if (match) {
+                    cerrarActual();
+                    actual = crearProblemaVacio(match[1], seccionActual);
+                    actual.enunciado = match[2].trim();
+                    actual.correcta = correctas[String(actual.numero)] || '';
+                    leyendo = 'enunciado';
+                    return;
+                }
+
+                if (!actual) return;
+
+                // Opciones: [ ] A) texto / [ ] V) Verdadero. / [ ] F) Falso.
+                match = linea.match(/^\[\s*\]\s*([A-DVF])\)\s*(.+)$/i);
+                if (match) {
+                    actual.opciones.push({ letra: match[1].toUpperCase(), texto: match[2].trim() });
+                    leyendo = 'opcion';
+                    return;
+                }
+
+                if (leyendo === 'opcion' && actual.opciones.length) {
+                    actual.opciones[actual.opciones.length - 1].texto += ' ' + linea;
+                } else if (leyendo === 'enunciado') {
+                    actual.enunciado += ' ' + linea;
+                }
+            });
+
+            cerrarActual();
+            return lista;
+        }
+
+        function armarProblemasDesdeTexto(texto) {
+            tituloActividadDetectado = detectarTituloActividad(texto);
+            let lista = [];
+
+            if (/\[PREGUNTA\s*\d*\]/i.test(texto)) {
+                lista = parsearFormatoEtiquetado(texto);
+                ultimoFormatoDetectado = 'formato etiquetado';
+            }
+
+            if (!lista.length && /(SOLUCIONARIO|RESPUESTAS\s+CORRECTAS?)/i.test(texto)) {
+                lista = parsearFormatoConSolucionario(texto);
+                ultimoFormatoDetectado = 'formato con solucionario separado';
+            }
+
+            return lista;
+        }
+
+        function procesarTexto() {
+            const input = document.getElementById('texto-input');
+            const texto = input ? input.value : '';
+            if (!texto.trim()) {
+                informarEstado('Pegá las preguntas antes de generar.', false);
+                return;
+            }
+
+            clearTimeout(temporizadorAvance);
+            try { localStorage.setItem(CLAVE_INPUT, texto); } catch(e) {}
+
+            problemas = armarProblemasDesdeTexto(texto);
+            respuestas = [];
+            indiceActual = 0;
+            opcionSeleccionada = null;
+            try { localStorage.removeItem(claveProgreso()); } catch(e) {}
+
+            const zonaActividad = document.getElementById('zona-actividad');
+            if (zonaActividad) zonaActividad.style.display = problemas.length ? 'block' : 'none';
+
+            const tituloExport = document.getElementById('titulo-export');
+            if (tituloExport && tituloActividadDetectado && tituloExport.value === 'Actividad de Lengua') {
+                tituloExport.value = tituloActividadDetectado;
+            }
+
+            if (problemas.length) {
+                informarEstado('Se generaron ' + problemas.length + ' preguntas. Formato detectado: ' + ultimoFormatoDetectado + '.', true);
+            } else {
+                informarEstado('No se pudieron detectar preguntas válidas. Revisá que cada pregunta tenga opciones A-D o V-F y respuesta correcta.', false);
+            }
+
+            renderizarTarjetaActual();
+            guardarEstado();
+        }
+
+        function renderizarTarjetaActual() {
+            clearTimeout(temporizadorAvance);
+            opcionSeleccionada = null;
+
+            const contenedor = document.getElementById('bateria-container');
+            if (!contenedor) return;
+            contenedor.innerHTML = '';
+
+            if (!problemas.length) {
+                actualizarMiniResumen();
+                return;
+            }
+
+            if (indiceActual >= problemas.length) {
+                renderizarResumenFinal();
+                actualizarMiniResumen();
+                return;
+            }
+
+            const problema = problemas[indiceActual];
+            const respuesta = respuestas[indiceActual] || null;
+            const estaBloqueada = !!respuesta;
+
+            let opcionesHTML = '';
+            problema.opciones.forEach((opcion, idx) => {
+                const seleccionada = respuesta ? respuesta.opcion === opcion.letra : false;
+                const esCorrectaDelProblema = opcion.letra === problema.correcta;
+                let clases = 'opcion-btn';
+
+                if (seleccionada) clases += ' selected';
+                if (estaBloqueada) clases += ' bloqueada';
+                if (respuesta && seleccionada && respuesta.esCorrecta) clases += ' respuesta-correcta';
+                if (respuesta && seleccionada && !respuesta.esCorrecta) clases += ' respuesta-incorrecta';
+                if (respuesta && !respuesta.esCorrecta && esCorrectaDelProblema) clases += ' respuesta-correcta';
+
+                opcionesHTML += '<div class="' + clases + '" data-letra="' + escaparHTML(opcion.letra) + '" onclick="seleccionarOpcion(' + idx + ')">' +
+                    '<span class="opcion-letra">' + escaparHTML(opcion.letra) + '</span>' +
+                    '<span class="opcion-texto">' + escaparHTML(opcion.texto) + '</span>' +
+                '</div>';
+            });
+
+            let feedbackHTML = '';
+            let feedbackColor = '';
+
+            if (respuesta) {
+                if (respuesta.esCorrecta) {
+                    feedbackHTML = '✅ ¡Correcto!';
+                    feedbackColor = '#27ae60';
+                } else {
+                    feedbackHTML = '❌ Incorrecto. La correcta está marcada en verde.';
+                    feedbackColor = '#c62828';
+                }
+            }
+
+            const textoSiguiente = indiceActual >= problemas.length - 1 ? 'Finalizar' : 'Siguiente';
+            const disabledAnterior = indiceActual <= 0 ? 'disabled' : '';
+            const disabledSiguiente = respuesta ? '' : 'disabled';
+            const seccionHTML = problema.seccion ? '<div class="seccion-chip">' + escaparHTML(problema.seccion) + '</div>' : '';
+
+            const botonesHTML =
+                '<div class="navegacion-tarjeta">' +
+                    '<button class="btn-nav" onclick="irTarjetaAnterior()" ' + disabledAnterior + '>Anterior</button>' +
+                    '<button class="btn-nav" id="btn-siguiente" onclick="avanzarTarjeta()" ' + disabledSiguiente + '>' + textoSiguiente + '</button>' +
+                '</div>';
+
+            contenedor.innerHTML =
+                '<div class="problema-card">' +
+                    '<div class="avance-ficha">Pregunta ' + (indiceActual + 1) + ' de ' + problemas.length + '</div>' +
+                    seccionHTML +
+                    '<div class="encabezado-tarjeta">' +
+                        '<h2 class="titulo-problema">' + escaparHTML(problema.titulo || ('Pregunta ' + problema.numero)) + '</h2>' +
+                        '<img class="img-titulo-card" src="' + obtenerRutaImagenTitulo() + '" alt="" aria-hidden="true" onerror="resolverImagenTitulo(this)">' +
+                    '</div>' +
+                    '<p class="enunciado">' + escaparHTML(problema.enunciado) + '</p>' +
+                    '<div class="opciones-grid">' + opcionesHTML + '</div>' +
+                    '<div class="feedback-msg" id="feedback-msg" style="color:' + feedbackColor + ';">' + feedbackHTML + '</div>' +
+                    '<div id="zona-boton-accion">' + botonesHTML + '</div>' +
+                '</div>';
+
+            actualizarMiniResumen();
+        }
+
+        function seleccionarOpcion(indiceOpcion) {
+            const problema = problemas[indiceActual];
+            if (!problema || respuestas[indiceActual]) return;
+
+            const botones = document.querySelectorAll('.opcion-btn');
+            botones.forEach(btn => btn.classList.remove('selected'));
+
+            const btn = botones[indiceOpcion];
+            if (!btn) return;
+
+            btn.classList.add('selected');
+            opcionSeleccionada = btn.getAttribute('data-letra');
+
+            const esCorrecta = opcionSeleccionada === problema.correcta;
+
+            respuestas[indiceActual] = {
+                opcion: opcionSeleccionada,
+                esCorrecta: esCorrecta
+            };
+
+            guardarEstado();
+            bloquearOpciones(esCorrecta);
+            actualizarMiniResumen();
+
+            const feedback = document.getElementById('feedback-msg');
+            if (feedback) {
+                if (esCorrecta) {
+                    feedback.innerHTML = '✅ ¡Correcto!';
+                    feedback.style.color = '#27ae60';
+                } else {
+                    feedback.innerHTML = '❌ Incorrecto. La correcta está marcada en verde.';
+                    feedback.style.color = '#c62828';
+                }
+            }
+
+            const btnSiguiente = document.getElementById('btn-siguiente');
+            if (btnSiguiente) btnSiguiente.disabled = false;
+        }
+
+        function verificarRespuesta() {
+            // Se conserva solo por compatibilidad con actividades viejas.
+            // En esta versión, la respuesta se valida automáticamente al tocar una opción.
+            return;
+        }
+
+        function bloquearOpciones(esCorrecta) {
+            const problema = problemas[indiceActual];
+            const botones = document.querySelectorAll('.opcion-btn');
+
+            botones.forEach(btn => {
+                const letra = btn.getAttribute('data-letra');
+                btn.classList.add('bloqueada');
+
+                if (letra === opcionSeleccionada) {
+                    btn.classList.add(esCorrecta ? 'respuesta-correcta' : 'respuesta-incorrecta');
+                }
+
+                if (!esCorrecta && letra === problema.correcta) {
+                    btn.classList.add('respuesta-correcta');
+                }
+            });
+        }
+
+        function avanzarTarjeta() {
+            clearTimeout(temporizadorAvance);
+            if (indiceActual < problemas.length) indiceActual++;
+            guardarEstado();
+            renderizarTarjetaActual();
+        }
+
+        function irTarjetaAnterior() {
+            clearTimeout(temporizadorAvance);
+            if (indiceActual > 0) indiceActual--;
+            guardarEstado();
+            renderizarTarjetaActual();
+        }
+
+        function obtenerResumenResultados() {
+            const total = problemas.length;
+            const respondidas = respuestas.filter(Boolean).length;
+            const correctas = respuestas.filter(r => r && r.esCorrecta).length;
+            const incorrectas = respuestas.filter(r => r && !r.esCorrecta).length;
+            const porcentaje = total ? Math.round((correctas / total) * 1000) / 10 : 0;
+            return { total: total, respondidas: respondidas, correctas: correctas, incorrectas: incorrectas, porcentaje: porcentaje };
+        }
+
+        function informeFinalHabilitado() {
+            const check = document.getElementById('activar-informe-final');
+            if (check && !modoExportado) return check.checked;
+            return informeFinalActivo;
+        }
+
+        function buscarOpcionPorLetra(problema, letra) {
+            if (!problema || !Array.isArray(problema.opciones)) return null;
+            return problema.opciones.find(op => op.letra === letra) || null;
+        }
+
+        function textoRespuesta(problema, letra) {
+            if (!letra) return 'Sin responder';
+            const op = buscarOpcionPorLetra(problema, letra);
+            return op ? (op.letra + ') ' + op.texto) : letra;
+        }
+
+        function generarDetalleResultadosHTML() {
+            let salida = '';
+            problemas.forEach((problema, idx) => {
+                const respuesta = respuestas[idx] || null;
+                const esCorrecta = !!(respuesta && respuesta.esCorrecta);
+                const clase = esCorrecta ? 'correcta' : 'incorrecta';
+                const estado = esCorrecta ? 'Correcta' : 'Incorrecta';
+                salida += '<div class="detalle-item ' + clase + '">' +
+                    '<p><strong>' + (idx + 1) + '. ' + escaparHTML(problema.enunciado) + '</strong></p>' +
+                    '<p><strong>Tu respuesta:</strong> ' + escaparHTML(textoRespuesta(problema, respuesta ? respuesta.opcion : '')) + '</p>' +
+                    '<p><strong>Respuesta correcta:</strong> ' + escaparHTML(textoRespuesta(problema, problema.correcta)) + '</p>' +
+                    '<p><strong>Estado:</strong> ' + estado + '</p>' +
+                '</div>';
+            });
+            return salida;
+        }
+
+        function alternarDetalleResultados() {
+            const detalle = document.getElementById('detalle-resultados');
+            if (!detalle) return;
+            detalle.style.display = detalle.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function obtenerTituloActividadActual() {
+            const tituloExport = document.getElementById('titulo-export');
+            const h1 = document.querySelector('header.docente-header h1');
+            return tituloActividadDetectado || (tituloExport && tituloExport.value.trim()) || (h1 && h1.textContent.trim()) || document.title || 'Actividad de Lengua';
+        }
+
+        function obtenerNombreAlumnoInforme() {
+            const input = document.getElementById('nombre-alumno-informe');
+            const nombre = input ? input.value.trim() : '';
+            return nombre || 'Sin nombre';
+        }
+
+        function generarHTMLCorreccion(alumno) {
+            const titulo = obtenerTituloActividadActual();
+            const resumen = obtenerResumenResultados();
+            const fecha = new Date().toLocaleString('es-AR');
+            const paleta = obtenerPaletaActual();
+            let detalle = '';
+
+            problemas.forEach((problema, idx) => {
+                const respuesta = respuestas[idx] || null;
+                const esCorrecta = !!(respuesta && respuesta.esCorrecta);
+                const clase = esCorrecta ? 'correcta' : 'incorrecta';
+                const estado = esCorrecta ? 'Correcta' : 'Incorrecta';
+                detalle += '<div class="item ' + clase + '">' +
+                    '<h3>' + (idx + 1) + '. ' + escaparHTML(problema.enunciado) + '</h3>' +
+                    '<p><strong>Tu respuesta:</strong> ' + escaparHTML(textoRespuesta(problema, respuesta ? respuesta.opcion : '')) + '</p>' +
+                    '<p><strong>Respuesta correcta:</strong> ' + escaparHTML(textoRespuesta(problema, problema.correcta)) + '</p>' +
+                    '<p><strong>Estado:</strong> ' + estado + '</p>' +
+                '</div>';
+            });
+
+            return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Corrección - ' + escaparHTML(titulo) + '</title>' +
+                '<style>' +
+                ':root{--color:' + paleta.color + ';--soft:' + paleta.soft + ';--title:' + paleta.title + ';}' +
+                '*{box-sizing:border-box}body{font-family:Arial, sans-serif;background:#f4f6f7;color:#263238;margin:0;padding:24px;}main{max-width:900px;margin:0 auto;background:white;border-radius:12px;padding:24px;box-shadow:0 4px 12px rgba(0,0,0,.08);}h1{text-align:center;color:var(--title);margin-top:0}.sub{text-align:center;color:#667085}.resumen{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:20px 0}.dato{background:var(--soft);border:1px solid var(--color);border-radius:10px;padding:12px;text-align:center}.dato strong{display:block;font-size:1.5rem;color:var(--title)}.item{border:1px solid #d7dde2;border-left:7px solid #667085;border-radius:9px;padding:14px;margin:12px 0;background:#fff}.item.correcta{border-left-color:#27ae60}.item.incorrecta{border-left-color:#c62828}.item h3{font-size:1rem;margin:0 0 8px 0;color:#263238}.item p{margin:5px 0}.acciones{text-align:center;margin-bottom:18px}.acciones button{background:var(--color);color:white;border:0;border-radius:24px;padding:12px 18px;font-weight:bold;cursor:pointer}@media print{body{background:white;padding:0}main{box-shadow:none;border-radius:0}.acciones{display:none}}' +
+                '</style></head><body><main>' +
+                '<div class="acciones"><button onclick="window.print()">🖨️ PDF / Imprimir</button></div>' +
+                '<h1>Corrección de actividad</h1>' +
+                '<p class="sub"><strong>Actividad:</strong> ' + escaparHTML(titulo) + '</p>' +
+                '<p class="sub"><strong>Alumno/a:</strong> ' + escaparHTML(alumno) + '</p>' +
+                '<p class="sub"><strong>Fecha:</strong> ' + escaparHTML(fecha) + '</p>' +
+                '<div class="resumen">' +
+                    '<div class="dato"><strong>' + resumen.correctas + '</strong>Correctas</div>' +
+                    '<div class="dato"><strong>' + resumen.incorrectas + '</strong>Incorrectas</div>' +
+                    '<div class="dato"><strong>' + resumen.respondidas + '/' + resumen.total + '</strong>Respondidas</div>' +
+                    '<div class="dato"><strong>' + resumen.porcentaje + '%</strong>Porcentaje</div>' +
+                '</div>' +
+                '<h2>Detalle de respuestas</h2>' + detalle +
+                '</main></body></html>';
+        }
+
+        function descargarCorreccion() {
+            if (!problemas.length) return;
+            const alumno = obtenerNombreAlumnoInforme();
+            const titulo = obtenerTituloActividadActual();
+            const html = generarHTMLCorreccion(alumno);
+            const nombreArchivo = crearSlug('correccion_' + titulo + '_' + alumno) + '.html';
+            const blob = new Blob([html], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = nombreArchivo;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        }
+
+        function imprimirCorreccion() {
+            if (!problemas.length) return;
+            const alumno = obtenerNombreAlumnoInforme();
+            const html = generarHTMLCorreccion(alumno);
+            const ventana = window.open('', '_blank');
+            if (!ventana) {
+                alert('No se pudo abrir la ventana de impresión. Revisá si el navegador bloqueó ventanas emergentes.');
+                return;
+            }
+            ventana.document.open();
+            ventana.document.write(html);
+            ventana.document.close();
+            ventana.focus();
+            setTimeout(() => ventana.print(), 350);
+        }
+
+        function renderizarResumenFinal() {
+            const contenedor = document.getElementById('bateria-container');
+            if (!contenedor) return;
+
+            const resumen = obtenerResumenResultados();
+
+            if (!informeFinalHabilitado()) {
+                contenedor.innerHTML =
+                    '<div class="problema-card resumen-final">' +
+                        '<h2>Actividad terminada</h2>' +
+                        '<p>Respondidas: <strong>' + resumen.respondidas + '/' + resumen.total + '</strong></p>' +
+                        '<p>Correctas: <strong>' + resumen.correctas + '</strong> | Incorrectas: <strong>' + resumen.incorrectas + '</strong></p>' +
+                        '<button class="btn-vista" onclick="limpiarActividad()">🧹 Limpiar y volver a empezar</button>' +
+                    '</div>';
+                return;
+            }
+
+            contenedor.innerHTML =
+                '<div class="problema-card resumen-final">' +
+                    '<h2>Actividad terminada</h2>' +
+                    '<p>Respondidas: <strong>' + resumen.respondidas + '/' + resumen.total + '</strong></p>' +
+                    '<p>Correctas: <strong>' + resumen.correctas + '</strong> | Incorrectas: <strong>' + resumen.incorrectas + '</strong> | Porcentaje: <strong>' + resumen.porcentaje + '%</strong></p>' +
+                    '<div class="bloque-informe-final">' +
+                        '<h3>Informe para enviar a la docente</h3>' +
+                        '<div class="campo-alumno-informe"><label for="nombre-alumno-informe"><strong>Nombre y apellido:</strong></label><input type="text" id="nombre-alumno-informe" placeholder="Escribí tu nombre y apellido"></div>' +
+                        '<div class="acciones-informe">' +
+                            '<button class="btn-vista btn-exportar" onclick="descargarCorreccion()">⬇️ Descargar corrección</button>' +
+                            '<button class="btn-secundario" onclick="imprimirCorreccion()">🖨️ PDF / Imprimir</button>' +
+                            '<button class="btn-secundario" onclick="alternarDetalleResultados()">Ver detalle</button>' +
+                            '<button class="btn-vista" onclick="limpiarActividad()">🔄 Hacer de nuevo</button>' +
+                        '</div>' +
+                        '<div class="detalle-resultados" id="detalle-resultados">' + generarDetalleResultadosHTML() + '</div>' +
+                    '</div>' +
+                '</div>';
+        }
+
+        
+function limpiarActividad() {
+            clearTimeout(temporizadorAvance);
+            respuestas = [];
+            indiceActual = 0;
+            opcionSeleccionada = null;
+            try { localStorage.removeItem(claveProgreso()); } catch(e) {}
+            renderizarTarjetaActual();
+        }
+
+        function crearSlug(valor) {
+            return String(valor || 'actividad_de_lengua')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-zA-Z0-9 ]/g, '')
+                .replace(/\s+/g, '_')
+                .toLowerCase() || 'actividad_de_lengua';
+        }
+
+        function escaparJSONParaScript(json) {
+            return String(json || '')
+                .replace(/</g, '\\u003c')
+                .replace(/>/g, '\\u003e')
+                .replace(/&/g, '\\u0026');
+        }
+
+        function scriptCierreSeguro(textoScript) {
+            const patron = new RegExp('</' + 'script', 'gi');
+            return String(textoScript || '').replace(patron, '<\\/script');
+        }
+
+        function unirRuta(base, archivo) {
+            base = String(base || './').trim();
+            if (!base) base = './';
+            if (!base.endsWith('/')) base += '/';
+            return base + archivo;
+        }
+
+        function exportarHTML() {
+            if (!problemas.length) {
+                procesarTexto();
+            }
+
+            if (!problemas.length) {
+                alert('Primero generá la actividad.');
+                return;
+            }
+
+            const tituloInput = document.getElementById('titulo-export');
+            const rutaInput = document.getElementById('ruta-export');
+            const autoevaluacionesCheck = document.getElementById('agregar-autoevaluaciones');
+            const rutaAutoevaluacionesInput = document.getElementById('ruta-autoevaluaciones');
+            const informeFinalInput = document.getElementById('activar-informe-final');
+            const colorInput = document.getElementById('color-export');
+            const usarOtraImagenInput = document.getElementById('usar-otra-imagen');
+            const nombreImagenInput = document.getElementById('nombre-imagen-export');
+
+            const tituloCustom = (tituloInput && tituloInput.value.trim()) ? tituloInput.value.trim() : (tituloActividadDetectado || 'Actividad de Lengua');
+            const rutaBase = (rutaInput && rutaInput.value.trim()) ? rutaInput.value.trim() : '../';
+            const agregarAutoevaluaciones = autoevaluacionesCheck ? autoevaluacionesCheck.checked : true;
+            const rutaAutoevaluaciones = (rutaAutoevaluacionesInput && rutaAutoevaluacionesInput.value.trim()) ? rutaAutoevaluacionesInput.value.trim() : 'index.html';
+            const activarInformeFinal = informeFinalInput ? informeFinalInput.checked : true;
+            const colorElegido = (colorInput && PALETAS_COLOR[colorInput.value]) ? colorInput.value : colorActividadActual;
+            const imagenElegida = (usarOtraImagenInput && usarOtraImagenInput.checked && nombreImagenInput && nombreImagenInput.value.trim()) ? normalizarNombreImagen(nombreImagenInput.value) : IMAGEN_TITULO_DEFAULT;
+
+            aplicarPaleta(colorElegido);
+            nombreImagenTitulo = imagenElegida;
+            informeFinalActivo = activarInformeFinal;
+
+            const slug = crearSlug(tituloCustom);
+            const filename = slug + '.html';
+            const cssHTML = document.getElementById('app-css').innerHTML + '\n' + cssVariablesPaleta(colorElegido);
+            const appScript = document.getElementById('app-js').textContent;
+            const datosJson = escaparJSONParaScript(JSON.stringify(problemas));
+
+            const analytics = '<scr' + 'ipt async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"><' + '/scr' + 'ipt><scr' + 'ipt>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag("js", new Date()); gtag("config", "G-VL13MMLPRV");<' + '/scr' + 'ipt>';
+            const enlaceAutoevaluaciones = agregarAutoevaluaciones ? '<a href="' + escaparHTML(rutaAutoevaluaciones) + '" style="color:#f1c40f;text-decoration:none;font-size:0.9rem;font-weight:bold;border-left:1px solid #7f8c8d;padding-left:20px;">⬅ Volver a Autoevaluaciones</a>' : '';
+            const headerSitio = '<header id="header-navegacion" style="background-color: #2c3e50; padding: 10px 0; font-family: \'Roboto\', sans-serif; width: 100%; box-sizing: border-box; flex-shrink: 0; z-index: 1000; position: sticky; top: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3);"><nav style="max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;"><a href="' + unirRuta(rutaBase, 'index.html') + '" style="text-decoration: none; display: flex; align-items: center;"><img src="' + unirRuta(rutaBase, 'logo.png') + '" alt="Recursos Educativos" style="height: 60px; width: auto; transition: transform 0.2s;"></a><div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;"><a href="' + unirRuta(rutaBase, 'lengua.html') + '" style="color: white; text-decoration: none; font-size: 0.9rem;">Lengua</a><a href="' + unirRuta(rutaBase, 'matematica.html') + '" style="color: white; text-decoration: none; font-size: 0.9rem;">Matemática</a><a href="' + unirRuta(rutaBase, 'recursos.html') + '" style="color: white; text-decoration: none; font-size: 0.9rem;">Recursos</a><a href="' + unirRuta(rutaBase, 'diseno.html') + '" style="color: white; text-decoration: none; font-size: 0.9rem;">Diseño</a>' + enlaceAutoevaluaciones + '</div></nav></header>';
+            const pieCreativeCommons = '<div id="contenedor-pie"></div><scr' + 'ipt>fetch("/pie.html").then(response => { if (response.ok) return response.text(); throw new Error("No se pudo cargar el pie de página"); }).then(data => { document.getElementById("contenedor-pie").innerHTML = data; }).catch(error => console.error("Error:", error));<\/' + 'scr' + 'ipt>';
+
+            const finalDoc =
+                '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>' + escaparHTML(tituloCustom) + '</title>' +
+                analytics +
+                '<style id="app-css">' + cssHTML + '</style></head><body>' +
+                headerSitio +
+                '<div class="container">' +
+                    '<header class="docente-header"><h1>' + escaparHTML(tituloCustom) + '</h1><p class="subtitulo">Elegí una opción y la corrección aparecerá en el momento.</p></header>' +
+                    '<div class="zona-actividad" id="zona-actividad" style="display:block"><div class="acciones-actividad"><button class="btn-vista" onclick="limpiarActividad()">🧹 Limpiar</button></div><div class="mini-resumen" id="mini-resumen"></div></div>' +
+                    '<div id="bateria-container"></div>' +
+                '</div>' +
+                '<scr' + 'ipt type="application/json" id="datos-actividad" data-slug="' + escaparHTML(slug) + '" data-titulo="' + escaparHTML(tituloCustom) + '" data-color="' + escaparHTML(colorElegido) + '" data-imagen="' + escaparHTML(imagenElegida) + '" data-informe="' + (activarInformeFinal ? '1' : '0') + '">' + datosJson + '<\/' + 'scr' + 'ipt>' +
+                '<scr' + 'ipt id="app-js">' + scriptCierreSeguro(appScript) + '<\/' + 'scr' + 'ipt>' +
+                pieCreativeCommons +
+                '</body></html>';
+
+            const blob = new Blob([finalDoc], { type: 'text/html' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+        }
+
+        function generarFormatoLimpio() {
+            if (!problemas.length) {
+                const input = document.getElementById('texto-input');
+                problemas = armarProblemasDesdeTexto(input ? input.value : '');
+            }
+
+            if (!problemas.length) return '';
+
+            const tituloInput = document.getElementById('titulo-export');
+            const titulo = tituloActividadDetectado || (tituloInput && tituloInput.value.trim()) || 'Actividad de Lengua';
+            let salida = '[ACTIVIDAD] ' + titulo + '\n\n';
+            let seccionAnterior = null;
+
+            problemas.forEach(p => {
+                if (p.seccion !== seccionAnterior) {
+                    if (p.seccion) salida += '[SECCION] ' + p.seccion + '\n\n';
+                    seccionAnterior = p.seccion;
+                }
+
+                salida += '[PREGUNTA ' + (p.numero || '') + ']\n';
+                salida += '[ENUNCIADO] ' + p.enunciado + '\n';
+                p.opciones.forEach(op => {
+                    salida += '[' + op.letra + '] ' + op.texto + '\n';
+                });
+                salida += '[CORRECTA] ' + p.correcta + '\n\n';
+            });
+
+            return salida.trim() + '\n';
+        }
+
+        function mostrarFormatoLimpio() {
+            const input = document.getElementById('texto-input');
+            if (!problemas.length && input && input.value.trim()) {
+                problemas = armarProblemasDesdeTexto(input.value);
+            }
+
+            const salida = generarFormatoLimpio();
+            if (!salida) {
+                informarEstado('No se pudo generar el formato limpio. Primero pegá un texto válido.', false);
+                return;
+            }
+
+            const zona = document.getElementById('zona-formato');
+            const output = document.getElementById('formato-limpio-output');
+            if (output) output.value = salida;
+            if (zona) zona.style.display = 'block';
+            informarEstado('Formato limpio generado.', true);
+        }
+
+        function copiarFormatoLimpio() {
+            const output = document.getElementById('formato-limpio-output');
+            if (!output || !output.value) return;
+            output.focus();
+            output.select();
+            try {
+                document.execCommand('copy');
+                informarEstado('Formato limpio copiado.', true);
+            } catch(e) {
+                informarEstado('No se pudo copiar automáticamente. Seleccioná el texto y copialo manualmente.', false);
+            }
+        }
+
+        function cerrarFormatoLimpio() {
+            const zona = document.getElementById('zona-formato');
+            if (zona) zona.style.display = 'none';
+        }
+
+        function inicializarModoExportado() {
+            const datos = document.getElementById('datos-actividad');
+            if (!datos) return false;
+
+            modoExportado = true;
+            slugActividad = datos.getAttribute('data-slug') || 'actividad_de_lengua';
+            tituloActividadDetectado = datos.getAttribute('data-titulo') || '';
+            colorActividadActual = datos.getAttribute('data-color') || 'verde';
+            nombreImagenTitulo = normalizarNombreImagen(datos.getAttribute('data-imagen') || IMAGEN_TITULO_DEFAULT);
+            informeFinalActivo = datos.getAttribute('data-informe') !== '0';
+            aplicarPaleta(colorActividadActual);
+
+            try {
+                problemas = JSON.parse(datos.textContent || '[]');
+            } catch(e) {
+                problemas = [];
+            }
+
+            const zonaControles = document.getElementById('zona-controles');
+            if (zonaControles) zonaControles.style.display = 'none';
+
+            const zonaFormato = document.getElementById('zona-formato');
+            if (zonaFormato) zonaFormato.style.display = 'none';
+
+            const btnExportar = document.getElementById('btn-exportar');
+            if (btnExportar) btnExportar.style.display = 'none';
+
+            const tituloExport = document.getElementById('titulo-export');
+            if (tituloExport) tituloExport.style.display = 'none';
+
+            const rutaExport = document.getElementById('ruta-export');
+            if (rutaExport) rutaExport.style.display = 'none';
+
+            const opcionesExportacion = document.getElementById('opciones-exportacion');
+            if (opcionesExportacion) opcionesExportacion.style.display = 'none';
+
+            const zonaActividad = document.getElementById('zona-actividad');
+            if (zonaActividad) zonaActividad.style.display = 'block';
+
+            cargarEstado();
+            renderizarTarjetaActual();
+            return true;
+        }
+
+        window.onload = function() {
+            if (inicializarModoExportado()) return;
+
+            actualizarOpcionesVisuales();
+
+            const inputArea = document.getElementById('texto-input');
+            let guardado = '';
+            try { guardado = localStorage.getItem(CLAVE_INPUT) || ''; } catch(e) {}
+
+            if (inputArea && guardado) {
+                inputArea.value = guardado;
+                problemas = armarProblemasDesdeTexto(guardado);
+                cargarEstado();
+                if (problemas.length) {
+                    const zonaActividad = document.getElementById('zona-actividad');
+                    if (zonaActividad) zonaActividad.style.display = 'block';
+                    renderizarTarjetaActual();
+                    informarEstado('Se recuperó una actividad guardada con ' + problemas.length + ' preguntas.', true);
+                }
+            }
+        };
+    </script><script id="volver-origen-js">
+(function() {
+  const btn = document.getElementById("btn-volver-origen");
+  if (!btn) return;
+
+  const fallbackHref = btn.dataset.fallbackHref || btn.getAttribute("href") || "index.html";
+  const fallbackLabel = btn.dataset.fallbackLabel || "Autoevaluaciones";
+
+  function usarFallback() {
+    btn.href = fallbackHref;
+    btn.textContent = "⬅ Volver a " + fallbackLabel;
+  }
+
+  function limpiarTitulo(titulo) {
+    titulo = String(titulo || "").replace(/\s+/g, " ").trim();
+    return titulo || fallbackLabel;
+  }
+
+  const anterior = document.referrer;
+  if (!anterior) {
+    usarFallback();
+    return;
+  }
+
+  let urlAnterior;
+  let urlActual;
+
+  try {
+    urlAnterior = new URL(anterior);
+    urlActual = new URL(window.location.href);
+  } catch(e) {
+    usarFallback();
+    return;
+  }
+
+  if (urlAnterior.origin !== urlActual.origin || urlAnterior.href === urlActual.href) {
+    usarFallback();
+    return;
+  }
+
+  btn.href = urlAnterior.pathname + urlAnterior.search + urlAnterior.hash;
+
+  fetch(urlAnterior.href, { credentials: "same-origin" })
+    .then(response => {
+      if (!response.ok) throw new Error("No se pudo leer la página anterior");
+      return response.text();
+    })
+    .then(html => {
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const titleNode = doc.querySelector("title");
+      const titulo = limpiarTitulo(titleNode ? titleNode.textContent : "");
+      btn.textContent = "⬅ Volver a " + titulo;
+    })
+    .catch(() => {
+      btn.textContent = "⬅ Volver a " + fallbackLabel;
+    });
+})();
+</script><div id="contenedor-pie"></div><script>fetch("/pie.html").then(response => { if (response.ok) return response.text(); throw new Error("No se pudo cargar el pie de página"); }).then(data => { document.getElementById("contenedor-pie").innerHTML = data; }).catch(error => console.error("Error:", error));</script><script src="/volver.js" defer></script>
+</body></html>

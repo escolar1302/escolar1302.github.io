@@ -1,0 +1,109 @@
+{
+  "id": "loro-pelado-ejemplo",
+  "titulo": "Rosco de El loro pelado",
+  "area": "Lengua",
+  "grado": "4°",
+  "descripcion": "Rosco sobre personajes, objetos, acciones y vocabulario del cuento.",
+  "instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+  "modoRosco": "seleccionado",
+  "consignas": [
+    {
+      "letra": "A",
+      "modo": "empieza",
+      "pregunta": "Acción del tigre cuando se lanza contra Pedrito.",
+      "respuestas": ["ataque", "atacar"],
+      "ayuda": "Empieza con A."
+    },
+    {
+      "letra": "C",
+      "modo": "empieza",
+      "pregunta": "Lugar de la casa donde Pedrito se mira en un espejo al volver.",
+      "respuestas": ["cocina", "cocinas"],
+      "ayuda": "Empieza con C."
+    },
+    {
+      "letra": "E",
+      "modo": "empieza",
+      "pregunta": "Objeto donde Pedrito se mira después de volver herido.",
+      "respuestas": ["espejo", "espejos"],
+      "ayuda": "Empieza con E."
+    },
+    {
+      "letra": "F",
+      "modo": "empieza",
+      "pregunta": "Grupo de personas de la casa con el que vive Pedrito.",
+      "respuestas": ["familia", "familias"],
+      "ayuda": "Empieza con F."
+    },
+    {
+      "letra": "H",
+      "modo": "empieza",
+      "pregunta": "Así vuelve Pedrito después del encuentro con el tigre.",
+      "respuestas": ["herido", "herida"],
+      "ayuda": "Empieza con H."
+    },
+    {
+      "letra": "L",
+      "modo": "empieza",
+      "pregunta": "Animal protagonista del cuento.",
+      "respuestas": ["loro", "loros"],
+      "ayuda": "Empieza con L."
+    },
+    {
+      "letra": "M",
+      "modo": "empieza",
+      "pregunta": "Grano que forma parte de la comida que recibe Pedrito.",
+      "respuestas": ["maíz", "maiz"],
+      "ayuda": "Empieza con M."
+    },
+    {
+      "letra": "N",
+      "modo": "empieza",
+      "pregunta": "Fruta que aparece entre las comidas que le gustan al loro.",
+      "respuestas": ["naranja", "naranjas"],
+      "ayuda": "Empieza con N."
+    },
+    {
+      "letra": "P",
+      "modo": "empieza",
+      "pregunta": "Nombre del loro protagonista.",
+      "respuestas": ["pedrito"],
+      "ayuda": "Empieza con P."
+    },
+    {
+      "letra": "Q",
+      "modo": "empieza",
+      "pregunta": "Apellido del autor del cuento.",
+      "respuestas": ["quiroga"],
+      "ayuda": "Empieza con Q."
+    },
+    {
+      "letra": "R",
+      "modo": "empieza",
+      "pregunta": "Palabra que describe cómo queda la cola de Pedrito: muy corta o casi sin cola.",
+      "respuestas": ["rabón", "rabon"],
+      "ayuda": "Empieza con R."
+    },
+    {
+      "letra": "T",
+      "modo": "empieza",
+      "pregunta": "Animal que ataca al loro.",
+      "respuestas": ["tigre", "tigres"],
+      "ayuda": "Empieza con T."
+    },
+    {
+      "letra": "V",
+      "modo": "empieza",
+      "pregunta": "Acción que realiza Pedrito cuando regresa a la casa después del ataque.",
+      "respuestas": ["volver", "vuelve", "volvió", "volvio"],
+      "ayuda": "Empieza con V."
+    },
+    {
+      "letra": "Z",
+      "modo": "contiene",
+      "pregunta": "Persona que sale con una escopeta para enfrentar al tigre.",
+      "respuestas": ["cazador", "cazadores"],
+      "ayuda": "Contiene Z."
+    }
+  ]
+}

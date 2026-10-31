@@ -1,0 +1,117 @@
+/* Estilos Base */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #dbe9d8;
+  /* El layout del body ya se maneja en el HTML para compatibilidad con la barra */
+}
+
+.container {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 95%; /* Para que no se salga en celular */
+  margin-bottom: 20px;
+}
+
+h1 { margin-top: 0; font-size: 1.5rem; color: #2c3e50; }
+
+/* Área del juego (donde están las cartas grandes) */
+.suma {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0e9df;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  gap: 10px; /* Espacio entre elementos */
+  flex-wrap: wrap; /* Permite que baje si no entra */
+}
+
+/* Imágenes grandes del juego */
+.carta-fija img, 
+#segundoNumero img {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+
+/* El recuadro vacío donde se suelta */
+#segundoNumero {
+  width: 104px;   /* Un poco más grande que la carta */
+  height: 155px;  /* Altura proporcional */
+  border: 2px dashed #888;
+  border-radius: 8px;
+  background-color: rgba(255,255,255,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Botonera */
+button {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 15px 0;
+}
+button:hover { background-color: #2ecc71; }
+
+.hidden { display: none; }
+#mensaje { margin: 10px 0; color: #c0392b; font-weight: bold; }
+
+/* --- CARTAS PARA ARRASTRAR (RESPONSIVE) --- */
+.cartas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cartas img {
+  width: 80px; /* Tamaño normal PC */
+  height: auto;
+  cursor: grab;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.cartas img:hover { transform: scale(1.05); }
+
+/* --- AJUSTES PARA CELULARES --- */
+@media (max-width: 600px) {
+    /* Achicamos las cartas de abajo para que entren */
+    .cartas img {
+        width: 55px; 
+    }
+    
+    /* Achicamos las cartas del juego principal */
+    .carta-fija img, 
+    #segundoNumero img {
+        width: 70px; 
+    }
+    
+    #segundoNumero {
+        width: 74px;
+        height: 110px;
+    }
+
+    .signo { font-size: 1.5rem; }
+    
+    .container { padding: 10px; }
+}

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemática 3°</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        :root {
+            /* =========================================================== */
+            /* >>> CAMBIA EL COLOR AQUÍ PARA OTROS CICLOS <<< */
+            /* Verde Segundo Ciclo: #27ae60 */
+            /* Naranja Primer Ciclo: #e67e22 */
+            /* =========================================================== */
+            
+            --primary-color: #e67e22; 
+
+            /* El resto de colores se calculan solos o son neutros */
+            --header-bg: #f4f6f7;
+            --selected-bg: #e8f8f5; 
+            --selected-border: var(--primary-color);
+            --text-color: #333;
+        }
+
+        /* Bloqueo de estilos intrusos de Word */
+        body {
+            font-family: 'Roboto', sans-serif !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            padding-bottom: 100px !important;
+            background-color: #f9f9f9 !important;
+            color: var(--text-color) !important;
+            width: 100% !important;
+            max-width: none !important;
+            box-sizing: border-box !important;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN FIJA --- */
+        header {
+            background-color: #2c3e50 !important;
+            padding: 10px 0 !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1000 !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+            width: 100% !important;
+            display: block !important;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        h1 { text-align: center; color: #2c3e50; margin: 30px 0; }
+
+        /* --- ACORDEÓN --- */
+        .accordion {
+            background-color: var(--header-bg);
+            color: #2c3e50;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.4s;
+            margin-bottom: 5px;
+            border-left: 6px solid var(--primary-color);
+            display: flex; justify-content: space-between; align-items: center;
+            box-sizing: border-box;
+        }
+        .active, .accordion:hover { background-color: #e2e6ea; } /* Gris suave al pasar mouse */
+        
+        /* Icono (+) que cambia a (-) */
+        .accordion:after { content: '\002B'; color: var(--primary-color); font-weight: bold; font-size: 1.5rem; }
+        .active:after { content: "\2212"; }
+
+        /* --- PANEL DE CONTENIDO --- */
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Grilla 50% / 50% */
+        .grid-container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px 0;
+        }
+
+        .col-header {
+            font-weight: bold; text-align: center; color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; 
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
+        }
+
+        .content-cell {
+            padding: 15px; background-color: #fff; border: 1px solid #ddd;
+            border-radius: 5px; cursor: pointer; font-size: 0.95rem;
+        }
+        .content-cell:hover { border-color: var(--primary-color); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        
+        /* Estado Seleccionado */
+        .content-cell.selected {
+            background-color: var(--selected-bg); 
+            border: 2px solid var(--selected-border); 
+            position: relative;
+        }
+        .content-cell.selected::after {
+            content: "✔"; position: absolute; top: 5px; right: 5px; 
+            color: var(--selected-border); font-weight: bold;
+        }
+
+        /* Limpieza de estilos basura */
+        .content-cell p { margin-bottom: 8px; }
+        .content-cell ul { padding-left: 20px; margin: 0; }
+        .content-cell span { background-color: transparent !important; color: inherit !important; font-family: inherit !important; font-size: inherit !important; }
+
+        #raw-import { display: none; }
+
+        .fab {
+            position: fixed; bottom: 30px; right: 30px;
+            background-color: var(--primary-color); color: white;
+            width: 70px; height: 70px; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer;
+            font-size: 30px; border: none; z-index: 2000; transition: transform 0.2s;
+        }
+        .fab:hover { transform: scale(1.1); }
+
+        #toast {
+            visibility: hidden; min-width: 250px; margin-left: -125px;
+            background-color: #333; color: #fff; text-align: center;
+            border-radius: 50px; padding: 16px; position: fixed;
+            z-index: 3000; left: 50%; bottom: 30px;
+        }
+        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        @media print {
+            header, .fab { display: none !important; }
+            .accordion { border: none; padding: 0; border-bottom: 2px solid #000; }
+            .panel { max-height: none !important; display: block !important; margin-bottom: 30px; }
+            body { max-width: 100% !important; margin: 0 !important; }
+            .grid-container { page-break-inside: avoid; }
+        }
+        
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <h1>Contenidos Matemática 3°</h1>
+
+    <div id="accordion-container"></div>
+
+    <div id="raw-import">
+<html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">ol{margin:0;padding:0}table td,table th{padding:0}.c0{border-right-style:solid;padding-top:0pt;border-top-width:0pt;border-right-width:0pt;padding-left:0pt;padding-bottom:0pt;line-height:1.15;border-left-width:0pt;border-top-style:solid;border-left-style:solid;border-bottom-width:0pt;border-bottom-style:solid;orphans:2;widows:2;text-align:left;padding-right:0pt}.c6{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:204.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c8{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:237pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c16{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:189pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c14{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:190.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c11{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:265.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c12{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;background-color:#efefef;border-left-style:solid;border-bottom-width:1pt;width:252.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c26{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:190.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c38{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:441pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c32{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:176.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c25{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:252.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c24{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:441.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c20{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:158.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c39{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:237pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c15{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:282.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c30{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:251.2pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c23{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:265.5pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c33{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:189pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c36{border-right-style:solid;padding:6pt 9pt 6pt 9pt;border-bottom-color:#1f1f1f;border-top-width:1pt;border-right-width:1pt;border-left-color:#1f1f1f;vertical-align:top;border-right-color:#1f1f1f;border-left-width:1pt;border-top-style:solid;border-left-style:solid;border-bottom-width:1pt;width:204.8pt;border-top-color:#1f1f1f;border-bottom-style:solid}.c19{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c2{color:#1f1f1f;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c3{color:#000000;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:13pt;font-family:"Arial";font-style:normal}.c1{color:#1f1f1f;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c5{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c27{padding-top:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:left}.c18{text-decoration:none;vertical-align:baseline;font-size:14pt;font-family:"Arial";font-style:normal}.c9{border-spacing:0;border-collapse:collapse;margin-right:auto}.c4{color:#000000;font-size:13pt;font-weight:700}.c29{background-color:#ffffff;max-width:538.6pt;padding:28.3pt 28.3pt 28.3pt 28.3pt}.c13{color:#1f1f1f;font-weight:700}.c37{height:827.2pt}.c22{height:758.2pt}.c31{height:1296.8pt}.c34{height:551.2pt}.c35{height:634.5pt}.c41{height:454.5pt}.c28{height:813.8pt}.c17{height:675.8pt}.c40{height:703.5pt}.c10{height:40.5pt}.c7{height:11pt}.c21{background-color:#efefef}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style></head><body class="c29 doc-content"><p class="c5 c7"><span class="c19"></span></p><table class="c9"><tr class="c10"><td class="c24 c21" colspan="2" rowspan="1"><h3 class="c5" id="h.sf2z3ryew1g"><span class="c4">Eje: N&uacute;meros y operaciones: N&uacute;meros naturales y sistema de numeraci&oacute;n</span></h3></td></tr><tr class="c10"><td class="c14" colspan="1" rowspan="1"><p class="c5"><span class="c13">Indicadores de logro</span></p></td><td class="c30 c21" colspan="1" rowspan="1"><p class="c5"><span class="c13">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c28"><td class="c26" colspan="1" rowspan="1"><p class="c0"><span class="c1">Lee y escribe n&uacute;meros de tres y cuatro cifras a partir de la relaci&oacute;n entre la representaci&oacute;n oral y la representaci&oacute;n escrita en distintos soportes y formatos, tanto anal&oacute;gicos como digitales.</span></p><p class="c0"><span class="c1">Ordena n&uacute;meros de tres y de cuatro cifras.</span></p><p class="c0"><span class="c1">Compara n&uacute;meros de tres y de cuatro cifras, y establece relaciones de mayor/ menor/igual.</span></p><p class="c0"><span class="c1">Utiliza las regularidades del sistema de numeraci&oacute;n en escalas ascendentes y descendentes de 100 en 100, de 200 en 200, de 500 en 500 y de 1.000 en 1.000.</span></p><p class="c0"><span class="c1">Aplica las relaciones entre n&uacute;meros dentro del intervalo de dominio, como diez m&aacute;s/menos, cien m&aacute;s/menos, mil m&aacute;s/menos, doble/triple/mitad de.</span></p><p class="c0"><span class="c1">Identifica las regularidades de la serie num&eacute;rica, tanto oral como escrita, hasta aproximadamente 10.000, y explora regularidades que superan este intervalo num&eacute;rico.</span></p><p class="c0"><span class="c1">Identifica la relaci&oacute;n entre el valor de una cifra y su posici&oacute;n en n&uacute;meros con diferentes cantidades de cifras.</span></p><p class="c0"><span class="c1">Realiza diversas combinaciones de monedas y billetes para obtener el mismo valor.</span></p><p class="c0"><span class="c1">Transforma las cifras de un n&uacute;mero utilizando la calculadora.</span></p></td><td class="c30" colspan="1" rowspan="1"><p class="c0"><span class="c1">N&uacute;meros en contextos diversos. Regularidades de la serie num&eacute;rica</span></p><p class="c0"><span class="c1">Lectura, escritura y orden convencional de la serie num&eacute;rica (hasta 10.000, aproximadamente).</span></p><p class="c0"><span class="c1">Regularidades en la serie num&eacute;rica oral y escrita de n&uacute;meros de igual o diferente cantidad de cifras en el intervalo num&eacute;rico de dominio.</span></p><p class="c0"><span class="c1">Problemas que involucren las relaciones entre los n&uacute;meros del intervalo de dominio: uno m&aacute;s que, uno menos que, entre, diez m&aacute;s que, diez menos que, cien m&aacute;s que, cien menos que, el doble de, mitad de.</span></p><p class="c0"><span class="c1">Relaciones num&eacute;ricas dentro del intervalo num&eacute;rico de dominio: estar entre, diez m&aacute;s que, diez menos que, cien m&aacute;s que, cien menos que, mil m&aacute;s que, mil menos que, el doble de, el triple de, la mitad de.</span></p><p class="c0"><span class="c1">&lt;Ubicaci&oacute;n de n&uacute;meros naturales en la recta num&eacute;rica.&gt;</span></p><p class="c0"><span class="c1">&lt;Regularidades en la serie num&eacute;rica oral y escrita de n&uacute;meros de igual o diferente cantidad de cifras que superen el intervalo de dominio.&gt;</span></p><p class="c0"><span class="c1">Valor posicional en la numeraci&oacute;n escrita</span></p><p class="c0"><span class="c1">Valor posicional de las cifras: unos, dieces, cienes, miles.</span></p><p class="c0"><span class="c1">Composici&oacute;n aditiva de n&uacute;meros de hasta cuatro cifras en contextos de juegos de puntaje, dinero o calculadora.</span></p><p class="c0"><span class="c1">&lt;Composici&oacute;n aditiva y multiplicativa de n&uacute;meros de hasta cuatro cifras en contextos de juegos de puntaje, dinero o calculadora.&gt;</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c5 c7"><span class="c19"></span></p><p class="c5 c7"><span class="c19"></span></p><table class="c9"><tr class="c10"><td class="c21 c38" colspan="2" rowspan="1"><h3 class="c5" id="h.tju9yactzez9"><span class="c4">Eje: N&uacute;meros y operaciones: Operaciones con n&uacute;meros naturales</span></h3></td></tr><tr class="c10"><td class="c20 c21" colspan="1" rowspan="1"><p class="c5"><span class="c13">Indicadores de logro</span></p></td><td class="c15 c21" colspan="1" rowspan="1"><p class="c5"><span class="c13">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c22"><td class="c20" colspan="1" rowspan="1"><p class="c0"><span class="c1">Utiliza repertorios de c&aacute;lculos de suma y resta, as&iacute; como las propiedades del sistema de numeraci&oacute;n y de las operaciones para resolver c&aacute;lculos mentales exactos y aproximados.</span></p><p class="c0"><span class="c1">Resuelve sumas y restas escribiendo c&aacute;lculos parciales intermedios, anotando marcas para indicar agrupamientos o utilizando algoritmos.</span></p><p class="c0"><span class="c1">Usa estrategias de c&aacute;lculo de suma y resta adecuadas a la situaci&oacute;n a resolver y a los n&uacute;meros involucrados.</span></p><p class="c0"><span class="c1">Resuelve c&aacute;lculos mentales exactos y aproximados a partir de c&aacute;lculos conocidos y de las propiedades de los n&uacute;meros y las operaciones.</span></p><p class="c0"><span class="c1">Realiza sumas y restas en el contexto del dinero.</span></p><p class="c0"><span class="c1">Usa la calculadora para resolver operaciones de suma y resta y para verificar resultados.</span></p></td><td class="c15" colspan="1" rowspan="1"><p class="c0"><span class="c1">Distintos tipos de c&aacute;lculos para la suma y la resta</span></p><p class="c0"><span class="c1">Repertorio de resultados num&eacute;ricos relativos a la suma y la resta.</span></p><p class="c0"><span class="c13">Repertorio para la suma</span><span class="c1">:</span></p><p class="c0"><span class="c1">Sumas que dan 1.000 y 10.000 (a partir de las sumas que dan 10 y 100).</span></p><p class="c0"><span class="c1">Sumas de n&uacute;meros redondos (hasta cuatro cifras).</span></p><p class="c0"><span class="c1">Un n&uacute;mero m&aacute;s 1, m&aacute;s 10, m&aacute;s 100, m&aacute;s 1.000.</span></p><p class="c0"><span class="c1">Sumas de miles m&aacute;s cienes, m&aacute;s dieces y m&aacute;s d&iacute;gitos.</span></p><p class="c0"><span class="c13">Repertorio para la resta</span><span class="c1">:</span></p><p class="c0"><span class="c1">Un n&uacute;mero menos 1, menos 10, menos 100 y menos 1.000.</span></p><p class="c0"><span class="c1">Resta de n&uacute;meros redondos (hasta cuatro cifras).</span></p><p class="c0"><span class="c1">Restas de 10, de 100 y de 1.000 menos un n&uacute;mero.</span></p><p class="c0"><span class="c1">Estrategias de c&aacute;lculo adecuadas a las diversas situaciones de suma y resta.</span></p><p class="c0"><span class="c1">C&aacute;lculo mental exacto y aproximado a trav&eacute;s de repertorios y propiedades del sistema de numeraci&oacute;n y de las operaciones.</span></p><p class="c0"><span class="c1">La calculadora anal&oacute;gica y/o digital como recurso para el c&aacute;lculo, resolver problemas y verificar resultados.</span></p><p class="c0"><span class="c1">Algoritmos convencionales de suma y resta.</span></p><p class="c0"><span class="c1">Uso de c&aacute;lculos de suma y resta para la anticipaci&oacute;n, estimaci&oacute;n y resoluci&oacute;n de problemas de pensamiento computacional. (En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p></td></tr><tr class="c35"><td class="c20" colspan="1" rowspan="1"><p class="c0"><span class="c1">Resuelve problemas de sumas y restas donde se apliquen los pilares del pensamiento computacional.</span></p><p class="c0"><span class="c1">Resuelve problemas aditivos de diferentes significados, incluyendo la transformaci&oacute;n positiva o negativa de una cantidad con inc&oacute;gnita en el estado inicial, as&iacute; como la comparaci&oacute;n de cantidades donde una de ellas es desconocida.</span></p><p class="c0"><span class="c1">Formula problemas de suma y resta, utilizando situaciones cotidianas y diferentes formas de representaci&oacute;n, como dibujos, enunciados y tablas.</span></p><p class="c0"><span class="c1">Identifica los datos, las relaciones entre los datos y las inc&oacute;gnitas y las relaciones entre las inc&oacute;gnitas y los c&aacute;lculos necesarios para resolver problemas aditivos presentados en diversos formatos y soportes, tanto anal&oacute;gicos como digitales.</span></p><p class="c0"><span class="c1">Registra situaciones cotidianas de compra y venta utilizando expresiones matem&aacute;ticas.</span></p></td><td class="c15" colspan="1" rowspan="1"><p class="c0"><span class="c1">Diversos tipos de problemas que involucran la suma y la resta</span></p><p class="c0"><span class="c1">Problemas aditivos de nuevos significados:</span></p><p class="c0"><span class="c1">Transformaci&oacute;n positiva o negativa de una cantidad con inc&oacute;gnita en el estado inicial.</span></p><p class="c0"><span class="c1">Comparaci&oacute;n de cantidades con inc&oacute;gnita en una de las cantidades.</span></p><p class="c0"><span class="c1">Tratamiento de la informaci&oacute;n en problemas aditivos y presentada en formatos y soportes diversos (im&aacute;genes, enunciados, cuadros de doble entrada, listas): reconocimiento de datos necesarios o innecesarios para responder a una pregunta, elaboraci&oacute;n de preguntas que puedan responderse a partir de la informaci&oacute;n que brinda el enunciado, an&aacute;lisis de situaciones que admitan una, ninguna o muchas soluciones, establecer relaciones entre la pregunta de un problema y los c&aacute;lculos que pueden realizarse para responder.</span></p><p class="c0"><span class="c1">&lt;Tratamiento de la informaci&oacute;n en problemas aditivos y presentada en formatos y soportes diversos (im&aacute;genes, enunciados, cuadros de doble entrada, listas): elaboraci&oacute;n del enunciado de un problema a partir de una serie de datos o c&aacute;lculos.&gt;</span></p><p class="c0"><span class="c1">&lt;Resoluci&oacute;n de problemas de suma y resta que involucran varios c&aacute;lculos.&gt;</span></p></td></tr><tr class="c34"><td class="c20" colspan="1" rowspan="1"><p class="c0"><span class="c1">Resuelve problemas que involucran series proporcionales y organizaciones rectangulares.</span></p><p class="c0"><span class="c1">Distingue entre situaciones de suma y de multiplicaci&oacute;n donde un n&uacute;mero indica cu&aacute;ntas veces se repite el otro.</span></p><p class="c0"><span class="c1">Resuelve problemas de divisi&oacute;n con diversos procedimientos: dibujos, restas reiteradas, multiplicaciones apoy&aacute;ndose en la tabla pitag&oacute;rica.</span></p><p class="c0"><span class="c1">Participa de intercambios de discusi&oacute;n colectiva para la resoluci&oacute;n de problemas, respetando las distintas opiniones y promoviendo la igualdad entre los g&eacute;neros.</span></p><p class="c0"><span class="c1">Utiliza el c&aacute;lculo en la resoluci&oacute;n de problemas mediados por las tecnolog&iacute;as, donde se apliquen los pilares del pensamiento computacional.</span></p></td><td class="c15" colspan="1" rowspan="1"><p class="c0"><span class="c1">Diversos tipos de problemas que involucran la multiplicaci&oacute;n y la divisi&oacute;n</span></p><p class="c0"><span class="c1">Problemas que involucran sumas y multiplicaciones: semejanzas y diferencias.</span></p><p class="c0"><span class="c1">Problemas de multiplicaci&oacute;n en diferentes contextos: proporcionalidad y organizaciones rectangulares.</span></p><p class="c0"><span class="c1">Problemas de reparto equitativo y no equitativo y partici&oacute;n, series proporcionales.</span></p><p class="c0"><span class="c1">&lt;Problemas de divisi&oacute;n en el contexto de las organizaciones rectangulares.&gt;</span></p><p class="c0"><span class="c1">Problemas de multiplicaci&oacute;n y divisi&oacute;n: estrategias diversas de representaci&oacute;n y determinaci&oacute;n de resultados apoy&aacute;ndose en la tabla pitag&oacute;rica.</span></p><p class="c0"><span class="c1">Intercambio de ideas durante la resoluci&oacute;n de problemas, considerando opiniones de pares y personas adultas, teniendo en cuenta la igualdad entre los g&eacute;neros y la diversidad de formas de comunicarse, incluyendo la lengua de se&ntilde;as, el braille y la comunicaci&oacute;n aumentativa alternativa (considerando el enfoque de educaci&oacute;n inclusiva). (En articulaci&oacute;n con Educaci&oacute;n Sexual Integral).</span></p></td></tr><tr class="c31"><td class="c20" colspan="1" rowspan="1"><p class="c0"><span class="c1">Completa tablas proporcionales usando diferentes estrategias, tanto en soportes anal&oacute;gicos como digitales. Analiza las relaciones entre los productos de la tabla pitag&oacute;rica.</span></p><p class="c0"><span class="c1">Memoriza los productos de la tabla pitag&oacute;rica para disponer de repertorios multiplicativos.</span></p><p class="c0"><span class="c1">Utiliza resultados de una multiplicaci&oacute;n disponible para resolver otra cercana, completando el procedimiento con una suma o una resta.</span></p><p class="c0"><span class="c1">Multiplica mentalmente n&uacute;meros de una cifra por 10, por 100 y por 1.000.</span></p><p class="c0"><span class="c1">Utiliza resultados de una multiplicaci&oacute;n disponible para resolver multiplicaciones de n&uacute;meros redondos.</span></p><p class="c0"><span class="c1">Resuelve divisiones con resto 0 o diferente de 0 utilizando resultados memorizados o recurriendo a la tabla pitag&oacute;rica.</span></p><p class="c0"><span class="c1">Utiliza el c&aacute;lculo aproximado para resolver algunas multiplicaciones.</span></p><p class="c0"><span class="c1">Resuelve c&aacute;lculos a partir de la relaci&oacute;n entre la multiplicaci&oacute;n y la divisi&oacute;n. Utiliza las multiplicaciones disponibles para resolver divisiones.</span></p><p class="c0"><span class="c1">Selecciona la estrategia de c&aacute;lculo m&aacute;s adecuada seg&uacute;n los n&uacute;meros involucrados: repertorio de c&aacute;lculos memorizados, calculadora, descomposici&oacute;n, algoritmo tradicional y c&aacute;lculos estimativos, entre otros.</span></p><p class="c0"><span class="c1">Identifica la divisi&oacute;n como la operaci&oacute;n que permite hallar el factor desconocido en una multiplicaci&oacute;n.</span></p><p class="c0"><span class="c1">Utiliza c&aacute;lculos y escrituras intermedias para multiplicar n&uacute;meros que no est&aacute;n en la tabla pitag&oacute;rica por una cifra.</span></p><p class="c0"><span class="c1">Divide n&uacute;meros que no est&aacute;n en la tabla pitag&oacute;rica por una cifra utilizando sumas o restas sucesivas, aproximaciones mediante productos y uso de resultados multiplicativos en combinaci&oacute;n con restas.</span></p></td><td class="c15" colspan="1" rowspan="1"><p class="c0"><span class="c1">Distintos tipos de c&aacute;lculos para la multiplicaci&oacute;n y la divisi&oacute;n</span></p><p class="c0"><span class="c1">Tablas proporcionales y relaciones multiplicativas.</span></p><p class="c0"><span class="c1">Relaciones multiplicativas: construcci&oacute;n de la tabla pitag&oacute;rica.</span></p><p class="c0"><span class="c1">C&aacute;lculo mental: uso de estrategias para resolver multiplicaciones y divisiones.</span></p><p class="c0"><span class="c1">Repertorio multiplicativo: multiplicaci&oacute;n por 10, 100 y 1.000.</span></p><p class="c0"><span class="c1">&lt;Repertorio multiplicativo a partir de las relaciones entre productos de la tabla pitag&oacute;rica.</span></p><p class="c0"><span class="c1">&lt;Repertorios de c&aacute;lculos multiplicativos del intervalo num&eacute;rico de uso y extendido. &gt;</span></p><p class="c0"><span class="c1">Divisi&oacute;n y multiplicaci&oacute;n: relaciones en la tabla pitag&oacute;rica.</span></p><p class="c0"><span class="c1">Algoritmos intermedios de la multiplicaci&oacute;n por una cifra.</span></p><p class="c0"><span class="c1">Algoritmo de la multiplicaci&oacute;n por una cifra.</span></p><p class="c0"><span class="c1">Algoritmo de la multiplicaci&oacute;n por dos cifras o m&aacute;s: an&aacute;lisis, utilizaci&oacute;n y comparaci&oacute;n con otras estrategias de c&aacute;lculo.&gt;</span></p><p class="c0"><span class="c1">Estrategias de c&aacute;lculo para resolver divisiones: sumas o restas sucesivas, aproximaciones mediante productos y uso de resultados multiplicativos en combinaci&oacute;n con restas.</span></p><p class="c0"><span class="c1">Multiplicaci&oacute;n: c&aacute;lculo exacto y aproximado.</span></p><p class="c0"><span class="c1">Calculadora y recursos digitales para la resoluci&oacute;n de problemas y verificaci&oacute;n de resultados. (En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c5 c7"><span class="c19"></span></p><p class="c5 c7"><span class="c19"></span></p><table class="c9"><tr class="c10"><td class="c24 c21" colspan="2" rowspan="1"><h3 class="c5" id="h.ami4kpl6w46"><span class="c4">Eje: Espacio, formas y medida: Espacio</span></h3></td></tr><tr class="c10"><td class="c6" colspan="1" rowspan="1"><p class="c5"><span class="c13">Indicadores de logro</span></p></td><td class="c8" colspan="1" rowspan="1"><p class="c5"><span class="c13">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c17"><td class="c36" colspan="1" rowspan="1"><p class="c0"><span class="c1">Resuelve problemas que requieran interpretar y comunicar la ubicaci&oacute;n de personas y objetos, por medio de dibujos, gr&aacute;ficos, instrucciones orales o escritas, dispositivos y/o entornos de programaci&oacute;n, considerando las relaciones entre los objetos y personas entre s&iacute;, con el entorno y desde el propio punto de vista.</span></p><p class="c0"><span class="c1">Resuelve problemas que requieran interpretar y comunicar desplazamientos y trayectos, por medio de dibujos, gr&aacute;ficos, instrucciones orales o escritas, considerando los objetos del entorno como puntos de referencia.</span></p><p class="c0"><span class="c1">Representa gr&aacute;ficamente espacios de acuerdo con posiciones relativas de objetos y personas, puntos de referencia y puntos de vista y c&oacute;digos en soportes anal&oacute;gicos y digitales.</span></p><p class="c0"><span class="c1">Analiza representaciones planas de espacios desconocidos con referencias y c&oacute;digos.</span></p><p class="c0"><span class="c1">Dibuja representaciones planas de espacios conocidos (aula, patio, casa) con progresiva precisi&oacute;n respecto de puntos de vista y posiciones relativas, tanto en soportes anal&oacute;gicos como digitales.</span></p><p class="c0"><span class="c1">Ubica elementos en una cuadr&iacute;cula, considerando referencias y la relaci&oacute;n que se establece entre s&iacute;.</span></p></td><td class="c39" colspan="1" rowspan="1"><p class="c0"><span class="c1">Orientaci&oacute;n y localizaci&oacute;n en el espacio</span></p><p class="c0"><span class="c1">Las orientaciones y las posiciones relativas del objeto respecto del sujeto o de otro objeto: las relaciones de los objetos y personas entre s&iacute;, de los objetos y personas con el entorno y de los objetos y personas con el propio punto de vista.</span></p><p class="c0"><span class="c1">Desplazamientos y trayectos considerando los objetos del entorno como puntos de referencia a partir de la programaci&oacute;n de dispositivos y/o en simulaciones disponibles en entornos digitales. (En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p><p class="c0"><span class="c1">Construcci&oacute;n de planos en soportes digitales. (En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p><p class="c0"><span class="c1">Orientaci&oacute;n en una cuadr&iacute;cula estableciendo relaciones entre sus casilleros o nudos como referencias y el uso de vocabulario espec&iacute;fico.</span></p><p class="c0"><span class="c1">&lt;Planos de espacios conocidos y no conocidos: referencias y representaciones desde diferentes puntos de vista.&gt;</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c5 c7"><span class="c19"></span></p><p class="c5 c7"><span class="c19"></span></p><table class="c9"><tr class="c10"><td class="c21 c24" colspan="2" rowspan="1"><h3 class="c5" id="h.tzvfj9cuevy4"><span class="c3">Eje: Espacio, formas y medida: Figuras y cuerpos geom&eacute;tricos</span></h3></td></tr><tr class="c10"><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c13">Indicadores de logro</span></p></td><td class="c12" colspan="1" rowspan="1"><p class="c5"><span class="c13">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c40"><td class="c33" colspan="1" rowspan="1"><p class="c0"><span class="c1">Describe algunas caracter&iacute;sticas y elementos de las figuras geom&eacute;tricas.</span></p><p class="c0"><span class="c1">Utiliza el vocabulario espec&iacute;fico para describir figuras geom&eacute;tricas.</span></p><p class="c0"><span class="c1">Reproduce formas geom&eacute;tricas compuestas por cuadrados y rect&aacute;ngulos utilizando hojas cuadriculadas y regla.</span></p><p class="c0"><span class="c1">Reproduce figuras de hoja cuadriculada a hoja cuadriculada y/o de hoja lisa a hoja cuadriculada a partir de la identificaci&oacute;n de sus elementos y caracter&iacute;sticas, utilizando regla graduada.</span></p><p class="c0"><span class="c1">Construye figuras, con graficadores digitales, a partir de la identificaci&oacute;n de sus caracter&iacute;sticas y elementos.</span></p><p class="c0"><span class="c1">Elabora mensajes que involucran las caracter&iacute;sticas de figuras geom&eacute;tricas para que otro las reproduzca.</span></p></td><td class="c25" colspan="1" rowspan="1"><p class="c0"><span class="c2">Figuras geom&eacute;tricas</span></p><p class="c0"><span class="c1">Figuras geom&eacute;tricas: tri&aacute;ngulo, cuadrado, rect&aacute;ngulo, c&iacute;rculo, rombo y paralelogramo. Similitudes y diferencias.</span></p><p class="c0"><span class="c1">Elementos y caracter&iacute;sticas de las figuras: cantidad de v&eacute;rtices y lados, diagonales, igualdad o no de lados.</span></p><p class="c0"><span class="c1">&lt;Elementos y caracter&iacute;sticas de las figuras: paralelismo y perpendicularidad de los lados.&gt;</span></p><p class="c0"><span class="c1">&lt;Semejanzas o diferencias entre figuras: an&aacute;lisis de sus elementos.&gt;</span></p><p class="c0"><span class="c1">Vocabulario geom&eacute;trico: descripci&oacute;n de figuras geom&eacute;tricas.</span></p><p class="c0"><span class="c1">Copia de figuras: de hoja cuadriculada a hoja cuadriculada, de hoja lisa a hoja cuadriculada.</span></p><p class="c0"><span class="c1">&lt;Copia de figuras: de hoja cuadriculada a hoja lisa.&gt;</span></p><p class="c0"><span class="c1">Relaciones entre figuras geom&eacute;tricas: composici&oacute;n de un cuadrado o rect&aacute;ngulo mediante la utilizaci&oacute;n de diferentes tri&aacute;ngulos, ya sea por plegado o cubrimiento de las figuras.</span></p><p class="c0"><span class="c1">&lt;Relaciones entre figuras geom&eacute;tricas: composici&oacute;n a partir de cubrir una figura con otra una cantidad entera de veces.&gt;</span></p><p class="c0"><span class="c1">Construcci&oacute;n de figuras utilizando soportes anal&oacute;gicos y digitales e instrumentos de geometr&iacute;a. (En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p></td></tr><tr class="c41"><td class="c33" colspan="1" rowspan="1"><p class="c0"><span class="c1">Utiliza el vocabulario geom&eacute;trico para describir cuerpos geom&eacute;tricos.</span></p><p class="c0"><span class="c1">Elabora criterios de comparaci&oacute;n de cuerpos geom&eacute;tricos para comprender sus propiedades y diferencias distintivas.</span></p></td><td class="c25" colspan="1" rowspan="1"><p class="c0"><span class="c1">Cuerpos geom&eacute;tricos</span></p><p class="c0"><span class="c1">Cuerpos geom&eacute;tricos: cubo, prisma, esfera, cilindro, pir&aacute;mide y cono. Similitudes y diferencias.</span></p><p class="c0"><span class="c1">Elementos y caracter&iacute;sticas de los cuerpos geom&eacute;tricos: forma de las caras, cantidad de caras, aristas, v&eacute;rtices, caras.</span></p><p class="c0"><span class="c1">Relaciones entre distintas figuras y las caras de los cuerpos geom&eacute;tricos: cuadrado y cubo; tri&aacute;ngulos y cuadrado, y pir&aacute;mide; rect&aacute;ngulo y cuadrado, y prisma; c&iacute;rculo, y cono o cilindro.</span></p><p class="c0"><span class="c1">Criterios de comparaci&oacute;n de cuerpos geom&eacute;tricos.</span></p><p class="c0"><span class="c1">&lt;Reproducci&oacute;n de cuerpos (cubos y prismas) a partir de la identificaci&oacute;n de sus caracter&iacute;sticas.&gt;</span></p><p class="c0"><span class="c1">&lt;&lt;Construcci&oacute;n de cuerpos utilizando soportes anal&oacute;gicos y digitales. (En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p></td></tr></table><hr style="page-break-before:always;display:none;"><p class="c5 c7"><span class="c19"></span></p><h3 class="c5" id="h.xytrfirx74k0"><span class="c3">Eje: Espacio, formas y medida: Medida</span></h3><p class="c5 c7"><span class="c19"></span></p><table class="c9"><tr class="c10"><td class="c24 c21" colspan="2" rowspan="1"><h3 class="c5" id="h.yc2fwygf9c15"><span class="c4">Eje: Espacio, formas y medida: Medida</span></h3></td></tr><tr class="c10"><td class="c21 c32" colspan="1" rowspan="1"><p class="c5"><span class="c13">Indicadores de logro</span></p></td><td class="c11" colspan="1" rowspan="1"><p class="c5"><span class="c13">Contenidos nodales y de ampliaci&oacute;n/profundizaci&oacute;n</span></p></td></tr><tr class="c37"><td class="c32" colspan="1" rowspan="1"><p class="c0"><span class="c1">Resuelve problemas que involucran la comparaci&oacute;n de mediciones convencionales de longitud, capacidad y peso.</span></p><p class="c0"><span class="c1">Identifica y trabaja con equivalencias entre unidades de medida y fracciones (medios y cuartos).</span></p><p class="c0"><span class="c1">Estima medidas de longitud, capacidad y peso con la unidad de medida m&aacute;s adecuada.</span></p><p class="c0"><span class="c1">Utiliza vasos medidores para establecer la medida de una capacidad, por ejemplo, en los ingredientes de una receta.</span></p><p class="c0"><span class="c1">Mide longitudes con instrumentos adecuados (regla o cinta m&eacute;trica).</span></p><p class="c0"><span class="c1">Utiliza el reloj y el calendario, tanto anal&oacute;gicos como digitales, para determinar duraciones en el tiempo y organizar cronol&oacute;gicamente situaciones cotidianas con autonom&iacute;a creciente.</span></p><p class="c0"><span class="c1">Lee la hora e interpreta c&oacute;digos en distintos tipos de relojes: digital con y sin distinci&oacute;n de a. m. y p. m., y reloj de aguja.</span></p></td><td class="c23" colspan="1" rowspan="1"><p class="c0"><span class="c1">Estudio de la medida</span></p><p class="c0"><span class="c1">Unidades de medida de longitud, capacidad y peso: metro, cent&iacute;metro y mil&iacute;metro, litro, gramo y kilogramo. Estimaci&oacute;n de medidas.</span></p><p class="c0"><span class="c1">&lt;Equivalencias sencillas entre unidades y sus fracciones en el contexto de medidas convencionales de longitud, capacidad y peso (1/2 + 1/2 = 1; 1/4 + 1/4 = 1/2: etc.).&gt;</span></p><p class="c0"><span class="c1">Medidas de capacidad: unidades convencionales (litro) y unidades no convencionales (vaso medidor). (En articulaci&oacute;n con Educaci&oacute;n Alimentaria).</span></p><p class="c0"><span class="c1">Medidas de tiempo: d&iacute;a, semana, mes y a&ntilde;o.</span></p><p class="c0"><span class="c1">El reloj y el tiempo en el calendario en formato anal&oacute;gico y digital. (En articulaci&oacute;n con Educaci&oacute;n Digital).</span></p><p class="c0"><span class="c1">&lt;El reloj digital. Formato de 12 horas (a .m./p.m.) y de 24 horas.&gt;</span></p><p class="c0"><span class="c1">Organizaci&oacute;n de situaciones cotidianas vinculadas con la autonom&iacute;a progresiva, utilizando el calendario y leyendo la hora: horarios de estudio, juego y descanso, actividades programadas. (En articulaci&oacute;n con Educaci&oacute;n Sexual Integral).</span></p><p class="c0"><span class="c1">&lt;Equivalencias entre diferentes expresiones para una misma medida de longitud: entre metros y cent&iacute;metros, entre cent&iacute;metros y mil&iacute;metros, entre kil&oacute;metros y metros.&gt;</span></p><p class="c0"><span class="c1">&lt;Medidas de peso: equivalencias entre diferentes expresiones para una misma medida de peso: entre gramos y kilos, entre kilos y toneladas.&gt;</span></p><p class="c0"><span class="c1">&lt;&lt;Resoluci&oacute;n de problemas que exijan el uso de unidades convencionales de tiempo, algunas fracciones de esas unidades y ciertas equivalencias entre ellas (1 hora = 60 minutos, 1/2 hora = 30 minutos, 3/4 hora = 45 minutos, 1 minuto = 60 segundos, 1/4 hora = 15 minutos).&gt;</span></p></td></tr></table><p class="c5 c7"><span class="c19"></span></p></body></html>
+        </div>
+    <button class="fab" onclick="copySelectedText()" title="Copiar seleccionados">📋</button>
+    <div id="toast">Texto copiado al portapapeles</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            procesarTablasImportadas();
+        });
+
+        function procesarTablasImportadas() {
+            const rawContainer = document.getElementById('raw-import');
+            if (!rawContainer) return;
+            
+            const tables = rawContainer.getElementsByTagName('table');
+            const outputContainer = document.getElementById('accordion-container');
+            outputContainer.innerHTML = ''; 
+
+            for (let table of tables) {
+                let rows = Array.from(table.rows);
+                if (rows.length < 2) continue;
+
+                // 1. Título
+                let rawTitle = rows[0].innerHTML.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                if (!rawTitle) continue;
+
+                let acumuladoIzq = "";
+                let acumuladoDer = "";
+                let hayContenidoReal = false;
+
+                // 2. Recorremos filas buscando contenido
+                for (let i = 1; i < rows.length; i++) {
+                    let row = rows[i];
+                    let cells = row.cells;
+                    
+                    if (cells.length >= 2) {
+                        // Limpieza para detectar encabezados
+                        let textoIzq = cells[0].innerText.toLowerCase().trim();
+                        let textoDer = cells[1].innerText.toLowerCase().trim();
+
+                        // FILTRO CORREGIDO: 
+                        // Solo saltamos si es explícitamente un encabezado conocido.
+                        // Quitamos el check suelto de "contenidos" en la izquierda para evitar falsos positivos.
+                        if (textoIzq === "indicadores de logro" || 
+                            textoIzq === "modos de conocer" || 
+                            textoDer.includes("contenidos nodales")) {
+                            continue;
+                        }
+
+                        // Limpieza y Extracción
+                        let htmlIzq = limpiarAtributos(cells[0].innerHTML);
+                        let htmlDer = limpiarAtributos(cells[1].innerHTML);
+
+                        let checkIzq = htmlIzq.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+                        let checkDer = htmlDer.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, '').trim();
+                        let tieneImg = cells[0].querySelector('img') || cells[1].querySelector('img');
+
+                        if (checkIzq.length > 0 || checkDer.length > 0 || tieneImg) {
+                            acumuladoIzq += htmlIzq + "<br>";
+                            acumuladoDer += htmlDer + "<br>";
+                            hayContenidoReal = true;
+                        }
+                    }
+                }
+
+                if (hayContenidoReal) {
+                    let htmlBloque = `
+                        <button class="accordion">${rawTitle}</button>
+                        <div class="panel">
+                            <div class="grid-container">
+                                <div class="col-header">Indicadores de logro</div>
+                                <div class="col-header">Contenidos nodales y de ampliación/profundización</div>
+                                
+                                <div class="content-cell" onclick="toggleSelect(this)">
+                                    ${acumuladoIzq}
+                                </div>
+                                <div class="content-cell" onclick="toggleSelect(this)">
+                                    ${acumuladoDer}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    outputContainer.innerHTML += htmlBloque;
+                }
+            }
+            activarAcordeones();
+        }
+
+        function limpiarAtributos(html) {
+            return html
+                .replace(/ class="[^"]*"/g, '') 
+                .replace(/ style="[^"]*"/g, '') 
+                .replace(/ width="[^"]*"/g, '') 
+                .replace(/&nbsp;/g, ' ');
+        }
+
+        function activarAcordeones() {
+            var acc = document.getElementsByClassName("accordion");
+            for (var i = 0; i < acc.length; i++) {
+                var newAcc = acc[i].cloneNode(true);
+                acc[i].parentNode.replaceChild(newAcc, acc[i]);
+                newAcc.addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = "5000px"; 
+                    }
+                });
+            }
+        }
+
+        function toggleSelect(element) {
+            element.classList.toggle("selected");
+        }
+
+        function copySelectedText() {
+            var selectedElements = document.getElementsByClassName("selected");
+            if (selectedElements.length === 0) { showToast("No seleccionaste nada."); return; }
+            var textToCopy = "";
+            for (var i = 0; i < selectedElements.length; i++) {
+                var cell = selectedElements[i];
+                var contentText = cell.innerText.trim();
+                var panel = cell.closest('.panel');
+                var titulo = panel && panel.previousElementSibling ? panel.previousElementSibling.innerText : "Sección";
+                var pageTitle = document.querySelector('h1') ? document.querySelector('h1').innerText : "Documento";
+                textToCopy += pageTitle + " > " + titulo + "\n" + contentText + "\n\n-------------------\n\n";
+            }
+            navigator.clipboard.writeText(textToCopy).then(() => showToast("¡Copiado!"), (err) => showToast("Error: " + err));
+        }
+
+        function showToast(msg) {
+            var x = document.getElementById("toast");
+            if (!x) return;
+            x.innerText = msg; x.className = "show";
+            setTimeout(() => { x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

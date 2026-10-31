@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Con imágenes</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #FFF3E0; --header-color: #E67E22; --title-color: #E65100; --accent-color: #FF7043; --copy-color: #9C27B0; --card-bg: #FFFFFF; --text-main: #37474F; }
+        * { box-sizing: border-box; }
+        body { background-color: var(--bg-color); font-family: 'Nunito', sans-serif; margin: 0; padding: 20px; color: var(--text-main); padding-bottom: 120px; }
+        #app-container { max-width: 900px; margin: 0 auto; }
+        h1 { text-align: center; color: var(--title-color); margin-bottom: 30px; font-size: 2rem; }
+        
+        #app-intro { background: rgba(255,255,255,0.6); padding: 15px; border-radius: 8px; margin-bottom: 30px; border-left: 5px solid var(--header-color); }
+        #app-intro a { color: var(--header-color); font-weight: bold; }
+        #raw-content-placeholder { display: none !important; }
+        
+        .ficha-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.08); margin-bottom: 25px; overflow: hidden; border: 2px solid transparent; transition: all 0.3s ease; }
+        .ficha-card.selected-for-print { border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(255, 112, 67, 0.2); }
+        .ficha-header { background-color: var(--header-color); padding: 10px 15px; display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+        .ficha-title { color: white; font-weight: 700; font-size: 1.1rem; flex-grow: 1; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .btn-send-editor { background: rgba(255,255,255,0.2); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: background 0.2s; text-decoration: none; }
+        .btn-send-editor:hover { background: rgba(255,255,255,0.4); transform: scale(1.1); }
+        .btn-toggle-card { background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,.45); color: white; border-radius: 999px; padding: 7px 10px; cursor: pointer; font-weight: 900; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .btn-toggle-card:hover { background: rgba(255,255,255,0.34); transform: translateY(-1px); }
+        .custom-checkbox { width: 28px; height: 28px; background: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid rgba(255,255,255,0.6); }
+        .ficha-card.selected-for-print .custom-checkbox { background: var(--accent-color); border-color: white; }
+        .custom-checkbox::after { content: '✓'; color: white; font-weight: 900; font-size: 18px; display: none; }
+        .ficha-card.selected-for-print .custom-checkbox::after { display: block; }
+        .ficha-body { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; background: white; }
+        .ficha-card.open .ficha-body { padding: 25px 20px; max-height: none; overflow: visible; }
+        
+        /* --- CORRECCIÓN NUCLEAR Y ROMPE-MARCOS --- */
+        .ficha-body * { font-family: 'Nunito', sans-serif !important; box-sizing: border-box !important; line-height: 1.5 !important; }
+        .ficha-body img { display: block !important; max-width: 100% !important; height: auto !important; margin: 15px auto !important; transform: none !important; box-shadow: none !important; border-radius: 6px !important; }
+        .ficha-body table { width: 100% !important; border-collapse: collapse !important; margin: 10px 0 !important; table-layout: auto !important; }
+       .ficha-body td, .ficha-body th { padding: 8px !important; vertical-align: top !important; border: 1px solid #000 !important; word-wrap: break-word; }
+        .ficha-body p, .ficha-body span { background-color: transparent !important; color: #444 !important; }
+        .ficha-body span { overflow: visible !important; width: auto !important; height: auto !important; max-width: 100% !important; display: inline-block !important; }
+        
+        .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column-reverse; gap: 15px; z-index: 1000; align-items: center; }
+        .fab { width: 56px; height: 56px; border-radius: 50%; border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.3); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 24px; transition: transform 0.2s; position: relative; }
+        .fab:hover { transform: scale(1.1); }
+        .fab-print { background-color: var(--accent-color); color: white; width: 70px; height: 70px; font-size: 30px; }
+        .fab-print:disabled { background-color: #CFD8DC; cursor: not-allowed; }
+        .badge { position: absolute; top: 0; right: 0; background-color: #D32F2F; color: white; font-size: 12px; font-weight: bold; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+        .fab-copy { background-color: var(--copy-color); color: white; display: none; }
+        .fab-clear { background: white; color: #E57373; width: 45px; height: 45px; font-size: 18px; display: none; }
+        
+        @media print {
+            body { background: white; padding: 0; margin: 0; }
+           .fab-container, header, nav, .header-actions, #app-container > p, #app-container > h1, #app-intro { display: none !important; }
+            #app-container { max-width: 100%; margin: 0; }
+            .page-header { display: none !important; }
+            .ficha-card { display: none; border: none; box-shadow: none; margin: 0; margin-bottom: 20px; break-inside: auto; }
+            .ficha-card.selected-for-print[data-print="1"] { display: block !important; }
+            .ficha-header { background-color: transparent !important; color: #000 !important; padding: 5px 0 !important; border-bottom: 2px solid #000 !important; display: flex !important; }
+            .ficha-title { color: #000 !important; font-weight: bold !important; font-size: 1.2rem !important; }
+            .ficha-body { max-height: none !important; display: block !important; padding: 10px 0 !important; overflow: visible !important; color: #000 !important; }
+            .ficha-body p { display: block !important; color: #000 !important; }
+            .ficha-body * { color: #000 !important; visibility: visible !important; opacity: 1 !important; }
+            .ficha-body table { table-layout: auto !important; }
+        }
+    </style>
+</head>
+<body>
+    <style>body{margin:0!important;padding:0!important;}</style>
+    <div style="height: 24px;"></div>
+    <div id="app-container">
+        <div class="page-header">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="/images/oso_mat.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: var(--title-color);">Con imágenes</h1></div><img src="/images/carpi-guarda3.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"></div>
+        </div>
+        <p style="text-align: center; margin-bottom: 5px; color: #607D8B; font-size: 0.95rem;">
+            <small>Presionar <span style="background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px 6px;">▸ Abrir</span> para desplegar la ficha o <span style="background: rgba(0,0,0,0.05); border-radius: 50%; padding: 2px 6px;">↗️</span> para editarla</small>
+        </p>
+        <p style="text-align: center; margin-bottom: 35px; color: #607D8B; font-size: 0.95rem;">
+            <small>Marcar la casilla y luego 📋 para copiar la actividad o 🖨️ para imprimir o exportar a .PDF</small>
+        </p>
+        
+        
+        <div id="fichas-render-area"></div>
+    </div>
+    
+    <div class="fab-container">
+        <button class="fab fab-print" id="btn-print" onclick="printSelected()" disabled>🖨️ <div class="badge" id="print-badge" style="display: none;">0</div></button>
+        <button class="fab fab-copy" id="btn-copy" onclick="copySelected()">📋</button>
+        <button class="fab fab-clear" id="btn-clear" onclick="clearSelection()">🗑️</button>
+    </div>
+    
+    <script type="application/json" id="constructor-fichas-state">{"schema":"constructor-fichas","version":"v12-nombre-fijo-sin-numeracion","appTitle":"Con imágenes","cloudJsonFilename":"en-imagenes.json","appTheme":"matematica","appNavbar":"4materias","outputLocation":"subfolder","volverText":"Volver a textos","heroLayout":"img-both","heroImg1":"oso_mat.png","heroImg2":"carpi-guarda3.png","showIntro":false,"introText":"\u003cbr>","cards":[{"title":"Librería 1","content":"\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"libreria-cuadernos-1.jpeg\" src=\"/images/libreria-cuadernos-1.jpeg\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Librería 2","content":"\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"libreria1-1.png\" src=\"/images/libreria1-1.png\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Librería 3","content":"\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"libreria2-1.png\" src=\"/images/libreria2-1.png\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Panadería 1","content":"\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"pan1.jpeg\" src=\"/images/pan1.jpeg\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Panadería 2","content":"\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"pan2.jpeg\" src=\"/images/pan2.jpeg\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"panadería 3","content":"\u003cdiv style=\"text-align: center;\">\u003cimg data-img=\"pan3.jpeg\" src=\"/images/pan3.jpeg\" style=\"height: auto;\">\u003c/div>","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Desarmar multiplicaciones 1","content":"\u003cimg data-img=\"multiplicaci-n1.jpeg\" src=\"/images/multiplicaci-n1.jpeg\" style=\"height: auto; width: 575px; max-width: 100%;\" class=\"\">","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true},{"title":"Desarmar multiplicaciones 2","content":"\u003cimg data-img=\"multiplicaci-n2.jpeg\" src=\"/images/multiplicaci-n2.jpeg\" style=\"height: auto; width: 580px; max-width: 100%;\" class=\"\">","startOpen":false,"allowCopy":true,"allowPrint":true,"allowEditor":true}]}</script>
+    <div id="raw-content-placeholder"><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Librería 1</td></tr><tr><td><div style="text-align: center;"><img data-img="libreria-cuadernos-1.jpeg" src="/images/libreria-cuadernos-1.jpeg" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Librería 2</td></tr><tr><td><div style="text-align: center;"><img data-img="libreria1-1.png" src="/images/libreria1-1.png" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Librería 3</td></tr><tr><td><div style="text-align: center;"><img data-img="libreria2-1.png" src="/images/libreria2-1.png" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Panadería 1</td></tr><tr><td><div style="text-align: center;"><img data-img="pan1.jpeg" src="/images/pan1.jpeg" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Panadería 2</td></tr><tr><td><div style="text-align: center;"><img data-img="pan2.jpeg" src="/images/pan2.jpeg" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>panadería 3</td></tr><tr><td><div style="text-align: center;"><img data-img="pan3.jpeg" src="/images/pan3.jpeg" style="height: auto;"></div></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Desarmar multiplicaciones 1</td></tr><tr><td><img data-img="multiplicaci-n1.jpeg" src="/images/multiplicaci-n1.jpeg" style="height: auto; width: 575px; max-width: 100%;" class=""></td></tr></table><hr><table data-open="0" data-copy="1" data-print="1" data-editor="1"><tr><td>Desarmar multiplicaciones 2</td></tr><tr><td><img data-img="multiplicaci-n2.jpeg" src="/images/multiplicaci-n2.jpeg" style="height: auto; width: 580px; max-width: 100%;" class=""></td></tr></table><hr></div>
+    
+    <script>
+        const EDITOR_URL = '../editor.html'; 
+        document.addEventListener('DOMContentLoaded', () => { processRawContent(); });
+        let selectedCount = 0;
+        function processRawContent() {
+            const rawContainer = document.getElementById('raw-content-placeholder');
+            const renderArea = document.getElementById('fichas-render-area');
+            const fullHtml = rawContainer.innerHTML;
+            if (!fullHtml.trim()) return;
+            const chunks = fullHtml.split(/<hr[^>]*>/i);
+            let fichaIndex = 1;
+            chunks.forEach((chunk) => {
+                if (!chunk.trim()) return;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = chunk;
+                const table = tempDiv.querySelector('table');
+                let titleText = `Ficha ${fichaIndex}`;
+                let contentHtml = chunk;
+                if (table) {
+                    const rows = table.querySelectorAll('tr');
+                    if (rows.length >= 2) {
+                        titleText = rows[0].innerText.trim() || titleText;
+                        const contentTd = rows[1].querySelector('td');
+                        contentHtml = contentTd ? contentTd.innerHTML : rows[1].innerHTML;
+                    }
+                }
+                const opts = table ? {
+                    startOpen: table.dataset.open === '1',
+                    allowCopy: table.dataset.copy !== '0',
+                    allowPrint: table.dataset.print !== '0',
+                    allowEditor: table.dataset.editor !== '0'
+                } : {};
+                createCard(fichaIndex, titleText, contentHtml, renderArea, opts);
+                fichaIndex++;
+            });
+        }
+        function createCard(id, title, content, container, opts = {}) {
+            const settings = Object.assign({ startOpen:false, allowCopy:true, allowPrint:true, allowEditor:true }, opts || {});
+            const card = document.createElement('div');
+            card.className = 'ficha-card' + (settings.startOpen ? ' open' : '');
+            card.id = `ficha-${id}`;
+            card.dataset.copy = settings.allowCopy ? '1' : '0';
+            card.dataset.print = settings.allowPrint ? '1' : '0';
+            card.dataset.editor = settings.allowEditor ? '1' : '0';
+            const header = document.createElement('div'); header.className = 'ficha-header';
+            header.onclick = (e) => { if (!e.target.closest('button') && !e.target.closest('.custom-checkbox')) toggleCard(card); };
+            const hTitle = document.createElement('div'); hTitle.className = 'ficha-title'; hTitle.innerText = title;
+            const actionsDiv = document.createElement('div'); actionsDiv.className = 'header-actions';
+            if (settings.allowEditor) {
+                const btnEdit = document.createElement('button'); btnEdit.className = 'btn-send-editor'; btnEdit.innerHTML = '↗️'; btnEdit.title = 'Abrir en el editor de textos';
+                btnEdit.onclick = (e) => { e.stopPropagation(); sendToEditor(title, content); };
+                actionsDiv.appendChild(btnEdit);
+            }
+            const btnToggle = document.createElement('button');
+            btnToggle.className = 'btn-toggle-card';
+            btnToggle.type = 'button';
+            btnToggle.innerText = settings.startOpen ? '▾ Cerrar' : '▸ Abrir';
+            btnToggle.onclick = (e) => { e.stopPropagation(); toggleCard(card); };
+            actionsDiv.appendChild(btnToggle);
+            if (settings.allowCopy || settings.allowPrint) {
+                const checkbox = document.createElement('div'); checkbox.className = 'custom-checkbox'; checkbox.title = 'Seleccionar ficha';
+                checkbox.onclick = (e) => { e.stopPropagation(); toggleSelection(card); };
+                actionsDiv.appendChild(checkbox);
+            }
+            header.appendChild(hTitle); header.appendChild(actionsDiv);
+            const body = document.createElement('div'); body.className = 'ficha-body'; body.innerHTML = content;
+            card.appendChild(header); card.appendChild(body); container.appendChild(card);
+        }
+        function sendToEditor(title, htmlContent) {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            const images = tempDiv.querySelectorAll('img');
+            images.forEach(img => { if (img.getAttribute('src')) { img.src = img.src; } });
+            const packageHTML = `<h3>${title}</h3>${tempDiv.innerHTML}`;
+            localStorage.setItem('import_content', packageHTML);
+            window.open(EDITOR_URL, 'Editor de Textos');
+        }
+        function toggleCard(card) {
+            card.classList.toggle('open');
+            const btn = card.querySelector('.btn-toggle-card');
+            if (btn) btn.innerText = card.classList.contains('open') ? '▾ Cerrar' : '▸ Abrir';
+        }
+        function toggleSelection(card) { card.classList.toggle('selected-for-print'); updateFabState(); }
+        function clearSelection() { document.querySelectorAll('.ficha-card.selected-for-print').forEach(c => c.classList.remove('selected-for-print')); updateFabState(); }
+        function updateFabState() {
+            const selected = document.querySelectorAll('.ficha-card.selected-for-print');
+            const printable = document.querySelectorAll('.ficha-card.selected-for-print[data-print="1"]');
+            const copyable = document.querySelectorAll('.ficha-card.selected-for-print[data-copy="1"]');
+            selectedCount = selected.length; 
+            const btnPrint = document.getElementById('btn-print'); const btnCopy = document.getElementById('btn-copy'); const badge = document.getElementById('print-badge'); const btnClear = document.getElementById('btn-clear');
+            if (selectedCount > 0) {
+                btnPrint.disabled = printable.length === 0;
+                badge.style.display = 'flex'; badge.innerText = selectedCount;
+                btnClear.style.display = 'flex';
+                btnCopy.style.display = copyable.length > 0 ? 'flex' : 'none';
+            } else {
+                btnPrint.disabled = true; badge.style.display = 'none'; btnClear.style.display = 'none'; btnCopy.style.display = 'none';
+            }
+        }
+        function copySelected() {
+            const selected = document.querySelectorAll('.ficha-card.selected-for-print[data-copy="1"]');
+            if (selected.length === 0) return;
+            const temp = document.createElement('div'); temp.style.backgroundColor = '#fff'; temp.style.color = '#000'; temp.style.position = 'absolute'; temp.style.left = '-9999px';
+            selected.forEach(card => {
+                const title = card.querySelector('.ficha-title').innerText;
+                const bodyClone = card.querySelector('.ficha-body').cloneNode(true);
+                const els = bodyClone.getElementsByTagName("*"); for(let el of els) { el.style.background = "transparent"; }
+                temp.innerHTML += `<div><h2>${title}</h2><div>${bodyClone.innerHTML}</div></div><hr>`;
+            });
+            document.body.appendChild(temp); const range = document.createRange(); range.selectNode(temp); window.getSelection().removeAllRanges(); window.getSelection().addRange(range); document.execCommand('copy'); alert('✅ ¡Fichas copiadas!'); document.body.removeChild(temp);
+        }
+        function printSelected() {
+            const printable = document.querySelectorAll('.ficha-card.selected-for-print[data-print="1"]');
+            if(printable.length>0) window.print();
+        }
+    </script>
+    <div id="contenedor-pie"></div>
+    <script>
+      fetch('/pie.html')
+        .then(function(response) {
+          if (response.ok) return response.text();
+          throw new Error('No se pudo cargar el pie de página');
+        })
+        .then(function(data) {
+          document.getElementById('contenedor-pie').innerHTML = data;
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

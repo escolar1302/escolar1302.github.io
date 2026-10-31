@@ -1,0 +1,192 @@
+{
+"id": "la-abeja-haragana-5grado",
+"titulo": "La abeja haragana",
+"area": "Lengua",
+"grado": "5°",
+"descripcion": "Rosco sobre los personajes, los acontecimientos y las enseñanzas del cuento La abeja haragana.",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "A",
+"modo": "empieza",
+"pregunta": "Insecto protagonista del cuento.",
+"respuestas": [
+"abeja",
+"abejita"
+],
+"ayuda": "Empieza con A."
+},
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Ciudad argentina mencionada al explicar dónde también crece la planta sensitiva.",
+"respuestas": [
+"buenos aires"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Lugar donde viven y trabajan juntas las abejas.",
+"respuestas": [
+"colmena",
+"colmenas"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Árbol cuya cápsula de semillas fue utilizada por la culebra en su prueba.",
+"respuestas": [
+"eucalipto"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "G",
+"modo": "empieza",
+"pregunta": "Cantidad mínima de miel que las guardianas le pidieron traer a la protagonista.",
+"respuestas": [
+"gota"
+],
+"ayuda": "Empieza con G."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Palabra que describe a la abeja que evitaba trabajar.",
+"respuestas": [
+"haragana"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "J",
+"modo": "empieza",
+"pregunta": "Concepto sobre el que discuten la abeja y la culebra antes de realizar las pruebas.",
+"respuestas": [
+"justicia"
+],
+"ayuda": "Empieza con J."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Fenómeno que comenzó a caer cuando la protagonista estaba fuera de la colmena.",
+"respuestas": [
+"lluvia"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Alimento que las abejas fabrican y guardan en la colmena.",
+"respuestas": [
+"miel"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Momento del día que la abeja debió pasar en la caverna junto a la culebra.",
+"respuestas": [
+"noche"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "Ñ",
+"modo": "contiene",
+"pregunta": "Forma en que la abeja se dirige a las otras abejas al dar su última lección.",
+"respuestas": [
+"compañeras",
+"compañera"
+],
+"ayuda": "Contiene la letra Ñ."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Estación del año que llegó cerca del final de la vida de la protagonista.",
+"respuestas": [
+"otoño"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Sustancia de las flores que la abeja comenzó a recoger en gran cantidad después de aprender la lección.",
+"respuestas": [
+"polen"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Planta cuyas hojas se cierran al ser tocadas y que permitió ocultarse a la abeja.",
+"respuestas": [
+"sensitiva",
+"sensitivas"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Objeto hecho con una cápsula de semillas que la culebra hizo bailar.",
+"respuestas": [
+"trompito",
+"trompito de eucalipto",
+"trompo"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "U",
+"modo": "empieza",
+"pregunta": "Primer número que dijo la culebra al comenzar a contar para la prueba de la abeja.",
+"respuestas": [
+"uno"
+],
+"ayuda": "Empieza con U."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Nombre con el que el narrador presenta por primera vez al animal que amenaza con comerse a la abeja.",
+"respuestas": [
+"víbora",
+"vibora"
+],
+"ayuda": "Empieza con V."
+},
+{
+"letra": "X",
+"modo": "contiene",
+"pregunta": "Conocimiento de la vida que poseían las abejas viejas encargadas de vigilar la entrada.",
+"respuestas": [
+"experiencia"
+],
+"ayuda": "Contiene la letra X."
+},
+
+{
+"letra": "Z",
+"modo": "empieza",
+"pregunta": "Acción que realizaba la abeja mientras volaba contenta de flor en flor.",
+"respuestas": [
+"zumbaba",
+"zumbar",
+"zumbido"
+],
+"ayuda": "Empieza con Z."
+}
+]
+}

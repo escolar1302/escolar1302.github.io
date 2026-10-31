@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selector de consignas · Proyecto Lengua</title>
+<style>
+:root{--bg:#f5f6f8;--paper:#fff;--ink:#202124;--muted:#5f6368;--line:#d9dde3;--accent:#315b8a;--soft:#eaf1f8;--ok:#2f6b4f}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{width:min(1100px,calc(100% - 28px));margin:28px auto 56px}header,.panel{background:var(--paper);border:1px solid var(--line);border-radius:14px}
+header{padding:22px 24px;margin-bottom:18px}h1{font-size:26px;margin:0 0 8px}header p,.panelhead p,.hint,.note{color:var(--muted)}
+.modebar{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:18px}.modebar button{border:1px solid var(--line);background:#fff;padding:14px 12px;border-radius:12px;cursor:pointer;font-weight:700;font-size:15px;line-height:1.25}.modebar button small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:3px}.modebar button.active{border-color:var(--accent);background:var(--soft);color:#1f4772}
+.panel{display:none;overflow:hidden}.panel.active{display:block}.panelhead{padding:20px 22px 10px;border-bottom:1px solid var(--line)}.panelhead h2{margin:0 0 6px;font-size:22px}.panelhead p{margin:0 0 10px;line-height:1.45}
+.content{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(360px,1.4fr);gap:18px;padding:20px 22px 22px}.field{margin-bottom:14px}label{display:block;font-weight:700;margin-bottom:6px;font-size:14px}
+input[type=text],select,textarea{width:100%;border:1px solid #c9ced6;border-radius:9px;padding:10px 11px;font:inherit;background:#fff;color:var(--ink)}textarea{min-height:100px;resize:vertical}.hint{margin-top:5px;font-size:12.5px;line-height:1.35}
+.choice{display:flex;gap:8px;flex-wrap:wrap}.choice label{font-weight:400;display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:9px;padding:9px 10px;margin:0;cursor:pointer}.note{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.4;margin-top:12px}
+.prompt{min-height:500px;border:1px solid var(--line);border-radius:10px;background:#fbfbfc;padding:14px;white-space:pre-wrap;font-family:Consolas,"Courier New",monospace;font-size:13.5px;line-height:1.45;overflow:auto}.actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}.copy{border:0;background:var(--accent);color:white;padding:11px 16px;border-radius:9px;font-weight:700;cursor:pointer}.secondary{border:1px solid var(--line);background:#fff;padding:11px 14px;border-radius:9px;font-weight:700;cursor:pointer}.status{min-height:20px;margin-top:8px;color:var(--ok);font-size:13px;font-weight:700}
+.hidden{display:none}
+@media(max-width:820px){.content{grid-template-columns:1fr}.prompt{min-height:420px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>Selector de consignas · Proyecto Lengua</h1><p>Completá solo los datos necesarios, copiá la consigna y pegala en el chat del Proyecto. Si falta el grado o el diagnóstico, la consigna le pide al Proyecto que pregunte antes de empezar.</p></header>
+
+<div class="modebar" role="tablist">
+<button class="active" data-target="tres" role="tab">Tres versiones<small>Narrativo o informativo</small></button>
+<button data-target="secuencia" role="tab">Secuencia de enseñanza<small>2, 4 u 8 fichas</small></button>
+<button data-target="revision" role="tab">Revisión por pasadas<small>Reescritura de un texto</small></button>
+<button data-target="material" role="tab">Revisar material existente<small>Cuadernillo o actividades</small></button>
+<button data-target="varios" role="tab">Varios textos<small>Serie, saga o recorrido</small></button>
+</div>
+
+<!-- TRES VERSIONES -->
+<section id="tres" class="panel active">
+<div class="panelhead"><h2>Tres versiones</h2><p>Genera las tres versiones de actividades. La guía de corrección, la planilla y el PDF son opcionales; también podés pedir solo las preguntas de comprensión.</p></div>
+<div class="content"><div>
+<div class="field"><label for="tres-grado">Grado de referencia curricular</label><input id="tres-grado" type="text" placeholder="Ej.: 6.º"></div>
+<div class="field"><label for="tres-tipo">Tipo de texto</label><select id="tres-tipo"><option value="auto" selected>Que el Proyecto lo determine</option><option value="narrativo">Narrativo</option><option value="informativo">Informativo</option></select></div>
+<div class="field"><label for="tres-titulo">Título del texto (opcional)</label><input id="tres-titulo" type="text" placeholder="Ej.: La ventana abierta"></div>
+<div class="field"><label for="tres-alcance">Alcance</label><select id="tres-alcance"><option value="completo" selected>Completo (comprensión, ordenamiento, ortografía y producción)</option><option value="preguntas">Solo preguntas de comprensión</option></select><div class="hint">“Solo preguntas” deja afuera ordenamiento, ortografía y producción.</div></div>
+<div class="field" id="tres-ort-wrap"><label for="tres-ort">Ortografía</label><select id="tres-ort"><option value="auto" selected>Según el tipo de texto (por defecto)</option><option value="si">Incluir actividad de ortografía</option><option value="no">No incluir</option></select><div class="hint">Por defecto: se incluye en narrativos; en informativos solo si el texto lo justifica.</div></div>
+<div class="field"><label>Texto de trabajo</label><div class="choice"><label><input type="radio" name="tres-fuente" value="adjunto" checked> Adjunto en el chat</label><label><input type="radio" name="tres-fuente" value="presente"> Ya está en este chat</label></div></div>
+<div class="field"><label>Qué se entrega</label><div class="choice"><label><input type="checkbox" id="tres-guia" checked> Guía de corrección (claves y rúbricas)</label><label><input type="checkbox" id="tres-xlsx" checked> Planilla de resultados (XLSX)</label><label><input type="checkbox" id="tres-pdf" checked> PDF para imprimir</label></div><div class="hint">El DOCX editable con las tres versiones siempre se genera.</div></div>
+<div class="field"><label for="tres-entrega">Forma de entrega</label><select id="tres-entrega"><option value="archivos" selected>Archivos (DOCX y los marcados)</option><option value="chat">Directo en el chat, sin archivos</option></select></div>
+<div class="field"><label for="tres-extra">Indicaciones adicionales (opcional)</label><textarea id="tres-extra" placeholder="Ej.: priorizar inferencias; la producción debe ser un cambio de narrador."></textarea></div>
+<div class="note">Incluye el control de variedad ortográfica para evitar que los errores se concentren casi exclusivamente en tildación.</div>
+</div><div><div id="tres-prompt" class="prompt"></div><div class="actions"><button class="copy" data-copy="tres-prompt">Copiar consigna</button><button class="secondary" data-clear="tres">Limpiar datos</button></div><div class="status" id="tres-status"></div></div></div>
+</section>
+
+<!-- SECUENCIA -->
+<section id="secuencia" class="panel">
+<div class="panelhead"><h2>Secuencia de enseñanza</h2><p>Construye una secuencia de 8, 4 o 2 fichas a partir de dificultades observadas en la evaluación o en producciones previas.</p></div>
+<div class="content"><div>
+<div class="field"><label for="sec-grado">Grado de referencia curricular</label><input id="sec-grado" type="text" placeholder="Ej.: 6.º"></div>
+<div class="field"><label for="sec-diagnostico">Dificultades observadas / diagnóstico</label><textarea id="sec-diagnostico" placeholder="Ej.: dificultades de correferencia en comprensión; en escritura, referentes poco claros y uso reiterado de “y” para conectar acciones."></textarea></div>
+<div class="field"><label for="sec-long">Extensión</label><select id="sec-long"><option value="8" selected>Completa: unas 8 fichas</option><option value="4">Media: 4 fichas</option><option value="2">Corta: 2 fichas breves</option></select><div class="hint">Cada ficha corta ocupa una página o menos y recorre lo esencial: observación, herramienta, práctica y producción breve.</div></div>
+<div class="field"><label>Qué se entrega</label><div class="choice"><label><input type="checkbox" id="sec-guia" checked> Guía para el docente</label><label><input type="checkbox" id="sec-pdf" checked> PDF para imprimir</label></div></div>
+<div class="field"><label for="sec-foco">Foco prioritario (opcional)</label><input id="sec-foco" type="text" placeholder="Ej.: correferencia y cohesión"></div>
+<div class="field"><label>Texto de trabajo</label><div class="choice"><label><input type="radio" name="sec-fuente" value="adjunto" checked> Adjunto en el chat</label><label><input type="radio" name="sec-fuente" value="presente"> Ya está en este chat</label></div></div>
+<div class="note">El grado funciona como referencia de complejidad e incluye aprendizajes previos pertinentes. La secuencia parte del diagnóstico y no inventa otros problemas.</div>
+</div><div><div id="sec-prompt" class="prompt"></div><div class="actions"><button class="copy" data-copy="sec-prompt">Copiar consigna</button><button class="secondary" data-clear="secuencia">Limpiar datos</button></div><div class="status" id="sec-status"></div></div></div>
+</section>
+
+<!-- REVISIÓN POR PASADAS -->
+<section id="revision" class="panel">
+<div class="panelhead"><h2>Revisión por pasadas</h2><p>Un solo modo con dos variantes: trabajar sobre una producción real del estudiante o crear un texto de práctica deliberadamente problemático.</p></div>
+<div class="content"><div>
+<div class="field"><label for="rev-grado">Grado de referencia curricular</label><input id="rev-grado" type="text" placeholder="Ej.: 6.º"></div>
+<div class="field"><label>Origen del texto a revisar</label><div class="choice"><label><input type="radio" name="rev-origen" value="real" checked> Producción real del estudiante</label><label><input type="radio" name="rev-origen" value="ejemplo"> Texto de práctica creado por el Proyecto</label></div></div>
+<div class="field" id="rev-real-wrap"><label>Cómo se aporta la producción real</label><div class="choice"><label><input type="radio" name="rev-fuente" value="adjunta" checked> Archivo/imagen adjunta</label><label><input type="radio" name="rev-fuente" value="pegada"> Pegada en el mensaje</label></div></div>
+<div class="field"><label for="rev-focos">Focos o dificultades ya observadas (opcional)</label><textarea id="rev-focos" placeholder="Ej.: referentes ambiguos; abuso de “y”; falta de conectores causales."></textarea><div class="hint" id="rev-focos-hint"></div></div>
+<div class="field hidden" id="rev-texto-wrap"><label for="rev-texto">Producción pegada</label><textarea id="rev-texto" placeholder="Pegá acá el texto del estudiante"></textarea></div>
+<div class="note">No hacen falta dos prompts separados. Con una producción real, el Proyecto trabaja sobre los problemas que efectivamente aparecen; con un texto de práctica, construye un borrador con los focos que indiques (o elige él los más frecuentes del grado si dejás el campo vacío).</div>
+</div><div><div id="rev-prompt" class="prompt"></div><div class="actions"><button class="copy" data-copy="rev-prompt">Copiar consigna</button><button class="secondary" data-clear="revision">Limpiar datos</button></div><div class="status" id="rev-status"></div></div></div>
+</section>
+
+<!-- MATERIAL EXISTENTE -->
+<section id="material" class="panel">
+<div class="panelhead"><h2>Revisar material existente</h2><p>Para analizar un cuadernillo o un conjunto de actividades ya hechos, decidir qué conservar y reorganizarlos con progresión didáctica.</p></div>
+<div class="content"><div>
+<div class="field"><label for="mat-grado">Grado de referencia curricular</label><input id="mat-grado" type="text" placeholder="Ej.: 6.º"></div>
+<div class="field"><label>Material a revisar</label><div class="choice"><label><input type="radio" name="mat-fuente" value="adjunto" checked> Adjunto en el chat</label><label><input type="radio" name="mat-fuente" value="presente"> Ya está en este chat</label></div></div>
+<div class="field"><label for="mat-preocupacion">Qué te preocupa o qué querés lograr (opcional)</label><textarea id="mat-preocupacion" placeholder="Ej.: los chicos no llegan a la producción final; parece una evaluación y no enseña."></textarea></div>
+<div class="note">El Proyecto primero identifica qué intenta enseñar el material, clasifica cada tarea (enseña, practica o solo evalúa) y recién después propone la reorganización. No reescribe de inmediato.</div>
+</div><div><div id="mat-prompt" class="prompt"></div><div class="actions"><button class="copy" data-copy="mat-prompt">Copiar consigna</button><button class="secondary" data-clear="material">Limpiar datos</button></div><div class="status" id="mat-status"></div></div></div>
+</section>
+
+<!-- VARIOS TEXTOS -->
+<section id="varios" class="panel">
+<div class="panelhead"><h2>Proyecto con varios textos</h2><p>Para una serie, una saga, un conjunto de autor o un recorrido temático: trabajo por texto más un cierre transversal.</p></div>
+<div class="content"><div>
+<div class="field"><label for="var-grado">Grado de referencia curricular</label><input id="var-grado" type="text" placeholder="Ej.: 6.º"></div>
+<div class="field"><label for="var-textos">Textos (uno por línea)</label><textarea id="var-textos" placeholder="Ej.:&#10;Cuento 1&#10;Cuento 2&#10;Cuento 3"></textarea></div>
+<div class="field"><label for="var-union">Qué los une (opcional)</label><input id="var-union" type="text" placeholder="Ej.: mismo autor; mismo detective; tema del miedo"></div>
+<div class="field"><label for="var-tipo">Tipo de textos</label><select id="var-tipo"><option value="auto" selected>Que el Proyecto lo determine</option><option value="narrativos">Narrativos</option><option value="informativos">Informativos</option><option value="mezcla">Mezcla de ambos</option></select></div>
+<div class="field"><label>Textos de trabajo</label><div class="choice"><label><input type="radio" name="var-fuente" value="adjunto" checked> Adjuntos en el chat</label><label><input type="radio" name="var-fuente" value="presente"> Ya están en este chat</label></div></div>
+<div class="note">Para no volver repetitivo el proyecto, los focos (inferencia, producción, revisión, ortografía) se distribuyen entre los textos y se reserva un cierre que solo se puede resolver comparando.</div>
+</div><div><div id="var-prompt" class="prompt"></div><div class="actions"><button class="copy" data-copy="var-prompt">Copiar consigna</button><button class="secondary" data-clear="varios">Limpiar datos</button></div><div class="status" id="var-status"></div></div></div>
+</section>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const radio=name=>document.querySelector(`input[name="${name}"]:checked`)?.value;
+const txt=id=>$(id).value.trim();
+const withDot=s=>/[.!?:]$/.test(s)?s:s+".";
+const MISSING="no indicada: preguntame cuál usar antes de empezar";
+const grado=id=>txt(id)||MISSING;
+const fuente=(name,plural)=>{const adj=radio(name)==="adjunto"||radio(name)==="adjunta";
+  return plural?(adj?"Trabajá únicamente con los textos que adjunto en este chat.":"Trabajá con los textos que ya están disponibles en este chat.")
+              :(adj?"Trabajá únicamente con el texto que adjunto en este chat.":"Trabajá con el texto que ya está disponible en este chat.")};
+const SALIDA_CHAT="No desarrolles todo el material en el chat: limitate a una confirmación breve y a los archivos generados.";
+const VARIEDAD="distribuí los errores entre distintas convenciones del grado (m antes de p/b, n antes de v, br/bl, r inicial y rr, gue/gui, que/qui, h, haber/hacer, regularidades morfológicas, mayúsculas, tildación). Con 6 o más errores usá al menos 3 focos distintos y no pongas más de un tercio en tildación, salvo que sea el foco de la actividad.";
+
+function updateTres(){
+  const g=grado("tres-grado"),titulo=txt("tres-titulo"),tipo=$("tres-tipo").value,ort=$("tres-ort").value,extra=txt("tres-extra");
+  const tipoTxt=tipo==="auto"?"Determiná si el texto es narrativo o informativo y aplicá la matriz correspondiente del Proyecto.":`El texto es ${tipo}. Aplicá la matriz correspondiente del Proyecto.`;
+  let ortTxt;
+  if(ort==="no") ortTxt="Ortografía: no incluyas actividad de ortografía.";
+  else if(ort==="si") ortTxt="Ortografía: incluí la actividad de ortografía controlada.\nControl de variedad ortográfica: "+VARIEDAD;
+  else if(tipo==="narrativo") ortTxt="Ortografía: incluí la actividad de ortografía controlada según la matriz narrativa.\nControl de variedad ortográfica: "+VARIEDAD;
+  else if(tipo==="informativo") ortTxt="Ortografía: no la agregues de manera automática; incluila solo si el texto lo justifica.\nSi la incluís, "+VARIEDAD;
+  else ortTxt="Ortografía: incluila si el texto es narrativo; si es informativo, solo si el texto lo justifica.\nCuando la incluyas, "+VARIEDAD;
+  const solo=$("tres-alcance").value==="preguntas",guia=$("tres-guia").checked,xl=$("tres-xlsx").checked,pdf=$("tres-pdf").checked,chat=$("tres-entrega").value==="chat";
+  if(solo) ortTxt="Alcance: solo preguntas de comprensión. No incluyas ordenamiento, ortografía ni producción.";
+  const alcanceTxt=solo?"Prepará únicamente las preguntas de comprensión de las tres versiones, aplicando la matriz del Proyecto para las dimensiones de comprensión (localización, inferencia, correferencia, voces del relato, y las que correspondan al tipo de texto) y la distribución de cantidad y formato por versión. No agregues actividades de otro tipo.":"Prepará la propuesta completa de tres versiones aplicando las instrucciones, el Marco Maestro y las fuentes del Proyecto.";
+  const guiaTxt=guia?"Incluí la guía de corrección: respuesta esperada y criterios C / PC / I / NR de cada pregunta, en una sección docente al final del DOCX.":"No incluyas guía de corrección: entregá solo las versiones para estudiantes. Verificá igualmente cada respuesta de manera interna.";
+  let salida;
+  if(chat){
+    salida=`SALIDA OBLIGATORIA
+Respondé directamente en el chat, sin generar archivos: las tres versiones para estudiantes, una debajo de la otra y claramente separadas${guia?", y después la guía de corrección":""}. Respetá igualmente las reglas de ficha del Proyecto (sin rótulos de nivel dentro de lo que se entrega a estudiantes; los niveles pueden figurar solo para identificar cada versión en el chat).`;
+  }else{
+    const items=["DOCX editable con las tres versiones para estudiantes"+(guia?" y la sección docente con la guía de corrección":"")];
+    if(xl) items.push("XLSX de resultados según la plantilla del Proyecto"+(solo?" (solo con las columnas de las preguntas de comprensión; sin columnas de ordenamiento, ortografía ni producción)":""));
+    if(pdf) items.push("PDF para impresión (solo las fichas de estudiantes)");
+    salida=`SALIDA OBLIGATORIA
+Generá:
+${items.map(i=>"- "+i).join(";\n")}.
+${!xl||!pdf?"No generes: "+[!xl?"la planilla XLSX":"",!pdf?"el PDF":""].filter(Boolean).join(" ni ")+".\n":""}${SALIDA_CHAT}`;
+  }
+  $("tres-prompt").textContent=
+`TRES VERSIONES
+
+Referencia curricular: ${g}
+${titulo?`Texto: “${titulo}”.\n`:""}${fuente("tres-fuente")}
+${tipoTxt}
+${extra?`\nIndicaciones adicionales:\n${extra}\n`:""}
+${alcanceTxt} El grado marca la complejidad e incluye aprendizajes previos pertinentes.
+
+${ortTxt}
+
+Respetá la distribución de respuestas correctas en opción múltiple prevista en las instrucciones del Proyecto y verificá internamente todas las consignas antes de entregar.
+
+${guiaTxt}
+
+${salida}`;
+}
+
+function updateSec(){
+  const g=grado("sec-grado"),diag=txt("sec-diagnostico"),foco=txt("sec-foco");
+  const n=$("sec-long").value,guia=$("sec-guia").checked,pdf=$("sec-pdf").checked;
+  const cant={"8":"unas 8 fichas","4":"4 fichas","2":"2 fichas breves"}[n];
+  const orden={"8":`La primera parte debe hacer visible el problema; luego enseñá herramientas concretas; reducí progresivamente los apoyos; incluí aplicación en producción propia; y recuperá al final una respuesta o producción inicial para hacer visible el avance.`,
+  "4":`Condensá el recorrido: una primera ficha que haga visible el problema, una que enseñe y practique la herramienta con apoyo, una de práctica con menos apoyos y una de producción y revisión que recupere el punto de partida.`,
+  "2":`Son dos fichas breves, de una página o menos cada una. La primera hace visible el problema y presenta una herramienta con una práctica guiada; la segunda reduce los apoyos y pide una producción breve con revisión. No agregues fichas ni actividades de relleno.`}[n];
+  const salida=["DOCX editable para estudiantes con las fichas"];
+  if(pdf) salida.push("PDF para impresión del material del estudiante");
+  if(guia) salida.push("DOCX editable para docentes con propósito de cada ficha, contenidos, respuestas posibles e intervenciones docentes");
+  $("sec-prompt").textContent=
+`SECUENCIA DE ENSEÑANZA (${cant.toUpperCase()})
+
+Referencia curricular: ${g}
+${fuente("sec-fuente")}
+
+Dificultades observadas / diagnóstico:
+${diag||"(no indicado: preguntame cuáles son antes de empezar)"}
+${foco?`\nFoco prioritario: ${withDot(foco)}\n`:""}
+Diseñá una secuencia de enseñanza de ${cant} a partir de este diagnóstico. No supongas otras dificultades como problemas del alumno si no están indicadas. El grado marca la complejidad e incluye aprendizajes previos pertinentes.
+
+La secuencia debe enseñar de manera progresiva y recurrente, no funcionar como una batería de evaluación. Organizá observación del problema, comparación, explicitación de herramientas, práctica guiada, reducción de apoyos, producción, revisión y transferencia. Articulá lectura y escritura cuando resulte pertinente.
+
+${orden}
+
+Aplicá las instrucciones, el Marco Maestro y las fuentes curriculares cargados en el Proyecto.
+
+SALIDA OBLIGATORIA
+Generá:
+${salida.map(i=>"- "+i).join(";\n")}.
+${guia?"":"No generes guía para el docente.\n"}${SALIDA_CHAT}`;
+}
+
+function updateRevision(){
+  const g=grado("rev-grado"),origen=radio("rev-origen"),focosRaw=txt("rev-focos");
+  let focos,origenTxt;
+  if(origen==="real"){
+    focos=focosRaw?`Focos o dificultades ya observadas:\n${focosRaw}\n`:"No hay focos predeterminados. Identificá en el texto los problemas que realmente justifican una revisión y priorizá solo los más relevantes.\n";
+    const comun="No inventes errores que no aparecen ni conviertas rasgos correctos en problemas. Organizá las pasadas a partir de lo que efectivamente necesita este texto.";
+    if(radio("rev-fuente")==="pegada"){
+      const t=$("rev-texto").value.trim()||"(pegá acá el texto del estudiante)";
+      origenTxt=`Trabajá sobre la producción real del estudiante que pego entre las líneas de marca. Conservá exactamente la versión inicial antes de intervenirla.\n\n=== INICIO DE LA PRODUCCIÓN ===\n${t}\n=== FIN DE LA PRODUCCIÓN ===\n\n${comun}`;
+    }else{
+      origenTxt=`Trabajá sobre la producción real del estudiante que adjunto en este chat.\n\nLeela tal como fue escrita y conservá esa versión inicial. ${comun}`;
+    }
+  }else{
+    focos=focosRaw?`Focos o dificultades a incluir en el borrador:\n${focosRaw}\n`:"No indiqué focos: elegí vos dos o tres dificultades frecuentes para este grado (por ejemplo, referentes poco claros, uso reiterado de “y”, falta de conectores) e indicá cuáles elegiste.\n";
+    origenTxt="Creá primero un borrador breve de práctica, vinculado con el texto literario o informativo de este chat si lo hubiera, que contenga de manera deliberada los problemas correspondientes a los focos indicados. El borrador debe ser verosímil como producción escolar y no acumular errores ajenos al objetivo. Ese texto será la primera versión que se conservará y revisará.";
+  }
+  $("rev-prompt").textContent=
+`REVISIÓN POR PASADAS
+
+Referencia curricular: ${g}
+
+${origenTxt}
+
+${focos}
+Prepará una propuesta de enseñanza centrada en revisión y reescritura por pasadas. Aplicá las instrucciones, el Marco Maestro y las fuentes del Proyecto. El grado marca la complejidad e incluye aprendizajes previos pertinentes.
+
+No fijes de antemano una cantidad mecánica de pasadas: seleccioná las necesarias según los problemas priorizados. Cada pasada debe tener un foco claro, recuperar o enseñar una herramienta concreta y producir una mejora observable. No pidas corregir todo al mismo tiempo.\nEn cada pasada indicá qué operación de reformulación se practica (sustitución, supresión, ampliación o desplazamiento) y con qué marca se señala. Revisar no es corregir: el alumno debe poder mejorar el texto a partir de la marca, sin que se le dé la solución. Distanciá la revisión del momento de escritura.
+
+Conservá la primera versión para compararla con la final. Terminá con una reescritura completa y una comparación breve “antes / ahora” en la que el alumno pueda explicar algunas decisiones de revisión.
+
+Cuando el foco sea cohesión o correferencia:
+- no trates toda repetición como error;
+- aceptá repetir un nombre si evita ambigüedad;
+- no pidas reemplazar automáticamente todas las “y”;
+- antes de elegir un conector, hacé reconocer la relación entre las ideas;
+- considerá también el punto como recurso de organización.
+
+SALIDA OBLIGATORIA
+Generá:
+- DOCX editable para estudiantes;
+- PDF para impresión del material del estudiante;
+- DOCX editable para docentes con propósito de cada pasada, respuestas o soluciones posibles, intervenciones docentes y cambios esperados.
+${SALIDA_CHAT}`;
+}
+
+function updateMaterial(){
+  const g=grado("mat-grado"),pre=txt("mat-preocupacion");
+  const adj=radio("mat-fuente")==="adjunto";
+  $("mat-prompt").textContent=
+`REVISIÓN DE MATERIAL EXISTENTE
+
+Referencia curricular: ${g}
+${adj?"Trabajá sobre el material que adjunto en este chat.":"Trabajá sobre el material que ya está disponible en este chat."} No lo reescribas de inmediato.
+${pre?`\nQué me preocupa o qué quiero lograr:\n${pre}\n`:""}
+Seguí el orden del Marco Maestro (sección 13):
+1. Identificá qué contenidos intenta enseñar el material (comprensión, gramática, cohesión, ortografía, producción).
+2. Clasificá cada tarea: cuáles enseñan, cuáles practican y cuáles solo evalúan.
+3. Detectá saltos didácticos: qué se exige antes de haber sido observado o enseñado.
+4. Conservá lo útil; no descartes una actividad valiosa por pertenecer a un material mejorable.
+5. Reubicá o separá lo que pertenece a otra secuencia o a un cierre opcional.
+6. Reorganizá con progresión: del problema a la herramienta, de la práctica guiada a la autonomía.
+
+Aplicá las instrucciones, el Marco Maestro y las fuentes del Proyecto. El grado marca la complejidad e incluye aprendizajes previos pertinentes.
+
+SALIDA OBLIGATORIA
+Generá:
+- DOCX editable para docentes con el análisis didáctico (tabla de tareas: qué enseña, practica o evalúa) y la propuesta de reorganización;
+- DOCX editable para estudiantes con la nueva versión;
+- PDF para impresión del material del estudiante.
+En el chat, dejá solo un resumen de cinco líneas del diagnóstico y la confirmación de los archivos generados.`;
+}
+
+function updateVarios(){
+  const g=grado("var-grado"),union=txt("var-union"),tipo=$("var-tipo").value;
+  const lista=$("var-textos").value.split("\n").map(s=>s.trim()).filter(Boolean);
+  const tipoTxt={auto:"Determiná el tipo de cada texto (narrativo o informativo) y aplicá la matriz correspondiente.",narrativos:"Los textos son narrativos. Aplicá la matriz narrativa del Proyecto.",informativos:"Los textos son informativos. Aplicá la matriz informativa del Proyecto.",mezcla:"Hay textos narrativos e informativos. Aplicá a cada uno su matriz, sin trasladar la matriz narrativa a los informativos."}[tipo];
+  $("var-prompt").textContent=
+`PROYECTO CON VARIOS TEXTOS
+
+Referencia curricular: ${g}
+${fuente("var-fuente",true)}
+
+Textos:
+${lista.length?lista.map((t,i)=>`${i+1}. ${t}`).join("\n"):"(no indicados: preguntame cuáles son antes de empezar)"}
+${union?`\nQué los une: ${withDot(union)}\n`:""}
+${tipoTxt}
+
+Trabajá en dos planos (Marco Maestro, sección 14):
+- cada texto en particular: su conflicto o tema, su estructura, sus recursos y sus dificultades específicas;
+- un cierre transversal que compare personajes, procedimientos, temas, estructuras, voces, pistas o rasgos comunes.
+
+Distribuí los focos didácticos entre los textos: no repitas bloques idénticos de ortografía y producción en todos. Reservá una actividad final para integrar lo que solo puede verse al comparar. Si aplicás la matriz de tres niveles, hacelo por texto sin volver repetitiva la propuesta.
+
+SALIDA OBLIGATORIA
+Generá:
+- DOCX editable para estudiantes (fichas por texto y cierre transversal);
+- DOCX editable para docentes con propósito, respuestas y rúbricas;
+- XLSX de resultados solo si aplicás la matriz de tres niveles;
+- PDF para impresión del material del estudiante.
+${SALIDA_CHAT}`;
+}
+
+function refreshUI(){
+  $("tres-ort-wrap").classList.toggle("hidden",$("tres-alcance").value==="preguntas");
+  const real=radio("rev-origen")==="real";
+  $("rev-real-wrap").classList.toggle("hidden",!real);
+  $("rev-texto-wrap").classList.toggle("hidden",!(real&&radio("rev-fuente")==="pegada"));
+  $("rev-focos-hint").textContent=real?"Si está vacío, el Proyecto prioriza los problemas reales del texto.":"Si está vacío, el Proyecto elige dos o tres dificultades frecuentes para el grado y avisa cuáles.";
+}
+function updateAll(){refreshUI();updateTres();updateSec();updateRevision();updateMaterial();updateVarios()}
+
+document.querySelectorAll(".modebar button").forEach(btn=>btn.addEventListener("click",()=>{
+  document.querySelectorAll(".modebar button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+  btn.classList.add("active");$(btn.dataset.target).classList.add("active");
+}));
+document.querySelectorAll("input,select,textarea").forEach(el=>["input","change"].forEach(ev=>el.addEventListener(ev,updateAll)));
+
+async function copyText(id,statusId){
+  const t=$(id).textContent;
+  try{await navigator.clipboard.writeText(t)}
+  catch(e){const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.focus();ta.select();document.execCommand("copy");ta.remove()}
+  $(statusId).textContent="Consigna copiada.";setTimeout(()=>$(statusId).textContent="",1800);
+}
+const statusOf={ "tres-prompt":"tres-status","sec-prompt":"sec-status","rev-prompt":"rev-status","mat-prompt":"mat-status","var-prompt":"var-status" };
+document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",()=>copyText(btn.dataset.copy,statusOf[btn.dataset.copy])));
+
+// Limpiar: vuelve cada campo del panel a su valor inicial
+document.querySelectorAll("[data-clear]").forEach(btn=>btn.addEventListener("click",()=>{
+  const panel=$(btn.dataset.clear);
+  panel.querySelectorAll("input[type=text],textarea").forEach(e=>e.value="");
+  panel.querySelectorAll("input[type=radio],input[type=checkbox]").forEach(e=>e.checked=e.defaultChecked);
+  panel.querySelectorAll("select").forEach(s=>{s.selectedIndex=Math.max(0,[...s.options].findIndex(o=>o.defaultSelected))});
+  updateAll();
+}));
+updateAll();
+</script>
+</body>
+</html>

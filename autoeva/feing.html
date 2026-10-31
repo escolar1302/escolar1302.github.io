@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Expedientes del sabio Feng</title>
+<style>
+  :root{
+    --ink:#24333c;
+    --muted:#61727c;
+    --paper:#fffdf7;
+    --paper-2:#f8f2e7;
+    --line:#dfe7e4;
+    --jade:#24766f;
+    --jade-2:#50a69a;
+    --orange:#e77735;
+    --gold:#d2a13a;
+    --red:#b64a43;
+    --blue:#4d78a8;
+    --shadow:0 18px 50px rgba(35,52,59,.13);
+    --radius:26px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    min-height:100vh;
+    font-family: ui-rounded, "Nunito", "Trebuchet MS", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 12% 8%, rgba(231,119,53,.16) 0 75px, transparent 76px),
+      radial-gradient(circle at 91% 14%, rgba(36,118,111,.13) 0 105px, transparent 106px),
+      radial-gradient(circle at 87% 88%, rgba(210,161,58,.13) 0 115px, transparent 116px),
+      linear-gradient(135deg,#eef7f5 0%,#fff8ec 48%,#edf3f7 100%);
+    background-attachment:fixed;
+  }
+
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.26;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(36,51,60,.18) 1px, transparent 1.2px);
+    background-size:22px 22px;
+    mask-image:linear-gradient(to bottom,rgba(0,0,0,.42),transparent 82%);
+  }
+
+  button{font:inherit}
+  .app{width:min(1180px, calc(100% - 28px)); margin:0 auto; padding:26px 0 54px; position:relative; z-index:1}
+
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:34px 38px 30px;
+    border:1px solid rgba(36,118,111,.15);
+    border-radius:34px;
+    background:rgba(255,253,247,.88);
+    backdrop-filter:blur(8px);
+    box-shadow:var(--shadow);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    width:250px;height:250px;
+    border:34px solid rgba(36,118,111,.07);
+    border-radius:50%;
+    right:-95px;top:-120px;
+  }
+  .hero-eyebrow{display:flex;gap:10px;align-items:center;font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:var(--jade)}
+  .seal{width:24px;height:24px;border:2px solid var(--jade);transform:rotate(45deg);display:inline-grid;place-items:center;border-radius:5px}
+  .seal::after{content:"";width:7px;height:7px;background:var(--orange);border-radius:2px}
+  h1{font-size:clamp(2rem,5vw,4.2rem);line-height:.98;margin:12px 0 12px;letter-spacing:-.045em;max-width:840px}
+  .hero p{max-width:790px;margin:0;color:var(--muted);font-size:1.06rem;line-height:1.55}
+  .hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .pill{padding:8px 12px;border-radius:999px;background:#edf7f5;color:#286f68;font-weight:800;font-size:.86rem;border:1px solid #d4ebe7}
+
+  .dashboard{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;margin:20px 0}
+  .panel{background:rgba(255,253,247,.92);border:1px solid rgba(36,51,60,.08);border-radius:24px;padding:20px;box-shadow:0 12px 32px rgba(35,52,59,.09)}
+  .panel-title{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:12px}
+  .panel-title strong{font-size:1.02rem}
+  .panel-title span{color:var(--muted);font-size:.9rem}
+  .bar{height:15px;background:#e9eeec;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}
+  .bar > i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--jade),var(--jade-2),var(--gold));transition:width .45s ease}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}
+  .stat{background:#f6f7f3;border:1px solid #e7ebe6;border-radius:16px;padding:12px 13px}
+  .stat b{display:block;font-size:1.22rem}.stat small{color:var(--muted)}
+  .save-note{display:flex;align-items:center;gap:10px;line-height:1.35;color:var(--muted);font-size:.92rem}
+  .save-dot{width:12px;height:12px;border-radius:50%;background:var(--jade-2);box-shadow:0 0 0 6px rgba(80,166,154,.13);flex:none}
+  .text-btn{border:0;background:transparent;color:var(--red);font-weight:800;padding:7px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+  .section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:31px 2px 15px}
+  .section-head h2{margin:0;font-size:clamp(1.35rem,3vw,2rem);letter-spacing:-.025em}
+  .section-head p{margin:4px 0 0;color:var(--muted)}
+
+  .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+  .case-card{
+    position:relative;
+    min-height:265px;
+    overflow:hidden;
+    border:0;
+    border-radius:var(--radius);
+    padding:25px;
+    text-align:left;
+    color:var(--ink);
+    background:rgba(255,253,247,.96);
+    box-shadow:0 13px 35px rgba(35,52,59,.1);
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:1px solid rgba(36,51,60,.08);
+  }
+  .case-card:hover{transform:translateY(-4px);box-shadow:0 19px 42px rgba(35,52,59,.14)}
+  .case-card:focus-visible,.option:focus-visible,.primary:focus-visible,.secondary:focus-visible,.ghost:focus-visible{outline:4px solid rgba(77,120,168,.25);outline-offset:3px}
+  .case-card::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:var(--accent,var(--jade))}
+  .case-card::after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-55px;bottom:-65px;background:color-mix(in srgb,var(--accent,var(--jade)) 11%, transparent)}
+  .case-card.locked{cursor:not-allowed;filter:saturate(.7)}
+  .case-card.locked:hover{transform:none}
+  .card-top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:24px}
+  .case-label{font-size:.78rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase;color:var(--accent,var(--jade))}
+  .status{font-size:.78rem;font-weight:900;padding:7px 10px;border-radius:999px;background:#f1f3ef;color:#65716e}
+  .status.done{background:#e3f3ef;color:#276b64}.status.progress{background:#fff0dd;color:#9b5a20}.status.lock{background:#ececec;color:#777}
+  .case-card h3{font-size:1.48rem;margin:0 0 9px;letter-spacing:-.02em}
+  .case-card p{margin:0 0 24px;color:var(--muted);line-height:1.48;max-width:80%}
+  .case-symbol{position:absolute;right:24px;top:78px;width:72px;height:72px;border-radius:22px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent,var(--jade)) 10%, white);border:1px solid color-mix(in srgb,var(--accent,var(--jade)) 18%, white)}
+  .case-symbol svg{width:39px;height:39px;stroke:var(--accent,var(--jade));fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .card-foot{position:absolute;left:25px;right:25px;bottom:22px;display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:.88rem;font-weight:800}
+  .mini-bar{height:8px;background:#edf0ed;border-radius:999px;overflow:hidden;flex:1;max-width:190px}.mini-bar i{display:block;height:100%;background:var(--accent,var(--jade));width:0;border-radius:inherit}
+
+  .quiz-wrap{display:none}
+  .quiz-wrap.active{display:block}
+  .home.hidden{display:none}
+  .quiz-shell{width:min(900px,100%);margin:0 auto}
+  .quiz-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}
+  .ghost{border:1px solid rgba(36,51,60,.14);background:rgba(255,253,247,.82);color:var(--ink);border-radius:14px;padding:10px 14px;font-weight:900;cursor:pointer}
+  .quiz-card{background:rgba(255,253,247,.97);border-radius:32px;box-shadow:var(--shadow);border:1px solid rgba(36,51,60,.08);overflow:hidden}
+  .quiz-banner{padding:22px 26px;background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 12%, white),#fffdf7)}
+  .quiz-banner-line{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+  .quiz-banner h2{margin:3px 0 0;font-size:1.48rem;letter-spacing:-.02em}
+  .quiz-score{font-weight:950;color:var(--accent)}
+  .dual-bars{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+  .bar-caption{display:flex;justify-content:space-between;font-size:.78rem;font-weight:850;color:var(--muted);margin-bottom:6px}
+  .smallbar{height:9px;background:rgba(36,51,60,.09);border-radius:999px;overflow:hidden}.smallbar i{display:block;height:100%;background:var(--accent);border-radius:inherit;transition:width .35s ease}
+  .smallbar.general i{background:linear-gradient(90deg,var(--jade),var(--gold))}
+  .question-area{padding:31px 31px 28px}
+  .question-kicker{display:flex;align-items:center;gap:9px;color:var(--accent);font-weight:950;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}
+  .question-kicker::before{content:"";width:18px;height:3px;background:var(--accent);border-radius:99px}
+  .question{font-size:clamp(1.25rem,3vw,1.72rem);line-height:1.28;margin:12px 0 23px;letter-spacing:-.02em}
+  .options{display:grid;gap:12px}
+  .option{border:1px solid #dde5e1;background:#fff;border-radius:17px;padding:15px 16px;display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:center;text-align:left;color:var(--ink);cursor:pointer;transition:.16s ease;line-height:1.35}
+  .option:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px);box-shadow:0 7px 16px rgba(35,52,59,.07)}
+  .option:disabled{cursor:default}
+  .letter{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#f0f4f2;font-weight:950;color:#53635f}
+  .option.correct{border-color:#6aa695;background:#eff8f4}.option.correct .letter{background:#3b887c;color:white}
+  .option.wrong{border-color:#d98d87;background:#fff3f2}.option.wrong .letter{background:#b7554e;color:white}
+  .feedback{display:none;margin-top:18px;padding:15px 17px;border-radius:16px;line-height:1.45;font-size:.95rem}
+  .feedback.show{display:block}.feedback.ok{background:#edf7f4;border:1px solid #cfe8e1}.feedback.no{background:#fff3ef;border:1px solid #f0d5cc}
+  .feedback strong{display:block;margin-bottom:2px}
+  .next-row{display:flex;justify-content:flex-end;margin-top:18px}
+  .primary,.secondary{border:0;border-radius:15px;padding:12px 18px;font-weight:950;cursor:pointer}
+  .primary{background:var(--accent,var(--jade));color:#fff;box-shadow:0 8px 18px color-mix(in srgb,var(--accent,var(--jade)) 24%, transparent)}
+  .secondary{background:#eef2ef;color:var(--ink);border:1px solid #dfe5e1}
+  .primary[hidden]{display:none}
+
+  .result{padding:34px;text-align:center}
+  .result-mark{width:84px;height:84px;border-radius:27px;margin:0 auto 16px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 12%, white);border:1px solid color-mix(in srgb,var(--accent) 20%, white)}
+  .result-mark svg{width:45px;height:45px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .result h2{font-size:2rem;margin:0 0 8px}.result p{color:var(--muted);max-width:590px;margin:0 auto 18px;line-height:1.5}
+  .result-score{font-size:clamp(2.2rem,8vw,4.2rem);font-weight:1000;letter-spacing:-.05em;color:var(--accent);margin:8px 0 2px}
+  .result-sub{font-weight:850;color:var(--muted);margin-bottom:24px}
+  .result-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.result-actions button{min-width:175px}
+  .unlock-note{margin:20px auto 0;max-width:610px;padding:15px;border-radius:16px;background:#fff7e2;border:1px solid #f0dfb5;color:#725421;font-weight:800}
+
+
+  .final-summary{margin-top:24px;background:linear-gradient(135deg,rgba(255,253,247,.98),rgba(242,248,247,.98));border:1px solid #d7e3df;border-radius:28px;padding:25px;box-shadow:var(--shadow)}
+  .final-summary h2{margin:0 0 6px}.final-summary>p{margin:0 0 18px;color:var(--muted)}
+  .summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.summary-item{background:#fff;border:1px solid #e0e8e5;border-radius:18px;padding:15px}.summary-item small{display:block;color:var(--muted);margin-bottom:4px}.summary-item b{font-size:1.22rem}
+
+.report-block{margin-top:22px;padding:20px;background:#f8fafb;border:1px solid #d9e3e7;border-radius:20px}
+.report-block h3{margin:0 0 6px;color:#29445a}
+.report-block>p{margin:0 0 14px;color:var(--muted);line-height:1.45}
+.report-name{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0}
+.report-name label{font-weight:900}
+.report-name input{width:min(100%,360px);padding:11px 13px;border:1px solid #cbd6da;border-radius:12px;background:#fff;color:var(--ink);font:inherit}
+.report-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:10px}
+.report-actions button{border:0;border-radius:14px;padding:11px 15px;font-weight:900;cursor:pointer}
+.report-download{background:#d77b2f;color:#fff}
+.report-print{background:#3d708d;color:#fff}
+.report-detail-btn{background:#eceff0;color:#43535b}
+.report-detail{display:none;margin-top:18px;text-align:left}
+.report-detail.show{display:block}
+.report-stage{margin:18px 0 8px;padding:9px 12px;border-radius:12px;background:#eaf1f4;color:#29445a;font-weight:950}
+.report-item{border:1px solid #dfe5e7;border-left:6px solid #75838a;border-radius:12px;background:#fff;padding:12px 14px;margin:9px 0}
+.report-item.correct{border-left-color:#347e62}
+.report-item.incorrect{border-left-color:#a94d49}
+.report-item p{margin:4px 0;line-height:1.4}
+.report-item .state-ok{color:#287054;font-weight:900}
+.report-item .state-no{color:#9a413d;font-weight:900}
+.report-note{margin-top:12px;padding:12px 14px;border-radius:12px;background:#f4f1fa;border:1px solid #ddd6ec;color:#5e547c;line-height:1.45}
+
+  .activity-note{margin-top:28px;text-align:center;color:#7b888c;font-size:.86rem}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);background:#26363d;color:white;padding:11px 16px;border-radius:13px;box-shadow:0 12px 30px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:.22s ease;z-index:99;font-weight:800}.toast.show{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:800px){
+    .summary-grid{grid-template-columns:1fr 1fr}
+    .dashboard,.cards{grid-template-columns:1fr}
+    .hero{padding:27px 23px}
+    .case-card{min-height:250px}
+    .dual-bars{grid-template-columns:1fr}
+    .question-area{padding:25px 20px 23px}
+  }
+  @media (max-width:520px){
+    .summary-grid{grid-template-columns:1fr}
+    .app{width:min(100% - 18px,1180px);padding-top:10px}
+    .hero{border-radius:25px}.hero p{font-size:.98rem}
+    .stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}
+    .case-card p{max-width:100%;padding-right:54px}
+    .case-symbol{width:58px;height:58px;right:18px;top:76px;border-radius:17px}.case-symbol svg{width:31px;height:31px}
+    .card-foot{left:20px;right:20px}.mini-bar{max-width:120px}
+    .result{padding:28px 18px}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+
+  /* Barra de navegación de escolar.com.ar */
+  .site-header{
+    background-color:#2c3e50;
+    padding:10px 0;
+    width:100%;
+    box-sizing:border-box;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 10px rgba(0,0,0,.3);
+    font-family:Roboto, Arial, sans-serif;
+  }
+  .site-nav{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+  }
+  .site-logo{display:flex;align-items:center;text-decoration:none;flex:none}
+  .site-logo img{height:60px;width:auto;display:block;transition:transform .2s ease}
+  .site-logo:hover img{transform:scale(1.03)}
+  .site-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .site-links a{color:white;text-decoration:none;font-size:.9rem;font-weight:400}
+  .site-links a:hover,.site-links a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+  .site-links .site-back{
+    color:#f1c40f;
+    font-weight:700;
+    border-left:1px solid #7f8c8d;
+    padding-left:20px;
+    white-space:nowrap;
+  }
+  .site-links .site-back:hover,.site-links .site-back:focus-visible{color:#ffe36b}
+  #contenedor-pie{position:relative;z-index:1}
+
+  @media (max-width:640px){
+    .site-nav{padding:0 14px;gap:10px}
+    .site-logo img{height:48px}
+    .site-links{gap:12px}
+    .site-links a{font-size:.82rem}
+  }
+  @media (max-width:460px){
+    .site-nav{align-items:flex-start;flex-direction:column}
+    .site-links{width:100%;justify-content:flex-start;gap:10px 14px;padding-bottom:3px}
+    .site-links .site-back{border-left:0;padding-left:0;width:100%;padding-top:4px}
+  }
+
+</style>
+</head>
+<body>
+
+<script>
+(() => {
+  const btn = document.getElementById("btn-volver-origen");
+  if (!btn) return;
+
+  const fallbackHref = btn.dataset.fallbackHref || btn.getAttribute("href") || "/lengua.html";
+  const fallbackLabel = btn.dataset.fallbackLabel || "Lengua";
+
+  function usarFallback() {
+    btn.href = fallbackHref;
+    btn.textContent = "⬅ Volver a " + fallbackLabel;
+  }
+
+  function limpiarTitulo(titulo) {
+    titulo = String(titulo || "").replace(/\s+/g, " ").trim();
+    return titulo || fallbackLabel;
+  }
+
+  const anterior = document.referrer;
+  if (!anterior) {
+    usarFallback();
+    return;
+  }
+
+  let urlAnterior;
+  let urlActual;
+
+  try {
+    urlAnterior = new URL(anterior);
+    urlActual = new URL(window.location.href);
+  } catch(e) {
+    usarFallback();
+    return;
+  }
+
+  if (urlAnterior.origin !== urlActual.origin || urlAnterior.href === urlActual.href) {
+    usarFallback();
+    return;
+  }
+
+  btn.href = urlAnterior.pathname + urlAnterior.search + urlAnterior.hash;
+
+  fetch(urlAnterior.href, { credentials: "same-origin" })
+    .then(response => {
+      if (!response.ok) throw new Error("No se pudo leer la página anterior");
+      return response.text();
+    })
+    .then(paginaHtml => {
+      const doc = new DOMParser().parseFromString(paginaHtml, "text/html");
+      const titleNode = doc.querySelector("title");
+      const titulo = limpiarTitulo(titleNode ? titleNode.textContent : "");
+      btn.textContent = "⬅ Volver a " + titulo;
+    })
+    .catch(() => {
+      btn.textContent = "⬅ Volver a " + fallbackLabel;
+    });
+})();
+</script>
+
+<div class="app">
+  <main id="home" class="home">
+    <section class="hero">
+      <div class="hero-eyebrow"><span class="seal" aria-hidden="true"></span> Lectura policial · 7.º grado</div>
+      <h1>Expedientes del sabio Feng</h1>
+      <p>Tres cuentos, tres enigmas y un desafío final. Leé las pistas con atención, relacioná causas y consecuencias, hacé inferencias y usá tus conocimientos de lengua para resolver cada caso.</p>
+      <div class="hero-meta">
+        <span class="pill">3 cuentos policiales</span>
+        <span class="pill">8 preguntas por caso</span>
+        <span class="pill">1 desafío transversal</span>
+        <span class="pill">32 puntos posibles</span>
+      </div>
+    </section>
+
+    <section class="dashboard">
+      <div class="panel">
+        <div class="panel-title"><strong>Progreso de la investigación</strong><span id="overallPct">0 %</span></div>
+        <div class="bar"><i id="overallBar"></i></div>
+        <div class="stats">
+          <div class="stat"><b id="completedCount">0/4</b><small>desafíos completos</small></div>
+          <div class="stat"><b id="totalScore">0/32</b><small>puntaje acumulado</small></div>
+          <div class="stat"><b id="answeredCount">0/32</b><small>respuestas recorridas</small></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="save-note"><span class="save-dot"></span><span>Tu avance se guarda automáticamente en este navegador.</span></div>
+        <button id="resetAll" class="text-btn" type="button">Reiniciar toda la actividad</button>
+      </div>
+    </section>
+
+    <div class="section-head">
+      <div><h2>Elegí un expediente</h2><p>Podés resolver los tres primeros en el orden que quieras.</p></div>
+    </div>
+    <section id="caseCards" class="cards" aria-label="Expedientes disponibles"></section>
+
+    <section id="finalSummary" class="final-summary hidden">
+      <h2>Recorrido completo</h2>
+      <p>Terminaste los cuatro desafíos. Podés revisar el resultado general y preparar un informe para enviar al docente.</p>
+      <div class="summary-grid" id="summaryGrid"></div>
+      <div class="report-block">
+        <h3>Informe para enviar al docente</h3>
+        <p>Escribí tu nombre. Después podés descargar una copia HTML o abrir la versión preparada para imprimir y guardar como PDF.</p>
+        <div class="report-name"><label for="studentName">Nombre y apellido:</label><input id="studentName" type="text" autocomplete="name" placeholder="Escribí tu nombre y apellido"></div>
+        <div class="report-actions">
+          <button class="report-download" id="downloadReport" type="button">Descargar corrección</button>
+          <button class="report-print" id="printReport" type="button">PDF / Imprimir</button>
+          <button class="report-detail-btn" id="toggleReportDetail" type="button">Ver detalle</button>
+        </div>
+        <div class="report-detail" id="reportDetail"></div>
+      </div>
+    </section>
+
+    <div class="activity-note">Actividad interactiva basada en las versiones de los cuentos compartidas para el trabajo escolar.</div>
+  </main>
+
+  <main id="quiz" class="quiz-wrap" aria-live="polite">
+    <div class="quiz-shell">
+      <div class="quiz-top"><button id="homeBtn" class="ghost" type="button">← Volver al inicio</button><div id="quizCounterTop" class="pill"></div></div>
+      <section class="quiz-card" id="quizCard"></section>
+    </div>
+  </main>
+</div>
+
+<div id="contenedor-pie"></div>
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CASES = [
+  {
+    id:'espejo',
+    title:'El espejo del mandarín',
+    label:'Expediente 1',
+    accent:'#4d78a8',
+    description:'Una habitación cerrada, un espejo y un crimen que parece imposible.',
+    icon:`<svg viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="29" rx="18" ry="23"></ellipse><path d="M32 52v8M24 60h16M19 12c7-6 19-6 26 0"></path><path d="M27 20c7-4 13-2 17 3"></path></svg>`,
+    questions:[
+      {tag:'Pista', q:'¿Por qué Chou había decidido no abandonar su habitación?', o:['Porque quería ocultar una fortuna.','Porque temía tanto a la peste como a su rival Dang.','Porque esperaba en secreto al doctor Tsau.','Porque la policía imperial se lo había ordenado.'], a:1, exp:'Chou se encierra porque teme dos amenazas: la peste y a Dang, que había ofrecido una recompensa por matarlo.'},
+      {tag:'Causa y consecuencia', q:'¿Qué hecho provoca directamente que Chou se corte la garganta?', o:['Descubre la daga de oro junto a su cama.','Escucha que Dang ha entrado en el palacio.','Ve en el espejo falsas marcas de peste dibujadas en su cara.','Comprueba que la puerta ya no puede abrirse.'], a:2, exp:'Las marcas falsas lo convencen de que tiene la peste. El miedo al final que le había descripto el médico lo lleva a matarse.'},
+      {tag:'Inferencia', q:'¿Por qué Feng considera que “un espejo también es una puerta”?', o:['Porque el espejo permite entrar físicamente desde otra habitación.','Porque a través de lo que Chou ve en él, el asesino logra influir en sus acciones sin entrar en ese momento.','Porque detrás del espejo había un pasadizo secreto.','Porque los sirvientes creían que los espejos eran mágicos.'], a:1, exp:'La frase funciona como una pista: el espejo no es una puerta real, pero sí el medio por el que el engaño llega a Chou.'},
+      {tag:'Hipótesis', q:'¿Qué conjunto de elementos permite a Feng reconstruir el plan del doctor Tsau?', o:['La cerradura, la nieve y las sandalias.','La daga, el aceite de cedro y la lámpara.','La recompensa de Dang, las huellas del jardín y el espejo.','Las pócimas para dormir, los restos de tinta roja, el paño con vinagre y el espejo.'], a:3, exp:'Esos elementos se conectan en una secuencia: dormir a Chou, dibujar las marcas, hacer que las vea y luego borrar la tinta.'},
+      {tag:'Lengua en contexto', q:'En “Al despertar Chou supo leer en el espejo el doloroso fin que le esperaba”, ¿a quién se refiere “le”?', o:['A Chou.','A Feng.','A Dang.','Al doctor Tsau.'], a:0, exp:'El pronombre “le” retoma a Chou: el final que lo esperaba a él.'},
+      {tag:'Voces del relato', q:'¿Cuál opción transforma correctamente en discurso indirecto la frase de Feng “La peste es la culpable”?', o:['Feng dijo que la peste era la culpable.','Feng preguntó: “¿La peste es la culpable?”.','Feng dijo la peste: era la culpable.','Feng había dicho: que la peste es culpable.'], a:0, exp:'En el discurso indirecto desaparecen las comillas y la voz del personaje queda introducida por “dijo que…”.'},
+      {tag:'Género policial', q:'¿Qué característica del relato policial aparece con más claridad en la investigación de Feng?', o:['La solución depende de un elemento sobrenatural.','El detective adivina la respuesta sin observar pruebas.','Las pistas permiten construir una explicación racional de un hecho que parecía imposible.','El culpable se presenta voluntariamente antes de la investigación.'], a:2, exp:'El caso parece imposible, pero Feng conecta indicios concretos hasta formular una explicación racional.'},
+      {tag:'Síntesis', q:'¿Cuál es la mejor explicación del papel del doctor Tsau en el crimen?', o:['Fue un testigo que calló por miedo a Dang.','Mató a Chou con la daga mientras dormía.','Convenció a los sirvientes de encerrar a Chou.','Preparó un engaño para que Chou creyera estar enfermo y se provocara su propia muerte.'], a:3, exp:'Tsau no necesita cortar la garganta de Chou: manipula su percepción para que la víctima actúe por miedo.'}
+    ]
+  },
+  {
+    id:'tapiz',
+    title:'Un tapiz olvidado',
+    label:'Expediente 2',
+    accent:'#b64a43',
+    description:'Una torre, un tapiz antiguo y un crimen cuyo motivo está escondido en la memoria.',
+    icon:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 10h28v40H18zM14 10h36M14 50h36M22 16c6 5 14 5 20 0M22 43c6-5 14-5 20 0"></path><circle cx="32" cy="30" r="7"></circle><path d="M25 30h14"></path></svg>`,
+    questions:[
+      {tag:'Localización', q:'¿Qué interés lleva al capitán Fu a visitar la torre apartada del palacio?', o:['Su interés por la arquitectura antigua.','Su deseo de hablar con el emperador.','La búsqueda de un tapiz que debía entregar.','La sospecha de que Dan ocultaba un mensaje.'], a:0, exp:'Fu aprovecha la espera de la respuesta imperial para recorrer el palacio y conocer construcciones antiguas.'},
+      {tag:'Inferencia', q:'¿Por qué a Feng le resulta especialmente extraño que el cuerpo aparezca envuelto en un tapiz?', o:['Porque el tapiz pertenecía al capitán Fu.','Porque el tapiz hacía demasiado visible y singular el crimen, en vez de disimularlo.','Porque ningún tapiz podía encontrarse en la torre.','Porque el tapiz demostraba que Fu se había suicidado.'], a:1, exp:'Feng piensa que un asesino suele intentar ocultar el crimen o simular un accidente. El tapiz, en cambio, llama la atención.'},
+      {tag:'Causa y consecuencia', q:'¿Qué buscaba provocar Dan al utilizar precisamente el tapiz de Si-Lu en el crimen?', o:['Que el emperador pidiera ver el tapiz y recordara a Si-Lu.','Que la policía creyera que el tintorero era culpable.','Que el capitán pareciera miembro de la familia imperial.','Que el consejero Lin destruyera todos los tapices.'], a:0, exp:'Dan convierte el crimen en un mensaje: sabe que las circunstancias harán que el emperador vuelva a mirar el tapiz.'},
+      {tag:'Motivación', q:'¿Cuál es el motivo central de Dan para matar al capitán Fu?', o:['Quería quedarse con el mensaje imperial.','Odiaba a los soldados de los Ejércitos del Norte.','Necesitaba proteger el valor económico del tapiz.','No soportaba que el recuerdo de Si-Lu desapareciera por completo.'], a:3, exp:'Dan admite que su objetivo era impedir que Si-Lu fuera olvidada; el tapiz era el último recuerdo que quedaba de ella.'},
+      {tag:'Lengua en contexto', q:'En “Era un mensajero, y lo usé para enviar mi propio mensaje”, ¿a quién se refiere el pronombre “lo”?', o:['Al tapiz.','Al emperador.','Al capitán Fu.','Al consejero Lin.'], a:2, exp:'Dan se refiere al capitán Fu: lo convierte simbólicamente en el medio para hacer llegar su mensaje al emperador.'},
+      {tag:'Narrador', q:'¿Qué tipo de narrador predomina en “Un tapiz olvidado”?', o:['Narrador protagonista en primera persona.','Narrador en tercera persona que cuenta los hechos y puede referirse a lo que sienten los personajes.','Narrador testigo que solo reproduce diálogos.','Narrador en segunda persona que se dirige al lector.'], a:1, exp:'El relato está contado en tercera persona y el narrador puede informar, por ejemplo, cómo recuerda Feng ese caso.'},
+      {tag:'Conectores', q:'En la deducción de Feng, la expresión “Por eso mataste al capitán” establece principalmente una relación de…', o:['oposición.','comparación.','consecuencia.','enumeración.'], a:2, exp:'“Por eso” introduce una consecuencia derivada de lo explicado antes: el temor de Dan a que Si-Lu fuera olvidada.'},
+      {tag:'Interpretación', q:'¿Por qué Dan dice que usó a un mensajero para enviar “su propio mensaje”?', o:['Porque obligó a Fu a escribir una carta antes de morir.','Porque escondió una nota dentro del tapiz.','Porque quería que Fu entregara oralmente la historia de Si-Lu.','Porque convirtió la muerte de Fu y el tapiz en una señal destinada a provocar el recuerdo del emperador.'], a:3, exp:'La palabra “mensaje” adquiere un sentido figurado: el crimen mismo debía comunicar que Si-Lu no podía ser borrada de la memoria.'}
+    ]
+  },
+  {
+    id:'inspiracion',
+    title:'La inspiración',
+    label:'Expediente 3',
+    accent:'#d18b2e',
+    description:'Un poeta, un pincel nuevo y una cometa en llamas: las pistas están donde nadie las busca.',
+    icon:`<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 50c13-4 19-13 22-27M34 23l8-11 10 10-11 8M34 23l7 7"></path><path d="M11 52h28"></path><path d="M48 9c4 3 6 8 4 13"></path></svg>`,
+    questions:[
+      {tag:'Pista', q:'¿Qué detalle llama la atención de Feng apenas observa los instrumentos de caligrafía de Siao?', o:['El papel de bambú estaba roto.','La tinta era de un color extraño.','Los instrumentos estaban casi sin usar, aunque Siao era un poeta muy prolífico.','Faltaba el sello de lacre del poeta.'], a:2, exp:'La falta de uso resulta significativa porque Siao había escrito muchísimo en el pasado, pero llevaba meses sin inspiración.'},
+      {tag:'Causa y consecuencia', q:'¿Qué función cumple la cometa en llamas dentro del plan de Ding?', o:['Distraer a los guardias para poder entrar al palacio.','Quemar desde lejos la habitación del poeta.','Enviar una advertencia escrita al consejero.','Provocar en Siao una sorpresa capaz de devolverle la inspiración.'], a:3, exp:'Ding sabe que Siao escribía a partir de aquello que lo sorprendía; la cometa debía impulsarlo a tomar el pincel.'},
+      {tag:'Inferencia', q:'¿Por qué el hecho de que Ding estuviera lejos no lo elimina como sospechoso?', o:['Porque podía ordenar a Tseng que entrara en la habitación.','Porque el veneno podía haberse colocado antes y la cometa activaba el momento en que Siao usaría el pincel.','Porque Feng demuestra que Ding regresó al palacio sin ser visto.','Porque la policía descubre un túnel entre el campo y la habitación.'], a:1, exp:'El plan está preparado con anticipación. Ding no necesita estar junto a Siao cuando ocurre la muerte.'},
+      {tag:'Reconstrucción', q:'¿Cuál es la secuencia que explica correctamente la muerte de Siao?', o:['Siao ve la cometa → recupera la inspiración → lleva el pincel nuevo a la boca → entra en contacto con el veneno.','Siao toma una bebida → ve la cometa → escribe un poema → cae por la ventana.','Ding entra en la habitación → envenena la tinta → obliga a Siao a escribir → huye.','Tseng envía el pincel → Siao lo quema → el humo lo envenena → Ding observa desde el campo.'], a:0, exp:'La solución depende del orden causal: sorpresa, inspiración, uso del pincel nuevo y contacto con el veneno colocado allí previamente.'},
+      {tag:'Lengua en contexto', q:'En “Sin embargo, ni Tseng ni Ding se acercaron a la habitación de Siao”, la expresión “sin embargo” introduce una idea de…', o:['causa.','oposición o contraste.','secuencia temporal.','conclusión.'], a:1, exp:'“Sin embargo” es un conector adversativo: contrapone la existencia de enemigos con el hecho de que ninguno se hubiera acercado.'},
+      {tag:'Vocabulario', q:'Por el contexto, ¿qué significa “rencilla” cuando se dice que Siao tuvo una rencilla con Tseng?', o:['Una amistad antigua.','Una colaboración literaria.','Una disputa o enemistad.','Una deuda económica.'], a:2, exp:'La rencilla aparece vinculada a una rivalidad entre poetas y funciona como posible motivo de sospecha.'},
+      {tag:'Interpretación', q:'¿Qué quiere señalar Feng cuando afirma que Ding “como asesino acepta las simetrías”?', o:['Que Ding siempre escribe poemas con versos iguales.','Que Ding dejó dos armas exactamente iguales.','Que Feng cree que todos los crímenes deben tener dos culpables.','Que el asesinato reproduce de manera significativa el mundo de la víctima: mata a un poeta usando la poesía y su modo de crear.'], a:3, exp:'La “simetría” es conceptual: el método del crimen está construido alrededor de la actividad poética de Siao.'},
+      {tag:'Género policial', q:'¿Cuál de estas preguntas de Feng resulta decisiva para transformar un dato extraño en una pista?', o:['¿Se veía desde la ventana el lugar donde Ding levantaba la cometa?','¿Cuántos poemas había escrito Siao?','¿De qué material era la mesa?','¿Cuántos guardias custodiaban el palacio?'], a:0, exp:'La ubicación de la cometa conecta el espectáculo preparado por Ding con aquello que Siao podía ver desde su habitación.'}
+    ]
+  },
+  {
+    id:'final',
+    title:'El desafío de Feng',
+    label:'Desafío transversal',
+    accent:'#24766f',
+    description:'Compará los tres casos: pistas, motivos, procedimientos y recursos del relato policial.',
+    icon:`<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="27" cy="27" r="15"></circle><path d="M38 38l14 14M21 27h12M27 21v12"></path></svg>`,
+    questions:[
+      {tag:'Comparar', q:'¿Qué tienen en común los tres casos en la manera en que Feng llega a la solución?', o:['En los tres recibe una confesión antes de investigar.','En los tres descubre un pasadizo secreto.','En los tres relaciona detalles que parecían secundarios con una explicación causal del crimen.','En los tres demuestra que la víctima fingió su muerte.'], a:2, exp:'Feng observa detalles, hace preguntas y conecta indicios que otros habían considerado irrelevantes.'},
+      {tag:'Género policial', q:'¿Cuál de estos conjuntos reúne elementos propios del relato policial presentes de manera clara en los tres cuentos?', o:['Enigma, detective, pistas, hipótesis y resolución.','Hechizo, profecía, héroe y objeto mágico.','Viaje, batalla, regreso y recompensa.','Monstruo, terror sobrenatural y final abierto.'], a:0, exp:'Los tres relatos construyen un enigma y hacen avanzar la investigación mediante pistas e hipótesis hasta una resolución.'},
+      {tag:'Motivaciones', q:'¿Qué opción relaciona correctamente a cada culpable con su motivo principal?', o:['Tsau: fama literaria / Dan: dinero / Ding: conservar un recuerdo.','Tsau: recompensa de Dang / Dan: preservar la memoria de Si-Lu / Ding: rivalidad y odio hacia Siao.','Tsau: miedo a la peste / Dan: venganza contra Fu / Ding: obediencia al emperador.','Tsau: proteger a Chou / Dan: robar el tapiz / Ding: ayudar a Siao a escribir.'], a:1, exp:'Los motivos son diferentes: interés material en Tsau, memoria y afecto en Dan, y rivalidad literaria en Ding.'},
+      {tag:'Objetos y pistas', q:'¿Qué afirmación describe mejor el papel de los objetos en los tres cuentos?', o:['Son decorativos y no influyen en la resolución.','Solo sirven para describir la antigua China.','Todos son armas físicas utilizadas del mismo modo.','Objetos cotidianos adquieren una función decisiva: pueden engañar, comunicar, activar una acción o convertirse en parte del método criminal.'], a:3, exp:'Espejo, tinta, tapiz, pincel y cometa dejan de ser simples objetos del ambiente y se vuelven piezas del enigma.'},
+      {tag:'Narrador', q:'¿Qué rasgo comparten los tres relatos en relación con la voz narrativa?', o:['Están narrados por Feng en primera persona.','Predomina un narrador en tercera persona que cuenta las acciones y deja espacio para que el lector siga la investigación.','Cada cuento alterna obligatoriamente entre dos narradores protagonistas.','Están escritos como informes de la policía imperial.'], a:1, exp:'Los tres relatos se construyen en tercera persona y presentan la investigación sin convertir a Feng en narrador protagonista.'},
+      {tag:'Causa y consecuencia', q:'¿Cuál de estas cadenas causales corresponde correctamente a uno de los cuentos?', o:['Marcas falsas de peste → Chou cree estar condenado → se corta la garganta.','Tapiz limpiado → Fu recuerda a Si-Lu → Dan abandona la torre.','Cometa en llamas → Feng pierde la inspiración → Tseng envenena la tinta.','Pócima para dormir → Ding escribe un poema → Siao acusa a Tsau.'], a:0, exp:'La cadena del primer cuento muestra cómo el engaño preparado por Tsau provoca la reacción fatal de Chou.'},
+      {tag:'Interpretación', q:'¿En cuál de los tres casos la resolución plantea con más fuerza un conflicto entre descubrir al culpable y juzgar moralmente su motivo?', o:['En “El espejo del mandarín”, porque Chou había encerrado la puerta.','En “La inspiración”, porque Feng también escribe un poema.','En “Un tapiz olvidado”, porque Feng comprende el motivo de Dan aunque el capitán Fu era inocente.','En los tres, porque Feng decide liberar a todos los culpables.'], a:2, exp:'El caso de Dan tiene una dimensión moral más compleja: su deseo de preservar una memoria no justifica el crimen, pero afecta la forma en que Feng vive la resolución.'},
+      {tag:'Síntesis', q:'Si tuvieras que formular una regla del método de Feng a partir de los tres cuentos, ¿cuál sería la más adecuada?', o:['Descartar todo dato que parezca raro.','Confiar siempre en la primera explicación de la policía.','Buscar únicamente pruebas materiales y evitar preguntar por los motivos.','Observar lo extraño, preguntar por qué está allí y relacionarlo con las acciones y motivaciones de los personajes.'], a:3, exp:'Feng convierte las anomalías en preguntas y luego las vincula con motivos, oportunidades y cadenas de acciones.'}
+    ]
+  }
+];
+
+const KEY='fengQuizV1';
+const letters=['A','B','C','D'];
+let state=loadState();
+let activeCase=null;
+let attempt=null;
+
+function blankModule(){return {completed:false,score:0,progress:0,selected:{}}}
+function defaultState(){return {modules:{espejo:blankModule(),tapiz:blankModule(),inspiracion:blankModule(),final:blankModule()},studentName:''}}
+function loadState(){
+  try{
+    const raw=localStorage.getItem(KEY); if(!raw) return defaultState();
+    const parsed=JSON.parse(raw); const base=defaultState();
+    for(const c of CASES){if(parsed.modules?.[c.id]) base.modules[c.id]={...blankModule(),...parsed.modules[c.id]};}
+    base.studentName=parsed.studentName||'';
+    return base;
+  }catch(e){return defaultState()}
+}
+function saveState(){localStorage.setItem(KEY,JSON.stringify(state));}
+function finalUnlocked(){return ['espejo','tapiz','inspiracion'].every(id=>state.modules[id].completed)}
+function overallAnswered(){
+  return CASES.reduce((sum,c)=>{
+    const m=state.modules[c.id];
+    if(m.completed) return sum+8;
+    return sum+Math.min(8,m.progress||0);
+  },0);
+}
+function completedCount(){return CASES.filter(c=>state.modules[c.id].completed).length}
+function accumulatedScore(){return CASES.reduce((s,c)=>s+(state.modules[c.id].completed?state.modules[c.id].score:0),0)}
+function overallPct(){return Math.round(overallAnswered()/32*1000)/10}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
+
+function statusFor(c){
+  const m=state.modules[c.id];
+  if(c.id==='final' && !finalUnlocked()) return {cls:'lock',txt:'Bloqueado'};
+  if(m.completed) return {cls:'done',txt:`Completado · ${m.score}/8`};
+  if(m.progress>0) return {cls:'progress',txt:`En curso · ${m.progress}/8`};
+  return {cls:'',txt:'Sin comenzar'};
+}
+
+function renderHome(){
+  document.getElementById('home').classList.remove('hidden');
+  document.getElementById('quiz').classList.remove('active');
+  const answered=overallAnswered(), pct=overallPct();
+  document.getElementById('overallPct').textContent=`${pct.toLocaleString('es-AR')} %`;
+  document.getElementById('overallBar').style.width=pct+'%';
+  document.getElementById('completedCount').textContent=`${completedCount()}/4`;
+  document.getElementById('totalScore').textContent=`${accumulatedScore()}/32`;
+  document.getElementById('answeredCount').textContent=`${answered}/32`;
+
+  const cards=document.getElementById('caseCards');
+  cards.innerHTML='';
+  CASES.forEach(c=>{
+    const m=state.modules[c.id], locked=c.id==='final'&&!finalUnlocked(), st=statusFor(c);
+    const prog=m.completed?100:(m.progress/8*100);
+    const btn=document.createElement('button');
+    btn.type='button';
+    btn.className='case-card'+(locked?' locked':'');
+    btn.style.setProperty('--accent',c.accent);
+    btn.setAttribute('aria-disabled',locked?'true':'false');
+    btn.innerHTML=`
+      <div class="card-top"><span class="case-label">${c.label}</span><span class="status ${st.cls}">${st.txt}</span></div>
+      <div class="case-symbol">${c.icon}</div>
+      <h3>${c.title}</h3>
+      <p>${c.description}</p>
+      <div class="card-foot"><span>${locked?'Completá primero los tres cuentos':'8 preguntas'}</span><span class="mini-bar"><i style="width:${prog}%"></i></span></div>`;
+    btn.addEventListener('click',()=>{
+      if(locked){toast('El desafío final se desbloquea al completar los tres cuentos.');return;}
+      startCase(c.id,false);
+    });
+    cards.appendChild(btn);
+  });
+
+  const summary=document.getElementById('finalSummary');
+  if(completedCount()===4){
+    summary.classList.remove('hidden');
+    document.getElementById('summaryGrid').innerHTML=
+      CASES.map(c=>`<div class="summary-item"><small>${c.label} · ${c.title}</small><b>${state.modules[c.id].score}/8</b></div>`).join('')+
+      `<div class="summary-item" style="grid-column:1/-1"><small>Puntaje total</small><b>${accumulatedScore()}/32 · ${Math.round(accumulatedScore()/32*100)} %</b></div>`;
+    const nameInput=document.getElementById('studentName');
+    if(nameInput){nameInput.value=state.studentName||'';nameInput.oninput=()=>{state.studentName=nameInput.value;saveState();};}
+    const detail=document.getElementById('reportDetail');if(detail)detail.innerHTML=reportDetailHTML();
+    const d=document.getElementById('downloadReport'),p=document.getElementById('printReport'),t=document.getElementById('toggleReportDetail');
+    if(d)d.onclick=downloadCorrection;if(p)p.onclick=printCorrection;if(t)t.onclick=toggleReportDetail;
+  }else summary.classList.add('hidden');
+}
+
+function startCase(id,retry=false){
+  activeCase=CASES.find(c=>c.id===id);
+  const saved=state.modules[id];
+  if(retry || saved.completed){
+    attempt={index:0,score:0,selected:{}};
+  } else {
+    attempt={index:saved.progress||0,score:0,selected:{...(saved.selected||{})}};
+    // Reconstruct current in-progress score from stored choices.
+    attempt.score=Object.entries(attempt.selected).reduce((s,[i,choice])=>s+(activeCase.questions[+i].a===choice?1:0),0);
+  }
+  document.getElementById('home').classList.add('hidden');
+  document.getElementById('quiz').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  renderQuestion();
+}
+
+function generalPctDuringAttempt(){
+  let count=0;
+  CASES.forEach(c=>{
+    const m=state.modules[c.id];
+    if(c.id===activeCase.id){
+      if(m.completed) count+=8;
+      else count+=Math.max(m.progress||0,attempt.index);
+    } else count+=m.completed?8:Math.min(8,m.progress||0);
+  });
+  return Math.round(count/32*1000)/10;
+}
+
+function renderQuestion(){
+  const q=activeCase.questions[attempt.index];
+  if(!q){finishCase();return;}
+  const pct=(attempt.index/8)*100;
+  const gpct=generalPctDuringAttempt();
+  document.getElementById('quizCounterTop').textContent=`Pregunta ${attempt.index+1} de 8`;
+  const card=document.getElementById('quizCard');
+  card.style.setProperty('--accent',activeCase.accent);
+  card.innerHTML=`
+    <div class="quiz-banner">
+      <div class="quiz-banner-line"><div><span class="case-label" style="color:${activeCase.accent}">${activeCase.label}</span><h2>${activeCase.title}</h2></div><div class="quiz-score">Puntaje: ${attempt.score}/8</div></div>
+      <div class="dual-bars">
+        <div><div class="bar-caption"><span>Este expediente</span><span>${attempt.index}/8</span></div><div class="smallbar"><i style="width:${pct}%"></i></div></div>
+        <div><div class="bar-caption"><span>Recorrido total</span><span>${gpct.toLocaleString('es-AR')} %</span></div><div class="smallbar general"><i style="width:${gpct}%"></i></div></div>
+      </div>
+    </div>
+    <div class="question-area">
+      <div class="question-kicker">${q.tag}</div>
+      <div class="question">${q.q}</div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="next-row"><button class="primary" id="nextBtn" type="button" hidden>${attempt.index===7?'Ver resultado':'Siguiente pregunta'} →</button></div>
+    </div>`;
+  const opts=card.querySelector('#options');
+  q.o.forEach((txt,idx)=>{
+    const b=document.createElement('button');b.type='button';b.className='option';
+    b.innerHTML=`<span class="letter">${letters[idx]}</span><span>${txt}</span>`;
+    b.addEventListener('click',()=>answer(idx));opts.appendChild(b);
+  });
+  card.querySelector('#nextBtn').addEventListener('click',()=>{attempt.index++;renderQuestion();});
+}
+
+function answer(choice){
+  const q=activeCase.questions[attempt.index];
+  if(attempt.selected[attempt.index]!==undefined) return;
+  attempt.selected[attempt.index]=choice;
+  const correct=choice===q.a;
+  if(correct) attempt.score++;
+  const buttons=[...document.querySelectorAll('.option')];
+  buttons.forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('correct');if(i===choice&&!correct)b.classList.add('wrong')});
+  const f=document.getElementById('feedback');
+  f.className='feedback show '+(correct?'ok':'no');
+  f.innerHTML=`<strong>${correct?'Respuesta correcta.':'No es la opción correcta.'}</strong>${q.exp}`;
+  document.getElementById('nextBtn').hidden=false;
+
+  const m=state.modules[activeCase.id];
+  if(!m.completed){
+    m.progress=Math.max(m.progress||0,attempt.index+1);
+    m.selected={...attempt.selected};
+    saveState();
+  }
+}
+
+function finishCase(){
+  const m=state.modules[activeCase.id];
+  const wasCompleted=m.completed;
+  m.completed=true;
+  m.score=attempt.score;
+  m.progress=8;
+  m.selected={...attempt.selected};
+  saveState();
+
+  const firstThreeNow=finalUnlocked();
+  const allDone=completedCount()===4;
+  const pct=Math.round(attempt.score/8*100);
+  document.getElementById('quizCounterTop').textContent='Expediente finalizado';
+  const card=document.getElementById('quizCard');
+  card.style.setProperty('--accent',activeCase.accent);
+  let note='';
+  if(activeCase.id!=='final' && firstThreeNow && !state.modules.final.completed){
+    note='<div class="unlock-note">El desafío transversal ya está desbloqueado. Ahora podés comparar los tres cuentos.</div>';
+  } else if(allDone){
+    note=`<div class="unlock-note">Recorrido completo: ${accumulatedScore()}/32 puntos y 100 % de la investigación realizada.</div>`;
+  }
+  card.innerHTML=`<div class="result">
+    <div class="result-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 33l10 10 21-24"></path><circle cx="32" cy="32" r="25"></circle></svg></div>
+    <div class="case-label" style="color:${activeCase.accent}">${activeCase.label}</div>
+    <h2>${activeCase.id==='final'?'Desafío completado':'Caso resuelto'}</h2>
+    <p>Terminaste las ocho preguntas de <strong>${activeCase.title}</strong>. El puntaje indica las respuestas correctas; el progreso indica cuánto del recorrido completaste.</p>
+    <div class="result-score">${attempt.score}/8</div>
+    <div class="result-sub">${pct} % de respuestas correctas · Progreso general: ${overallPct().toLocaleString('es-AR')} %</div>
+    <div class="result-actions">
+      <button class="primary" id="chooseOther" type="button">Elegir otro caso</button>
+      <button class="secondary" id="retry" type="button">Reintentar este</button>
+      <button class="secondary" id="resultHome" type="button">Volver al inicio</button>
+    </div>${note}
+  </div>`;
+  card.querySelector('#chooseOther').addEventListener('click',()=>{renderHome();setTimeout(()=>document.querySelector('.section-head')?.scrollIntoView({behavior:'smooth'}),50)});
+  card.querySelector('#retry').addEventListener('click',()=>startCase(activeCase.id,true));
+  card.querySelector('#resultHome').addEventListener('click',renderHome);
+}
+
+
+function escapeHTML(value){
+ return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+}
+function getStudentName(){
+ const input=document.getElementById('studentName');
+ const name=(input?input.value:state.studentName||'').trim();
+ if(!name){
+   alert('Escribí tu nombre y apellido antes de generar el informe.');
+   if(input) input.focus();
+   return '';
+ }
+ state.studentName=name;saveState();return name;
+}
+function slugify(value){
+ return String(value||'informe').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()
+   .replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'');
+}
+function reportDetailHTML(){
+ let out='';
+ CASES.forEach(item=>{
+   const selected=state.modules[item.id].selected||{};
+   out+=`<div class="report-stage">${escapeHTML(item.label)} · ${escapeHTML(item.title)}</div>`;
+   item.questions.forEach((q,idx)=>{
+     const choice=selected[idx];
+     const answered=choice!==undefined && choice!==null;
+     const ok=answered && Number(choice)===q.a;
+     const student=answered ? `${letters[Number(choice)]}. ${q.o[Number(choice)]}` : 'Sin respuesta';
+     const correct=`${letters[q.a]}. ${q.o[q.a]}`;
+     out+=`<div class="report-item ${ok?'correct':'incorrect'}">
+       <p><strong>${idx+1}. ${escapeHTML(q.q)}</strong></p>
+       <p><strong>Tu respuesta:</strong> ${escapeHTML(student)}</p>
+       <p><strong>Respuesta correcta:</strong> ${escapeHTML(correct)}</p>
+       <p><strong>Estado:</strong> <span class="${ok?'state-ok':'state-no'}">${ok?'Correcta':'Incorrecta'}</span></p>
+     </div>`;
+   });
+ });
+ return out;
+}
+function toggleReportDetail(){
+ const detail=document.getElementById('reportDetail');
+ const btn=document.getElementById('toggleReportDetail');
+ if(!detail)return;
+ const show=!detail.classList.contains('show');
+ detail.classList.toggle('show',show);
+ if(btn) btn.textContent=show?'Ocultar detalle':'Ver detalle';
+}
+function buildCorrectionHTML(student){
+ const score=accumulatedScore();
+ const total=32;
+ const pct=Math.round(score/total*100);
+ const date=new Date().toLocaleString('es-AR');
+ const detail=reportDetailHTML()
+   .replaceAll('report-stage','stage')
+   .replaceAll('report-item','item')
+   .replaceAll('report-note','note');
+ const summary=CASES.map(item=>`<div class="datum"><strong>${state.modules[item.id].score}/8</strong>${escapeHTML(item.label)}</div>`).join('');
+ return `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+ <title>Corrección - Expedientes del sabio Feng</title>
+ <style>
+ *{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#f2f5f6;color:#263238;margin:0;padding:24px}
+ main{max-width:940px;margin:0 auto;background:white;border-radius:16px;padding:26px;box-shadow:0 5px 18px rgba(0,0,0,.08)}
+ h1{text-align:center;color:#29445a;margin:0 0 8px}.sub{text-align:center;color:#66747c;margin:5px 0}
+ .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin:22px 0}
+ .datum{background:#edf4f6;border:1px solid #bfcfd6;border-radius:12px;padding:13px;text-align:center}.datum strong{display:block;font-size:1.55rem;color:#29445a}
+ .stage{margin:22px 0 9px;padding:10px 13px;border-radius:10px;background:#eaf1f4;color:#29445a;font-weight:bold}
+ .item{border:1px solid #d7dde2;border-left:7px solid #667085;border-radius:9px;padding:13px;margin:10px 0;background:#fff}
+ .item.correct{border-left-color:#347e62}.item.incorrect{border-left-color:#a94d49}.item p{margin:5px 0;line-height:1.4}
+ .state-ok{color:#287054;font-weight:bold}.state-no{color:#9a413d;font-weight:bold}
+ .actions{text-align:center;margin:0 0 18px}.actions button{background:#3d708d;color:white;border:0;border-radius:22px;padding:11px 17px;font-weight:bold;cursor:pointer}
+ @media print{body{background:white;padding:0}main{box-shadow:none;border-radius:0}.actions{display:none}}
+ </style></head><body><main>
+ <div class="actions"><button onclick="window.print()">PDF / Imprimir</button></div>
+ <h1>Corrección de actividad</h1>
+ <p class="sub"><strong>Actividad:</strong> Expedientes del sabio Feng</p>
+ <p class="sub"><strong>Alumno/a:</strong> ${escapeHTML(student)}</p>
+ <p class="sub"><strong>Fecha:</strong> ${escapeHTML(date)}</p>
+ <div class="summary">${summary}
+   <div class="datum"><strong>${score}/${total}</strong>Puntaje total</div>
+   <div class="datum"><strong>${pct}%</strong>Porcentaje</div>
+ </div>
+ <h2>Detalle de respuestas</h2>${detail}
+ </main></body></html>`;
+}
+function downloadCorrection(){
+ const student=getStudentName();if(!student)return;
+ const report=buildCorrectionHTML(student);
+ const blob=new Blob([report],{type:'text/html;charset=utf-8'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);
+ a.download=`${correccion_expedientes_feng}_${slugify(student)}.html`;
+ document.body.appendChild(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function printCorrection(){
+ const student=getStudentName();if(!student)return;
+ const report=buildCorrectionHTML(student);
+ const win=window.open('','_blank');
+ if(!win){alert('No se pudo abrir la ventana de impresión. Revisá si el navegador bloqueó ventanas emergentes.');return;}
+ win.document.open();win.document.write(report);win.document.close();win.focus();
+ setTimeout(()=>win.print(),350);
+}
+
+document.getElementById('homeBtn').addEventListener('click',renderHome);
+document.getElementById('resetAll').addEventListener('click',()=>{
+  if(confirm('¿Querés borrar todo el progreso y los puntajes guardados?')){
+    state=defaultState();saveState();renderHome();toast('Actividad reiniciada.');
+  }
+});
+renderHome();
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

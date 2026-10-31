@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Cartas Españolas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           ESTILOS GENERALES
+           ========================================= */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #FFF3E0;
+            color: #333;
+            /* Layout para que la barra quede bien arriba */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* =========================================
+           BARRA DE NAVEGACIÓN (OPCIÓN B - CARPETAS)
+           ========================================= */
+        header {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            font-family: 'Roboto', sans-serif;
+            width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; margin-left: 15px;}
+        .nav-links a:hover { text-decoration: underline; }
+
+        /* =========================================
+           CONTENIDO PRINCIPAL
+           ========================================= */
+        h1 {
+            color: #2c3e50;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .instruction {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* --- BOTONERA DE PALOS --- */
+        .filter-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white;
+            min-width: 120px;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .filter-btn.active {
+            transform: scale(1.05);
+            box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+            border: 2px solid white;
+            outline: 2px solid #333;
+        }
+
+        /* Colores por palo */
+        .btn-oros { background-color: #f1c40f; color: #7f6000; }
+        .btn-copas { background-color: #e74c3c; }
+        .btn-espadas { background-color: #3498db; }
+        .btn-bastos { background-color: #27ae60; }
+
+        /* --- GRILLA DE CARTAS --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 400px;
+            margin-bottom: 50px;
+        }
+
+        .card-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: transform 0.2s;
+            background: #fff;
+        }
+
+        .card-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .card-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Mensaje de error si la imagen no carga */
+        .error-msg {
+            color: red; 
+            font-size: 0.8rem; 
+            padding: 20px; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    
+
+    <h1>Banco de Cartas</h1>
+    <div class="instruction">💡 Instrucción: <b>Clic derecho</b> sobre la carta > <b>Copiar imagen</b></div>
+
+    <div class="filter-container">
+        <button class="filter-btn btn-oros" onclick="mostrarPalo('oros')">🟡 Oros</button>
+        <button class="filter-btn btn-copas" onclick="mostrarPalo('copas')">🔴 Copas</button>
+        <button class="filter-btn btn-espadas" onclick="mostrarPalo('espadas')">🔵 Espadas</button>
+        <button class="filter-btn btn-bastos" onclick="mostrarPalo('bastos')">🟢 Bastos</button>
+    </div>
+
+    <div class="cards-grid" id="grid-container">
+        </div>
+
+    <script>
+        // CONFIGURACIÓN DE NOMBRES DE ARCHIVO
+        const sufijos = {
+            'oros': '_oro.jpg',       // Busca 01_oro.jpg
+            'copas': '_copa.jpg',     // Busca 01_copa.jpg
+            'espadas': '_espada.jpg', // Busca 01_espada.jpg
+            'bastos': '_basto.jpg'    // Busca 01_basto.jpg
+        };
+
+        const grid = document.getElementById('grid-container');
+
+        // Función para agregar el cero adelante (ej: 5 -> "05")
+        function pad(num) {
+            return num.toString().padStart(2, '0');
+        }
+
+        function mostrarPalo(paloSeleccionado) {
+            // 1. Limpiar pantalla
+            grid.innerHTML = '';
+
+            // 2. Activar botón visualmente
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.btn-${paloSeleccionado}`).classList.add('active');
+
+            // 3. Generar cartas del 1 al 12
+            for (let i = 1; i <= 12; i++) {
+                
+                // Construye el nombre: 01 + _oro.jpg
+                const nombreArchivo = `${pad(i)}${sufijos[paloSeleccionado]}`;
+                
+                // Crea la cajita de la carta
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'card-item';
+                
+                // Crea la imagen
+                const img = document.createElement('img');
+                img.src = nombreArchivo;
+                img.alt = `Carta ${i} de ${paloSeleccionado}`;
+                img.title = "Clic derecho > Copiar imagen"; // Tooltip al pasar el mouse
+
+                // Si no encuentra la imagen (por error de nombre), avisa
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    cardDiv.innerHTML = `<div class="error-msg">No se halló:<br>${nombreArchivo}</div>`;
+                };
+
+                cardDiv.appendChild(img);
+                grid.appendChild(cardDiv);
+            }
+        }
+
+        // Cargar Oros al iniciar
+        mostrarPalo('oros');
+    </script>
+
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suma con Dados</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       ESTILOS GENERALES
+       ========================================= */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #dbe9d8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* =========================================
+       BARRA DE NAVEGACIÓN
+       ========================================= */
+    header {
+        background-color: #2c3e50;
+        padding: 15px 0;
+        margin-bottom: 20px;
+        font-family: 'Roboto', sans-serif;
+        width: 100%;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; margin-left: 15px;}
+    .nav-links a:hover { text-decoration: underline; }
+
+    /* =========================================
+       JUEGO DE DADOS
+       ========================================= */
+    .container {
+        text-align: center;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        max-width: 95%;
+        margin-bottom: 20px;
+        width: 600px;
+    }
+
+    h1 { color: #2c3e50; margin-top: 0; }
+
+    /* Área de los dados */
+    .mesa-dados {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #27ae60; /* Tapete verde */
+        padding: 30px;
+        border-radius: 10px;
+        gap: 15px;
+        margin-bottom: 20px;
+        border: 5px solid #219150;
+    }
+
+    /* DADOS CSS */
+    .dado {
+        width: 80px;
+        height: 80px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 3px 3px 0px #ccc;
+        display: grid;
+        grid-template-areas: 
+            "a . c"
+            "e g f"
+            "d . b";
+        padding: 8px;
+        box-sizing: border-box;
+    }
+
+    .punto {
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-color: #333;
+        border-radius: 50%;
+        align-self: center;
+        justify-self: center;
+    }
+
+    /* Lógica visual de los dados */
+    .dado[data-val="1"] .punto:not(:nth-child(7)) { display: none; }
+    .dado[data-val="2"] .punto:not(:nth-child(1)):not(:nth-child(6)) { display: none; }
+    .dado[data-val="3"] .punto:not(:nth-child(1)):not(:nth-child(6)):not(:nth-child(7)) { display: none; }
+    .dado[data-val="4"] .punto:not(:nth-child(1)):not(:nth-child(3)):not(:nth-child(4)):not(:nth-child(6)) { display: none; }
+    .dado[data-val="5"] .punto:nth-child(2), .dado[data-val="5"] .punto:nth-child(5) { display: none; }
+    .dado[data-val="6"] .punto:nth-child(7) { display: none; }
+
+    .punto:nth-child(1) { grid-area: a; }
+    .punto:nth-child(2) { grid-area: e; }
+    .punto:nth-child(3) { grid-area: c; }
+    .punto:nth-child(4) { grid-area: d; }
+    .punto:nth-child(5) { grid-area: f; }
+    .punto:nth-child(6) { grid-area: b; }
+    .punto:nth-child(7) { grid-area: g; }
+
+    .signo { font-size: 2.5rem; color: white; font-weight: bold; }
+
+    /* ZONA DE RESPUESTA */
+    #zonaRespuesta {
+        width: 90px;
+        height: 90px;
+        background-color: rgba(255,255,255,0.2);
+        border: 3px dashed rgba(255,255,255,0.8);
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: rgba(255,255,255,0.8);
+        font-size: 2rem;
+        transition: background-color 0.3s;
+    }
+
+    /* FICHAS CLICKEABLES */
+    .fichas-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .ficha {
+        width: 55px;
+        height: 55px;
+        background-color: #f39c12; /* Naranja base */
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer; /* Manito de clic */
+        box-shadow: 0 4px 0 #d35400; /* Sombra 3D */
+        transition: transform 0.1s, background-color 0.2s;
+        border: none; /* Es un botón */
+        outline: none;
+    }
+
+    /* Efecto al presionar */
+    .ficha:active {
+        transform: translateY(4px); /* Se hunde */
+        box-shadow: 0 0 0 #d35400;  /* Desaparece la sombra */
+    }
+
+    /* Efecto Hover (solo PC) */
+    .ficha:hover {
+        background-color: #e67e22;
+    }
+
+    /* Animación de error */
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+
+    .error-anim {
+        animation: shake 0.4s ease-in-out;
+        background-color: #e74c3c !important; /* Rojo */
+        box-shadow: 0 4px 0 #c0392b !important;
+    }
+
+    .ficha-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* Mensajes */
+    #mensaje { min-height: 30px; margin: 10px 0; font-weight: bold; font-size: 1.1rem; }
+    
+    button#btn-nuevo {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 12px 35px;
+        border-radius: 25px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: none; /* Se oculta al principio */
+        margin: 15px auto;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    
+    button#btn-nuevo:hover { background-color: #2980b9; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+        .dado { width: 50px; height: 50px; padding: 4px; }
+        .punto { width: 10px; height: 10px; }
+        #zonaRespuesta { width: 60px; height: 60px; font-size: 1.5rem; }
+        .ficha { width: 48px; height: 48px; font-size: 1.3rem; }
+        .mesa-dados { padding: 15px; gap: 8px; }
+    }
+
+  </style>
+</head>
+<body>
+
+
+
+<div class="container">
+    <div class="page-header">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="images/01.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: var(--title-color);">Sumas con dados</h1></div></div>
+        </div>
+    <p>Toca el número correcto para completar la suma.</p>
+
+    <div class="mesa-dados">
+        
+        <div class="dado" id="dado1" data-val="1">
+            <span class="punto"></span><span class="punto"></span><span class="punto"></span>
+            <span class="punto"></span><span class="punto"></span><span class="punto"></span>
+            <span class="punto"></span>
+        </div>
+
+        <div class="signo">+</div>
+
+        <div class="dado" id="dado2" data-val="1">
+            <span class="punto"></span><span class="punto"></span><span class="punto"></span>
+            <span class="punto"></span><span class="punto"></span><span class="punto"></span>
+            <span class="punto"></span>
+        </div>
+
+        <div class="signo">=</div>
+
+        <div id="zonaRespuesta">?</div>
+
+    </div>
+
+    <div id="mensaje"></div>
+    <button id="btn-nuevo">Siguiente Suma 🎲</button>
+
+    <div class="fichas-container">
+        </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const dado1 = document.getElementById('dado1');
+    const dado2 = document.getElementById('dado2');
+    const zonaRespuesta = document.getElementById('zonaRespuesta');
+    const fichasContainer = document.querySelector('.fichas-container');
+    const mensaje = document.getElementById('mensaje');
+    const btnNuevo = document.getElementById('btn-nuevo');
+
+    let sumaCorrecta = 0;
+    let juegoActivo = true;
+
+    // --- 1. GENERAR BOTONES (2 al 12) ---
+    for (let i = 2; i <= 12; i++) {
+        let btn = document.createElement('button');
+        btn.classList.add('ficha');
+        btn.textContent = i;
+        
+        // EVENTO CLICK (Tocar)
+        btn.onclick = () => verificarRespuesta(i, btn);
+
+        fichasContainer.appendChild(btn);
+    }
+
+    // --- 2. FUNCIÓN LANZAR DADOS ---
+    function lanzarDados() {
+        // Reset visual
+        zonaRespuesta.innerHTML = '?';
+        zonaRespuesta.style.backgroundColor = 'rgba(255,255,255,0.2)';
+        zonaRespuesta.style.borderColor = 'rgba(255,255,255,0.8)';
+        mensaje.textContent = '';
+        btnNuevo.style.display = 'none';
+        juegoActivo = true;
+
+        // Habilitar todos los botones
+        const botones = document.querySelectorAll('.ficha');
+        botones.forEach(b => {
+            b.classList.remove('ficha-disabled', 'error-anim');
+            b.style.backgroundColor = '#f39c12'; // Restaurar naranja
+        });
+
+        // Números aleatorios
+        let val1 = Math.floor(Math.random() * 6) + 1;
+        let val2 = Math.floor(Math.random() * 6) + 1;
+        
+        // Dibujar dados
+        dado1.setAttribute('data-val', val1);
+        dado2.setAttribute('data-val', val2);
+
+        sumaCorrecta = val1 + val2;
+    }
+
+    // --- 3. VERIFICAR RESPUESTA ---
+    function verificarRespuesta(numeroElegido, botonClickeado) {
+        if (!juegoActivo) return; // Si ya ganó, no hacer nada
+
+        if (numeroElegido === sumaCorrecta) {
+            // --- GANÓ ---
+            juegoActivo = false;
+            
+            // Efecto visual en la zona de respuesta
+            zonaRespuesta.style.backgroundColor = '#f1c40f'; // Amarillo
+            zonaRespuesta.style.borderColor = '#f39c12';
+            // Ponemos una ficha "falsa" dentro del recuadro para que se vea bonito
+            zonaRespuesta.innerHTML = `<div class="ficha" style="margin:0; box-shadow:none; pointer-events:none;">${numeroElegido}</div>`;
+            
+            mensaje.textContent = "¡Excelente! " + sumaCorrecta + " es correcto.";
+            mensaje.style.color = "#27ae60";
+            
+            // Deshabilitar botones para que no sigan clickeando
+            document.querySelectorAll('.ficha').forEach(b => b.classList.add('ficha-disabled'));
+
+            // Mostrar botón Siguiente
+            btnNuevo.style.display = 'block';
+            // Enfocar botón siguiente para accesibilidad
+            btnNuevo.focus();
+
+        } else {
+            // --- PERDIÓ (Intento fallido) ---
+            mensaje.textContent = "¡Ups! Intenta de nuevo.";
+            mensaje.style.color = "#c0392b";
+            
+            // Animación de error en el botón tocado
+            botonClickeado.classList.add('error-anim');
+            
+            // Quitar la animación después de un ratito para que pueda volver a intentarlo si quiere (o dejarlo marcado como error)
+            setTimeout(() => {
+                botonClickeado.classList.remove('error-anim');
+            }, 500);
+        }
+    }
+
+    // Botón Siguiente
+    btnNuevo.addEventListener('click', lanzarDados);
+
+    // Iniciar juego al cargar
+    lanzarDados();
+});
+</script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

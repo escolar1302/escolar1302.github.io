@@ -1,0 +1,243 @@
+{
+"id": "las-joyas-6grado",
+"titulo": "Las joyas",
+"area": "Lengua",
+"grado": "6°",
+"descripcion": "Rosco sobre los personajes, los objetos, los acontecimientos y los conflictos centrales del cuento de Guy de Maupassant.",
+"instrucciones": "Leé cada consigna y escribí la palabra o expresión correcta según el cuento.",
+"modoRosco": "seleccionado",
+"consignas": [
+
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Piedras preciosas que imitaban los trozos de vidrio usados por la esposa de Lantín.",
+"respuestas": [
+"brillantes",
+"brillante"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Adorno de perlas que Lantín llevó a vender creyendo que era falso.",
+"respuestas": [
+"collar",
+"collares"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Obligaciones económicas que contrajo Lantín cuando su sueldo dejó de alcanzarle.",
+"respuestas": [
+"deudas",
+"deuda"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Forma prudente de administrar el dinero que permitía a la mujer de Lantín sostener la casa.",
+"respuestas": [
+"economía",
+"economia"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "F",
+"modo": "empieza",
+"pregunta": "Moneda en la que se expresan el sueldo, los precios y la fortuna del protagonista.",
+"respuestas": [
+"francos",
+"franco"
+],
+"ayuda": "Empieza con F."
+},
+{
+"letra": "G",
+"modo": "empieza",
+"pregunta": "Cualidad de la esposa que Lantín consideraba más valiosa que los adornos.",
+"respuestas": [
+"gracia"
+],
+"ayuda": "Empieza con G."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Origen falso que Lantín atribuyó a su nueva fortuna cuando renunció a su empleo.",
+"respuestas": [
+"herencia",
+"herencias"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "I",
+"modo": "empieza",
+"pregunta": "Ministerio en el que trabajaba Lantín antes de hacerse rico.",
+"respuestas": [
+"interior"
+],
+"ayuda": "Empieza con I."
+},
+{
+"letra": "J",
+"modo": "empieza",
+"pregunta": "Adornos que apasionaban a la esposa y que resultaron ser verdaderos y muy valiosos.",
+"respuestas": [
+"joyas",
+"joya"
+],
+"ayuda": "Empieza con J."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Apellido del protagonista del cuento.",
+"respuestas": [
+"lantín",
+"lantin"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Institución pública en la que el protagonista ocupaba un puesto administrativo.",
+"respuestas": [
+"ministerio"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "N",
+"modo": "empieza",
+"pregunta": "Gastos esenciales de la casa que el sueldo de Lantín ya no podía cubrir después de la muerte de su mujer.",
+"respuestas": [
+"necesidades",
+"necesidad"
+],
+"ayuda": "Empieza con N."
+},
+{
+"letra": "Ñ",
+"modo": "contiene",
+"pregunta": "Objeto que Lantín mordió para evitar gritar mientras lloraba desesperadamente.",
+"respuestas": [
+"pañuelo",
+"pañuelos"
+],
+"ayuda": "Contiene la letra Ñ."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Lugar del que salió la esposa de Lantín la noche en que comenzó a enfermarse.",
+"respuestas": [
+"opera",
+"ópera"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Material que formaba el collar elegido por Lantín para realizar la primera venta.",
+"respuestas": [
+"perlas",
+"perla"
+],
+"ayuda": "Empieza con P."
+},
+
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Documento que el comerciante entregó a Lantín cuando dejó la pieza durante veinticuatro horas.",
+"respuestas": [
+"recibo",
+"recibos"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Dinero que Lantín recibía anualmente por su trabajo y que luego resultó insuficiente.",
+"respuestas": [
+"sueldo",
+"sueldos"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "T",
+"modo": "empieza",
+"pregunta": "Diversión a la que la esposa asistía con frecuencia y que cansaba a su marido.",
+"respuestas": [
+"teatro",
+"teatros"
+],
+"ayuda": "Empieza con T."
+},
+{
+"letra": "U",
+"modo": "contiene",
+"pregunta": "Adornos para las muñecas que formaban parte de la colección vendida por Lantín.",
+"respuestas": [
+"pulseras",
+"pulsera"
+],
+"ayuda": "Contiene la letra U."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Condición de Lantín después de la muerte de su primera esposa.",
+"respuestas": [
+"viudo",
+"viudez"
+],
+"ayuda": "Empieza con V."
+},
+{
+"letra": "X",
+"modo": "contiene",
+"pregunta": "Acción que realizó el primer comerciante para determinar el valor y la autenticidad del adorno.",
+"respuestas": [
+"examinó",
+"examino",
+"examinar"
+],
+"ayuda": "Contiene la letra X."
+},
+{
+"letra": "Y",
+"modo": "contiene",
+"pregunta": "Comercio al que Lantín llevó los adornos para conocer su valor y venderlos.",
+"respuestas": [
+"joyería",
+"joyeria",
+"joyerías",
+"joyerias"
+],
+"ayuda": "Contiene la letra Y."
+},
+{
+"letra": "Z",
+"modo": "empieza",
+"pregunta": "Piedras preciosas azules que formaban parte de uno de los conjuntos tasados por el comerciante.",
+"respuestas": [
+"zafiros",
+"zafiro"
+],
+"ayuda": "Empieza con Z."
+}
+]
+}

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secuencias de Lengua · Índice</title>
+<meta name="description" content="Índice de cuentos con secuencias didácticas, fichas, guías docentes y autoevaluaciones, organizado en una tabla para encontrar cada material de un vistazo.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --theme:#27AE60; --soft:#E8F5E9; --title:#1B5E20;
+  --docente:#E67E22; --docente-soft:#FDF1E4; --docente-title:#A34E00;
+  --auto:#036FB0; --auto-soft:#E3F2FD; --auto-title:#01579B;
+  --nav:#2c3e50; --text:#263238;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--soft);font-family:'Nunito',sans-serif;color:var(--text);line-height:1.5}
+.site-nav{background:var(--nav);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 3px 10px rgba(0,0,0,.22);position:relative;z-index:10}
+.site-nav img{height:54px;max-width:220px;object-fit:contain}
+.site-nav nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.site-nav a{color:#fff;text-decoration:none;font-weight:800;font-size:.95rem}
+
+.page-header{background:var(--theme);color:#fff;padding:34px 20px}
+.hero-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:24px}
+.hero-text{flex:1;min-width:0;text-align:center}
+.hero-text h1{margin:0 0 6px;font-size:clamp(2rem,4vw,2.8rem);line-height:1.05}
+.hero-text p{margin:0;font-size:1.1rem;opacity:.93}
+.hero-img{max-height:130px;max-width:170px;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(0,0,0,.18))}
+
+.barra{position:sticky;top:0;z-index:9;background:var(--soft);transition:box-shadow .2s}
+.barra.pegada{box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.barra-in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.buscar{flex:1 1 260px;max-width:380px;padding:9px 16px;border:2px solid rgba(0,0,0,.08);border-radius:999px;font:inherit;background:#fff;color:var(--text)}
+.buscar:focus{outline:2px solid var(--theme);outline-offset:1px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-weight:800;color:var(--nav);font-size:.9rem}
+.pill{border:2px solid var(--nav);background:#fff;color:var(--nav);border-radius:999px;padding:4px 14px;font:800 .85rem 'Nunito',sans-serif;cursor:pointer}
+.pill[aria-pressed="true"]{background:var(--nav);color:#fff}
+.pill.suave{border-color:#b0bec5;color:#546E7A}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--nav);outline-offset:2px}
+
+.page-wrap{max-width:1100px;margin:0 auto;padding:16px 20px 70px;min-height:60vh}
+.leyenda{display:flex;gap:16px;flex-wrap:wrap;font-weight:700;font-size:.9rem;margin:0 0 16px}
+.leyenda span{display:inline-flex;align-items:center;gap:8px}
+.leyenda i{width:14px;height:14px;border-radius:50%;display:inline-block}
+
+/* Recorridos: tira superior */
+details.bloque{background:#fff;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.08);margin:0 0 18px;overflow:hidden;border-top:5px solid var(--c,var(--nav))}
+details.bloque>summary{list-style:none;cursor:pointer;padding:12px 18px;display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.2rem;color:var(--title)}
+details.bloque>summary::-webkit-details-marker{display:none}
+details.bloque>summary::before{content:"▸";color:var(--c,var(--nav));transition:transform .15s;display:inline-block}
+details.bloque[open]>summary::before{transform:rotate(90deg)}
+.cuenta{font-size:.8rem;font-weight:800;background:var(--c,var(--nav));color:#fff;border-radius:999px;padding:1px 10px}
+.recos{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;padding:4px 18px 18px}
+.reco{border:2px solid #cfd8dc;border-radius:12px;padding:12px 14px}
+.reco h3{margin:0 0 4px;font-size:1.05rem;color:var(--nav)}
+.reco p{margin:0 0 6px;font-size:.88rem;color:#607D8B}
+.reco ol{margin:0 0 8px;padding-left:22px;font-weight:700;font-size:.92rem}
+.reco ol a{color:var(--title)}
+.acciones{display:flex;flex-wrap:wrap;gap:6px}
+
+/* Tabla */
+.tabla-wrap{overflow:visible}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+thead th{position:sticky;top:var(--alto-barra,0px);background:#fff;z-index:2;font-size:.78rem;text-transform:uppercase;letter-spacing:.03em;padding:8px 6px;text-align:center;border-bottom:3px solid #cfd8dc}
+thead th:first-child{text-align:left;padding-left:18px}
+thead th.aula{border-bottom-color:var(--theme);color:var(--title)}
+thead th.docente{border-bottom-color:var(--docente);color:var(--docente-title)}
+thead th.auto{border-bottom-color:var(--auto);color:var(--auto-title)}
+tbody tr{border-bottom:1px solid #eceff1}
+tbody tr:hover{background:#fafcfb}
+tbody td{padding:9px 6px;text-align:center;vertical-align:middle}
+td.nom{text-align:left;padding-left:18px}
+td.nom strong{display:block;color:var(--title);font-size:1rem;line-height:1.2}
+td.nom span{font-size:.82rem;color:#607D8B;font-weight:700}
+td.nom .rc{display:block;font-size:.76rem;color:#78909C;font-weight:600}
+td.nom .rc a{color:var(--nav);font-weight:800;cursor:pointer;text-decoration:underline}
+.cel{display:flex;flex-direction:column;gap:4px;align-items:center}
+.cel small{font-size:.72rem;color:#78909C;font-weight:700}
+.no{color:#cfd8dc}
+
+/* Botoncitos de la tabla */
+.b{display:inline-block;min-width:64px;padding:3px 12px;border-radius:999px;border:2px solid var(--theme);background:#fff;color:var(--text);text-decoration:none;font-weight:900;font-size:.8rem;transition:.14s;text-align:center}
+.b:hover{background:var(--soft)}
+.b.docente{border-color:var(--docente)} .b.docente:hover{background:var(--docente-soft)}
+.b.auto{border-color:var(--auto);color:var(--auto-title)} .b.auto:hover{background:var(--auto-soft)}
+.b.pronto{border-color:#cfd8dc;color:#90a4ae;background:#f6f8fb;font-weight:700;font-size:.72rem}
+
+.vacio{text-align:center;font-weight:700;margin:40px 0}
+.destacada{animation:flash 1.8s ease-out}
+@keyframes flash{0%,35%{background:#ffefb0}100%{background:transparent}}
+@media (prefers-reduced-motion:reduce){.destacada{animation:none;background:#ffefb0}}
+
+/* Celular: cada fila de la tabla se vuelve una tarjeta */
+@media(max-width:850px){.hero-inner{flex-direction:column}.site-nav,.site-nav nav{justify-content:center}}
+@media(max-width:760px){
+  .hero-img{display:none}.page-header{padding:24px 16px}
+  .barra-in{padding:8px 14px}
+  table,tbody,tr,td{display:block;width:100%}
+  thead{display:none}
+  tbody tr{padding:12px 16px;border-bottom:8px solid var(--soft)}
+  tbody td{display:flex;justify-content:space-between;align-items:center;text-align:right;padding:5px 0;gap:12px;border-top:1px dashed #eceff1}
+  td.nom{display:block;text-align:left;padding:0 0 6px;border-top:0}
+  tbody td[data-vacio]{display:none}
+  tbody td::before{content:attr(data-label);font-weight:800;font-size:.8rem;color:#546E7A;text-align:left;flex:0 0 38%}
+  td.nom::before{display:none}
+  .cel{align-items:flex-end}
+}
+</style>
+</head>
+<body>
+
+
+<section class="page-header"><div class="hero-inner">
+  <img class="hero-img" src="../images/oso-lengua.png" alt="" onerror="this.style.display='none'">
+  <div class="hero-text"><h1>Secuencias de Lengua</h1><p>Todo el material de cada cuento, en un índice de un vistazo</p></div>
+  <img class="hero-img" src="../images/tres-lengua.png" alt="" onerror="this.style.display='none'">
+</div></section>
+
+<div id="centinela" style="height:1px;margin-bottom:-1px" aria-hidden="true"></div>
+<div id="barra" class="barra"><div class="barra-in">
+  <input id="buscar" class="buscar" type="search" placeholder="Buscar título, autor, género o tema…" aria-label="Buscar">
+  <div class="ctl" role="group" aria-label="Cómo agrupar">
+    Agrupar:
+    <button type="button" class="pill" data-g="genero" aria-pressed="true">Género</button>
+    <button type="button" class="pill" data-g="autor" aria-pressed="false">Autor</button>
+    <button type="button" class="pill" data-g="az" aria-pressed="false">A-Z</button>
+    <button type="button" class="pill suave" id="plegar">Plegar todo</button>
+  </div>
+</div></div>
+
+<main class="page-wrap">
+  <div class="leyenda">
+    <span><i style="background:var(--theme)"></i>Para el aula</span>
+    <span><i style="background:var(--docente)"></i>Para el docente</span>
+    <span id="ley-auto" hidden><i style="background:var(--auto)"></i>Para practicar</span>
+  </div>
+  <div id="lista"></div>
+  <p id="vacio" class="vacio" hidden>No se encontró nada con esa búsqueda.</p>
+</main>
+
+<script src="cuentos.js"></script>
+<script src="catalogo-core.js"></script>
+<script>
+(function(){
+  "use strict";
+  const C = window.Catalogo;
+  const $ = id => document.getElementById(id);
+  function el(tag, cls, txt){ const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+  const st = {q: "", g: "genero", abiertos: true};
+
+  const COLS = [
+    {t: "Cuento / textos", g: "aula",    claves: ["cuento", "texto2", "texto3"], lab: "Cuento"},
+    {t: "Secuencia",       g: "aula",    claves: ["secuencia"],                  lab: "Secuencia"},
+    {t: "Fichas",          g: "aula",    claves: ["fichas"],                     lab: "Fichas"},
+    {t: "Guía secuencia",  g: "docente", claves: ["secuencia_guia"],             lab: "Guía secuencia"},
+    {t: "Guía fichas",     g: "docente", claves: ["fichas_guia"],                lab: "Guía fichas"},
+    {t: "Practicar",       g: "auto",    auto: true,                              lab: "Practicar"}
+  ];
+
+  function boton(d, texto){
+    const e = C.enlace(d, "b", texto);
+    return e;
+  }
+
+  function celda(it, col){
+    const td = el("td"); td.dataset.label = col.lab;
+    const caja = el("div", "cel");
+    if (col.auto){
+      if (it.auto){ const a = el("a", "b auto", "Hacer"); a.href = it.auto; a.setAttribute("aria-label", "Autoevaluación de " + it.titulo); caja.appendChild(a); }
+    } else {
+      const ds = it.docs.filter(d => col.claves.indexOf(d.clave) !== -1);
+      ds.forEach(function(d){
+        // Si hay varios textos, cada botón lleva su nombre; si hay uno solo, "Abrir"
+        const texto = ds.length > 1 ? d.corta : (d.externo ? "Abrir" : "PDF");
+        const b = boton(d, texto);
+        b.setAttribute("aria-label", d.etiqueta + " de " + it.titulo);
+        caja.appendChild(b);
+        if (d.autor) caja.appendChild(el("small", null, d.autor));
+      });
+    }
+    if (!caja.children.length){ td.dataset.vacio = "1"; td.appendChild(el("span", "no", "—")); }
+    else td.appendChild(caja);
+    return td;
+  }
+
+  function fila(it){
+    const tr = el("tr"); tr.dataset.slug = it.slug;
+    const nom = el("td", "nom");
+    nom.appendChild(el("strong", null, it.titulo));
+    if (it.autor) nom.appendChild(el("span", null, it.autor));
+    if (it.recos.length){
+      const rc = el("span", "rc", it.recos.length > 1 ? "Recorridos: " : "Recorrido: ");
+      it.recos.forEach(function(r, i){
+        if (i) rc.appendChild(document.createTextNode(", "));
+        const a = el("a", null, r.titulo); a.tabIndex = 0; a.setAttribute("role", "link");
+        const ir = () => { const t = document.querySelector('[data-reco="' + r.idx + '"]'); if (t){ $("recos-det") && ($("recos-det").open = true); t.scrollIntoView({behavior: "smooth", block: "center"}); } };
+        a.addEventListener("click", ir);
+        a.addEventListener("keydown", e => { if (e.key === "Enter") ir(); });
+        rc.appendChild(a);
+      });
+      nom.appendChild(rc);
+    }
+    tr.appendChild(nom);
+    COLS.forEach(col => tr.appendChild(celda(it, col)));
+    return tr;
+  }
+
+  function tabla(items){
+    const w = el("div", "tabla-wrap");
+    const t = el("table");
+    const th = el("thead"), r = el("tr");
+    const c0 = el("th", null, "Cuento"); c0.scope = "col"; r.appendChild(c0);
+    COLS.forEach(c => { const h = el("th", c.g, c.t); h.scope = "col"; r.appendChild(h); });
+    th.appendChild(r); t.appendChild(th);
+    const tb = el("tbody"); items.forEach(i => tb.appendChild(fila(i))); t.appendChild(tb);
+    w.appendChild(t);
+    return w;
+  }
+
+  function bloque(titulo, items, color){
+    const d = el("details", "bloque"); d.open = st.abiertos;
+    d.style.setProperty("--c", color || "var(--nav)");
+    d.dataset.det = "1";
+    const s = el("summary", null, titulo);
+    s.appendChild(el("span", "cuenta", String(items.length)));
+    d.appendChild(s);
+    d.appendChild(tabla(items));
+    return d;
+  }
+
+  function recorridosBloque(rs){
+    const d = el("details", "bloque"); d.id = "recos-det"; d.open = st.abiertos;
+    d.dataset.det = "1";
+    const s = el("summary", null, "Recorridos"); s.appendChild(el("span", "cuenta", String(rs.length)));
+    d.appendChild(s);
+    const g = el("div", "recos");
+    rs.forEach(function(r){
+      const c = el("article", "reco"); c.dataset.reco = r.idx;
+      c.appendChild(el("h3", null, r.titulo));
+      if (r.descripcion) c.appendChild(el("p", null, r.descripcion));
+      if (r.miembros.length){
+        const ol = el("ol");
+        r.miembros.forEach(function(m){
+          const li = el("li"); const a = el("a", null, m.titulo); a.href = "#" + m.slug;
+          a.addEventListener("click", function(e){ e.preventDefault(); irA(m.slug); });
+          li.appendChild(a); ol.appendChild(li);
+        });
+        c.appendChild(ol);
+      }
+      const ac = el("div", "acciones");
+      r.docs.forEach(d => ac.appendChild(C.enlace(d, "b", d.corta === "Cuentos" ? "Cuentos" : d.corta)));
+      if (r.auto){ const a = el("a", "b auto", "Autoevaluación"); a.href = r.auto; ac.appendChild(a); }
+      if (ac.children.length) c.appendChild(ac);
+      g.appendChild(c);
+    });
+    d.appendChild(g);
+    return d;
+  }
+
+  function irA(slug){
+    st.q = ""; $("buscar").value = ""; render();
+    document.querySelectorAll("details[data-det]").forEach(d => { if (d.querySelector('tr[data-slug="' + slug + '"]')) d.open = true; });
+    const tr = document.querySelector('tr[data-slug="' + slug + '"]');
+    if (!tr) return;
+    tr.scrollIntoView({behavior: "smooth", block: "center"});
+    tr.classList.add("destacada"); setTimeout(() => tr.classList.remove("destacada"), 1900);
+  }
+
+  function render(){
+    const lista = $("lista"), frag = document.createDocumentFragment();
+    const cs = C.cuentos.filter(c => C.pasa(c, st.q));
+    const rs = C.recorridos.filter(r => C.pasa(r, st.q));
+    let total = cs.length + rs.length;
+
+    if (rs.length) frag.appendChild(recorridosBloque(rs));
+
+    if (st.g === "genero"){
+      C.generos.forEach(g => { const its = cs.filter(c => c.genero === g); if (its.length) frag.appendChild(bloque(g, its, C.colorGenero(g))); });
+      const sin = cs.filter(c => !c.genero); if (sin.length) frag.appendChild(bloque("Sin clasificar", sin));
+    } else if (st.g === "autor"){
+      const m = new Map();
+      cs.forEach(c => { const k = c.autor || "Sin autor"; if (!m.has(k)) m.set(k, []); m.get(k).push(c); });
+      Array.from(m.keys()).sort((a, b) => (a === "Anónimo") - (b === "Anónimo") || (a === "Sin autor") - (b === "Sin autor") || a.localeCompare(b, "es"))
+        .forEach(k => frag.appendChild(bloque(k, m.get(k))));
+    } else {
+      if (cs.length) frag.appendChild(bloque("Todos los cuentos", cs.slice().sort((a, b) => a.titulo.localeCompare(b.titulo, "es")), "#27AE60"));
+    }
+    lista.replaceChildren(frag);
+    $("vacio").hidden = total > 0;
+    const algunoAuto = C.cuentos.concat(C.recorridos).some(i => i.auto);
+    $("ley-auto").hidden = !algunoAuto;
+    medir();
+  }
+
+  // Alto de la barra fija, para que los encabezados de la tabla queden justo debajo
+  function medir(){ document.documentElement.style.setProperty("--alto-barra", Math.ceil($("barra").getBoundingClientRect().height) + "px"); }
+  window.addEventListener("resize", medir);
+  if ("ResizeObserver" in window) new ResizeObserver(medir).observe($("barra"));
+  if ("IntersectionObserver" in window)
+    new IntersectionObserver(es => $("barra").classList.toggle("pegada", !es[0].isIntersecting)).observe($("centinela"));
+
+  $("buscar").addEventListener("input", e => { st.q = e.target.value; render(); });
+  document.querySelectorAll("[data-g]").forEach(b => b.addEventListener("click", function(){
+    st.g = b.dataset.g;
+    document.querySelectorAll("[data-g]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    render();
+  }));
+  $("plegar").addEventListener("click", function(){
+    st.abiertos = !st.abiertos;
+    document.querySelectorAll("details[data-det]").forEach(d => d.open = st.abiertos);
+    this.textContent = st.abiertos ? "Plegar todo" : "Desplegar todo";
+  });
+
+  render();
+  const h = decodeURIComponent(location.hash.replace("#", ""));
+  if (h && C.cuentos.some(c => c.slug === h)) setTimeout(() => irA(h), 150);
+})();
+</script>
+
+<div id="contenedor-pie"></div>
+<script>
+  fetch('/pie.html')
+    .then(response => { if (response.ok) return response.text(); throw new Error('No se pudo cargar el pie de página'); })
+    .then(data => { document.getElementById('contenedor-pie').innerHTML = data; })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juego del Rosco</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-principal: #27AE60;
+      --color-secundario: #E67E22;
+      --fondo: #fff8ef;
+      --texto: #263238;
+      --borde: #e0d4c5;
+      --gris: #d7d7d7;
+      --pasada: #ffd166;
+      --correcta: #4CAF50;
+      --incorrecta: #F44336;
+      --sin-consigna: #eeeeee;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fffdf9, var(--fondo));
+      color: var(--texto);
+    }
+
+    header {
+      background: var(--color-principal);
+      color: white;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16);
+    }
+
+    .nav-site {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+    }
+
+    .marca-sitio {
+      color: white;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 999px;
+      padding: 8px 13px;
+    }
+
+    .nav-principal {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-principal a {
+      color: white;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-principal a:hover,
+    .marca-sitio:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 0.92rem;
+    }
+
+    .titulo-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 20px 20px;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .subtitulo-header {
+      margin: 6px 0 0;
+      opacity: 0.95;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px 40px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    details.panel {
+      display: block;
+    }
+
+    details.panel summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    details.panel summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.panel summary h2 {
+      margin: 0;
+    }
+
+    details.panel summary::after {
+      content: "Abrir";
+      background: rgba(39, 174, 96, 0.12);
+      color: var(--color-principal);
+      border: 1px solid rgba(39, 174, 96, 0.24);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 900;
+      font-size: 0.9rem;
+      flex: 0 0 auto;
+    }
+
+    details.panel[open] summary {
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    details.panel[open] summary::after {
+      content: "Cerrar";
+    }
+
+
+    .presentacion h2,
+    .selector h2,
+    .juego h2 {
+      margin-top: 0;
+      color: var(--color-principal);
+    }
+
+    .ayuda-texto {
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .grilla-temas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    button,
+    .boton {
+      border: none;
+      border-radius: 14px;
+      padding: 12px 16px;
+      background: var(--color-principal);
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+    }
+
+    button:hover,
+    .boton:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .boton-tema {
+      text-align: left;
+      background: #ffffff;
+      color: var(--texto);
+      border: 2px solid var(--color-principal);
+      min-height: 92px;
+    }
+
+    .boton-tema strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .boton-tema span {
+      display: block;
+      font-size: 0.9rem;
+      color: #546e7a;
+      font-weight: 400;
+    }
+
+    .cargador-local {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--borde);
+    }
+
+    .cargador-local input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px;
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      background: #fffdf9;
+    }
+
+    .nota-docente {
+      margin: 10px 0 0;
+      padding: 10px 12px;
+      border-left: 5px solid var(--color-secundario);
+      background: #fff7e6;
+      border-radius: 10px;
+      line-height: 1.45;
+      font-size: 0.95rem;
+    }
+
+    .opciones-juego {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid rgba(39, 174, 96, 0.20);
+      border-radius: 16px;
+      background: rgba(39, 174, 96, 0.06);
+      display: grid;
+      gap: 10px;
+    }
+
+    .opciones-juego strong {
+      color: var(--color-principal);
+      font-weight: 900;
+    }
+
+    .fila-opciones {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .opcion-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .opcion-check input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--color-principal);
+    }
+
+    .selector-tiempo {
+      border: 1px solid var(--borde);
+      border-radius: 999px;
+      padding: 9px 12px;
+      font-family: inherit;
+      font-weight: 800;
+      background: white;
+      color: var(--texto);
+    }
+
+    .tiempo-info {
+      font-size: 0.92rem;
+      color: #546e7a;
+      line-height: 1.35;
+    }
+
+    .barra-tiempo {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: center;
+      margin: 14px 0 18px;
+      padding: 10px 12px;
+      border: 1px solid var(--borde);
+      border-radius: 16px;
+      background: #fffdf9;
+    }
+
+    .barra-tiempo[hidden] {
+      display: none;
+    }
+
+    .temporizador {
+      min-width: 74px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(39, 174, 96, 0.12);
+      color: var(--color-principal);
+      font-size: 1.15rem;
+      font-weight: 900;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .temporizador.urgente {
+      background: #fff3cd;
+      color: #9a6700;
+      animation: pulso-tiempo 0.85s ease-in-out infinite alternate;
+    }
+
+    .temporizador.agotado {
+      background: #ffebee;
+      color: #b71c1c;
+      animation: none;
+    }
+
+    .barra-tiempo-track {
+      height: 12px;
+      border-radius: 999px;
+      background: #eceff1;
+      overflow: hidden;
+    }
+
+    .barra-tiempo-fill {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--color-principal);
+      transition: width 0.25s linear, background 0.25s ease;
+    }
+
+    .barra-tiempo-fill.urgente {
+      background: var(--color-secundario);
+    }
+
+    .barra-tiempo-fill.agotado {
+      background: var(--incorrecta);
+    }
+
+    @keyframes pulso-tiempo {
+      from { transform: scale(1); }
+      to { transform: scale(1.04); }
+    }
+
+    .juego {
+      display: none;
+    }
+
+    .juego.activo {
+      display: block;
+    }
+
+    .layout-juego {
+      display: grid;
+      grid-template-columns: minmax(280px, 380px) 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .rosco {
+      position: relative;
+      width: min(82vw, 360px);
+      height: min(82vw, 360px);
+      margin: 0 auto;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0 42%, rgba(39, 174, 96, 0.12) 43% 100%);
+      border: 3px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .rosco-centro-movil {
+      display: none;
+    }
+
+    .centro-meta-movil {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .centro-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(39, 174, 96, 0.12);
+      color: var(--color-principal);
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 3px 7px;
+      line-height: 1.1;
+    }
+
+    .respuesta-movil {
+      width: 100%;
+      border: 2px solid var(--borde);
+      border-radius: 999px;
+      padding: 9px 10px;
+      font-size: 0.95rem;
+      text-align: center;
+      font-family: inherit;
+      background: #fffdf9;
+    }
+
+    .respuesta-movil:focus {
+      outline: 3px solid rgba(39, 174, 96, 0.18);
+      border-color: var(--color-principal);
+    }
+
+    .acciones-movil {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .acciones-movil button {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 8px 7px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+    }
+
+
+    .letra {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 38px;
+      height: 38px;
+      margin-left: -19px;
+      margin-top: -19px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--gris);
+      color: #263238;
+      border: 2px solid white;
+      font-weight: 900;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .letra.sin-consigna {
+      background: var(--sin-consigna);
+      color: #9e9e9e;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    .letra.activa {
+      outline: 4px solid rgba(38, 50, 56, 0.22);
+      transform-origin: center;
+    }
+
+    .letra.correcta {
+      background: var(--correcta);
+      color: white;
+    }
+
+    .letra.incorrecta {
+      background: var(--incorrecta);
+      color: white;
+    }
+
+    .letra.pasada {
+      background: var(--pasada);
+      color: #4e342e;
+    }
+
+    .tarjeta-pregunta {
+      background: #fffdf9;
+      border: 1px solid var(--borde);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .personaje-estado {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      min-height: 92px;
+    }
+
+    .personaje-estado img {
+      width: 88px;
+      max-width: 28vw;
+      height: auto;
+      object-fit: contain;
+      flex: 0 0 auto;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.16));
+    }
+
+    .globo-personaje {
+      background: #ffffff;
+      border: 1px solid var(--borde);
+      border-radius: 16px;
+      padding: 10px 12px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #455a64;
+    }
+
+    .meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(39, 174, 96, 0.12);
+      color: var(--color-principal);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .consigna-actual {
+      font-size: 1.25rem;
+      line-height: 1.45;
+      min-height: 76px;
+      margin: 12px 0 14px;
+    }
+
+    .respuesta-wrap {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    #respuesta {
+      flex: 1 1 240px;
+      padding: 14px 12px;
+      font-size: 1.05rem;
+      border: 2px solid var(--borde);
+      border-radius: 14px;
+    }
+
+    #respuesta:focus {
+      outline: 3px solid rgba(39, 174, 96, 0.18);
+      border-color: var(--color-principal);
+    }
+
+    .acciones {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .secundario {
+      background: #607d8b;
+    }
+
+    .advertencia {
+      background: var(--color-secundario);
+    }
+
+    .estado-linea {
+      min-height: 28px;
+      margin-top: 12px;
+      font-weight: 700;
+    }
+
+    .marcador {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(90px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .dato {
+      background: #ffffff;
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .dato strong {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--color-principal);
+    }
+
+    .resultado-final {
+      display: none;
+      margin-top: 18px;
+      background: #ffffff;
+      border: 2px solid var(--color-principal);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .resultado-final.activo {
+      display: block;
+    }
+
+    .lista-revision {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      line-height: 1.45;
+    }
+
+    .mensaje-error {
+      color: #b71c1c;
+      font-weight: 700;
+      margin: 8px 0 0;
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 0 auto 28px;
+      padding: 0 16px;
+    }
+
+
+
+    .site-nav {
+      background: #2c3e50;
+      color: #fff;
+      padding: 10px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, .22);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .site-nav img {
+      height: 54px;
+      max-width: 220px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .site-nav nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .site-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: .95rem;
+    }
+
+    .site-nav .back-link {
+      color: #ffde72;
+      border-left: 1px solid rgba(255, 255, 255, .35);
+      padding-left: 18px;
+    }
+
+    .rosco-hero {
+      background: var(--color-principal);
+      color: #fff;
+      padding: 30px 20px 28px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    }
+
+    .rosco-hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .rosco-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin: 0 0 8px;
+    }
+
+    .rosco-hero p {
+      margin: 0;
+      font-size: 1.1rem;
+      opacity: .95;
+      font-weight: 600;
+    }
+
+    @media (max-width: 850px) {
+      .site-nav {
+        justify-content: center;
+      }
+
+      .site-nav nav {
+        justify-content: center;
+      }
+
+      .site-nav .back-link {
+        border-left: 0;
+        padding-left: 0;
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        background: #fffdf9;
+      }
+
+      .rosco-hero {
+        padding: 18px 14px 16px;
+      }
+
+      .rosco-hero h1 {
+        font-size: 2rem;
+      }
+
+      .rosco-hero p {
+        font-size: 0.95rem;
+      }
+
+      main {
+        margin: 12px auto;
+        padding: 0 10px 24px;
+      }
+
+      .panel {
+        padding: 12px;
+        border-radius: 16px;
+        margin-bottom: 12px;
+      }
+
+      details.panel summary h2,
+      .selector h2,
+      .juego h2 {
+        font-size: 1.2rem;
+      }
+
+      .grilla-temas {
+        grid-template-columns: 1fr;
+      }
+
+      .boton-tema {
+        min-height: 72px;
+      }
+
+      .layout-juego {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .rosco {
+        width: min(94vw, 330px);
+        height: min(94vw, 330px);
+        background: radial-gradient(circle, #ffffff 0 45%, rgba(39, 174, 96, 0.12) 46% 100%);
+      }
+
+      .letra {
+        width: 32px;
+        height: 32px;
+        margin-left: -16px;
+        margin-top: -16px;
+        font-size: 0.9rem;
+      }
+
+      .rosco-centro-movil {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 45%;
+        min-width: 136px;
+        max-width: 158px;
+        min-height: 122px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 4;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid var(--borde);
+        border-radius: 22px;
+        padding: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+      }
+
+      .tarjeta-pregunta {
+        padding: 12px;
+        border-radius: 16px;
+      }
+
+      .personaje-estado {
+        display: none;
+      }
+
+      .meta {
+        display: none;
+      }
+
+      .consigna-actual {
+        font-size: 1.08rem;
+        min-height: auto;
+        margin: 0 0 10px;
+        line-height: 1.35;
+      }
+
+      .respuesta-wrap {
+        display: none;
+      }
+
+      .acciones {
+        margin-top: 8px;
+      }
+
+      #btnResponder,
+      #btnPaso {
+        display: none;
+      }
+
+      #btnReiniciar,
+      #btnCambiar {
+        flex: 1 1 130px;
+        padding: 10px 12px;
+      }
+
+      .estado-linea {
+        min-height: 22px;
+        margin-top: 8px;
+        font-size: 0.95rem;
+      }
+
+      .marcador {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+        margin-top: 8px;
+      }
+
+      .dato {
+        padding: 6px 3px;
+        font-size: 0.72rem;
+        border-radius: 10px;
+      }
+
+      .dato strong {
+        font-size: 1.05rem;
+      }
+
+      .resultado-final {
+        margin-top: 10px;
+        padding: 12px;
+      }
+
+      .opciones-juego {
+        padding: 12px;
+      }
+
+      .fila-opciones {
+        align-items: stretch;
+      }
+
+      .opcion-check,
+      .selector-tiempo {
+        width: 100%;
+      }
+
+      .barra-tiempo {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin: 8px 0 10px;
+      }
+
+      .temporizador {
+        min-width: 0;
+        width: 100%;
+        font-size: 1.05rem;
+      }
+
+      .nav-site {
+        justify-content: center;
+        text-align: center;
+        padding: 8px 12px;
+        gap: 10px;
+      }
+
+      .site-nav img {
+        height: 44px;
+      }
+
+      .site-nav nav {
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-principal {
+        display: none;
+        width: 100%;
+        justify-content: center;
+        padding-top: 6px;
+      }
+
+      .nav-principal.abierto {
+        display: flex;
+      }
+
+      .titulo-header {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+
+  <section class="rosco-hero">
+    <div class="rosco-hero-inner">
+      <h1>Juego del Rosco</h1>
+      <p>Roscos de palabras por tema</p>
+    </div>
+  </section>
+
+  <main>
+    
+
+    <section class="panel selector" id="selector">
+      <h2>Roscos cargados en el sitio</h2>
+      <div id="listaTemas" class="grilla-temas"></div>
+      <p id="errorTemas" class="mensaje-error"></p>
+
+      <div class="opciones-juego" aria-label="Opciones de juego">
+        <strong>Opciones de juego</strong>
+        <div class="fila-opciones">
+          <label class="opcion-check"><input type="checkbox" id="usarTiempo" /> Jugar con tiempo</label>
+          <select id="ritmoTiempo" class="selector-tiempo" aria-label="Ritmo del tiempo">
+            <option value="20">Tranquilo: 20 segundos por palabra</option>
+            <option value="15" selected>Normal: 15 segundos por palabra</option>
+            <option value="10">Desafío: 10 segundos por palabra</option>
+          </select>
+        </div>
+        <div class="tiempo-info" id="tiempoEstimado">El tiempo se calcula al elegir un rosco.</div>
+      </div>
+
+      <div class="cargador-local">
+        
+        <input type="file" id="archivoLocal" accept=".json,application/json" />
+        
+      </div>
+    </section>
+
+    <section class="panel juego" id="juego">
+      <h2 id="tituloRosco">Rosco</h2>
+      <p id="descripcionRosco" class="ayuda-texto"></p>
+
+      <div class="barra-tiempo" id="barraTiempo" hidden aria-live="polite">
+        <div class="temporizador" id="temporizador">00:00</div>
+        <div class="barra-tiempo-track" aria-hidden="true"><div class="barra-tiempo-fill" id="progresoTiempo"></div></div>
+      </div>
+
+      <div class="layout-juego">
+        <div class="rosco" id="rosco" aria-label="Rosco de letras"></div>
+
+        <div class="tarjeta-pregunta">
+          <div class="personaje-estado" id="personajeEstado">
+            <img id="imagenPersonaje" src="/images/personaje_pensando.png" alt="Personaje pensando" onerror="this.style.display='none'" />
+            <div class="globo-personaje" id="mensajePersonaje">Pensá la respuesta y escribila cuando estés listo.</div>
+          </div>
+
+          <div class="meta">
+            <span class="pill" id="modoLetra">Con A</span>
+            <span class="pill" id="contadorPreguntas">1 de 1</span>
+          </div>
+
+          <div id="consignaActual" class="consigna-actual"></div>
+
+          <div class="respuesta-wrap">
+            <input id="respuesta" type="text" autocomplete="off" placeholder="Escribí tu respuesta" />
+          </div>
+
+          <div class="acciones">
+            <button id="btnResponder">Responder</button>
+            <button id="btnPaso" class="advertencia">Paso</button>
+            <button id="btnReiniciar" class="secundario">Reiniciar</button>
+            <button id="btnCambiar" class="secundario">Cambiar tema</button>
+          </div>
+
+          <div id="estadoLinea" class="estado-linea"></div>
+
+          <div class="marcador">
+            <div class="dato"><strong id="cantCorrectas">0</strong>Correctas</div>
+            <div class="dato"><strong id="cantIncorrectas">0</strong>Incorrectas</div>
+            <div class="dato"><strong id="cantPasadas">0</strong>Pasadas</div>
+            <div class="dato"><strong id="cantPendientes">0</strong>Pendientes</div>
+          </div>
+
+          <div id="resultadoFinal" class="resultado-final"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="pieSitio"></footer>
+
+  <script>
+    const ABECEDARIO = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+    const COLOR_AREA = {
+      "Lengua": "#27AE60",
+      "Matemática": "#E67E22",
+      "Recursos": "#036FB0",
+      "Diseño": "#D31718"
+    };
+
+    const listaTemas = document.getElementById("listaTemas");
+    const errorTemas = document.getElementById("errorTemas");
+    const selector = document.getElementById("selector");
+    const juego = document.getElementById("juego");
+    const rosco = document.getElementById("rosco");
+    const tituloRosco = document.getElementById("tituloRosco");
+    const descripcionRosco = document.getElementById("descripcionRosco");
+    const modoLetra = document.getElementById("modoLetra");
+    const contadorPreguntas = document.getElementById("contadorPreguntas");
+    const consignaActual = document.getElementById("consignaActual");
+    const respuesta = document.getElementById("respuesta");
+    const btnResponder = document.getElementById("btnResponder");
+    const btnPaso = document.getElementById("btnPaso");
+    const btnReiniciar = document.getElementById("btnReiniciar");
+    const btnCambiar = document.getElementById("btnCambiar");
+    const estadoLinea = document.getElementById("estadoLinea");
+    const resultadoFinal = document.getElementById("resultadoFinal");
+    const archivoLocal = document.getElementById("archivoLocal");
+    const usarTiempo = document.getElementById("usarTiempo");
+    const ritmoTiempo = document.getElementById("ritmoTiempo");
+    const tiempoEstimado = document.getElementById("tiempoEstimado");
+    const barraTiempo = document.getElementById("barraTiempo");
+    const temporizador = document.getElementById("temporizador");
+    const progresoTiempo = document.getElementById("progresoTiempo");
+    const imagenPersonaje = document.getElementById("imagenPersonaje");
+    const mensajePersonaje = document.getElementById("mensajePersonaje");
+    const menuToggle = document.getElementById("menuToggle");
+    const menuSitio = document.getElementById("menuSitio");
+    const btnVolverDinamico = document.getElementById("btnVolverDinamico");
+
+    const PERSONAJES = {
+      pensando: {
+        src: "/images/personaje_pensando.png",
+        alt: "Personaje pensando",
+        mensaje: "Pensá la respuesta y escribila cuando estés listo."
+      },
+      correcto: {
+        src: "/images/personaje_correcto.png",
+        alt: "Personaje celebrando una respuesta correcta",
+        mensaje: "¡Muy bien! La respuesta es correcta."
+      },
+      duda: {
+        src: "/images/personaje_duda.png",
+        alt: "Personaje con gesto de duda",
+        mensaje: "No era esa. Revisá la respuesta correcta."
+      }
+    };
+
+    const RUTAS_SONIDOS = {
+      acierto: ["audio/acierto.mp3", "./audio/acierto.mp3", "/rosco/audio/acierto.mp3", "/audio/acierto.mp3", "/sounds/acierto.mp3", "/acierto.mp3", "../audio/acierto.mp3", "../sounds/acierto.mp3", "../acierto.mp3", "acierto.mp3"],
+      error: ["audio/error.mp3", "./audio/error.mp3", "/rosco/audio/error.mp3", "/audio/error.mp3", "/sounds/error.mp3", "/error.mp3", "../audio/error.mp3", "../sounds/error.mp3", "../error.mp3", "error.mp3"],
+      final: ["audio/final.mp3", "./audio/final.mp3", "/rosco/audio/final.mp3", "/audio/final.mp3", "/sounds/final.mp3", "/final.mp3", "../audio/final.mp3", "../sounds/final.mp3", "../final.mp3", "final.mp3"]
+    };
+
+    let contextoAudio = null;
+    const audios = {};
+
+    let temaActual = null;
+    let consignas = [];
+    let indiceActual = 0;
+    let modoRoscoActual = "seleccionado";
+    let juegoConTiempo = false;
+    let tiempoTotal = 0;
+    let tiempoRestante = 0;
+    let intervaloTiempo = null;
+    let juegoFinalizado = false;
+
+    function obtenerContextoAudio() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return null;
+        if (!contextoAudio) contextoAudio = new AudioContext();
+        if (contextoAudio.state === "suspended") contextoAudio.resume();
+        return contextoAudio;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function beep(frecuencia = 880, duracion = 90, volumen = 0.08) {
+      const ctx = obtenerContextoAudio();
+      if (!ctx) return;
+      const oscilador = ctx.createOscillator();
+      const ganancia = ctx.createGain();
+      oscilador.type = "sine";
+      oscilador.frequency.value = frecuencia;
+      ganancia.gain.setValueAtTime(0.0001, ctx.currentTime);
+      ganancia.gain.exponentialRampToValueAtTime(volumen, ctx.currentTime + 0.01);
+      ganancia.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duracion / 1000);
+      oscilador.connect(ganancia);
+      ganancia.connect(ctx.destination);
+      oscilador.start();
+      oscilador.stop(ctx.currentTime + duracion / 1000 + 0.02);
+    }
+
+    function sonidoInicioTiempo() {
+      beep(660, 90, 0.07);
+      setTimeout(() => beep(880, 120, 0.08), 140);
+    }
+
+    function sonidoUltimosSegundos() {
+      beep(1040, 70, 0.075);
+    }
+
+    function sonidoTiempoAgotado() {
+      beep(330, 260, 0.09);
+    }
+
+    function crearAudioConFallback(nombre) {
+      const rutas = RUTAS_SONIDOS[nombre] || [];
+      let indiceRuta = 0;
+      const audio = new Audio();
+      audio.preload = "auto";
+      audio.volume = 0.65;
+      audio.addEventListener("error", () => {
+        indiceRuta += 1;
+        if (indiceRuta < rutas.length) audio.src = rutas[indiceRuta];
+      });
+      audio.src = rutas[indiceRuta] || "";
+      return audio;
+    }
+
+    function reproducirSonido(nombre) {
+      try {
+        if (!audios[nombre]) audios[nombre] = crearAudioConFallback(nombre);
+        const audio = audios[nombre];
+        audio.currentTime = 0;
+        audio.play().catch(() => {});
+      } catch (error) {}
+    }
+
+    function segundosAFormato(segundos) {
+      const total = Math.max(0, Math.floor(segundos));
+      const minutos = String(Math.floor(total / 60)).padStart(2, "0");
+      const seg = String(total % 60).padStart(2, "0");
+      return `${minutos}:${seg}`;
+    }
+
+    function calcularTiempoSegundos(tema, cantidad) {
+      const desdeJson = Number(tema && tema.tiempoSegundos);
+      if (Number.isFinite(desdeJson) && desdeJson > 0) return Math.max(20, Math.floor(desdeJson));
+      const segundosPorPalabra = parseInt(ritmoTiempo.value, 10) || 15;
+      return Math.max(45, cantidad * segundosPorPalabra);
+    }
+
+    function actualizarTiempoEstimado(cantidad = 0) {
+      const segundosPorPalabra = parseInt(ritmoTiempo.value, 10) || 15;
+      if (!cantidad) {
+        tiempoEstimado.textContent = `Si activás el tiempo, se calculará con ${segundosPorPalabra} segundos por consigna.`;
+        return;
+      }
+      const estimado = Math.max(45, cantidad * segundosPorPalabra);
+      tiempoEstimado.textContent = `Tiempo estimado para este rosco: ${segundosAFormato(estimado)}.`;
+    }
+
+    function actualizarVisualTiempo() {
+      temporizador.textContent = segundosAFormato(tiempoRestante);
+      const proporcion = tiempoTotal > 0 ? Math.max(0, Math.min(1, tiempoRestante / tiempoTotal)) : 0;
+      progresoTiempo.style.width = `${proporcion * 100}%`;
+      const urgente = tiempoRestante <= 10 && tiempoRestante > 0;
+      const agotado = tiempoRestante <= 0;
+      temporizador.classList.toggle("urgente", urgente);
+      progresoTiempo.classList.toggle("urgente", urgente);
+      temporizador.classList.toggle("agotado", agotado);
+      progresoTiempo.classList.toggle("agotado", agotado);
+    }
+
+    function iniciarTemporizadorSiCorresponde() {
+      detenerTemporizador();
+      juegoConTiempo = usarTiempo.checked;
+      tiempoTotal = calcularTiempoSegundos(temaActual, consignas.length);
+      tiempoRestante = tiempoTotal;
+      barraTiempo.hidden = !juegoConTiempo;
+      actualizarVisualTiempo();
+      if (!juegoConTiempo) return;
+
+      sonidoInicioTiempo();
+      intervaloTiempo = setInterval(() => {
+        if (juegoFinalizado) return;
+        tiempoRestante -= 1;
+        actualizarVisualTiempo();
+        if (tiempoRestante <= 10 && tiempoRestante > 0) sonidoUltimosSegundos();
+        if (tiempoRestante <= 0) finalizarPorTiempo();
+      }, 1000);
+    }
+
+    function detenerTemporizador() {
+      if (intervaloTiempo) clearInterval(intervaloTiempo);
+      intervaloTiempo = null;
+    }
+
+    function finalizarPorTiempo() {
+      if (juegoFinalizado) return;
+      tiempoRestante = 0;
+      actualizarVisualTiempo();
+      sonidoTiempoAgotado();
+      estadoLinea.textContent = "Se terminó el tiempo.";
+      finalizarJuego("tiempo");
+    }
+
+    function configurarMenu() {
+      if (menuToggle && menuSitio) {
+        menuToggle.addEventListener("click", () => {
+          const abierto = menuSitio.classList.toggle("abierto");
+          menuToggle.setAttribute("aria-expanded", abierto ? "true" : "false");
+        });
+      }
+
+      if (btnVolverDinamico) {
+        try {
+          const origen = document.referrer ? new URL(document.referrer) : null;
+          if (origen && origen.origin === window.location.origin) {
+            btnVolverDinamico.href = document.referrer;
+            btnVolverDinamico.textContent = "Volver";
+          } else {
+            btnVolverDinamico.href = "/";
+            btnVolverDinamico.textContent = "Inicio";
+          }
+        } catch (error) {
+          btnVolverDinamico.href = "/";
+          btnVolverDinamico.textContent = "Inicio";
+        }
+      }
+    }
+
+    function normalizar(texto) {
+      return String(texto || "")
+        .trim()
+        .toLowerCase()
+        .replace(/ñ/g, "__enie__")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/__enie__/g, "ñ")
+        .replace(/^[¿¡\s\"'“”‘’]+/g, "")
+        .replace(/[\s\.,;:!\?¿¡\"'“”‘’]+$/g, "")
+        .replace(/\s+/g, " ");
+    }
+
+    function pluralizarUltimaPalabra(texto) {
+      const partes = texto.split(" ");
+      const ultima = partes.pop();
+      let plural = ultima;
+      if (/z$/.test(ultima)) {
+        plural = ultima.slice(0, -1) + "ces";
+      } else if (/[aeiou]$/.test(ultima)) {
+        plural = ultima + "s";
+      } else if (!/s$/.test(ultima)) {
+        plural = ultima + "es";
+      }
+      return [...partes, plural].join(" ").trim();
+    }
+
+    function singularizarUltimaPalabra(texto) {
+      const partes = texto.split(" ");
+      const ultima = partes.pop();
+      let singular = ultima;
+      if (/ces$/.test(ultima) && ultima.length > 4) {
+        singular = ultima.slice(0, -3) + "z";
+      } else if (/es$/.test(ultima) && ultima.length > 4) {
+        singular = ultima.slice(0, -2);
+      } else if (/s$/.test(ultima) && ultima.length > 3) {
+        singular = ultima.slice(0, -1);
+      }
+      return [...partes, singular].join(" ").trim();
+    }
+
+    function variantesFlexibles(texto) {
+      const base = normalizar(texto);
+      const variantes = new Set([base]);
+      if (base) {
+        variantes.add(pluralizarUltimaPalabra(base));
+        variantes.add(singularizarUltimaPalabra(base));
+      }
+      return [...variantes].filter(Boolean);
+    }
+
+    function ordenarConsignas(lista) {
+      const posicion = new Map(ABECEDARIO.map((letra, indice) => [letra, indice]));
+      return [...lista].sort((a, b) => {
+        const pa = posicion.has(a.letra) ? posicion.get(a.letra) : 999;
+        const pb = posicion.has(b.letra) ? posicion.get(b.letra) : 999;
+        return pa - pb;
+      });
+    }
+
+    async function cargarIndiceTemas() {
+      try {
+        const respuesta = await fetch("temas.json", { cache: "no-store" });
+        if (!respuesta.ok) throw new Error("No se pudo leer temas.json");
+        const temas = await respuesta.json();
+        mostrarTemas(temas);
+      } catch (error) {
+        errorTemas.textContent = "No se pudo cargar temas.json. Si estás abriendo el archivo desde la computadora, probá cargar un JSON con el botón de archivo.";
+      }
+    }
+
+    function mostrarTemas(temas) {
+      listaTemas.innerHTML = "";
+      errorTemas.textContent = "";
+
+      temas.forEach((tema) => {
+        const boton = document.createElement("button");
+        boton.className = "boton-tema";
+        const colorTema = COLOR_AREA[tema.area] || COLOR_AREA.Lengua;
+        boton.style.borderColor = colorTema;
+        boton.innerHTML = `
+          <strong>${tema.titulo || "Rosco"}</strong>
+          <span>${tema.area || ""}${tema.grado ? " · " + tema.grado : ""}</span>
+        `;
+        boton.addEventListener("click", () => cargarTemaDesdeRuta(tema.archivo));
+        listaTemas.appendChild(boton);
+      });
+    }
+
+    async function cargarTemaDesdeRuta(ruta) {
+      try {
+        const respuesta = await fetch(ruta, { cache: "no-store" });
+        if (!respuesta.ok) throw new Error("No se pudo leer el archivo del tema");
+        const tema = await respuesta.json();
+        iniciarTema(tema);
+      } catch (error) {
+        errorTemas.textContent = "No se pudo cargar el tema. Revisá que la ruta del JSON exista y que el archivo no tenga errores.";
+      }
+    }
+
+    function iniciarTema(tema) {
+      if (!tema || !Array.isArray(tema.consignas) || tema.consignas.length === 0) {
+        errorTemas.textContent = "El JSON no tiene consignas válidas.";
+        return;
+      }
+
+      temaActual = tema;
+      modoRoscoActual = tema.modoRosco === "completo" ? "completo" : "seleccionado";
+      consignas = ordenarConsignas(tema.consignas.map((item) => ({
+        letra: String(item.letra || "").trim().toUpperCase(),
+        modo: item.modo === "contiene" ? "contiene" : "empieza",
+        pregunta: item.pregunta || item.consigna || "",
+        respuestas: Array.isArray(item.respuestas) ? item.respuestas.map(r => String(r)) : [],
+        ayuda: item.ayuda || "",
+        estado: null,
+        respuestaUsuario: ""
+      })).filter(item => item.letra && item.pregunta && item.respuestas.length > 0));
+
+      revisarCoherenciaDeLetras(consignas);
+
+      if (consignas.length === 0) {
+        errorTemas.textContent = "El JSON no tiene consignas completas.";
+        return;
+      }
+
+      indiceActual = 0;
+      juegoFinalizado = false;
+      actualizarTiempoEstimado(consignas.length);
+      aplicarColorArea(tema.area);
+      tituloRosco.textContent = tema.titulo || "Juego del Rosco";
+      descripcionRosco.textContent = tema.descripcion || tema.instrucciones || "";
+      selector.style.display = "none";
+      juego.classList.add("activo");
+      resultadoFinal.classList.remove("activo");
+      resultadoFinal.innerHTML = "";
+      estadoLinea.textContent = "";
+      actualizarPersonaje("pensando");
+      renderizarRosco();
+      mostrarConsignaActual();
+      actualizarMarcador();
+      iniciarTemporizadorSiCorresponde();
+      focoRespuesta();
+    }
+
+    function revisarCoherenciaDeLetras(lista) {
+      lista.forEach((item) => {
+        const letra = normalizar(item.letra);
+        const principal = normalizar(item.respuestas[0]);
+        const cumple = item.modo === "contiene" ? principal.includes(letra) : principal.startsWith(letra);
+        if (!cumple) {
+          console.warn(`Revisar consigna ${item.letra}: la respuesta "${item.respuestas[0]}" no cumple con el modo "${item.modo}".`);
+        }
+      });
+    }
+
+    function aplicarColorArea(area) {
+      const color = COLOR_AREA[area] || "#27AE60";
+      document.documentElement.style.setProperty("--color-principal", color);
+    }
+
+    function actualizarPersonaje(estado, mensajePersonalizado = "") {
+      const datos = PERSONAJES[estado] || PERSONAJES.pensando;
+      imagenPersonaje.style.display = "block";
+      imagenPersonaje.src = datos.src;
+      imagenPersonaje.alt = datos.alt;
+      mensajePersonaje.textContent = mensajePersonalizado || datos.mensaje;
+    }
+
+    function controlesMoviles() {
+      return {
+        input: document.getElementById("respuestaMovil"),
+        responder: document.getElementById("btnResponderMovil"),
+        paso: document.getElementById("btnPasoMovil"),
+        modo: document.getElementById("modoLetraMovil"),
+        contador: document.getElementById("contadorPreguntasMovil")
+      };
+    }
+
+    function conectarControlesMoviles() {
+      const c = controlesMoviles();
+      if (!c.input || c.input.dataset.conectado === "1") return;
+      c.input.dataset.conectado = "1";
+      c.input.addEventListener("input", () => {
+        respuesta.value = c.input.value;
+      });
+      c.input.addEventListener("keydown", (evento) => {
+        if (evento.key === "Enter") responderActual();
+      });
+      c.responder.addEventListener("click", () => {
+        respuesta.value = c.input.value;
+        responderActual();
+      });
+      c.paso.addEventListener("click", pasarActual);
+    }
+
+    function actualizarControlesMoviles(item) {
+      const c = controlesMoviles();
+      if (!c.input) return;
+      c.modo.textContent = item.modo === "contiene" ? `Contiene ${item.letra}` : `Con ${item.letra}`;
+      c.contador.textContent = `${indiceActual + 1}/${consignas.length}`;
+      c.input.value = "";
+      c.input.disabled = item.estado === "correcta" || item.estado === "incorrecta";
+      c.responder.disabled = c.input.disabled;
+      c.paso.disabled = c.input.disabled;
+    }
+
+    function focoRespuesta() {
+      const esMovil = window.matchMedia("(max-width: 760px)").matches;
+      // En celular no forzamos el foco: al abrirse el teclado cambia el alto de la ventana
+      // y algunos navegadores cierran el teclado si el input se reenfoca o se redibuja.
+      if (!esMovil) respuesta.focus();
+    }
+
+    function renderizarRosco() {
+      rosco.innerHTML = "";
+      const letrasConConsigna = new Set(consignas.map(item => item.letra));
+      const letrasParaMostrar = modoRoscoActual === "completo"
+        ? ABECEDARIO
+        : ABECEDARIO.filter(letra => letrasConConsigna.has(letra));
+      const ancho = rosco.clientWidth || 360;
+      const radio = (ancho / 2) - 26;
+      const total = Math.max(letrasParaMostrar.length, 1);
+
+      const centroMovil = document.createElement("div");
+      centroMovil.className = "rosco-centro-movil";
+      centroMovil.innerHTML = `
+        <div class="centro-meta-movil">
+          <span class="centro-pill" id="modoLetraMovil"></span>
+          <span class="centro-pill" id="contadorPreguntasMovil"></span>
+        </div>
+        <input class="respuesta-movil" id="respuestaMovil" type="text" autocomplete="off" placeholder="Respuesta" />
+        <div class="acciones-movil">
+          <button id="btnResponderMovil" type="button">OK</button>
+          <button id="btnPasoMovil" type="button" class="advertencia">Paso</button>
+        </div>
+      `;
+      rosco.appendChild(centroMovil);
+      conectarControlesMoviles();
+
+      letrasParaMostrar.forEach((letra, indice) => {
+        const angulo = (-90 + indice * (360 / total)) * Math.PI / 180;
+        const x = Math.cos(angulo) * radio;
+        const y = Math.sin(angulo) * radio;
+        const div = document.createElement("div");
+        div.className = "letra";
+        div.textContent = letra;
+        div.dataset.letra = letra;
+        div.style.transform = `translate(${x}px, ${y}px)`;
+
+        if (!letrasConConsigna.has(letra)) {
+          div.classList.add("sin-consigna");
+        } else {
+          div.addEventListener("click", () => irALetra(letra));
+        }
+
+        rosco.appendChild(div);
+      });
+
+      actualizarEstadosRosco();
+      if (consignas[indiceActual]) actualizarControlesMoviles(consignas[indiceActual]);
+    }
+
+    function actualizarEstadosRosco() {
+      document.querySelectorAll(".letra").forEach((nodo) => {
+        nodo.classList.remove("activa", "correcta", "incorrecta", "pasada");
+        const item = consignas.find(c => c.letra === nodo.dataset.letra);
+        if (!item) return;
+
+        if (item.estado) nodo.classList.add(item.estado);
+        if (consignas[indiceActual] && consignas[indiceActual].letra === item.letra) nodo.classList.add("activa");
+      });
+    }
+
+    function mostrarConsignaActual() {
+      const item = consignas[indiceActual];
+      if (!item) return;
+
+      modoLetra.textContent = item.modo === "contiene" ? `Contiene ${item.letra}` : `Con ${item.letra}`;
+      contadorPreguntas.textContent = `${indiceActual + 1} de ${consignas.length}`;
+      consignaActual.textContent = item.pregunta;
+      actualizarPersonaje("pensando", item.ayuda ? item.ayuda : "Pensá la respuesta y escribila cuando estés listo.");
+      respuesta.value = "";
+      respuesta.disabled = item.estado === "correcta" || item.estado === "incorrecta";
+      btnResponder.disabled = respuesta.disabled;
+      btnPaso.disabled = respuesta.disabled;
+      actualizarControlesMoviles(item);
+      actualizarEstadosRosco();
+      actualizarMarcador();
+    }
+
+    function responderActual() {
+      if (juegoFinalizado) return;
+      const item = consignas[indiceActual];
+      const escrita = normalizar(respuesta.value);
+
+      if (!escrita) {
+        estadoLinea.textContent = "Escribí una respuesta o usá Paso.";
+        return;
+      }
+
+      const respuestasValidas = item.respuestas.flatMap(variantesFlexibles);
+      item.respuestaUsuario = respuesta.value.trim();
+
+      if (respuestasValidas.includes(escrita)) {
+        item.estado = "correcta";
+        estadoLinea.textContent = "Correcto.";
+        actualizarPersonaje("correcto");
+        reproducirSonido("acierto");
+      } else {
+        item.estado = "incorrecta";
+        estadoLinea.textContent = `Incorrecto. Respuesta esperada: ${item.respuestas[0]}.`;
+        actualizarPersonaje("duda", `No era esa. Respuesta esperada: ${item.respuestas[0]}.`);
+        reproducirSonido("error");
+      }
+
+      avanzar();
+    }
+
+    function pasarActual() {
+      if (juegoFinalizado) return;
+      const item = consignas[indiceActual];
+      if (!item.estado) item.estado = "pasada";
+      estadoLinea.textContent = "Quedó para volver después.";
+      actualizarPersonaje("pensando", "Quedó para volver después.");
+      avanzar();
+    }
+
+    function avanzar() {
+      if (juegoFinalizado) return;
+      actualizarMarcador();
+      actualizarEstadosRosco();
+
+      const proximo = buscarProximoIndice();
+      if (proximo === -1) {
+        finalizarJuego();
+        return;
+      }
+
+      indiceActual = proximo;
+      setTimeout(() => {
+        if (juegoFinalizado) return;
+        mostrarConsignaActual();
+        focoRespuesta();
+      }, 850);
+    }
+
+    function buscarProximoIndice() {
+      const total = consignas.length;
+
+      for (let vuelta = 1; vuelta <= total; vuelta++) {
+        const candidato = (indiceActual + vuelta) % total;
+        if (consignas[candidato].estado === null) return candidato;
+      }
+
+      for (let vuelta = 1; vuelta <= total; vuelta++) {
+        const candidato = (indiceActual + vuelta) % total;
+        if (consignas[candidato].estado === "pasada") return candidato;
+      }
+
+      return -1;
+    }
+
+    function irALetra(letra) {
+      if (juegoFinalizado) return;
+      const indice = consignas.findIndex(item => item.letra === letra);
+      if (indice === -1) return;
+      indiceActual = indice;
+      estadoLinea.textContent = "";
+      resultadoFinal.classList.remove("activo");
+      mostrarConsignaActual();
+    }
+
+    function actualizarMarcador() {
+      const correctas = consignas.filter(item => item.estado === "correcta").length;
+      const incorrectas = consignas.filter(item => item.estado === "incorrecta").length;
+      const pasadas = consignas.filter(item => item.estado === "pasada").length;
+      const pendientes = consignas.filter(item => item.estado === null).length;
+
+      document.getElementById("cantCorrectas").textContent = correctas;
+      document.getElementById("cantIncorrectas").textContent = incorrectas;
+      document.getElementById("cantPasadas").textContent = pasadas;
+      document.getElementById("cantPendientes").textContent = pendientes;
+    }
+
+    function finalizarJuego(motivo = "normal") {
+      if (juegoFinalizado && motivo !== "normal") return;
+      juegoFinalizado = true;
+      detenerTemporizador();
+      actualizarMarcador();
+      actualizarEstadosRosco();
+      respuesta.disabled = true;
+      btnResponder.disabled = true;
+      btnPaso.disabled = true;
+      const c = controlesMoviles();
+      if (c.input) {
+        c.input.disabled = true;
+        c.responder.disabled = true;
+        c.paso.disabled = true;
+      }
+
+      const correctas = consignas.filter(item => item.estado === "correcta").length;
+      const incorrectas = consignas.filter(item => item.estado === "incorrecta");
+      const pendientes = consignas.filter(item => item.estado === null || item.estado === "pasada");
+
+      let html = `<h3>Resultado final</h3>`;
+      if (motivo === "tiempo") {
+        html += `<p><strong>Se terminó el tiempo.</strong></p>`;
+      }
+      html += `<p>Correctas: <strong>${correctas}</strong> de <strong>${consignas.length}</strong>.</p>`;
+
+      if (incorrectas.length > 0) {
+        html += `<p>Incorrectas para revisar:</p><ul class="lista-revision">`;
+        incorrectas.forEach(item => {
+          html += `<li><strong>${item.letra}</strong>: ${item.pregunta}<br>Respuesta: <strong>${item.respuestas[0]}</strong></li>`;
+        });
+        html += `</ul>`;
+      }
+
+      if (pendientes.length > 0) {
+        html += `<p>Pendientes o pasadas:</p><ul class="lista-revision">`;
+        pendientes.forEach(item => {
+          html += `<li><strong>${item.letra}</strong>: ${item.pregunta}<br>Respuesta: <strong>${item.respuestas[0]}</strong></li>`;
+        });
+        html += `</ul>`;
+      }
+
+      const roscoPerfecto = correctas === consignas.length && incorrectas.length === 0 && pendientes.length === 0;
+
+      if (roscoPerfecto) {
+        html += `<p>Muy bien, no quedaron respuestas incorrectas ni pendientes.</p>`;
+        reproducirSonido("final");
+      }
+
+      resultadoFinal.innerHTML = html;
+      resultadoFinal.classList.add("activo");
+      estadoLinea.textContent = motivo === "tiempo" ? "Juego terminado por tiempo." : "Juego terminado.";
+      actualizarPersonaje((incorrectas.length > 0 || pendientes.length > 0) ? "duda" : "correcto", (incorrectas.length > 0 || pendientes.length > 0) ? "Terminaste. Revisá las respuestas marcadas." : "¡Rosco terminado sin errores!");
+    }
+
+    function reiniciarTema() {
+      detenerTemporizador();
+      juegoFinalizado = false;
+      if (temaActual) iniciarTema(temaActual);
+    }
+
+    function cambiarTema() {
+      detenerTemporizador();
+      juegoFinalizado = false;
+      barraTiempo.hidden = true;
+      juego.classList.remove("activo");
+      selector.style.display = "block";
+      estadoLinea.textContent = "";
+      resultadoFinal.classList.remove("activo");
+      respuesta.disabled = false;
+      btnResponder.disabled = false;
+      btnPaso.disabled = false;
+    }
+
+    usarTiempo.addEventListener("change", () => actualizarTiempoEstimado(consignas.length));
+    ritmoTiempo.addEventListener("change", () => actualizarTiempoEstimado(consignas.length));
+
+    btnResponder.addEventListener("click", responderActual);
+    btnPaso.addEventListener("click", pasarActual);
+    btnReiniciar.addEventListener("click", reiniciarTema);
+    btnCambiar.addEventListener("click", cambiarTema);
+
+    respuesta.addEventListener("keydown", (evento) => {
+      if (evento.key === "Enter") responderActual();
+    });
+
+    archivoLocal.addEventListener("change", async (evento) => {
+      const archivo = evento.target.files[0];
+      if (!archivo) return;
+      try {
+        const texto = await archivo.text();
+        const tema = JSON.parse(texto);
+        iniciarTema(tema);
+      } catch (error) {
+        errorTemas.textContent = "No se pudo leer el JSON local. Revisá que el formato sea válido.";
+      }
+    });
+
+    let anchoVentanaAnterior = window.innerWidth;
+    let resizePendiente = null;
+
+    window.addEventListener("resize", () => {
+      if (!juego.classList.contains("activo")) return;
+
+      const elementoActivo = document.activeElement;
+      const escribiendo = elementoActivo && (elementoActivo.id === "respuestaMovil" || elementoActivo.id === "respuesta");
+      const anchoActual = window.innerWidth;
+      const cambioDeAncho = Math.abs(anchoActual - anchoVentanaAnterior);
+
+      // En celulares, abrir el teclado cambia el alto disponible y dispara resize.
+      // Si redibujamos el rosco en ese momento, el input se destruye y el teclado se cierra.
+      // Por eso solo recalculamos el rosco cuando cambia el ancho de manera real
+      // (rotación de pantalla o cambio fuerte de tamaño), y nunca mientras se escribe.
+      if (escribiendo || cambioDeAncho < 40) return;
+
+      clearTimeout(resizePendiente);
+      resizePendiente = setTimeout(() => {
+        anchoVentanaAnterior = window.innerWidth;
+        renderizarRosco();
+      }, 160);
+    });
+
+    configurarMenu();
+    actualizarTiempoEstimado();
+    cargarIndiceTemas();
+
+    fetch("/pie.html")
+      .then(respuesta => respuesta.ok ? respuesta.text() : "")
+      .then(html => {
+        document.getElementById("pieSitio").innerHTML = html;
+      })
+      .catch(() => {});
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VL13MMLPRV');
+  </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

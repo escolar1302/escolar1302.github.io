@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escolar | Recursos educativos de Matemática y Lengua</title>
+<meta name="description" content="Fichas, problemas, actividades en línea y herramientas para Matemática y Lengua.">
+
+
+<link rel="canonical" href="https://escolar.com.ar/">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+
+<style>
+  /* Colores tomados de las páginas actuales del sitio:
+     Matemática = naranja, Lengua = verde, Diseño = rojo, Recursos = azul. */
+  :root{
+    --bg:#f6f7fb; --card:#ffffff; --ink:#263238; --muted:#5b6475; --line:#e3e6ee;
+    --head:#2c3e50;
+    --mat:#E67E22; --mat-soft:#FFF3E0; --mat-t:#E65100;
+    --len:#27AE60; --len-soft:#E8F5E9; --len-t:#1B5E20;
+    --dis:#D31718; --dis-soft:#FFEBEE; --dis-t:#B71C1C;
+    --rec:#036FB0; --rec-soft:#E3F2FD; --rec-t:#01579B;
+    --accent:#f59e0b;
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#10131a; --card:#181d27; --ink:#e8ebf2; --muted:#a2abbb; --line:#2a3140;
+      --mat-soft:#3a2a15; --mat-t:#ffb066;
+      --len-soft:#14301f; --len-t:#7fe0a6;
+      --dis-soft:#3a1a1d; --dis-t:#ff9a9a;
+      --rec-soft:#14283a; --rec-t:#8cc4ff; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.5 Nunito,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+  header{padding:28px 0 8px;text-align:center}
+  header img{max-height:72px;width:auto}
+  h1{margin:10px 0 4px;font-size:clamp(1.6rem,4vw,2.2rem)}
+  header p{margin:0;color:var(--muted)}
+
+  /* Accesos fijos */
+  .fijos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:22px 0 28px}
+  .fijo{display:flex;gap:14px;align-items:center;padding:16px 18px;border-radius:var(--radius);
+    background:var(--card);border:2px solid var(--accent);transition:transform .15s, box-shadow .15s}
+  .fijo:hover,.fijo:focus-visible{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+  .fijo .ico{font-size:1.9rem;line-height:1}
+  .fijo strong{display:block;font-size:1.05rem}
+  .fijo span.d{color:var(--muted);font-size:.92rem}
+  .nuevo{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;
+    background:var(--accent);color:#1f2937;font-size:.72rem;font-weight:700;vertical-align:middle}
+
+  /* Dos áreas */
+  .areas{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  @media (max-width:820px){ .areas{grid-template-columns:1fr} }
+
+  details{border-radius:var(--radius)}
+  summary{cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+
+  .area{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  /* Diseño liviano: bordes finos, sin franjas gruesas. El color solo marca títulos, flechas y tarjetas. */
+  .area{--c:var(--mat);--soft:var(--mat-soft);--t:var(--mat-t)}
+  .area.len{--c:var(--len);--soft:var(--len-soft);--t:var(--len-t)}
+  .area > summary{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--soft);
+    border-bottom:3px solid var(--c)}
+  .area > summary img{width:56px;height:56px;object-fit:contain;flex:none}
+  .area > summary h2{margin:0;font-size:1.5rem;color:var(--t)}
+  .area > summary small{display:block;color:var(--muted)}
+  .area > summary::after{content:"▾";margin-left:auto;font-size:1.3rem;color:var(--t);transition:transform .2s}
+  .area[open] > summary::after{transform:rotate(180deg)}
+  .area-body{padding:10px 12px 14px}
+
+  /* Cada grupo toma el color del área, salvo Diseño (rojo) y Recursos (azul) */
+  .grupo{--gc:var(--c);--gs:var(--soft);--gt:var(--t);
+    border:1px solid var(--line);border-radius:12px;margin:8px 0;background:var(--card)}
+  .grupo.dis{--gc:var(--dis);--gs:var(--dis-soft);--gt:var(--dis-t)}
+  .grupo.rec{--gc:var(--rec);--gs:var(--rec-soft);--gt:var(--rec-t)}
+  .grupo > summary{display:flex;align-items:center;gap:10px;padding:12px 14px;font-weight:650;color:var(--gt)}
+  .grupo > summary::before{content:"▸";color:var(--gc);transition:transform .2s;display:inline-block}
+  .grupo[open] > summary::before{transform:rotate(90deg)}
+  .grupo > summary .n{margin-left:auto;font-weight:500;font-size:.82rem;color:var(--muted)}
+  .grupo[open] > summary{border-bottom:1px solid var(--line)}
+  .nota{margin:0;padding:10px 14px 0;color:var(--muted);font-size:.92rem}
+
+  .tarjetas{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;padding:12px}
+  .t{display:block;padding:11px 13px;border-radius:10px;background:var(--gs);
+    border:1px solid transparent;transition:border-color .15s, transform .15s}
+  .t:hover,.t:focus-visible{border-color:var(--gc);transform:translateY(-1px)}
+  .t b{display:block;font-size:.98rem;color:var(--ink)}
+  .t span{display:block;font-size:.86rem;color:var(--muted);margin-top:2px}
+
+
+  /* Tarjetas con imagen chica (solo las que ya la tenían en el sitio) */
+  .t.ci{display:flex;gap:10px;align-items:center}
+  .t.ci img{width:48px;height:48px;flex:none;object-fit:contain;border-radius:8px;background:#fff;border:1px solid var(--line)}
+  .t .tx{min-width:0}
+  /* Resalta un instante la tarjeta a la que se vuelve */
+  .t.vuelta{border-color:var(--gc);box-shadow:0 0 0 3px var(--gc);animation:vuelta 3s ease-out forwards}
+  @keyframes vuelta{0%,70%{box-shadow:0 0 0 3px var(--gc)}100%{box-shadow:0 0 0 0 transparent}}
+  @media (prefers-reduced-motion:reduce){.t.vuelta{animation:none}}
+
+  .sugerencia{text-align:center;margin:30px 0 0}
+  .sugerencia button{background:#FF7043;color:#fff;border:0;padding:12px 32px;border-radius:50px;
+    font:700 1.05rem Nunito,system-ui,sans-serif;cursor:pointer;box-shadow:0 3px 8px rgba(0,0,0,.2)}
+  .sugerencia button:hover{transform:translateY(-2px)}
+
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+  footer{margin:34px 0 26px;text-align:center;color:var(--muted);font-size:.86rem}
+  footer a{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <img src="logo1.png" alt="Escolar">
+  <h1>Bienvenidos</h1>
+  <p>Materiales para el aula de Matemática y Lengua</p>
+</header>
+
+<main class="wrap">
+
+  <!-- ACCESOS FIJOS -->
+  <nav class="fijos" aria-label="Accesos directos">
+    <a class="fijo" href="herramientas/">
+      <span class="ico" aria-hidden="true">🧰</span>
+      <span><strong>Herramientas para armar actividades<span class="nuevo">Nuevo</span></strong>
+      <span class="d">Armadores de fichas de Matemática y generador de actividades de comprensión lectora</span></span>
+    </a>
+    <a class="fijo" href="editor.html">
+      <span class="ico" aria-hidden="true">📝</span>
+      <span><strong>Editor de texto</strong>
+      <span class="d">Para trabajar en línea</span></span>
+    </a>
+  </nav>
+
+  <div class="areas">
+
+    <!-- ===================== MATEMÁTICA ===================== -->
+    <details data-id="mat" class="area mat" open>
+      <summary>
+        <img src="images/carpi-guarda2.png" alt="">
+        <div><h2>Matemática</h2><small>Fichas, problemas y juegos en línea</small></div>
+      </summary>
+      <div class="area-body">
+
+        <details data-id="mat-num" class="grupo" open>
+          <summary>Numeración y operaciones <span class="n">10 recursos</span></summary>
+          <div class="tarjetas">
+            <a class="t ci" href="numera/"><img src="images/img_6.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Numeración 1</b><span>De 1° a 7° grado</span></div></a>
+            <a class="t" href="numera/numeracion2.html"><b>Numeración 2</b><span>Números de 4 a 8 cifras</span></a>
+            <a class="t ci" href="1ciclo/"><img src="images/img_2.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Numeración y operaciones 1</b><span>Actividades con imágenes</span></div></a>
+            <a class="t" href="1ciclo/numeracion2.html"><b>Numeración y operaciones 2</b><span>Numeración y operaciones con imágenes</span></a>
+            <a class="t" href="sumares/"><b>Sumas y restas</b><span>Fichas con números de 2 a 6 cifras</span></a>
+            <a class="t" href="repaso/"><b>Inicio de multiplicación y división</b><span>Suma y multiplicación</span></a>
+            <a class="t" href="problemas3/"><b>Con las 4 operaciones 1</b><span>Unidad seguida de 0, dobles, triples, proporcionalidad</span></a>
+            <a class="t" href="multdiv/"><b>Con las 4 operaciones 2</b><span>Unidad seguida de 0, dobles, triples, proporcionalidad</span></a>
+            <a class="t ci" href="multdiv/con_imagenes.html"><img src="images/libreria1-1.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Con imágenes</b><span>Complementos en el campo aditivo y análisis del algoritmo de la multiplicación</span></div></a>
+            <a class="t ci" href="repaso/30tapitas.html"><img src="images/1.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>División paso a paso</b><span>Diversas formas de ver la división de 30 tapitas</span></div></a>
+          </div>
+        </details>
+
+        <details data-id="mat-prob" class="grupo">
+          <summary>Problemas <span class="n">4 recursos</span></summary>
+          <div class="tarjetas">
+            <a class="t ci" href="zona_problemas/"><img src="images/oso_mat.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Zona Problemas</b><span>Micrositio con actividades interactivas o imprimibles de los campos aditivo y multiplicativo</span></div></a>
+            <a class="t ci" href="problemaspdf/"><img src="images/carpi-mat.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Listos para imprimir</b><span>Problemas en PDF de todos los campos</span></div></a>
+            <a class="t ci" href="racionales/"><img src="images/image10.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Racionales</b><span>En diferentes contextos</span></div></a>
+            <a class="t" href="analisis/"><b>Análisis de datos</b><span>Actividades con imágenes</span></a>
+          </div>
+        </details>
+
+        <details data-id="mat-juegos" class="grupo">
+          <summary>Juegos e interactivos en línea <span class="n">10 recursos</span></summary>
+          <div class="tarjetas">
+            <a class="t ci" href="juego_multiplicacion/"><img src="images/personaje_pensando.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Para las tablas</b><span>Situaciones con las tablas de multiplicar, de bolsas y caramelos a dobles y mitades</span></div></a>
+            <a class="t ci" href="juego-repertorios/"><img src="images/multi.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Repertorios de multiplicación</b><span>4 niveles con la unidad seguida de ceros</span></div></a>
+            <a class="t" href="numeros/"><b>Audio números</b><span>Botones con audio</span></a>
+            <a class="t" href="dados/"><b>Sumas con dados</b><span>¿Cuánto suman estos dados?</span></a>
+            <a class="t" href="sumas_cartas/"><b>Sumas con cartas</b><span>Juego con dificultad creciente</span></a>
+            <a class="t" href="recursos/antpos.html"><b>Anterior y posterior</b><span>Juego en línea</span></a>
+            <a class="t" href="recursos/numorden.html"><b>Memotest de números</b><span>Memoria del orden</span></a>
+            <a class="t" href="juegos/grupo1.html"><b>Numeración</b><span>Escalas, número y nombre</span></a>
+            <a class="t" href="juegos/grupo2.html"><b>Operaciones</b><span>Complementos, dobles</span></a>
+            <a class="t" href="juegos/grupo3.html"><b>Más con operaciones</b><span>Próximo número redondo</span></a>
+          </div>
+        </details>
+
+        <details data-id="mat-dis" class="grupo dis">
+          <summary>Diseño curricular C.A.B.A. <span class="n">8 recursos</span></summary>
+          <p class="nota">Contenidos de Matemática por grado.</p>
+          <div class="tarjetas">
+            <a class="t" href="contenidos-concampos/"><b>Contenidos para comparar</b><span>Evolución de un contenido a lo largo de los grados</span></a>
+            <a class="t" href="diseno/1matematica.html"><b>1° grado</b></a>
+            <a class="t" href="diseno/2matematica.html"><b>2° grado</b></a>
+            <a class="t" href="diseno/3matematica.html"><b>3° grado</b></a>
+            <a class="t" href="diseno/4matematica.html"><b>4° grado</b></a>
+            <a class="t" href="diseno/5matematica.html"><b>5° grado</b></a>
+            <a class="t" href="diseno/6matematica.html"><b>6° grado</b></a>
+            <a class="t" href="diseno/7matematica.html"><b>7° grado</b></a>
+          </div>
+        </details>
+
+        <details data-id="mat-rec" class="grupo rec">
+          <summary>Recursos para armar actividades <span class="n">7 recursos</span></summary>
+          <div class="tarjetas">
+            <a class="t ci" href="recursos/"><img src="images/caranelos.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Recursos para imprimir y copiar</b><span>Bolsas con caramelos, cartas con fósforos, dados, tarjetas Montessori, tabla pitagórica</span></div></a>
+            <a class="t ci" href="cartas_espanolas/"><img src="images/10_copa.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Cartas españolas</b><span>Para copiar, pegar y usar en el armado de actividades</span></div></a>
+            <a class="t" href="multiplicacion/"><b>Campo multiplicativo</b><span>Mapeo para la planificación docente</span></a>
+            <a class="t" href="multiplicacion/campo-aditivo.html"><b>Campo aditivo</b><span>Mapeo para la planificación docente</span></a>
+            <a class="t" href="repertorio-sumas/"><b>Repertorio campo aditivo</b><span>Actividades relacionadas con los repertorios</span></a>
+            <a class="t" href="recursos/tareas_matematicas.html"><b>Tareas matemáticas</b><span>Listado de tareas y su pertinencia</span></a>
+            <a class="t ci" href="multiplicacion/index0.html"><img src="images/trsyectorias.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Índice de Trayectorias</b><span>Índices de los 3 libros de “Trayectorias”</span></div></a>
+          </div>
+        </details>
+
+      </div>
+    </details>
+
+    <!-- ===================== LENGUA ===================== -->
+    <details data-id="len" class="area len" open>
+      <summary>
+        <img src="images/carpi-guarda2.png" alt="">
+        <div><h2>Lengua</h2><small>Textos, actividades e interactivos</small></div>
+      </summary>
+      <div class="area-body">
+
+        <details data-id="len-alfa" class="grupo" open>
+          <summary>Alfabetización <span class="n">6 recursos</span></summary>
+          <div class="tarjetas">
+            <a class="t ci" href="1c_lengua/silabas.html"><img src="images/silabas1.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Armar con sílabas</b><span>Elegir sílabas</span></div></a>
+            <a class="t ci" href="letra_inicial/"><img src="images/inicial.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Letra inicial</b><span>Vocales - MPLS</span></div></a>
+            <a class="t ci" href="1c_lengua/pares_palabras.html"><img src="images/pares.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Pares de palabras</b><span>Letra ausente</span></div></a>
+            <a class="t ci" href="1c_lengua/bingo.html"><img src="images/bingo.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Bingo de palabras</b><span>10 cartones con imágenes</span></div></a>
+            <a class="t ci" href="palabra/"><img src="images/escribir_palabras.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Escribir palabras</b><span>Imágenes para escribir etiquetas, con distintos niveles (CV, VCV, CCV)</span></div></a>
+            <a class="t ci" href="zona_juegos/"><img src="images/zona_juegos.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Zona juegos</b><span>Juegos para identificar palabras y sonidos, con audios</span></div></a>
+          </div>
+        </details>
+
+        <details data-id="len-textos" class="grupo">
+          <summary>Textos y secuencias <span class="n">4 recursos</span></summary>
+          <div class="tarjetas">
+            <a class="t ci" href="secuencias/"><img src="images/captura_secuencias.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Secuencias y fichas</b><span>Textos organizados en secuencias, con fichas listas para imprimir</span></div></a>
+            <a class="t" href="2c_lengua/"><b>Textos - Primera versión</b><span>Primera organización de textos y actividades del sitio</span></a>
+            <a class="t ci" href="2c_lengua_2/"><img src="images/ficha1.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Actividades mixtas</b><span>Actividades para resolver en línea, incluidas autoevaluables</span></div></a>
+            <a class="t" href="para_libros/"><b>Lectura autónoma</b><span>Actividades de lectura para realizar con libros que llegaron a las escuelas</span></a>
+          </div>
+        </details>
+
+        <details data-id="len-auto" class="grupo">
+          <summary>Autoevaluables y juegos <span class="n">2 recursos</span></summary>
+          <p class="nota">Se elige el texto, se realizan las actividades y luego se pueden descargar y enviar por Classroom u otra plataforma.</p>
+          <div class="tarjetas">
+            <a class="t" href="autoeva/index.html"><b>Autoevaluaciones</b><span>Actividades autoevaluables por texto</span></a>
+            <a class="t ci" href="rosco/"><img src="images/rosco.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Rosco de cuentos</b><span>El clásico rosco con palabras de los cuentos del sitio (en construcción)</span></div></a>
+          </div>
+        </details>
+
+        <details data-id="len-dis" class="grupo dis">
+          <summary>Diseño curricular C.A.B.A. <span class="n">7 recursos</span></summary>
+          <p class="nota">Contenidos de Lengua por grado.</p>
+          <div class="tarjetas">
+            <a class="t" href="diseno/1lengua.html"><b>1° grado</b></a>
+            <a class="t" href="diseno/2lengua.html"><b>2° grado</b></a>
+            <a class="t" href="diseno/3lengua.html"><b>3° grado</b></a>
+            <a class="t" href="diseno/4lengua.html"><b>4° grado</b></a>
+            <a class="t" href="diseno/5lengua.html"><b>5° grado</b></a>
+            <a class="t" href="diseno/6lengua.html"><b>6° grado</b></a>
+            <a class="t" href="diseno/7lengua.html"><b>7° grado</b></a>
+          </div>
+        </details>
+
+        <details data-id="len-rec" class="grupo rec">
+          <summary>Recursos para armar actividades <span class="n">5 recursos</span></summary>
+          <div class="tarjetas">
+            <a class="t ci" href="letras/"><img src="images/c_carta.jpg" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Letras</b><span>Cartas con letras e imágenes y letras sueltas</span></div></a>
+            <a class="t ci" href="galeria.html"><img src="images/carpi-guarda2.png" alt="" width="48" height="48" loading="lazy" decoding="async"><div class="tx"><b>Galería de mascotas</b><span>Todas las imágenes de las mascotas del sitio</span></div></a>
+            <a class="t" href="analisis_texto/fantasma1.html"><b>El fantasma de Canterville</b><span>Capítulo 1 · Ejemplo de actividades con el texto</span></a>
+            <a class="t" href="analisis_texto/fantasma2.html"><b>El fantasma de Canterville</b><span>Capítulo 2 · Ejemplo de actividades con el texto</span></a>
+            <a class="t" href="analisis_texto/bellaybestia.html"><b>La Bella y la Bestia</b><span>Ejemplo de actividades con el texto</span></a>
+          </div>
+        </details>
+
+      </div>
+    </details>
+
+  </div>
+</main>
+
+<div class="sugerencia">
+  <button type="button" data-tally-open="dWlZDD" data-tally-layout="modal" data-tally-width="500" data-tally-emoji-text="💡" data-tally-emoji-animation="wave">💡 Dejar una sugerencia</button>
+</div>
+<script async src="https://tally.so/widgets/embed.js"></script>
+
+<!-- El pie se carga desde /pie.html. Si no se puede cargar, queda este respaldo. -->
+<div id="contenedor-pie">
+  <footer class="wrap">
+    <p>Material elaborado por escolar.com.ar ·
+      <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license">Licencia CC Atribución-NoComercial-CompartirIgual 4.0 Internacional</a></p>
+  </footer>
+</div>
+<script>
+  fetch('/pie.html')
+    .then(function(r){ if (r.ok) return r.text(); throw new Error('No se pudo cargar el pie de página'); })
+    .then(function(data){ document.getElementById('contenedor-pie').innerHTML = data; })
+    .catch(function(e){ console.error('Error:', e); });
+</script>
+
+
+
+<script>
+/* Recuerda qué áreas y grupos están desplegados y cuál fue la última tarjeta usada.
+   Cuando se vuelve desde una página interna (botón "Volver" o atrás del navegador),
+   la portada se reabre igual y se desplaza hasta esa tarjeta. */
+(function () {
+  var KEY = 'escolar_portada_v1';
+  var ds = [].slice.call(document.querySelectorAll('details[data-id]'));
+
+  function leer() { try { return JSON.parse(sessionStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+  function guardar(extra) {
+    var s = leer();
+    s.open = ds.filter(function (d) { return d.open; }).map(function (d) { return d.dataset.id; });
+    if (extra) for (var k in extra) s[k] = extra[k];
+    try { sessionStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+  }
+
+  var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+  var interno = false;
+  try {
+    var u = new URL(document.referrer);
+    interno = u.origin === location.origin && u.href.split('#')[0] !== location.href.split('#')[0];
+  } catch (e) {}
+  var vuelve = interno || nav.type === 'back_forward';
+  var s = leer();
+
+  if ((vuelve || nav.type === 'reload') && s.open) {
+    ds.forEach(function (d) { d.open = s.open.indexOf(d.dataset.id) > -1; });
+  }
+
+  if (vuelve && s.last) {
+    var tarjeta = [].slice.call(document.querySelectorAll('a.t')).filter(function (a) {
+      return a.getAttribute('href') === s.last;
+    })[0];
+    if (tarjeta) {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      requestAnimationFrame(function () {
+        tarjeta.scrollIntoView({ block: 'center' });
+        tarjeta.classList.add('vuelta');
+        setTimeout(function () { tarjeta.classList.remove('vuelta'); }, 3200);
+      });
+    }
+  }
+
+  document.addEventListener('toggle', function () { guardar(); }, true);
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.t');
+    if (a) guardar({ last: a.getAttribute('href') });
+  });
+})();
+</script>
+
+</body>
+</html>

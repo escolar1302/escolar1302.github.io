@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumas hasta 10</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/mobile-drag-drop@2.3.0-rc.2/default.css">
+  <script src="https://unpkg.com/mobile-drag-drop@2.3.0-rc.2/index.min.js"></script>
+  <script src="https://unpkg.com/mobile-drag-drop@2.3.0-rc.2/scroll-behaviour.min.js"></script>
+
+  <style>
+    /* =========================================
+       ESTILOS GENERALES
+       ========================================= */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: #dbe9d8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    /* =========================================
+       BARRA DE NAVEGACIÓN
+       ========================================= */
+    header {
+        background-color: #2c3e50;
+        padding: 15px 0;
+        margin-bottom: 20px;
+        font-family: 'Roboto', sans-serif;
+        width: 100%;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .logo { color: white; text-decoration: none; font-weight: bold; font-size: 1.2rem; }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; }
+    .nav-links a:hover { text-decoration: underline; }
+
+    /* =========================================
+       ESTILOS DEL JUEGO
+       ========================================= */
+    .container {
+        text-align: center;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 95%;
+        margin-bottom: 20px;
+    }
+
+    h1 { margin-top: 0; font-size: 1.5rem; color: #2c3e50; }
+
+    .suma {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0e9df;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 10px;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .carta-fija img, 
+    #segundoNumero img {
+        width: 100px;
+        height: auto;
+        border-radius: 5px;
+        display: block;
+        pointer-events: none; 
+    }
+
+    #segundoNumero {
+        width: 104px;
+        height: 155px;
+        border: 2px dashed #888;
+        border-radius: 8px;
+        background-color: rgba(255,255,255,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .signo { font-size: 2rem; font-weight: bold; color: #333; }
+
+    /* BOTONES */
+    button {
+        border: none;
+        padding: 10px 25px;
+        border-radius: 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 15px 5px; /* Un poco de margen a los lados */
+        transition: transform 0.1s;
+    }
+    button:active { transform: scale(0.95); }
+
+    /* Botón verde de comprobar */
+    #enviar {
+        background-color: #27ae60;
+        color: white;
+    }
+    #enviar:hover { background-color: #2ecc71; }
+    
+    /* Botón azul de siguiente (Nuevo) */
+    #btn-nuevo {
+        background-color: #3498db;
+        color: white;
+        display: none; /* Oculto al inicio */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    #btn-nuevo:hover { background-color: #2980b9; }
+
+    .hidden { display: none; }
+    #mensaje { margin: 10px 0; color: #c0392b; font-weight: bold; min-height: 24px;}
+
+    .cartas {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .cartas img {
+        width: 80px;
+        height: auto;
+        cursor: grab;
+        border-radius: 5px;
+        transition: transform 0.2s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        
+        touch-action: none; 
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    .cartas img:active { cursor: grabbing; transform: scale(1.1); }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+        .cartas img { width: 55px; }
+        .carta-fija img, #segundoNumero img { width: 70px; }
+        #segundoNumero { width: 74px; height: 110px; }
+        .signo { font-size: 1.5rem; }
+        .container { padding: 10px; width: 100%; box-sizing: border-box;}
+        .nav-links { gap: 10px; }
+        .nav-links a { font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+
+
+<div class="container">
+  <h1>Juego de Sumar 10</h1>
+  <p>Arrastra la carta que falta para sumar 10.</p>
+  
+  <div class="suma">
+    <div class="carta-fija">
+        <img id="primerNumero" src="" alt="Carta Aleatoria">
+    </div>
+    
+    <div class="signo">+</div>
+    
+    <div id="segundoNumero"></div>
+    
+    <div class="signo">= 10</div>
+  </div>
+
+  <div id="mensaje" class="hidden"></div>
+  
+  <div>
+      <button id="enviar">Comprobar</button>
+      <button id="btn-nuevo">Siguiente Juego ➝</button>
+  </div>
+
+  <div class="cartas">
+    <img id="carta1" src="https://elventanauta.com/jorge/cartas/01.jpg" draggable="true">
+    <img id="carta2" src="https://elventanauta.com/jorge/cartas/02.jpg" draggable="true">
+    <img id="carta3" src="https://elventanauta.com/jorge/cartas/03.jpg" draggable="true">
+    <img id="carta4" src="https://elventanauta.com/jorge/cartas/04.jpg" draggable="true">
+    <img id="carta5" src="https://elventanauta.com/jorge/cartas/05.jpg" draggable="true">
+    <img id="carta6" src="https://elventanauta.com/jorge/cartas/06.jpg" draggable="true">
+    <img id="carta7" src="https://elventanauta.com/jorge/cartas/07.jpg" draggable="true">
+    <img id="carta8" src="https://elventanauta.com/jorge/cartas/08.jpg" draggable="true">
+    <img id="carta9" src="https://elventanauta.com/jorge/cartas/09.jpg" draggable="true">
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.MobileDragDrop) {
+      MobileDragDrop.polyfill({
+          dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride,
+          forceApply: false
+      });
+  }
+
+  const primerNumero = document.getElementById('primerNumero');
+  const segundoNumero = document.getElementById('segundoNumero');
+  const mensaje = document.getElementById('mensaje');
+  const enviar = document.getElementById('enviar');
+  const btnNuevo = document.getElementById('btn-nuevo');
+  const cartas = document.querySelectorAll('.cartas img');
+  
+  let cartaSeleccionadaValor = null;
+  let numeroAleatorio = 0;
+
+  function iniciarJuego() {
+      // Reiniciar interfaz
+      segundoNumero.innerHTML = '';
+      cartaSeleccionadaValor = null;
+      mensaje.textContent = '';
+      mensaje.classList.add('hidden');
+      segundoNumero.style.borderColor = "#888";
+      
+      // Mostrar botón comprobar, ocultar siguiente
+      enviar.style.display = 'inline-block';
+      btnNuevo.style.display = 'none';
+
+      // Nuevo número
+      numeroAleatorio = Math.floor(Math.random() * 9) + 1;
+      primerNumero.src = `https://elventanauta.com/jorge/cartas/0${numeroAleatorio}.jpg`;
+  }
+
+  // Configuración Drag & Drop
+  cartas.forEach(carta => {
+      carta.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', e.target.id);
+          e.dataTransfer.effectAllowed = 'copy';
+      });
+  });
+
+  segundoNumero.addEventListener('dragenter', (e) => {
+      e.preventDefault();
+      segundoNumero.style.backgroundColor = '#e8f5e9';
+      segundoNumero.style.borderColor = '#27ae60';
+  });
+
+  segundoNumero.addEventListener('dragover', (e) => {
+      e.preventDefault(); 
+      e.dataTransfer.dropEffect = 'copy';
+      segundoNumero.style.backgroundColor = '#e8f5e9';
+  });
+
+  segundoNumero.addEventListener('dragleave', () => {
+      segundoNumero.style.backgroundColor = 'rgba(255,255,255,0.5)';
+      segundoNumero.style.borderColor = '#888';
+  });
+
+  segundoNumero.addEventListener('drop', (e) => {
+      e.preventDefault();
+      segundoNumero.style.backgroundColor = 'rgba(255,255,255,0.5)';
+      segundoNumero.style.borderColor = '#888';
+      
+      const idCarta = e.dataTransfer.getData('text/plain');
+      if (!idCarta) return;
+
+      const cartaOriginal = document.getElementById(idCarta);
+      
+      segundoNumero.innerHTML = '';
+      const clon = cartaOriginal.cloneNode(true);
+      clon.draggable = false;
+      clon.style.width = '100%';
+      clon.style.height = '100%';
+      clon.style.objectFit = 'contain';
+      
+      segundoNumero.appendChild(clon);
+
+      cartaSeleccionadaValor = parseInt(idCarta.replace('carta', ''), 10);
+      mensaje.classList.add('hidden');
+  });
+
+  // Botón Comprobar
+  enviar.addEventListener('click', () => {
+      if (cartaSeleccionadaValor === null) {
+          mensaje.textContent = "Arrastra una carta al recuadro vacío.";
+          mensaje.style.color = "#c0392b";
+          mensaje.classList.remove('hidden');
+          return;
+      }
+
+      const suma = numeroAleatorio + cartaSeleccionadaValor;
+
+      if (suma === 10) {
+          // ÉXITO
+          mensaje.textContent = "¡Excelente! " + numeroAleatorio + " + " + cartaSeleccionadaValor + " = 10";
+          mensaje.style.color = "#27ae60";
+          mensaje.classList.remove('hidden');
+          
+          // Ocultar botón comprobar y mostrar siguiente
+          enviar.style.display = 'none';
+          btnNuevo.style.display = 'inline-block';
+          
+      } else {
+          // ERROR
+          mensaje.textContent = "Ups... " + numeroAleatorio + " + " + cartaSeleccionadaValor + " = " + suma;
+          mensaje.style.color = "#c0392b";
+          mensaje.classList.remove('hidden');
+          
+          segundoNumero.style.borderColor = "#c0392b";
+          segundoNumero.innerHTML = ''; 
+          cartaSeleccionadaValor = null;
+      }
+  });
+
+  // Botón Siguiente
+  btnNuevo.addEventListener('click', iniciarJuego);
+
+  iniciarJuego();
+});
+</script>
+
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Constructor de juegos de acentuación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f7fb; --card:#fff; --ink:#1f2937; --muted:#64748b; --line:#dbe3ee;
+  --primary:#315ea8; --primary-dark:#24497f; --ok:#198754; --bad:#c0392b; --soft:#eef4ff; --site-nav:#2c3e50;
+}
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+/* Barra principal de escolar.com.ar */
+.site-header{background:var(--site-nav);padding:10px 0;width:100%;box-shadow:0 4px 10px rgba(0,0,0,.28);font-family:'Roboto',Arial,sans-serif;position:relative;z-index:20}
+.site-nav{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.site-logo{display:flex;align-items:center;text-decoration:none;flex:none}
+.site-logo img{height:60px;width:auto;display:block;transition:transform .2s ease}
+.site-logo:hover img{transform:scale(1.03)}
+.site-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.site-links a{color:#fff;text-decoration:none;font-size:.9rem;font-weight:400}
+.site-links a:hover,.site-links a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+.site-links .site-back{color:#f1c40f;font-weight:700;border-left:1px solid #7f8c8d;padding-left:20px;white-space:nowrap}
+.site-links .site-back:hover,.site-links .site-back:focus-visible{color:#ffe36b}
+h1{font-size:1.45rem;margin:0;line-height:1.2} .sub{color:var(--muted);font-size:.92rem;margin-top:3px}
+main{max-width:1220px;margin:22px auto;padding:0 18px 40px;display:grid;grid-template-columns:380px minmax(0,1fr);gap:20px;align-items:start}
+.leftcol{display:flex;flex-direction:column;gap:12px}
+.intro{padding:2px 2px 0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 3px 16px rgba(15,23,42,.05)}
+.panel h2{font-size:1.05rem;margin:0;padding:16px 18px;border-bottom:1px solid var(--line)}
+.panel .body{padding:18px}.field{margin-bottom:16px}.field:last-child{margin-bottom:0}
+label{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px}.hint{font-size:.82rem;color:var(--muted);line-height:1.35;margin-top:5px}
+input[type=text],input[type=number],select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:10px 11px;font:inherit;background:#fff;color:var(--ink)}
+textarea{min-height:180px;resize:vertical;line-height:1.45}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.radios,.checks{display:flex;gap:12px;flex-wrap:wrap}.opt{display:flex;align-items:center;gap:6px;font-weight:600;font-size:.9rem}
+button{border:0;border-radius:9px;padding:10px 14px;font:inherit;font-size:1rem;font-weight:800;cursor:pointer}.btn{background:var(--primary);color:#fff}.btn:hover{background:var(--primary-dark)}
+.btn2{background:#eef2f7;color:#26364a;border:1px solid #d4deea}.btn2:hover{background:#e4ebf4}.btn-danger{background:#fff0ef;color:#9d2f25;border:1px solid #f0c8c4}
+.actions{display:flex;gap:9px;flex-wrap:wrap}.actions button{flex:1 1 145px}.notice{padding:11px 12px;border-radius:9px;background:#f8fafc;border:1px solid var(--line);font-size:.85rem;color:#475569;line-height:1.4}
+.summary{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:14px}.pill{padding:6px 9px;border-radius:999px;font-size:.8rem;font-weight:800;background:var(--soft);color:#24497f}.pill.warn{background:#fff8e7;color:#875d00}
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px;max-height:560px}table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{padding:9px 8px;border-bottom:1px solid #e8eef5;text-align:left;vertical-align:middle}th{position:sticky;top:0;background:#f8fafc;z-index:1;font-size:.8rem;color:#475569}tbody tr:hover{background:#fbfdff}
+.word{font-weight:800}.smallsel{min-width:120px;padding:7px 8px}.mini{padding:6px 8px;border-radius:7px}.contextInput{min-width:310px}.altInput{min-width:135px}.edited{background:#fffdf2}.empty{padding:46px 24px;text-align:center;color:var(--muted)}
+footer{max-width:1180px;margin:0 auto 28px;padding:0 18px;color:var(--muted);font-size:.8rem}
+#contenedor-pie{position:relative;z-index:1;background:#fff}
+.site-footer-fallback{max-width:1100px;margin:0 auto;padding:24px 20px 30px;border-top:1px solid #d5dce1;color:#54636b;text-align:center;font-size:.88rem;line-height:1.55}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.72);display:none;z-index:30;padding:20px}.modal.open{display:flex;align-items:center;justify-content:center}.modalbox{width:min(1100px,96vw);height:min(760px,94vh);background:#fff;border-radius:14px;overflow:hidden;display:flex;flex-direction:column}.modalhead{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid var(--line)}.modalhead strong{font-size:.95rem}.modalhead button{padding:7px 10px}.previewframe{width:100%;height:100%;border:0;background:#fff}
+@media(max-width:900px){main{grid-template-columns:1fr}.tablewrap{max-height:none}}
+@media(max-width:640px){.site-nav{padding:0 14px;gap:10px}.site-logo img{height:48px}.site-links{gap:12px}.site-links a{font-size:.82rem}}
+@media(max-width:460px){.site-nav{align-items:flex-start;flex-direction:column}.site-links{width:100%;justify-content:flex-start;gap:10px 14px;padding-bottom:3px}.site-links .site-back{border-left:0;padding-left:0;width:100%;padding-top:4px}}
+</style>
+</head>
+<body>
+
+<main>
+  <div class="leftcol">
+    <div class="intro">
+      <h1>Constructor de juegos de acentuación</h1>
+      <div class="sub">Agudas, graves y esdrújulas · exportación HTML autónoma</div>
+    </div>
+    <section class="panel">
+    <h2>1. Configurá la actividad</h2>
+    <div class="body">
+      <div class="field"><label for="title">Título</label><input id="title" type="text" value="Desafío de acentuación"></div>
+      <div class="field"><label>Niveles incluidos en el HTML</label><div class="checks"><label class="opt"><input id="include1" type="checkbox" checked> Nivel 1 · Clasificar</label><label class="opt"><input id="include2" type="checkbox" checked> Nivel 2 · Acentuación en contexto</label></div><div class="hint">Si incluís ambos, el alumno verá un menú inicial y podrá hacer uno o los dos niveles. El progreso se guarda por separado.</div></div>
+      <div class="field"><label for="qty">Cantidad de palabras por nivel</label><select id="qty"><option>6</option><option>8</option><option selected>10</option><option>12</option><option>15</option><option>20</option></select></div>
+      <div class="field"><label>Modo</label><div class="radios"><label class="opt"><input type="radio" name="mode" value="practice" checked> Práctica</label><label class="opt"><input type="radio" name="mode" value="task"> Tarea</label></div><div class="hint">Práctica muestra la corrección al responder. Tarea registra el primer intento y corrige al final.</div></div>
+      <div class="field"><label>Fuente de palabras</label><div class="radios"><label class="opt"><input type="radio" name="source" value="bank" checked> Banco general</label><label class="opt"><input type="radio" name="source" value="text"> Texto propio</label></div></div>
+      <div id="textBox" style="display:none">
+        <div class="field"><label for="sourceText">Pegá el texto</label><textarea id="sourceText" placeholder="Pegá acá el fragmento que están leyendo..."></textarea><div class="hint">El texto se procesa solamente en este navegador. Para evitar repeticiones, el constructor propone como máximo una palabra por oración y omite títulos o encabezados breves. Antes de exportar podés revisar y modificar todo.</div></div>
+      </div>
+      <div class="field checks"><label class="opt"><input id="mix" type="checkbox" checked> Mezclar el orden</label><label class="opt"><input id="askName" type="checkbox" checked> Pedir nombre</label></div>
+      <div class="actions">
+        <button class="btn2" id="generate">Generar selección</button>
+        <button class="btn2" id="selectAll">Seleccionar todas</button>
+      </div>
+      <div style="height:12px"></div>
+      <div class="notice"><strong>Selección automática editable.</strong> El constructor propone palabras y una clasificación inicial. Revisalas antes de exportar: podés cambiar la palabra, la clasificación, el uso de tilde y, si incluís el Nivel 2, también el contexto y la forma alternativa.</div>
+    </div>
+  </section>
+  </div>
+
+  <section class="panel">
+    <h2>2. Revisá y ajustá las palabras</h2>
+    <div class="body">
+      <div class="notice" style="margin-bottom:14px"><strong>Todo se puede corregir antes de exportar.</strong> Podés cambiar cualquier palabra, modificar su clasificación y el uso de tilde con los desplegables. Si incluís el Nivel 2 también podés editar la oración y la forma alternativa que verá el alumno. Si cambiás si lleva tilde, corregí también la escritura de la palabra para que coincidan.</div>
+      <div id="summary" class="summary"></div>
+      <div id="generationMessage" class="notice" style="display:none;margin-bottom:14px"></div>
+      <div id="listArea" class="empty">Generá una selección para empezar.</div>
+      <div style="height:14px"></div>
+      <div class="actions">
+        <button class="btn2" id="preview">Vista previa</button>
+        <button class="btn" id="export">Exportar actividad HTML</button>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>El HTML exportado funciona sin conexión. El avance se guarda silenciosamente en el navegador; si se cierra por error, continúa desde donde quedó. Al finalizar, genera un HTML cerrado con el informe completo para entregar.</footer>
+
+<div id="contenedor-pie">
+  <div class="site-footer-fallback">
+    <strong>Material elaborado por escolar.com.ar</strong><br>
+    Los contenidos de este portal educativo están bajo una Licencia CC Atribución-NoComercial-CompartirIgual 4.0 Internacional.
+  </div>
+</div>
+
+<div class="modal" id="modal"><div class="modalbox"><div class="modalhead"><strong>Vista previa de la actividad</strong><button class="btn2" id="closeModal">Cerrar</button></div><iframe id="previewFrame" class="previewframe"></iframe></div></div>
+
+<script>
+(() => {
+'use strict';
+
+const BANK = [
+  ['pared','aguda',false],['reloj','aguda',false],['papel','aguda',false],['animal','aguda',false],['doctor','aguda',false],['nariz','aguda',false],['comedor','aguda',false],['ciudad','aguda',false],['tambor','aguda',false],['feliz','aguda',false],
+  ['canción','aguda',true],['camión','aguda',true],['compás','aguda',true],['sofá','aguda',true],['mamá','aguda',true],['jamás','aguda',true],['ratón','aguda',true],['café','aguda',true],['además','aguda',true],['colibrí','aguda',true],
+  ['casa','grave',false],['mesa','grave',false],['camino','grave',false],['ventana','grave',false],['escuela','grave',false],['cuaderno','grave',false],['joven','grave',false],['zapato','grave',false],['nube','grave',false],['lunes','grave',false],
+  ['árbol','grave',true],['lápiz','grave',true],['fácil','grave',true],['difícil','grave',true],['azúcar','grave',true],['césped','grave',true],['ángel','grave',true],['túnel','grave',true],['carácter','grave',true],['fútbol','grave',true],
+  ['música','esdrujula',true],['pájaro','esdrujula',true],['médico','esdrujula',true],['teléfono','esdrujula',true],['brújula','esdrujula',true],['máquina','esdrujula',true],['sábado','esdrujula',true],['número','esdrujula',true],['océano','esdrujula',true],['rápido','esdrujula',true],
+  ['matemática','esdrujula',true],['último','esdrujula',true],['plástico','esdrujula',true],['fantástico','esdrujula',true],['murciélago','esdrujula',true],['próximo','esdrujula',true],['lágrima','esdrujula',true],['público','esdrujula',true],['científico','esdrujula',true],['histórico','esdrujula',true]
+].map((x,i)=>({id:'b'+i,word:x[0],type:x[1],tilde:x[2],selected:true,confidence:'alta'}));
+
+const BANK_CONTEXT = {
+  'pared':['La pared del aula tiene un afiche nuevo.','paréd'],
+  'reloj':['El reloj del pasillo marca las diez.','relój'],
+  'papel':['Necesito una hoja de papel para escribir.','papél'],
+  'animal':['Ese animal vive cerca del río.','animál'],
+  'doctor':['El doctor atendió a todos por la mañana.','doctór'],
+  'nariz':['El payaso se pintó la nariz de rojo.','naríz'],
+  'canción':['Escuchamos una canción durante el recreo.','cancion'],
+  'camión':['El camión descargó las cajas en la vereda.','camion'],
+  'compás':['Usamos el compás para trazar la circunferencia.','compas'],
+  'sofá':['El gato duerme arriba del sofá.','sofa'],
+  'mamá':['Mi mamá preparó la merienda.','mama'],
+  'ratón':['El ratón se escondió detrás de la caja.','raton'],
+  'casa':['La casa de la esquina tiene un jardín enorme.','cása'],
+  'mesa':['Dejamos los libros sobre la mesa.','mésa'],
+  'camino':['Este camino llega hasta el río.','caminó'],
+  'ventana':['Abrimos la ventana para que entrara aire.','ventána'],
+  'escuela':['La escuela organiza una muestra de ciencias.','escuéla'],
+  'cuaderno':['Anoté la respuesta en el cuaderno.','cuadérno'],
+  'árbol':['El árbol del patio da mucha sombra.','arbol'],
+  'lápiz':['Escribí la respuesta con lápiz negro.','lapiz'],
+  'fácil':['El primer problema resultó fácil.','facil'],
+  'difícil':['La última pregunta parecía difícil.','dificil'],
+  'césped':['No pisen el césped recién regado.','cesped'],
+  'ángel':['El personaje del cuento parecía un ángel.','angel'],
+  'música':['La música se escuchaba desde el patio.','musica'],
+  'pájaro':['Un pájaro se posó sobre la rama.','pajaro'],
+  'médico':['El médico revisó los estudios.','medico'],
+  'teléfono':['El teléfono sonó durante la reunión.','telefono'],
+  'brújula':['La brújula indicaba el norte.','brujula'],
+  'máquina':['La máquina dejó de funcionar por un momento.','maquina'],
+  'sábado':['El sábado iremos a visitar a los abuelos.','sabado'],
+  'número':['Escribí el número de página en el margen.','numero'],
+  'rápido':['El tren pasó muy rápido por la estación.','rapido'],
+  'último':['Leé el último párrafo del cuento.','ultimo'],
+  'plástico':['La botella de plástico va en ese recipiente.','plastico'],
+  'fantástico':['El final del cuento fue fantástico.','fantastico']
+};
+
+function enrichBankItem(x){
+  const pair=BANK_CONTEXT[x.word];
+  return {...x,context:pair?pair[0]:'',alternative:pair?pair[1]:'',edited:false};
+}
+
+
+let items = [];
+let generationInfo = null;
+const $ = s => /^[A-Za-z][A-Za-z0-9_-]*$/.test(s) ? document.getElementById(s) : document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const normalize = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const hasWrittenAccent = s => /[áéíóúÁÉÍÓÚ]/.test(s);
+const isVowel = c => /[aeiouáéíóúü]/i.test(c);
+const isStrong = c => /[aeoáéó]/i.test(c);
+const isWeak = c => /[iuü]/i.test(c);
+const isAccWeak = c => /[íú]/i.test(c);
+
+function tokenize(text){
+  return (text.match(/[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+(?:-[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]+)?/g)||[])
+    .map(w=>w.replace(/^-+|-+$/g,''))
+    .filter(w=>w.length>1);
+}
+
+function vowelGroups(word){
+  const w=word.toLowerCase(); const groups=[]; let i=0;
+  while(i<w.length){
+    if(!isVowel(w[i])){i++;continue}
+    let start=i, chars=[w[i]], j=i+1;
+    while(j<w.length){
+      if(isVowel(w[j])){ chars.push(w[j]); j++; continue; }
+      if(w[j]==='h' && j+1<w.length && isVowel(w[j+1])){ chars.push('h',w[j+1]); j+=2; continue; }
+      break;
+    }
+    groups.push({start,end:j-1,text:chars.join('')}); i=j;
+  }
+  return groups;
+}
+
+function nucleiFromGroup(group){
+  const arr=[...group.text].filter(c=>c!=='h');
+  if(arr.length<=1) return 1;
+  let n=1;
+  for(let i=1;i<arr.length;i++){
+    const a=arr[i-1], b=arr[i];
+    const hiatus = isAccWeak(a)||isAccWeak(b)||(isStrong(a)&&isStrong(b));
+    if(hiatus) n++;
+  }
+  return n;
+}
+
+function syllableEstimate(word){
+  const groups=vowelGroups(word); let count=0;
+  for(const g of groups) count += nucleiFromGroup(g);
+  return Math.max(1,count);
+}
+
+function accentedNucleusIndex(word){
+  // Devuelve índice aproximado de núcleo vocálico (0 = primero)
+  const w=word.toLowerCase(); let idx=-1, current=-1; let inNucleus=false; let prev='';
+  for(let i=0;i<w.length;i++){
+    const c=w[i]; if(c==='h') continue;
+    if(!isVowel(c)){inNucleus=false;prev='';continue}
+    if(!inNucleus){current++;inNucleus=true}
+    else {
+      const hiatus=isAccWeak(prev)||isAccWeak(c)||(isStrong(prev)&&isStrong(c));
+      if(hiatus) current++;
+    }
+    if(/[áéíóú]/.test(c)) idx=current;
+    prev=c;
+  }
+  return idx;
+}
+
+function guessType(word){
+  const clean=word.toLowerCase(); const syll=syllableEstimate(clean);
+  if(syll<2) return {type:'',confidence:'baja',syllables:syll};
+  let stressFromEnd;
+  if(hasWrittenAccent(clean)){
+    const ai=accentedNucleusIndex(clean); stressFromEnd=syll-ai;
+  } else {
+    const base=normalize(clean); const last=base.slice(-1);
+    stressFromEnd=/[aeiouns]/.test(last)?2:1;
+  }
+  let type=stressFromEnd===1?'aguda':stressFromEnd===2?'grave':'esdrujula';
+  let confidence='media';
+  if(hasWrittenAccent(clean)) confidence='alta';
+  if(/y$/.test(clean) || /[ü]/.test(clean) || clean.includes('-')) confidence='baja';
+  return {type,confidence,syllables:syll};
+}
+
+function expectedTilde(word,type){
+  // En texto propio respetamos la grafía real; esto evita "inventar" tildes.
+  return hasWrittenAccent(word);
+}
+
+function parseTextStructure(text){
+  const rawLines=String(text||'').replace(/\r\n?/g,'\n').split('\n');
+  const firstNonEmpty=rawLines.findIndex(x=>x.trim());
+  const sentences=[]; let excludedTitles=0; let sid=0;
+  for(let i=0;i<rawLines.length;i++){
+    const line=rawLines[i].trim(); if(!line) continue;
+    const words=tokenize(line);
+    const prevBlank=i===0 || !rawLines[i-1].trim();
+    const nextBlank=i===rawLines.length-1 || !rawLines[i+1].trim();
+    const shortLine=words.length>0 && words.length<=10 && line.length<=90;
+    const noClosingPunctuation=!/[.!?…][\"'»)]?$/.test(line);
+    const letters=line.replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/g,'');
+    const allCaps=letters.length>2 && letters===letters.toUpperCase();
+    const headingKeyword=/^(cap[ií]tulo|cuento|t[ií]tulo|parte)\b/i.test(line);
+    const looksLikeTitle = shortLine && (
+      (noClosingPunctuation && (i===firstNonEmpty || (prevBlank && nextBlank))) ||
+      allCaps ||
+      headingKeyword
+    );
+    if(looksLikeTitle){excludedTitles++;continue}
+    const parts=(line.match(/[^.!?…]+(?:[.!?…]+|$)/g)||[line]).map(x=>x.trim()).filter(Boolean);
+    for(const part of parts) sentences.push({id:'s'+(sid++),text:part});
+  }
+  return {sentences,excludedTitles};
+}
+function shortenContext(sentence,word,maxChars=115){
+  const clean=String(sentence||'').replace(/\s+/g,' ').trim();
+  if(clean.length<=maxChars) return clean;
+  const low=clean.toLocaleLowerCase('es'), target=String(word||'').toLocaleLowerCase('es');
+  let idx=low.indexOf(target); if(idx<0) idx=Math.floor(clean.length/2);
+  const room=Math.max(28,Math.floor((maxChars-target.length)/2));
+  let start=Math.max(0,idx-room), end=Math.min(clean.length,idx+target.length+room);
+  if(start>0){const sp=clean.indexOf(' ',start);if(sp>0 && sp<idx)start=sp+1}
+  if(end<clean.length){const sp=clean.lastIndexOf(' ',end);if(sp>idx+target.length)end=sp}
+  let out=clean.slice(start,end).trim();
+  if(start>0)out='… '+out;
+  if(end<clean.length)out+=' …';
+  return out;
+}
+function accentChar(c){return ({a:'á',e:'é',i:'í',o:'ó',u:'ú',A:'Á',E:'É',I:'Í',O:'Ó',U:'Ú'})[c]||c}
+function makeAlternative(word,type){
+  if(hasWrittenAccent(word)) return stripAccent(word);
+  const chars=[...word]; const vowelPos=[];
+  for(let i=0;i<chars.length;i++) if(/[aeiouAEIOU]/.test(chars[i])) vowelPos.push(i);
+  if(!vowelPos.length) return word+'*';
+  let target;
+  if(type==='aguda') target=vowelPos[vowelPos.length-1];
+  else if(type==='grave') target=vowelPos[Math.max(0,vowelPos.length-2)];
+  else target=vowelPos[0];
+  chars[target]=accentChar(chars[target]);
+  return chars.join('');
+}
+const TEXT_STOPWORDS=new Set(['este','esta','estos','estas','ese','esa','esos','esas','aquel','aquella','aquellos','aquellas','pero','para','como','porque','aunque','desde','hasta','sobre','entre','cuando','donde','quien','quienes','cual','cuales']);
+function analyzeText(text){
+  const parsed=parseTextStructure(text), groups=[]; const seenWords=new Set();
+  for(const sent of parsed.sentences){
+    const toks=tokenize(sent.text), candidates=[];
+    for(let ti=0;ti<toks.length;ti++){
+      const raw=toks[ti], key=raw.toLowerCase();
+      if(seenWords.has(key) || TEXT_STOPWORDS.has(key)) continue;
+      if(ti>0 && /^[A-ZÁÉÍÓÚÜÑ]/.test(raw)) continue;
+      const g=guessType(raw); if(!g.type) continue;
+      const word=raw.toLowerCase();
+      candidates.push({id:'t_'+sent.id+'_'+ti,sentenceId:sent.id,word,type:g.type,tilde:expectedTilde(raw,g.type),selected:true,confidence:g.confidence,syllables:g.syllables,context:shortenContext(sent.text,raw),alternative:makeAlternative(word,g.type),edited:false});
+    }
+    if(candidates.length){
+      candidates.forEach(c=>seenWords.add(c.word));
+      groups.push({sentenceId:sent.id,candidates});
+    }
+  }
+  return {groups,excludedTitles:parsed.excludedTitles,totalSentences:parsed.sentences.length};
+}
+function representativesFromGroups(groups){
+  const counts={aguda:0,grave:0,esdrujula:0}, reps=[];
+  for(const g of shuffle(groups)){
+    const ranked=[...g.candidates].sort((a,b)=>{
+      const ca=counts[a.type]||0, cb=counts[b.type]||0;
+      if(ca!==cb)return ca-cb;
+      const conf={alta:0,media:1,baja:2};
+      if((conf[a.confidence]??1)!==(conf[b.confidence]??1))return (conf[a.confidence]??1)-(conf[b.confidence]??1);
+      return Math.abs(a.word.length-7)-Math.abs(b.word.length-7);
+    });
+    const pick=ranked[0]; counts[pick.type]++; reps.push(pick);
+  }
+  return reps;
+}
+function balancedUniqueSelection(reps,qty){
+  const pools={aguda:[],grave:[],esdrujula:[]};
+  reps.forEach(x=>pools[x.type].push(x)); Object.values(pools).forEach(a=>shuffle(a));
+  const chosen=[], used=new Set(), cats=['aguda','grave','esdrujula']; let loops=0;
+  while(chosen.length<Math.min(qty,reps.length) && loops<reps.length*5){
+    const c=cats[loops%3]; const candidate=pools[c].find(x=>!used.has(x.sentenceId));
+    if(candidate){chosen.push(candidate);used.add(candidate.sentenceId);pools[c]=pools[c].filter(x=>x!==candidate)}
+    loops++;
+    if(loops>cats.length && !cats.some(k=>pools[k].some(x=>!used.has(x.sentenceId))))break;
+  }
+  if(chosen.length<Math.min(qty,reps.length)){
+    for(const x of shuffle(reps)){
+      if(chosen.length>=Math.min(qty,reps.length))break;
+      if(!used.has(x.sentenceId)){chosen.push(x);used.add(x.sentenceId)}
+    }
+  }
+  return chosen;
+}
+function needsLevel2(){return !!$('include2').checked}
+function balancedBank(qty){
+  const source=needsLevel2()?BANK.filter(x=>BANK_CONTEXT[x.word]):BANK;
+  const cats=['aguda','grave','esdrujula']; const pools={}; cats.forEach(c=>pools[c]=shuffle(source.filter(x=>x.type===c).map(x=>enrichBankItem({...x,id:'x'+Math.random()}))));
+  const out=[]; let k=0; while(out.length<qty){const c=cats[k%3]; if(pools[c].length) out.push(pools[c].pop()); k++; if(k>500)break}
+  return shuffle(out).map((x,i)=>({...x,id:'bsel'+i,selected:true}));
+}
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+
+function sourceValue(){return $('input[name="source"]:checked').value}
+function modeValue(){return $('input[name="mode"]:checked').value}
+function generate(){
+  const q=+$('qty').value;
+  generationInfo=null;
+  if(sourceValue()==='bank') items=balancedBank(q);
+  else {
+    const text=$('sourceText').value.trim();
+    if(!text){alert('Pegá un texto antes de generar la selección.');return}
+    const analysis=analyzeText(text);
+    if(!analysis.groups.length){alert('No encontré oraciones con palabras utilizables en el texto.');return}
+    const reps=representativesFromGroups(analysis.groups);
+    const selected=balancedUniqueSelection(reps,q);
+    const selectedIds=new Set(selected.map(x=>x.sentenceId));
+    const rest=reps.filter(x=>!selectedIds.has(x.sentenceId));
+    items=[...selected,...rest].map((x,i)=>({...x,id:'tsel'+i,selected:i<selected.length}));
+    generationInfo={requested:q,available:reps.length,selected:selected.length,totalSentences:analysis.totalSentences,excludedTitles:analysis.excludedTitles};
+  }
+  render();
+}
+function render(){
+  const area=$('listArea'); if(!items.length){area.className='empty';area.textContent='Generá una selección para empezar.';$('summary').innerHTML='';return}
+  const showContext=needsLevel2();
+  area.className='tablewrap';
+  const extraHead=showContext?'<th>Oración / contexto</th><th>Forma alternativa</th>':'';
+  area.innerHTML=`<table><thead><tr><th>Usar</th><th>Palabra correcta</th><th>Clasificación</th><th>Tilde</th>${extraHead}<th>Conf.</th><th></th></tr></thead><tbody>${items.map((x,i)=>`<tr data-i="${i}" class="${x.edited?'edited':''}">
+    <td><input class="sel" type="checkbox" ${x.selected?'checked':''}></td>
+    <td><input class="wordInput" type="text" value="${esc(x.word)}" style="min-width:135px;font-weight:800"></td>
+    <td><select class="type smallsel"><option value="aguda" ${x.type==='aguda'?'selected':''}>Aguda</option><option value="grave" ${x.type==='grave'?'selected':''}>Grave</option><option value="esdrujula" ${x.type==='esdrujula'?'selected':''}>Esdrújula</option></select></td>
+    <td><select class="tilde smallsel"><option value="1" ${x.tilde?'selected':''}>Sí</option><option value="0" ${!x.tilde?'selected':''}>No</option></select></td>
+    ${showContext?`<td><input class="contextInput" type="text" value="${esc(x.context||'')}"></td><td><input class="altInput" type="text" value="${esc(x.alternative||'')}"></td>`:''}
+    <td>${x.confidence==='baja'?'<span class="pill warn">Revisar</span>':esc(x.confidence||'alta')}</td>
+    <td><button class="btn-danger mini del">Quitar</button></td>
+  </tr>`).join('')}</tbody></table>`;
+  area.querySelectorAll('tr[data-i]').forEach(tr=>{
+    const i=+tr.dataset.i; const mark=()=>{items[i].edited=true;tr.classList.add('edited')};
+    tr.querySelector('.sel').onchange=e=>{items[i].selected=e.target.checked; updateSummary()};
+    tr.querySelector('.wordInput').oninput=e=>{items[i].word=e.target.value.trim();mark()};
+    tr.querySelector('.type').onchange=e=>{items[i].type=e.target.value;mark();updateSummary()};
+    tr.querySelector('.tilde').onchange=e=>{items[i].tilde=e.target.value==='1';mark()};
+    if(showContext){
+      tr.querySelector('.contextInput').oninput=e=>{items[i].context=e.target.value;mark()};
+      tr.querySelector('.altInput').oninput=e=>{items[i].alternative=e.target.value.trim();mark()};
+    }
+    tr.querySelector('.del').onclick=()=>{items.splice(i,1);render()};
+  });
+  updateSummary();
+}
+
+function updateSummary(){
+  const s=items.filter(x=>x.selected); const count=c=>s.filter(x=>x.type===c).length; const low=s.filter(x=>x.confidence==='baja').length;
+  $('summary').innerHTML=`<span class="pill">Seleccionadas: ${s.length}</span><span class="pill">Agudas: ${count('aguda')}</span><span class="pill">Graves: ${count('grave')}</span><span class="pill">Esdrújulas: ${count('esdrujula')}</span>${low?`<span class="pill warn">Para revisar: ${low}</span>`:''}`;
+  const gm=$('generationMessage');
+  if(generationInfo){
+    gm.style.display='block';
+    const titleNote=generationInfo.excludedTitles?` Se omitieron ${generationInfo.excludedTitles} título${generationInfo.excludedTitles===1?'':'s'} o encabezado${generationInfo.excludedTitles===1?'':'s'} breve${generationInfo.excludedTitles===1?'':'s'}.`:'';
+    if(generationInfo.available<generationInfo.requested){
+      gm.innerHTML=`<strong>El texto no alcanza para ${generationInfo.requested} situaciones diferentes sin repetir oraciones.</strong> Encontré ${generationInfo.available} oraciones utilizables y seleccioné ${generationInfo.selected}. Podés trabajar con esas situaciones o pegar un fragmento más largo.${titleNote}`;
+    }else{
+      gm.innerHTML=`Se encontraron ${generationInfo.available} oraciones utilizables. <strong>Se propone como máximo una palabra por oración</strong> para evitar contextos repetidos.${titleNote}`;
+    }
+  }else gm.style.display='none';
+}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function stripAccent(s){return s.normalize('NFD').replace(/[\u0301]/g,'').normalize('NFC')}
+
+function config(){
+  const selected=items.filter(x=>x.selected && x.word.trim()).map(x=>({word:x.word.trim(),type:x.type,tilde:!!x.tilde,context:(x.context||'').trim(),alternative:(x.alternative||'').trim()}));
+  const levels=[]; if($('include1').checked)levels.push(1); if($('include2').checked)levels.push(2);
+  return {title:$('title').value.trim()||'Desafío de acentuación',levels,mode:modeValue(),mix:$('mix').checked,askName:$('askName').checked,words:selected};
+}
+function validateConfig(c){
+  if(!c.levels.length){alert('Elegí al menos un nivel para incluir en la actividad.');return false}
+  if(c.words.length<3){alert('Seleccioná al menos 3 palabras.');return false}
+  if(c.levels.includes(2) && c.words.some(x=>!x.context || !x.alternative)){alert('Para incluir el Nivel 2, todas las palabras seleccionadas necesitan una oración y una forma alternativa. Podés completarlas en la tabla.');return false}
+  if(c.words.some(x=>x.tilde!==hasWrittenAccent(x.word))){alert('Hay una palabra cuya escritura no coincide con el desplegable “Tilde”. Corregí la palabra o ese desplegable antes de continuar.');return false}
+  if(c.levels.includes(2) && c.words.some(x=>!x.context.toLocaleLowerCase('es').includes(x.word.toLocaleLowerCase('es')) && !x.context.includes('_____') && !x.context.includes('{palabra}'))){alert('Para el Nivel 2, cada oración debe contener la palabra correcta o un espacio marcado con _____ / {palabra}. Revisá la tabla.');return false}
+  if(c.levels.includes(2) && c.words.some(x=>normalize(x.word)===normalize(x.alternative) && x.word===x.alternative)){alert('Para el Nivel 2, la forma alternativa debe ser distinta de la palabra correcta.');return false}
+  if(!c.words.some(x=>x.type==='aguda')||!c.words.some(x=>x.type==='grave')||!c.words.some(x=>x.type==='esdrujula')){
+    return confirm('La selección no contiene las tres clases de palabras. ¿Querés continuar igualmente?');
+  }
+  return true;
+}
+
+function studentHtml(c){
+const data=JSON.stringify(c).replace(/</g,'\\u003c');
+const nameField=c.askName?'<label>Nombre y apellido</label><input id="student" autocomplete="name" placeholder="Escribí tu nombre y apellido">':'<label>Nombre (opcional)</label><input id="student" autocomplete="name" placeholder="Escribí tu nombre">';
+const levelsLabel=c.levels.length===2?'Niveles 1 y 2':(c.levels[0]===1?'Nivel 1 · Agudas, graves y esdrújulas':'Nivel 2 · Acentuación en contexto');
+return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(c.title)}</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#1f2937;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}.wrap{max-width:900px;margin:0 auto;padding:28px 18px 60px}.card{background:#fff;border:1px solid #dbe3ee;border-radius:16px;box-shadow:0 5px 22px rgba(15,23,42,.07);overflow:hidden}.head{padding:22px 24px;border-bottom:1px solid #e2e8f0}.head h1{font-size:1.5rem;margin:0 0 4px}.muted{color:#64748b}.body{padding:24px}.start label{font-weight:800;display:block;margin:14px 0 6px}.start input{width:100%;font:inherit;padding:11px;border:1px solid #cbd5e1;border-radius:9px}.btn,.btn2,.btnDanger{border:1px solid transparent;border-radius:10px;padding:13px 18px;font:inherit;font-size:1.08rem;font-weight:850;cursor:pointer;color:#fff}.btn{background:#4169a8}.btn:hover{background:#365b95}.btn2{background:#6b5f9e}.btn2:hover{background:#5c518b}.btnDanger{background:#8a6f45}.btnDanger:hover{background:#78603b}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.actions .btn,.actions .btn2,.actions .btnDanger{flex:1 1 180px}.levelgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}.levelcard{border:1px solid #dbe3ee;border-radius:13px;padding:16px;background:#f8fafc}.levelcard h3{margin:0 0 6px;font-size:1.05rem}.levelcard p{margin:4px 0;color:#64748b;font-size:.92rem;line-height:1.4}.status{font-weight:850;color:#315ea8}.progress{height:9px;background:#e8eef5;border-radius:99px;overflow:hidden;margin:8px 0 20px}.bar{height:100%;background:#315ea8;width:0}.counter{font-weight:800;color:#475569;font-size:.95rem}.word{font-size:2rem;font-weight:900;text-align:center;margin:22px 0 18px;letter-spacing:.01em}.sentence{font-size:1.3rem;line-height:1.55;text-align:center;margin:22px auto;max-width:720px;padding:18px;border:1px solid #dbe3ee;background:#f8fafc;border-radius:12px}.blank{display:inline-block;min-width:90px;border-bottom:2px solid #64748b;font-weight:900;color:#315ea8}.question{font-weight:900;text-align:center;margin:10px 0 14px;font-size:1.05rem}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.choices.two{grid-template-columns:repeat(2,1fr)}.choice{padding:17px 13px;border:2px solid #d8e1ec;background:#fff;border-radius:12px;font:inherit;font-size:1.2rem;font-weight:900;cursor:pointer;line-height:1.25}.choice:hover{border-color:#8aa9d8;background:#f8fbff}.choice.selected{border-color:#315ea8;background:#eef4ff}.choice.good{border-color:#198754;background:#edf9f3}.choice.bad{border-color:#c0392b;background:#fff0ef}.feedback{min-height:46px;margin-top:16px;padding:11px 13px;border-radius:10px;background:#f8fafc;border:1px solid #e2e8f0;line-height:1.4}.savebar{margin-top:18px;padding-top:15px;border-top:1px solid #e2e8f0}.hidden{display:none!important}.result{font-size:2rem;font-weight:900;margin:8px 0}.scoreDetail{font-size:.95rem;color:#64748b;margin:-2px 0 14px}.reportwrap{overflow:auto}.report{width:100%;border-collapse:collapse;margin-top:18px;font-size:.9rem}.report th,.report td{border-bottom:1px solid #e2e8f0;padding:9px 7px;text-align:left;vertical-align:top}.report th{background:#f8fafc}.oktxt{color:#137a4a;font-weight:800}.notxt{color:#b33329;font-weight:800}.pending{color:#64748b}.menuTop{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.menuTop h2{margin:0;font-size:1.25rem}.finalBox{text-align:center;padding:28px 12px}.finalBox h2{margin:0 0 10px}.finalBox p{max-width:650px;margin:8px auto;color:#475569;line-height:1.5}@media(max-width:650px){.levelgrid,.choices,.choices.two{grid-template-columns:1fr}.word{font-size:1.65rem}.sentence{font-size:1.1rem}.body{padding:18px}.choice{font-size:1.12rem}}
+</style></head><body><div class="wrap"><div class="card"><div class="head"><h1>${esc(c.title)}</h1><div class="muted">${levelsLabel}</div></div><div class="body">
+<section id="menu" class="start"><div class="menuTop"><h2>Actividad de acentuación</h2><span id="overallStatus" class="status"></span></div><p id="intro">Elegí un nivel para comenzar. Si cerrás la actividad por error, al volver a abrirla continuará automáticamente desde donde quedó.</p>${nameField}<label>Grado / curso (opcional)</label><input id="course" placeholder="Por ejemplo: 5.º A"><div id="levelMenu" class="levelgrid"></div><div class="actions"><button class="btn hidden" id="finishMenu">Finalizar y entregar</button><button class="btnDanger hidden" id="resetMenu">Borrar y comenzar de nuevo</button></div></section>
+<section id="game" class="hidden"><div class="counter" id="counter"></div><div class="progress"><div class="bar" id="bar"></div></div><div id="stage"></div><div id="feedback" class="feedback">Elegí una respuesta.</div><div class="actions"><button class="btn hidden" id="next">Siguiente</button></div><div class="savebar"><div class="actions"><button class="btn" id="finishGame">Finalizar y entregar</button><button class="btn2" id="backMenu">Volver a los niveles</button><button class="btnDanger" id="resetGame">Borrar y comenzar de nuevo</button></div></div></section>
+<section id="end" class="hidden"><div class="muted" id="endLabel">Nivel completado</div><div class="result" id="score"></div><div class="scoreDetail" id="scoreDetail"></div><div id="detail" class="reportwrap"></div><div class="actions"><button class="btn" id="finishEnd">Finalizar y entregar</button><button class="btn2" id="menuAfter">Volver a los niveles</button><button class="btnDanger" id="resetEnd">Borrar y comenzar de nuevo</button></div></section>
+<section id="finalized" class="hidden"><div class="finalBox"><h2>Actividad finalizada</h2><p>Se generó el archivo HTML para entregar a la seño. Esa copia abre directamente como informe y ya no permite seguir respondiendo.</p><div class="actions"><button class="btn" id="redownloadReport">Descargar nuevamente el informe</button><button class="btnDanger" id="resetFinal">Borrar y comenzar de nuevo</button></div></div></section>
+</div></div></div><script>
+const CFG=${data};
+const $=s=>document.querySelector(s);
+function shuffle(a){const b=[...a];for(let k=b.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[b[k],b[j]]=[b[j],b[k]]}return b}
+function cap(s){if(!s||s==='—')return '—';return s==='esdrujula'?'Esdrújula':s[0].toUpperCase()+s.slice(1)}
+function escapeHtml(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function blankContext(context,word){const c=String(context||'');if(c.includes('_____'))return escapeHtml(c).replace('_____','<span class="blank">&nbsp;</span>');if(c.includes('{palabra}'))return escapeHtml(c).replace('{palabra}','<span class="blank">&nbsp;</span>');const low=c.toLocaleLowerCase('es'),w=String(word||'').toLocaleLowerCase('es'),idx=low.indexOf(w);if(idx<0)return escapeHtml(c)+' <span class="blank">&nbsp;</span>';return escapeHtml(c.slice(0,idx))+'<span class="blank">&nbsp;</span>'+escapeHtml(c.slice(idx+word.length))}
+function contextWithWord(context,word){const c=String(context||'');if(c.includes('_____'))return escapeHtml(c).replace('_____','<strong>'+escapeHtml(word)+'</strong>');if(c.includes('{palabra}'))return escapeHtml(c).replace('{palabra}','<strong>'+escapeHtml(word)+'</strong>');const low=c.toLocaleLowerCase('es'),w=String(word||'').toLocaleLowerCase('es'),idx=low.indexOf(w);if(idx<0)return escapeHtml(c);return escapeHtml(c.slice(0,idx))+'<strong>'+escapeHtml(word)+'</strong>'+escapeHtml(c.slice(idx+word.length))}
+function hashString(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)}
+const ACTIVITY_ID='acent_'+hashString(JSON.stringify({title:CFG.title,levels:CFG.levels,words:CFG.words.map(w=>[w.word,w.type,w.context,w.alternative])}));
+const STORAGE_KEY='escolar_acentuacion_'+ACTIVITY_ID;
+function newLevelState(){const order=[...CFG.words.keys()];return {order:CFG.mix?shuffle(order):order,i:0,responses:Array(CFG.words.length).fill(null),completed:false}}
+function freshProgress(){const p={version:2,activityId:ACTIVITY_ID,name:'',course:'',activeLevel:null,updatedAt:Date.now(),finalized:false,finalizedAt:null,levelStates:{}};CFG.levels.forEach(l=>p.levelStates[String(l)]=newLevelState());return p}
+function readLocal(){try{const raw=localStorage.getItem(STORAGE_KEY);if(!raw)return null;const p=JSON.parse(raw);return p&&p.activityId===ACTIVITY_ID?p:null}catch(e){return null}}
+function normalizeProgress(p){if(!p||p.activityId!==ACTIVITY_ID)p=freshProgress();if(!p.levelStates)p.levelStates={};CFG.levels.forEach(l=>{const k=String(l);if(!p.levelStates[k]||!Array.isArray(p.levelStates[k].responses)||p.levelStates[k].responses.length!==CFG.words.length)p.levelStates[k]=newLevelState()});if(typeof p.finalized!=='boolean')p.finalized=false;p.version=2;return p}
+let progress=normalizeProgress(readLocal()||freshProgress());
+let activeLevel=null;
+function saveProgress(){if($('#student'))progress.name=$('#student').value.trim();if($('#course'))progress.course=$('#course').value.trim();if(activeLevel!==null)progress.activeLevel=activeLevel;progress.updatedAt=Date.now();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(progress))}catch(e){} }
+function clearLocal(){try{localStorage.removeItem(STORAGE_KEY)}catch(e){}}
+function levelState(level){return progress.levelStates[String(level)]}
+function responseCount(level){return levelState(level).responses.filter(r=>r&&r.typeAnswer).length}
+function hasLevelProgress(level){const st=levelState(level);return st.i>0||st.responses.some(r=>r&&(r.typeAnswer||r.spellingAnswer))}
+function anyProgress(){return CFG.levels.some(hasLevelProgress)}
+function levelCorrect(level){const rs=levelState(level).responses.filter(r=>r&&r.typeAnswer);if(level===1)return {ok:rs.filter(r=>r.typeCorrect).length,max:rs.length,points:rs.filter(r=>r.typeCorrect).length};const decisions=rs.reduce((n,r)=>n+(r.typeCorrect?1:0)+(r.spellingCorrect?1:0),0);return {ok:decisions,max:rs.length*2,points:decisions/2}}
+function levelTitle(level){return level===1?'Nivel 1 · Clasificar':'Nivel 2 · Acentuación en contexto'}
+function levelDescription(level){return level===1?'Clasificá cada palabra como aguda, grave o esdrújula.':'Elegí la escritura correcta en una oración y después clasificá la palabra.'}
+function show(section){['menu','game','end','finalized'].forEach(id=>$('#'+id).classList.toggle('hidden',id!==section))}
+function validateStudent(){if(CFG.askName&&!$('#student').value.trim()){alert('Escribí tu nombre antes de comenzar o entregar.');return false}return true}
+function renderMenu(){activeLevel=null;$('#student').value=progress.name||'';$('#course').value=progress.course||'';const cards=[];let totalDone=0;CFG.levels.forEach(level=>{const st=levelState(level),done=responseCount(level),total=CFG.words.length;totalDone+=done;const corr=levelCorrect(level);let status;if(st.completed){const pct=corr.max?Math.round(corr.ok/corr.max*100):0;status='Completado · '+(level===1?corr.ok:corr.points.toString().replace('.',','))+' / '+total+' · '+pct+'%'}else if(hasLevelProgress(level)){status='En proceso · '+done+' de '+total+' situaciones completas'}else status='Sin comenzar';const label=st.completed?'Ver resultados':(hasLevelProgress(level)?'Seguir':'Comenzar');const attr=st.completed?'data-review':'data-level';cards.push('<div class="levelcard"><h3>'+levelTitle(level)+'</h3><p>'+levelDescription(level)+'</p><p class="status">'+status+'</p><button class="btn '+(st.completed?'btn2':'')+'" '+attr+'="'+level+'">'+label+'</button></div>')});$('#levelMenu').innerHTML=cards.join('');document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>openLevel(+b.dataset.level));document.querySelectorAll('[data-review]').forEach(b=>b.onclick=()=>renderEnd(+b.dataset.review));const any=anyProgress();$('#finishMenu').classList.toggle('hidden',!any);$('#resetMenu').classList.toggle('hidden',!any);const allComplete=CFG.levels.every(l=>levelState(l).completed);$('#overallStatus').textContent=allComplete?'Actividad completada':(any?'Actividad en proceso':'');show('menu');saveProgress()}
+function openLevel(level){if(!validateStudent())return;saveProgress();activeLevel=level;progress.activeLevel=level;const st=levelState(level);if(st.completed){renderEnd(level);return}show('game');renderCurrent()}
+function currentWord(){const st=levelState(activeLevel);return CFG.words[st.order[st.i]]}
+function currentResponse(){const st=levelState(activeLevel);const w=currentWord();if(!st.responses[st.i])st.responses[st.i]={word:w.word,type:w.type,tilde:w.tilde,context:w.context||'',alternative:w.alternative||'',typeAnswer:null,typeCorrect:null,spellingAnswer:null,spellingCorrect:null};return st.responses[st.i]}
+function baseFeedback(){return CFG.mode==='task'?'Respondé y continuá. Las correcciones se mostrarán al final.':'Elegí una respuesta.'}
+function renderCurrent(){const st=levelState(activeLevel);if(st.i>=CFG.words.length){st.completed=true;saveProgress();renderEnd(activeLevel);return}const w=currentWord(),r=currentResponse();$('#counter').textContent=(activeLevel===1?'Palabra ':'Situación ')+(st.i+1)+' de '+CFG.words.length;$('#bar').style.width=(st.i/CFG.words.length*100)+'%';$('#next').classList.add('hidden');if(activeLevel===1){renderLevel1(w,r)}else if(r.spellingAnswer){renderTypeInContext(w,r)}else renderSpelling(w,r);saveProgress()}
+function renderLevel1(w,r){$('#feedback').textContent=baseFeedback();$('#stage').innerHTML='<div class="word">'+escapeHtml(w.word)+'</div><div class="question">¿Es una palabra aguda, grave o esdrújula?</div><div class="choices"><button class="choice" data-v="aguda">Aguda</button><button class="choice" data-v="grave">Grave</button><button class="choice" data-v="esdrujula">Esdrújula</button></div>';bindTypeChoices(r);if(r.typeAnswer)restoreTypeSelection(r,w)}
+function renderSpelling(w,r){$('#feedback').textContent=baseFeedback();const opts=shuffle([{label:w.word,v:'correct'},{label:w.alternative,v:'alternative'}]);$('#stage').innerHTML='<div class="sentence">'+blankContext(w.context,w.word)+'</div><div class="question">¿Cómo debe escribirse la palabra que completa esta oración?</div><div class="choices two">'+opts.map(o=>'<button class="choice" data-v="'+o.v+'">'+escapeHtml(o.label)+'</button>').join('')+'</div>';document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>chooseSpelling(b.dataset.v,b,w,r))}
+function chooseSpelling(v,btn,w,r){document.querySelectorAll('.choice').forEach(b=>b.disabled=true);btn.classList.add('selected');r.spellingAnswer=v==='correct'?w.word:w.alternative;r.spellingCorrect=v==='correct';if(CFG.mode==='practice'){btn.classList.add(r.spellingCorrect?'good':'bad');$('#feedback').innerHTML=r.spellingCorrect?'Correcto.':'En esta oración la forma correcta es <strong>'+escapeHtml(w.word)+'</strong>.'}saveProgress();setTimeout(()=>renderTypeInContext(w,r),CFG.mode==='practice'?650:220)}
+function renderTypeInContext(w,r){$('#stage').innerHTML='<div class="sentence">'+contextWithWord(w.context,w.word)+'</div><div class="question">Ahora clasificá <strong>'+escapeHtml(w.word)+'</strong> según su sílaba tónica.</div><div class="choices"><button class="choice" data-v="aguda">Aguda</button><button class="choice" data-v="grave">Grave</button><button class="choice" data-v="esdrujula">Esdrújula</button></div>';$('#feedback').textContent=CFG.mode==='task'?'Elegí la clasificación y continuá.':'Elegí la clasificación.';bindTypeChoices(r);if(r.typeAnswer)restoreTypeSelection(r,w)}
+function bindTypeChoices(r){document.querySelectorAll('.choice').forEach(b=>b.onclick=()=>chooseType(b.dataset.v,b,r))}
+function chooseType(v,btn,r){document.querySelectorAll('.choice').forEach(b=>b.disabled=true);btn.classList.add('selected');const w=currentWord();r.typeAnswer=v;r.typeCorrect=v===w.type;if(CFG.mode==='practice'){btn.classList.add(r.typeCorrect?'good':'bad');$('#feedback').innerHTML=r.typeCorrect?'Correcto. <strong>'+escapeHtml(w.word)+'</strong> es '+cap(w.type).toLowerCase()+'.':'La clasificación correcta es <strong>'+cap(w.type)+'</strong>.'}$('#next').classList.remove('hidden');saveProgress()}
+function restoreTypeSelection(r,w){document.querySelectorAll('.choice').forEach(b=>{b.disabled=true;if(b.dataset.v===r.typeAnswer){b.classList.add('selected');if(CFG.mode==='practice')b.classList.add(r.typeCorrect?'good':'bad')}});if(CFG.mode==='practice')$('#feedback').innerHTML=r.typeCorrect?'Correcto. <strong>'+escapeHtml(w.word)+'</strong> es '+cap(w.type).toLowerCase()+'.':'La clasificación correcta es <strong>'+cap(w.type)+'</strong>.';else $('#feedback').textContent='Respuesta registrada.';$('#next').classList.remove('hidden')}
+function nextItem(){const st=levelState(activeLevel),r=st.responses[st.i];if(!r||!r.typeAnswer)return;st.i++;if(st.i>=CFG.words.length){st.completed=true;saveProgress();renderEnd(activeLevel)}else{saveProgress();renderCurrent()}}
+function scoreData(level){const st=levelState(level),rs=st.responses.filter(r=>r&&r.typeAnswer),corr=levelCorrect(level),total=CFG.words.length,pending=total-rs.length,pct=corr.max?Math.round(corr.ok/corr.max*100):0;return {rs,corr,total,pending,pct}}
+function tableHtml(level){const st=levelState(level);if(level===1)return '<table class="report"><thead><tr><th>Palabra</th><th>Clasificación</th></tr></thead><tbody>'+st.responses.map((a,idx)=>{const w=CFG.words[st.order[idx]];if(!a||!a.typeAnswer)return '<tr><td><strong>'+escapeHtml(w.word)+'</strong></td><td class="pending">Sin responder</td></tr>';return '<tr><td><strong>'+escapeHtml(a.word)+'</strong></td><td class="'+(a.typeCorrect?'oktxt':'notxt')+'">'+cap(a.typeAnswer)+(a.typeCorrect?' ✓':' ✗ · '+cap(a.type))+'</td></tr>'}).join('')+'</tbody></table>';return '<table class="report"><thead><tr><th>Oración</th><th>Escritura elegida</th><th>Clasificación</th></tr></thead><tbody>'+st.responses.map((a,idx)=>{const w=CFG.words[st.order[idx]];if(!a)return '<tr><td>'+contextWithWord(w.context,w.word)+'</td><td class="pending">Sin responder</td><td class="pending">Sin responder</td></tr>';const spell=a.spellingAnswer?('<span class="'+(a.spellingCorrect?'oktxt':'notxt')+'">'+escapeHtml(a.spellingAnswer)+(a.spellingCorrect?' ✓':' ✗ · '+escapeHtml(a.word))+'</span>'):'<span class="pending">Sin responder</span>';const typ=a.typeAnswer?('<span class="'+(a.typeCorrect?'oktxt':'notxt')+'">'+cap(a.typeAnswer)+(a.typeCorrect?' ✓':' ✗ · '+cap(a.type))+'</span>'):'<span class="pending">Sin responder</span>';return '<tr><td>'+contextWithWord(a.context||w.context,a.word||w.word)+'</td><td>'+spell+'</td><td>'+typ+'</td></tr>'}).join('')+'</tbody></table>'}
+function renderEnd(level){activeLevel=level;const st=levelState(level),d=scoreData(level);show('end');$('#endLabel').textContent=st.completed?'Nivel completado':'Resultados del nivel';if(level===1){$('#score').textContent=d.corr.ok+' / '+d.rs.length+' respuestas correctas';$('#scoreDetail').textContent=d.pending?('Respondidas: '+d.rs.length+' de '+d.total+' · Sin responder: '+d.pending):('Resultado final: '+d.corr.ok+' / '+d.total+' · '+d.pct+'%')}else{const pts=d.corr.points,fmt=Number.isInteger(pts)?String(pts):pts.toFixed(1).replace('.',',');$('#score').textContent=fmt+' / '+d.rs.length+' puntos respondidos';$('#scoreDetail').textContent=d.pending?('Situaciones completas: '+d.rs.length+' de '+d.total+' · Sin completar: '+d.pending):('Resultado final: '+fmt+' / '+d.total+' puntos · '+d.pct+'%')}$('#detail').innerHTML=tableHtml(level);saveProgress()}
+function backToMenu(){saveProgress();renderMenu()}
+function finalCounts(level){const st=levelState(level),total=CFG.words.length;if(level===1){const answered=st.responses.filter(r=>r&&r.typeAnswer).length,correct=st.responses.filter(r=>r&&r.typeAnswer&&r.typeCorrect).length;return {total,answered,correct,incorrect:answered-correct,pending:total-answered}}const complete=st.responses.filter(r=>r&&r.typeAnswer).length,partial=st.responses.filter(r=>r&&r.spellingAnswer&&!r.typeAnswer).length,untouched=total-complete-partial,spellAnswered=st.responses.filter(r=>r&&r.spellingAnswer).length,spellCorrect=st.responses.filter(r=>r&&r.spellingAnswer&&r.spellingCorrect).length,typeAnswered=st.responses.filter(r=>r&&r.typeAnswer).length,typeCorrect=st.responses.filter(r=>r&&r.typeAnswer&&r.typeCorrect).length,points=(spellCorrect+typeCorrect)/2;return {total,complete,partial,untouched,spellAnswered,spellCorrect,typeAnswered,typeCorrect,points}}
+function reportTable(level){const st=levelState(level);if(level===1){return '<table><thead><tr><th>N.º</th><th>Palabra</th><th>Respuesta</th><th>Respuesta correcta</th><th>Resultado</th></tr></thead><tbody>'+st.order.map((wi,idx)=>{const w=CFG.words[wi],r=st.responses[idx];if(!r||!r.typeAnswer)return '<tr><td>'+(idx+1)+'</td><td><strong>'+escapeHtml(w.word)+'</strong></td><td class="pending">Sin responder</td><td>'+cap(w.type)+'</td><td class="pending">Sin responder</td></tr>';return '<tr><td>'+(idx+1)+'</td><td><strong>'+escapeHtml(w.word)+'</strong></td><td>'+cap(r.typeAnswer)+'</td><td>'+cap(w.type)+'</td><td class="'+(r.typeCorrect?'ok':'bad')+'">'+(r.typeCorrect?'Correcta':'Incorrecta')+'</td></tr>'}).join('')+'</tbody></table>'}return '<table><thead><tr><th>N.º</th><th>Contexto</th><th>Escritura elegida</th><th>Correcta</th><th>Resultado</th><th>Clasificación elegida</th><th>Correcta</th><th>Resultado</th></tr></thead><tbody>'+st.order.map((wi,idx)=>{const w=CFG.words[wi],r=st.responses[idx];const ctx=contextWithWord((r&&r.context)||w.context,(r&&r.word)||w.word);const spellAns=r&&r.spellingAnswer?escapeHtml(r.spellingAnswer):'<span class="pending">Sin responder</span>';const spellRes=r&&r.spellingAnswer?('<span class="'+(r.spellingCorrect?'ok':'bad')+'">'+(r.spellingCorrect?'Correcta':'Incorrecta')+'</span>'):'<span class="pending">Sin responder</span>';const typeAns=r&&r.typeAnswer?cap(r.typeAnswer):'<span class="pending">Sin responder</span>';const typeRes=r&&r.typeAnswer?('<span class="'+(r.typeCorrect?'ok':'bad')+'">'+(r.typeCorrect?'Correcta':'Incorrecta')+'</span>'):'<span class="pending">Sin responder</span>';return '<tr><td>'+(idx+1)+'</td><td>'+ctx+'</td><td>'+spellAns+'</td><td>'+escapeHtml(w.word)+'</td><td>'+spellRes+'</td><td>'+typeAns+'</td><td>'+cap(w.type)+'</td><td>'+typeRes+'</td></tr>'}).join('')+'</tbody></table>'}
+function finalReportHtml(){const date=new Date(progress.finalizedAt||Date.now()).toLocaleString('es-AR');let summaries='',details='';CFG.levels.forEach(level=>{const c=finalCounts(level);if(level===1){summaries+='<div class="summaryCard"><h3>'+levelTitle(level)+'</h3><p><strong>Respondidas:</strong> '+c.answered+' de '+c.total+'</p><p><strong>Correctas:</strong> '+c.correct+' · <strong>Incorrectas:</strong> '+c.incorrect+' · <strong>Sin responder:</strong> '+c.pending+'</p></div>'}else{const pts=Number.isInteger(c.points)?String(c.points):c.points.toFixed(1).replace('.',',');summaries+='<div class="summaryCard"><h3>'+levelTitle(level)+'</h3><p><strong>Situaciones completas:</strong> '+c.complete+' de '+c.total+' · <strong>Parciales:</strong> '+c.partial+' · <strong>Sin responder:</strong> '+c.untouched+'</p><p><strong>Escritura:</strong> '+c.spellCorrect+' correctas de '+c.spellAnswered+' respondidas · <strong>Clasificación:</strong> '+c.typeCorrect+' correctas de '+c.typeAnswered+' respondidas · <strong>Puntos:</strong> '+pts+'</p></div>'}details+='<section><h2>'+levelTitle(level)+'</h2>'+reportTable(level)+'</section>'});const all=CFG.levels.every(l=>levelState(l).completed);return '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Entrega · '+escapeHtml(CFG.title)+'</title><style>*{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#1f2937;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}.wrap{max-width:1180px;margin:0 auto;padding:28px 18px 60px}.card{background:#fff;border:1px solid #dbe3ee;border-radius:16px;box-shadow:0 5px 22px rgba(15,23,42,.07);padding:24px}.top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap;border-bottom:1px solid #e2e8f0;padding-bottom:18px}.top h1{margin:0 0 5px;font-size:1.55rem}.badge{padding:7px 10px;border-radius:999px;background:#eef4ff;color:#24497f;font-weight:850}.identity{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}.identity div,.summaryCard{border:1px solid #dbe3ee;border-radius:11px;padding:12px;background:#f8fafc}.label{font-size:.78rem;color:#64748b;text-transform:uppercase;font-weight:800;letter-spacing:.03em}.value{font-weight:850;margin-top:3px}.summaries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}.summaryCard h3{margin:0 0 8px;font-size:1rem}.summaryCard p{margin:4px 0;color:#475569}.note{padding:12px 13px;border-radius:10px;background:#fff8e7;border:1px solid #ecd69a;color:#735300;margin:14px 0}section{margin-top:28px}section h2{font-size:1.12rem;margin:0 0 8px}table{width:100%;border-collapse:collapse;font-size:.88rem}th,td{border-bottom:1px solid #e2e8f0;padding:9px 7px;text-align:left;vertical-align:top}th{background:#f8fafc;color:#475569}.ok{color:#137a4a;font-weight:800}.bad{color:#b33329;font-weight:800}.pending{color:#64748b;font-style:italic}@media(max-width:760px){.identity,.summaries{grid-template-columns:1fr}.card{padding:16px}table{font-size:.82rem}.wrap{padding:14px 8px 40px}}</style></head><body><div class="wrap"><div class="card"><div class="top"><div><h1>'+escapeHtml(CFG.title)+'</h1><div>Informe de actividad entregada</div></div><div class="badge">Actividad entregada</div></div><div class="identity"><div><div class="label">Nombre</div><div class="value">'+escapeHtml(progress.name||'—')+'</div></div><div><div class="label">Grado / curso</div><div class="value">'+escapeHtml(progress.course||'—')+'</div></div><div><div class="label">Fecha de entrega</div><div class="value">'+escapeHtml(date)+'</div></div></div>'+(!all?'<div class="note">La actividad fue entregada con consignas sin responder. Esas consignas figuran como <strong>Sin responder</strong> y no se presentan como errores.</div>':'')+'<div class="summaries">'+summaries+'</div>'+details+'</div></div></body></html>'}
+function reportFilename(){const n=(progress.name||'actividad').replace(/[^A-Za-zÁÉÍÓÚÜÑáéíóúüñ0-9]+/g,'_').replace(/^_+|_+$/g,'');return 'acentuacion_'+(n||'actividad')+'_entrega.html'}
+function downloadReportFile(){const html=finalReportHtml(),blob=new Blob([html],{type:'text/html;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=reportFilename();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+function finalizeAndDeliver(){if(!validateStudent())return;saveProgress();const msg='Vas a cerrar la actividad y generar el archivo para entregar.';if(!confirm(msg))return;progress.finalized=true;progress.finalizedAt=Date.now();saveProgress();downloadReportFile();showFinalized()}
+function showFinalized(){show('finalized')}
+function resetEverything(){if(!confirm('¿Borrar todas las respuestas guardadas y comenzar la actividad desde cero?'))return;clearLocal();progress=freshProgress();activeLevel=null;$('#student').value='';$('#course').value='';renderMenu()}
+function bootstrap(){$('#student').value=progress.name||'';$('#course').value=progress.course||'';$('#student').addEventListener('input',saveProgress);$('#course').addEventListener('input',saveProgress);if(progress.finalized){showFinalized();return}const last=progress.activeLevel&&CFG.levels.includes(progress.activeLevel)?progress.activeLevel:null;if(last&&!levelState(last).completed&&hasLevelProgress(last)){activeLevel=last;show('game');renderCurrent();return}renderMenu()}
+$('#next').onclick=nextItem;$('#finishMenu').onclick=finalizeAndDeliver;$('#finishGame').onclick=finalizeAndDeliver;$('#finishEnd').onclick=finalizeAndDeliver;$('#backMenu').onclick=backToMenu;$('#menuAfter').onclick=backToMenu;$('#resetMenu').onclick=resetEverything;$('#resetGame').onclick=resetEverything;$('#resetEnd').onclick=resetEverything;$('#resetFinal').onclick=resetEverything;$('#redownloadReport').onclick=downloadReportFile;bootstrap();
+<\/script></body></html>`;
+}
+
+function preview(){const c=config();if(!validateConfig(c))return;const html=studentHtml(c);$('previewFrame').srcdoc=html;$('modal').classList.add('open')}
+function exportHtml(){const c=config();if(!validateConfig(c))return;const html=studentHtml(c);const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);const base=(c.title||'actividad_acentuacion').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]+/g,'_').replace(/^_+|_+$/g,'').toLowerCase();a.download=(base||'actividad_acentuacion')+'.html';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+
+$$('input[name="source"]').forEach(r=>r.onchange=()=>{$('textBox').style.display=sourceValue()==='text'?'block':'none';items=[];render()});
+$('generate').onclick=generate;$('selectAll').onclick=()=>{items.forEach(x=>x.selected=true);render()};
+$('preview').onclick=preview;$('export').onclick=exportHtml;
+$('closeModal').onclick=()=>{$('modal').classList.remove('open');$('previewFrame').srcdoc=''};$('modal').onclick=e=>{if(e.target===$('modal'))$('closeModal').click()};
+$('include1').onchange=()=>{if(!$('include1').checked&&!$('include2').checked)$('include1').checked=true};
+$('include2').onchange=()=>{if(!$('include1').checked&&!$('include2').checked)$('include2').checked=true;generate()};
+
+generate();
+})();
+</script>
+
+<script>
+fetch('/pie.html')
+  .then(response => {
+    if (!response.ok) throw new Error('No se pudo cargar el pie de página');
+    return response.text();
+  })
+  .then(data => {
+    document.getElementById('contenedor-pie').innerHTML = data;
+  })
+  .catch(error => {
+    console.info('Se usa el pie local de respaldo.', error);
+  });
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

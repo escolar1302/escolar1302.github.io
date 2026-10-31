@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Contenidos - Trayectorias</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        #searchInput {
+            width: 80%;
+            padding: 15px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        thead {
+            background-color: #34495e;
+            color: #ffffff;
+        }
+        th, td {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+            vertical-align: top;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f4f6; }
+        .tema-celda { font-weight: bold; color: #2980b9; width: 30%; }
+        .material-celda { width: 20%; text-align: center; font-size: 0.9em; }
+        .fichas-celda { width: 50%; }
+        img { max-width: 90px; height: auto; margin: 5px; border-radius: 4px; border: 1px solid #ccc; }
+        a { color: #d35400; text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; color: #e67e22; }
+        ul { padding-left: 20px; margin: 0; }
+        .apartado-item { display: block; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #eee; }
+        .apartado-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        #noResults {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #c0392b;
+            background: #fff;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="🔍 Busca por tema, concepto o palabra clave (ej: tabla pitagórica, billetes, mitades, algoritmo...)">
+    </div>
+
+    <table id="mainTable">
+        <thead>
+            <tr>
+                <th>Para niños y niñas que requieren volver a trabajar sobre:</th>
+                <th>Material - Edición 2019</th>
+                <th>Apartado y Fichas (Enlaces)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-keywords="lectura escritura numeros tres cuatro cinco cifras grillas recta numerica redondos componer descomponer">
+                <td class="tema-celda">Lectura y escritura de números de tres, cuatro y cinco cifras.</td>
+                <td class="material-celda">Trayectorias 1<br><img src="images/image3.png" alt="Trayectorias 1"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 1 - Fichas 1 a 11 (Pág 7-19)<br>
+                    <a href="01.pdf">Leer y escribir números de varias cifras</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="valor posicional billetes plata agrupamientos dieces cienes miles aditivas multiplicativas calculadora ceros">
+                <td class="tema-celda">Análisis del valor posicional de las cifras.</td>
+                <td class="material-celda">Trayectorias 1<br><img src="images/image3.png" alt="Trayectorias 1"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 2 - Fichas 1 a 18 (Pág 21-40)<br>
+                    <a href="02.pdf">Los números escritos y el valor de sus cifras: agrupamientos de 10, 100, 1000</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="calculo mental suma resta repertorio desarmar numeros adivinanzas juegos dados dados escaleras truco sumar 10 100 1000 incompletas baldosas">
+                <td class="tema-celda">Cálculo mental de suma y resta: repertorio y avance sobre estrategias con números pequeños y mayores.</td>
+                <td class="material-celda">Trayectorias 1<br><img src="images/image3.png" alt="Trayectorias 1"><br>Propuestas para la enseñanza de la resta<br><img src="images/image4.png" alt="Propuestas resta"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 3 – Fichas 1 a 16 (Pág 41-58)<br> <a href="03.pdf">Cálculos fáciles (y no tan fáciles) de suma y resta</a></span>
+                    <span class="apartado-item">Apartado 2: <a href="04.pdf">Juegos y cuadros para repasar y memorizar cálculos de suma</a></span>
+                    <span class="apartado-item">Apartado 3: <a href="05.pdf">Cálculos de restas fáciles y no tan fáciles</a></span>
+                    <span class="apartado-item">Apartado 5: <a href="06.pdf">Adivinanzas, cuadros y juegos para completar sumas</a></span>
+                    <span class="apartado-item">Apartado 6: <a href="07.pdf">Nuevos trucos para resolver cálculos de resta</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="algoritmo resta cuenta de restar pedir al compañero pedir prestado columnas billetes descomposicion">
+                <td class="tema-celda">La construcción del algoritmo de la resta.</td>
+                <td class="material-celda">Propuestas para la enseñanza de la resta<br><img src="images/image4.png" alt="Propuestas resta"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 13: <a href="08.pdf">La cuenta de restar</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="analisis informacion enunciados problemas preguntas datos incognitas respuestas sobran faltan">
+                <td class="tema-celda">Análisis de la información que proveen los enunciados de los problemas. Preguntas y cálculos.</td>
+                <td class="material-celda">Trayectorias 1<br><img src="images/image3.png" alt="Trayectorias 1"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 4: <a href="09.pdf">Las informaciones y las preguntas de los problemas</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="multiplicacion problemas series proporcionales relacion suma multiplicacion signo por x kiosco bolsas paquetes facturas tablas libreria precio unitario">
+                <td class="tema-celda">Multiplicación: Primeros problemas (series proporcionales). Relación entre suma y multiplicación. Uso del signo x.</td>
+                <td class="material-celda">Trayectorias 1 y 2<br><img src="images/image3.png" alt="Tray 1"><img src="images/image1.png" alt="Tray 2"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 5: <a href="10.pdf">La suma y la multiplicación</a></span>
+                    <span class="apartado-item">Apartado 1: <a href="11.pdf">La multiplicación en problemas con tablas y facturas</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="multiplicacion memorizacion repertorios calculos digitos hasta 10 tabla pitagorica relaciones trucos tabla del 9 5 2 10 dobles mitades">
+                <td class="tema-celda">Multiplicación: Memorización de repertorios de cálculos. Relaciones usando cálculos conocidos.</td>
+                <td class="material-celda">Trayectorias 2<br><img src="images/image1.png" alt="Tray 2"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 2: <a href="12.pdf">Para recordar multiplicaciones</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="multiplicacion repertorio numeros mayores redondos algoritmo filas columnas organizacion rectangular baldosas patio rectangulos unidad seguida de ceros dobles mitades tabla pitagorica">
+                <td class="tema-celda">Multiplicación: Repertorio con números mayores. Construcción de algoritmo. Filas y columnas.</td>
+                <td class="material-celda">Trayectorias 1 y 2<br><img src="images/image3.png" alt="Tray 1"><img src="images/image1.png" alt="Tray 2"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 6: <a href="13.pdf">El cálculo de la multiplicación</a></span>
+                    <span class="apartado-item">Apartado 3: <a href="14.pdf">Nuevos problemas para usar la multiplicación: filas y columnas</a></span>
+                    <span class="apartado-item">Apartado 4: <a href="15.pdf">Multiplicación de números mayores</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="division resolucion problemas reparto particion resto sobra relacion multiplicacion cuantas veces entra adivinanzas cero">
+                <td class="tema-celda">División: Resolución de problemas de reparto y partición. Relación con multiplicación. Divisiones con resto.</td>
+                <td class="material-celda">Trayectorias 2<br><img src="images/image1.png" alt="Tray 2"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 6: <a href="16.pdf">Repartos y particiones</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="division algoritmo una dos cifras estimacion cociente acortar pasos cuentas nuevas dividir por partes aproximaciones multiplicativas unidad seguida de ceros numeros redondos alfajores cajas resultados aproximados">
+                <td class="tema-celda">División: Construcción del algoritmo (1 y 2 cifras). Estimación de cifras del cociente para acortar pasos.</td>
+                <td class="material-celda">Trayectorias 2 y 3<br><img src="images/image1.png" alt="Tray 2"><img src="images/image2.png" alt="Tray 3"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 7: <a href="17.pdf">Dividir números mayores</a></span>
+                    <span class="apartado-item">Apartado 8: <a href="18.pdf">Estrategias de cálculo para dividir: cuentas nuevas</a></span>
+                    <span class="apartado-item">Apartado 1: <a href="19.pdf">El cálculo de división</a></span>
+                </td>
+            </tr>
+
+            <tr data-keywords="division resto cero distinto de cero papel del resto sobra dividendo divisor cociente formula ecuacion agregar caja bandeja armar relacion resto menor al divisor">
+                <td class="tema-celda">División: Divisiones con resto cero y distinto de cero. Análisis del papel del resto.</td>
+                <td class="material-celda">Trayectorias 2 y 3<br><img src="images/image1.png" alt="Tray 2"><img src="images/image2.png" alt="Tray 3"></td>
+                <td class="fichas-celda">
+                    <span class="apartado-item">Apartado 6: <a href="20.pdf">Repartos y particiones</a></span>
+                    <span class="apartado-item">Apartado 8: <a href="21.pdf">Estrategia de cálculo para dividir</a></span>
+                    <span class="apartado-item">Apartado 2: <a href="22.pdf">Las partes de la división: Dividendo, divisor, cociente y resto</a></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="noResults">No se encontraron archivos que coincidan con la búsqueda. Intenta con otra palabra.</div>
+
+    <script>
+        function searchTable() {
+            // Eliminar acentos para que la búsqueda sea más flexible
+            let normalizeString = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+            
+            let input = document.getElementById("searchInput");
+            let filter = normalizeString(input.value);
+            let table = document.getElementById("mainTable");
+            let tr = table.getElementsByTagName("tr");
+            let noResults = document.getElementById("noResults");
+            let visibleRows = 0;
+
+            for (let i = 1; i < tr.length; i++) {
+                let textContent = normalizeString(tr[i].textContent);
+                let keywords = tr[i].getAttribute("data-keywords");
+                keywords = keywords ? normalizeString(keywords) : "";
+                
+                // Buscar si el término está en el texto visible o en las palabras clave ocultas
+                if (textContent.indexOf(filter) > -1 || keywords.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    visibleRows++;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+            
+            // Mostrar mensaje si no hay resultados
+            if(visibleRows === 0) {
+                noResults.style.display = "block";
+                table.style.display = "none";
+            } else {
+                noResults.style.display = "none";
+                table.style.display = "table";
+            }
+        }
+    </script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

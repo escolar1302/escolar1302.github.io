@@ -1,0 +1,176 @@
+{
+"id": "principe-rana-4grado",
+"titulo": "El príncipe rana",
+"area": "Lengua",
+"grado": "4°",
+"descripcion": "Rosco sobre personajes, objetos, lugares y acciones importantes del cuento El príncipe rana.",
+"instrucciones": "Leé cada consigna y escribí la palabra correcta.",
+"modoRosco": "seleccionado",
+"consignas": [
+{
+"letra": "A",
+"modo": "empieza",
+"pregunta": "Lugar blando de la cama donde la rana se acomodó para dormir.",
+"respuestas": [
+"almohada",
+"almohadas"
+],
+"ayuda": "Empieza con A."
+},
+{
+"letra": "B",
+"modo": "empieza",
+"pregunta": "Lugar sombrío, cercano al palacio, donde estaba el pozo.",
+"respuestas": [
+"bosque",
+"bosques"
+],
+"ayuda": "Empieza con B."
+},
+{
+"letra": "C",
+"modo": "empieza",
+"pregunta": "Recipiente de la princesa del que la rana quería beber.",
+"respuestas": [
+"copa",
+"copa de oro"
+],
+"ayuda": "Empieza con C."
+},
+{
+"letra": "D",
+"modo": "empieza",
+"pregunta": "Color del plato de la princesa del que la rana quería comer.",
+"respuestas": [
+"dorado",
+"plato dorado"
+],
+"ayuda": "Empieza con D."
+},
+{
+"letra": "E",
+"modo": "empieza",
+"pregunta": "Lugar del palacio por donde subió la rana haciendo ruido: plis, plas, plis, plas.",
+"respuestas": [
+"escaleras",
+"escalera",
+"escaleras de mármol",
+"escaleras de marmol"
+],
+"ayuda": "Empieza con E."
+},
+{
+"letra": "F",
+"modo": "empieza",
+"pregunta": "Parte profunda del pozo de donde la rana sacó la pelota.",
+"respuestas": [
+"fondo",
+"el fondo",
+"fondo del pozo"
+],
+"ayuda": "Empieza con F."
+},
+{
+"letra": "H",
+"modo": "empieza",
+"pregunta": "Encantamiento que una bruja había lanzado sobre el príncipe.",
+"respuestas": [
+"hechizo",
+"hechizos"
+],
+"ayuda": "Empieza con H."
+},
+{
+"letra": "J",
+"modo": "empieza",
+"pregunta": "Así llama la rana a la pelota de oro de la princesa.",
+"respuestas": [
+"juguete",
+"juguetes"
+],
+"ayuda": "Empieza con J."
+},
+{
+"letra": "L",
+"modo": "empieza",
+"pregunta": "Acción que hace la princesa cuando pierde su pelota de oro.",
+"respuestas": [
+"llorar",
+"llora",
+"lloró",
+"lloro"
+],
+"ayuda": "Empieza con L."
+},
+{
+"letra": "M",
+"modo": "empieza",
+"pregunta": "Lugar donde estaban comiendo el rey, la princesa y la corte cuando llegó la rana.",
+"respuestas": [
+"mesa",
+"la mesa"
+],
+"ayuda": "Empieza con M."
+},
+{
+"letra": "Ñ",
+"modo": "contiene",
+"pregunta": "Momento del día en que la princesa despertó y vio a un príncipe en su cama.",
+"respuestas": [
+"mañana",
+"mañana siguiente"
+],
+"ayuda": "Contiene la letra Ñ."
+},
+{
+"letra": "O",
+"modo": "empieza",
+"pregunta": "Material de la pelota que se le cayó a la princesa en el pozo.",
+"respuestas": [
+"oro",
+"de oro"
+],
+"ayuda": "Empieza con O."
+},
+{
+"letra": "P",
+"modo": "empieza",
+"pregunta": "Lugar muy profundo donde cayó la pelota de oro.",
+"respuestas": [
+"pozo",
+"pozo de agua"
+],
+"ayuda": "Empieza con P."
+},
+{
+"letra": "R",
+"modo": "empieza",
+"pregunta": "Animal que ayuda a la princesa a recuperar su pelota.",
+"respuestas": [
+"rana",
+"ranas"
+],
+"ayuda": "Empieza con R."
+},
+{
+"letra": "S",
+"modo": "empieza",
+"pregunta": "Asiento al que la rana pidió que la subieran antes de comer.",
+"respuestas": [
+"silla",
+"la silla"
+],
+"ayuda": "Empieza con S."
+},
+{
+"letra": "V",
+"modo": "empieza",
+"pregunta": "Prendas que la princesa ofreció a la rana a cambio de recuperar la pelota.",
+"respuestas": [
+"vestidos",
+"vestido"
+],
+"ayuda": "Empieza con V."
+}
+]
+}

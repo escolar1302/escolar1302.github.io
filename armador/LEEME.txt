@@ -1,0 +1,31 @@
+ARMADOR DE PROBLEMAS 0.7
+
+Esta versión corrige tres puntos observados en las pruebas:
+
+1. PAGINACIÓN
+La distribución ya no calcula una altura estimada antes de ubicar cada actividad.
+Inserta cada bloque en la hoja y verifica el espacio real disponible.
+Esto permite aprovechar mejor la primera página sin mandar prematuramente un problema a la siguiente.
+
+2. OPERACIONES
+Se conserva el formato de ficha de la Fábrica de operaciones:
+- cuentas verticales;
+- distribución por columnas;
+- bloque exterior redondeado;
+- ancho de cuentas y separación reajustados para que 5 columnas entren dentro del A4.
+
+3. NUMERACIÓN
+Se acerca el formato al de la Fábrica de numeración:
+- seis números de ordenamiento en una sola fila;
+- seis casilleros de respuesta en una sola línea;
+- recta numérica más compacta y alineada;
+- actividades numeradas y distribución horizontal.
+
+Para probar directamente:
+prototipo_armador_problemas_v07_standalone.html
+
+Para servidor:
+index.html
+estilos.css
+armador.js
+problemas.json

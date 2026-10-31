@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VL13MMLPRV');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Letras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           ESTILOS GENERALES
+           ========================================= */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #E8F5E9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* =========================================
+           BARRA DE NAVEGACIÓN
+           ========================================= */
+        header {
+            background-color: #2c3e50;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            font-family: 'Roboto', sans-serif;
+            width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a { color: white; text-decoration: none; font-size: 0.9rem; margin-left: 15px;}
+        .nav-links a:hover { text-decoration: underline; }
+
+        /* =========================================
+           CONTENIDO PRINCIPAL
+           ========================================= */
+        h1 {
+            color: #2c3e50;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .instruction {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            background: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* --- BOTONERA DE OPCIONES --- */
+        .filter-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            color: white;
+            min-width: 180px;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .filter-btn.active {
+            transform: scale(1.05);
+            box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+            border: 2px solid white;
+            outline: 2px solid #333;
+        }
+
+        /* Colores asignados: Celeste (Espadas) y Verde (Bastos) */
+        .btn-cartas { background-color: #3498db; }
+        .btn-sueltas { background-color: #27ae60; }
+
+        /* --- GRILLA FLUIDA --- */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            min-height: 400px;
+            margin-bottom: 50px;
+        }
+
+        .card-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: transform 0.2s;
+            background: #fff;
+        }
+
+        .card-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .card-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Mensaje de error si la imagen no carga */
+        .error-msg {
+            color: red; 
+            font-size: 0.8rem; 
+            padding: 20px; 
+            text-align: center;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    
+
+
+	<div class="page-header">
+            <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap;"><img src="images/01.png" alt="Mascota" style="max-height: 120px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));"><div><h1 style="margin: 0; font-size: 2.2rem; color: 27ae60;">Banco de letras</h1></div></div>
+        </div>
+    <div class="instruction">💡 Instrucción: <b>Clic derecho</b> sobre la imagen > <b>Copiar imagen</b></div>
+
+    <div class="filter-container">
+        <button class="filter-btn btn-cartas" onclick="mostrarLetras('cartas')">🃏 Cartas con letras</button>
+        <button class="filter-btn btn-sueltas" onclick="mostrarLetras('sueltas')">🔠 Letras sueltas</button>
+    </div>
+
+    <div class="cards-grid" id="grid-container">
+        </div>
+
+    <script>
+        // EL ABECEDARIO COMPLETO (Usamos 'n1' para la eñe)
+        const abecedario = [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
+            'n', 'n1', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+        ];
+
+        const grid = document.getElementById('grid-container');
+
+        function mostrarLetras(tipoSeleccionado) {
+            // 1. Limpiar pantalla
+            grid.innerHTML = '';
+
+            // 2. Activar botón visualmente
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.btn-${tipoSeleccionado}`).classList.add('active');
+
+            // 3. Generar las imágenes recorriendo el abecedario
+            abecedario.forEach(letra => {
+                let rutaArchivo = '';
+                
+                if (tipoSeleccionado === 'cartas') {
+                    // Busca en la carpeta "cartas" -> a_carta.jpg, b_carta.jpg, n1_carta.jpg
+                    rutaArchivo = `cartas/${letra}_carta.jpg`;
+                } else if (tipoSeleccionado === 'sueltas') {
+                    // Busca en la carpeta "letras" y pasa todo a mayúscula -> A.jpg, B.jpg, N1.jpg
+                    rutaArchivo = `letras/${letra.toUpperCase()}.jpg`;
+                }
+
+                // Crea la cajita de la carta
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'card-item';
+                
+                // Crea la imagen
+                const img = document.createElement('img');
+                img.src = rutaArchivo;
+                
+                // Formateamos la letra para el texto alternativo (si es n1, que diga ñ)
+                const letraVisual = letra === 'n1' ? 'ñ' : letra;
+                img.alt = `Letra ${letraVisual.toUpperCase()}`;
+                img.title = "Clic derecho > Copiar imagen";
+
+                // Si no encuentra la imagen, avisa y muestra qué archivo falta exactamente
+                img.onerror = function() {
+                    this.style.display = 'none';
+                    cardDiv.innerHTML = `<div class="error-msg">Falta la imagen:<br><b>${rutaArchivo}</b></div>`;
+                };
+
+                cardDiv.appendChild(img);
+                grid.appendChild(cardDiv);
+            });
+        }
+
+        // Cargar las Cartas al iniciar por defecto
+        mostrarLetras('cartas');
+    </script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Cómo cargar cuentos en Secuencias de Lengua</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--theme:#27AE60;--soft:#E8F5E9;--title:#1B5E20;--text:#263238;--surface:#fff;
+      --docente:#E67E22;--docente-soft:#FDF1E4;--docente-title:#A34E00;--code:#f4f7f5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--soft);font-family:'Nunito',sans-serif;color:var(--text);line-height:1.55}
+
+/* Barra de navegación (igual que el resto del sitio) */
+.site-nav{background:#2c3e50;color:#fff;padding:10px 18px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;box-shadow:0 3px 10px rgba(0,0,0,.22);position:sticky;top:0;z-index:10}
+.site-nav img{height:54px;max-width:220px;object-fit:contain}
+.site-nav nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.site-nav a{color:#fff;text-decoration:none;font-weight:800;font-size:.95rem}
+
+.page-header{background:var(--theme);color:#fff;padding:34px 20px;text-align:center}
+.page-header h1{margin:0 0 6px;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.1}
+.page-header p{margin:0;font-size:1.1rem;opacity:.93}
+
+.page-wrap{max-width:900px;margin:0 auto;padding:26px 20px 70px}
+.card{background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 3px 14px rgba(0,0,0,.08);border-top:5px solid var(--theme);margin-bottom:22px}
+.card.docente{border-top-color:var(--docente)}
+.card h2{margin:0 0 10px;color:var(--title);font-size:1.3rem}
+.card.docente h2{color:var(--docente-title)}
+.card.auto{border-top-color:#036FB0}
+.card.auto h2{color:#01579B}
+.card h3{margin:18px 0 6px;font-size:1.02rem;color:var(--title)}
+.card p{margin:0 0 10px}
+.card ul,.card ol{margin:0 0 12px;padding-left:22px}
+.card li{margin-bottom:4px}
+.paso{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#2c3e50;color:#fff;font-weight:800;margin-right:8px;font-size:.95rem}
+
+/* Bloques de código para copiar */
+.codigo{position:relative;margin:8px 0 14px}
+.codigo pre{margin:0;background:var(--code);border:1px solid rgba(0,0,0,.1);border-left:5px solid var(--theme);border-radius:10px;padding:14px 16px;overflow-x:auto;font:600 .92rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#1d2b2f;white-space:pre}
+.codigo.docente pre{border-left-color:var(--docente)}
+.codigo.auto pre{border-left-color:#036FB0}
+.codigo .etiqueta{display:block;font-size:.8rem;font-weight:800;color:#667788;margin:0 0 4px;text-transform:uppercase;letter-spacing:.04em}
+.copiar{position:absolute;top:24px;right:10px;border:2px solid var(--theme);background:#fff;color:var(--theme);font:800 .8rem 'Nunito',sans-serif;border-radius:999px;padding:4px 12px;cursor:pointer}
+.copiar:hover{background:var(--soft)}
+.copiar.ok{background:var(--theme);color:#fff}
+.codigo.sin-etiqueta .copiar{top:10px}
+code.i{background:var(--code);border:1px solid rgba(0,0,0,.1);border-radius:6px;padding:1px 6px;font:700 .9em ui-monospace,Menlo,Consolas,monospace}
+
+.aviso{background:var(--docente-soft);border-left:5px solid var(--docente);border-radius:10px;padding:10px 14px;margin:10px 0 12px}
+.aviso strong{color:var(--docente-title)}
+.nota{background:var(--soft);border-left:5px solid var(--theme);border-radius:10px;padding:10px 14px;margin:10px 0 12px}
+
+table{width:100%;border-collapse:collapse;margin:8px 0 12px;font-size:.95rem}
+th,td{border:1px solid rgba(0,0,0,.12);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);color:var(--title)}
+.tabla-scroll{overflow-x:auto}
+
+/* Ayudante */
+.ayudante label{display:block;font-weight:800;margin:10px 0 4px}
+.ayudante input[type=text]{width:100%;padding:10px 14px;border:2px solid rgba(0,0,0,.12);border-radius:10px;font:inherit}
+.ayudante input[type=text]:focus{outline:2px solid var(--theme);outline-offset:1px}
+.ayudante .fila-check{display:flex;gap:8px;align-items:center;margin:12px 0 0;font-weight:700}
+.ayudante .fila-check label{margin:0}
+#caja-url,#caja-auto{display:none}
+.archivos{margin-top:6px;font-size:.93rem}
+.archivos li{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem}
+.archivos li.omitido{text-decoration:line-through;color:#8a97a0}
+
+.ayudante select{width:100%;padding:10px 14px;border:2px solid rgba(0,0,0,.12);border-radius:10px;font:inherit;background:#fff}
+.ayudante select:focus{outline:2px solid var(--theme);outline-offset:1px}
+.sugerencias{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+.sug-btn{border:1px solid #cfd8dc;background:#fff;color:#546E7A;font:700 .82rem 'Nunito',sans-serif;border-radius:999px;padding:2px 11px;cursor:pointer}
+.sug-btn:hover{background:#f3f6f7}
+.sug-btn[aria-pressed="true"]{background:#2c3e50;border-color:#2c3e50;color:#fff}
+.alertas{margin:8px 0 0}
+.alerta{background:var(--docente-soft);border-left:5px solid var(--docente);border-radius:10px;padding:7px 12px;margin:6px 0;font-size:.92rem}
+.alerta button{margin-left:8px;border:2px solid var(--docente);background:#fff;color:var(--docente-title);font:800 .8rem 'Nunito',sans-serif;border-radius:999px;padding:1px 10px;cursor:pointer}
+.ayudante .ayuda-campo{font-size:.88rem;margin:4px 0 0;color:#546E7A}
+.ayu-reco{border:2px solid #cfd8dc;border-radius:12px;padding:4px 18px 16px;margin:14px 0 18px;background:#fbfcfc}
+.ayu-reco h3{margin-top:12px}
+.ayudante .r-op{display:flex;gap:8px;align-items:center;font-weight:600;margin:3px 0}
+.r-lista{max-height:230px;overflow:auto;border:1px solid #cfd8dc;border-radius:10px;padding:6px 12px;background:#fff}
+.r-orden{margin:8px 0 0;padding-left:24px;font-weight:700}
+.r-orden li{margin:3px 0}
+.mover{margin-left:6px;border:1px solid #cfd8dc;background:#fff;border-radius:6px;width:28px;height:24px;cursor:pointer;font-weight:800;color:#2c3e50}
+.mover:disabled{opacity:.35;cursor:default}
+.caja-texto{display:none;border-left:4px solid #cfd8dc;padding:2px 0 8px 14px;margin:6px 0 0}
+.card.reco{border-top-color:#2c3e50}
+.card.reco h2{color:#2c3e50}
+.codigo.reco pre{border-left-color:#2c3e50}
+.enlace-boton{display:inline-block;margin:2px 0 8px;padding:7px 16px;border-radius:999px;border:2px solid #2c3e50;color:#2c3e50;font-weight:800;text-decoration:none}
+.enlace-boton:hover{background:#eceff1}
+@media(max-width:850px){.site-nav{justify-content:center}.site-nav nav{justify-content:center}.copiar{position:static;margin:0 0 6px}.codigo .etiqueta{display:none}.codigo.sin-etiqueta .copiar{position:static}}
+</style>
+</head>
+<body>
+
+
+<section class="page-header">
+  <h1>Cómo cargar cuentos en Secuencias de Lengua</h1>
+  <p>Guía de trabajo para editar <code class="i" style="background:rgba(255,255,255,.2);color:#fff;border-color:rgba(255,255,255,.4)">cuentos.js</code></p>
+</section>
+
+<main class="page-wrap">
+
+  <section class="card">
+    <h2>Lo básico</h2>
+    <p>La página de secuencias arma todos sus botones leyendo una sola lista que está en el archivo <code class="i">cuentos.js</code>. Para sumar un cuento no se toca <code class="i">index.html</code>: se agrega <strong>un bloque</strong> a esa lista y se suben los PDF a la carpeta <code class="i">pdf/</code>.</p>
+    <p>Cada cuento tiene 5 documentos, y la página los busca por el nombre de archivo:</p>
+    <div class="tabla-scroll"><table>
+      <tr><th>Botón en la página</th><th>Clave</th><th>Nombre del archivo en <code class="i">pdf/</code></th></tr>
+      <tr><td>Cuento</td><td><code class="i">cuento</code></td><td><code class="i">nombre_cuento.pdf</code></td></tr>
+      <tr><td>Secuencia</td><td><code class="i">secuencia</code></td><td><code class="i">nombre_secuencia.pdf</code></td></tr>
+      <tr><td>Fichas</td><td><code class="i">fichas</code></td><td><code class="i">nombre_fichas.pdf</code></td></tr>
+      <tr><td>Guía docente · secuencia</td><td><code class="i">secuencia_guia</code></td><td><code class="i">nombre_secuencia_guia.pdf</code></td></tr>
+      <tr><td>Guía docente · fichas</td><td><code class="i">fichas_guia</code></td><td><code class="i">nombre_fichas_guia.pdf</code></td></tr>
+    </table></div>
+    <p>Ese <code class="i">nombre</code> se llama <strong>slug</strong> y es igual en los cinco archivos. Se escribe en minúsculas, sin tildes ni ñ, con guion bajo (<code class="i">_</code>) en lugar de espacios. Por ejemplo, "El robo del tesoro soñado" es <code class="i">el_robo_del_tesoro_sonado</code>.</p>
+    <p>Además de los 5 documentos, un cuento puede tener un <strong>botón azul de autoevaluación</strong> (opcional, ver el paso 7). Si el cuento tiene <strong>más de un texto</strong> (por ejemplo un cuento y un texto informativo), se suman botones de texto (paso 8).</p>
+    <p>Para que la página no sea solo una lista de títulos, cada cuento puede llevar también su <strong>autor, su género y sus temas</strong> (paso 3). Con eso la página arma sola las vistas <em>Por género</em>, <em>Por autor</em> y <em>Por tema</em>, y con los <strong>recorridos</strong> (paso 10) podés agrupar cuentos en el orden que quieras.</p>
+  </section>
+
+  <section class="card ayudante">
+    <h2><span class="paso">1</span>Armar la línea con el ayudante</h2>
+    <p>Completá los datos del cuento y te devuelve el slug y la línea lista para copiar. (Es opcional: abajo están los modelos para hacerlo a mano.) Las listas de géneros, autores y temas se leen de tu <code class="i">cuentos.js</code>, así que el ayudante te ofrece lo que ya usaste y te avisa si lo que escribís se parece a algo que ya existe.</p>
+    <label for="a-titulo">Título del cuento</label>
+    <input type="text" id="a-titulo" placeholder="Por ejemplo: Pepito el bueno" autocomplete="off">
+
+    <label for="a-autor">Autor/a <span style="font-weight:600">(para textos sin autor conocido: Anónimo)</span></label>
+    <input type="text" id="a-autor" list="lista-autores" placeholder="Por ejemplo: Horacio Quiroga" autocomplete="off">
+    <datalist id="lista-autores"></datalist>
+
+    <label for="a-genero">Género <span style="font-weight:600">(uno solo)</span></label>
+    <select id="a-genero"></select>
+
+    <label for="a-temas">Temas <span style="font-weight:600">(separados con coma; podés tocar los ya usados)</span></label>
+    <input type="text" id="a-temas" placeholder="Por ejemplo: deseos, sueños" autocomplete="off">
+    <div class="sugerencias" id="a-temas-sug"></div>
+    <div class="alertas" id="a-alertas" aria-live="polite"></div>
+
+    <div class="fila-check"><input type="checkbox" id="a-texto2"><label for="a-texto2">Tiene un segundo texto (por ejemplo, un texto informativo)</label></div>
+    <div id="caja-texto2" class="caja-texto">
+      <label for="a-t2-etiqueta">Nombre del botón</label>
+      <input type="text" id="a-t2-etiqueta" placeholder="Por ejemplo: Texto informativo" autocomplete="off" value="Texto informativo">
+      <label for="a-t2-autor">Autor/a de este texto <span style="font-weight:600">(opcional; solo si es otro distinto del principal)</span></label>
+      <input type="text" id="a-t2-autor" list="lista-autores" autocomplete="off">
+      <div class="fila-check"><input type="checkbox" id="a-t2-enlace"><label for="a-t2-enlace">Este texto va con enlace (está en otro sitio)</label></div>
+      <div id="caja-t2-url" style="display:none">
+        <input type="text" id="a-t2-url" placeholder="Dirección del texto, por ejemplo https://sitio.com/texto" autocomplete="off">
+      </div>
+    </div>
+    <div class="fila-check" id="fila-texto3" style="display:none"><input type="checkbox" id="a-texto3"><label for="a-texto3">Tiene un tercer texto</label></div>
+    <div id="caja-texto3" class="caja-texto">
+      <label for="a-t3-etiqueta">Nombre del botón</label>
+      <input type="text" id="a-t3-etiqueta" placeholder="Por ejemplo: Texto informativo" autocomplete="off">
+      <label for="a-t3-autor">Autor/a de este texto <span style="font-weight:600">(opcional; solo si es otro distinto del principal)</span></label>
+      <input type="text" id="a-t3-autor" list="lista-autores" autocomplete="off">
+      <div class="fila-check"><input type="checkbox" id="a-t3-enlace"><label for="a-t3-enlace">Este texto va con enlace (está en otro sitio)</label></div>
+      <div id="caja-t3-url" style="display:none">
+        <input type="text" id="a-t3-url" placeholder="Dirección del texto, por ejemplo https://sitio.com/texto" autocomplete="off">
+      </div>
+    </div>
+    <div class="fila-check"><input type="checkbox" id="a-enlace"><label for="a-enlace">El texto del cuento (el primero) va con enlace (no lo alojo en mi sitio)</label></div>
+    <div id="caja-url">
+      <label for="a-url">Dirección del cuento</label>
+      <input type="text" id="a-url" placeholder="Por ejemplo: https://cuentopo.net/pepito_bueno.html" autocomplete="off">
+    </div>
+    <div class="fila-check"><input type="checkbox" id="a-auto"><label for="a-auto">Tiene autoevaluación</label></div>
+    <div id="caja-auto">
+      <label for="a-auto-url">Dirección de la autoevaluación</label>
+      <input type="text" id="a-auto-url" placeholder="Por ejemplo: https://www.escolar.com.ar/autoevaluaciones/pepito_el_bueno.html" autocomplete="off">
+      <p style="font-size:.88rem;margin:6px 0 0">Puede ser la dirección completa o una ruta del sitio, por ejemplo <code class="i">../autoevaluaciones/pepito.html</code>.</p>
+    </div>
+    <div class="codigo sin-etiqueta" style="margin-top:14px">
+      <button class="copiar" type="button" data-destino="a-salida">Copiar</button>
+      <pre id="a-salida"></pre>
+    </div>
+    <p class="archivos"><strong>Archivos para subir a <code class="i">pdf/</code>:</strong></p>
+    <ul class="archivos" id="a-archivos"></ul>
+    <p class="ayuda-campo" id="a-estado-lista"></p>
+  </section>
+
+  <section class="card">
+    <h2><span class="paso">2</span>Dónde se pega</h2>
+    <p>Abrí <code class="i">cuentos.js</code> y buscá la lista <code class="i">CUENTOS</code>. El bloque nuevo va <strong>después del último cuento y antes del <code class="i">];</code></strong>:</p>
+    <div class="codigo sin-etiqueta">
+<pre>const CUENTOS = [
+  { slug: "el_loro_pelado",  titulo: "El loro pelado" },
+  { slug: "la_sentencia",    titulo: "La sentencia" },
+  { slug: "pepito_el_bueno", titulo: "Pepito el bueno" },   // ← el nuevo
+];</pre>
+    </div>
+    <div class="aviso"><strong>La regla de las comas:</strong> cada cuento termina con una coma después de la llave de cierre <code class="i">}</code>, <strong>también el último</strong>. Todos los modelos de esta página ya la traen, así que se pegan tal cual, sin tocar nada más.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="paso">3</span>Autor, género y temas</h2>
+    <p>Son tres datos <strong>opcionales</strong> de cada cuento. Se escriben dentro del mismo bloque, y lo que falte simplemente no se muestra:</p>
+    <div class="codigo">
+      <span class="etiqueta">Modelo para copiar</span>
+      <button class="copiar" type="button" data-destino="m-clasif">Copiar</button>
+<pre id="m-clasif">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  autor: "Horacio Quiroga", genero: "Terror", temas: ["venganza", "culpa"] },</pre>
+    </div>
+    <div class="tabla-scroll"><table>
+      <tr><th>Dato</th><th>Cómo se escribe</th><th>Qué hace en la página</th></tr>
+      <tr><td><code class="i">autor</code></td><td>Entre comillas. Sin autor conocido: <code class="i">"Anónimo"</code></td><td>Se muestra bajo el título. Al tocarlo, lleva a la vista <em>Por autor</em>.</td></tr>
+      <tr><td><code class="i">genero</code></td><td><strong>Uno solo</strong>, de la lista cerrada de abajo. Sin tilde en la palabra <code class="i">genero</code>.</td><td>Aparece como una pastilla. Al tocarla, lleva a la vista <em>Por género</em>.</td></tr>
+      <tr><td><code class="i">temas</code></td><td>Entre corchetes y comillas, separados con coma: <code class="i">["deseos", "sueños"]</code></td><td>Aparecen como etiquetas chicas. Cada tema arma su propia sección en <em>Por tema</em>.</td></tr>
+    </table></div>
+
+    <h3>Los géneros (lista cerrada)</h3>
+    <p>Cada cuento usa <strong>un</strong> género de esta lista, que está al principio de <code class="i">cuentos.js</code> (<code class="i">GENEROS</code>). Las secciones de <em>Por género</em> salen en este orden:</p>
+    <ol>
+      <li>Maravilloso o tradicional</li>
+      <li>Fábula y cuentos de animales</li>
+      <li>Terror</li>
+      <li>Policial</li>
+      <li>Ciencia ficción</li>
+      <li>Fantástico</li>
+      <li>Realista</li>
+      <li>Humor</li>
+    </ol>
+    <p><strong>Criterio:</strong> el género principal es el que define la experiencia de lectura. Lo demás (que sea realista, que tenga humor, que trate de deseos) va en los <code class="i">temas</code>. Así un policial realista queda como <code class="i">genero: "Policial"</code> con <code class="i">temas: ["realismo"]</code>, y no aparece repetido en dos secciones.</p>
+    <p><strong>Para agregar un género nuevo</strong>, se suma a la lista <code class="i">GENEROS</code> de <code class="i">cuentos.js</code> (entre comillas y con coma). Hasta que esté en la lista, los cuentos que lo usen quedan en “Sin clasificar”. No hace falta tocar <code class="i">index.html</code>.</p>
+
+    <h3>Si me equivoco en una letra, ¿se abre otra categoría?</h3>
+    <p>La página se protege de varias maneras:</p>
+    <ul>
+      <li><strong>Mayúsculas, tildes y espacios no cuentan.</strong> <code class="i">"Sueños"</code>, <code class="i">"sueños"</code>, <code class="i">"suenos"</code> y <code class="i">" SUEÑOS "</code> son el mismo tema: se unifican solos. Lo mismo vale para autores.</li>
+      <li><strong>El género se corrige solo</strong> si se parece a uno de la lista (<code class="i">"Teror"</code> pasa a “Terror”, <code class="i">"Maravilloso"</code> a “Maravilloso o tradicional”). Si no se parece a ninguno, el cuento va a “Sin clasificar” y se marca como error.</li>
+      <li><strong>Los temas y autores con una letra equivocada sí abren otra sección</strong> (<code class="i">"deseos"</code> y <code class="i">"desseos"</code>), porque la página no puede saber si son dos cosas distintas. Pero te avisa: abrí la página con <code class="i">?revisar</code> (paso 11) y aparece la lista de textos “muy parecidos” para unificar.</li>
+      <li><strong>El ayudante (paso 1)</strong> te muestra los temas y autores que ya usaste, y te avisa en el momento si lo que escribís se parece a uno de ellos.</li>
+    </ul>
+    <div class="nota"><strong>Los datos de autor, género y temas se pueden sumar a cualquiera de los modelos de los pasos siguientes</strong> (con enlace, con excepción, con autoevaluación…): son líneas independientes dentro del mismo bloque.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="paso">4</span>Caso común: todo en mi sitio</h2>
+    <p>Los 5 PDF están en la carpeta <code class="i">pdf/</code> y siguen la regla de nombres. Alcanza con el slug y el título; lo recomendable es sumar también autor, género y temas (paso 3). Si todavía no los sabés, se borra esa línea y se completa después:</p>
+    <div class="codigo">
+      <span class="etiqueta">Modelo para copiar</span>
+      <button class="copiar" type="button" data-destino="m-comun">Copiar</button>
+<pre id="m-comun">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  autor: "Nombre Apellido", genero: "Realista", temas: ["amistad"] },</pre>
+    </div>
+    <p>Los archivos tienen que llamarse exactamente así:</p>
+    <ul>
+      <li><code class="i">pepito_el_bueno_cuento.pdf</code></li>
+      <li><code class="i">pepito_el_bueno_secuencia.pdf</code></li>
+      <li><code class="i">pepito_el_bueno_fichas.pdf</code></li>
+      <li><code class="i">pepito_el_bueno_secuencia_guia.pdf</code></li>
+      <li><code class="i">pepito_el_bueno_fichas_guia.pdf</code></li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="paso">5</span>Cuando el cuento va con enlace</h2>
+    <p>Para los textos que no se pueden alojar por derechos de autor, el botón "Cuento" lleva a la página original. Se agrega una línea <code class="i">enlaces</code> con la dirección:</p>
+    <div class="codigo">
+      <span class="etiqueta">Modelo para copiar</span>
+      <button class="copiar" type="button" data-destino="m-enlace">Copiar</button>
+<pre id="m-enlace">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  enlaces: { cuento: "https://cuentopo.net/pepito_bueno.html" } },</pre>
+    </div>
+    <ul>
+      <li>La dirección va <strong>completa</strong>, entre comillas y con <code class="i">https://</code> adelante. Sin eso, el navegador la toma como un archivo de tu propio sitio y el enlace no funciona.</li>
+      <li>El botón muestra una flecha (<strong>Cuento ↗</strong>) para avisar que sale a otro sitio.</li>
+      <li><strong>No hace falta subir</strong> <code class="i">pepito_el_bueno_cuento.pdf</code>. Los otros cuatro documentos siguen funcionando igual.</li>
+      <li>Sirve para cualquiera de los cinco documentos, no solo para el cuento. Se cambia <code class="i">cuento:</code> por la clave que corresponda (<code class="i">secuencia</code>, <code class="i">fichas</code>, <code class="i">secuencia_guia</code>, <code class="i">fichas_guia</code>).</li>
+    </ul>
+  </section>
+
+  <section class="card docente">
+    <h2><span class="paso">6</span>Cuando un archivo tiene otro nombre (excepción)</h2>
+    <p>Si un PDF no sigue la regla de nombres y no querés renombrarlo, se le indica su nombre real con <code class="i">excepciones</code>. Por ejemplo, la secuencia se subió como <code class="i">pepito_secuencia_final.pdf</code>:</p>
+    <div class="codigo docente">
+      <span class="etiqueta">Modelo para copiar</span>
+      <button class="copiar" type="button" data-destino="m-excepcion">Copiar</button>
+<pre id="m-excepcion">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  excepciones: { secuencia: "pepito_secuencia_final.pdf" } },</pre>
+    </div>
+    <ul>
+      <li>A la izquierda va la <strong>clave</strong> del documento (<code class="i">cuento</code>, <code class="i">secuencia</code>, <code class="i">fichas</code>, <code class="i">secuencia_guia</code> o <code class="i">fichas_guia</code>). A la derecha, el <strong>nombre real</strong> del archivo, con <code class="i">.pdf</code> y entre comillas.</li>
+      <li>Los otros cuatro documentos siguen usando el nombre automático.</li>
+      <li>Para dos excepciones, se separan con coma: <code class="i">excepciones: { secuencia: "a.pdf", fichas: "b.pdf" }</code></li>
+    </ul>
+    <div class="aviso"><strong>Ojo con las tildes:</strong> evitá tildes, ñ y espacios en los nombres de archivo. En el servidor pueden dar problemas. Es más seguro renombrar el archivo que usar una excepción.</div>
+  </section>
+
+  <section class="card auto">
+    <h2><span class="paso">7</span>Botón de autoevaluación (azul)</h2>
+    <p>Si el cuento tiene una página de autoevaluación, se agrega una línea <code class="i">autoevaluacion</code> con su dirección. En la tarjeta aparece un botón azul <strong>Autoevaluación</strong>, en un grupo aparte llamado "Para practicar":</p>
+    <div class="codigo auto">
+      <span class="etiqueta">Modelo para copiar</span>
+      <button class="copiar" type="button" data-destino="m-auto">Copiar</button>
+<pre id="m-auto">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  autoevaluacion: "https://www.escolar.com.ar/autoevaluaciones/pepito_el_bueno.html" },</pre>
+    </div>
+    <ul>
+      <li><strong>Si el cuento no tiene autoevaluación, no se escribe nada</strong> y no aparece ningún botón (ni siquiera gris). Para quitarlo más adelante, se borra la línea.</li>
+      <li>La dirección puede ser <strong>completa</strong> (con <code class="i">https://</code>) o una <strong>ruta del sitio</strong>, por ejemplo <code class="i">../autoevaluaciones/pepito.html</code>. Las rutas parten de la carpeta donde está la página de secuencias.</li>
+      <li>El botón se abre en la misma pestaña (a diferencia de los demás), porque la autoevaluación tiene un botón «Volver» que regresa a esta página.</li>
+      <li>Se escribe sin tilde (<code class="i">autoevaluacion</code>) y en minúsculas. Con tilde no funciona.</li>
+      <li>En la parte de arriba de la página, junto a "Para el aula" y "Para el docente", aparece la referencia azul <strong>"Para practicar"</strong>. Solo se ve si al menos un cuento tiene autoevaluación.</li>
+      <li>Se puede combinar con todo lo anterior (enlace, excepción, <code class="i">faltan</code>).</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2><span class="paso">8</span>Más de un texto (cuento + texto informativo)</h2>
+    <p>Cuando una misma secuencia trabaja <strong>dos o tres textos</strong>, se suman botones de texto junto al de “Cuento”. Cada uno puede estar <strong>en tu sitio</strong> (un PDF) o <strong>en otro sitio</strong> (un enlace), y se pueden mezclar:</p>
+    <div class="codigo">
+      <span class="etiqueta">Segundo texto en mi sitio</span>
+      <button class="copiar" type="button" data-destino="m-texto">Copiar</button>
+<pre id="m-texto">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  textos: 2,
+  etiquetas: { texto2: "Texto informativo" } },</pre>
+    </div>
+    <div class="codigo">
+      <span class="etiqueta">Segundo texto en otro sitio (enlace)</span>
+      <button class="copiar" type="button" data-destino="m-texto-enlace">Copiar</button>
+<pre id="m-texto-enlace">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  etiquetas: { texto2: "Texto informativo" },
+  enlaces: { texto2: "https://sitio.com/texto-informativo" } },</pre>
+    </div>
+    <div class="codigo">
+      <span class="etiqueta">Tres textos, con autor propio en el segundo</span>
+      <button class="copiar" type="button" data-destino="m-texto3">Copiar</button>
+<pre id="m-texto3">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  textos: 3,
+  etiquetas: { texto2: "Texto informativo", texto3: "Poema" },
+  enlaces: { texto3: "https://sitio.com/poema" },
+  autores: { texto2: "Nombre Apellido" } },</pre>
+    </div>
+
+    <h3>Cómo se nombran los archivos</h3>
+    <p>El primer texto sigue siendo <code class="i">slug_cuento.pdf</code>, igual que siempre. Los otros se buscan solos:</p>
+    <ul>
+      <li>Segundo texto: <code class="i">pepito_el_bueno_texto2.pdf</code></li>
+      <li>Tercer texto: <code class="i">pepito_el_bueno_texto3.pdf</code></li>
+    </ul>
+    <p>El <code class="i">slug_</code> de los ejemplos <strong>no se escribe literalmente</strong>: es el slug real del cuento. Si el slug es <code class="i">el_loro_pelado</code>, el archivo se llama <code class="i">el_loro_pelado_texto2.pdf</code>.</p>
+
+    <h3>Qué hace cada línea</h3>
+    <div class="tabla-scroll"><table>
+      <tr><th>Línea</th><th>Para qué sirve</th></tr>
+      <tr><td><code class="i">textos: 2</code></td><td>Cuántos textos hay en total (1 es lo normal, hasta 3). Es lo que hace aparecer el botón cuando el PDF está en tu sitio.</td></tr>
+      <tr><td><code class="i">etiquetas: { texto2: "…" }</code></td><td>El nombre del botón. Si no se pone, dice “Texto 2” o “Texto 3”. <strong>Sirve para cualquier botón</strong>: por ejemplo <code class="i">cuento: "Poema"</code> o <code class="i">cuento: "Leyenda"</code> cambia el primero.</td></tr>
+      <tr><td><code class="i">enlaces: { texto2: "https://…" }</code></td><td>Si ese texto está en otro sitio, se pega su dirección completa. No hace falta subir el PDF, y el botón lleva la flecha ↗.</td></tr>
+      <tr><td><code class="i">autores: { texto2: "Nombre" }</code></td><td><strong>Opcional.</strong> Si ese texto tiene otro autor/a, aparece bajo su botón y el cuento también se encuentra en la vista <em>Por autor</em> bajo ese nombre. Si no se pone, no se muestra nada.</td></tr>
+      <tr><td><code class="i">faltan: ["texto2"]</code></td><td>Si el texto todavía no está, el botón sale gris como “(próximamente)”.</td></tr>
+    </table></div>
+    <ul>
+      <li>Si nombrás el texto en <code class="i">enlaces</code>, <code class="i">etiquetas</code> o <code class="i">faltan</code>, el botón aparece solo y <code class="i">textos</code> no hace falta. <code class="i">textos</code> es necesario cuando el segundo texto es un PDF tuyo sin ninguna otra línea.</li>
+      <li>El <strong>autor principal</strong> (<code class="i">autor</code>) sigue siendo el del texto principal. <code class="i">autores</code> es solo para los otros.</li>
+      <li>También funciona en los <strong>recorridos con documentos propios</strong> (paso 10).</li>
+      <li>Los botones de texto salen juntos, arriba de “Secuencia”, dentro de “Para el aula”.</li>
+    </ul>
+    <div class="nota"><strong>¿Cada texto tiene su propia secuencia y fichas?</strong> Entonces no uses esto: cargá cada texto como un cuento aparte y unilos en un recorrido (paso 10). Los botones de texto son para cuando <em>una sola</em> secuencia trabaja varios textos.</div>
+  </section>
+
+  <section class="card docente">
+    <h2><span class="paso">9</span>Combinaciones y "próximamente"</h2>
+    <p>Se pueden juntar todas las opciones en un mismo cuento, y además marcar los documentos que todavía no están con <code class="i">faltan</code>. Esos botones aparecen en gris como "(próximamente)":</p>
+    <div class="codigo docente">
+      <span class="etiqueta">Todo junto</span>
+      <button class="copiar" type="button" data-destino="m-todo">Copiar</button>
+<pre id="m-todo">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  autor: "Nombre Apellido", genero: "Realista", temas: ["amistad"],
+  enlaces: { cuento: "https://cuentopo.net/pepito_bueno.html" },
+  excepciones: { secuencia: "pepito_secuencia_final.pdf" },
+  autoevaluacion: "https://www.escolar.com.ar/autoevaluaciones/pepito_el_bueno.html",
+  faltan: ["fichas_guia"] },</pre>
+    </div>
+    <p>En ese ejemplo: "Cuento" lleva al sitio externo, "Secuencia" abre <code class="i">pepito_secuencia_final.pdf</code>, "Fichas" y "Guía docente · secuencia" usan los nombres automáticos, y "Guía docente · fichas" aparece en gris. Además, la tarjeta suma el botón azul de autoevaluación.</p>
+    <div class="codigo docente">
+      <span class="etiqueta">Solo “próximamente”</span>
+      <button class="copiar" type="button" data-destino="m-faltan">Copiar</button>
+<pre id="m-faltan">{ slug: "pepito_el_bueno", titulo: "Pepito el bueno",
+  faltan: ["fichas", "fichas_guia"] },</pre>
+    </div>
+    <p>Cuando el documento ya esté, se borra la clave de <code class="i">faltan</code> (o la línea entera) y el botón se activa.</p>
+    <h3>Cuando no tiene todos los documentos: <code class="i">solo</code></h3>
+    <p>No todos los cuentos ni recorridos tienen los cinco documentos. Por ejemplo, un recorrido que solo tiene la secuencia. Con <code class="i">solo</code> se listan <strong>únicamente los que sí existen</strong>, y los demás botones (y su título, si queda vacío) no se muestran. Para los <strong>recorridos</strong>, el ayudante del paso 10 arma esta línea por vos con casillas.</p>
+    <div class="codigo docente">
+      <span class="etiqueta">Solo la secuencia</span>
+      <button class="copiar" type="button" data-destino="m-solo">Copiar</button>
+<pre id="m-solo">{ slug: "pepito_recorrido", titulo: "Recorrido de Pepito",
+  cuentos: ["pepito_el_bueno", "pepito_el_malo"],
+  solo: ["secuencia"] },</pre>
+    </div>
+    <ul>
+      <li>Dentro de los corchetes van las claves de los documentos que <strong>sí hay</strong>, entre comillas: <code class="i">cuento</code>, <code class="i">texto2</code>, <code class="i">texto3</code>, <code class="i">secuencia</code>, <code class="i">fichas</code>, <code class="i">secuencia_guia</code>, <code class="i">fichas_guia</code>. Por ejemplo, <code class="i">solo: ["secuencia", "fichas"]</code>.</li>
+      <li>Si todavía <strong>faltan pero van a estar</strong>, no uses <code class="i">solo</code>: usá <code class="i">faltan</code> y el botón sale gris con “(próximamente)”. Con <code class="i">solo</code>, el botón <strong>no existe</strong>.</li>
+      <li>Sirve igual para cuentos y para recorridos. Si más adelante se suma un documento, se agrega su clave a la lista (o se borra la línea <code class="i">solo</code> si ya tiene todos).</li>
+      <li>Con <code class="i">solo</code>, <code class="i">enlaces</code> y <code class="i">etiquetas</code> de un documento que no está en la lista no se muestran; <code class="i">?revisar</code> te avisa.</li>
+    </ul>
+    <div class="nota"><strong>Si una misma clave aparece en varias partes</strong>, gana en este orden: <code class="i">faltan</code> (gris) → <code class="i">enlaces</code> → <code class="i">excepciones</code> → nombre automático. La autoevaluación es independiente: se suma a cualquiera de las anteriores.</div>
+  </section>
+
+  <section class="card reco">
+    <h2><span class="paso">10</span>Recorridos: agrupar cuentos</h2>
+    <p>Un recorrido es una lista de cuentos <strong>en el orden que vos elijas</strong>: un trayecto por un género, por un autor, por un tema o por un año. Se arma en la lista <code class="i">RECORRIDOS</code>, que está <strong>debajo de la lista de cuentos</strong> en <code class="i">cuentos.js</code>. No se vuelve a escribir ningún cuento: se nombran con su slug.</p>
+    <p>Más abajo hay modelos para copiar, pero lo más cómodo es el <strong>ayudante</strong>: elegís los cuentos, tildás <strong>qué documentos tiene</strong> el recorrido y, si querés, sumás su autoevaluación.</p>
+    <div class="ayudante ayu-reco">
+      <h3>Ayudante: armar la línea del recorrido</h3>
+      <p>Completá los datos y tildá <strong>qué documentos tiene</strong>. Te devuelve la línea lista para pegar dentro de <code class="i">RECORRIDOS</code>.</p>
+      <label for="r-titulo">Título del recorrido</label>
+      <input type="text" id="r-titulo" placeholder="Por ejemplo: Cuentos con sueños" autocomplete="off">
+      <label for="r-desc">Descripción <span style="font-weight:600">(opcional)</span></label>
+      <input type="text" id="r-desc" placeholder="Por ejemplo: Actividades transversales para trabajar los tres cuentos." autocomplete="off">
+      <label>Cuentos del recorrido <span style="font-weight:600">(tildá los que van)</span></label>
+      <div id="r-lista" class="r-lista"></div>
+      <ol id="r-orden" class="r-orden"></ol>
+      <div class="fila-check"><input type="checkbox" id="r-docs"><label for="r-docs">El recorrido tiene <strong>documentos propios</strong> (una secuencia, fichas, guías…)</label></div>
+      <div id="caja-r-docs" class="caja-texto">
+        <p class="ayuda-campo" style="margin:4px 0 6px">Dejá tildados <strong>solo los que existen</strong>. Los demás no se muestran.</p>
+        <div id="r-docs-lista"></div>
+      </div>
+      <div class="fila-check"><input type="checkbox" id="r-auto"><label for="r-auto">Tiene autoevaluación</label></div>
+      <div id="caja-r-auto" class="caja-texto">
+        <input type="text" id="r-auto-url" placeholder="Por ejemplo: https://www.escolar.com.ar/autoevaluaciones/mi_recorrido.html" autocomplete="off">
+      </div>
+      <div class="alertas" id="r-alertas" aria-live="polite"></div>
+      <div class="codigo sin-etiqueta" style="margin-top:14px">
+        <button class="copiar" type="button" data-destino="r-salida">Copiar</button>
+        <pre id="r-salida"></pre>
+      </div>
+      <p class="archivos"><strong>Archivos para subir a <code class="i">pdf/</code>:</strong></p>
+      <ul class="archivos" id="r-archivos"></ul>
+    </div>
+
+    <div class="codigo reco">
+      <span class="etiqueta">Recorrido simple</span>
+      <button class="copiar" type="button" data-destino="m-reco">Copiar</button>
+<pre id="m-reco">{ titulo: "Misterio en el aula",
+  descripcion: "Tres cuentos para trabajar la intriga.",
+  cuentos: ["la_casa_encantada", "el_robo_del_tesoro_sonado", "la_sentencia"] },</pre>
+    </div>
+    <ul>
+      <li>Se pega <strong>dentro de <code class="i">RECORRIDOS</code></strong>, antes de su <code class="i">];</code>, y también termina con coma.</li>
+      <li><code class="i">cuentos</code> lleva los <strong>slug</strong> de los cuentos, entre comillas y separados con coma. Se muestran en <em>ese orden</em>, numerados.</li>
+      <li><code class="i">descripcion</code> es opcional. Si no la querés, se borra la línea.</li>
+      <li>Un mismo cuento puede estar en <strong>varios recorridos</strong>. La tarjeta del cuento muestra a qué recorridos pertenece, y se puede tocar para ir al recorrido.</li>
+      <li>Al tocar un cuento dentro del recorrido, la página lo busca y lo marca en la vista <em>Todos</em>.</li>
+      <li>Si un slug está mal escrito, ese cuento no aparece en el recorrido y <code class="i">?revisar</code> lo marca como error (y sugiere el slug correcto).</li>
+    </ul>
+
+    <h3>Recorrido con sus propios documentos (compilado)</h3>
+    <p>Si el recorrido tiene su propia secuencia, fichas y guías (por ejemplo, un compilado de varios cuentos), se le agrega un <code class="i">slug</code>. Entonces muestra sus botones de documentos igual que un cuento. El botón del texto se llama <strong>“Cuentos”</strong> en vez de “Cuento”:</p>
+    <div class="codigo reco">
+      <span class="etiqueta">Recorrido con documentos</span>
+      <button class="copiar" type="button" data-destino="m-reco-doc">Copiar</button>
+<pre id="m-reco-doc">{ slug: "cuentos_con_suenos", titulo: "Cuentos con sueños",
+  cuentos: ["el_robo_del_tesoro_sonado", "la_sentencia", "la_casa_encantada"] },</pre>
+    </div>
+    <ul>
+      <li>Los PDF se llaman <code class="i">cuentos_con_suenos_cuento.pdf</code>, <code class="i">cuentos_con_suenos_secuencia.pdf</code>, etc., con la misma regla de siempre.</li>
+      <li>También acepta <code class="i">excepciones</code>, <code class="i">enlaces</code>, <code class="i">faltan</code> y <code class="i">autoevaluacion</code>, igual que un cuento.</li>
+      <li>El <code class="i">slug</code> del recorrido <strong>no puede repetir</strong> el de un cuento.</li>
+    </ul>
+    <h3>¿Dónde aparece cada tipo de recorrido?</h3>
+    <div class="tabla-scroll"><table>
+      <tr><th>Recorrido</th><th>Pestaña Recorridos</th><th>Vista Todos</th></tr>
+      <tr><td><strong>Sin <code class="i">slug</code></strong> (solo agrupa cuentos, no tiene PDF propios)</td><td>Sí</td><td>No: sus cuentos ya están en Todos, cada uno con su tarjeta</td></tr>
+      <tr><td><strong>Con <code class="i">slug</code></strong> (tiene sus propios PDF, como un compilado)</td><td>Sí</td><td>Sí, al final de la lista, con sus botones de documentos</td></tr>
+    </table></div>
+    <p>Por eso <strong>no se pone <code class="i">slug</code> a un recorrido que no tiene archivos propios</strong>: se mostraría con botones que dan error 404. Ponele <code class="i">slug</code> solo cuando existan <code class="i">slug_cuento.pdf</code>, <code class="i">slug_secuencia.pdf</code>, etc.</p>
+    <div class="nota">La pestaña <strong>Recorridos</strong> solo aparece mientras haya al menos un recorrido cargado. Lo mismo pasa con <em>Por género</em>, <em>Por autor</em> y <em>Por tema</em>: aparecen cuando algún cuento tiene ese dato.</div>
+  </section>
+
+  <section class="card">
+    <h2><span class="paso">11</span>Después de subir: revisar</h2>
+    <ol>
+      <li>Subí <code class="i">cuentos.js</code> y los PDF nuevos a <code class="i">pdf/</code>.</li>
+      <li>Abrí la página de secuencias y recargala (<strong>Ctrl + F5</strong>, para que no use la versión vieja guardada).</li>
+      <li>Buscá el cuento nuevo y probá <strong>cada botón</strong>: tiene que abrir su PDF o su enlace.</li>
+      <li><strong>Abrí la página con <code class="i">?revisar</code></strong> al final de la dirección (por ejemplo <code class="i">escolar.com.ar/2c_lengua/index.html?revisar</code>). Arriba aparece un panel que solo ves vos.</li>
+    </ol>
+    <a class="enlace-boton" href="index.html?revisar" target="_blank" rel="noopener">Abrir el panel de revisión</a>
+    <h3>Qué muestra el panel <code class="i">?revisar</code></h3>
+    <ul>
+      <li><strong>Errores a corregir</strong>: género que no está en la lista, slug de recorrido que no existe, datos que no se reconocen (por ejemplo <code class="i">autores</code> en lugar de <code class="i">autor</code>), cuentos repetidos.</li>
+      <li><strong>Para revisar</strong>: géneros que se corrigieron solos, autores y temas “muy parecidos” (probable error de tipeo), textos escritos de distintas maneras.</li>
+      <li><strong>Pendientes de completar</strong>: cuentos sin autor o sin género.</li>
+      <li><strong>Resumen</strong>: cuántos cuentos hay por género, autor y tema. Sirve para ver de un vistazo si quedó algún tema suelto.</li>
+    </ul>
+    <h3>Si algo no anda</h3>
+    <div class="tabla-scroll"><table>
+      <tr><th>Qué se ve</th><th>Causa más probable</th></tr>
+      <tr><td>La página quedó <strong>sin ninguna tarjeta</strong></td><td>Error de escritura en <code class="i">cuentos.js</code>: falta una coma entre cuentos, una comilla o una llave. Revisá el bloque que agregaste.</td></tr>
+      <tr><td>Un botón da <strong>“no se encontró”</strong> (error 404)</td><td>El PDF no está en <code class="i">pdf/</code> o su nombre no coincide: mayúsculas, tildes, espacios o falta una parte (<code class="i">_fichas_guia</code>, por ejemplo).</td></tr>
+      <tr><td>El botón de enlace <strong>da error o abre algo raro</strong></td><td>Falta el <code class="i">https://</code> al principio de la dirección.</td></tr>
+      <tr><td>El cuento nuevo <strong>no aparece</strong></td><td>El navegador muestra la versión vieja de <code class="i">cuentos.js</code>. Recargá con Ctrl + F5.</td></tr>
+      <tr><td>Un botón sale <strong>gris</strong> y dice “próximamente”</td><td>Esa clave está en <code class="i">faltan</code>. Borrala cuando el documento esté.</td></tr>
+      <tr><td>No aparece el botón azul de <strong>autoevaluación</strong></td><td>Falta la línea <code class="i">autoevaluacion</code> en ese cuento, o está mal escrita (con tilde, con mayúsculas, sin la coma al final de la línea). Si la dirección está vacía (<code class="i">""</code>), tampoco aparece.</td></tr>
+      <tr><td>El botón azul abre una <strong>página que no existe</strong></td><td>La dirección está mal copiada, o es una ruta del sitio que no parte de la carpeta correcta. Probala pegándola en la barra del navegador.</td></tr>
+      <tr><td>Un cuento aparece en <strong>“Sin clasificar”</strong></td><td>No tiene <code class="i">genero</code> o el género no está en la lista <code class="i">GENEROS</code>. Se ve en <code class="i">?revisar</code>. Ojo: la palabra se escribe <code class="i">genero</code>, sin tilde.</td></tr>
+      <tr><td>Hay <strong>dos secciones casi iguales</strong> (por ejemplo dos autores o dos temas)</td><td>Una letra distinta en alguno de los cuentos. <code class="i">?revisar</code> lista los textos parecidos: unificá la escritura en <code class="i">cuentos.js</code>.</td></tr>
+      <tr><td>No aparece la pestaña <strong>“Por género”</strong>, “Por autor”, “Por tema” o “Recorridos”</td><td>Ningún cuento tiene ese dato todavía (o no hay recorridos). Las pestañas aparecen solas al cargar el primero.</td></tr>
+      <tr><td>Un cuento <strong>falta en un recorrido</strong></td><td>Su slug está mal escrito en la lista <code class="i">cuentos</code> del recorrido. <code class="i">?revisar</code> lo indica y sugiere el correcto.</td></tr>
+      <tr><td>Aparecen botones de documentos que <strong>no existen</strong> (error 404)</td><td>Ese cuento o recorrido tiene que listar solo los documentos que sí tiene: <code class="i">solo: ["secuencia"]</code> (paso 9). Si en realidad van a estar más adelante, usá <code class="i">faltan</code>.</td></tr>
+      <tr><td>No aparece el botón del <strong>segundo texto</strong></td><td>Falta declararlo: en el cuento tiene que estar <code class="i">textos: 2</code> o alguna línea que nombre <code class="i">texto2</code> (<code class="i">enlaces</code>, <code class="i">etiquetas</code> o <code class="i">faltan</code>). Se escribe <code class="i">texto2</code>, todo junto y en minúsculas.</td></tr>
+      <tr><td>El botón del segundo texto da <strong>“no se encontró”</strong></td><td>El PDF tiene que llamarse <code class="i">slug_texto2.pdf</code> con el slug real del cuento (por ejemplo <code class="i">el_loro_pelado_texto2.pdf</code>), o el texto tiene que ir con <code class="i">enlaces</code>.</td></tr>
+      <tr><td>La página quedó <strong>sin ninguna tarjeta</strong> después de tocar la lista de géneros o de recorridos</td><td>Faltó una coma o una comilla en <code class="i">GENEROS</code> o en <code class="i">RECORRIDOS</code>. Cada elemento termina con coma.</td></tr>
+    </table></div>
+    <div class="nota"><strong>Recordatorio:</strong> los PDF que salen del escritor de secuencias actualizado ya traen la leyenda “Actividad descargada de escolar.com.ar” y la licencia CC en el pie. Si subís PDF hechos con una versión anterior, conviene estamparlos antes.</div>
+  </section>
+
+</main>
+
+<div id="contenedor-pie"></div>
+
+<!-- Se lee el catálogo real para ofrecer géneros, autores y temas ya usados.
+     Si cuentos.js no está o tiene un error, el ayudante sigue funcionando. -->
+<script src="cuentos.js"></script>
+<script>
+/* ---------- Copiar al portapapeles ---------- */
+function copiarTexto(texto){
+  if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(texto);
+  return new Promise(function(ok, mal){
+    const t = document.createElement('textarea');
+    t.value = texto; t.style.position = 'fixed'; t.style.opacity = '0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy') ? ok() : mal(); } catch(e){ mal(e); }
+    document.body.removeChild(t);
+  });
+}
+document.querySelectorAll('.copiar').forEach(function(b){
+  b.addEventListener('click', function(){
+    const pre = document.getElementById(b.dataset.destino);
+    copiarTexto(pre.textContent).then(function(){
+      const antes = b.textContent; b.textContent = '¡Copiado!'; b.classList.add('ok');
+      setTimeout(function(){ b.textContent = antes; b.classList.remove('ok'); }, 1500);
+    }).catch(function(){
+      const r = document.createRange(); r.selectNodeContents(pre);
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      b.textContent = 'Seleccionado: Ctrl + C';
+    });
+  });
+});
+
+/* ---------- Ayudante: del título al slug y a la línea ---------- */
+const DOCS = ['cuento', 'secuencia', 'fichas', 'secuencia_guia', 'fichas_guia'];
+function hacerSlug(t){
+  return t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+          .replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+}
+const norm = s => String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '')
+                    .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+function lev(a, b){
+  if (a === b) return 0;
+  const m = a.length, n = b.length;
+  if (!m) return n; if (!n) return m;
+  let prev = Array.from({length: n + 1}, (_, j) => j);
+  for (let i = 1; i <= m; i++){
+    const cur = [i];
+    for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+    prev = cur;
+  }
+  return prev[n];
+}
+function parecidos(ka, kb){
+  if (ka === kb) return false;
+  if (ka.split(' ').sort().join(' ') === kb.split(' ').sort().join(' ')) return true;
+  const L = Math.min(ka.length, kb.length);
+  if (L < 4) return false;
+  return lev(ka, kb) <= (L <= 6 ? 1 : 2);
+}
+
+/* Lo que ya existe en cuentos.js (si se pudo leer) */
+const CAT = {generos: [], autores: [], temas: [], leido: false};
+(function(){
+  function recoger(valores){           // [{k, texto, n}] con el texto más usado de cada clave
+    const m = new Map();
+    valores.forEach(function(v){
+      const t = String(v).trim(), k = norm(t);
+      if (!k) return;
+      let e = m.get(k); if (!e){ e = {k: k, vars: new Map(), n: 0}; m.set(k, e); }
+      e.vars.set(t, (e.vars.get(t) || 0) + 1); e.n++;
+    });
+    return Array.from(m.values()).map(function(e){
+      e.texto = Array.from(e.vars.entries()).sort((a, b) => b[1] - a[1])[0][0]; return e;
+    });
+  }
+  const cu = (typeof CUENTOS !== 'undefined' && Array.isArray(CUENTOS)) ? CUENTOS : [];
+  CAT.leido = cu.length > 0;
+  CAT.generos = (typeof GENEROS !== 'undefined' && Array.isArray(GENEROS)) ? GENEROS.map(String)
+    : ['Maravilloso o tradicional', 'Fábula y cuentos de animales', 'Terror', 'Policial', 'Ciencia ficción', 'Fantástico', 'Realista', 'Humor'];
+  CAT.autores = recoger(cu.map(c => c && c.autor).filter(a => typeof a === 'string'))
+                  .sort((a, b) => a.texto.localeCompare(b.texto, 'es'));
+  CAT.temas = recoger([].concat.apply([], cu.map(c => c && Array.isArray(c.temas) ? c.temas : [])))
+                  .sort((a, b) => b.n - a.n || a.texto.localeCompare(b.texto, 'es'));
+})();
+
+(function iniciarListas(){
+  const g = document.getElementById('a-genero');
+  g.innerHTML = '<option value="">(sin género por ahora)</option>' +
+    CAT.generos.map(x => '<option value="' + x.replace(/"/g, '&quot;') + '">' + x + '</option>').join('');
+  document.getElementById('lista-autores').innerHTML =
+    CAT.autores.map(a => '<option value="' + a.texto.replace(/"/g, '&quot;') + '"></option>').join('');
+  document.getElementById('a-temas-sug').innerHTML = CAT.temas.slice(0, 40).map(function(t){
+    return '<button type="button" class="sug-btn" aria-pressed="false" data-tema="' + t.texto.replace(/"/g, '&quot;') + '">' + t.texto + ' (' + t.n + ')</button>';
+  }).join('');
+  document.getElementById('a-estado-lista').textContent = CAT.leido
+    ? 'Listas leídas de cuentos.js: ' + CAT.autores.length + ' autor(es) y ' + CAT.temas.length + ' tema(s) ya usados.'
+    : 'No se pudo leer cuentos.js desde esta página: el ayudante funciona igual, pero sin ofrecer autores ni temas ya usados.';
+})();
+
+function lista(valor){                  // "a, b ,c" -> ["a","b","c"] (sin repetidos)
+  const vistos = [];
+  return valor.split(',').map(x => x.trim()).filter(function(x){
+    const k = norm(x);
+    if (!k || vistos.indexOf(k) !== -1) return false;
+    vistos.push(k); return true;
+  });
+}
+function esc(t){ return t.replace(/\\/g, '\\\\').replace(/"/g, '\\"'); }
+
+/* Avisos de parecido con lo ya usado */
+function alertasTipeo(autor, temas, otros){
+  const out = [];
+  function revisar(texto, existentes, etiqueta, aplicar){
+    const k = norm(texto);
+    if (!k) return;
+    if (existentes.some(e => e.vars.has(texto))) return;       // escrito igual que uno existente
+    const igual = existentes.filter(e => e.k === k)[0];
+    if (igual){ out.push({msg: etiqueta + ' «' + texto + '» ya existe escrito «' + igual.texto + '».', uso: igual.texto, aplicar: aplicar}); return; }
+    const cerca = existentes.filter(e => parecidos(k, e.k))[0];
+    if (cerca) out.push({msg: etiqueta + ' «' + texto + '» se parece a «' + cerca.texto + '» (' + cerca.n + ' cuento' + (cerca.n === 1 ? '' : 's') + '). ¿Es lo mismo?', uso: cerca.texto, aplicar: aplicar});
+  }
+  revisar(autor, CAT.autores, 'El autor', function(u){ document.getElementById('a-autor').value = u; });
+  otros.forEach(function(o){
+    revisar(o.valor, CAT.autores, 'El autor del ' + o.nombre, function(u){ document.getElementById(o.campo).value = u; });
+  });
+  temas.forEach(function(t){
+    revisar(t, CAT.temas, 'El tema', function(u){
+      document.getElementById('a-temas').value = lista(lista(document.getElementById('a-temas').value)
+        .map(x => x === t ? u : x).join(', ')).join(', ');
+    });
+  });
+  return out;
+}
+
+function armar(){
+  const titulo = document.getElementById('a-titulo').value.trim();
+  const autor = document.getElementById('a-autor').value.trim();
+  const genero = document.getElementById('a-genero').value;
+  const temas = lista(document.getElementById('a-temas').value);
+  const conEnlace = document.getElementById('a-enlace').checked;
+  document.getElementById('caja-url').style.display = conEnlace ? 'block' : 'none';
+  const conAuto = document.getElementById('a-auto').checked;
+  document.getElementById('caja-auto').style.display = conAuto ? 'block' : 'none';
+  const urlAuto = document.getElementById('a-auto-url').value.trim().replace(/"/g, '');
+  let url = document.getElementById('a-url').value.trim();
+  if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+  const slug = hacerSlug(titulo) || 'slug_del_cuento';
+  const tit = esc(titulo || 'Título del cuento');
+
+  const datos = [];
+  if (autor) datos.push('autor: "' + esc(autor) + '"');
+  if (genero) datos.push('genero: "' + esc(genero) + '"');
+  if (temas.length) datos.push('temas: [' + temas.map(t => '"' + esc(t) + '"').join(', ') + ']');
+  // Textos adicionales (segundo y tercero)
+  const textosExtra = [];
+  const hacerUrl = u => (u && !/^https?:\/\//i.test(u)) ? 'https://' + u : u;
+  [2, 3].forEach(function(n){
+    const activo = document.getElementById('a-texto' + n).checked && (n === 2 || document.getElementById('a-texto2').checked);
+    document.getElementById('caja-texto' + n).style.display = activo ? 'block' : 'none';
+    if (n === 3) document.getElementById('fila-texto3').style.display = document.getElementById('a-texto2').checked ? 'flex' : 'none';
+    const conUrl = document.getElementById('a-t' + n + '-enlace').checked;
+    document.getElementById('caja-t' + n + '-url').style.display = conUrl ? 'block' : 'none';
+    if (!activo) return;
+    textosExtra.push({
+      n: n,
+      etiqueta: document.getElementById('a-t' + n + '-etiqueta').value.trim(),
+      autor: document.getElementById('a-t' + n + '-autor').value.trim(),
+      enlace: conUrl,
+      url: hacerUrl(document.getElementById('a-t' + n + '-url').value.trim())
+    });
+  });
+  const otrosAutores = textosExtra.filter(t => t.autor).map(t => ({valor: t.autor, nombre: 'texto ' + t.n, campo: 'a-t' + t.n + '-autor'}));
+
+  const extras = [];
+  if (datos.length) extras.push(datos.join(', ') + ',');
+  if (textosExtra.length) extras.push('textos: ' + (1 + textosExtra.length) + ',');
+  const conEtiqueta = textosExtra.filter(t => t.etiqueta);
+  if (conEtiqueta.length) extras.push('etiquetas: { ' + conEtiqueta.map(t => 'texto' + t.n + ': "' + esc(t.etiqueta) + '"').join(', ') + ' },');
+  const conAutor = textosExtra.filter(t => t.autor);
+  if (conAutor.length) extras.push('autores: { ' + conAutor.map(t => 'texto' + t.n + ': "' + esc(t.autor) + '"').join(', ') + ' },');
+  const enlaces = [];
+  if (conEnlace) enlaces.push('cuento: "' + (url || 'https://…') + '"');
+  textosExtra.filter(t => t.enlace).forEach(t => enlaces.push('texto' + t.n + ': "' + (t.url || 'https://…') + '"'));
+  if (enlaces.length) extras.push('enlaces: { ' + enlaces.join(', ') + ' },');
+  if (conAuto) extras.push('autoevaluacion: "' + (urlAuto || 'https://…') + '",');
+  let linea = '{ slug: "' + slug + '", titulo: "' + tit + '"';
+  if (!extras.length) linea += ' },';
+  else {
+    linea += ',\n' + extras.map(e => '  ' + e).join('\n');
+    linea = linea.replace(/,$/, ' },');
+  }
+  document.getElementById('a-salida').textContent = linea;
+
+  const archivos = ['cuento'].concat(textosExtra.map(t => 'texto' + t.n)).concat(DOCS.slice(1));
+  document.getElementById('a-archivos').innerHTML = archivos.map(function(d){
+    const ext = textosExtra.filter(t => 'texto' + t.n === d)[0];
+    const omitido = (conEnlace && d === 'cuento') || (ext && ext.enlace);
+    return '<li' + (omitido ? ' class="omitido"' : '') + '>' + slug + '_' + d + '.pdf' + (omitido ? '  (no hace falta: va con enlace)' : '') + '</li>';
+  }).join('');
+
+  // Temas ya usados: marcar los que están en el campo
+  const claves = temas.map(norm);
+  document.querySelectorAll('.sug-btn').forEach(function(b){
+    b.setAttribute('aria-pressed', claves.indexOf(norm(b.dataset.tema)) !== -1 ? 'true' : 'false');
+  });
+
+  // Avisos de posibles errores de tipeo
+  const caja = document.getElementById('a-alertas');
+  caja.innerHTML = '';
+  alertasTipeo(autor, temas, otrosAutores).forEach(function(a){
+    const d = document.createElement('div'); d.className = 'alerta';
+    d.appendChild(document.createTextNode(a.msg));
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = 'Usar «' + a.uso + '»';
+    b.addEventListener('click', function(){ a.aplicar(a.uso); armar(); });
+    d.appendChild(b); caja.appendChild(d);
+  });
+}
+document.getElementById('a-temas-sug').addEventListener('click', function(e){
+  const b = e.target.closest('.sug-btn'); if (!b) return;
+  const campo = document.getElementById('a-temas');
+  const k = norm(b.dataset.tema), actuales = lista(campo.value);
+  const sin = actuales.filter(x => norm(x) !== k);
+  campo.value = (sin.length === actuales.length ? actuales.concat(b.dataset.tema) : sin).join(', ');
+  armar();
+});
+// Los campos de texto se actualizan al escribir ('input'). No se escucha 'change':
+// se dispara al perder el foco y volvería a dibujar los avisos justo cuando se toca «Usar…».
+['a-titulo', 'a-autor', 'a-temas', 'a-url', 'a-auto-url', 'a-t2-etiqueta', 'a-t2-autor', 'a-t2-url', 'a-t3-etiqueta', 'a-t3-autor', 'a-t3-url'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', armar);
+});
+['a-genero', 'a-enlace', 'a-auto', 'a-texto2', 'a-texto3', 'a-t2-enlace', 'a-t3-enlace'].forEach(function(id){
+  document.getElementById(id).addEventListener('change', armar);
+});
+armar();
+
+/* ---------- Ayudante de recorridos ---------- */
+(function(){
+  const DOCS_RECO = [
+    ['cuento', 'Cuentos (el texto del recorrido)'], ['secuencia', 'Secuencia'], ['fichas', 'Fichas'],
+    ['secuencia_guia', 'Guía docente · secuencia'], ['fichas_guia', 'Guía docente · fichas']
+  ];
+  const h = t => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  const cu = (typeof CUENTOS !== 'undefined' && Array.isArray(CUENTOS)) ? CUENTOS.filter(c => c && c.slug && c.titulo) : [];
+  const orden = [];                                   // slugs elegidos, en el orden del recorrido
+  const porSlug = {}; cu.forEach(c => porSlug[c.slug] = c.titulo);
+  const $ = id => document.getElementById(id);
+
+  if (cu.length){
+    $('r-lista').innerHTML = cu.map(c => '<label class="r-op"><input type="checkbox" value="' + h(c.slug) + '"> ' + h(c.titulo) + '</label>').join('');
+  } else {
+    $('r-lista').innerHTML = '<input type="text" id="r-slugs" placeholder="Slug de los cuentos, separados con coma (no se pudo leer cuentos.js)" autocomplete="off">';
+  }
+  $('r-docs-lista').innerHTML = DOCS_RECO.map(d =>
+    '<label class="r-op"><input type="checkbox" class="r-doc" value="' + d[0] + '" checked> ' + d[1] + '</label>').join('');
+
+  function dibujarOrden(){
+    $('r-orden').innerHTML = orden.length > 1 ? orden.map(function(s, i){
+      return '<li>' + h(porSlug[s] || s) +
+        ' <button type="button" class="mover" data-i="' + i + '" data-d="-1"' + (i === 0 ? ' disabled' : '') + ' aria-label="Subir">↑</button>' +
+        '<button type="button" class="mover" data-i="' + i + '" data-d="1"' + (i === orden.length - 1 ? ' disabled' : '') + ' aria-label="Bajar">↓</button></li>';
+    }).join('') : '';
+  }
+
+  function armar(){
+    const titulo = $('r-titulo').value.trim();
+    const desc = $('r-desc').value.trim();
+    let slugsCuentos = orden.slice();
+    if ($('r-slugs')) slugsCuentos = $('r-slugs').value.split(',').map(x => x.trim()).filter(Boolean);
+    let conDocs = $('r-docs').checked;
+    $('caja-r-docs').style.display = conDocs ? 'block' : 'none';
+    const marcados = Array.prototype.filter.call(document.querySelectorAll('.r-doc'), x => x.checked).map(x => x.value);
+    const avisos = [];
+    if (conDocs && !marcados.length){ avisos.push('Tildá al menos un documento, o destildá “documentos propios”.'); conDocs = false; }
+    const conAuto = $('r-auto').checked;
+    $('caja-r-auto').style.display = conAuto ? 'block' : 'none';
+    const urlAuto = $('r-auto-url').value.trim().replace(/"/g, '');
+
+    const slug = hacerSlug(titulo) || 'slug_del_recorrido';
+    const lineas = [];
+    lineas.push('{ ' + (conDocs ? 'slug: "' + slug + '", ' : '') + 'titulo: "' + esc(titulo || 'Título del recorrido') + '",');
+    if (desc) lineas.push('  descripcion: "' + esc(desc) + '",');
+    lineas.push('  cuentos: [' + (slugsCuentos.length ? slugsCuentos.map(s => '"' + esc(s) + '"').join(', ') : '"slug_del_cuento"') + '],');
+    if (conDocs && marcados.length < DOCS_RECO.length) lineas.push('  solo: [' + marcados.map(m => '"' + m + '"').join(', ') + '],');
+    if (conAuto) lineas.push('  autoevaluacion: "' + (urlAuto || 'https://…') + '",');
+    lineas[lineas.length - 1] = lineas[lineas.length - 1].replace(/,$/, ' },');
+    $('r-salida').textContent = lineas.join('\n');
+
+    $('r-archivos').innerHTML = conDocs
+      ? marcados.map(m => '<li>' + slug + '_' + m + '.pdf</li>').join('')
+      : '<li style="font-family:inherit">Ninguno: el recorrido solo agrupa cuentos' + (conAuto ? ' y enlaza a su autoevaluación.' : '.') + '</li>';
+    if (!slugsCuentos.length) avisos.push('Tildá los cuentos que forman parte del recorrido.');
+    $('r-alertas').innerHTML = avisos.map(a => '<div class="alerta">' + h(a) + '</div>').join('');
+    dibujarOrden();
+  }
+
+  $('r-lista').addEventListener('change', function(e){
+    const c = e.target; if (!c.matches || !c.matches('input[type=checkbox]')) return;
+    const i = orden.indexOf(c.value);
+    if (c.checked && i === -1) orden.push(c.value);
+    if (!c.checked && i !== -1) orden.splice(i, 1);
+    armar();
+  });
+  $('r-orden').addEventListener('click', function(e){
+    const b = e.target.closest('.mover'); if (!b) return;
+    const i = Number(b.dataset.i), j = i + Number(b.dataset.d);
+    if (j < 0 || j >= orden.length) return;
+    const t = orden[i]; orden[i] = orden[j]; orden[j] = t;
+    armar();
+  });
+  ['r-titulo', 'r-desc', 'r-auto-url'].forEach(id => $(id).addEventListener('input', armar));
+  ['r-docs', 'r-auto'].forEach(id => $(id).addEventListener('change', armar));
+  $('r-docs-lista').addEventListener('change', armar);
+  if ($('r-slugs')) $('r-slugs').addEventListener('input', armar);
+  armar();
+})();
+</script>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

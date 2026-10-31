@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VL13MMLPRV');
+</script>
+<title>Fábrica de numeración v6 - escolar.com.ar</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--teal:#168985;--teal2:#0f6e6a;--mint:#e9f5f4;--line:#b7d9d6;--text:#26383b;--muted:#6f7c7e;--bg:#edf2f2;--soft:#f8fbfb}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg)}
+.app{display:grid;grid-template-columns:minmax(350px,450px) 1fr;min-height:100vh}
+.controls{background:#fff;border-right:1px solid #d8e3e2;padding:16px;overflow:auto;height:100vh;position:sticky;top:0}
+h1{font-size:22px;color:var(--teal2);margin:0 0 5px}.lead{font-size:12.5px;color:var(--muted);line-height:1.4;margin:0 0 12px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0 13px}
+button{border:0;border-radius:8px;padding:10px 9px;font-weight:700;cursor:pointer;background:var(--teal);color:#fff}button.secondary{background:#53676a}button.light{background:var(--mint);color:var(--teal2);border:1px solid var(--line)}
+details{border:1px solid #d8e3e2;border-radius:10px;background:#fff;margin-bottom:9px;overflow:hidden}summary{padding:10px 11px;background:#f8fbfb;color:var(--teal2);font-weight:700;cursor:pointer}.section{padding:11px}
+label{font-size:12px;font-weight:700;display:block;margin:0 0 4px} input[type=text],input[type=number],textarea,select{width:100%;border:1px solid #bdcccb;border-radius:7px;padding:8px;font:inherit;font-size:13px;background:#fff}textarea{min-height:65px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:8px}.field{margin-bottom:8px}.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:5px 0}.inline label{font-weight:400;margin:0}.inline input{width:auto}.small{font-size:11px;color:var(--muted);line-height:1.35}
+.presetbar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:7px 0}.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.seg label{padding:7px;border:1px solid #cbd7d6;border-radius:7px;text-align:center;font-weight:700;font-size:12px;cursor:pointer}.seg input{display:none}.seg label:has(input:checked){background:var(--mint);border-color:var(--teal);color:var(--teal2)}
+.preview-wrap{padding:18px;overflow:auto}.preview-note{max-width:210mm;margin:0 auto 8px;font-size:12px;color:#4e6063}.version-tabs{max-width:210mm;margin:0 auto 10px;display:flex;gap:6px;flex-wrap:wrap}.version-tabs button{padding:7px 10px;background:#6a7b7e}.version-tabs button.active{background:var(--teal)}
+#printArea{display:flex;flex-direction:column;align-items:center;gap:16px}#printArea.exporting{gap:0}.sheet{
+width:210mm;height:297mm;min-height:297mm;max-height:297mm;
+background:#fff;box-shadow:0 2px 13px rgba(0,0,0,.14);
+padding:13mm 14mm 12mm;position:relative;overflow:hidden;
+page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid
+}
+.page-body{width:100%;transform-origin:top center}
+#printArea.exporting .sheet{box-shadow:none}
+.sheet-header{background:var(--mint);border-radius:8mm;padding:8mm 9mm 7mm;margin-bottom:7mm}.sheet-header h2{margin:0;color:var(--teal2);font-size:20pt;line-height:1.1}.sheet-header p{margin:2.5mm 0 0;color:var(--muted);font-size:9pt}.name-row{display:grid;grid-template-columns:1fr 1fr;gap:14mm;font-size:9pt;margin:0 3mm 8mm}.write-line{display:inline-block;min-width:50mm;border-bottom:1px solid #718083;height:4mm;vertical-align:bottom}
+.activity{margin:0 0 6.5mm;page-break-inside:avoid;break-inside:avoid}.act-title{display:flex;gap:3mm;align-items:flex-start;margin-bottom:3.5mm}.badge{width:10mm;height:10mm;border-radius:3mm;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11pt;flex:0 0 10mm}.act-title h3{margin:1.1mm 0 0;font-size:14pt;line-height:1.15}
+.dict-lines{padding:0 5mm 0 8mm}.dict-line{height:9mm;border-bottom:1px solid #a8b5b5}.number-cards{display:grid;gap:2mm;margin:0 2mm 4mm}.number-card{border:1.2px solid var(--teal);border-radius:3mm;text-align:center;padding:3mm 1mm;font-weight:700;font-size:10pt;background:#fbfefe}.order-answer{display:flex;align-items:center;justify-content:center;gap:1.1mm;flex-wrap:nowrap}.order-box{width:18mm;height:10mm;border:1px solid var(--line);border-radius:2.5mm}.order-sign{color:var(--teal2);font-weight:700;font-size:14pt}
+.note{font-size:9pt;color:var(--muted);margin:0 2mm 2.5mm}.numberline{position:relative;height:31mm;margin:0 4mm}.line-core{position:absolute;left:2mm;right:2mm;top:15mm;border-top:1.5px solid #394d50}.tick{position:absolute;top:11.5mm;width:1px;height:7mm;background:#394d50;transform:translateX(-50%)}.tick-label{position:absolute;top:21mm;transform:translateX(-50%);font-size:8.5pt;font-weight:700;white-space:nowrap}.tick-blank{position:absolute;top:2mm;width:18mm;height:8mm;border:1px solid var(--line);border-radius:2mm;transform:translateX(-50%);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:9.5pt}th,td{border:1px solid var(--teal);padding:2.3mm;text-align:center;height:9mm}th{background:var(--mint);color:var(--teal2)}.center-val{font-weight:700}.example{border:1px solid var(--teal);border-radius:3mm;background:#f8fbfb;padding:3.5mm 5mm;margin:0 3mm 4mm;font-size:9.5pt}.decomp-grid,.compose-grid{display:grid;grid-template-columns:1fr 1fr;gap:5.5mm 12mm;margin:0 7mm}.decomp-item,.compose-item{font-size:10pt;min-height:10mm}.answer-inline{display:inline-block;border-bottom:1px solid #718083;min-width:46mm;height:5mm;vertical-align:bottom;margin-left:2mm}.dual-label{display:block;font-size:8pt;color:var(--muted);margin-top:1.5mm}.dual-line{display:block;border-bottom:1px solid #718083;height:5mm;margin:0 0 1.7mm 14mm}.footer{
+position:absolute;left:14mm;right:14mm;bottom:5.5mm;border-top:1px solid var(--line);padding-top:1.5mm;
+display:grid;grid-template-columns:1fr auto auto;gap:5mm;align-items:center;font-size:7.2pt;color:var(--muted)
+}
+.footer .brand b{color:var(--text)}
+.footer .license{display:flex;align-items:center;gap:2mm;white-space:nowrap}
+.footer .cc-logo{height:6mm;width:auto;display:block}
+body[data-printmode="gray"] .cc-logo{filter:grayscale(1) contrast(1.2)}
+.site-license{
+text-align:center;padding:20px;font-family:sans-serif;border-top:1px solid #ddd;margin:40px auto 0;background:#fff;
+max-width:1200px
+}
+.site-license p{margin:0 0 10px 0;font-size:16px;font-weight:bold;color:#333}
+.answer-sheet .answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm 10mm;font-size:9pt}.answer-box{border:1px solid #c9d8d7;border-radius:3mm;padding:3mm}.answer-box h4{margin:0 0 2mm;color:var(--teal2);font-size:10pt}.editor{display:none;border:1px solid #b7d9d6;background:#f8fbfb;border-radius:9px;padding:10px;margin-top:10px}.editor.open{display:block}.editor h3{margin:0 0 8px;color:var(--teal2);font-size:15px}
+@media(max-width:1100px){.app{grid-template-columns:1fr}.controls{height:auto;position:relative;border-right:0;border-bottom:1px solid #d8e3e2}}@page{size:A4 portrait;margin:0}
+@media print{
+html,body{margin:0!important;padding:0!important;background:#fff}
+.controls,.preview-note,.version-tabs,.site-license{display:none!important}
+.app{display:block}.preview-wrap{padding:0!important;margin:0!important}
+#printArea{display:block!important;gap:0!important;margin:0!important;padding:0!important}
+.sheet{
+width:210mm!important;height:297mm!important;min-height:297mm!important;max-height:297mm!important;
+box-shadow:none!important;margin:0!important;padding:13mm 14mm 12mm!important;
+page-break-after:always!important;break-after:page!important;
+page-break-inside:avoid!important;break-inside:avoid!important
+}
+.sheet:last-child{page-break-after:auto!important;break-after:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="controls">
+<h1>Fábrica de numeración <span style="font-size:11px;color:#6f7c7e">v6</span></h1>
+<p class="lead">Elegí el rango y la dificultad. La aplicación genera números variados, permite editarlos y descarga la ficha en PDF.</p>
+<div class="actions">
+<button id="generate">Generar ficha</button><button id="regenerate" class="secondary">Generar otra</button>
+<button id="download">Descargar PDF</button><button id="print" class="secondary">Imprimir / PDF</button>
+<button id="toggleEditor" class="light">Editar números</button><button id="randomSeed" class="light">Nueva combinación</button>
+</div>
+<details open><summary>1. Rango y modo</summary><div class="section">
+<div class="presetbar"><button class="light preset" data-max="1000">Hasta 1.000</button><button class="light preset" data-max="5000">Hasta 5.000</button><button class="light preset" data-max="10000">Hasta 10.000</button></div>
+<div class="row"><div><label>Desde</label><input id="rangeMin" type="number" value="0"></div><div><label>Hasta</label><input id="rangeMax" type="number" value="5000"></div></div>
+<label>Modo</label><div class="seg"><label><input type="radio" name="mode" value="auto" checked>Automático</label><label><input type="radio" name="mode" value="semi">Semiauto</label><label><input type="radio" name="mode" value="manual">Manual</label></div>
+<div class="small" style="margin-top:6px">Automático genera todo; semiautomático genera y abre el editor; manual conserva los valores que editaste.</div>
+</div></details>
+<details open><summary>2. Dificultad y características</summary><div class="section">
+<div class="field"><label>Dificultad</label><select id="difficulty"><option value="basic">Básica</option><option value="medium">Media</option><option value="challenge">Desafío</option><option value="diagnostic" selected>Diagnóstica</option></select></div>
+<div class="inline"><input id="featNodes" type="checkbox" checked><label for="featNodes">Cambios de nodo</label></div>
+<div class="inline"><input id="featZeros" type="checkbox" checked><label for="featZeros">Números con ceros</label></div>
+<div class="inline"><input id="featClose" type="checkbox" checked><label for="featClose">Números cercanos entre sí</label></div>
+<div class="inline"><input id="featMax" type="checkbox" checked><label for="featMax">Incluir el máximo del rango</label></div>
+<div class="inline"><input id="featMixedDigits" type="checkbox" checked><label for="featMixedDigits">Mezclar distinta cantidad de cifras</label></div>
+</div></details>
+<details><summary>3. Actividades</summary><div class="section">
+<div class="row3"><div><label>Dictado</label><input id="countDict" type="number" min="4" max="12" value="8"></div><div><label>Ordenar</label><input id="countOrder" type="number" min="4" max="8" value="7"></div><div><label>Anterior/post.</label><input id="countPrev" type="number" min="4" max="9" value="7"></div></div>
+<div class="row3"><div><label>Más/menos</label><input id="countMore" type="number" min="4" max="8" value="6"></div><div><label>Descomponer</label><input id="countDecomp" type="number" min="4" max="8" value="6"></div><div><label>Componer</label><input id="countCompose" type="number" min="4" max="8" value="4"></div></div>
+<div class="inline"><input id="actDict" type="checkbox" checked><label for="actDict">Dictado</label><input id="actOrder" type="checkbox" checked><label for="actOrder">Ordenamiento</label></div>
+<div class="inline"><input id="actLine" type="checkbox" checked><label for="actLine">Recta numérica</label><input id="actPrev" type="checkbox" checked><label for="actPrev">Anterior/posterior</label></div>
+<div class="inline"><input id="actMore" type="checkbox" checked><label for="actMore">Más/menos</label><input id="actDecomp" type="checkbox" checked><label for="actDecomp">Descomposición</label></div>
+<div class="inline"><input id="actCompose" type="checkbox" checked><label for="actCompose">Composición</label></div>
+<div class="small">La tabla de más/menos adapta las columnas al rango. Por ejemplo, hasta 1.000 no muestra ±1.000.</div>
+</div></details>
+<details><summary>4. Descomposición y composición</summary><div class="section">
+<div class="row"><div><label>Descomposición</label><select id="decompMode"><option value="add">Aditiva</option><option value="mult">Multiplicativa</option><option value="both" selected>Ambas</option></select></div><div><label>Ejemplo</label><select id="showExample"><option value="yes" selected>Mostrar</option><option value="no">Ocultar</option></select></div></div>
+<div class="field"><label>Composición</label><select id="composeMode"><option value="add">Aditiva</option><option value="mult">Multiplicativa</option><option value="mixed" selected>Mixta</option></select></div>
+<div class="inline"><input id="answers" type="checkbox"><label for="answers">Agregar hoja de respuestas</label></div>
+</div></details>
+<details><summary>5. Recta numérica</summary><div class="section">
+<div class="row"><div><label>Inicio</label><select id="lineStartMode"><option value="auto">Automático</option><option value="zero">Desde 0</option></select></div><div><label>Marcas</label><input id="lineCount" type="number" min="6" max="12" value="10"></div></div>
+<div class="field"><label>Salto</label><select id="lineStepMode">
+<option value="auto">Automático: se adapta al rango</option>
+<option value="10">10</option><option value="25">25</option><option value="50">50</option>
+<option value="100">100</option><option value="200">200</option><option value="250">250</option>
+<option value="500">500</option><option value="1000">1.000</option>
+<option value="2000">2.000</option><option value="2500">2.500</option><option value="5000">5.000</option>
+</select></div>
+<div class="small">En automático, la recta recalcula el salto para cualquier rango personalizado y nunca dibuja valores fuera de ese rango.</div>
+</div></details>
+<details><summary>6. Versiones y textos</summary><div class="section">
+<div class="row"><div><label>Cantidad de versiones</label><input id="versions" type="number" min="1" max="5" value="1"></div><div><label>Número de ficha</label><input id="sheetNo" type="text"></div></div>
+<div class="row"><div><label>Estilo de impresión</label><select id="colorMode"><option value="color" selected>Color</option><option value="gray">Escala de grises</option></select></div><div><label>Vista</label><select id="previewMode"><option value="same" selected>Igual a la impresión</option><option value="alwaysColor">Vista siempre en color</option></select></div></div>
+<div class="field"><label>Título</label><input id="title" type="text" value="Exploramos los números"></div>
+<div class="field"><label>Subtítulo</label><input id="subtitle" type="text" value="Leé, pensá y completá con mucha atención."></div>
+<div class="small">Si elegís “Escala de grises”, la exportación y la impresión usan una paleta de alto contraste pensada para blanco y negro.</div>
+</div></details>
+<div id="editor" class="editor"><h3>Editar ficha actual</h3><div class="field"><label>Versión</label><select id="editVersion"></select></div><div class="field"><label>Dictado</label><textarea id="edDict"></textarea></div><div class="field"><label>Ordenamiento</label><textarea id="edOrder"></textarea></div><div class="field"><label>Anterior y posterior</label><textarea id="edPrev"></textarea></div><div class="field"><label>Más y menos</label><textarea id="edMore"></textarea></div><div class="field"><label>Descomposición</label><textarea id="edDecomp"></textarea></div><div class="field"><label>Composición (una expresión por línea)</label><textarea id="edCompose"></textarea></div><button id="applyEdit">Aplicar cambios</button></div>
+</aside>
+<main class="preview-wrap"><div class="preview-note">Vista previa A4. Cada versión ocupa dos páginas. Si activás respuestas, se agrega una tercera página.</div><div id="tabs" class="version-tabs"></div><div id="printArea"></div></main>
+</div>
+
+<div class="site-license">
+  <p>Material elaborado por escolar.com.ar</p>
+  <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img alt="Licencia Creative Commons" style="border-width:0; margin-bottom:10px;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">
+  </a>
+  <br>
+  <small>
+    Los contenidos de este portal educativo están bajo una
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="color:#333; text-decoration:underline;">
+      Licencia CC Atribución-NoComercial-CompartirIgual 4.0 Internacional
+    </a>.
+  </small>
+</div>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);let generated=[],activeVersion=0;
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const fmt=n=>Math.trunc(n).toLocaleString('es-AR'); const parseNum=s=>Number(String(s).replace(/\./g,'').replace(/\s/g,''))||0;
+const unique=a=>[...new Set(a)], rand=(a,b)=>Math.floor(Math.random()*(b-a+1))+a, choice=a=>a[rand(0,a.length-1)], clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=rand(0,i);[a[i],a[j]]=[a[j],a[i]]}return a}
+function rangeInfo(){let min=Number($('rangeMin').value)||0,max=Number($('rangeMax').value)||1000;if(max<=min)max=min+1000;return{min,max,span:max-min}}
+function orderOf(max){if(max<=1000)return 100;if(max<=10000)return 1000;if(max<=100000)return 10000;return 100000}
+function nodes(min,max){const u=orderOf(max),o=[];for(let n=Math.ceil(min/u)*u;n<=max;n+=u)if(n>min)o.push(n-1,n,n+1);return o.filter(x=>x>=min&&x<=max)}
+function zeroCandidate(min,max){const n=rand(min,max),s=String(n);if(s.length<3)return n;const c=s.split('');c[rand(1,c.length-1)]='0';return clamp(Number(c.join('')),min,max)}
+function closeCluster(min,max,count){const center=rand(min,max),steps=[1,2,5,10,20,50,100].filter(x=>x<=Math.max(1,(max-min)/3)),step=choice(steps.length?steps:[1]),a=[];for(let i=0;i<count;i++)a.push(clamp(center+(i-Math.floor(count/2))*step,min,max));return unique(a)}
+function generateNumbers(count){const{min,max}=rangeInfo(),diff=$('difficulty').value,a=[],push=n=>{if(n>=min&&n<=max&&!a.includes(n))a.push(n)};
+if($('featNodes').checked&&(diff==='diagnostic'||diff==='challenge'))shuffle(nodes(min,max)).slice(0,Math.ceil(count*.3)).forEach(push);
+if($('featZeros').checked&&diff!=='basic')for(let i=0;i<Math.ceil(count*.25);i++)push(zeroCandidate(min,max));
+if($('featClose').checked&&(diff==='diagnostic'||diff==='challenge'))closeCluster(min,max,Math.min(3,count)).forEach(push);
+if($('featMax').checked)push(max);
+if(diff==='basic'){const st=Math.max(1,orderOf(max)/10);while(a.length<count)push(clamp(Math.round(rand(min,max)/st)*st,min,max))}else while(a.length<count)push(rand(min,max));
+return shuffle(a.slice(0,count))}
+function ensureMixed(a){a=shuffle(a);const asc=[...a].sort((x,y)=>x-y).join('|'),desc=[...a].sort((x,y)=>y-x).join('|');if(a.join('|')===asc||a.join('|')===desc)a=shuffle(a);return a}
+function decompAdd(n){const d=String(Math.abs(n)).split('').map(Number),l=d.length,p=[];d.forEach((x,i)=>{if(x)p.push(fmt(x*(10**(l-i-1))))});return p.join(' + ')||'0'}
+function decompMult(n){const d=String(Math.abs(n)).split('').map(Number),l=d.length,p=[];d.forEach((x,i)=>{if(x){const v=10**(l-i-1);p.push(v===1?String(x):`${x} × ${fmt(v)}`)}});return p.join(' + ')||'0'}
+function composeExpr(n,mode){const d=String(Math.abs(n)).split('').map(Number),l=d.length,p=[];d.forEach((x,i)=>{if(!x)return;const v=10**(l-i-1);if(mode==='add')p.push(fmt(x*v));else if(mode==='mult')p.push(v===1?String(x):`${x} × ${fmt(v)}`);else p.push(v===1?String(x):(Math.random()<.5?fmt(x*v):`${x} × ${fmt(v)}`))});return p.join(' + ')}
+function autoLineStep(span,requested){
+  const target=Math.max(1,span/Math.max(5,requested-1));
+  const candidates=[1,2,5,10,20,25,50,100,200,250,500,1000,2000,2500,5000,10000,20000,25000,50000,100000];
+  let best=candidates[0],score=Infinity;
+  candidates.forEach(s=>{
+    const marks=Math.floor(span/s)+1;
+    if(marks<4)return;
+    const current=Math.abs(Math.log(s/target))+(marks>12?.25:0);
+    if(current<score){best=s;score=current}
+  });
+  return best;
+}
+function lineConfig(){
+  const {min,max,span}=rangeInfo();
+  const requested=clamp(Number($('lineCount').value)||10,6,12);
+  const m=$('lineStepMode').value;
+  let step=m!=='auto'?Number(m):autoLineStep(span,requested);
+  if(!Number.isFinite(step)||step<=0)step=Math.max(1,Math.floor(span/8));
+
+  let start;
+  if($('lineStartMode').value==='zero'){
+    start=(min<=0&&max>=0)?0:min;
+  }else{
+    const offsets=unique([0,Math.floor(step/4),Math.floor(step/2)]);
+    const starts=offsets.map(o=>min+o).filter(s=>s>=min&&s<=max);
+    start=choice(starts.length?starts:[min]);
+  }
+
+  let maxMarks=Math.floor((max-start)/step)+1;
+  if(maxMarks<4){
+    start=min;
+    if(m==='auto')step=autoLineStep(span,requested+2);
+    maxMarks=Math.floor((max-start)/step)+1;
+  }
+  const count=Math.max(2,Math.min(requested,maxMarks));
+  const values=Array.from({length:count},(_,i)=>start+i*step).filter(v=>v>=min&&v<=max);
+
+  const visibleCount=Math.min(values.length,Math.max(3,Math.floor(values.length*.45)));
+  const middle=Array.from({length:Math.max(0,values.length-2)},(_,i)=>i+1);
+  const visible=unique([0,values.length-1,...shuffle(middle).slice(0,Math.max(0,visibleCount-2))])
+    .filter(i=>i>=0&&i<values.length).sort((a,b)=>a-b);
+
+  const locate=[];
+  if(values.length>=2){
+    let guard=0;
+    while(locate.length<3&&guard<250){
+      guard++;
+      const x=rand(values[0],values[values.length-1]);
+      if(!values.includes(x)&&!locate.includes(x))locate.push(x);
+    }
+  }
+  return{start,step,count:values.length,values,visible,locate}
+}
+function deltas(){
+  const {span}=rangeInfo();
+  const places=[10,100,1000,10000,100000];
+  let usable=places.filter(p=>span>=2*p);
+  if(!usable.length)usable=[Math.max(1,Math.floor(span/10))];
+  usable=usable.slice(-3);
+  return[...usable.slice().reverse().map(p=>-p),0,...usable]
+}
+function generateMoreNumbers(count){
+  const {min,max}=rangeInfo(),ds=deltas(),largest=Math.max(...ds.map(Math.abs));
+  let lo=min+largest,hi=max-largest;
+  if(lo>hi){
+    lo=min;hi=max;
+  }
+  const oldMin=$('rangeMin').value,oldMax=$('rangeMax').value;
+  const arr=[];
+  let guard=0;
+  while(arr.length<count&&guard<500){
+    guard++;
+    const n=rand(lo,hi);
+    if(!arr.includes(n))arr.push(n);
+  }
+  while(arr.length<count){
+    const n=rand(min,max);
+    if(!arr.includes(n))arr.push(n);
+  }
+  return shuffle(arr)
+}
+function makeVersion(){const c={dict:+$('countDict').value||8,order:+$('countOrder').value||7,prev:+$('countPrev').value||7,more:+$('countMore').value||6,decomp:+$('countDecomp').value||6,compose:+$('countCompose').value||4},v={};v.dict=generateNumbers(c.dict);v.order=ensureMixed(generateNumbers(c.order));v.line=lineConfig();v.prev=generateNumbers(c.prev);if($('featNodes').checked)v.prev=unique([...shuffle(nodes(rangeInfo().min,rangeInfo().max)).slice(0,Math.min(4,c.prev)),...v.prev]).slice(0,c.prev);v.more=generateMoreNumbers(c.more);v.decomp=generateNumbers(c.decomp);v.composeNums=generateNumbers(c.compose);v.compose=v.composeNums.map(n=>composeExpr(n,$('composeMode').value));return v}
+function mode(){return document.querySelector('input[name=mode]:checked').value}
+
+function themePalette(mode){
+  if(mode==='gray'){
+    return {teal:'#5f5f5f',teal2:'#2f2f2f',mint:'#f0f0f0',line:'#9a9a9a',text:'#1f1f1f',muted:'#5a5a5a',soft:'#fbfbfb'};
+  }
+  return {teal:'#168985',teal2:'#0f6e6a',mint:'#e9f5f4',line:'#b7d9d6',text:'#26383b',muted:'#6f7c7e',soft:'#f8fbfb'};
+}
+function applyTheme(forExport=false){
+  const printMode=$('colorMode') ? $('colorMode').value : 'color';
+  const previewMode=$('previewMode') ? $('previewMode').value : 'same';
+  const effective=(!forExport && previewMode==='alwaysColor') ? 'color' : printMode;
+  const p=themePalette(effective),root=document.documentElement;
+  root.style.setProperty('--teal',p.teal);
+  root.style.setProperty('--teal2',p.teal2);
+  root.style.setProperty('--mint',p.mint);
+  root.style.setProperty('--line',p.line);
+  root.style.setProperty('--text',p.text);
+  root.style.setProperty('--muted',p.muted);
+  root.style.setProperty('--soft',p.soft);
+  document.body.dataset.printmode=effective;
+}
+function generate(all=true){const count=clamp(+($('versions').value)||1,1,5);if(mode()==='manual'&&generated.length){render();return}generated=all||!generated.length?Array.from({length:count},makeVersion):generated;activeVersion=0;populateEditor();loadEditor();if(mode()==='semi')$('editor').classList.add('open');render()}
+function titleRange(){const b=$('title').value.trim()||'Exploramos los números';return /\d/.test(b)?b:`${b} hasta ${fmt(rangeInfo().max)}`}
+const actTitle=(n,t)=>`<div class="act-title"><div class="badge">${n}</div><h3>${esc(t)}</h3></div>`;
+function footer(page,vi){
+  const no=$('sheetNo').value.trim();
+  const range=`Números hasta ${fmt(rangeInfo().max)}`;
+  return `<div class="footer">
+    <div class="brand"><b>Material generado en escolar.com.ar</b> · ${range}${no?` · Ficha ${esc(no)}`:''}${generated.length>1?` · Versión ${vi+1}`:''}</div>
+    <div class="license"><img class="cc-logo" alt="CC BY-NC-SA 4.0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"><span>CC BY-NC-SA 4.0</span></div>
+    <div>Pág. ${page}</div>
+  </div>`
+}
+function renderVersion(v,vi){let n=1,p1=[],p2=[];
+if($('actDict').checked){const lines=Math.max(3,Math.ceil(v.dict.length/2));p1.push(`<section class="activity">${actTitle(n++,'Escribí los números que te dicto.')}<div class="dict-lines">${Array.from({length:lines},()=>'<div class="dict-line"></div>').join('')}</div></section>`)}
+if($('actOrder').checked)p1.push(`<section class="activity">${actTitle(n++,'Ordená estos números de menor a mayor.')}<div class="number-cards" style="grid-template-columns:repeat(${v.order.length},1fr)">${v.order.map(x=>`<div class="number-card">${fmt(x)}</div>`).join('')}</div><div class="order-answer">${v.order.map((_,i)=>`${i?'<div class="order-sign">&lt;</div>':''}<div class="order-box"></div>`).join('')}</div></section>`);
+if($('actLine').checked){let t='';v.line.values.forEach((x,i)=>{const l=i/(v.line.count-1)*100;t+=`<div class="tick" style="left:${l}%"></div>${v.line.visible.includes(i)?`<div class="tick-label" style="left:${l}%">${fmt(x)}</div>`:`<div class="tick-blank" style="left:${l}%"></div>`}`});p1.push(`<section class="activity">${actTitle(n++,'Completá la recta numérica.')}<p class="note">Va de ${fmt(v.line.step)} en ${fmt(v.line.step)} y comienza en ${fmt(v.line.start)}.</p><div class="numberline"><div class="line-core"></div>${t}</div><p class="note">Ubicá aproximadamente: ${v.line.locate.map(fmt).join(', ')}.</p></section>`)}
+if($('actPrev').checked)p1.push(`<section class="activity">${actTitle(n++,'Completá con el anterior y el posterior.')}<table><thead><tr><th>Anterior</th><th>Número</th><th>Posterior</th></tr></thead><tbody>${v.prev.map(x=>`<tr><td></td><td class="center-val">${fmt(x)}</td><td></td></tr>`).join('')}</tbody></table></section>`);
+if($('actMore').checked){const ds=deltas();p2.push(`<section class="activity">${actTitle(n++,'Completá la tabla.')}<table><thead><tr>${ds.map(d=>d===0?'<th>Número</th>':`<th>${fmt(Math.abs(d))} ${d<0?'menos':'más'}</th>`).join('')}</tr></thead><tbody>${v.more.map(x=>`<tr>${ds.map(d=>d===0?`<td class="center-val">${fmt(x)}</td>`:'<td></td>').join('')}</tr>`).join('')}</tbody></table></section>`)}
+if($('actDecomp').checked){const m=$('decompMode').value,s=v.decomp[0]||3426,ex=$('showExample').value==='yes'?(m==='both'?`<div class="example"><b>Ejemplo:</b> ${fmt(s)} = ${esc(decompAdd(s))}<br><b>Multiplicativa:</b> ${esc(decompMult(s))}</div>`:`<div class="example"><b>Ejemplo:</b> ${fmt(s)} = ${esc(m==='mult'?decompMult(s):decompAdd(s))}</div>`):'',tt=m==='add'?'Desarmá cada número como una suma.':m==='mult'?'Desarmá cada número usando multiplicaciones.':'Descomponé cada número de las dos maneras.';p2.push(`<section class="activity">${actTitle(n++,tt)}${ex}<div class="decomp-grid">${v.decomp.map(x=>m==='both'?`<div class="decomp-item"><b>${fmt(x)} =</b><span class="dual-label">Forma aditiva</span><span class="dual-line"></span><span class="dual-label">Forma multiplicativa</span><span class="dual-line"></span></div>`:`<div class="decomp-item"><b>${fmt(x)} =</b><span class="answer-inline"></span></div>`).join('')}</div></section>`)}
+if($('actCompose').checked)p2.push(`<section class="activity">${actTitle(n++,'¿Qué número se forma?')}<div class="compose-grid">${v.compose.map(e=>`<div class="compose-item"><b>${esc(e)} =</b><span class="answer-inline" style="min-width:27mm"></span></div>`).join('')}</div></section>`);
+const h=`<div class="sheet-header"><h2>${esc(titleRange())}</h2><p>${esc($('subtitle').value.trim())}</p></div><div class="name-row"><div>Nombre: <span class="write-line"></span></div><div>Fecha: <span class="write-line"></span></div></div>`;
+let out=`<section class="sheet"><div class="page-body">${h}${p1.join('')}</div>${footer(1,vi)}</section><section class="sheet"><div class="page-body">${p2.join('')}</div>${footer(2,vi)}</section>`;
+if($('answers').checked)out+=answerSheet(v,vi);return out}
+function answerSheet(v,vi){const ds=deltas(),b=[];if($('actDict').checked)b.push(`<div class="answer-box"><h4>Dictado</h4>${v.dict.map(fmt).join(' · ')}</div>`);if($('actOrder').checked)b.push(`<div class="answer-box"><h4>Ordenamiento</h4>${[...v.order].sort((a,b)=>a-b).map(fmt).join(' < ')}</div>`);if($('actPrev').checked)b.push(`<div class="answer-box"><h4>Anterior y posterior</h4>${v.prev.map(x=>`${fmt(x-1)} | ${fmt(x)} | ${fmt(x+1)}`).join('<br>')}</div>`);if($('actMore').checked)b.push(`<div class="answer-box"><h4>Más y menos</h4>${v.more.map(x=>ds.map(d=>fmt(x+d)).join(' | ')).join('<br>')}</div>`);if($('actDecomp').checked)b.push(`<div class="answer-box"><h4>Descomposición</h4>${v.decomp.map(x=>`${fmt(x)} = ${esc(decompAdd(x))} / ${esc(decompMult(x))}`).join('<br>')}</div>`);if($('actCompose').checked)b.push(`<div class="answer-box"><h4>Composición</h4>${v.compose.map((e,i)=>`${esc(e)} = ${fmt(v.composeNums[i]??0)}`).join('<br>')}</div>`);return `<section class="sheet answer-sheet"><div class="page-body"><div class="sheet-header"><h2>Respuestas</h2><p>Versión ${vi+1}</p></div><div class="answer-grid">${b.join('')}</div></div>${footer('R',vi)}</section>`}
+function nextFrame(){
+  return new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+}
+function fitSheets(root=$('printArea')){
+  root.querySelectorAll('.sheet').forEach(sheet=>{
+    const body=sheet.querySelector('.page-body');
+    if(!body)return;
+    body.style.transform='none';
+
+    const cs=getComputedStyle(sheet);
+    const padTop=parseFloat(cs.paddingTop)||0;
+    const padBottom=parseFloat(cs.paddingBottom)||0;
+    const footer=sheet.querySelector('.footer');
+    const footerHeight=footer?footer.getBoundingClientRect().height:0;
+    // Reserve enough room for the footer and a small safety gap.
+    const reserve=footerHeight+18;
+    const available=sheet.clientHeight-padTop-padBottom-reserve;
+    const needed=body.scrollHeight;
+
+    let scale=needed>available ? available/needed : 1;
+    // Prevent absurd shrinkage; if a user asks for too many exercises,
+    // keep it legible and flag it visually in the preview.
+    scale=Math.max(.78,Math.min(1,scale));
+    body.dataset.fitScale=scale.toFixed(3);
+    body.style.transform=`scale(${scale})`;
+  });
+}
+function render(){
+  if(!generated.length)generated=[makeVersion()];
+  if(activeVersion>=generated.length)activeVersion=0;
+  $('tabs').innerHTML=generated.map((_,i)=>`<button data-i="${i}" class="${i===activeVersion?'active':''}">Versión ${i+1}</button>`).join('');
+  $('tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{
+    activeVersion=+b.dataset.i;
+    loadEditor();
+    render();
+    document.querySelector('.preview-wrap').scrollTop=0;
+  });
+  $('printArea').innerHTML=renderVersion(generated[activeVersion],activeVersion);
+  nextFrame().then(()=>fitSheets($('printArea')));
+}
+function populateEditor(){$('editVersion').innerHTML=generated.map((_,i)=>`<option value="${i}">Versión ${i+1}</option>`).join('');$('editVersion').value=activeVersion}
+function loadEditor(){if(!generated.length)return;const v=generated[activeVersion];$('editVersion').value=activeVersion;$('edDict').value=v.dict.map(fmt).join(', ');$('edOrder').value=v.order.map(fmt).join(', ');$('edPrev').value=v.prev.map(fmt).join(', ');$('edMore').value=v.more.map(fmt).join(', ');$('edDecomp').value=v.decomp.map(fmt).join(', ');$('edCompose').value=v.compose.join('\n')}
+const parseEditorNums=s=>s.split(/[\n,;]+/).map(x=>x.trim()).filter(Boolean).map(parseNum);
+function applyEdit(){const i=+$('editVersion').value||0,v=generated[i];v.dict=parseEditorNums($('edDict').value);v.order=parseEditorNums($('edOrder').value);v.prev=parseEditorNums($('edPrev').value);v.more=parseEditorNums($('edMore').value);v.decomp=parseEditorNums($('edDecomp').value);v.compose=$('edCompose').value.split(/\n+/).map(x=>x.trim()).filter(Boolean);v.composeNums=v.composeNums.slice(0,v.compose.length);activeVersion=i;render()}
+function renderAllVersions(){
+  return generated.map((v,i)=>renderVersion(v,i)).join('');
+}
+function restoreActivePreview(){
+  applyTheme(false);
+  render();
+}
+document.querySelectorAll('.preset').forEach(b=>b.onclick=()=>{$('rangeMin').value=0;$('rangeMax').value=b.dataset.max;$('lineStepMode').value='auto';generated=[];generate(true)});
+$('generate').onclick=()=>generate(true);$('regenerate').onclick=()=>{if(!generated.length)generate(true);else{generated[activeVersion]=makeVersion();loadEditor();render()}};$('randomSeed').onclick=()=>generate(true);$('toggleEditor').onclick=()=>{$('editor').classList.toggle('open');populateEditor();loadEditor()};$('editVersion').onchange=()=>{activeVersion=+$('editVersion').value;loadEditor();render()};$('applyEdit').onclick=applyEdit;
+$('print').onclick=async()=>{
+  const a=$('printArea');
+  const selected=activeVersion;
+  applyTheme(true);
+  a.innerHTML=renderAllVersions();
+  await nextFrame();
+  fitSheets(a);
+  await nextFrame();
+
+  const restore=()=>{
+    window.removeEventListener('afterprint',restore);
+    activeVersion=selected;
+    restoreActivePreview();
+  };
+  window.addEventListener('afterprint',restore);
+  window.print();
+  setTimeout(()=>{ if(a.querySelectorAll('.sheet').length>3) restore(); },1800);
+};
+$('download').onclick=async()=>{
+  const a=$('printArea');
+  if(typeof html2canvas==='undefined' || !window.jspdf || !window.jspdf.jsPDF){
+    alert('No se pudo cargar el generador de PDF. Usá “Imprimir / PDF”.');
+    return;
+  }
+
+  const button=$('download');
+  const oldLabel=button.textContent;
+  const selected=activeVersion;
+
+  button.disabled=true;
+  button.textContent='Generando PDF...';
+
+  applyTheme(true);
+  a.innerHTML=renderAllVersions();
+  a.classList.add('exporting');
+  await nextFrame();
+  fitSheets(a);
+  await nextFrame();
+
+  try{
+    const sheets=[...a.querySelectorAll('.sheet')];
+    const {jsPDF}=window.jspdf;
+    const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
+
+    for(let i=0;i<sheets.length;i++){
+      if(i>0)pdf.addPage('a4','portrait');
+
+      const canvas=await html2canvas(sheets[i],{
+        scale:2,
+        useCORS:true,
+        backgroundColor:'#ffffff',
+        logging:false,
+        scrollX:0,
+        scrollY:0,
+        windowWidth:Math.max(document.documentElement.clientWidth,1200)
+      });
+
+      const img=canvas.toDataURL('image/jpeg',0.96);
+      pdf.addImage(img,'JPEG',0,0,210,297,undefined,'FAST');
+      canvas.width=1;
+      canvas.height=1;
+    }
+
+    pdf.save(`fabrica_numeracion_${rangeInfo().max}_${$('colorMode').value==='gray'?'grises':'color'}.pdf`);
+  }catch(err){
+    console.error(err);
+    alert('Hubo un problema al generar el PDF. Probá con “Imprimir / PDF”.');
+  }finally{
+    a.classList.remove('exporting');
+    activeVersion=selected;
+    restoreActivePreview();
+    button.disabled=false;
+    button.textContent=oldLabel;
+  }
+};
+applyTheme(false);
+generate(true);
+['colorMode','previewMode'].forEach(id=>{
+  const el=$(id);
+  if(el){
+    el.addEventListener('change',()=>{ applyTheme(false); render(); });
+  }
+});
+})();
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>

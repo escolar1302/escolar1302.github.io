@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sumas con cartas - Modo Juego</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL13MMLPRV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VL13MMLPRV');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ESTILOS GENERALES */
+    body { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: #dbe9d8; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+    header { background-color: #2c3e50; padding: 10px 0; font-family: 'Roboto', sans-serif; width: 100%; box-sizing: border-box; flex-shrink: 0; z-index: 1000; position: sticky; top: 0; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+    nav { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    
+    .container { text-align: center; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 95%; width: 750px; margin-top: 20px; margin-bottom: 20px; position: relative; }
+    h1 { margin-top: 0; font-size: 1.8rem; color: #2c3e50; }
+
+    /* PANTALLA DE INICIO (SELECCIÓN DE MODO) */
+    #pantalla-inicio { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 30px 0; }
+    .btn-modo { background-color: #3498db; color: white; border: none; padding: 15px 30px; border-radius: 30px; font-size: 1.3rem; font-weight: bold; cursor: pointer; transition: transform 0.2s, background-color 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.2); width: 80%; max-width: 400px; }
+    .btn-modo:hover { transform: scale(1.05); }
+    #btn-modo-carpincho { background-color: #27ae60; }
+    #btn-modo-carpincho:hover { background-color: #2ecc71; }
+    #btn-modo-tucan { background-color: #e67e22; }
+    #btn-modo-tucan:hover { background-color: #f39c12; }
+    .descripcion-modo { font-size: 1rem; color: #7f8c8d; margin-top: -10px; margin-bottom: 10px; }
+
+    /* BARRA DE PROGRESO (HUELLAS) */
+    .progreso-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; font-size: 2rem; }
+    .huella { transition: all 0.3s ease; opacity: 0.2; filter: grayscale(100%); }
+    .huella.activa { opacity: 1; filter: grayscale(0%); transform: scale(1.1); color: #27ae60; }
+
+    /* MINI ALBUM DE TROFEOS (AHORA ARRIBA) */
+    .mini-album { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; border-bottom: 2px dashed #ecf0f1; padding-bottom: 15px; }
+    .mini-trofeo { width: 45px; height: 45px; border-radius: 50%; background-color: #ecf0f1; border: 2px dashed #bdc3c7; display: flex; justify-content: center; align-items: center; font-weight: bold; color: #bdc3c7; font-size: 1.2rem; transition: all 0.4s; }
+    .mini-trofeo img { width: 100%; height: 100%; object-fit: contain; display: none; transform: scale(1.2); }
+    .mini-trofeo.desbloqueado { border: 2px solid #f1c40f; background-color: #fff; box-shadow: 0 0 10px rgba(241, 196, 15, 0.4); }
+    .mini-trofeo.desbloqueado img { display: block; }
+    .mini-trofeo.desbloqueado span { display: none; }
+
+    /* ZONA DE ECUACIÓN Y CARTAS */
+    .ecuacion-wrapper { display: flex; align-items: center; justify-content: center; gap: 10px; background-color: #f0e9df; padding: 15px; margin: 10px 0; border-radius: 10px; }
+    .suma { display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap; min-height: 150px; }
+    .carta img, .hueco-carta img { width: 90px; height: auto; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: block; }
+    .hueco-carta { width: 90px; height: 130px; border: 2px dashed #888; border-radius: 8px; background-color: rgba(255,255,255,0.5); display: flex; justify-content: center; align-items: center; font-size: 2.5rem; font-weight: bold; color: #888; box-sizing: border-box; }
+    .signo { font-size: 2.5rem; font-weight: bold; color: #333; }
+    .resultado-texto { font-size: 3rem; font-weight: bold; color: #2c3e50; min-width: 60px; }
+    .resultado-incognita { color: #e67e22; }
+
+    #btn-reset { background-color: #e74c3c; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: transform 0.2s; }
+    #btn-reset:hover { background-color: #c0392b; transform: rotate(-45deg); }
+    #btn-reset:active { transform: scale(0.9); }
+
+    .teclado { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+    .btn-numero { width: 50px; height: 50px; font-size: 1.2rem; font-weight: bold; background-color: #ecf0f1; border: 2px solid #bdc3c7; border-radius: 10px; cursor: pointer; color: #2c3e50; }
+    .btn-numero:hover { background-color: #e0e6ed; border-color: #95a5a6; }
+
+    .cartas-opciones { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .piloto-carta { position: relative; width: 75px; height: 110px; cursor: pointer; transition: transform 0.2s; }
+    .piloto-carta:hover { transform: translateY(-5px); }
+    .piloto-carta img { width: 100%; height: 100%; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); object-fit: contain; }
+    .piloto-vacio { opacity: 0.3; pointer-events: none; filter: grayscale(100%); }
+
+    /* MODAL / VENTANA DE PREMIO */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; visibility: hidden; transition: opacity 0.3s; }
+    .modal-overlay.visible { opacity: 1; visibility: visible; }
+    .modal-content { background-color: white; padding: 30px; border-radius: 20px; text-align: center; max-width: 90%; width: 450px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: scale(0.8); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .modal-overlay.visible .modal-content { transform: scale(1); }
+    .modal-img { width: 250px; height: 250px; object-fit: contain; margin: 15px 0; animation: flotar 3s ease-in-out infinite; }
+    .modal-titulo { font-size: 2rem; color: #2c3e50; margin-top: 0; }
+    .modal-btn { background-color: #27ae60; color: white; border: none; padding: 12px 25px; border-radius: 30px; font-size: 1.2rem; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+    .modal-btn:hover { background-color: #2ecc71; }
+
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px) rotate(-3deg); } 75% { transform: translateX(6px) rotate(3deg); } }
+    .shake { animation: shake 0.4s ease-in-out; }
+    @keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+    .hidden { display: none !important; }
+    #mensaje { margin: 15px 0; font-size: 1.2rem; font-weight: bold; min-height: 28px;}
+
+    @media (max-width: 600px) {
+        .carta img, .hueco-carta img { width: 65px; }
+        .hueco-carta { width: 65px; height: 95px; font-size: 1.8rem; }
+        .signo { font-size: 1.8rem; }
+        .resultado-texto { font-size: 2.2rem; }
+        .piloto-carta { width: 60px; height: 88px; }
+        .btn-modo { font-size: 1.1rem; padding: 12px 20px; }
+        .mini-trofeo { width: 35px; height: 35px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="index.html" style="text-decoration: none; display: flex; align-items: center;">
+            <img src="../logo.png" alt="Recursos Educativos" style="height: 60px; width: auto;">
+        </a>
+        <div class="nav-links" style="display: flex; gap: 20px; align-items: center;">
+            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">Volver a Práctica</a>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+  
+  <div id="pantalla-inicio">
+      <h1>¡Aventura en la Reserva!</h1>
+      <p style="font-size: 1.2rem; color: #34495e;">Elegí cómo querés recorrer el monte hoy:</p>
+      
+      <button id="btn-modo-carpincho" class="btn-modo">El paso del Carpincho</button>
+      <p class="descripcion-modo">Juntá 5 aciertos a tu ritmo para descubrir animales.</p>
+
+      <button id="btn-modo-tucan" class="btn-modo">El vuelo del Tucán</button>
+      <p class="descripcion-modo">¡Juntá 5 aciertos seguidos con mucha atención!</p>
+  </div>
+
+  <div id="pantalla-juego" class="hidden">
+      <h1 id="titulo-nivel" style="margin-bottom: 5px;">Nivel 1</h1>
+      
+      <div class="progreso-container" id="barra-progreso">
+          <span class="huella">🐾</span>
+          <span class="huella">🐾</span>
+          <span class="huella">🐾</span>
+          <span class="huella">🐾</span>
+          <span class="huella">🐾</span>
+      </div>
+
+      <div id="mini-album" class="mini-album">
+          <div class="mini-trofeo" id="trofeo-1"><span>?</span></div>
+          <div class="mini-trofeo" id="trofeo-2"><span>?</span></div>
+          <div class="mini-trofeo" id="trofeo-3"><span>?</span></div>
+          <div class="mini-trofeo" id="trofeo-4"><span>?</span></div>
+          <div class="mini-trofeo" id="trofeo-5"><span>?</span></div>
+      </div>
+
+      <div class="ecuacion-wrapper">
+          <div class="suma" id="zona-ecuacion"></div>
+          <button id="btn-reset" class="hidden" title="Limpiar cartas">↺</button>
+      </div>
+
+      <div id="mensaje"></div>
+
+      <div id="teclado" class="teclado hidden"></div>
+      <div id="contenedor-cartas" class="cartas-opciones hidden"></div>
+  </div>
+
+</div>
+
+<div id="modal-premio" class="modal-overlay">
+    <div class="modal-content">
+        <h2 id="modal-titulo" class="modal-titulo">¡Nivel Superado!</h2>
+        <p id="modal-texto" style="font-size: 1.2rem; color: #7f8c8d;">¡Encontraste a un nuevo amigo!</p>
+        <img id="modal-img" class="modal-img" src="" alt="Animal descubierto">
+        <br>
+        <button id="btn-siguiente-nivel" class="modal-btn">¡Ir al siguiente nivel!</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ELEMENTOS DEL DOM
+  const pantallaInicio = document.getElementById('pantalla-inicio');
+  const pantallaJuego = document.getElementById('pantalla-juego');
+  const zonaEcuacion = document.getElementById('zona-ecuacion');
+  const mensaje = document.getElementById('mensaje');
+  const teclado = document.getElementById('teclado');
+  const contenedorCartas = document.getElementById('contenedor-cartas');
+  const btnReset = document.getElementById('btn-reset');
+  const tituloNivel = document.getElementById('titulo-nivel');
+  const huellas = document.querySelectorAll('.huella');
+  
+  // MODAL
+  const modalPremio = document.getElementById('modal-premio');
+  const modalImg = document.getElementById('modal-img');
+  const modalTitulo = document.getElementById('modal-titulo');
+  const modalTexto = document.getElementById('modal-texto');
+  const btnSiguienteNivel = document.getElementById('btn-siguiente-nivel');
+
+  // VARIABLES DE JUEGO
+  let modoJuego = ''; 
+  let nivelActual = 1;
+  let aciertos = 0;
+  let valor1 = 0, valor2 = 0, sumaCorrecta = 0;
+  let juegoBloqueado = false;
+  
+  // VARIABLES NIVEL 5
+  let estadoPilones = {}; 
+  let slot1Lleno = false, slot2Lleno = false;
+  let valorSlot1 = 0, valorSlot2 = 0;
+
+  // DATOS DE PREMIOS
+  const premios = {
+      1: { animal: 'Carpincho', img: '01_carpincho.png' },
+      2: { animal: 'Tucán', img: '02_tucan.png' },
+      3: { animal: 'Yacaré', img: '03_yacare.png' },
+      4: { animal: 'Oso Hormiguero', img: '04_oso_hormiguero.png' },
+      5: { animal: 'Yaguareté', img: '05_yaguarete.png' }
+  };
+
+  // ------------------------------------------
+  // INICIO Y CONFIGURACIÓN
+  // ------------------------------------------
+  document.getElementById('btn-modo-carpincho').addEventListener('click', () => iniciarAventura('carpincho'));
+  document.getElementById('btn-modo-tucan').addEventListener('click', () => iniciarAventura('tucan'));
+
+  function iniciarAventura(modo) {
+      modoJuego = modo;
+      pantallaInicio.classList.add('hidden');
+      pantallaJuego.classList.remove('hidden');
+      nivelActual = 1;
+      prepararNivel();
+  }
+
+  function prepararNivel() {
+      aciertos = 0;
+      actualizarBarraProgreso();
+      tituloNivel.textContent = `Nivel ${nivelActual}`;
+      generarCuenta();
+  }
+
+  function actualizarBarraProgreso() {
+      huellas.forEach((h, index) => {
+          if (index < aciertos) h.classList.add('activa');
+          else h.classList.remove('activa');
+      });
+  }
+
+  // ------------------------------------------
+  // GENERACIÓN DE CUENTAS
+  // ------------------------------------------
+  function generarCuenta() {
+      mensaje.textContent = '';
+      juegoBloqueado = false;
+      btnReset.classList.add('hidden');
+
+      if (nivelActual === 1 || nivelActual === 2) {
+          teclado.classList.remove('hidden');
+          contenedorCartas.classList.add('hidden');
+          
+          let maxCarta = (nivelActual === 1) ? 5 : 9;
+          valor1 = Math.floor(Math.random() * maxCarta) + 1;
+          valor2 = Math.floor(Math.random() * maxCarta) + 1;
+          sumaCorrecta = valor1 + valor2;
+          
+          crearTeclado((nivelActual === 1) ? 10 : 18);
+
+          zonaEcuacion.innerHTML = `
+              <div class="carta"><img src="0${valor1}_espada.jpg" alt="Carta"></div>
+              <div class="signo">+</div>
+              <div class="carta"><img src="0${valor2}_espada.jpg" alt="Carta"></div>
+              <div class="signo">=</div>
+              <div class="resultado-texto resultado-incognita" id="texto-resultado">?</div>
+          `;
+      } 
+      else if (nivelActual === 3 || nivelActual === 4) {
+          teclado.classList.add('hidden');
+          contenedorCartas.classList.remove('hidden');
+          crearPilones();
+
+          if (nivelActual === 3) {
+              sumaCorrecta = Math.floor(Math.random() * 9) + 2; 
+              valor1 = Math.floor(Math.random() * (sumaCorrecta - 1)) + 1; 
+              valor2 = sumaCorrecta - valor1;
+          } else {
+              sumaCorrecta = Math.floor(Math.random() * 8) + 11; 
+              const minV1 = Math.max(1, sumaCorrecta - 9);
+              valor1 = Math.floor(Math.random() * (9 - minV1 + 1)) + minV1;
+              valor2 = sumaCorrecta - valor1;
+          }
+
+          zonaEcuacion.innerHTML = `
+              <div class="carta"><img src="0${valor1}_espada.jpg" alt="Carta"></div>
+              <div class="signo">+</div>
+              <div class="hueco-carta" id="incognita-box">?</div>
+              <div class="signo">=</div>
+              <div class="resultado-texto">${sumaCorrecta}</div>
+          `;
+      }
+      else if (nivelActual === 5) {
+          teclado.classList.add('hidden');
+          contenedorCartas.classList.remove('hidden');
+          btnReset.classList.remove('hidden');
+          crearPilones();
+          reiniciarPilones();
+          
+          slot1Lleno = false; slot2Lleno = false;
+          valorSlot1 = 0; valorSlot2 = 0;
+          sumaCorrecta = Math.floor(Math.random() * 15) + 4;
+
+          zonaEcuacion.innerHTML = `
+              <div class="hueco-carta" id="slot-1">?</div>
+              <div class="signo">+</div>
+              <div class="hueco-carta" id="slot-2">?</div>
+              <div class="signo">=</div>
+              <div class="resultado-texto">${sumaCorrecta}</div>
+          `;
+      }
+  }
+
+  // ------------------------------------------
+  // INTERFAZ DE CARTAS Y TECLADO
+  // ------------------------------------------
+  function crearTeclado(maxSuma) {
+      teclado.innerHTML = '';
+      for (let i = 2; i <= maxSuma; i++) {
+          const boton = document.createElement('button');
+          boton.classList.add('btn-numero');
+          boton.textContent = i;
+          boton.addEventListener('click', () => procesarRespuesta(i === sumaCorrecta, i));
+          teclado.appendChild(boton);
+      }
+  }
+
+  function crearPilones() {
+      contenedorCartas.innerHTML = '';
+      for(let i = 1; i <= 9; i++) {
+          const div = document.createElement('div');
+          div.classList.add('piloto-carta');
+          div.setAttribute('data-valor', i);
+          div.innerHTML = `<img src="0${i}_oro.jpg" alt="${i}">`;
+          div.addEventListener('click', () => clickCartaPiloto(i, div));
+          contenedorCartas.appendChild(div);
+      }
+  }
+
+  function reiniciarPilones() {
+      estadoPilones = {1:2, 2:2, 3:2, 4:2, 5:2, 6:2, 7:2, 8:2, 9:2};
+      document.querySelectorAll('.piloto-carta').forEach(pilon => {
+          pilon.classList.remove('piloto-vacio');
+          pilon.querySelector('img').src = `0${pilon.getAttribute('data-valor')}_oro.jpg`;
+      });
+  }
+
+  function clickCartaPiloto(valorElegido, elementoPilon) {
+      if (juegoBloqueado) return;
+
+      if (nivelActual === 3 || nivelActual === 4) {
+          if (valorElegido === valor2) {
+              const destino = document.getElementById('incognita-box');
+              animarCarta(elementoPilon, destino, valorElegido, 'oro', () => {
+                  llenarHueco(destino, valor2, 'oro');
+                  procesarRespuesta(true);
+              });
+          } else {
+              elementoPilon.classList.add('shake');
+              setTimeout(() => elementoPilon.classList.remove('shake'), 400);
+              procesarRespuesta(false);
+          }
+      } 
+      else if (nivelActual === 5) {
+          if (estadoPilones[valorElegido] === 0 || (slot1Lleno && slot2Lleno)) return;
+
+          let palo = (estadoPilones[valorElegido] === 2) ? 'oro' : 'espada';
+          let destino = !slot1Lleno ? document.getElementById('slot-1') : document.getElementById('slot-2');
+          
+          if (!slot1Lleno) { slot1Lleno = true; valorSlot1 = valorElegido; } 
+          else { slot2Lleno = true; valorSlot2 = valorElegido; }
+
+          animarCarta(elementoPilon, destino, valorElegido, palo, () => {
+              llenarHueco(destino, valorElegido, palo);
+              if (slot1Lleno && slot2Lleno) {
+                  const esCorrecto = (valorSlot1 + valorSlot2 === sumaCorrecta);
+                  if(!esCorrecto) {
+                      document.getElementById('slot-1').classList.add('shake');
+                      document.getElementById('slot-2').classList.add('shake');
+                      setTimeout(() => {
+                          document.getElementById('slot-1').classList.remove('shake');
+                          document.getElementById('slot-2').classList.remove('shake');
+                      }, 400);
+                  }
+                  procesarRespuesta(esCorrecto, valorSlot1 + valorSlot2);
+              } else {
+                  juegoBloqueado = false; // Parche Nivel 5
+              }
+          });
+
+          estadoPilones[valorElegido]--;
+          if (estadoPilones[valorElegido] === 1) elementoPilon.querySelector('img').src = `0${valorElegido}_espada.jpg`;
+          else elementoPilon.classList.add('piloto-vacio');
+      }
+  }
+
+  function animarCarta(origen, destino, valor, palo, callback) {
+      juegoBloqueado = true; 
+      const rectOrigen = origen.getBoundingClientRect();
+      const rectDestino = destino.getBoundingClientRect();
+      const clon = document.createElement('img');
+      clon.src = `0${valor}_${palo}.jpg`;
+      clon.style.position = 'fixed'; clon.style.top = rectOrigen.top + 'px'; clon.style.left = rectOrigen.left + 'px';
+      clon.style.width = rectOrigen.width + 'px'; clon.style.height = rectOrigen.height + 'px';
+      clon.style.margin = '0'; clon.style.zIndex = '9999'; clon.style.transition = 'all 0.4s ease-in-out';
+      clon.style.borderRadius = '5px'; clon.style.objectFit = 'contain';
+      document.body.appendChild(clon);
+      clon.getBoundingClientRect(); 
+      clon.style.top = rectDestino.top + 'px'; clon.style.left = rectDestino.left + 'px';
+      clon.style.width = rectDestino.width + 'px'; clon.style.height = rectDestino.height + 'px';
+      clon.addEventListener('transitionend', () => { clon.remove(); callback(); }, { once: true });
+  }
+
+  function llenarHueco(elem, valor, palo) { elem.style.border = 'none'; elem.style.backgroundColor = 'transparent'; elem.innerHTML = `<img src="0${valor}_${palo}.jpg" style="width:100%; height:100%; object-fit:contain; border-radius:5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">`; }
+  
+  btnReset.addEventListener('click', () => {
+      if (juegoBloqueado) return;
+      slot1Lleno = false; slot2Lleno = false; valorSlot1 = 0; valorSlot2 = 0;
+      mensaje.textContent = "";
+      document.getElementById('slot-1').innerHTML = '?'; document.getElementById('slot-1').style = "border: 2px dashed #888; background-color: rgba(255,255,255,0.5);";
+      document.getElementById('slot-2').innerHTML = '?'; document.getElementById('slot-2').style = "border: 2px dashed #888; background-color: rgba(255,255,255,0.5);";
+      reiniciarPilones();
+  });
+
+  // ------------------------------------------
+  // LÓGICA CENTRAL DE ACIERTOS Y ERRORES
+  // ------------------------------------------
+  function procesarRespuesta(esCorrecta, sumaHecha = null) {
+      if (esCorrecta) {
+          aciertos++;
+          actualizarBarraProgreso();
+          juegoBloqueado = true; 
+          
+          if (nivelActual <= 2) {
+              const textoRes = document.getElementById('texto-resultado');
+              textoRes.textContent = sumaCorrecta; textoRes.style.color = "#27ae60"; textoRes.classList.remove('resultado-incognita');
+          }
+          
+          mensaje.textContent = "¡Excelente!";
+          mensaje.style.color = "#27ae60";
+
+          setTimeout(() => {
+              if (aciertos === 5) {
+                  mostrarPremio();
+              } else {
+                  generarCuenta(); 
+              }
+          }, 1200); 
+
+      } else {
+          juegoBloqueado = false; 
+          if (modoJuego === 'tucan') {
+              aciertos = 0;
+              actualizarBarraProgreso();
+              mensaje.textContent = "¡Ups! Empezamos las huellitas de nuevo.";
+              mensaje.style.color = "#e67e22"; 
+              
+              if(nivelActual === 5 && sumaHecha !== null) {
+                 mensaje.textContent = `Da ${sumaHecha}. ¡Empezamos las huellitas de nuevo! Usa ↺`;
+              }
+          } else {
+              mensaje.textContent = "¡Esa no es! Sigue intentando.";
+              mensaje.style.color = "#c0392b";
+              if(nivelActual === 5 && sumaHecha !== null) {
+                 mensaje.textContent = `La suma da ${sumaHecha}. Usa el botón ↺ para limpiar.`;
+              }
+          }
+      }
+  }
+
+  // ------------------------------------------
+  // PREMIOS Y TRANSICIONES
+  // ------------------------------------------
+  function mostrarPremio() {
+      if (nivelActual <= 5) {
+          modalTitulo.textContent = `¡Nivel ${nivelActual} Superado!`;
+          modalTexto.textContent = `¡Descubriste al ${premios[nivelActual].animal}!`;
+          modalImg.src = premios[nivelActual].img;
+          
+          if (nivelActual === 5) {
+              btnSiguienteNivel.textContent = "¡Ver la Reserva Completa!";
+          } else {
+              btnSiguienteNivel.textContent = "¡Ir al siguiente nivel!";
+          }
+          modalPremio.classList.add('visible');
+      }
+  }
+
+  btnSiguienteNivel.addEventListener('click', () => {
+      modalPremio.classList.remove('visible');
+      
+      // Enciende la miniatura en el mini-album antes de avanzar
+      const trofeoActual = document.getElementById(`trofeo-${nivelActual}`);
+      trofeoActual.innerHTML = `<img src="${premios[nivelActual].img}" alt="Trofeo">`;
+      trofeoActual.classList.add('desbloqueado');
+
+      if (nivelActual < 5) {
+          nivelActual++;
+          prepararNivel();
+      } else {
+          // PANTALLA FINAL CON BOTÓN DE DESCARGA
+          pantallaJuego.innerHTML = `
+              <h1 style="font-size: 2.5rem; color: #27ae60;">¡Reserva Natural Completa!</h1>
+              <p style="font-size: 1.3rem;">¡Felicitaciones! Juntaste a todos los animales del monte.</p>
+              <img src="final_reserva.png" style="width: 100%; max-width: 500px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin: 20px 0;">
+              <br>
+              <a href="final_reserva.png" download="Mi_Reserva_Natural.png" class="btn-modo" style="background-color: #e67e22; text-decoration: none; display: inline-block; margin: 10px;">📸 Descargar Foto</a>
+              <button onclick="location.reload()" class="btn-modo" style="background-color: #3498db; margin: 10px;">Volver a jugar</button>
+          `;
+      }
+  });
+
+});
+</script>
+<div id="contenedor-pie"></div>
+
+<script>
+  fetch('/pie.html')
+    .then(response => {
+      if (response.ok) return response.text();
+      throw new Error('No se pudo cargar el pie de página');
+    })
+    .then(data => {
+      document.getElementById('contenedor-pie').innerHTML = data;
+    })
+    .catch(error => console.error('Error:', error));
+</script>
+<script src="/volver.js" defer></script>
+</body>
+</html>
