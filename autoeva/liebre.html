@@ -58,7 +58,7 @@
     <div id="app-container">
         <h1>Una liebre inteligente - Autoevaluación</h1>
         <div style="text-align: center; margin-bottom: 30px;" class="no-print">
-                            <a href="https://escolar.com.ar/2c_lengua/uli.html" target="_blank" style="background-color: var(--header-color); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.15); display: inline-block;">📖 Leer el texto original</a>
+                            <a href="/2c_lengua/uli.html" target="_blank" style="background-color: var(--header-color); color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 8px rgba(0,0,0,0.15); display: inline-block;">📖 Leer el texto original</a>
                         </div>
         <div id="datos-alumno"></div>
 
@@ -410,7 +410,7 @@
         let tituloPagina=document.querySelector('h1').innerText;
         let packageHTML="<h3>"+tituloPagina+"</h3>"+bodyCentral.innerHTML;
         localStorage.setItem('import_content',packageHTML);
-        window.open('https://escolar.com.ar/editor.html','Editor de Textos');
+        window.open('/editor.html','Editor de Textos');
     });
     
     fabPrint.addEventListener('click',()=>window.print());

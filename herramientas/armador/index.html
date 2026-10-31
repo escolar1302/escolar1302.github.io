@@ -217,16 +217,16 @@
   const origen = params.get('origen');
   const back = document.getElementById('backLink');
   const destinos = {
-    matematica: { texto: '← Volver a Matemática', url: 'https://escolar.com.ar/matematica.html' },
-    lengua: { texto: '← Volver a Lengua', url: 'https://escolar.com.ar/lengua.html' },
-    recursos: { texto: '← Volver a Recursos', url: 'https://escolar.com.ar/recursos.html' },
+    matematica: { texto: '← Volver a Matemática', url: '/matematica.html' },
+    lengua: { texto: '← Volver a Lengua', url: '/lengua.html' },
+    recursos: { texto: '← Volver a Recursos', url: '/recursos.html' },
     herramientas: { texto: '← Volver a Herramientas', url: '../' }
   };
   const destino = destinos[origen] || destinos.herramientas;
   if (back) { back.textContent = destino.texto; back.href = destino.url; }
 })();
 
-fetch('https://escolar.com.ar/pie.html')
+fetch('/pie.html')
   .then(response => {
     if (!response.ok) throw new Error('No se pudo cargar el pie de página');
     return response.text();

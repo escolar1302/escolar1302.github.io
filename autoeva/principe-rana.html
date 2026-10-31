@@ -156,7 +156,7 @@ function activarModoPapel() {
         let tituloPagina=document.querySelector('h1').innerText;
         let packageHTML="<h3>"+tituloPagina+"</h3>"+bodyCentral.innerHTML;
         localStorage.setItem('import_content',packageHTML);
-        window.open('https://escolar.com.ar/editor.html','Editor de Textos');
+        window.open('/editor.html','Editor de Textos');
     });
     
     fabPrint.addEventListener('click',()=>window.print());
