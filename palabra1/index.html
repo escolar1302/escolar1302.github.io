@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Palabras</title>
     <link rel="stylesheet" href="style.css">
+<style>
+/* Con la barra del sitio (logo + Volver) la cabecera propia del juego queda debajo */
+html.barra-sitio .top-header{top:48px;justify-content:space-around}
+html.barra-sitio body{padding-top:148px}
+</style>
 </head>
 <body>
     <header class="top-header">
-        <a href="../" class="logo-link" title="Volver al inicio">
-            <img src="logo.png" alt="Logo Escolar" id="logo">
-        </a>
-        
         <div class="score-board">
             <span class="correct-score">Correctas: <strong id="count-correct">0</strong></span>
             <span class="incorrect-score">Incorrectas: <strong id="count-incorrect">0</strong></span>

@@ -12,26 +12,14 @@
       gtag('js', new Date());
       gtag('config', 'G-VL13MMLPRV');
     </script>
+<style>
+/* Con la barra del sitio (logo + Volver) la cabecera propia del juego queda debajo */
+html.barra-sitio .top-header{top:48px;justify-content:space-around}
+html.barra-sitio body{padding-top:148px}
+</style>
 </head>
 <body>
     <header class="top-header">
-        <div style="display:flex; align-items:center; gap:18px;">
-    <a href="../" class="logo-link" title="Volver al inicio">
-        <img src="logo.png" alt="Logo Escolar" id="logo">
-    </a>
-
-    <a href="../lengua.html"
-       style="color:var(--green);
-              text-decoration:none;
-              font-size:0.9rem;
-              font-weight:bold;
-              border-left:1px solid #bdbdbd;
-              padding-left:18px;
-              white-space:nowrap;">
-        ⬅ Volver a Lengua
-    </a>
-</div>
-        
         <div class="score-board">
             <span class="correct-score">Correctas: <strong id="count-correct">0</strong></span>
             <span class="incorrect-score">Incorrectas: <strong id="count-incorrect">0</strong></span>

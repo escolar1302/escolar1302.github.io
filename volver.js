@@ -60,7 +60,12 @@
       '<a class="logo" href="' + INICIO + '" aria-label="Ir al inicio de Escolar"><img src="/logo.png" alt="Escolar"></a>' +
       '<a class="volver" id="bs-volver" href="' + INICIO + '">⬅ ' + TXT_INICIO + '</a>' +
       '</div>';
-    document.body.insertBefore(host, document.body.firstChild);
+    // Si el <body> de la página es flex o grid, la barra no puede ser un hijo suyo (ocuparía una columna
+    // y se achicaría): se coloca justo antes del <body>, como bloque propio a todo el ancho.
+    var dispBody = getComputedStyle(document.body).display;
+    if (/flex|grid/.test(dispBody)) document.documentElement.insertBefore(host, document.body);
+    else document.body.insertBefore(host, document.body.firstChild);
+    document.documentElement.classList.add('barra-sitio');   // las páginas con cabecera propia pueden bajarla 48px
 
     // Pegada arriba y a todo el ancho, aunque el <body> de la página tenga margen o relleno.
     function fijar(prop, val) { host.style.setProperty(prop, val, 'important'); }
