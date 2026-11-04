@@ -145,6 +145,12 @@ const CUENTOS = [
   { slug: "la_ventana_abierta", titulo: "La ventana abierta",
   autor: "Saki", genero: "Humor",
   enlaces: { cuento: "https://ciudadseva.com/texto/la-ventana-abierta/" } },
+	{ slug: "el_traje_nuevo_del_emperador", titulo: "El traje nuevo del emperador",
+  autor: "Hans Christian Andersen", genero: "Maravilloso o tradicional",
+  textos: 2,
+  etiquetas: { texto2: "Escuchar audio" },
+  enlaces: { texto2: "https://escolar.com.ar/para_libros/traje_emperador/el_traje_nuevo.mp3" },
+  autoevaluacion: "https://escolar.com.ar/autoeva/el_traje_nuevo_del_emperador.html" },
 ];
 
 // ------------------------------------------------------------
