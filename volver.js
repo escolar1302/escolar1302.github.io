@@ -25,6 +25,8 @@
     '.logo img{display:block;height:36px;width:auto}' +
     '.volver{min-width:0;color:#f1c40f;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;' +
     'padding:7px 4px 7px 16px;border-left:1px solid #7f8c8d}' +
+    '.logo2{display:flex;flex:none;line-height:0;margin-left:auto}' +
+    '.logo2 img{display:block;height:36px;width:auto}' +
     'a:hover{text-decoration:underline}' +
     'a:focus-visible{outline:3px solid #f1c40f;outline-offset:2px;border-radius:4px}';
 
@@ -59,6 +61,7 @@
       '<div class="barra">' +
       '<a class="logo" href="' + INICIO + '" aria-label="Ir al inicio de Escolar"><img src="/logo.png" alt="Escolar"></a>' +
       '<a class="volver" id="bs-volver" href="' + INICIO + '">⬅ ' + TXT_INICIO + '</a>' +
+      '<a class="logo2" href="https://actividades.com.ar" target="_blank" rel="noopener" aria-label="Actividades.com.ar (se abre en una pestaña nueva)"><img src="/logo2.png" alt="Actividades.com.ar"></a>' +
       '</div>';
     // Si el <body> de la página es flex o grid, la barra no puede ser un hijo suyo (ocuparía una columna
     // y se achicaría): se coloca justo antes del <body>, como bloque propio a todo el ancho.
