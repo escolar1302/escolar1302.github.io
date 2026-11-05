@@ -71,6 +71,28 @@
             .ficha-body table { table-layout: auto !important; }
         }
     </style>
+    <style>
+        /* Bandoneones sutiles (mismo estilo que la portada): bordes finos, color solo en títulos y flechas */
+        @media screen {
+            .ficha-card { border: 1px solid #d5e3d8; border-radius: 12px; box-shadow: none; transition: border-color .15s, box-shadow .15s, transform .15s; }
+            .ficha-card:hover { transform: translateY(-1px); border-color: var(--header-color); }
+            .ficha-card.selected-for-print { border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(255, 112, 67, 0.18); }
+            .ficha-header { background-color: var(--card-bg); padding: 12px 14px; gap: 10px; }
+            .ficha-header::before { content: "▸"; color: var(--header-color); display: inline-block; transition: transform .2s; }
+            .ficha-card.open .ficha-header::before { transform: rotate(90deg); }
+            .ficha-card.open .ficha-header { border-bottom: 1px solid #d5e3d8; }
+            .ficha-title { color: var(--title-color); font-weight: 650; font-size: 1.05rem; }
+            .btn-send-editor { background: rgba(39, 174, 96, 0.12); color: var(--title-color); }
+            .btn-send-editor:hover { background: rgba(39, 174, 96, 0.25); transform: scale(1.08); }
+            .custom-checkbox { border: 2px solid #b7d3bf; transition: border-color .15s; }
+            .custom-checkbox:hover { border-color: var(--header-color); }
+            .ficha-card.selected-for-print .custom-checkbox { border-color: var(--accent-color); }
+            .ficha-card.open .ficha-body { animation: fichaAbre .25s ease-out; }
+            @keyframes fichaAbre { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+        }
+        @media print { .ficha-header::before { display: none !important; } }
+        @media (prefers-reduced-motion: reduce) { .ficha-card, .ficha-card.open .ficha-body { animation: none; transition: none; } }
+    </style>
 </head>
 <body>
     <style>body{margin:0!important;padding:0!important;}</style>
