@@ -57,6 +57,8 @@
     background:var(--card);border:2px solid var(--accent);transition:transform .15s, box-shadow .15s}
   .fijo:hover,.fijo:focus-visible{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.12)}
   .fijo .ico{font-size:1.9rem;line-height:1}
+  .fijo.img{justify-content:center;padding:8px;background:transparent;border:0}
+  .fijo.img img{display:block;width:100%;max-width:220px;height:auto;aspect-ratio:354/179;border-radius:12px}
   .fijo strong{display:block;font-size:1.05rem}
   .fijo span.d{color:var(--muted);font-size:.92rem}
   .nuevo{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:99px;
@@ -144,6 +146,9 @@
       <span class="ico" aria-hidden="true">📝</span>
       <span><strong>Editor de texto</strong>
       <span class="d">Para trabajar en línea</span></span>
+    </a>
+    <a class="fijo img" href="https://actividades.com.ar" aria-label="Ir a actividades.com.ar">
+      <img src="actividades.png" alt="Actividades.com.ar" width="354" height="179">
     </a>
   </nav>
 
