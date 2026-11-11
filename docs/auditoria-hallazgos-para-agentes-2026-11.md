@@ -2,14 +2,13 @@
 
 Complemento de `auditoria-diseno-usabilidad-2026-11.md`, en un formato pensado para revisarlo con un agente de código.
 
-Este documento se generó con IA (Claude) y describe hallazgos, no órdenes de cambio. Conviene comprobar cada uno antes de actuar. Qué se arregla lo decide el dueño de los sitios.
+Este documento se generó con IA (Claude) y describe hallazgos, no órdenes de cambio. Conviene comprobar cada uno antes de actuar. Qué se arregla lo decide el dueño del sitio.
 
 ## Referencia
 
 - Fecha de las comprobaciones: 2026-11-10.
 - `escolar1302.github.io`: commit `77063bc`.
-- `actividades`: commit `f02ca5d`.
-- Los comandos se corren con bash desde la raíz del repo indicado. Si el código cambió, los números de línea y los conteos pueden no coincidir.
+- Los comandos se corren con bash desde la raíz del repo. Si el código cambió, los números de línea y los conteos pueden no coincidir.
 
 ## Grado de certeza
 
@@ -19,46 +18,42 @@ Este documento se generó con IA (Claude) y describe hallazgos, no órdenes de c
 
 ## Resumen
 
-| ID | Repo | Severidad | Certeza | Hallazgo |
-| --- | --- | --- | --- | --- |
-| ZONA-01 | escolar1302.github.io | Alta | en vivo | Zona problemas guarda el progreso de todas las páginas en la misma clave |
-| ZONA-02 | escolar1302.github.io | Alta | comando | Las opciones de Zona problemas son `div` con `onclick` |
-| ZONA-03 | escolar1302.github.io | Media | comando | Zona problemas no declara `lang` |
-| AUTO-01 | escolar1302.github.io | Alta | comando | Las opciones de las autoevaluaciones son `div` con `onclick` |
-| AUTO-02 | escolar1302.github.io | Alta | comando | La respuesta correcta se indica solo con color |
-| AUTO-03 | escolar1302.github.io | Media | comando | "Limpiar" borra el progreso sin confirmar |
-| AUTO-04 | escolar1302.github.io | Media | comando | Las autoevaluaciones no enlazan al cuento |
-| FICHA-01 | escolar1302.github.io | Alta | lectura | Fichas con el botón "Abrir" oculto: el acordeón solo abre con clic en un `div` |
-| FICHA-02 | escolar1302.github.io | Alta | lectura | La casilla para seleccionar fichas es un `div` con `onclick` |
-| FICHA-03 | escolar1302.github.io | Media | comando | La consigna dice "Presionar ▸ Abrir", pero el botón está oculto |
-| LENG-01 | escolar1302.github.io | Alta | comando | El índice de `2c_lengua_2` manda a ciudadseva.com |
-| LENG-02 | escolar1302.github.io | Media | comando | Iframes de YouTube con ancho fijo de 560 px |
-| DIS-01 | escolar1302.github.io | Alta | comando | Diseño curricular no tiene ninguna regla de foco |
-| DIS-02 | escolar1302.github.io | Alta | comando | Las celdas seleccionables de diseño curricular son `div` con `onclick` |
-| DIS-03 | escolar1302.github.io | Alta | comando | En diseño curricular el color va por ciclo y no por área |
-| JUEGO-01 | escolar1302.github.io | Alta | en vivo | Repertorios oculta los controles táctiles desde 601 px |
-| JUEGO-02 | escolar1302.github.io | Alta | lectura | Concartas solo funciona arrastrando |
-| JUEGO-03 | escolar1302.github.io | Media | comando | "Reiniciar" del rosco no confirma |
-| NAV-01 | escolar1302.github.io | Media | comando | El sitemap anuncia `/buscar.html`, que no existe |
-| NAV-02 | escolar1302.github.io | Media | comando | `volver.js` descarga la página anterior para leer su título |
-| PESO-01 | escolar1302.github.io | Media | comando | Páginas HTML de más de 1 MB |
-| PESO-02 | escolar1302.github.io | Media | comando | `logo1.png` pesa 520 KB |
-| COLOR-01 | escolar1302.github.io | Alta | lectura | Fondos #27AE60 (contraste 2,87:1 con blanco) |
-| COLOR-02 | escolar1302.github.io | Alta | lectura | Fondos #E67E22 (contraste 2,85:1 con blanco) |
-| COLOR-03 | escolar1302.github.io | Alta | lectura | Fondos #FF7043 (contraste 2,74:1 con blanco) |
-| TOOL-01 | escolar1302.github.io | Media | comando | Numeración y operaciones no guardan el estado |
-| ACT-01 | actividades | Alta | comando | PDF de más de 5 MB sin aviso de peso |
-| ACT-02 | actividades | Alta | en vivo | Los enlaces de los paneles cerrados reciben foco |
-| ACT-03 | actividades | Media | comando | `actividades` no tiene `h1` ni `<main>` |
-| HUER-01 | escolar1302.github.io | Media | lectura | 65 páginas sin enlaces entrantes |
-| ALT-01 | escolar1302.github.io | Media | comando | 280 de 665 imágenes sin atributo `alt` |
-| MOVIL-01 | escolar1302.github.io | Media | en vivo | Herramientas y Secuencias se desbordan a 375 px |
+| ID | Severidad | Certeza | Hallazgo |
+| --- | --- | --- | --- |
+| ZONA-01 | Alta | en vivo | Zona problemas guarda el progreso de todas las páginas en la misma clave |
+| ZONA-02 | Alta | comando | Las opciones de Zona problemas son `div` con `onclick` |
+| ZONA-03 | Media | comando | Zona problemas no declara `lang` |
+| AUTO-01 | Alta | comando | Las opciones de las autoevaluaciones son `div` con `onclick` |
+| AUTO-02 | Alta | comando | La respuesta correcta se indica solo con color |
+| AUTO-03 | Media | comando | "Limpiar" borra el progreso sin confirmar |
+| AUTO-04 | Media | comando | Las autoevaluaciones no enlazan al cuento |
+| FICHA-01 | Alta | lectura | Fichas con el botón "Abrir" oculto: el acordeón solo abre con clic en un `div` |
+| FICHA-02 | Alta | lectura | La casilla para seleccionar fichas es un `div` con `onclick` |
+| FICHA-03 | Media | comando | La consigna dice "Presionar ▸ Abrir", pero el botón está oculto |
+| LENG-01 | Alta | comando | El índice de `2c_lengua_2` manda a ciudadseva.com |
+| LENG-02 | Media | comando | Iframes de YouTube con ancho fijo de 560 px |
+| DIS-01 | Alta | comando | Diseño curricular no tiene ninguna regla de foco |
+| DIS-02 | Alta | comando | Las celdas seleccionables de diseño curricular son `div` con `onclick` |
+| DIS-03 | Alta | comando | En diseño curricular el color va por ciclo y no por área |
+| JUEGO-01 | Alta | en vivo | Repertorios oculta los controles táctiles desde 601 px |
+| JUEGO-02 | Alta | lectura | Concartas solo funciona arrastrando |
+| JUEGO-03 | Media | comando | "Reiniciar" del rosco no confirma |
+| NAV-01 | Media | comando | El sitemap anuncia `/buscar.html`, que no existe |
+| NAV-02 | Media | comando | `volver.js` descarga la página anterior para leer su título |
+| PESO-01 | Media | comando | Páginas HTML de más de 1 MB |
+| PESO-02 | Media | comando | `logo1.png` pesa 520 KB |
+| COLOR-01 | Alta | lectura | Fondos #27AE60 (contraste 2,87:1 con blanco) |
+| COLOR-02 | Alta | lectura | Fondos #E67E22 (contraste 2,85:1 con blanco) |
+| COLOR-03 | Alta | lectura | Fondos #FF7043 (contraste 2,74:1 con blanco) |
+| TOOL-01 | Media | comando | Numeración y operaciones no guardan el estado |
+| HUER-01 | Media | lectura | 65 páginas sin enlaces entrantes |
+| ALT-01 | Media | comando | 280 de 665 imágenes sin atributo `alt` |
+| MOVIL-01 | Media | en vivo | Herramientas y Secuencias se desbordan a 375 px |
 
 ## Detalle
 
 ### ZONA-01: Zona problemas guarda el progreso de todas las páginas en la misma clave
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: en vivo
 - Resultado esperado: 19 archivos
@@ -97,7 +92,6 @@ grep -l 'mat_progreso_alumno' zona_problemas/zona_c*.html zona_problemas/mixtos_
 
 ### ZONA-02: Las opciones de Zona problemas son `div` con `onclick`
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: comando
 - Resultado esperado: 19 archivos
@@ -135,7 +129,6 @@ grep -l 'class="opcion-btn" onclick' zona_problemas/zona_c*.html zona_problemas/
 
 ### ZONA-03: Zona problemas no declara `lang`
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 19 archivos
@@ -174,7 +167,6 @@ grep -L '<html[^>]*lang=' zona_problemas/zona_c*.html zona_problemas/mixtos_zona
 
 ### AUTO-01: Las opciones de las autoevaluaciones son `div` con `onclick`
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: comando
 - Resultado esperado: 38 archivos
@@ -232,7 +224,6 @@ grep -l 'onclick="seleccionarOpcion(' $(grep -l 'id="datos-actividad"' autoeva/*
 
 ### AUTO-02: La respuesta correcta se indica solo con color
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: comando
 - Resultado esperado: 38 archivos
@@ -290,7 +281,6 @@ grep -l 'La correcta está marcada en verde' autoeva/*.html
 
 ### AUTO-03: "Limpiar" borra el progreso sin confirmar
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 38 archivos
@@ -348,7 +338,6 @@ grep -L 'confirm(' $(grep -l 'function limpiarActividad' autoeva/*.html)
 
 ### AUTO-04: Las autoevaluaciones no enlazan al cuento
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 38 archivos
@@ -405,7 +394,6 @@ grep -LE 'Leer el (texto|cuento)' $(grep -l 'id="datos-actividad"' autoeva/*.htm
 
 ### FICHA-01: Fichas con el botón "Abrir" oculto: el acordeón solo abre con clic en un `div`
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: lectura
 - Resultado esperado: 28 archivos
@@ -453,7 +441,6 @@ grep -rlE 'btn-toggle-card *\{ *display: *none' --include=*.html .
 
 ### FICHA-02: La casilla para seleccionar fichas es un `div` con `onclick`
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: lectura
 - Resultado esperado: 57 archivos
@@ -530,7 +517,6 @@ grep -rl "checkbox.className = 'custom-checkbox'" --include=*.html .
 
 ### FICHA-03: La consigna dice "Presionar ▸ Abrir", pero el botón está oculto
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 4 archivos
@@ -553,7 +539,6 @@ for f in $(grep -rln 'Presionar.*Abrir' --include=*.html .); do grep -qE 'btn-to
 
 ### LENG-01: El índice de `2c_lengua_2` manda a ciudadseva.com
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: comando
 - Resultado esperado: 28 enlaces
@@ -577,7 +562,6 @@ Resultado:
 
 ### LENG-02: Iframes de YouTube con ancho fijo de 560 px
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 3 archivos
@@ -598,7 +582,6 @@ Resultado:
 
 ### DIS-01: Diseño curricular no tiene ninguna regla de foco
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: comando
 - Resultado esperado: 14 archivos
@@ -632,7 +615,6 @@ grep -L 'focus' diseno/*.html
 
 ### DIS-02: Las celdas seleccionables de diseño curricular son `div` con `onclick`
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: comando
 - Resultado esperado: 14 archivos
@@ -665,7 +647,6 @@ grep -l 'class="content-cell" onclick' diseno/*.html
 
 ### DIS-03: En diseño curricular el color va por ciclo y no por área
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: comando
 - Resultado esperado: 14 líneas: 1° a 3° naranja, 4° a 7° verde
@@ -699,7 +680,6 @@ grep -H -- '--primary-color:' diseno/*.html | sed 's/ *--primary-color: */ /'
 
 ### JUEGO-01: Repertorios oculta los controles táctiles desde 601 px
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: en vivo
 - Resultado esperado: Línea 90-91
@@ -719,7 +699,6 @@ Resultado:
 
 ### JUEGO-02: Concartas solo funciona arrastrando
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: lectura
 - Resultado esperado: 5 listeners de arrastre y ninguno de clic en las cartas
@@ -742,7 +721,6 @@ Resultado:
 
 ### JUEGO-03: "Reiniciar" del rosco no confirma
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: La función existe y hay 0 `confirm(`
@@ -761,12 +739,11 @@ Resultado:
 
 ### NAV-01: El sitemap anuncia `/buscar.html`, que no existe
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: Línea 31 y archivo inexistente
 - Recomendación: Quitarla del sitemap.
-- Nota: Ninguno de los dos sitios tiene buscador ni filtro por grado.
+- Nota: El sitio no tiene buscador ni filtro por grado.
 
 Comprobar:
 
@@ -781,7 +758,6 @@ Resultado:
 
 ### NAV-02: `volver.js` descarga la página anterior para leer su título
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: Línea 112
@@ -799,7 +775,6 @@ Resultado:
 
 ### PESO-01: Páginas HTML de más de 1 MB
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 3 archivos
@@ -819,7 +794,6 @@ Resultado:
 
 ### PESO-02: `logo1.png` pesa 520 KB
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 520162 bytes
@@ -837,7 +811,6 @@ Resultado:
 
 ### COLOR-01: Fondos #27AE60 (contraste 2,87:1 con blanco)
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: lectura
 - Resultado esperado: 37 archivos con el valor directo
@@ -894,7 +867,6 @@ grep -rliE 'background(-color)?: *#27ae60' --include=*.html .
 
 ### COLOR-02: Fondos #E67E22 (contraste 2,85:1 con blanco)
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: lectura
 - Resultado esperado: 10 archivos con el valor directo
@@ -924,7 +896,6 @@ grep -rliE 'background(-color)?: *#e67e22' --include=*.html .
 
 ### COLOR-03: Fondos #FF7043 (contraste 2,74:1 con blanco)
 
-- Repo: `escolar1302.github.io`
 - Severidad: Alta
 - Certeza: lectura
 - Resultado esperado: 4 archivos con el valor directo
@@ -948,7 +919,6 @@ grep -rliE 'background(-color)?: *#ff7043' --include=*.html .
 
 ### TOOL-01: Numeración y operaciones no guardan el estado
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando
 - Resultado esperado: 2 archivos
@@ -965,68 +935,8 @@ Resultado:
 - `herramientas/numeracion.html`
 - `herramientas/operaciones.html`
 
-### ACT-01: PDF de más de 5 MB sin aviso de peso
-
-- Repo: `actividades`
-- Severidad: Alta
-- Certeza: comando
-- Resultado esperado: 3 archivos
-- Recomendación: Comprimirlos y mostrar el peso.
-
-Comprobar:
-
-```bash
-find . -name '*.pdf' -not -path './.git/*' -size +5M -exec ls -l {} + | awk '{print $5, $NF}'
-```
-
-Resultado:
-
-- `10858866 ./lengua/alfabetizacion/iniciales_mpls.pdf`
-- `10607797 ./lengua/alfabetizacion/inicio_vocales.pdf`
-- `5876961 ./lengua/alfabetizacion/memotest.pdf`
-
-### ACT-02: Los enlaces de los paneles cerrados reciben foco
-
-- Repo: `actividades`
-- Severidad: Alta
-- Certeza: en vivo
-- Resultado esperado: `max-height: 0` y 0 usos de `inert` o `hidden`
-- Recomendación: Usar `hidden` o `inert` al cerrar.
-- Nota: Probado: un enlace dentro de un panel cerrado recibió foco.
-
-Comprobar:
-
-```bash
-grep -n 'max-height: 0' index.html; grep -cE 'inert|\.hidden|setAttribute\(.hidden' index.html
-```
-
-Resultado:
-
-- `117:            max-height: 0;`
-- `0`
-
-### ACT-03: `actividades` no tiene `h1` ni `<main>`
-
-- Repo: `actividades`
-- Severidad: Media
-- Certeza: comando
-- Resultado esperado: 0 y 0
-- Recomendación: Agregarlos.
-
-Comprobar:
-
-```bash
-grep -c '<h1' index.html; grep -c '<main' index.html
-```
-
-Resultado:
-
-- `0`
-- `0`
-
 ### HUER-01: páginas sin enlaces entrantes
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: lectura
 - Recomendación: revisar una por una y decidir si se borran, se enlazan o se marcan `noindex`.
@@ -1110,7 +1020,6 @@ grep -rl 'NOMBRE_DEL_ARCHIVO' --include=*.html --include=*.js --include=*.json .
 
 ### ALT-01: imágenes sin atributo `alt`
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: comando (análisis del HTML estático; no incluye imágenes generadas por JavaScript)
 - Recomendación: describir las imágenes con contenido y usar `alt=""` en las decorativas.
@@ -1151,7 +1060,6 @@ grep -rl 'NOMBRE_DEL_ARCHIVO' --include=*.html --include=*.js --include=*.json .
 
 ### MOVIL-01: desborde horizontal a 375 px
 
-- Repo: `escolar1302.github.io`
 - Severidad: Media
 - Certeza: en vivo
 - Resultado: `herramientas/` mide 424 px de ancho y `secuencias/` 643 px.

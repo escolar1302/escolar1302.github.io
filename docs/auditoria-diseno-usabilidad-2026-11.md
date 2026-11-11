@@ -1,10 +1,24 @@
-# Auditoría de diseño y usabilidad — escolar.com.ar y actividades.com.ar
+# Auditoría de diseño y usabilidad — escolar.com.ar
 
-Relevamiento del 8 de noviembre de 2026. Documento hecho con IA (Claude) a pedido de un colaborador del proyecto, para que el dueño de los sitios decida qué hacer con cada hallazgo. El detalle comprobable de cada hallazgo, con códigos, archivos y comandos, está en `auditoria-hallazgos-para-agentes-2026-11.md`.
+## Para empezar
+
+Hola! Te dejo una auditoría de diseño y usabilidad de escolar.com.ar, para que decidas qué hacer con cada hallazgo. Este PR no cambia nada del sitio: solo agrega documentos. No hace falta mergearlo; si se mergea, quedan publicados en la web. La hice con IA y no se probó con docentes ni alumnos, así que puede tener errores.
+
+Si le pedís a Claude "buscá solicitudes de cambio y guiame en cómo resolverlas", esta es la revisión que te propongo hacer con él:
+
+1. Leer `docs/auditoria-diseno-usabilidad-2026-11.md` y `docs/auditoria-hallazgos-para-agentes-2026-11.md`. El segundo tiene cada hallazgo con código, archivos, comando para comprobarlo y grado de certeza.
+2. Comprobar contra el código actual de `main` todos los hallazgos de severidad Alta, y probar los marcados como "lectura". El informe ya tuvo errores, así que ninguno se da por cierto.
+3. Mostrarte una tabla con cada hallazgo: si se confirma o no, qué impacto tiene para docentes y alumnos, cuánto cuesta arreglarlo y qué recomienda. Ordenada por lo que conviene hacer primero.
+4. Recorrer los hallazgos con vos, de a uno, y anotar cuáles querés resolver.
+5. No modificar archivos, no hacer commits y no mergear ni cerrar este PR hasta que vos lo indiques. Cada arreglo que elijas conviene que vaya en su propio PR.
+
+Un dato a tener en cuenta: las 38 autoevaluaciones se exportaron desde `constructor_lengua_choice.html`, así que corregir el constructor no cambia las páginas ya exportadas.
+
+Relevamiento del 8 de noviembre de 2026, con comprobaciones del 10 de noviembre.
 
 ## Resumen ejecutivo
 
-Ambos sitios tienen mucho contenido valioso y una portada bien resuelta, pero detrás de la home la experiencia es despareja. Las 261 páginas de escolar.com.ar salen de unas 15 plantillas, cada una con sus propios colores, fuentes y forma de responder. Varias tienen errores que afectan a los alumnos hoy. Como los problemas vienen de las plantillas, una corrección en pocas plantillas llega a cientos de páginas.
+El sitio tiene mucho contenido valioso y una portada bien resuelta, pero detrás de la home la experiencia es despareja. Las 261 páginas de escolar.com.ar salen de unas 15 plantillas, cada una con sus propios colores, fuentes y forma de responder. Varias tienen errores que afectan a los alumnos hoy. Como los problemas vienen de las plantillas, una corrección en pocas plantillas llega a cientos de páginas.
 
 Los ocho problemas más importantes, ordenados por impacto:
 
@@ -12,12 +26,12 @@ Los ocho problemas más importantes, ordenados por impacto:
 2. **Gran parte de las actividades no se puede usar con teclado.** En autoevaluaciones y Zona problemas las opciones, y en fichas y diseño curricular las casillas de selección, son `div` con onclick. Afecta a más de 100 páginas.
 3. **Los colores de marca no se leen bien.** El verde y el naranja con texto blanco dan entre 2,7 y 2,9:1, cuando el mínimo es 4,5:1. Están en los botones principales de casi todo el sitio. Hay reemplazos más oscuros del mismo tono.
 4. **El error se marca solo con color.** En 38 autoevaluaciones la respuesta correcta se indica "en verde", sin texto ni explicación.
-5. **No se puede buscar por grado.** Un docente que busca "problemas de 4°" tiene que adivinar en qué sección están. Ninguno de los dos sitios tiene buscador ni filtro por grado.
+5. **No se puede buscar por grado.** Un docente que busca "problemas de 4°" tiene que adivinar en qué sección están. El sitio no tiene buscador ni filtro por grado.
 6. **Dos juegos fallan en tablet.** Repertorios oculta sus controles táctiles a partir de 601 px y Concartas solo funciona arrastrando. La página de Herramientas, y la de Secuencias enlazada desde la home, se desbordan a lo ancho en celular.
 7. **Hay 65 páginas publicadas sin enlaces desde el sitio, muchas de ellas versiones viejas o de prueba.** Siguen siendo indexables. También hay cuentos repetidos en dos carpetas y actividades que no enlazan al cuento que evalúan.
-8. **Archivos pesados.** Hay páginas de hasta 2,8 MB por imágenes embebidas, PDF de alfabetización de 10 MB sin aviso en actividades.com.ar y un logo de 520 KB.
+8. **Archivos pesados.** Hay páginas de hasta 2,8 MB por imágenes embebidas y un logo de 520 KB.
 
-Los puntos 1, 3, 4 y 6 (Repertorios), más las confirmaciones antes de borrar, son cambios chicos que no alteran la estructura del sitio y se pueden hacer primero. La unificación visual (una hoja de estilos compartida) y el filtro por grado son los cambios de mayor impacto a mediano plazo, y conviene acordarlos con los dueños de los repos.
+Los puntos 1, 3, 4 y 6 (Repertorios), más las confirmaciones antes de borrar, son cambios chicos que no alteran la estructura del sitio y se pueden hacer primero. La unificación visual (una hoja de estilos compartida) y el filtro por grado son los cambios de mayor impacto a mediano plazo, y son una decisión del dueño del sitio.
 
 Lo que ya funciona bien y conviene conservar:
 
@@ -29,11 +43,11 @@ Lo que ya funciona bien y conviene conservar:
 
 ## Alcance y método
 
-Se revisaron las 262 páginas HTML de ambos sitios: 261 de escolar.com.ar y la única de actividades.com.ar (que enlaza 100 PDF). La revisión combinó cuatro fuentes.
+Se revisaron las 261 páginas HTML de escolar.com.ar. La revisión combinó cuatro fuentes.
 
 | Fuente | Qué cubre | Páginas |
 | --- | --- | --- |
-| Análisis estático del código | Título, idioma, viewport, encabezados, alt, labels, enlaces rotos, huérfanas, tipografías, colores, peso | 262 |
+| Análisis estático del código | Título, idioma, viewport, encabezados, alt, labels, enlaces rotos, huérfanas, tipografías, colores, peso | 261 |
 | Medición en vivo a 375 px de ancho | Desborde horizontal, texto chico, contraste, tamaño de controles, imágenes rotas | 261 |
 | Revisión del código por plantilla, hecha con IA | Plantillas, consignas, flujo de actividades y juegos, feedback, duplicados | 1 o 2 páginas completas por plantilla, y búsquedas en el resto |
 | Recorrido en el navegador, en escritorio y móvil | Home, hubs y una muestra por familia | Muestra |
@@ -59,13 +73,11 @@ Texto blanco sobre los colores de acción del sitio. WCAG AA exige 4,5:1.
 | Gris #607D8B sobre fondos claros | 3,9 a 4,0:1 | Instrucciones de unas 55 fichas, a 13 px | #455A64 (6,6 a 7,2:1) |
 | #E65100 sobre blanco | 3,79:1 | Títulos de grupo en la home y títulos de ficha | #BF360C (5,6:1) |
 
-actividades.com.ar ya resolvió esto: su naranja #B85400 da 4,88:1. Ese mismo valor se puede usar en escolar.
-
 ### 2. Sin sistema visual compartido (Alta)
 
 - **Tipografías:** se usan Roboto en 137 páginas, Arial en 99 y Nunito en 96, además de Segoe UI, Inter, Lora, Poppins y Trebuchet. Muchas plantillas declaran Roboto pero no la cargan, así que en Windows se ven en Segoe UI o Arial.
 - **Colores:** la mediana es de 19 colores distintos por página, y hay páginas con hasta 119. En la familia de Lengua conviven cinco esquemas: verde #27AE60, verde lima #7CB342, azul #036FB0, gris y un tema oscuro con violeta.
-- **Código de color contradictorio:** en diseño curricular el color va por ciclo y no por área. En actividades.com.ar el naranja es Lengua; en escolar, Matemática.
+- **Código de color contradictorio:** en diseño curricular el color va por ciclo y no por área.
 - **Botones:** los radios van de 8 a 999 px. En la barra de Zona problemas hay seis botones de seis colores, y en los juegos cada uno tiene su estilo.
 - **CSS:** casi todo está en línea. Solo hay 7 hojas de estilo en todo el sitio, ninguna compartida.
 
@@ -86,7 +98,7 @@ Recomendación: crear un `/estilos/base.css` con las variables de color por áre
 
 ### 5. Responsive (Media)
 
-La home, actividades.com.ar, Zona problemas y diseño curricular se ven bien a 375 px. Los casos que fallan son puntuales:
+La home, Zona problemas y diseño curricular se ven bien a 375 px. Los casos que fallan son puntuales:
 
 - 2 iframes de YouTube con 560 px fijos.
 - Tablas sin `overflow-x` en trayectorias y multiplicación.
@@ -112,7 +124,7 @@ En los juegos, el uso en tablet falla en dos casos concretos.
 
 ### 1. Encontrar un recurso (Alta)
 
-- **No hay búsqueda ni filtro por grado.** La home organiza por área y por tipo de recurso. El grado aparece solo en Diseño curricular. Para encontrar "problemas de 4°" hay que probar Zona problemas o Listos para imprimir, que se organizan por campo. Las herramientas y actividades.com.ar usan rangos numéricos ("Hasta 1000").
+- **No hay búsqueda ni filtro por grado.** La home organiza por área y por tipo de recurso. El grado aparece solo en Diseño curricular. Para encontrar "problemas de 4°" hay que probar Zona problemas o Listos para imprimir, que se organizan por campo. Las herramientas usan rangos numéricos ("Hasta 1000").
 - El sitemap anuncia `/buscar.html`, pero esa página no existe.
 - **Recomendación:** etiquetar cada recurso con grado o ciclo y agregar en la home un filtro de chips (1° a 7°) que filtre las tarjetas existentes. No hace falta servidor.
 
@@ -253,24 +265,6 @@ Las 261 páginas salen de unas 15 plantillas, y cada una tiene sus propios color
 - **Media.** En numeración y operaciones, al recargar se pierde la configuración y lo editado. El editor sí guarda solo.
 - **Media.** El armador de problemas descarga un JSON de 2,0 MB en cada visita.
 
-## actividades.com.ar
-
-Es una sola página clara y liviana (22 KB). Sus acordeones son accesibles y tienen buen contraste. Los problemas están en lo que hay detrás de cada enlace: no se sabe qué ficha es, para qué grado es ni cuánto pesa.
-
-| Severidad | Hallazgo | Evidencia | Recomendación |
-| --- | --- | --- | --- |
-| Alta | PDF muy pesados y sin aviso | `iniciales_mpls.pdf` pesa 10,9 MB, `inicio_vocales.pdf` 10,6 MB y `memotest.pdf` 5,9 MB. En total son unos 55 MB | Comprimir los PDF y mostrar "PDF · 10 MB" junto al enlace |
-| Alta | Los enlaces de los paneles cerrados siguen recibiendo el foco del teclado | Los paneles se cierran con `max-height:0` sin `hidden`, así que el foco cae en enlaces invisibles | Usar `hidden` o `inert` al cerrar el panel |
-| Media | Nombres de enlace genéricos | "Ficha 1" aparece unas 20 veces. Los archivos bajan como `cm_03.pdf` o `100_01.pdf` | Nombres descriptivos ("Sumas con reagrupamiento · Ficha 1") y atributo `download` con nombre legible |
-| Media | No se indica el grado | Las fichas se agrupan por rango numérico ("Hasta 1000") y nunca por grado | Agregar la etiqueta de grado o ciclo a cada grupo |
-| Media | Faltan elementos básicos | No tiene h1 ni `<main>`. El título es solo "Actividades". No tiene meta description, sitemap, licencia ni pie | Completar título, h1, descripción, pie con licencia CC |
-| Media | Identidad distinta de escolar.com.ar | Fondo crema, tipografía Roboto y otra paleta. El naranja marca Lengua, mientras que en escolar marca Matemática | Compartir los colores por área y la tipografía Nunito |
-| Media | Contenido duplicado o sin enlazar | Las fichas en color están repetidas, idénticas, en ambos repos. Dos PDF de "El traje nuevo del emperador" no tienen enlace | Una sola fuente por PDF y enlazar o quitar los sueltos |
-| Baja | Todos los acordeones arrancan cerrados y sin contador | En la home de escolar sí hay contadores ("10 recursos") | Mostrar la cantidad de fichas en cada panel |
-| Baja | Alt del logo desactualizado | Dice "Escolar 1302" | Cambiarlo por "Ir a escolar.com.ar" |
-
-Lo que funciona: el texto de introducción avisa que los enlaces abren en pestaña nueva, `aria-expanded` se actualiza y los botones del acordeón tienen contraste de 4,88 a 7,64:1. En móvil a 375 px se ve bien.
-
 ## Plan de mejoras priorizado
 
 La mayoría de los problemas se repiten en muchas páginas porque salen de unas pocas plantillas. Por eso conviene arreglar la plantilla y volver a exportar, en lugar de corregir página por página. El orden propuesto va de lo que rompe la experiencia hoy y cuesta poco a lo estructural.
@@ -284,17 +278,16 @@ La mayoría de los problemas se repiten en muchas páginas porque salen de unas 
 | 5 | Confirmación en "Limpiar" y "Reiniciar" | Medio | Bajo | Unas 40 páginas |
 | 6 | Corregir la consigna "Presionar ▸ Abrir" y las erratas de títulos | Medio | Bajo | Unas 15 páginas |
 | 7 | Despublicar o marcar `noindex` en páginas de prueba y versiones viejas, y agregar `robots.txt` | Medio: evita que se llegue a contenido viejo | Bajo | Hasta 65 páginas, a revisar una por una |
-| 8 | Comprimir los PDF de alfabetización y mostrar el peso junto a cada enlace | Medio: descargas de 10 MB en celular | Bajo | actividades.com.ar |
-| 9 | `<button>` en lugar de `div onclick`, más `aria-expanded` y `aria-live` | Alto: teclado y lectores de pantalla | Medio (4 plantillas, luego reexportar) | Más de 100 páginas |
-| 10 | Enlace "Leer el cuento" en cada actividad de Lengua | Medio | Medio | Unas 70 páginas |
-| 11 | Sacar las imágenes base64 a archivos WebP y redimensionar el logo | Medio: carga en celular | Medio | Unas 40 páginas |
-| 12 | Hoja de estilos compartida (`base.css`) con colores por área, Nunito y botón | Alto: consistencia visual | Alto | Todo el sitio, plantilla por plantilla |
-| 13 | Etiqueta de grado en cada recurso y filtro por grado en la home | Alto: encontrar recursos | Alto (requiere decidir el grado de cada recurso) | Home y actividades.com.ar |
-| 14 | Breadcrumb declarado por página en `volver.js` | Medio | Medio | 245 páginas, con un cambio central |
+| 8 | `<button>` en lugar de `div onclick`, más `aria-expanded` y `aria-live` | Alto: teclado y lectores de pantalla | Medio (4 plantillas, luego reexportar) | Más de 100 páginas |
+| 9 | Enlace "Leer el cuento" en cada actividad de Lengua | Medio | Medio | Unas 70 páginas |
+| 10 | Sacar las imágenes base64 a archivos WebP y redimensionar el logo | Medio: carga en celular | Medio | Unas 40 páginas |
+| 11 | Hoja de estilos compartida (`base.css`) con colores por área, Nunito y botón | Alto: consistencia visual | Alto | Todo el sitio, plantilla por plantilla |
+| 12 | Etiqueta de grado en cada recurso y filtro por grado en la home | Alto: encontrar recursos | Alto (requiere decidir el grado de cada recurso) | Home |
+| 13 | Breadcrumb declarado por página en `volver.js` | Medio | Medio | 245 páginas, con un cambio central |
 
-Las mejoras 1 a 8 se pueden hacer en una o dos tandas cortas y no cambian la estructura del sitio. De la 9 a la 14 conviene acordarlas antes con los dueños de los repos: tocan las plantillas y la organización de los contenidos.
+Las mejoras 1 a 7 se pueden hacer en una o dos tandas cortas y no cambian la estructura del sitio. De la 8 a la 13 conviene pensarlas con más tiempo: tocan las plantillas y la organización de los contenidos.
 
-Preguntas abiertas para los dueños:
+Preguntas abiertas para el dueño:
 
 - ¿Las páginas de versiones viejas (`index1`, `…0`, `palabra1`) se pueden borrar, o se mantienen por enlaces externos?
 - El constructor de las autoevaluaciones es `constructor_lengua_choice.html`. Corregirlo no cambia las 38 páginas ya exportadas: ¿se pueden volver a exportar, o hay que editarlas a mano?
