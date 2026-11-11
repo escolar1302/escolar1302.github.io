@@ -61,7 +61,7 @@
       '<div class="barra">' +
       '<a class="logo" href="' + INICIO + '" aria-label="Ir al inicio de Escolar"><img src="/logo.png" alt="Escolar"></a>' +
       '<a class="volver" id="bs-volver" href="' + INICIO + '">⬅ ' + TXT_INICIO + '</a>' +
-      '<a class="logo2" href="https://actividades.com.ar" aria-label="Actividades.com.ar"><img src="/logo2.png" alt="Actividades.com.ar"></a>' +
+      '<a class="logo2" href="https://www.actividades.com.ar/" aria-label="Actividades.com.ar"><img src="/logo2.png" alt="Actividades.com.ar"></a>' +
       '</div>';
     // Si el <body> de la página es flex o grid, la barra no puede ser un hijo suyo (ocuparía una columna
     // y se achicaría): se coloca justo antes del <body>, como bloque propio a todo el ancho.
