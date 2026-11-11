@@ -1,6 +1,6 @@
 # Auditoría de diseño y usabilidad — escolar.com.ar y actividades.com.ar
 
-Relevamiento del 8 de noviembre de 2026. Documento hecho con IA (Claude) a pedido de un colaborador del proyecto, para que el dueño de los sitios decida qué hacer con cada hallazgo.
+Relevamiento del 8 de noviembre de 2026. Documento hecho con IA (Claude) a pedido de un colaborador del proyecto, para que el dueño de los sitios decida qué hacer con cada hallazgo. El detalle comprobable de cada hallazgo, con códigos, archivos y comandos, está en `auditoria-hallazgos-para-agentes-2026-11.md`.
 
 ## Resumen ejecutivo
 
@@ -9,7 +9,7 @@ Ambos sitios tienen mucho contenido valioso y una portada bien resuelta, pero de
 Los ocho problemas más importantes, ordenados por impacto:
 
 1. **Las respuestas se mezclan entre páginas.** Las 19 fichas de Zona problemas guardan el progreso en el mismo lugar, así que lo respondido en una zona aparece en otra. El arreglo es de una línea.
-2. **Gran parte de las actividades no se puede usar con teclado.** En autoevaluaciones, Zona problemas, fichas y diseño curricular, las opciones son `div` con onclick. Afecta a más de 100 páginas.
+2. **Gran parte de las actividades no se puede usar con teclado.** En autoevaluaciones y Zona problemas las opciones, y en fichas y diseño curricular las casillas de selección, son `div` con onclick. Afecta a más de 100 páginas.
 3. **Los colores de marca no se leen bien.** El verde y el naranja con texto blanco dan entre 2,7 y 2,9:1, cuando el mínimo es 4,5:1. Están en los botones principales de casi todo el sitio. Hay reemplazos más oscuros del mismo tono.
 4. **El error se marca solo con color.** En 38 autoevaluaciones la respuesta correcta se indica "en verde", sin texto ni explicación.
 5. **No se puede buscar por grado.** Un docente que busca "problemas de 4°" tiene que adivinar en qué sección están. Ninguno de los dos sitios tiene buscador ni filtro por grado.
@@ -54,7 +54,7 @@ Texto blanco sobre los colores de acción del sitio. WCAG AA exige 4,5:1.
 | --- | --- | --- | --- |
 | Blanco sobre verde #27AE60 | 2,87:1 | Botones de autoevaluaciones, Lengua, rosco y dados. También el texto "¡Correcto!" en verde sobre blanco | #1B7A43 (5,4:1) |
 | Blanco sobre naranja #E67E22 | 2,85:1 | "Comprobar" en 19 páginas de Zona, "Descargar corrección", herramientas | #B35400 (5,0:1) |
-| Blanco sobre naranja #FF7043 | 2,74:1 | Botón flotante de imprimir (55 páginas), "Dejar una sugerencia" | #C2410C (5,2:1) |
+| Blanco sobre naranja #FF7043 | 2,74:1 | Botón flotante de imprimir (unas 60 páginas), "Dejar una sugerencia" | #C2410C (5,2:1) |
 | Blanco sobre #F39C12 / #2ECC71 | 2,19 y 2,10:1 | Juegos (pausa, comenzar) | Los mismos oscuros de arriba |
 | Gris #607D8B sobre fondos claros | 3,9 a 4,0:1 | Instrucciones de unas 55 fichas, a 13 px | #455A64 (6,6 a 7,2:1) |
 | #E65100 sobre blanco | 3,79:1 | Títulos de grupo en la home y títulos de ficha | #BF360C (5,6:1) |
@@ -134,7 +134,7 @@ En los juegos, el uso en tablet falla en dos casos concretos.
 En el HTML estático, 23 páginas tienen elementos clicables que no son botones, y en ellas no se puede responder ni abrir contenido con teclado. Lo mismo ocurre en las plantillas que generan las opciones por JavaScript:
 
 - Opciones de las 38 autoevaluaciones y de las 19 páginas de Zona problemas.
-- Acordeones de las fichas, de Lengua y de Matemática, y del diseño curricular.
+- Acordeones de las 28 páginas de fichas con el botón "Abrir" oculto, casillas de selección de 57 páginas de fichas y celdas del diseño curricular.
 - Letras del rosco y pilones de sumas con cartas.
 
 También faltan otros apoyos:
@@ -157,7 +157,7 @@ También faltan otros apoyos:
 
 ### 5. Estado y pérdida de datos (Alta)
 
-- **Progreso cruzado:** las 19 páginas de Zona problemas guardan en la misma clave de localStorage. Lo que un alumno responde en la Zona 1 aparece como respuesta en la Zona 2.
+- **Progreso cruzado:** las 19 páginas de Zona problemas guardan en la misma clave de localStorage. Probado en vivo: responder bien la primera ficha de `zona_ca1_a` hace que la primera ficha de `zona_ca2_a` se muestre como "¡RESUELTO!".
 - **Borrado sin confirmar:**
   - "Limpiar" de las autoevaluaciones (arriba de todo).
   - "Reiniciar" del rosco (junto a "Paso").
@@ -209,7 +209,7 @@ Las 261 páginas salen de unas 15 plantillas, y cada una tiene sus propios color
 | Cuentos y fichas de Lengua (`2c_lengua`, `2c_lengua_2`, `para_libros`, `analisis_texto`) | 79 | Fichas en acordeón (40) y actividad abierta con entrega (28) | La actividad no enlaza al cuento: el índice manda a ciudadseva.com. Hay páginas de hasta 788 KB por imágenes base64 | 9 |
 | Matemática (`zona_problemas`, `numera`, `multdiv`, `1ciclo`, etc.) | 61 | Zona problemas (19) y constructor de fichas (15) | Las 19 páginas de Zona guardan el progreso en la misma clave (`mat_progreso_alumno`), así que las respuestas de una zona aparecen en otra | 18 |
 | Juegos e interactivos | 26 | Sin plantilla común; 4 páginas son embebidos de Wordwall | Repertorios oculta los controles táctiles en pantallas de 601 px o más, así que en tablet no se puede jugar. Concartas solo funciona arrastrando | 7 |
-| Home, herramientas y diseño curricular | 35 | Home con acordeones; 14 páginas de diseño curricular | No se puede buscar ni filtrar por grado. El diseño curricular no se puede usar con teclado | 12 |
+| Home, herramientas y diseño curricular | 35 | Home con acordeones; 14 páginas de diseño curricular | No se puede buscar ni filtrar por grado. En diseño curricular el foco no se ve y las celdas no se pueden seleccionar con teclado | 12 |
 
 ### Autoevaluaciones
 
@@ -221,7 +221,7 @@ Las 261 páginas salen de unas 15 plantillas, y cada una tiene sus propios color
 
 ### Cuentos y fichas de Lengua
 
-- **Alta.** Las tarjetas del acordeón y la casilla para imprimir son `div` con onclick. Los botones ↗️ 🖨️ 📋 🗑️ son solo emoji y no tienen `aria-label`.
+- **Alta.** El encabezado de las tarjetas y la casilla para imprimir son `div` con onclick. En 28 páginas el botón "Abrir" está oculto, así que no se pueden abrir con teclado; en las demás sí. Los botones ↗️ 🖨️ 📋 🗑️ son solo emoji y no tienen `aria-label`.
 - **Alta.** Las imágenes base64 y los restos de copiado desde Gemini (`data-path-to-node`, hasta 1748 por página) inflan el peso: `egcb.html` 788 KB, `collar.html` 570 KB. El PDF `teseoyelminotauro.pdf` pesa 13,9 MB.
 - **Media.** Al abrir la página todas las tarjetas aparecen plegadas, cuento incluido. El texto largo ocupa hasta 900 px de ancho, sin interlineado definido, y algunos están justificados.
 - **Media.** Los mismos cuentos están en dos carpetas con nombres distintos (`joyas`/`las_joyas`, `collar`/`el_collar`). Los archivos usan siglas (`egcb`, `ehsc`, `tyem`). Hay erratas en títulos: "Al muy grave", "La abeja harabana", "La medias de los flamencos".
@@ -249,7 +249,7 @@ Las 261 páginas salen de unas 15 plantillas, y cada una tiene sus propios color
 ### Home, herramientas y diseño curricular
 
 - **Alta.** En diseño curricular el color va por ciclo: naranja de 1° a 3°, verde de 4° a 7°. En la home, en cambio, el naranja es Matemática y el verde es Lengua.
-- **Alta.** En diseño curricular, los acordeones y las celdas seleccionables son `div` con `outline:none` y no tienen ninguna regla de foco. El h1 queda pegado al borde izquierdo y el botón flotante tapa el "+" del último acordeón.
+- **Alta.** En diseño curricular, las celdas seleccionables son `div` con onclick. Los acordeones son botones, pero tienen `outline:none` y no hay ninguna regla de foco, así que el foco no se ve. El h1 queda pegado al borde izquierdo y el botón flotante tapa el "+" del último acordeón.
 - **Media.** En numeración y operaciones, al recargar se pierde la configuración y lo editado. El editor sí guarda solo.
 - **Media.** El armador de problemas descarga un JSON de 2,0 MB en cada visita.
 
@@ -297,7 +297,7 @@ Las mejoras 1 a 8 se pueden hacer en una o dos tandas cortas y no cambian la est
 Preguntas abiertas para los dueños:
 
 - ¿Las páginas de versiones viejas (`index1`, `…0`, `palabra1`) se pueden borrar, o se mantienen por enlaces externos?
-- ¿El constructor que exporta las autoevaluaciones está en el repo, o hay que editar las 38 páginas a mano?
+- El constructor de las autoevaluaciones es `constructor_lengua_choice.html`. Corregirlo no cambia las 38 páginas ya exportadas: ¿se pueden volver a exportar, o hay que editarlas a mano?
 - ¿Hay datos de uso (Google Analytics está en 210 páginas) para priorizar por tráfico?
 
 ## Anexo: resultados de los chequeos automáticos
